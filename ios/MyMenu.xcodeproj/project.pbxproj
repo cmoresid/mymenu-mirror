@@ -21,6 +21,24 @@
 		83893ED718919AD400D36670 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83893ED518919AD400D36670 /* InfoPlist.strings */; };
 		83893ED918919AD400D36670 /* MyMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83893ED818919AD400D36670 /* MyMenuTests.m */; };
 		83893F281891C55E00D36670 /* MMSpecialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83893F271891C55E00D36670 /* MMSpecialsViewController.m */; };
+		9B4E24701891D37500F5B955 /* MMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E246F1891D37500F5B955 /* MMUser.m */; };
+		9B4E24711891D37500F5B955 /* MMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E246F1891D37500F5B955 /* MMUser.m */; };
+		9B4E24741891D67300F5B955 /* MMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24731891D67300F5B955 /* MMMenuItem.m */; };
+		9B4E24751891D67300F5B955 /* MMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24731891D67300F5B955 /* MMMenuItem.m */; };
+		9B4E24781891D8C600F5B955 /* MMMerchant.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24771891D8C600F5B955 /* MMMerchant.m */; };
+		9B4E24791891D8C600F5B955 /* MMMerchant.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24771891D8C600F5B955 /* MMMerchant.m */; };
+		9B4E247C1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E247B1891DA7B00F5B955 /* MMMenuItemCategory.m */; };
+		9B4E247D1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E247B1891DA7B00F5B955 /* MMMenuItemCategory.m */; };
+		9B4E24801891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E247F1891DAC700F5B955 /* MMMenuItemFavLink.m */; };
+		9B4E24811891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E247F1891DAC700F5B955 /* MMMenuItemFavLink.m */; };
+		9B4E24841891DC3D00F5B955 /* MMMerchantCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24831891DC3D00F5B955 /* MMMerchantCategory.m */; };
+		9B4E24851891DC3D00F5B955 /* MMMerchantCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24831891DC3D00F5B955 /* MMMerchantCategory.m */; };
+		9B4E24881891DCD100F5B955 /* MMMenuItemRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24871891DCD100F5B955 /* MMMenuItemRating.m */; };
+		9B4E24891891DCD100F5B955 /* MMMenuItemRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24871891DCD100F5B955 /* MMMenuItemRating.m */; };
+		9B4E248D1891E02B00F5B955 /* MMRestriction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E248C1891E02B00F5B955 /* MMRestriction.m */; };
+		9B4E248E1891E02B00F5B955 /* MMRestriction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E248C1891E02B00F5B955 /* MMRestriction.m */; };
+		9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24901891E06200F5B955 /* MMSpecial.m */; };
+		9B4E24921891E06200F5B955 /* MMSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24901891E06200F5B955 /* MMSpecial.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +71,24 @@
 		83893ED818919AD400D36670 /* MyMenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMenuTests.m; sourceTree = "<group>"; };
 		83893F261891C55E00D36670 /* MMSpecialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialsViewController.h; sourceTree = "<group>"; };
 		83893F271891C55E00D36670 /* MMSpecialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialsViewController.m; sourceTree = "<group>"; };
+		9B4E246E1891D37500F5B955 /* MMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMUser.h; sourceTree = "<group>"; };
+		9B4E246F1891D37500F5B955 /* MMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMUser.m; sourceTree = "<group>"; };
+		9B4E24721891D67300F5B955 /* MMMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItem.h; sourceTree = "<group>"; };
+		9B4E24731891D67300F5B955 /* MMMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItem.m; sourceTree = "<group>"; };
+		9B4E24761891D8C600F5B955 /* MMMerchant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMerchant.h; sourceTree = "<group>"; };
+		9B4E24771891D8C600F5B955 /* MMMerchant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMerchant.m; sourceTree = "<group>"; };
+		9B4E247A1891DA7B00F5B955 /* MMMenuItemCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemCategory.h; sourceTree = "<group>"; };
+		9B4E247B1891DA7B00F5B955 /* MMMenuItemCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemCategory.m; sourceTree = "<group>"; };
+		9B4E247E1891DAC700F5B955 /* MMMenuItemFavLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemFavLink.h; sourceTree = "<group>"; };
+		9B4E247F1891DAC700F5B955 /* MMMenuItemFavLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemFavLink.m; sourceTree = "<group>"; };
+		9B4E24821891DC3D00F5B955 /* MMMerchantCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMerchantCategory.h; sourceTree = "<group>"; };
+		9B4E24831891DC3D00F5B955 /* MMMerchantCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMerchantCategory.m; sourceTree = "<group>"; };
+		9B4E24861891DCD100F5B955 /* MMMenuItemRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemRating.h; sourceTree = "<group>"; };
+		9B4E24871891DCD100F5B955 /* MMMenuItemRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemRating.m; sourceTree = "<group>"; };
+		9B4E248B1891E02B00F5B955 /* MMRestriction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRestriction.h; sourceTree = "<group>"; };
+		9B4E248C1891E02B00F5B955 /* MMRestriction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestriction.m; sourceTree = "<group>"; };
+		9B4E248F1891E06200F5B955 /* MMSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecial.h; sourceTree = "<group>"; };
+		9B4E24901891E06200F5B955 /* MMSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecial.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +155,7 @@
 				83893F271891C55E00D36670 /* MMSpecialsViewController.m */,
 				83893EC518919AD400D36670 /* Images.xcassets */,
 				83893EB118919AD400D36670 /* Supporting Files */,
+				9B4E248A1891E00100F5B955 /* Model */,
 			);
 			path = MyMenu;
 			sourceTree = "<group>";
@@ -150,6 +187,31 @@
 				83893ED518919AD400D36670 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9B4E248A1891E00100F5B955 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9B4E246E1891D37500F5B955 /* MMUser.h */,
+				9B4E246F1891D37500F5B955 /* MMUser.m */,
+				9B4E24721891D67300F5B955 /* MMMenuItem.h */,
+				9B4E24761891D8C600F5B955 /* MMMerchant.h */,
+				9B4E247A1891DA7B00F5B955 /* MMMenuItemCategory.h */,
+				9B4E247E1891DAC700F5B955 /* MMMenuItemFavLink.h */,
+				9B4E24821891DC3D00F5B955 /* MMMerchantCategory.h */,
+				9B4E24861891DCD100F5B955 /* MMMenuItemRating.h */,
+				9B4E24871891DCD100F5B955 /* MMMenuItemRating.m */,
+				9B4E24831891DC3D00F5B955 /* MMMerchantCategory.m */,
+				9B4E247F1891DAC700F5B955 /* MMMenuItemFavLink.m */,
+				9B4E247B1891DA7B00F5B955 /* MMMenuItemCategory.m */,
+				9B4E24771891D8C600F5B955 /* MMMerchant.m */,
+				9B4E24731891D67300F5B955 /* MMMenuItem.m */,
+				9B4E248B1891E02B00F5B955 /* MMRestriction.h */,
+				9B4E248C1891E02B00F5B955 /* MMRestriction.m */,
+				9B4E248F1891E06200F5B955 /* MMSpecial.h */,
+				9B4E24901891E06200F5B955 /* MMSpecial.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,9 +312,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4E24701891D37500F5B955 /* MMUser.m in Sources */,
 				83893F281891C55E00D36670 /* MMSpecialsViewController.m in Sources */,
+				9B4E24741891D67300F5B955 /* MMMenuItem.m in Sources */,
+				9B4E248D1891E02B00F5B955 /* MMRestriction.m in Sources */,
+				9B4E247C1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */,
+				9B4E24801891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */,
+				9B4E24841891DC3D00F5B955 /* MMMerchantCategory.m in Sources */,
 				83893EBB18919AD400D36670 /* MMAppDelegate.m in Sources */,
 				83893EB718919AD400D36670 /* main.m in Sources */,
+				9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */,
+				9B4E24881891DCD100F5B955 /* MMMenuItemRating.m in Sources */,
+				9B4E24781891D8C600F5B955 /* MMMerchant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +331,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4E24891891DCD100F5B955 /* MMMenuItemRating.m in Sources */,
+				9B4E24811891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */,
+				9B4E24711891D37500F5B955 /* MMUser.m in Sources */,
+				9B4E24751891D67300F5B955 /* MMMenuItem.m in Sources */,
+				9B4E24851891DC3D00F5B955 /* MMMerchantCategory.m in Sources */,
+				9B4E247D1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */,
+				9B4E248E1891E02B00F5B955 /* MMRestriction.m in Sources */,
 				83893ED918919AD400D36670 /* MyMenuTests.m in Sources */,
+				9B4E24791891D8C600F5B955 /* MMMerchant.m in Sources */,
+				9B4E24921891E06200F5B955 /* MMSpecial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
