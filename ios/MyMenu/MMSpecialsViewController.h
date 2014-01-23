@@ -1,5 +1,5 @@
 //
-//  MMAppDelegate.h
+//  MMSpecialsViewController.h
 //  MyMenu
 //
 //  Created by Chris Pavlicek on 1/23/2014.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface MMSpecialsViewController : UIViewController
 
 @end

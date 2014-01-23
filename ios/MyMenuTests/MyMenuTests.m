@@ -2,7 +2,7 @@
 //  MyMenuTests.m
 //  MyMenuTests
 //
-//  Created by Connor Moreside on 1/18/2014.
+//  Created by Chris Pavlicek on 1/23/2014.
 //  Copyright (c) 2014 MyMenu. All rights reserved.
 //
 
