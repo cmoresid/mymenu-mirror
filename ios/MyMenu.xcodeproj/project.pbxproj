@@ -39,6 +39,8 @@
 		9B4E248E1891E02B00F5B955 /* MMRestriction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E248C1891E02B00F5B955 /* MMRestriction.m */; };
 		9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24901891E06200F5B955 /* MMSpecial.m */; };
 		9B4E24921891E06200F5B955 /* MMSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24901891E06200F5B955 /* MMSpecial.m */; };
+		B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57251893084E00DEBAD8 /* MMLoginViewController.m */; };
+		B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,10 @@
 		9B4E248C1891E02B00F5B955 /* MMRestriction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestriction.m; sourceTree = "<group>"; };
 		9B4E248F1891E06200F5B955 /* MMSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecial.h; sourceTree = "<group>"; };
 		9B4E24901891E06200F5B955 /* MMSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecial.m; sourceTree = "<group>"; };
+		B07A57241893084E00DEBAD8 /* MMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLoginViewController.h; sourceTree = "<group>"; };
+		B07A57251893084E00DEBAD8 /* MMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLoginViewController.m; sourceTree = "<group>"; };
+		B07A57261893084E00DEBAD8 /* UIColor+MyMenuColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyMenuColors.h"; sourceTree = "<group>"; };
+		B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MyMenuColors.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,10 @@
 		83893EB018919AD400D36670 /* MyMenu */ = {
 			isa = PBXGroup;
 			children = (
+				B07A57241893084E00DEBAD8 /* MMLoginViewController.h */,
+				B07A57251893084E00DEBAD8 /* MMLoginViewController.m */,
+				B07A57261893084E00DEBAD8 /* UIColor+MyMenuColors.h */,
+				B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */,
 				83893EB918919AD400D36670 /* MMAppDelegate.h */,
 				83893EBA18919AD400D36670 /* MMAppDelegate.m */,
 				83893EBC18919AD400D36670 /* Main.storyboard */,
@@ -318,7 +328,9 @@
 				9B4E248D1891E02B00F5B955 /* MMRestriction.m in Sources */,
 				9B4E247C1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */,
 				9B4E24801891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */,
+				B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */,
 				9B4E24841891DC3D00F5B955 /* MMMerchantCategory.m in Sources */,
+				B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */,
 				83893EBB18919AD400D36670 /* MMAppDelegate.m in Sources */,
 				83893EB718919AD400D36670 /* main.m in Sources */,
 				9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */,
