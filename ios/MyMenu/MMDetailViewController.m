@@ -52,14 +52,18 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	[self configureView];
-	float spanX = .5;
-	float spanY = .5;
+    MKCoordinateSpan span;
+	span.latitudeDelta = .5;
+	span.longitudeDelta = .5;
+    CLLocationCoordinate2D start;
+    start.latitude = 53.53333;
+    start.longitude = -113.5000;
 	MKCoordinateRegion region;
-	region.center.longitude = self.mapView.userLocation.coordinate.longitude;
-	region.center.latitude = self.mapView.userLocation.coordinate.latitude;
-	region.span.latitudeDelta = spanX;
-	region.span.longitudeDelta = spanY;
-	[[self mapView] setRegion:region];
+	region.center = start;//= self.mapView.userLocation.coordinate.longitude;
+	//region.center.latitude = self.mapView.userLocation.coordinate.latitude;
+	region.span = span;
+
+	[self.mapView setRegion:region animated:YES];
 }
 
 

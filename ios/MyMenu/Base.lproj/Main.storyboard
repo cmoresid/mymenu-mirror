@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="x9A-4i-evk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="x9A-4i-evk">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -18,12 +18,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="DrQ-Ns-CMY"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="second" id="DrQ-Ns-CMY"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1un-qe-JCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3829" y="-1389"/>
+            <point key="canvasLocation" x="2357" y="-965"/>
         </scene>
         <!--Specials View Controller - Specials-->
         <scene sceneID="35p-Tj-V07">
@@ -39,14 +39,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Specials" id="vDq-2G-km7"/>
+                    <tabBarItem key="tabBarItem" title="Specials" image="first" id="vDq-2G-km7"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dR-m7-1f2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6100" y="349"/>
+            <point key="canvasLocation" x="6084" y="21"/>
         </scene>
-        <!--Second View Controller - Favorites-->
+        <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="MMSecondViewController" sceneMemberID="viewController">
@@ -95,12 +95,12 @@
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorites" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="cPa-gy-q4n"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6380" y="1413"/>
+            <point key="canvasLocation" x="6308" y="1053"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="6si-Sh-Tds">
@@ -238,7 +238,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1k-y5-cTu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1967" y="485"/>
+            <point key="canvasLocation" x="1887" y="597"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y2H-2G-DBa">
@@ -292,7 +292,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P2s-5w-a1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3078" y="493"/>
+            <point key="canvasLocation" x="3054" y="597"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -307,16 +307,16 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="vsg-c3-8dx" kind="relationship" relationship="viewControllers" id="roG-GC-fZf"/>
-                        <segue destination="RLw-zI-YbQ" kind="relationship" relationship="viewControllers" id="eLI-um-ar7"/>
-                        <segue destination="W4l-pq-p7Q" kind="relationship" relationship="viewControllers" id="DQM-Xu-eRE"/>
                         <segue destination="k2K-2H-fJm" kind="relationship" relationship="viewControllers" id="CaQ-TS-aWX"/>
+                        <segue destination="RLw-zI-YbQ" kind="relationship" relationship="viewControllers" id="eLI-um-ar7"/>
+                        <segue destination="vsg-c3-8dx" kind="relationship" relationship="viewControllers" id="roG-GC-fZf"/>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="W4l-pq-p7Q" kind="relationship" relationship="viewControllers" id="DQM-Xu-eRE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4263" y="505"/>
+            <point key="canvasLocation" x="4287" y="597"/>
         </scene>
         <!--View Controller - Restrictions-->
         <scene sceneID="IDW-UL-YJN">
@@ -332,12 +332,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Restrictions" id="Lk9-1v-kcA"/>
+                    <tabBarItem key="tabBarItem" title="Restrictions" image="first" id="Lk9-1v-kcA"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6lc-Go-aH6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6300" y="2737"/>
+            <point key="canvasLocation" x="6252" y="2113"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ls7-U7-ImO">
@@ -352,7 +352,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FV-77-cEU" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6268" y="-1634"/>
+            <point key="canvasLocation" x="5140" y="-2026"/>
         </scene>
         <!--Detail View Controller - Detail-->
         <scene sceneID="CFz-VH-d0h">
@@ -391,13 +391,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEU-3r-7TP" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6488" y="-232"/>
+            <point key="canvasLocation" x="6300" y="-965"/>
         </scene>
-        <!--Split View Controller - Item-->
+        <!--Split View Controller - Restaurant-->
         <scene sceneID="Qsk-9G-ooB">
             <objects>
                 <splitViewController id="k2K-2H-fJm" customClass="MMSplitViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="8dX-gg-6FO"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Restaurant" image="second" id="8dX-gg-6FO"/>
                     <toolbarItems/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
@@ -414,7 +414,7 @@
                     </items>
                 </navigationBar>
             </objects>
-            <point key="canvasLocation" x="5049" y="-1466"/>
+            <point key="canvasLocation" x="3777" y="-965"/>
         </scene>
         <!--Master View Controller - Master-->
         <scene sceneID="Ol9-4M-x20">
@@ -455,7 +455,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xHD-LM-Dip" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6887" y="-1509"/>
+            <point key="canvasLocation" x="5751" y="-2055"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fE2-Eu-0gs">
@@ -470,10 +470,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Jc-w7-T0a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5370" y="-588"/>
+            <point key="canvasLocation" x="5314" y="-956"/>
         </scene>
     </scenes>
     <resources>
+        <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
