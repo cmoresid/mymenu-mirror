@@ -42,6 +42,10 @@
 		9B4E24921891E06200F5B955 /* MMSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24901891E06200F5B955 /* MMSpecial.m */; };
 		B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57251893084E00DEBAD8 /* MMLoginViewController.m */; };
 		B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */; };
+		83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A61ED018922E4E00269357 /* MapKit.framework */; };
+		83B7E44D1891EE0700946784 /* MMMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44A1891EE0700946784 /* MMMasterViewController.m */; };
+		83B7E44E1891EE0700946784 /* MMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44C1891EE0700946784 /* MMDetailViewController.m */; };
+		83B7E4511891F15100946784 /* MMSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E4501891F15100946784 /* MMSplitViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +101,13 @@
 		B07A57251893084E00DEBAD8 /* MMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLoginViewController.m; sourceTree = "<group>"; };
 		B07A57261893084E00DEBAD8 /* UIColor+MyMenuColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyMenuColors.h"; sourceTree = "<group>"; };
 		B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MyMenuColors.m"; sourceTree = "<group>"; };
+		83A61ED018922E4E00269357 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		83B7E4491891EE0700946784 /* MMMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMasterViewController.h; sourceTree = "<group>"; };
+		83B7E44A1891EE0700946784 /* MMMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMasterViewController.m; sourceTree = "<group>"; };
+		83B7E44B1891EE0700946784 /* MMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDetailViewController.h; sourceTree = "<group>"; };
+		83B7E44C1891EE0700946784 /* MMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDetailViewController.m; sourceTree = "<group>"; };
+		83B7E44F1891F15100946784 /* MMSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSplitViewController.h; sourceTree = "<group>"; };
+		83B7E4501891F15100946784 /* MMSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSplitViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -350,6 +361,7 @@
 				9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */,
 				9B4E24881891DCD100F5B955 /* MMMenuItemRating.m in Sources */,
 				9B4E24781891D8C600F5B955 /* MMMerchant.m in Sources */,
+				83B7E44E1891EE0700946784 /* MMDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
