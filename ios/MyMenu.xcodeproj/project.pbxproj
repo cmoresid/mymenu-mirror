@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83655AA01891E2DF005EBF8A /* MapViewToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83655A9F1891E2DF005EBF8A /* MapViewToolbar.xib */; };
 		83893EAB18919AD400D36670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAA18919AD400D36670 /* Foundation.framework */; };
 		83893EAD18919AD400D36670 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAC18919AD400D36670 /* CoreGraphics.framework */; };
 		83893EAF18919AD400D36670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAE18919AD400D36670 /* UIKit.framework */; };
@@ -21,6 +22,10 @@
 		83893ED718919AD400D36670 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83893ED518919AD400D36670 /* InfoPlist.strings */; };
 		83893ED918919AD400D36670 /* MyMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83893ED818919AD400D36670 /* MyMenuTests.m */; };
 		83893F281891C55E00D36670 /* MMSpecialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83893F271891C55E00D36670 /* MMSpecialsViewController.m */; };
+		83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A61ED018922E4E00269357 /* MapKit.framework */; };
+		83B7E44D1891EE0700946784 /* MMMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44A1891EE0700946784 /* MMMasterViewController.m */; };
+		83B7E44E1891EE0700946784 /* MMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44C1891EE0700946784 /* MMDetailViewController.m */; };
+		83B7E4511891F15100946784 /* MMSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E4501891F15100946784 /* MMSplitViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83655A9F1891E2DF005EBF8A /* MapViewToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewToolbar.xib; sourceTree = "<group>"; };
 		83893EA718919AD400D36670 /* MyMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83893EAA18919AD400D36670 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		83893EAC18919AD400D36670 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +59,13 @@
 		83893ED818919AD400D36670 /* MyMenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMenuTests.m; sourceTree = "<group>"; };
 		83893F261891C55E00D36670 /* MMSpecialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialsViewController.h; sourceTree = "<group>"; };
 		83893F271891C55E00D36670 /* MMSpecialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialsViewController.m; sourceTree = "<group>"; };
+		83A61ED018922E4E00269357 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		83B7E4491891EE0700946784 /* MMMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMasterViewController.h; sourceTree = "<group>"; };
+		83B7E44A1891EE0700946784 /* MMMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMasterViewController.m; sourceTree = "<group>"; };
+		83B7E44B1891EE0700946784 /* MMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDetailViewController.h; sourceTree = "<group>"; };
+		83B7E44C1891EE0700946784 /* MMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDetailViewController.m; sourceTree = "<group>"; };
+		83B7E44F1891F15100946784 /* MMSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSplitViewController.h; sourceTree = "<group>"; };
+		83B7E4501891F15100946784 /* MMSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSplitViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */,
 				83893EAD18919AD400D36670 /* CoreGraphics.framework in Frameworks */,
 				83893EAF18919AD400D36670 /* UIKit.framework in Frameworks */,
 				83893EAB18919AD400D36670 /* Foundation.framework in Frameworks */,
@@ -101,6 +115,7 @@
 		83893EA918919AD400D36670 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83A61ED018922E4E00269357 /* MapKit.framework */,
 				83893EAA18919AD400D36670 /* Foundation.framework */,
 				83893EAC18919AD400D36670 /* CoreGraphics.framework */,
 				83893EAE18919AD400D36670 /* UIKit.framework */,
@@ -114,9 +129,16 @@
 			children = (
 				83893EB918919AD400D36670 /* MMAppDelegate.h */,
 				83893EBA18919AD400D36670 /* MMAppDelegate.m */,
+				83B7E44F1891F15100946784 /* MMSplitViewController.h */,
+				83B7E4501891F15100946784 /* MMSplitViewController.m */,
 				83893EBC18919AD400D36670 /* Main.storyboard */,
+				83655A9F1891E2DF005EBF8A /* MapViewToolbar.xib */,
 				83893F261891C55E00D36670 /* MMSpecialsViewController.h */,
 				83893F271891C55E00D36670 /* MMSpecialsViewController.m */,
+				83B7E4491891EE0700946784 /* MMMasterViewController.h */,
+				83B7E44A1891EE0700946784 /* MMMasterViewController.m */,
+				83B7E44B1891EE0700946784 /* MMDetailViewController.h */,
+				83B7E44C1891EE0700946784 /* MMDetailViewController.m */,
 				83893EC518919AD400D36670 /* Images.xcassets */,
 				83893EB118919AD400D36670 /* Supporting Files */,
 			);
@@ -232,6 +254,7 @@
 				83893EC618919AD400D36670 /* Images.xcassets in Resources */,
 				83893EB518919AD400D36670 /* InfoPlist.strings in Resources */,
 				83893EBE18919AD400D36670 /* Main.storyboard in Resources */,
+				83655AA01891E2DF005EBF8A /* MapViewToolbar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +275,10 @@
 			files = (
 				83893F281891C55E00D36670 /* MMSpecialsViewController.m in Sources */,
 				83893EBB18919AD400D36670 /* MMAppDelegate.m in Sources */,
+				83B7E44D1891EE0700946784 /* MMMasterViewController.m in Sources */,
+				83B7E4511891F15100946784 /* MMSplitViewController.m in Sources */,
 				83893EB718919AD400D36670 /* main.m in Sources */,
+				83B7E44E1891EE0700946784 /* MMDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
