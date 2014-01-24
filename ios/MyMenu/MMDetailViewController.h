@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface MMDetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface MMDetailViewController : UIViewController <UISplitViewControllerDelegate,MKMapViewDelegate>
 
 @property (strong, nonatomic) id detailItem;
 

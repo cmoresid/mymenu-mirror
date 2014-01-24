@@ -9,26 +9,33 @@
 #import "MMDetailViewController.h"
 
 @interface MMDetailViewController ()
+@property (strong, nonatomic) IBOutlet MKMapView * mapView;
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
+
 - (void)configureView;
 @end
 
 @implementation MMDetailViewController
 
 #pragma mark - Managing the detail item
-
+#pragma TODO: Setup map to point to user location
 - (void)setDetailItem:(id)newDetailItem
 {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
         
         // Update the view.
-        [self configureView];
+	    [self configureView];
+	    
     }
 
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
     }        
+}
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+	[self.mapView setCenterCoordinate:userLocation.coordinate animated:YES];
 }
 
 - (void)configureView
@@ -45,6 +52,22 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	[self configureView];
+	float spanX = .5;
+	float spanY = .5;
+	MKCoordinateRegion region;
+	region.center.longitude = self.mapView.userLocation.coordinate.longitude;
+	region.center.latitude = self.mapView.userLocation.coordinate.latitude;
+	region.span.latitudeDelta = spanX;
+	region.span.longitudeDelta = spanY;
+	[[self mapView] setRegion:region];
+}
+
+
+
+//create function
+-(void) reloadMap
+{
+	[[self mapView] setRegion:[self mapView].region animated:TRUE];
 }
 
 - (void)didReceiveMemoryWarning
