@@ -8,6 +8,9 @@
 
 #import "MMLoginViewController.h"
 
+// Only used for testing
+#define USER_LOGGED_IN  0
+
 @interface MMLoginViewController ()
 
 @end
@@ -23,12 +26,28 @@
     return self;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (USER_LOGGED_IN)
+    {
+        [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
+    }
+    else
+    {
+        self.view.hidden = FALSE;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
     self.emailAddress.delegate = self;
     self.password.delegate = self;
+    
+    // Hide by default; only show if user is
+    // not logged in.
+    self.view.hidden = TRUE;
     
     [self registerForKeyboardNotifications];
 }
@@ -90,6 +109,21 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.activeField = nil;
+}
+
+- (BOOL)canPerformUnwindSegueAction:(SEL)action fromViewController:(UIViewController *)fromViewController withSender:(id)sender
+{
+    return (action == @selector(unwindToLoginScreen:));
+}
+
+- (IBAction)unwindToLoginScreen:(UIStoryboardSegue*)segue
+{
+    // Perform any saving if necessary.
+}
+
+- (IBAction)login:(id)sender
+{
+    NSLog(@"Login...");
 }
 
 @end
