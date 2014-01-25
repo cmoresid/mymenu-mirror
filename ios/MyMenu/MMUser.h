@@ -19,7 +19,9 @@
 @property (nonatomic) NSString *locality; //Province
 @property (nonatomic) NSString *country;
 @property (nonatomic) char gender;
-@property (nonatomic) NSDate *birthday;
+@property (nonatomic) NSString *birthday;
+@property (nonatomic) NSString *birthmonth;
+@property (nonatomic) NSString *birthyear;
 @property (nonatomic) NSString *confirm;
 
 

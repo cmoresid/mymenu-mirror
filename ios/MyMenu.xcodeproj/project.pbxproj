@@ -45,6 +45,8 @@
 		9B4E248E1891E02B00F5B955 /* MMRestriction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E248C1891E02B00F5B955 /* MMRestriction.m */; };
 		9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24901891E06200F5B955 /* MMSpecial.m */; };
 		9B4E24921891E06200F5B955 /* MMSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24901891E06200F5B955 /* MMSpecial.m */; };
+		9BBD913318943D77006DDBCE /* MMDBFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913218943D77006DDBCE /* MMDBFetcher.m */; };
+		9BBD913418943D77006DDBCE /* MMDBFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913218943D77006DDBCE /* MMDBFetcher.m */; };
 		B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57251893084E00DEBAD8 /* MMLoginViewController.m */; };
 		B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */; };
 		B097D6F91893608300142F8D /* MMDietaryRestrictionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B097D6F81893608300142F8D /* MMDietaryRestrictionsViewController.m */; };
@@ -111,6 +113,8 @@
 		9B4E248C1891E02B00F5B955 /* MMRestriction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestriction.m; sourceTree = "<group>"; };
 		9B4E248F1891E06200F5B955 /* MMSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecial.h; sourceTree = "<group>"; };
 		9B4E24901891E06200F5B955 /* MMSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecial.m; sourceTree = "<group>"; };
+		9BBD913118943D77006DDBCE /* MMDBFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDBFetcher.h; sourceTree = "<group>"; };
+		9BBD913218943D77006DDBCE /* MMDBFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcher.m; sourceTree = "<group>"; };
 		B07A57241893084E00DEBAD8 /* MMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLoginViewController.h; sourceTree = "<group>"; };
 		B07A57251893084E00DEBAD8 /* MMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLoginViewController.m; sourceTree = "<group>"; };
 		B07A57261893084E00DEBAD8 /* UIColor+MyMenuColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyMenuColors.h"; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 				9B4E248C1891E02B00F5B955 /* MMRestriction.m */,
 				9B4E248F1891E06200F5B955 /* MMSpecial.h */,
 				9B4E24901891E06200F5B955 /* MMSpecial.m */,
+				9BBD913118943D77006DDBCE /* MMDBFetcher.h */,
+				9BBD913218943D77006DDBCE /* MMDBFetcher.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B4E24701891D37500F5B955 /* MMUser.m in Sources */,
+				9BBD913318943D77006DDBCE /* MMDBFetcher.m in Sources */,
 				B097D6F91893608300142F8D /* MMDietaryRestrictionsViewController.m in Sources */,
 				83893F281891C55E00D36670 /* MMSpecialsViewController.m in Sources */,
 				9B4E24741891D67300F5B955 /* MMMenuItem.m in Sources */,
@@ -432,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B4E24891891DCD100F5B955 /* MMMenuItemRating.m in Sources */,
+				9BBD913418943D77006DDBCE /* MMDBFetcher.m in Sources */,
 				9B4E24811891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */,
 				9B4E24711891D37500F5B955 /* MMUser.m in Sources */,
 				9B4E24751891D67300F5B955 /* MMMenuItem.m in Sources */,

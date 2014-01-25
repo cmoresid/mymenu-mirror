@@ -7,6 +7,8 @@
 //
 
 #import "MMRegistrationViewController.h"
+#import "MMDBFetcher.h"
+#import "MMUser.h"
 
 @interface MMRegistrationViewController ()
 
@@ -26,6 +28,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    MMDBFetcher *db = [[MMDBFetcher alloc] init];
+    MMUser *user = [[MMUser alloc] init];
+    
+    [db userExists: @"email@email.com"];
+
+    
 	// Do any additional setup after loading the view.
     self.cityPicker.delegate = self;
     self.provPicker.delegate = self;
