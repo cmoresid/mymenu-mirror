@@ -15,4 +15,7 @@
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) IBOutlet UITextField *activeField;
 
+- (IBAction)unwindToLoginScreen:(UIStoryboardSegue*)segue;
+- (IBAction)login:(id)sender;
+
 @end
