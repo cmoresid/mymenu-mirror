@@ -47,6 +47,10 @@
 		9B4E24921891E06200F5B955 /* MMSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24901891E06200F5B955 /* MMSpecial.m */; };
 		9BBD913318943D77006DDBCE /* MMDBFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913218943D77006DDBCE /* MMDBFetcher.m */; };
 		9BBD913418943D77006DDBCE /* MMDBFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913218943D77006DDBCE /* MMDBFetcher.m */; };
+		9BBD913D189478A8006DDBCE /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913C189478A8006DDBCE /* RXMLElement.m */; };
+		9BBD913E189478A8006DDBCE /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913C189478A8006DDBCE /* RXMLElement.m */; };
+		9BBD9140189478CF006DDBCE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBD913F189478CF006DDBCE /* libz.dylib */; };
+		9BBD9142189478DB006DDBCE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBD9141189478DB006DDBCE /* libxml2.dylib */; };
 		B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57251893084E00DEBAD8 /* MMLoginViewController.m */; };
 		B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */; };
 		B097D6F91893608300142F8D /* MMDietaryRestrictionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B097D6F81893608300142F8D /* MMDietaryRestrictionsViewController.m */; };
@@ -115,6 +119,10 @@
 		9B4E24901891E06200F5B955 /* MMSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecial.m; sourceTree = "<group>"; };
 		9BBD913118943D77006DDBCE /* MMDBFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDBFetcher.h; sourceTree = "<group>"; };
 		9BBD913218943D77006DDBCE /* MMDBFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcher.m; sourceTree = "<group>"; };
+		9BBD913B189478A8006DDBCE /* RXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXMLElement.h; sourceTree = "<group>"; };
+		9BBD913C189478A8006DDBCE /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXMLElement.m; sourceTree = "<group>"; };
+		9BBD913F189478CF006DDBCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		9BBD9141189478DB006DDBCE /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B07A57241893084E00DEBAD8 /* MMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLoginViewController.h; sourceTree = "<group>"; };
 		B07A57251893084E00DEBAD8 /* MMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLoginViewController.m; sourceTree = "<group>"; };
 		B07A57261893084E00DEBAD8 /* UIColor+MyMenuColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyMenuColors.h"; sourceTree = "<group>"; };
@@ -134,6 +142,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BBD9142189478DB006DDBCE /* libxml2.dylib in Frameworks */,
+				9BBD9140189478CF006DDBCE /* libz.dylib in Frameworks */,
 				83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */,
 				83893EAD18919AD400D36670 /* CoreGraphics.framework in Frameworks */,
 				83893EAF18919AD400D36670 /* UIKit.framework in Frameworks */,
@@ -185,6 +195,8 @@
 		83893EA918919AD400D36670 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9BBD9141189478DB006DDBCE /* libxml2.dylib */,
+				9BBD913F189478CF006DDBCE /* libz.dylib */,
 				83A61ED018922E4E00269357 /* MapKit.framework */,
 				83893EAA18919AD400D36670 /* Foundation.framework */,
 				83893EAC18919AD400D36670 /* CoreGraphics.framework */,
@@ -244,6 +256,7 @@
 		9B4E248A1891E00100F5B955 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9BBD913A189478A8006DDBCE /* RaptureXML */,
 				9B4E246E1891D37500F5B955 /* MMUser.h */,
 				9B4E246F1891D37500F5B955 /* MMUser.m */,
 				9B4E24721891D67300F5B955 /* MMMenuItem.h */,
@@ -266,6 +279,15 @@
 				9BBD913218943D77006DDBCE /* MMDBFetcher.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		9BBD913A189478A8006DDBCE /* RaptureXML */ = {
+			isa = PBXGroup;
+			children = (
+				9BBD913B189478A8006DDBCE /* RXMLElement.h */,
+				9BBD913C189478A8006DDBCE /* RXMLElement.m */,
+			);
+			path = RaptureXML;
 			sourceTree = "<group>";
 		};
 		B097D6FD18938EA300142F8D /* Controller */ = {
@@ -422,6 +444,7 @@
 				B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */,
 				83893EBB18919AD400D36670 /* MMAppDelegate.m in Sources */,
 				B097D6FC189360A500142F8D /* MMRegistrationViewController.m in Sources */,
+				9BBD913D189478A8006DDBCE /* RXMLElement.m in Sources */,
 				83B7E44D1891EE0700946784 /* MMMasterViewController.m in Sources */,
 				83B7E4511891F15100946784 /* MMSplitViewController.m in Sources */,
 				83893EB718919AD400D36670 /* main.m in Sources */,
@@ -444,6 +467,7 @@
 				9B4E24711891D37500F5B955 /* MMUser.m in Sources */,
 				9B4E24751891D67300F5B955 /* MMMenuItem.m in Sources */,
 				9B4E24851891DC3D00F5B955 /* MMMerchantCategory.m in Sources */,
+				9BBD913E189478A8006DDBCE /* RXMLElement.m in Sources */,
 				9B4E247D1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */,
 				9B4E248E1891E02B00F5B955 /* MMRestriction.m in Sources */,
 				83893ED918919AD400D36670 /* MyMenuTests.m in Sources */,
@@ -571,6 +595,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyMenu/MyMenu-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDK_DIR)\"/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "MyMenu/MyMenu-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -584,6 +613,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyMenu/MyMenu-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDK_DIR)\"/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "MyMenu/MyMenu-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

@@ -9,6 +9,7 @@
 #import "MMDBFetcher.h"
 #import "MMRestriction.h"
 #import "MMSpecial.h"
+#import "RXMLElement.h"
 
 @implementation MMDBFetcher
 
@@ -19,7 +20,7 @@ NSMutableData * responseData;
     self = [super init];
     
     if (self){
-        responseData = [NSMutableData dataWithLength:500];
+        responseData = [[NSMutableData alloc] init];
     }
     
         
@@ -72,7 +73,7 @@ NSMutableData * responseData;
     [request setValue:@"application/x-www-form-urlencoded"
    forHTTPHeaderField:@"Content-type"];
     
-    NSString *checkstring = @"query=select%20id%20from%20users%20where%20email%20=%20%@&submit=";
+    NSString *checkstring = @"query=select id from users where email='%@'";
     
     NSString *query = [NSString stringWithFormat:checkstring, email];
     
@@ -83,19 +84,15 @@ NSMutableData * responseData;
     [request setHTTPBody:[query
                           dataUsingEncoding:NSUTF8StringEncoding]];
     
-    NSURLConnection * conn = [[NSURLConnection alloc]
-                              initWithRequest:request
-                              delegate:self];
-    
-    NSLog(@"%@",[[NSString alloc] initWithData:conn.currentRequest.HTTPBody encoding:NSUTF8StringEncoding]);
-    
-    return true;
-    
+    NSURLResponse * response = [[NSURLResponse alloc] init];
+    NSError * error = [[NSError alloc] init];
+    NSData * data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+    NSArray *rxmlResult = [rootXML children:@"result"];
+    return rxmlResult.count > 0;
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [responseData appendData:data];
-}
+
 
 - (bool) userVerified : (MMUser*) user{
     
@@ -107,7 +104,7 @@ NSMutableData * responseData;
     [request setValue:@"application/x-www-form-urlencoded"
    forHTTPHeaderField:@"Content-type"];
     
-    NSString *checkstring = @"select id from users where email = %@ AND password = %@ ";
+    NSString *checkstring = @"query=select id from users where email='%@' AND password='%@'";
     
     NSString *query = [NSString stringWithFormat:checkstring, user.email, user.password];
     
@@ -120,28 +117,18 @@ NSMutableData * responseData;
     
     [request setHTTPBody:[query
                           dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLResponse * response = [[NSURLResponse alloc] init];
+    NSError * error = [[NSError alloc] init];
+    NSData * data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+    NSArray *rxmlResult = [rootXML children:@"result"];
+    return rxmlResult.count > 0;
     
-    NSURLConnection * conn = [[NSURLConnection alloc]
-                              initWithRequest:request
-                              delegate:self];
-    
-    
-    
-    
-    
-    return true;
     
     
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    
-    
-    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"Test %@",responseString);
 
-}
 
 - (void) updatePreferences : (NSInteger*) uid : (NSArray*) restrictions {
     

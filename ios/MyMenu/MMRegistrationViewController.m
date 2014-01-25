@@ -32,7 +32,9 @@
     MMDBFetcher *db = [[MMDBFetcher alloc] init];
     MMUser *user = [[MMUser alloc] init];
     
-    [db userExists: @"email@email.com"];
+    bool bo = [db userExists: @"email@email.com12112"];
+    
+    NSLog(@"%s", bo ? "true" : "false");
 
     
 	// Do any additional setup after loading the view.
