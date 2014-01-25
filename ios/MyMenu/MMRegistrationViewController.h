@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMRegistrationViewController : UIViewController
+@interface MMRegistrationViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@property (nonatomic, weak) IBOutlet UIPickerView* cityPicker;
+@property (strong, nonatomic) NSArray* cities;
+@property (nonatomic, weak) IBOutlet UIPickerView* provPicker;
+@property (strong, nonatomic) NSArray* provinces;
+@property (nonatomic, weak) IBOutlet UIPickerView* genderPicker;
+@property (strong, nonatomic) NSArray* gender;
+
 
 - (IBAction)unwindToLoginScreen:(UIStoryboardSegue*)segue;
 
