@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMDietaryRestrictionsViewController : UIViewController
+@interface MMDietaryRestrictionsViewController : UIViewController <UICollectionViewDataSource>
 
 @end

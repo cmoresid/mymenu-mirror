@@ -11,5 +11,7 @@
 @interface UIColor (MyMenuColors)
 
 + (UIColor*)tealColor;
++ (UIColor*)mmOrangeColor;
++ (UIColor*)mmRedColor;
 
 @end

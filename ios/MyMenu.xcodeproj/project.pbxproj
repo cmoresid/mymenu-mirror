@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		83655AA01891E2DF005EBF8A /* MapViewToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83655A9F1891E2DF005EBF8A /* MapViewToolbar.xib */; };
+		837FE29418945CB800A0720E /* MMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FE29318945CB800A0720E /* MMButton.m */; };
 		83893EAB18919AD400D36670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAA18919AD400D36670 /* Foundation.framework */; };
 		83893EAD18919AD400D36670 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAC18919AD400D36670 /* CoreGraphics.framework */; };
 		83893EAF18919AD400D36670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAE18919AD400D36670 /* UIKit.framework */; };
@@ -64,6 +65,8 @@
 
 /* Begin PBXFileReference section */
 		83655A9F1891E2DF005EBF8A /* MapViewToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewToolbar.xib; sourceTree = "<group>"; };
+		837FE29218945CB800A0720E /* MMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMButton.h; sourceTree = "<group>"; };
+		837FE29318945CB800A0720E /* MMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMButton.m; sourceTree = "<group>"; };
 		83893EA718919AD400D36670 /* MyMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83893EAA18919AD400D36670 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		83893EAC18919AD400D36670 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -147,6 +150,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		837FE29118945C9E00A0720E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				837FE29218945CB800A0720E /* MMButton.h */,
+				837FE29318945CB800A0720E /* MMButton.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		83893E9E18919AD400D36670 = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +193,7 @@
 		83893EB018919AD400D36670 /* MyMenu */ = {
 			isa = PBXGroup;
 			children = (
+				837FE29118945C9E00A0720E /* Views */,
 				83893EB918919AD400D36670 /* MMAppDelegate.h */,
 				83893EBA18919AD400D36670 /* MMAppDelegate.m */,
 				83893EBC18919AD400D36670 /* Main.storyboard */,
@@ -398,6 +411,7 @@
 				9B4E24801891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */,
 				B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */,
 				9B4E24841891DC3D00F5B955 /* MMMerchantCategory.m in Sources */,
+				837FE29418945CB800A0720E /* MMButton.m in Sources */,
 				B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */,
 				83893EBB18919AD400D36670 /* MMAppDelegate.m in Sources */,
 				B097D6FC189360A500142F8D /* MMRegistrationViewController.m in Sources */,
