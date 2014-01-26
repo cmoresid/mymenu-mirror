@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMPopoverDataPair.h"
+#import "MMRegistrationPopoverDelegate.h"
+#import "MMRegistrationViewController.h"
 
 @interface MMRegistrationPopoverViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
@@ -17,7 +20,12 @@
 @property (nonatomic, weak) IBOutlet UIPickerView* cityPicker;
 @property (nonatomic, weak) IBOutlet UIPickerView* provPicker;
 @property (nonatomic, weak) IBOutlet UIPickerView* genderPicker;
+@property (nonatomic, weak) IBOutlet UIDatePicker* birthdayPicker;
 
+@property (readwrite) MMPopoverDataPair* selectedValue;
+@property (strong, nonatomic) id<MMRegistrationPopoverDelegate> delegate;
+
+- (void)updateSelectedBirthday;
 - (IBAction)selectChoice:(id)sender;
 
 @end

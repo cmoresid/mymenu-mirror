@@ -28,13 +28,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.cityPicker.delegate = self;
-    self.provPicker.delegate = self;
-    self.genderPicker.delegate = self;
-    self.locationField.delegate = self;
-    self.cities = [[NSArray alloc]initWithObjects:@"Choose City", @"Edmonton", @"Calgary", @"Vancouver", nil];
-    self.provinces = [[NSArray alloc]initWithObjects: @"Choose Province", @"Alberta", @"British Columbia", @"Manitoba", @"New Brunswick", @"Newfoundland", @"Northwest Territories", @"Nova Scotia", @"Nunavut", @"Ontario", @"Prince Edward Island", @"Quebec", @"Saskatewan", @"Yukon",  nil];
-    self.gender = [[NSArray alloc] initWithObjects: @"Choose Your Gender", @"Unspecified", @"Male", @"Female", nil];
+    self.cityField.delegate = self;
+    self.genderField.delegate = self;
+    self.provinceField.delegate = self;
+    self.birthdayField.delegate = self;
+    
+    self.userProfile = [[MMUser alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,56 +48,86 @@
     [self dismissViewControllerAnimated:TRUE completion:nil];
 }
 
-#pragma mark -
-#pragma mark PickerView DataSource
-
-- (NSInteger)numberOfComponentsInPickerView:
-(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView
-numberOfRowsInComponent:(NSInteger)component
-{
-    if (self.cityPicker == pickerView)
-        return _cities.count;
-    else
-        if (self.provPicker == pickerView)
-            return _provinces.count;
-        else
-            return _gender.count;
-}
-
-
-- (NSString *)pickerView:(UIPickerView *)pickerView
-             titleForRow:(NSInteger)row
-            forComponent:(NSInteger)component
-{
-    if (self.cityPicker == pickerView)
-        return _cities[row];
-    else
-        if (self.provPicker == pickerView)
-            return _provinces[row];
-        else
-            return _gender[row];
-}
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-	MMRegistrationPopoverViewController *locationContent = [self.storyboard instantiateViewControllerWithIdentifier:@"LocationPopOverViewController"];
+    MMRegistrationPopoverViewController *locationContent = [self getPopoverViewControllerForTextField:textField];
+    locationContent.delegate = self;
     
     UIPopoverController* popover = [[UIPopoverController alloc] initWithContentViewController:locationContent];
     
-    popover.popoverContentSize = CGSizeMake(350.0f, 200.0f);
+    popover.popoverContentSize = [self getPopoverViewSizeForTextField:textField];
     popover.delegate = self;
     
     self.locationPopoverController = popover;
     
-    [self.locationPopoverController presentPopoverFromRect:textField.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    [self.locationPopoverController presentPopoverFromRect:textField.frame
+                                                    inView:textField.superview
+                                  permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                  animated:YES];
     
     return FALSE;
 }
+
+- (void)didSelectValue:(MMPopoverDataPair *)selectedValue
+{
+    switch (selectedValue.dataType) {
+        case CityValue:
+            self.cityField.text = selectedValue.selectedValue;
+            self.userProfile.city = selectedValue.selectedValue;
+            break;
+        case GenderValue:
+            self.genderField.text = selectedValue.selectedValue;
+            self.userProfile.gender = (selectedValue.selectedValue != nil)
+                ? [selectedValue.selectedValue characterAtIndex:0] : 'U';
+            break;
+        case ProvinceValue:
+            self.provinceField.text = selectedValue.selectedValue;
+            // TODO: Store this in another object.
+            break;
+        case BirthdayValue:
+            self.birthdayField.text = [self convertDateToString:selectedValue.selectedValue];
+            break;
+        default:
+            break;
+    }
     
+    [self.locationPopoverController dismissPopoverAnimated:YES];
+}
+
+- (NSString*)convertDateToString:(NSDate*)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    
+    return [dateFormatter stringFromDate:date];
+}
+
+- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
+{
+    // Don't allow user to manually dismiss modal controller
+    return FALSE;
+}
+
+- (id)getPopoverViewControllerForTextField:(UITextField*)textField
+{
+    if (textField == self.cityField)
+        return [self.storyboard instantiateViewControllerWithIdentifier:@"CityPopoverViewController"];
+    else if (textField == self.provinceField)
+        return [self.storyboard instantiateViewControllerWithIdentifier:@"ProvincePopoverViewController"];
+    else if (textField == self.genderField)
+        return [self.storyboard instantiateViewControllerWithIdentifier:@"GenderPopoverViewController"];
+    else if (textField == self.birthdayField)
+        return [self.storyboard instantiateViewControllerWithIdentifier:@"BirthdayPopoverViewController"];
+    
+    return nil;
+}
+
+- (CGSize)getPopoverViewSizeForTextField:(UITextField*)textField
+{
+    if (textField == self.birthdayField)
+        return CGSizeMake(450.0f, 220.0f);
+    else
+        return CGSizeMake(350.0f, 200.0f);
+}
 
 @end

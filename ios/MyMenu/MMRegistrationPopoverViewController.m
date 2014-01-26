@@ -26,15 +26,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
-    // Do any additional setup after loading the view.
+
     self.cityPicker.delegate = self;
     self.provPicker.delegate = self;
     self.genderPicker.delegate = self;
+    [self.birthdayPicker addTarget:self
+                            action:@selector(updateSelectedBirthday)
+                  forControlEvents:UIControlEventValueChanged];
+    
     self.cities = [[NSArray alloc]initWithObjects:@"Choose City", @"Edmonton", @"Calgary", @"Vancouver", nil];
     self.provinces = [[NSArray alloc]initWithObjects: @"Choose Province", @"Alberta", @"British Columbia", @"Manitoba", @"New Brunswick", @"Newfoundland", @"Northwest Territories", @"Nova Scotia", @"Nunavut", @"Ontario", @"Prince Edward Island", @"Quebec", @"Saskatewan", @"Yukon",  nil];
     self.gender = [[NSArray alloc] initWithObjects: @"Choose Your Gender", @"Unspecified", @"Male", @"Female", nil];
+    
+    self.selectedValue = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,9 +77,35 @@ numberOfRowsInComponent:(NSInteger)component
         return _gender[row];
 }
 
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (row == 0)
+    {
+        self.selectedValue = nil;
+        return;
+    }
+    
+    if (pickerView == self.cityPicker)
+        self.selectedValue = [[MMPopoverDataPair alloc] initWithDataType:CityValue
+                                                       withSelectedValue:self.cities[row]];
+    else if (pickerView == self.provPicker)
+        self.selectedValue = [[MMPopoverDataPair alloc] initWithDataType:ProvinceValue
+                                                        withSelectedValue:self.provinces[row]];
+    else if (pickerView == self.genderPicker)
+        self.selectedValue = [[MMPopoverDataPair alloc] initWithDataType:GenderValue
+                                                       withSelectedValue:self.gender[row]];
+}
+
+- (void)updateSelectedBirthday
+{
+    self.selectedValue = [[MMPopoverDataPair alloc] initWithDataType:BirthdayValue
+                                                   withSelectedValue:self.birthdayPicker.date];
+}
+     
 - (IBAction)selectChoice:(id)sender
 {
-    NSLog(@"Done...");
+    [self.delegate didSelectValue:self.selectedValue];
 }
+
 
 @end
