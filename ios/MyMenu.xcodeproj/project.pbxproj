@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		174FE0BB1894588400CB82C0 /* angry_birds_cake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 174FE0B81894588400CB82C0 /* angry_birds_cake.jpg */; };
+		174FE0BC1894588400CB82C0 /* creme_brelee.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 174FE0B91894588400CB82C0 /* creme_brelee.jpg */; };
+		174FE0BD1894588400CB82C0 /* egg_benedict.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 174FE0BA1894588400CB82C0 /* egg_benedict.jpg */; };
+		174FE0C218945E5900CB82C0 /* RestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 174FE0C118945E5800CB82C0 /* RestaurantCell.m */; };
+		174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */; };
 		83655AA01891E2DF005EBF8A /* MapViewToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83655A9F1891E2DF005EBF8A /* MapViewToolbar.xib */; };
 		837FE29418945CB800A0720E /* MMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FE29318945CB800A0720E /* MMButton.m */; };
 		83893EAB18919AD400D36670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAA18919AD400D36670 /* Foundation.framework */; };
@@ -70,6 +75,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		174FE0B81894588400CB82C0 /* angry_birds_cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = angry_birds_cake.jpg; path = ../../../../../Downloads/simpletable_image_pack/angry_birds_cake.jpg; sourceTree = "<group>"; };
+		174FE0B91894588400CB82C0 /* creme_brelee.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = creme_brelee.jpg; path = ../../../../../Downloads/simpletable_image_pack/creme_brelee.jpg; sourceTree = "<group>"; };
+		174FE0BA1894588400CB82C0 /* egg_benedict.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = egg_benedict.jpg; path = ../../../../../Downloads/simpletable_image_pack/egg_benedict.jpg; sourceTree = "<group>"; };
+		174FE0C018945E5800CB82C0 /* RestaurantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantCell.h; sourceTree = "<group>"; };
+		174FE0C118945E5800CB82C0 /* RestaurantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantCell.m; sourceTree = "<group>"; };
+		174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantTableCell.xib; sourceTree = "<group>"; };
 		83655A9F1891E2DF005EBF8A /* MapViewToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewToolbar.xib; sourceTree = "<group>"; };
 		837FE29218945CB800A0720E /* MMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMButton.h; sourceTree = "<group>"; };
 		837FE29318945CB800A0720E /* MMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMButton.m; sourceTree = "<group>"; };
@@ -210,6 +221,9 @@
 			isa = PBXGroup;
 			children = (
 				837FE29118945C9E00A0720E /* Views */,
+				174FE0B81894588400CB82C0 /* angry_birds_cake.jpg */,
+				174FE0B91894588400CB82C0 /* creme_brelee.jpg */,
+				174FE0BA1894588400CB82C0 /* egg_benedict.jpg */,
 				83893EB918919AD400D36670 /* MMAppDelegate.h */,
 				83893EBA18919AD400D36670 /* MMAppDelegate.m */,
 				83893EBC18919AD400D36670 /* Main.storyboard */,
@@ -220,6 +234,8 @@
 				B097D6FD18938EA300142F8D /* Controller */,
 				9B4E248A1891E00100F5B955 /* Model */,
 				83893EB118919AD400D36670 /* Supporting Files */,
+				174FE0C018945E5800CB82C0 /* RestaurantCell.h */,
+				174FE0C118945E5800CB82C0 /* RestaurantCell.m */,
 			);
 			path = MyMenu;
 			sourceTree = "<group>";
@@ -227,6 +243,7 @@
 		83893EB118919AD400D36670 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */,
 				83893EB218919AD400D36670 /* MyMenu-Info.plist */,
 				83893EB318919AD400D36670 /* InfoPlist.strings */,
 				83893EB618919AD400D36670 /* main.m */,
@@ -408,10 +425,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				174FE0BB1894588400CB82C0 /* angry_birds_cake.jpg in Resources */,
+				174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */,
 				83893EC618919AD400D36670 /* Images.xcassets in Resources */,
 				83893EB518919AD400D36670 /* InfoPlist.strings in Resources */,
 				83893EBE18919AD400D36670 /* Main.storyboard in Resources */,
 				83655AA01891E2DF005EBF8A /* MapViewToolbar.xib in Resources */,
+				174FE0BD1894588400CB82C0 /* egg_benedict.jpg in Resources */,
+				174FE0BC1894588400CB82C0 /* creme_brelee.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				174FE0C218945E5900CB82C0 /* RestaurantCell.m in Sources */,
 				9B4E24701891D37500F5B955 /* MMUser.m in Sources */,
 				9BBD913318943D77006DDBCE /* MMDBFetcher.m in Sources */,
 				B097D6F91893608300142F8D /* MMDietaryRestrictionsViewController.m in Sources */,
