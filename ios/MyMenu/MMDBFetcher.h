@@ -10,15 +10,19 @@
 #import "MMUser.h"
 #import "MMRestriction.h"
 #import "MMSpecial.h"
+#import "MMMerchant.h"
 
 @interface MMDBFetcher : NSObject <NSURLConnectionDataDelegate>
 
 - (void) addUser : (MMUser*) user;
 - (bool) userExists : (NSString*) email;
-- (bool) userVerified : (MMUser*) user;
+- (NSInteger) userVerified : (MMUser*) user;
 - (NSArray*) getSpecials : (NSString*) day;
-- (void) updatePreferences : (NSInteger*) uid : (NSArray*) restrictions;
-- (NSArray*) getMerchants;
-
+- (void) updateUserRestrictions : (NSInteger*) uid : (NSArray*) restrictions;
+- (NSArray*) getCompressedMerchants;
+- (NSArray*) getMenu : (NSInteger*) merchid;
+- (NSArray*) getAllRestrictions;
+- (NSArray*) getUserRestrictions : (NSInteger*) uid;
+- (MMMerchant*) getMerchant : (NSInteger*) merchid;
 
 @end
