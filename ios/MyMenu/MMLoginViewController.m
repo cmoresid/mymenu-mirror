@@ -123,7 +123,13 @@
 
 - (IBAction)login:(id)sender
 {
-    NSLog(@"Login...");
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
+                                                      message:@"Please enter a valid user name and password."
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"	
+                                            otherButtonTitles:nil];
+    // Put in the check that looks to see if username is valid in the database (chris's code)
+    [message show];
 }
 
 @end
