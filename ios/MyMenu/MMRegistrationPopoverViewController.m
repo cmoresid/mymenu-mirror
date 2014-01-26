@@ -79,12 +79,6 @@ numberOfRowsInComponent:(NSInteger)component
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    if (row == 0)
-    {
-        self.selectedValue = nil;
-        return;
-    }
-    
     if (pickerView == self.cityPicker)
         self.selectedValue = [[MMPopoverDataPair alloc] initWithDataType:CityValue
                                                        withSelectedValue:self.cities[row]];
@@ -104,8 +98,26 @@ numberOfRowsInComponent:(NSInteger)component
      
 - (IBAction)selectChoice:(id)sender
 {
+    self.popoverField.text = [self convertToString:self.selectedValue];
+
     [self.delegate didSelectValue:self.selectedValue];
 }
 
+- (NSString*)convertToString:(MMPopoverDataPair*)data
+{
+    if (data.dataType == BirthdayValue)
+        return [self convertDateToString:data.selectedValue];
+    else
+        return data.selectedValue;
+        
+}
+
+- (NSString*)convertDateToString:(NSDate*)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    
+    return [dateFormatter stringFromDate:date];
+}
 
 @end

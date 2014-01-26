@@ -52,6 +52,7 @@
 {
     MMRegistrationPopoverViewController *locationContent = [self getPopoverViewControllerForTextField:textField];
     locationContent.delegate = self;
+    locationContent.popoverField = textField;
     
     UIPopoverController* popover = [[UIPopoverController alloc] initWithContentViewController:locationContent];
     
@@ -72,34 +73,23 @@
 {
     switch (selectedValue.dataType) {
         case CityValue:
-            self.cityField.text = selectedValue.selectedValue;
             self.userProfile.city = selectedValue.selectedValue;
             break;
         case GenderValue:
-            self.genderField.text = selectedValue.selectedValue;
             self.userProfile.gender = (selectedValue.selectedValue != nil)
                 ? [selectedValue.selectedValue characterAtIndex:0] : 'U';
             break;
         case ProvinceValue:
-            self.provinceField.text = selectedValue.selectedValue;
             // TODO: Store this in another object.
             break;
         case BirthdayValue:
-            self.birthdayField.text = [self convertDateToString:selectedValue.selectedValue];
+            //self.birthdayField.text = [self convertDateToString:selectedValue.selectedValue];
             break;
         default:
             break;
     }
     
     [self.locationPopoverController dismissPopoverAnimated:YES];
-}
-
-- (NSString*)convertDateToString:(NSDate*)date
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-    
-    return [dateFormatter stringFromDate:date];
 }
 
 - (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController

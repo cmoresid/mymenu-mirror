@@ -23,7 +23,8 @@
 @property (nonatomic, weak) IBOutlet UIDatePicker* birthdayPicker;
 
 @property (readwrite) MMPopoverDataPair* selectedValue;
-@property (strong, nonatomic) id<MMRegistrationPopoverDelegate> delegate;
+@property (nonatomic, strong) UITextField* popoverField;
+@property (nonatomic, strong) id<MMRegistrationPopoverDelegate> delegate;
 
 - (void)updateSelectedBirthday;
 - (IBAction)selectChoice:(id)sender;
