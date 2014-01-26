@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-	self.navigationItem.leftBarButtonItem = self.editButtonItem;
+	
     _restaurantNames = [[NSArray alloc] initWithObjects:@"Boston Pizza", @"Original Joes",
                   @"Pizza73", nil];
     
@@ -38,10 +38,6 @@
     _restaurantRatings = [[NSArray alloc] initWithObjects: @"8,8", @"7.7",@"2.5",
                       nil];
     _restaurantImages = [NSArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg",@"egg_benedict.jpg", nil];
-    
-	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-	
-    self.navigationItem.rightBarButtonItem = addButton;
 	self.detailViewController = (MMDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
@@ -99,6 +95,7 @@
     cell.ratinglabel.text = [_restaurantRatings objectAtIndex:indexPath.row];
     cell.thumbnailImageView.image = [UIImage imageNamed:[_restaurantImages objectAtIndex:indexPath.row]];
     cell.ratingview.progress = .3;
+	[cell.ratingview setProgressViewStyle:UIProgressViewStyleBar];
     
     return cell;
 
@@ -107,7 +104,7 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
