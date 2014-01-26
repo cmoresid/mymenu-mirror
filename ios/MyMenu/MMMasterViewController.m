@@ -28,20 +28,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-	self.navigationItem.leftBarButtonItem = self.editButtonItem;
+	
     _restaurantNames = [[NSArray alloc] initWithObjects:@"Boston Pizza", @"Original Joes",
                   @"Pizza73", nil];
     
     _restaurantNumbers = [[NSArray alloc]
                       initWithObjects:@"111-111-1111",
                       @"222-222-2222", @"333-333-3333", nil];
-    _restaurantRatings = [[NSArray alloc] initWithObjects: @"8,8", @"7.7",@"2.5",
-                      nil];
+    _restaurantRatings = [[NSArray alloc] initWithObjects: [NSNumber numberWithFloat:8.8],[NSNumber numberWithFloat:6.2],[NSNumber numberWithFloat:2.1],nil];
     _restaurantImages = [NSArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg",@"egg_benedict.jpg", nil];
-    
-	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-	
-    self.navigationItem.rightBarButtonItem = addButton;
 	self.detailViewController = (MMDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
@@ -96,9 +91,10 @@
     
     cell.nameLabel.text = [_restaurantNames objectAtIndex:indexPath.row];
     cell.numberLabel.text = [_restaurantNumbers objectAtIndex:indexPath.row];
-    cell.ratinglabel.text = [_restaurantRatings objectAtIndex:indexPath.row];
+    cell.ratinglabel.text = [[_restaurantRatings objectAtIndex:indexPath.row] stringValue];
     cell.thumbnailImageView.image = [UIImage imageNamed:[_restaurantImages objectAtIndex:indexPath.row]];
-    cell.ratingview.progress = .3;
+    cell.ratingview.progress = [[_restaurantRatings objectAtIndex:indexPath.row] floatValue]/10.0;
+	[cell.ratingview setProgressViewStyle:UIProgressViewStyleBar];
     
     return cell;
 
@@ -107,7 +103,7 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
