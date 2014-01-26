@@ -1,25 +1,24 @@
 //
-//  MMRegistrationViewController.m
+//  MMLocationPopoverViewController.m
 //  MyMenu
 //
-//  Created by Connor Moreside on 1/24/2014.
+//  Created by Connor Moreside on 1/25/2014.
 //  Copyright (c) 2014 MyMenu. All rights reserved.
 //
 
-#import "MMRegistrationViewController.h"
 #import "MMRegistrationPopoverViewController.h"
 
-@interface MMRegistrationViewController ()
+@interface MMRegistrationPopoverViewController ()
 
 @end
 
-@implementation MMRegistrationViewController
+@implementation MMRegistrationPopoverViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        // Custom initialization
     }
     return self;
 }
@@ -27,11 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view from its nib.
+    
+    // Do any additional setup after loading the view.
     self.cityPicker.delegate = self;
     self.provPicker.delegate = self;
     self.genderPicker.delegate = self;
-    self.locationField.delegate = self;
     self.cities = [[NSArray alloc]initWithObjects:@"Choose City", @"Edmonton", @"Calgary", @"Vancouver", nil];
     self.provinces = [[NSArray alloc]initWithObjects: @"Choose Province", @"Alberta", @"British Columbia", @"Manitoba", @"New Brunswick", @"Newfoundland", @"Northwest Territories", @"Nova Scotia", @"Nunavut", @"Ontario", @"Prince Edward Island", @"Quebec", @"Saskatewan", @"Yukon",  nil];
     self.gender = [[NSArray alloc] initWithObjects: @"Choose Your Gender", @"Unspecified", @"Male", @"Female", nil];
@@ -42,15 +42,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (IBAction)unwindToLoginScreen:(UIStoryboardSegue*)segue
-{
-    NSLog(@"Dismiss...");
-    [self dismissViewControllerAnimated:TRUE completion:nil];
-}
-
-#pragma mark -
-#pragma mark PickerView DataSource
 
 - (NSInteger)numberOfComponentsInPickerView:
 (UIPickerView *)pickerView
@@ -63,11 +54,10 @@ numberOfRowsInComponent:(NSInteger)component
 {
     if (self.cityPicker == pickerView)
         return _cities.count;
+    else if (self.provPicker == pickerView)
+        return _provinces.count;
     else
-        if (self.provPicker == pickerView)
-            return _provinces.count;
-        else
-            return _gender.count;
+        return _gender.count;
 }
 
 
@@ -77,28 +67,15 @@ numberOfRowsInComponent:(NSInteger)component
 {
     if (self.cityPicker == pickerView)
         return _cities[row];
+    else if (self.provPicker == pickerView)
+        return _provinces[row];
     else
-        if (self.provPicker == pickerView)
-            return _provinces[row];
-        else
-            return _gender[row];
+        return _gender[row];
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+- (IBAction)selectChoice:(id)sender
 {
-	MMRegistrationPopoverViewController *locationContent = [self.storyboard instantiateViewControllerWithIdentifier:@"LocationPopOverViewController"];
-    
-    UIPopoverController* popover = [[UIPopoverController alloc] initWithContentViewController:locationContent];
-    
-    popover.popoverContentSize = CGSizeMake(350.0f, 200.0f);
-    popover.delegate = self;
-    
-    self.locationPopoverController = popover;
-    
-    [self.locationPopoverController presentPopoverFromRect:textField.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    
-    return FALSE;
+    NSLog(@"Done...");
 }
-    
 
 @end

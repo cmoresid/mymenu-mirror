@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMRegistrationViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface MMRegistrationViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIPopoverControllerDelegate>
 @property (nonatomic, weak) IBOutlet UIPickerView* cityPicker;
 @property (strong, nonatomic) NSArray* cities;
 @property (nonatomic, weak) IBOutlet UIPickerView* provPicker;
 @property (strong, nonatomic) NSArray* provinces;
 @property (nonatomic, weak) IBOutlet UIPickerView* genderPicker;
 @property (strong, nonatomic) NSArray* gender;
+
+@property (nonatomic, strong) UIPopoverController* locationPopoverController;
+@property (strong, nonatomic) IBOutlet UITextField* locationField;
 
 
 - (IBAction)unwindToLoginScreen:(UIStoryboardSegue*)segue;

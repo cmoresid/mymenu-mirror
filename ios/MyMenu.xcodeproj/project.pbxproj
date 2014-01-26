@@ -45,6 +45,7 @@
 		9B4E248E1891E02B00F5B955 /* MMRestriction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E248C1891E02B00F5B955 /* MMRestriction.m */; };
 		9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24901891E06200F5B955 /* MMSpecial.m */; };
 		9B4E24921891E06200F5B955 /* MMSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24901891E06200F5B955 /* MMSpecial.m */; };
+		B071155618948BC100E8CB44 /* MMRegistrationPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B071155418948BC100E8CB44 /* MMRegistrationPopoverViewController.m */; };
 		B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57251893084E00DEBAD8 /* MMLoginViewController.m */; };
 		B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */; };
 		B097D6F91893608300142F8D /* MMDietaryRestrictionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B097D6F81893608300142F8D /* MMDietaryRestrictionsViewController.m */; };
@@ -111,6 +112,8 @@
 		9B4E248C1891E02B00F5B955 /* MMRestriction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestriction.m; sourceTree = "<group>"; };
 		9B4E248F1891E06200F5B955 /* MMSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecial.h; sourceTree = "<group>"; };
 		9B4E24901891E06200F5B955 /* MMSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecial.m; sourceTree = "<group>"; };
+		B071155318948BC100E8CB44 /* MMRegistrationPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRegistrationPopoverViewController.h; sourceTree = "<group>"; };
+		B071155418948BC100E8CB44 /* MMRegistrationPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRegistrationPopoverViewController.m; sourceTree = "<group>"; };
 		B07A57241893084E00DEBAD8 /* MMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLoginViewController.h; sourceTree = "<group>"; };
 		B07A57251893084E00DEBAD8 /* MMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLoginViewController.m; sourceTree = "<group>"; };
 		B07A57261893084E00DEBAD8 /* UIColor+MyMenuColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyMenuColors.h"; sourceTree = "<group>"; };
@@ -267,6 +270,8 @@
 			children = (
 				B097D6FA189360A500142F8D /* MMRegistrationViewController.h */,
 				B097D6FB189360A500142F8D /* MMRegistrationViewController.m */,
+				B071155318948BC100E8CB44 /* MMRegistrationPopoverViewController.h */,
+				B071155418948BC100E8CB44 /* MMRegistrationPopoverViewController.m */,
 				B07A57241893084E00DEBAD8 /* MMLoginViewController.h */,
 				B07A57251893084E00DEBAD8 /* MMLoginViewController.m */,
 				B097D6F71893608300142F8D /* MMDietaryRestrictionsViewController.h */,
@@ -420,6 +425,7 @@
 				83893EB718919AD400D36670 /* main.m in Sources */,
 				9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */,
 				B097D701189392FC00142F8D /* MMMainTabBarViewController.m in Sources */,
+				B071155618948BC100E8CB44 /* MMRegistrationPopoverViewController.m in Sources */,
 				9B4E24881891DCD100F5B955 /* MMMenuItemRating.m in Sources */,
 				B097D7091893A6B200142F8D /* MMMainTabViewSegue.m in Sources */,
 				9B4E24781891D8C600F5B955 /* MMMerchant.m in Sources */,
