@@ -35,8 +35,7 @@
     _restaurantNumbers = [[NSArray alloc]
                       initWithObjects:@"111-111-1111",
                       @"222-222-2222", @"333-333-3333", nil];
-    _restaurantRatings = [[NSArray alloc] initWithObjects: @"8,8", @"7.7",@"2.5",
-                      nil];
+    _restaurantRatings = [[NSArray alloc] initWithObjects: [NSNumber numberWithFloat:8.8],[NSNumber numberWithFloat:6.2],[NSNumber numberWithFloat:2.1],nil];
     _restaurantImages = [NSArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg",@"egg_benedict.jpg", nil];
 	self.detailViewController = (MMDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
@@ -92,9 +91,9 @@
     
     cell.nameLabel.text = [_restaurantNames objectAtIndex:indexPath.row];
     cell.numberLabel.text = [_restaurantNumbers objectAtIndex:indexPath.row];
-    cell.ratinglabel.text = [_restaurantRatings objectAtIndex:indexPath.row];
+    cell.ratinglabel.text = [[_restaurantRatings objectAtIndex:indexPath.row] stringValue];
     cell.thumbnailImageView.image = [UIImage imageNamed:[_restaurantImages objectAtIndex:indexPath.row]];
-    cell.ratingview.progress = .3;
+    cell.ratingview.progress = [[_restaurantRatings objectAtIndex:indexPath.row] floatValue]/10.0;
 	[cell.ratingview setProgressViewStyle:UIProgressViewStyleBar];
     
     return cell;
