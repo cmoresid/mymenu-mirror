@@ -7,6 +7,8 @@
 //
 
 #import "MMLoginViewController.h"
+#import "MMUser.h"
+#import "MMDBFetcher.h"
 
 // Only used for testing
 #define USER_LOGGED_IN  0
@@ -88,7 +90,7 @@
     // Your app might not need or want this behavior.
     CGRect aRect = self.view.frame;
     aRect.size.height -= kbSize.height;
-    if (!CGRectContainsPoint(aRect, self.activeField.frame.origin) ) {
+    if (CGRectContainsPoint(aRect, self.activeField.frame.origin) ) {
         [self.scrollView scrollRectToVisible:self.activeField.frame animated:YES];
     }
 }
@@ -123,13 +125,38 @@
 
 - (IBAction)login:(id)sender
 {
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
-                                                      message:@"Please enter a valid user name and password."
-                                                     delegate:nil
-                                            cancelButtonTitle:@"OK"	
-                                            otherButtonTitles:nil];
-    // Put in the check that looks to see if username is valid in the database (chris's code)
-    [message show];
+    
+    MMUser * user = [[MMUser alloc]init];
+    if (([self.emailAddress.text isEqualToString:@""] || self.emailAddress.text == nil) || ([self.password.text isEqualToString:@""] || self.password.text == nil)){
+        NSLog(@"shfdkjshflshldgkhan");
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
+                                                          message:@"Please enter a valid user name and password."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        return;
+    }else{
+        user.email = self.emailAddress.text;
+        user.password = self.password.text;
+    }
+    
+    MMDBFetcher * DBFetcher = [[MMDBFetcher alloc] init];
+    NSInteger resultCode = [DBFetcher userVerified:user];
+    
+    if (resultCode > 0)
+        [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
+    else{
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
+                                                          message:@"Please enter a valid user name and password."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+    }
+    
+    
 }
 
 @end

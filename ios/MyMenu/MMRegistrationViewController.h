@@ -21,6 +21,8 @@
 @property (nonatomic, weak) IBOutlet UITextField* provinceField;
 @property (nonatomic, weak) IBOutlet UITextField* genderField;
 @property (nonatomic, weak) IBOutlet UITextField* birthdayField;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) IBOutlet UITextField *activeField;
 
 @property (nonatomic, strong) UIPopoverController* locationPopoverController;
 @property (readwrite) MMUser* userProfile;
@@ -29,5 +31,6 @@
 
 - (id)getPopoverViewControllerForTextField:(UITextField*)textField;
 - (CGSize)getPopoverViewSizeForTextField:(UITextField*)textField;
+
 
 @end
