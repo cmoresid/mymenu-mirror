@@ -10,7 +10,7 @@
 
 @interface MMRestriction : NSObject
 
-@property (nonatomic, readonly) NSNumber *id;
+@property (nonatomic) NSNumber *id;
 @property (nonatomic) NSString *name;
 @property (nonatomic) UIImage * image;
 

@@ -22,7 +22,7 @@
 - (NSArray*) getCompressedMerchants;
 - (NSArray*) getMenu : (NSInteger*) merchid;
 - (NSArray*) getAllRestrictions;
-- (NSArray*) getUserRestrictions : (NSInteger*) uid;
+- (NSArray*) getUserRestrictions : (NSString*) email;
 - (MMMerchant*) getMerchant : (NSInteger*) merchid;
 
 @end

@@ -35,7 +35,7 @@ NSMutableData * responseData;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     
     NSString *initstore = @"email=%@&firstname=%@&lastname=%@&password=%@&city=%@&locality=%@&country=%@&gender=%@&birthday=%@&birthmonth=%@&birthyear=%@&confirmcode=y";
-
+    
     NSString *adduser = [NSString stringWithFormat:initstore, user.email, user.firstName,
                          user.lastName, user.password, user.city, user.locality, user.country,
                          user.gender, user.birthday, user.birthmonth, user.birthyear];
@@ -59,7 +59,7 @@ NSMutableData * responseData;
     NSString *query = [NSString stringWithFormat:checkstring, email];
     
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-
+    
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSURLResponse * response = [[NSURLResponse alloc] init];
@@ -98,20 +98,38 @@ NSMutableData * responseData;
 
 //**TODO**//
 - (void) updateUserRestrictions : (NSInteger*) uid : (NSArray*) restrictions {
-
+    
     
 }
 
 //**TODO**//
-- (NSArray*) getUserRestrictions : (NSInteger*) uid{
-   
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
+- (NSArray*) getUserRestrictions : (NSString*) email{
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictionuserlink/custom.php"]];
     
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    NSString *prequery = @"query=select restrictid from restrictionuserlink where email ='%@'";
+    NSString *query = [NSString stringWithFormat:prequery, email];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLResponse * response = [[NSURLResponse alloc] init];
+    NSError * error = [[NSError alloc] init];
+    NSData * data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
-    NSArray *rests = [[NSMutableArray alloc] init];
-    return rests;
+    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+    NSArray *rxmlResult = [rootXML children:@"result"];
+    
+    NSMutableArray *restrictions = [[NSMutableArray alloc] init];
+    
+    
+    [rootXML iterate:@"result" usingBlock: ^(RXMLElement *e) {
+        MMRestriction *restriction = [[MMRestriction alloc] init];
+        restriction.id = [e child:@"restrictid"];
+        
+        [restrictions addObject : restriction];
+    }];
+    
+    return restrictions;
 }
 
 - (NSArray*) getAllRestrictions{
@@ -120,8 +138,7 @@ NSMutableData * responseData;
     
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    NSString *query = @"query=select name from restrictions";
-    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    NSString *query = @"query=select id, name from restrictions";
     
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLResponse * response = [[NSURLResponse alloc] init];
@@ -131,7 +148,18 @@ NSMutableData * responseData;
     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
     NSArray *rxmlResult = [rootXML children:@"result"];
     
-    return rxmlResult;
+    NSMutableArray *restrictions = [[NSMutableArray alloc] init];
+    
+    
+    [rootXML iterate:@"result" usingBlock: ^(RXMLElement *e) {
+        MMRestriction *restriction = [[MMRestriction alloc] init];
+        restriction.id = [e child:@"id"];
+        restriction.name = [e child:@"name"];
+        
+        [restrictions addObject : restriction];
+    }];
+    
+    return restrictions;
 }
 
 //**TODO**//
@@ -149,7 +177,35 @@ NSMutableData * responseData;
 }
 
 - (NSArray*) getCompressedMerchants{
-    NSArray *merchants = [[NSMutableArray alloc] init];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    NSString *query = @"query=select business_name, business_number, rating, business_picture from merchusers";
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLResponse * response = [[NSURLResponse alloc] init];
+    NSError * error = [[NSError alloc] init];
+    NSData * data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+    
+    NSMutableArray *merchants = [[NSMutableArray alloc] init];
+    
+ 
+    
+    [rootXML iterate:@"result" usingBlock: ^(RXMLElement *e) {
+        MMMerchant *merchant = [[MMMerchant alloc] init];
+        merchant.businessname = [e child:@"business_name"].text;
+        merchant.phone = [e child:@"business_number"];
+        merchant.rating = [e child:@"rating"];
+        merchant.picture = [e child:@"business_picture"];
+        
+        [merchants addObject : merchant];
+    }];
+    
+    
     return merchants;
 }
 
@@ -160,13 +216,29 @@ NSMutableData * responseData;
     
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    NSString *prequery = @"query=select * from merchusers where id = '%@'";
+    NSString *prequery = @"query=select * from merchusers where id = '%d'";
     NSString *query = [NSString stringWithFormat:prequery, mid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLResponse * response = [[NSURLResponse alloc] init];
+    NSError * error = [[NSError alloc] init];
+    NSData * data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
-    NSArray *merchants = [[NSMutableArray alloc] init];
-    return merchants;
+    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+   
+    MMMerchant *merchant = [[MMMerchant alloc] init];
+    
+    [rootXML iterate:@"result" usingBlock: ^(RXMLElement *e) {
+        
+        merchant.businessname = [e child:@"businessname"];
+        merchant.phone = [e child:@"phone"];
+        merchant.rating = [e child:@"rating"];
+        
+    }];
+    
+    
+    return merchant;
 }
 
 //**TODO**//
