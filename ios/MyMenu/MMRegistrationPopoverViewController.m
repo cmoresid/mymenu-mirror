@@ -7,6 +7,7 @@
 //
 
 #import "MMRegistrationPopoverViewController.h"
+#import "MMDBFetcher.h"
 
 @interface MMRegistrationPopoverViewController ()
 
@@ -26,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.cityPicker.delegate = self;
     self.provPicker.delegate = self;
     self.genderPicker.delegate = self;

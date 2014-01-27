@@ -31,11 +31,10 @@
     [super viewDidLoad];
     
     MMDBFetcher *db = [[MMDBFetcher alloc] init];
-    MMUser *user = [[MMUser alloc] init];
     
-    bool bo = [db userExists: @"email@email.com12112"];
+    NSArray *merch = [db getCompressedMerchants];
     
-    NSLog(@"%s", bo ? "true" : "false");
+    //NSLog(@"%@ / %@ / %@", [[merch objectAtIndex:0] name], [[merch objectAtIndex:0] phone], [[merch objectAtIndex:0] rating]);
 
     
 	// Do any additional setup after loading the view.
