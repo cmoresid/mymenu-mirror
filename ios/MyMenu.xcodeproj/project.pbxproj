@@ -75,6 +75,8 @@
 		B097D6FC189360A500142F8D /* MMRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B097D6FB189360A500142F8D /* MMRegistrationViewController.m */; };
 		B097D701189392FC00142F8D /* MMMainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B097D700189392FC00142F8D /* MMMainTabBarViewController.m */; };
 		B097D7091893A6B200142F8D /* MMMainTabViewSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B097D7081893A6B200142F8D /* MMMainTabViewSegue.m */; };
+		B0AC55BF1896F8CB000BC0DD /* MMPopoverDataPair.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AC55BE1896F8CB000BC0DD /* MMPopoverDataPair.m */; };
+		B0AC55C21896F8E9000BC0DD /* MMRegistrationPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AC55C11896F8E9000BC0DD /* MMRegistrationPopoverViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +174,11 @@
 		B097D700189392FC00142F8D /* MMMainTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMainTabBarViewController.m; sourceTree = "<group>"; };
 		B097D7071893A6B200142F8D /* MMMainTabViewSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMainTabViewSegue.h; sourceTree = "<group>"; };
 		B097D7081893A6B200142F8D /* MMMainTabViewSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMainTabViewSegue.m; sourceTree = "<group>"; };
+		B0AC55BD1896F8CB000BC0DD /* MMPopoverDataPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopoverDataPair.h; sourceTree = "<group>"; };
+		B0AC55BE1896F8CB000BC0DD /* MMPopoverDataPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopoverDataPair.m; sourceTree = "<group>"; };
+		B0AC55C01896F8E9000BC0DD /* MMRegistrationPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRegistrationPopoverViewController.h; sourceTree = "<group>"; };
+		B0AC55C11896F8E9000BC0DD /* MMRegistrationPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRegistrationPopoverViewController.m; sourceTree = "<group>"; };
+		B0AC55C41896F927000BC0DD /* MMRegistrationPopoverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRegistrationPopoverDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +287,7 @@
 				B097D7061893A68000142F8D /* CustomSegue */,
 				B097D6FE18938EBE00142F8D /* Category */,
 				B097D6FD18938EA300142F8D /* Controller */,
+				B0AC55C31896F90D000BC0DD /* Delegate */,
 				9B4E248A1891E00100F5B955 /* Model */,
 				83893EB118919AD400D36670 /* Supporting Files */,
 				174FE0C018945E5800CB82C0 /* RestaurantCell.h */,
@@ -342,6 +350,8 @@
 				9B4E24901891E06200F5B955 /* MMSpecial.m */,
 				9BBD913118943D77006DDBCE /* MMDBFetcher.h */,
 				9BBD913218943D77006DDBCE /* MMDBFetcher.m */,
+				B0AC55BD1896F8CB000BC0DD /* MMPopoverDataPair.h */,
+				B0AC55BE1896F8CB000BC0DD /* MMPopoverDataPair.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -358,6 +368,8 @@
 		B097D6FD18938EA300142F8D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B0AC55C01896F8E9000BC0DD /* MMRegistrationPopoverViewController.h */,
+				B0AC55C11896F8E9000BC0DD /* MMRegistrationPopoverViewController.m */,
 				B097D6FA189360A500142F8D /* MMRegistrationViewController.h */,
 				B097D6FB189360A500142F8D /* MMRegistrationViewController.m */,
 				B07A57241893084E00DEBAD8 /* MMLoginViewController.h */,
@@ -394,6 +406,14 @@
 				B097D7081893A6B200142F8D /* MMMainTabViewSegue.m */,
 			);
 			name = CustomSegue;
+			sourceTree = "<group>";
+		};
+		B0AC55C31896F90D000BC0DD /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				B0AC55C41896F927000BC0DD /* MMRegistrationPopoverDelegate.h */,
+			);
+			name = Delegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,6 +538,7 @@
 				B097D6F91893608300142F8D /* MMDietaryRestrictionsViewController.m in Sources */,
 				83893F281891C55E00D36670 /* MMSpecialsViewController.m in Sources */,
 				9B4E24741891D67300F5B955 /* MMMenuItem.m in Sources */,
+				B0AC55C21896F8E9000BC0DD /* MMRegistrationPopoverViewController.m in Sources */,
 				9B4E248D1891E02B00F5B955 /* MMRestriction.m in Sources */,
 				9B4E247C1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */,
 				9B4E24801891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */,
@@ -529,6 +550,7 @@
 				B097D6FC189360A500142F8D /* MMRegistrationViewController.m in Sources */,
 				9BBD913D189478A8006DDBCE /* RXMLElement.m in Sources */,
 				83B7E44D1891EE0700946784 /* MMMasterViewController.m in Sources */,
+				B0AC55BF1896F8CB000BC0DD /* MMPopoverDataPair.m in Sources */,
 				83B7E4511891F15100946784 /* MMSplitViewController.m in Sources */,
 				83893EB718919AD400D36670 /* main.m in Sources */,
 				9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */,

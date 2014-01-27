@@ -7,16 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMRegistrationPopoverDelegate.h"
+#import "MMUser.h"
 
-@interface MMRegistrationViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
-@property (nonatomic, weak) IBOutlet UIPickerView* cityPicker;
-@property (strong, nonatomic) NSArray* cities;
-@property (nonatomic, weak) IBOutlet UIPickerView* provPicker;
-@property (strong, nonatomic) NSArray* provinces;
-@property (nonatomic, weak) IBOutlet UIPickerView* genderPicker;
-@property (strong, nonatomic) NSArray* gender;
+@interface MMRegistrationViewController : UIViewController <UITextFieldDelegate, UIPopoverControllerDelegate, MMRegistrationPopoverDelegate>
 
+@property (nonatomic, weak) IBOutlet UITextField* emailField;
+@property (nonatomic, weak) IBOutlet UITextField* passwordField;
+@property (nonatomic, weak) IBOutlet UITextField* confirmPasswordField;
+@property (nonatomic, weak) IBOutlet UITextField* firstNameField;
+@property (nonatomic, weak) IBOutlet UITextField* lastNameField;
+@property (nonatomic, weak) IBOutlet UITextField* cityField;
+@property (nonatomic, weak) IBOutlet UITextField* provinceField;
+@property (nonatomic, weak) IBOutlet UITextField* genderField;
+@property (nonatomic, weak) IBOutlet UITextField* birthdayField;
+
+@property (nonatomic, strong) UIPopoverController* locationPopoverController;
+@property (readwrite) MMUser* userProfile;
 
 - (IBAction)unwindToLoginScreen:(UIStoryboardSegue*)segue;
+
+- (id)getPopoverViewControllerForTextField:(UITextField*)textField;
+- (CGSize)getPopoverViewSizeForTextField:(UITextField*)textField;
 
 @end
