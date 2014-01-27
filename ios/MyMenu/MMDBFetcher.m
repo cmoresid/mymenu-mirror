@@ -117,14 +117,14 @@ NSMutableData * responseData;
     NSData * data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-    NSArray *rxmlResult = [rootXML children:@"result"];
+ 
     
     NSMutableArray *restrictions = [[NSMutableArray alloc] init];
     
     
     [rootXML iterate:@"result" usingBlock: ^(RXMLElement *e) {
         MMRestriction *restriction = [[MMRestriction alloc] init];
-        restriction.id = [e child:@"restrictid"];
+        restriction.id = [NSNumber numberWithInt:[e child:@"restrictid"].textAsInt];
         
         [restrictions addObject : restriction];
     }];
@@ -146,15 +146,15 @@ NSMutableData * responseData;
     NSData * data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-    NSArray *rxmlResult = [rootXML children:@"result"];
+   
     
     NSMutableArray *restrictions = [[NSMutableArray alloc] init];
     
     
     [rootXML iterate:@"result" usingBlock: ^(RXMLElement *e) {
         MMRestriction *restriction = [[MMRestriction alloc] init];
-        restriction.id = [e child:@"id"];
-        restriction.name = [e child:@"name"];
+        restriction.id = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
+        restriction.name = [e child:@"name"].text;
         
         [restrictions addObject : restriction];
     }];
@@ -172,7 +172,25 @@ NSMutableData * responseData;
     NSString *prequery = @"query=select * from specials where weekday = '%@'";
     NSString *query = [NSString stringWithFormat:prequery, day];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-    NSArray *specials = [[NSMutableArray alloc] init];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLResponse * response = [[NSURLResponse alloc] init];
+    NSError * error = [[NSError alloc] init];
+    NSData * data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+    NSMutableArray *specials = [[NSMutableArray alloc] init];
+    
+    [rootXML iterate:@"result" usingBlock: ^(RXMLElement *e) {
+        MMSpecial *special = [[MMSpecial alloc] init];
+        special.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
+        special.name = [e child:@"name"].text;
+        special.desc = [e child:@"description"].text;
+        special.picture = [e child:@"picture"].text;
+        special.occurtype = [NSNumber numberWithInt:[e child:@"occurtype"].textAsInt];
+
+        [specials addObject : special];
+    }];
+    
     return specials;
 }
 
@@ -198,9 +216,9 @@ NSMutableData * responseData;
     [rootXML iterate:@"result" usingBlock: ^(RXMLElement *e) {
         MMMerchant *merchant = [[MMMerchant alloc] init];
         merchant.businessname = [e child:@"business_name"].text;
-        merchant.phone = [e child:@"business_number"];
-        merchant.rating = [e child:@"rating"];
-        merchant.picture = [e child:@"business_picture"];
+        merchant.phone = [e child:@"business_number"].text;
+        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
+        merchant.picture = [e child:@"business_picture"].text;
         
         [merchants addObject : merchant];
     }];
@@ -231,9 +249,9 @@ NSMutableData * responseData;
     
     [rootXML iterate:@"result" usingBlock: ^(RXMLElement *e) {
         
-        merchant.businessname = [e child:@"businessname"];
-        merchant.phone = [e child:@"phone"];
-        merchant.rating = [e child:@"rating"];
+        merchant.businessname = [e child:@"businessname"].text;
+        merchant.phone = [e child:@"phone"].text;
+        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
         
     }];
     
