@@ -244,12 +244,8 @@ NSMutableData * responseData;
         merchant.businessname = [e child:@"business_name"].text;
         merchant.phone = [e child:@"business_number"].text;
         //merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
-
         merchant.rating = [e child:@"rating"].text;
-       
-
         merchant.picture = [e child:@"business_picture"].text;
-        
         [merchants addObject : merchant];
     }];
     
