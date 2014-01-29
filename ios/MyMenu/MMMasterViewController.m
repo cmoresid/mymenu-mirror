@@ -9,6 +9,7 @@
 #import "MMMasterViewController.h"
 #import "RestaurantCell.h"
 #import "MMDetailViewController.h"
+#import "MMDBFetcher.h"
 
 @interface MMMasterViewController () {
     NSMutableArray *_objects;
@@ -28,15 +29,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-	
-    _restaurantNames = [[NSArray alloc] initWithObjects:@"Boston Pizza", @"Original Joes",
-                  @"Pizza73", nil];
     
-    _restaurantNumbers = [[NSArray alloc]
-                      initWithObjects:@"111-111-1111",
-                      @"222-222-2222", @"333-333-3333", nil];
-    _restaurantRatings = [[NSArray alloc] initWithObjects: [NSNumber numberWithFloat:8.8],[NSNumber numberWithFloat:6.2],[NSNumber numberWithFloat:2.1],nil];
-    _restaurantImages = [NSArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg",@"egg_benedict.jpg", nil];
+    MMDBFetcher * Dbfetcher = [[MMDBFetcher alloc] init];
+    _restaurants = [Dbfetcher getCompressedMerchants];
+	
 	self.detailViewController = (MMDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
@@ -65,7 +61,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return _restaurantNames.count;
+	return _restaurants.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -83,17 +79,17 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
     
-    //NSDate *object = _objects[indexPath.row];
-    //cell.textLabel.text = [object description];
-    //cell.textLabel.text = [_restaurantNames objectAtIndex:indexPath.row];
-    //cell.imageView.image = [UIImage imageNamed:[_restaurantImages objectAtIndex:indexPath.row]];
     
     
-    cell.nameLabel.text = [_restaurantNames objectAtIndex:indexPath.row];
-    cell.numberLabel.text = [_restaurantNumbers objectAtIndex:indexPath.row];
-    cell.ratinglabel.text = [[_restaurantRatings objectAtIndex:indexPath.row] stringValue];
-    cell.thumbnailImageView.image = [UIImage imageNamed:[_restaurantImages objectAtIndex:indexPath.row]];
-    cell.ratingview.progress = [[_restaurantRatings objectAtIndex:indexPath.row] floatValue]/10.0;
+    cell.nameLabel.text = [[_restaurants objectAtIndex:indexPath.row] businessname];
+    cell.numberLabel.text = [[_restaurants objectAtIndex:indexPath.row] phone];
+    cell.ratinglabel.text = [[_restaurants objectAtIndex:indexPath.row] rating];
+    UIImage* myImage = [UIImage imageWithData:
+                        [NSData dataWithContentsOfURL:
+                         [NSURL URLWithString:[[_restaurants objectAtIndex:indexPath.row] picture]]]];
+    cell.thumbnailImageView.image = myImage;
+ 
+    cell.ratingview.progress = [[[_restaurants objectAtIndex:indexPath.row] rating] floatValue]/10.0;
 	[cell.ratingview setProgressViewStyle:UIProgressViewStyleBar];
     
     return cell;
