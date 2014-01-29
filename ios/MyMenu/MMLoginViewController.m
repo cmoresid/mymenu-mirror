@@ -92,7 +92,6 @@
     aRect.size.height -= kbSize.height;
 
     if (!CGRectContainsPoint(aRect, self.activeField.frame.origin) ) {
-            NSLog(@"heyyyyy");
         [self.scrollView scrollRectToVisible:self.activeField.frame animated:YES];
     }
 }
