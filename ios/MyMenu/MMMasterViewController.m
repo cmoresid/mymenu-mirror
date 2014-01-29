@@ -29,6 +29,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+
     
     MMDBFetcher * Dbfetcher = [[MMDBFetcher alloc] init];
     _restaurants = [Dbfetcher getCompressedMerchants];

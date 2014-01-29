@@ -117,7 +117,6 @@ NSMutableData * responseData;
     NSData * data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-
     
     NSMutableArray *restrictions = [[NSMutableArray alloc] init];
     
@@ -221,6 +220,7 @@ NSMutableData * responseData;
 
         merchant.rating = [e child:@"rating"].text;
        
+
         merchant.picture = [e child:@"business_picture"].text;
         
         [merchants addObject : merchant];
