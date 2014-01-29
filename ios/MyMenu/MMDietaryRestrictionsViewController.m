@@ -40,9 +40,7 @@ NSArray * allRestrictions;
     //NSArray * allRestrictions = [[MMRestriction alloc] init];
     MMDBFetcher * DBFetcher = [[MMDBFetcher alloc] init];
     allRestrictions = DBFetcher.getAllRestrictions;
-    for (int i = 0; i < [allRestrictions count]; i++ ){
-        [allRestrictions[i] setImage:[UIImage imageNamed:@"Egg"]];
-    }
+
 	
 	//restrictions = [NSArray arrayWithObjects:restriction,restriction,restriction, nil];
 }
@@ -76,7 +74,8 @@ NSArray * allRestrictions;
 	MMRestriction * restriction = [allRestrictions objectAtIndex:indexPath.row];
 	
 	UIImageView *recipeImageView = (UIImageView *)[cell viewWithTag:100];
-	recipeImageView.image = [restriction image];
+    UIImage * myImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[restriction image]]]];
+	recipeImageView.image = myImage;
 	
 	// Set the Restriction Title
 	UITextView * textView = (UITextView *) [cell viewWithTag:101];

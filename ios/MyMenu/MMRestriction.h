@@ -12,6 +12,6 @@
 
 @property (nonatomic) NSNumber *id;
 @property (nonatomic) NSString *name;
-@property (nonatomic) UIImage * image;
+@property (nonatomic) NSString * image;
 
 @end
