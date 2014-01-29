@@ -7,6 +7,8 @@
 //
 
 #import "MMDetailViewController.h"
+#import "MMMerchant.h"
+#import "MMDBFetcher.h"
 
 @interface MMDetailViewController ()
 @property (strong, nonatomic) IBOutlet MKMapView * mapView;
@@ -62,11 +64,30 @@
 	region.center = start;//= self.mapView.userLocation.coordinate.longitude;
 	//region.center.latitude = self.mapView.userLocation.coordinate.latitude;
 	region.span = span;
+    
+    [self pinRestaurants];
 
 	[self.mapView setRegion:region animated:YES];
 }
 
+- (void) pinRestaurants {
+    MMDBFetcher * Dbfetcher = [[MMDBFetcher alloc] init];
+    NSArray *restaurants = [Dbfetcher getCompressedMerchants];
+    
+    for (int i = 0; i<restaurants.count; i++) {
+        MMMerchant *restaurant = [restaurants objectAtIndex:i];
+        
+        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+        CLLocationCoordinate2D start;
+        start.latitude = [restaurant.lat doubleValue];
+        start.longitude = [restaurant.longa doubleValue];
+        [annotation setCoordinate:start];
+        [annotation setTitle:restaurant.businessname];
+        [annotation setSubtitle:restaurant.desc];
 
+        [self.mapView addAnnotation:annotation];
+    }
+}
 
 //create function
 -(void) reloadMap
