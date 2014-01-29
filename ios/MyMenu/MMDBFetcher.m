@@ -137,7 +137,7 @@ NSMutableData * responseData;
     
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    NSString *query = @"query=select id, name from restrictions";
+    NSString *query = @"query=select id, user_label, picture from restrictions";
     
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLResponse * response = [[NSURLResponse alloc] init];
@@ -153,7 +153,9 @@ NSMutableData * responseData;
     [rootXML iterate:@"result" usingBlock: ^(RXMLElement *e) {
         MMRestriction *restriction = [[MMRestriction alloc] init];
         restriction.id = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
-        restriction.name = [e child:@"name"].text;
+        restriction.name = [e child:@"user_label"].text;
+        restriction.image = [e child:@"picture"].text;
+        
         
         [restrictions addObject : restriction];
     }];
