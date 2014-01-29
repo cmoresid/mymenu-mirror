@@ -10,6 +10,7 @@
 #import "UIColor+MyMenuColors.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MMRestriction.h"
+#import "MMDBFetcher.h"
 
 @interface MMDietaryRestrictionsViewController ()
 
@@ -20,7 +21,7 @@
 
 // Internal
 // Contains All Restrictions
-NSArray * restrictions;
+NSArray * allRestrictions;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,13 +35,16 @@ NSArray * restrictions;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	// Do any ad	ional setup after loading the view.
 	// Custom initialization
-	MMRestriction * restriction = [[MMRestriction alloc] init];
-	[restriction setImage:[UIImage imageNamed:@"Egg"]];
-	[restriction setName:@"Egg"];
+    //NSArray * allRestrictions = [[MMRestriction alloc] init];
+    MMDBFetcher * DBFetcher = [[MMDBFetcher alloc] init];
+    allRestrictions = DBFetcher.getAllRestrictions;
+    for (int i = 0; i < [allRestrictions count]; i++ ){
+        [allRestrictions[i] setImage:[UIImage imageNamed:@"Egg"]];
+    }
 	
-	restrictions = [NSArray arrayWithObjects:restriction,restriction,restriction, nil];
+	//restrictions = [NSArray arrayWithObjects:restriction,restriction,restriction, nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,7 +56,7 @@ NSArray * restrictions;
 #pragma mark Collection View
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return restrictions.count;
+	return allRestrictions.count;
 }
 
 
@@ -69,7 +73,7 @@ NSArray * restrictions;
 	[cell.contentView setBackgroundColor:[UIColor whiteColor]];
 	NSLog(@"%@",cell.contentView.subviews);
 	
-	MMRestriction * restriction = [restrictions objectAtIndex:indexPath.row];
+	MMRestriction * restriction = [allRestrictions objectAtIndex:indexPath.row];
 	
 	UIImageView *recipeImageView = (UIImageView *)[cell viewWithTag:100];
 	recipeImageView.image = [restriction image];
