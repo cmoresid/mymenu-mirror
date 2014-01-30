@@ -72,8 +72,7 @@
         //   reuseIdentifier:CellIdentifier];
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
-
-
+    
     cell.nameLabel.text = [[_restaurants objectAtIndex:indexPath.row] businessname];
     cell.numberLabel.text = [[_restaurants objectAtIndex:indexPath.row] phone];
     cell.ratinglabel.text = [[_restaurants objectAtIndex:indexPath.row] rating];

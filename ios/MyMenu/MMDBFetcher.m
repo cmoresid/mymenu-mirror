@@ -223,7 +223,7 @@ NSMutableData *responseData;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    NSString *query = @"query=select business_name, business_number, rating, business_picture from merchusers";
+    NSString *query = @"query=select business_name, business_number, rating, business_picture, lat, longa, business_description from merchusers";
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
 
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -240,6 +240,11 @@ NSMutableData *responseData;
         MMMerchant *merchant = [[MMMerchant alloc] init];
         merchant.businessname = [e child:@"business_name"].text;
         merchant.phone = [e child:@"business_number"].text;
+        merchant.desc = [e child:@"business_description"].text;
+
+        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
+        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
+
         //merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
         merchant.rating = [e child:@"rating"].text;
         merchant.picture = [e child:@"business_picture"].text;
