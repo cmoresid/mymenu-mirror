@@ -29,8 +29,8 @@
     // Do any additional setup after loading the view, typically from a nib.
 
 
-    MMDBFetcher *Dbfetcher = [[MMDBFetcher alloc] init];
-    _restaurants = [Dbfetcher getCompressedMerchants];
+    MMDBFetcher *fetcher = [MMDBFetcher get];
+    _restaurants = [fetcher getCompressedMerchants];
 
     self.detailViewController = (MMDetailViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
 }
@@ -72,7 +72,7 @@
         //   reuseIdentifier:CellIdentifier];
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
-    
+
     cell.nameLabel.text = [[_restaurants objectAtIndex:indexPath.row] businessname];
     cell.numberLabel.text = [[_restaurants objectAtIndex:indexPath.row] phone];
     cell.ratinglabel.text = [[_restaurants objectAtIndex:indexPath.row] rating];

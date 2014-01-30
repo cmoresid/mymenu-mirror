@@ -14,6 +14,8 @@
 
 @interface MMDBFetcher : NSObject <NSURLConnectionDataDelegate>
 
++ (id)get;
+
 - (void)addUser:(MMUser *)user;
 
 - (bool)userExists:(NSString *)email;

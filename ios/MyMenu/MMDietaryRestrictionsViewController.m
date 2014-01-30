@@ -32,14 +32,9 @@ NSArray *allRestrictions;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any ad	ional setup after loading the view.
-    // Custom initialization
-    //NSArray * allRestrictions = [[MMRestriction alloc] init];
-    MMDBFetcher *DBFetcher = [[MMDBFetcher alloc] init];
-    allRestrictions = DBFetcher.getAllRestrictions;
 
-
-    //restrictions = [NSArray arrayWithObjects:restriction,restriction,restriction, nil];
+    MMDBFetcher *fetcher = [MMDBFetcher get];
+    allRestrictions = [fetcher getAllRestrictions];
 }
 
 - (void)didReceiveMemoryWarning {
