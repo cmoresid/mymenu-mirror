@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface MMDetailViewController : UIViewController <UISplitViewControllerDelegate,MKMapViewDelegate>
+@interface MMDetailViewController : UIViewController <UISplitViewControllerDelegate, MKMapViewDelegate>
 
-@property (strong, nonatomic) id detailItem;
+@property(strong, nonatomic) id detailItem;
 
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+- (void) pinRestaurants;
+
 @end

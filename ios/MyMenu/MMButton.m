@@ -7,12 +7,10 @@
 //
 
 #import "MMButton.h"
-#import <QuartzCore/QuartzCore.h>
 
 @implementation MMButton
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -21,8 +19,8 @@
 }
 
 - (void)awakeFromNib {
-	self.layer.cornerRadius = 5;
-	self.layer.masksToBounds = YES;
+    self.layer.cornerRadius = 5;
+    self.layer.masksToBounds = YES;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

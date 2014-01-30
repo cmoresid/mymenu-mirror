@@ -18,33 +18,29 @@
 
 @implementation MMMasterViewController
 
-- (void)awakeFromNib
-{
-	self.clearsSelectionOnViewWillAppear = NO;
-	self.preferredContentSize = CGSizeMake(320.0, 600.0);
+- (void)awakeFromNib {
+    self.clearsSelectionOnViewWillAppear = NO;
+    self.preferredContentSize = CGSizeMake(320.0, 600.0);
     [super awakeFromNib];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
 
-    
-    MMDBFetcher * Dbfetcher = [[MMDBFetcher alloc] init];
+
+    MMDBFetcher *Dbfetcher = [[MMDBFetcher alloc] init];
     _restaurants = [Dbfetcher getCompressedMerchants];
-	
-	self.detailViewController = (MMDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+
+    self.detailViewController = (MMDetailViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender
-{
+- (void)insertNewObject:(id)sender {
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
@@ -55,56 +51,49 @@
 
 #pragma mark - Table View
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-	return 1;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	return _restaurants.count;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _restaurants.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"RestaurantCell";
-    
+
     RestaurantCell *cell = [tableView
-                             dequeueReusableCellWithIdentifier:CellIdentifier];
+            dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         //NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RestaurantCell" owner:self options:nil];
         //cell = [nib objectAtIndex:0];
         //cell = [[RestaurantCell alloc]
-            //    initWithStyle:UITableViewCellStyleDefault
-             //   reuseIdentifier:CellIdentifier];
+        //    initWithStyle:UITableViewCellStyleDefault
+        //   reuseIdentifier:CellIdentifier];
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
-    
-    
     
     cell.nameLabel.text = [[_restaurants objectAtIndex:indexPath.row] businessname];
     cell.numberLabel.text = [[_restaurants objectAtIndex:indexPath.row] phone];
     cell.ratinglabel.text = [[_restaurants objectAtIndex:indexPath.row] rating];
-    UIImage* myImage = [UIImage imageWithData:
-                        [NSData dataWithContentsOfURL:
-                         [NSURL URLWithString:[[_restaurants objectAtIndex:indexPath.row] picture]]]];
+    UIImage *myImage = [UIImage imageWithData:
+            [NSData dataWithContentsOfURL:
+                    [NSURL URLWithString:[[_restaurants objectAtIndex:indexPath.row] picture]]]];
     cell.thumbnailImageView.image = myImage;
- 
-    cell.ratingview.progress = [[[_restaurants objectAtIndex:indexPath.row] rating] floatValue]/10.0;
-	[cell.ratingview setProgressViewStyle:UIProgressViewStyleBar];
-    
+
+    cell.ratingview.progress = [[[_restaurants objectAtIndex:indexPath.row] rating] floatValue] / 10.0;
+    [cell.ratingview setProgressViewStyle:UIProgressViewStyleBar];
+
     return cell;
 
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return NO;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [_objects removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -112,8 +101,8 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80;
 }
 /*
@@ -132,8 +121,7 @@
 }
 */
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDate *object = _objects[indexPath.row];
     self.detailViewController.detailItem = object;
 }

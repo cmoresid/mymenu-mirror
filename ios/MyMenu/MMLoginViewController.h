@@ -10,12 +10,13 @@
 
 @interface MMLoginViewController : UIViewController <UITextFieldDelegate>
 
-@property (nonatomic, weak) IBOutlet UITextField *emailAddress;
-@property (nonatomic, weak) IBOutlet UITextField *password;
-@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, weak) IBOutlet UITextField *activeField;
+@property(nonatomic, weak) IBOutlet UITextField *emailAddress;
+@property(nonatomic, weak) IBOutlet UITextField *password;
+@property(nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property(nonatomic, weak) IBOutlet UITextField *activeField;
 
-- (IBAction)unwindToLoginScreen:(UIStoryboardSegue*)segue;
+- (IBAction)unwindToLoginScreen:(UIStoryboardSegue *)segue;
+
 - (IBAction)login:(id)sender;
 
 @end

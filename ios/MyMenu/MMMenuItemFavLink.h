@@ -10,8 +10,8 @@
 
 @interface MMMenuItemFavLink : NSObject
 
-@property (nonatomic, readonly) NSNumber *id;
-@property (nonatomic) NSString *email;
-@property (nonatomic) NSNumber *menuId;
+@property(nonatomic, readonly) NSNumber *id;
+@property(nonatomic) NSString *email;
+@property(nonatomic) NSNumber *menuId;
 
 @end

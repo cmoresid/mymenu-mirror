@@ -10,15 +10,14 @@
 
 @implementation MMPopoverDataPair
 
-- (id) initWithDataType:(MMPopoverDataType)dataType withSelectedValue:(id)selectedValue
-{
+- (id)initWithDataType:(MMPopoverDataType)dataType withSelectedValue:(id)selectedValue {
     self = [super init];
-    
+
     if (self != nil) {
         self.dataType = dataType;
         self.selectedValue = selectedValue;
     }
-    
+
     return self;
 }
 

@@ -10,10 +10,10 @@
 
 @interface RestaurantCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
-@property (nonatomic, weak) IBOutlet UILabel *numberLabel;
-@property (nonatomic, weak) IBOutlet UILabel *ratinglabel;
-@property (nonatomic, weak) IBOutlet UIImageView *thumbnailImageView;
-@property (nonatomic, weak) IBOutlet UIProgressView *ratingview;
+@property(nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property(nonatomic, weak) IBOutlet UILabel *numberLabel;
+@property(nonatomic, weak) IBOutlet UILabel *ratinglabel;
+@property(nonatomic, weak) IBOutlet UIImageView *thumbnailImageView;
+@property(nonatomic, weak) IBOutlet UIProgressView *ratingview;
 
 @end

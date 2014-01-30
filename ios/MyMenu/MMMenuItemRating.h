@@ -10,12 +10,12 @@
 
 @interface MMMenuItemRating : NSObject
 
-@property (nonatomic, readonly) NSNumber *id;
-@property (nonatomic) NSString *useremail;
-@property (nonatomic) NSNumber *menuid;
-@property (nonatomic) NSNumber *rating;
-@property (nonatomic) NSNumber *merchid;
-@property (nonatomic) NSString *review;
+@property(nonatomic, readonly) NSNumber *id;
+@property(nonatomic) NSString *useremail;
+@property(nonatomic) NSNumber *menuid;
+@property(nonatomic) NSNumber *rating;
+@property(nonatomic) NSNumber *merchid;
+@property(nonatomic) NSString *review;
 
 
 @end

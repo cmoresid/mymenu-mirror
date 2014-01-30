@@ -10,7 +10,7 @@
 
 @interface MMMerchantCategory : NSObject
 
-@property (nonatomic, readonly) NSNumber *id;
-@property (nonatomic) NSString *name;
+@property(nonatomic, readonly) NSNumber *id;
+@property(nonatomic) NSString *name;
 
 @end

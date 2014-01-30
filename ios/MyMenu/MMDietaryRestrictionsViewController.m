@@ -8,7 +8,6 @@
 
 #import "MMDietaryRestrictionsViewController.h"
 #import "UIColor+MyMenuColors.h"
-#import <QuartzCore/QuartzCore.h>
 #import "MMRestriction.h"
 #import "MMDBFetcher.h"
 #import "MMDietaryRestrictionCell.h"
@@ -17,8 +16,8 @@
 @interface MMDietaryRestrictionsViewController ()
 
 
-
 @end
+
 @implementation MMDietaryRestrictionsViewController
 
 // Internal
@@ -26,8 +25,8 @@
 NSArray * allRestrictions;
 NSMutableArray* dietaryRestrictions;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 
@@ -35,11 +34,11 @@ NSMutableArray* dietaryRestrictions;
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     MMDBFetcher * DBFetcher = [[MMDBFetcher alloc] init];
+
     allRestrictions = DBFetcher.getAllRestrictions;
     dietaryRestrictions= [[NSMutableArray alloc] init];
 
@@ -57,11 +56,10 @@ NSMutableArray* dietaryRestrictions;
             [dietaryRestrictions addObject:restriction.restId];
     }else
         [dietaryRestrictions removeObject:restriction.restId];
-    
+
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -69,7 +67,7 @@ NSMutableArray* dietaryRestrictions;
 #pragma mark Collection View
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return allRestrictions.count;
+    return allRestrictions.count;
 }
 
 
@@ -103,11 +101,9 @@ NSMutableArray* dietaryRestrictions;
     }else{
         restSwitch.on = FALSE;
     }
-    
-    
-	
 	
 	return cell;
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
