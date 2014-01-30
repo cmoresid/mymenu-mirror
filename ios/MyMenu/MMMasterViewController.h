@@ -12,7 +12,7 @@
 
 @interface MMMasterViewController : UITableViewController
 
-@property (nonatomic, retain) NSArray *restaurants;
-@property (strong, nonatomic) MMDetailViewController *detailViewController;
+@property(nonatomic, retain) NSArray *restaurants;
+@property(strong, nonatomic) MMDetailViewController *detailViewController;
 
 @end

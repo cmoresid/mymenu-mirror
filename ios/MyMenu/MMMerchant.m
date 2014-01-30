@@ -11,6 +11,4 @@
 @implementation MMMerchant
 
 
-
-
 @end

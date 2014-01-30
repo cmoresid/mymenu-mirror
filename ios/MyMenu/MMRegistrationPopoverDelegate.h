@@ -11,6 +11,6 @@
 
 @protocol MMRegistrationPopoverDelegate <NSObject>
 
-- (void)didSelectValue:(MMPopoverDataPair*)selectedValue;
+- (void)didSelectValue:(MMPopoverDataPair *)selectedValue;
 
 @end

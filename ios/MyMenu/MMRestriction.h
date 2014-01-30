@@ -10,8 +10,8 @@
 
 @interface MMRestriction : NSObject
 
-@property (nonatomic) NSNumber *id;
-@property (nonatomic) NSString *name;
-@property (nonatomic) NSString * image;
+@property(nonatomic) NSNumber *id;
+@property(nonatomic) NSString *name;
+@property(nonatomic) NSString *image;
 
 @end

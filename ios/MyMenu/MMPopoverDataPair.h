@@ -17,8 +17,8 @@ typedef NS_ENUM(NSInteger, MMPopoverDataType) {
 
 @interface MMPopoverDataPair : NSObject
 
-@property (readwrite) MMPopoverDataType dataType;
-@property (readwrite) id selectedValue;
+@property(readwrite) MMPopoverDataType dataType;
+@property(readwrite) id selectedValue;
 
 - (id)initWithDataType:(MMPopoverDataType)dataType withSelectedValue:(id)selectedValue;
 
