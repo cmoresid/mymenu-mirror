@@ -34,18 +34,7 @@ NSMutableData * responseData;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     
-    NSString *initstore = @"email=%@&firstname=%@&lastname=%@&password=%@&city=%@&locality=%@&country=%c&gender=%@&birthday=%@&birthmonth=%@&birthyear=%@&confirmcode=y";
-    
-    NSLog(@"%@", user.firstName);
-    NSLog(@"%@", user.lastName);
-    NSLog(@"%@", user.password);
-    NSLog(@"%@", user.city);
-    NSLog(@"%@", user.locality);
-    NSLog(@"%@", user.country);
-    NSLog(@"%c", user.gender);
-    NSLog(@"%@", user.birthday);
-    NSLog(@"%@", user.birthmonth);
-    NSLog(@"%@", user.birthyear);
+    NSString *initstore = @"email=%@&firstname=%@&lastname=%@&password=%@&city=%@&locality=%@&country=%@&gender=%c&birthday=%@&birthmonth=%@&birthyear=%@&confirmcode=y";
 
     NSString *adduser = [NSString stringWithFormat:initstore, user.email, user.firstName,
                          user.lastName, user.password, user.city, user.locality, user.country,
@@ -116,7 +105,7 @@ NSMutableData * responseData;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     
     for (NSUInteger i=0; i<[restrictions count]; i++) {
-        NSString *initstore = @"&restrictid=%@email=%@";
+        NSString *initstore = @"restrictid=%@&email=%@";
         NSString *remrestrict = [NSString stringWithFormat:initstore, [restrictions objectAtIndex : i], email];
         [request setValue:[NSString stringWithFormat:@"%d", [remrestrict length]] forHTTPHeaderField:@"Content-length"];
         [request setHTTPBody:[remrestrict dataUsingEncoding:NSUTF8StringEncoding]];

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		171EA89D189B043F002DEFEF /* MMDietaryRestrictionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 171EA89C189B043F002DEFEF /* MMDietaryRestrictionCell.m */; };
+		171EA8A0189B094E002DEFEF /* MMRestrictionSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 171EA89F189B094E002DEFEF /* MMRestrictionSwitch.m */; };
 		174FE0C218945E5900CB82C0 /* RestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 174FE0C118945E5800CB82C0 /* RestaurantCell.m */; };
 		174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */; };
 		17FEDDFD1896FF1400058ABD /* MMRoundedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FEDDFC1896FF1400058ABD /* MMRoundedView.m */; };
@@ -91,6 +93,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		171EA89B189B043F002DEFEF /* MMDietaryRestrictionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDietaryRestrictionCell.h; sourceTree = "<group>"; };
+		171EA89C189B043F002DEFEF /* MMDietaryRestrictionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDietaryRestrictionCell.m; sourceTree = "<group>"; };
+		171EA89E189B094E002DEFEF /* MMRestrictionSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRestrictionSwitch.h; sourceTree = "<group>"; };
+		171EA89F189B094E002DEFEF /* MMRestrictionSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestrictionSwitch.m; sourceTree = "<group>"; };
 		174FE0C018945E5800CB82C0 /* RestaurantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantCell.h; sourceTree = "<group>"; };
 		174FE0C118945E5800CB82C0 /* RestaurantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantCell.m; sourceTree = "<group>"; };
 		174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantTableCell.xib; sourceTree = "<group>"; };
@@ -296,6 +302,10 @@
 				9B4E248A1891E00100F5B955 /* Model */,
 				83893EB118919AD400D36670 /* Supporting Files */,
 				174FE0C018945E5800CB82C0 /* RestaurantCell.h */,
+				171EA89B189B043F002DEFEF /* MMDietaryRestrictionCell.h */,
+				171EA89E189B094E002DEFEF /* MMRestrictionSwitch.h */,
+				171EA89F189B094E002DEFEF /* MMRestrictionSwitch.m */,
+				171EA89C189B043F002DEFEF /* MMDietaryRestrictionCell.m */,
 				174FE0C118945E5800CB82C0 /* RestaurantCell.m */,
 			);
 			path = MyMenu;
@@ -547,7 +557,9 @@
 				9B4E248D1891E02B00F5B955 /* MMRestriction.m in Sources */,
 				9B4E247C1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */,
 				9B4E24801891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */,
+				171EA8A0189B094E002DEFEF /* MMRestrictionSwitch.m in Sources */,
 				B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */,
+				171EA89D189B043F002DEFEF /* MMDietaryRestrictionCell.m in Sources */,
 				9B4E24841891DC3D00F5B955 /* MMMerchantCategory.m in Sources */,
 				837FE29418945CB800A0720E /* MMButton.m in Sources */,
 				B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */,
