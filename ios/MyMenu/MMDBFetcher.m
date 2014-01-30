@@ -42,8 +42,12 @@ NSMutableData *responseData;
     [request setHTTPBody:[adduser dataUsingEncoding:NSUTF8StringEncoding]];
 
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
+    
+    [conn cancel];
+    
+    
 }
+
 
 
 - (bool)userExists:(NSString *)email {
@@ -94,6 +98,8 @@ NSMutableData *responseData;
 }
 
 - (void)addUserRestrictions:(NSString *)email :(NSArray *)restrictions {
+    
+    [self removeUserRestrictions:email];
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
             initWithURL:[NSURL
@@ -107,6 +113,7 @@ NSMutableData *responseData;
         [request setValue:[NSString stringWithFormat:@"%d", [remrestrict length]] forHTTPHeaderField:@"Content-length"];
         [request setHTTPBody:[remrestrict dataUsingEncoding:NSUTF8StringEncoding]];
         NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [conn cancel];
     }
 
 }
@@ -124,6 +131,7 @@ NSMutableData *responseData;
     [request setValue:[NSString stringWithFormat:@"%d", [remrestrict length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[remrestrict dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [conn cancel];
 
 
 }
