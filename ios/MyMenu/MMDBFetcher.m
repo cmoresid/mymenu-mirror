@@ -48,7 +48,44 @@ NSMutableData *responseData;
     
 }
 
-
+- (MMUser*)getUser:(NSString*)email {
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    NSString *prequery = @"query=select * from users where email = '%@'";
+    NSString *query = [NSString stringWithFormat:prequery, email];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLResponse *response = [[NSURLResponse alloc] init];
+    NSError *error = [[NSError alloc] init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+    
+    MMUser *user = [[MMUser alloc] init];
+    
+    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+        
+        user.email = [e child:@"email"].text;
+        user.firstName = [e child:@"firstname"].text;
+        user.lastName = [e child:@"lastname"].text;
+        user.password = [e child:@"password"].text;
+        user.city = [e child:@"city"].text;
+        user.locality = [e child:@"locality"].text;
+        user.country = [e child:@"country"].text;
+        user.gender = (char)[e child:@"gender"].text;
+        user.birthday = [e child:@"birthday"].text;
+        user.birthmonth = [e child:@"birthmonth"].text;
+        user.birthyear = [e child:@"birthyear"].text;
+        
+    }];
+    
+    return user;
+    
+}
 
 - (bool)userExists:(NSString *)email {
 
@@ -108,7 +145,7 @@ NSMutableData *responseData;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
 
     for (NSUInteger i = 0; i < [restrictions count]; i++) {
-        NSString *initstore = @"&restrictid=%@email=%@";
+        NSString *initstore = @"restrictid=%@&email=%@";
         NSString *remrestrict = [NSString stringWithFormat:initstore, [restrictions objectAtIndex:i], email];
         [request setValue:[NSString stringWithFormat:@"%d", [remrestrict length]] forHTTPHeaderField:@"Content-length"];
         [request setHTTPBody:[remrestrict dataUsingEncoding:NSUTF8StringEncoding]];
@@ -126,7 +163,7 @@ NSMutableData *responseData;
 
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    NSString *initrem = @"&email=%@";
+    NSString *initrem = @"email=%@";
     NSString *remrestrict = [NSString stringWithFormat:initrem, email];
     [request setValue:[NSString stringWithFormat:@"%d", [remrestrict length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[remrestrict dataUsingEncoding:NSUTF8StringEncoding]];
