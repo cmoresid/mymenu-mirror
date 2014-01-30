@@ -145,7 +145,7 @@ NSMutableData *responseData;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
 
     for (NSUInteger i = 0; i < [restrictions count]; i++) {
-        NSString *initstore = @"restrictid=%@email='%@'";
+        NSString *initstore = @"restrictid=%@&email=%@";
         NSString *remrestrict = [NSString stringWithFormat:initstore, [restrictions objectAtIndex:i], email];
         [request setValue:[NSString stringWithFormat:@"%d", [remrestrict length]] forHTTPHeaderField:@"Content-length"];
         [request setHTTPBody:[remrestrict dataUsingEncoding:NSUTF8StringEncoding]];
@@ -163,7 +163,7 @@ NSMutableData *responseData;
 
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    NSString *initrem = @"email='%@'";
+    NSString *initrem = @"email=%@";
     NSString *remrestrict = [NSString stringWithFormat:initrem, email];
     [request setValue:[NSString stringWithFormat:@"%d", [remrestrict length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[remrestrict dataUsingEncoding:NSUTF8StringEncoding]];
