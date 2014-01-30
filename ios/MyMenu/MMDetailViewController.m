@@ -68,8 +68,8 @@
 }
 
 - (void)pinRestaurants {
-    MMDBFetcher *Dbfetcher = [[MMDBFetcher alloc] init];
-    NSArray *restaurants = [Dbfetcher getCompressedMerchants];
+    MMDBFetcher *fetcher = [MMDBFetcher get];
+    NSArray *restaurants = [fetcher getCompressedMerchants];
 
     for (int i = 0; i < restaurants.count; i++) {
         MMMerchant *restaurant = [restaurants objectAtIndex:i];

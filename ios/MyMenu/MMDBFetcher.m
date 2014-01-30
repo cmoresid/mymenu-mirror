@@ -11,64 +11,63 @@
 
 @implementation MMDBFetcher
 
-NSMutableData *responseData;
+static MMDBFetcher *instance;
+
++ (id)get {
+    @synchronized (self) {
+        if (instance == nil)
+            instance = [[self alloc] init];
+    }
+    return instance;
+}
 
 - (id)init {
     self = [super init];
 
     if (self) {
-        responseData = [[NSMutableData alloc] init];
     }
 
     return self;
 }
 
 - (void)addUser:(MMUser *)user {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-            initWithURL:[NSURL
-                    URLWithString:@"http://mymenuapp.ca/php/users/put.php"]];
-
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/put.php"]];
 
-    NSString *initstore = @"email=%@&firstname=%@&lastname=%@&password=%@&city=%@&locality=%@&country=%@&gender=%@&birthday=%@&birthmonth=%@&birthyear=%@&confirmcode=y";
+    NSString *queryFormat = @"email=%@&firstname=%@&lastname=%@&password=%@&city=%@&locality=%@&country=%@&gender=%@&birthday=%@&birthmonth=%@&birthyear=%@&confirmcode=y";
+    NSString *query = [NSString stringWithFormat:queryFormat, user.email, user.firstName,
+                                                 user.lastName, user.password, user.city, user.locality, user.country,
+                                                 user.gender, user.birthday, user.birthmonth, user.birthyear];
 
-    NSString *adduser = [NSString stringWithFormat:initstore, user.email, user.firstName,
-                                                   user.lastName, user.password, user.city, user.locality, user.country,
-                                                   user.gender, user.birthday, user.birthmonth, user.birthyear];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
-    [request setValue:[NSString stringWithFormat:@"%d", [adduser length]] forHTTPHeaderField:@"Content-length"];
-
-    [request setHTTPBody:[adduser dataUsingEncoding:NSUTF8StringEncoding]];
-
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    [conn cancel];
-    
-    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
-- (MMUser*)getUser:(NSString*)email {
-    
+- (MMUser *)getUser:(NSString *)email {
+
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
-    
+
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     NSString *prequery = @"query=select * from users where email = '%@'";
     NSString *query = [NSString stringWithFormat:prequery, email];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-    
+
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSError *error = [[NSError alloc] init];
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
+
     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-    
+
     MMUser *user = [[MMUser alloc] init];
-    
+
     [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-        
+
         user.email = [e child:@"email"].text;
         user.firstName = [e child:@"firstname"].text;
         user.lastName = [e child:@"lastname"].text;
@@ -76,29 +75,26 @@ NSMutableData *responseData;
         user.city = [e child:@"city"].text;
         user.locality = [e child:@"locality"].text;
         user.country = [e child:@"country"].text;
-        user.gender = (char)[e child:@"gender"].text;
+        user.gender = (char) [e child:@"gender"].text;
         user.birthday = [e child:@"birthday"].text;
         user.birthmonth = [e child:@"birthmonth"].text;
         user.birthyear = [e child:@"birthyear"].text;
-        
+
     }];
-    
+
     return user;
-    
+
 }
 
 - (bool)userExists:(NSString *)email {
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
-
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
 
-    NSString *checkstring = @"query=select id from users where email='%@'";
-    NSString *query = [NSString stringWithFormat:checkstring, email];
-
+    NSString *queryFormat = @"query=select id from users where email='%@'";
+    NSString *query = [NSString stringWithFormat:queryFormat, email];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
     NSURLResponse *response = [[NSURLResponse alloc] init];
@@ -110,18 +106,16 @@ NSMutableData *responseData;
 }
 
 - (NSInteger)userVerified:(MMUser *)user {
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
-
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
 
-    NSString *checkstring = @"query=select id from users where email='%@' AND password='%@'";
-    NSString *query = [NSString stringWithFormat:checkstring, user.email, user.password];
-
+    NSString *queryFormat = @"query=select id from users where email='%@' AND password='%@'";
+    NSString *query = [NSString stringWithFormat:queryFormat, user.email, user.password];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSError *error = [[NSError alloc] init];
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -135,58 +129,51 @@ NSMutableData *responseData;
 }
 
 - (void)addUserRestrictions:(NSString *)email :(NSArray *)restrictions {
-    
     [self removeUserRestrictions:email];
 
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-            initWithURL:[NSURL
-                    URLWithString:@"http://mymenuapp.ca/php/restrictionuserlink/put.php"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictionuserlink/put.php"]];
+
+    NSString *queryFormat = @"restrictid=%@&email=%@";
 
     for (NSUInteger i = 0; i < [restrictions count]; i++) {
-        NSString *initstore = @"restrictid=%@&email=%@";
-        NSString *remrestrict = [NSString stringWithFormat:initstore, [restrictions objectAtIndex:i], email];
-        [request setValue:[NSString stringWithFormat:@"%d", [remrestrict length]] forHTTPHeaderField:@"Content-length"];
-        [request setHTTPBody:[remrestrict dataUsingEncoding:NSUTF8StringEncoding]];
-        NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-        [conn cancel];
+        NSString *query = [NSString stringWithFormat:queryFormat, [restrictions objectAtIndex:i], email];
+        [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+        [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+        [[NSURLConnection alloc] initWithRequest:request delegate:self];
     }
-
 }
 
 - (void)removeUserRestrictions:(NSString *)email {
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-            initWithURL:[NSURL
-                    URLWithString:@"http://mymenuapp.ca/php/restrictionuserlink/delete.php"]];
-
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    NSString *initrem = @"email=%@";
-    NSString *remrestrict = [NSString stringWithFormat:initrem, email];
-    [request setValue:[NSString stringWithFormat:@"%d", [remrestrict length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[remrestrict dataUsingEncoding:NSUTF8StringEncoding]];
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [conn cancel];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictionuserlink/delete.php"]];
 
+    NSString *queryFormat = @"email=%@";
+    NSString *query = [NSString stringWithFormat:queryFormat, email];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
-
 - (NSArray *)getUserRestrictions:(NSString *)email {
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictionuserlink/custom.php"]];
-
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    NSString *prequery = @"query=select restrictid from restrictionuserlink where email ='%@'";
-    NSString *query = [NSString stringWithFormat:prequery, email];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictionuserlink/custom.php"]];
+
+    NSString *queryFormat = @"query=select restrictid from restrictionuserlink where email ='%@'";
+    NSString *query = [NSString stringWithFormat:queryFormat, email];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSError *error = [[NSError alloc] init];
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-
     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 
     NSMutableArray *restrictions = [[NSMutableArray alloc] init];
@@ -202,14 +189,15 @@ NSMutableData *responseData;
 }
 
 - (NSArray *)getAllRestrictions {
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictions/custom.php"]];
-
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictions/custom.php"]];
 
     NSString *query = @"query=select id, user_label, picture from restrictions";
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSError *error = [[NSError alloc] init];
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -231,17 +219,17 @@ NSMutableData *responseData;
     return restrictions;
 }
 
-
 - (NSArray *)getSpecials:(NSString *)day :(NSInteger)type {
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/specials/custom.php"]];
-
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    NSString *prequery = @"query=select * from specials where weekday = '%@' and categoryid = %d";
-    NSString *query = [NSString stringWithFormat:prequery, day, type];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/specials/custom.php"]];
+
+    NSString *queryFormat = @"query=select * from specials where weekday = '%@' and categoryid = %d";
+    NSString *query = [NSString stringWithFormat:queryFormat, day, type];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSError *error = [[NSError alloc] init];
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -264,14 +252,15 @@ NSMutableData *responseData;
 }
 
 - (NSArray *)getCompressedMerchants {
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
+
     NSString *query = @"query=select business_name, business_number, rating, business_picture, lat, longa, business_description from merchusers";
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSError *error = [[NSError alloc] init];
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -290,8 +279,7 @@ NSMutableData *responseData;
         merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
         merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
 
-        //merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
-        merchant.rating = [e child:@"rating"].text;
+        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
         merchant.picture = [e child:@"business_picture"].text;
         [merchants addObject:merchant];
     }];
@@ -300,18 +288,17 @@ NSMutableData *responseData;
     return merchants;
 }
 
-
 - (MMMerchant *)getMerchant:(NSInteger *)mid {
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
-
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    NSString *prequery = @"query=select * from merchusers where id = '%d'";
-    NSString *query = [NSString stringWithFormat:prequery, mid];
-    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
 
+    NSString *queryFormat = @"query=select * from merchusers where id = '%d'";
+    NSString *query = [NSString stringWithFormat:queryFormat, mid];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSError *error = [[NSError alloc] init];
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -332,7 +319,7 @@ NSMutableData *responseData;
     return merchant;
 }
 
-//**TODO**//
+// TODO
 - (NSArray *)getMenu:(NSInteger *)merchid {
     NSArray *menu = [[NSMutableArray alloc] init];
     return menu;
