@@ -10,6 +10,8 @@
 #import "MMDBFetcher.h"
 #import "MMUser.h"
 #import "MMRegistrationPopoverViewController.h"
+#import "MMDietaryRestrictionsViewController.h"
+#import <Foundation/Foundation.h>
 
 @interface MMRegistrationViewController ()
 
@@ -90,11 +92,17 @@
                 ? [selectedValue.selectedValue characterAtIndex:0] : 'U';
             break;
         case ProvinceValue:
-            // TODO: Store this in another object.
+            self.userProfile.locality = selectedValue.selectedValue;
             break;
         case BirthdayValue:
-            //self.birthdayField.text = [self convertDateToString:selectedValue.selectedValue];
+        {
+            NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:selectedValue.selectedValue];
+        
+            self.userProfile.birthday = [NSString stringWithFormat:@"%ld", (long)[components day]];
+            self.userProfile.birthmonth = [NSString stringWithFormat:@"%ld", (long)[components month]];
+            self.userProfile.birthyear = [NSString stringWithFormat:@"%ld", (long)[components year]];
             break;
+        }
         default:
             break;
     }
@@ -181,6 +189,22 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.activeField = nil;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"userInfoSegue"]) {
+        self.userProfile.email = self.emailField.text;
+        self.userProfile.password = self.passwordField.text;
+        self.userProfile.firstName = self.firstNameField.text;
+        self.userProfile.lastName = self.lastNameField.text;
+        self.userProfile.country = @"CAN";
+        
+        MMDietaryRestrictionsViewController *destinationController = [segue  destinationViewController];
+        
+        destinationController.userProfile = self.userProfile;
+    }
 }
 
 @end

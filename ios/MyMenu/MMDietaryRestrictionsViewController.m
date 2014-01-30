@@ -23,6 +23,7 @@
 // Contains All Restrictions
 NSArray * allRestrictions;
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -83,6 +84,30 @@ NSArray * allRestrictions;
 	
 	
 	return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"goToMainView"]) {
+        MMDBFetcher * dbFetcher = [[MMDBFetcher alloc] init];
+//        NSMutableArray* dietaryRestrictions = [[NSMutableArray alloc] init];
+        
+        [dbFetcher addUser:self.userProfile];
+        
+//        NSArray* dietaryCells = [[self collectionView] visibleCells];
+//        UICollectionViewCell* cell = nil;
+//        
+//        for (int i = 0; i < [[[self collectionView] visibleCells] count]; i++) {
+//            cell = dietaryCells[i];
+//        
+//            UISwitch* restriction = (UISwitch*)[cell viewWithTag:102];
+//        
+//            if (restriction.on) {
+//                [dietaryRestrictions addObject:((MMRestriction*)allRestrictions[i]).id];
+//            }
+//        }
+    }
 }
 
 @end

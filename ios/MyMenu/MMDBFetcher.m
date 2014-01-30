@@ -34,8 +34,19 @@ NSMutableData * responseData;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     
-    NSString *initstore = @"email=%@&firstname=%@&lastname=%@&password=%@&city=%@&locality=%@&country=%@&gender=%@&birthday=%@&birthmonth=%@&birthyear=%@&confirmcode=y";
+    NSString *initstore = @"email=%@&firstname=%@&lastname=%@&password=%@&city=%@&locality=%@&country=%c&gender=%@&birthday=%@&birthmonth=%@&birthyear=%@&confirmcode=y";
     
+    NSLog(@"%@", user.firstName);
+    NSLog(@"%@", user.lastName);
+    NSLog(@"%@", user.password);
+    NSLog(@"%@", user.city);
+    NSLog(@"%@", user.locality);
+    NSLog(@"%@", user.country);
+    NSLog(@"%c", user.gender);
+    NSLog(@"%@", user.birthday);
+    NSLog(@"%@", user.birthmonth);
+    NSLog(@"%@", user.birthyear);
+
     NSString *adduser = [NSString stringWithFormat:initstore, user.email, user.firstName,
                          user.lastName, user.password, user.city, user.locality, user.country,
                          user.gender, user.birthday, user.birthmonth, user.birthyear];

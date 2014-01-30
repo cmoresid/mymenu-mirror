@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMUser.h"
 
 @interface MMDietaryRestrictionsViewController : UIViewController <UICollectionViewDataSource>
+
+@property MMUser* userProfile;
+@property (nonatomic, weak) IBOutlet UICollectionView* collectionView;
 
 @end
