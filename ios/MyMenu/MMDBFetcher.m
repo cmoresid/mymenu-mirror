@@ -86,6 +86,24 @@ static MMDBFetcher *instance;
 
 }
 
+- (void)editUser:(MMUser*)user {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/update.php"]];
+    
+    NSString *queryFormat = @"query=set firstname='%@',lastname='%@',city='%@',locality='%@',gender='%c',birthday='%@',birthmonth='%@',birthyear='%@' where email = '%@'";
+    NSString *query = [NSString stringWithFormat:queryFormat, user.firstName,
+                       user.lastName, user.city, user.locality,
+                       user.gender, user.birthday, user.birthmonth, user.birthyear, user.email];
+    
+    
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+}
+
 - (bool)userExists:(NSString *)email {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
@@ -247,7 +265,13 @@ static MMDBFetcher *instance;
         special.occurtype = [NSNumber numberWithInt:[e child:@"occurtype"].textAsInt];
         [specials addObject:special];
     }];
-
+    
+    for (NSUInteger i = 0; i < [specials count]; i++){
+        MMSpecial* special = (MMSpecial*)[specials objectAtIndex:i];
+        MMMerchant* merchant = [self getMerchant:special.merchid];
+        ((MMSpecial*)[specials objectAtIndex:i]).merchant = merchant.businessname;
+    }
+    
     return specials;
 }
 
@@ -288,7 +312,7 @@ static MMDBFetcher *instance;
     return merchants;
 }
 
-- (MMMerchant *)getMerchant:(NSInteger *)mid {
+- (MMMerchant *)getMerchant:(NSNumber *)mid {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
