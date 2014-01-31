@@ -1,15 +1,25 @@
 //
-//  MMMenuItem.h
-//  MyMenu
+//  Copyright (C) 2014  MyMenu, Inc.
 //
-//  Created by Chris Moulds on 1/23/2014.
-//  Copyright (c) 2014 MyMenu. All rights reserved.
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
 //
-
-/* This is a menu item that corresponds to a specific restauraunt.*/
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see [http://www.gnu.org/licenses/].
+//
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  This is a menu item object for the table http://mymenuapp.ca/rest/menu
+ */
 @interface MMMenuItem : NSObject
 
 @property(nonatomic, readonly) NSNumber *itemid;
@@ -22,6 +32,5 @@
 @property(nonatomic) NSNumber *rating;
 @property(nonatomic) NSNumber *ratingcount;
 @property(nonatomic) NSNumber *categoryid;
-
 
 @end

@@ -1,9 +1,18 @@
 //
-//  MMDetailViewController.m
-//  Master
+//  Copyright (C) 2014  MyMenu, Inc.
 //
-//  Created by Chris Pavlicek on 1/23/2014.
-//  Copyright (c) 2014 MyMenu. All rights reserved.
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
 #import "MMDetailViewController.h"
@@ -24,10 +33,7 @@
 - (void)setDetailItem:(id)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
-
-        // Update the view.
-        [self configureView];
-
+        [self configureView]; // Update the view
     }
 
     if (self.masterPopoverController != nil) {
@@ -41,7 +47,6 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
-
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [self.detailItem description];
     }
@@ -49,8 +54,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
     [self configureView];
+
+    // Set up the map bounds
+    // TODO: use the user's location
     MKCoordinateSpan span;
     span.latitudeDelta = .5;
     span.longitudeDelta = .5;
@@ -58,10 +66,11 @@
     start.latitude = 53.53333;
     start.longitude = -113.5000;
     MKCoordinateRegion region;
-    region.center = start;//= self.mapView.userLocation.coordinate.longitude;
+    region.center = start; //= self.mapView.userLocation.coordinate.longitude;
     //region.center.latitude = self.mapView.userLocation.coordinate.latitude;
     region.span = span;
 
+    // Add pins for the restaurants
     [self pinRestaurants];
 
     [self.mapView setRegion:region animated:YES];
@@ -84,11 +93,6 @@
 
         [self.mapView addAnnotation:annotation];
     }
-}
-
-//create function
-- (void)reloadMap {
-    [[self mapView] setRegion:[self mapView].region animated:TRUE];
 }
 
 - (void)didReceiveMemoryWarning {
