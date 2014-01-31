@@ -65,9 +65,9 @@
     CLLocationCoordinate2D start;
     start.latitude = 53.53333;
     start.longitude = -113.5000;
+    // Hard coded to Edmonton
     MKCoordinateRegion region;
-    region.center = start; //= self.mapView.userLocation.coordinate.longitude;
-    //region.center.latitude = self.mapView.userLocation.coordinate.latitude;
+    region.center = start;
     region.span = span;
 
     // Add pins for the restaurants
@@ -75,7 +75,7 @@
 
     [self.mapView setRegion:region animated:YES];
 }
-
+// Actually put all the pins on the map for each restaurant
 - (void)pinRestaurants {
     MMDBFetcher *fetcher = [MMDBFetcher get];
     NSArray *restaurants = [fetcher getCompressedMerchants];

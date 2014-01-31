@@ -57,11 +57,11 @@
 }
 
 #pragma mark - Table View
-
+// Theres only one section in this view
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
-
+// Return the amount of restaurants.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _restaurants.count;
 }
@@ -72,11 +72,6 @@
     RestaurantCell *cell = [tableView
             dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        //NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RestaurantCell" owner:self options:nil];
-        //cell = [nib objectAtIndex:0];
-        //cell = [[RestaurantCell alloc]
-        //    initWithStyle:UITableViewCellStyleDefault
-        //   reuseIdentifier:CellIdentifier];
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
     cell.nameLabel.text = [[_restaurants objectAtIndex:indexPath.row] businessname];
@@ -106,25 +101,10 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
-
+// Cell size is 80 so its hard coded in.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80;
 }
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDate *object = _objects[indexPath.row];

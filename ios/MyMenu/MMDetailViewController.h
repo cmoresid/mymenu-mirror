@@ -22,7 +22,7 @@
 
 @property(strong, nonatomic) id detailItem;
 @property(weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
-
+// Put the restaurant points on the map
 - (void)pinRestaurants;
 
 @end
