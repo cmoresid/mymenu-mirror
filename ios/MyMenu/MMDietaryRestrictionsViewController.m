@@ -37,6 +37,7 @@ NSMutableArray* dietaryRestrictions;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+
     MMDBFetcher * DBFetcher = [[MMDBFetcher alloc] init];
 
     allRestrictions = DBFetcher.getAllRestrictions;
@@ -56,6 +57,7 @@ NSMutableArray* dietaryRestrictions;
             [dietaryRestrictions addObject:restriction.restId];
     }else
         [dietaryRestrictions removeObject:restriction.restId];
+
 
 }
 

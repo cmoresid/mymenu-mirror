@@ -128,8 +128,8 @@
         user.password = self.password.text;
     }
 
-    MMDBFetcher *DBFetcher = [[MMDBFetcher alloc] init];
-    NSInteger resultCode = [DBFetcher userVerified:user];
+    MMDBFetcher *fetcher = [[MMDBFetcher get] init];
+    NSInteger resultCode = [fetcher userVerified:user];
 
     if (resultCode > 0)
         [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
@@ -142,8 +142,6 @@
         [message show];
 
     }
-
-
 }
 
 @end
