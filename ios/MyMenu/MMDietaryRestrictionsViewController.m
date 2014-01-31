@@ -13,6 +13,8 @@
 #import "MMDietaryRestrictionCell.h"
 #import "MMRestrictionSwitch.h"
 
+#define kCurrentUser @"currentUser"
+
 @interface MMDietaryRestrictionsViewController ()
 
 
@@ -25,6 +27,7 @@
 NSArray *allRestrictions;
 NSMutableArray *dietaryRestrictions;
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -33,10 +36,32 @@ NSMutableArray *dietaryRestrictions;
     return self;
 }
 
+//- (void)viewDidAppear:(BOOL)animated {
+//    dietaryRestrictions = [[NSMutableArray alloc] init];
+//    NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
+//    NSData * currentUser = [perfs objectForKey:kCurrentUser];
+//    self.userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
+//    if (currentUser != nil) {
+//        MMDBFetcher *dbFetch = [[MMDBFetcher alloc] init];
+//        dietaryRestrictions = [[dbFetch getUserRestrictions:self.userProfile.email] mutableCopy];
+//    }
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     allRestrictions = [[MMDBFetcher get] getAllRestrictions];
     dietaryRestrictions = [[NSMutableArray alloc] init];
+    NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
+    NSData * currentUser = [perfs objectForKey:kCurrentUser];
+    NSArray * dietaryRestriction = [[NSArray alloc]init];
+    self.userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
+    if (currentUser != nil) {
+        MMDBFetcher *dbFetch = [[MMDBFetcher alloc] init];
+        dietaryRestriction = [[dbFetch getUserRestrictions:self.userProfile.email] mutableCopy];
+    }
+    for (int i = 0; i <dietaryRestriction.count; i++){
+        [dietaryRestrictions addObject:((MMRestriction *)dietaryRestriction[i]).id];
+    }
 }
 
 /*
@@ -109,7 +134,12 @@ NSMutableArray *dietaryRestrictions;
         MMDBFetcher *fetcher = [MMDBFetcher get];
         [fetcher addUser:self.userProfile];
         NSArray *finalRestrictions = [dietaryRestrictions copy];
+        NSLog(@"%@", self.userProfile.email);
         [fetcher addUserRestrictions:self.userProfile.email :finalRestrictions];
+        NSUserDefaults * userPreferances = [NSUserDefaults standardUserDefaults];
+        NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:self.userProfile];
+        [userPreferances setObject:encodedUser forKey:kCurrentUser];
+
     }
 }
 

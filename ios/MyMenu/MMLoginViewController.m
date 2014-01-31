@@ -10,8 +10,7 @@
 #import "MMUser.h"
 #import "MMDBFetcher.h"
 
-// Only used for testing
-#define USER_LOGGED_IN  0
+#define kCurrentUser @"currentUser"
 
 @interface MMLoginViewController ()
 
@@ -28,11 +27,11 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (USER_LOGGED_IN) {
+    NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
+    NSData * currentUser = [perfs objectForKey:kCurrentUser];
+    
+    if (currentUser != nil) {
         [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
-    }
-    else {
-        self.view.hidden = FALSE;
     }
 }
 
@@ -42,9 +41,6 @@
     self.emailAddress.delegate = self;
     self.password.delegate = self;
 
-    // Hide by default; only show if user is
-    // not logged in.
-    self.view.hidden = TRUE;
 
     [self registerForKeyboardNotifications];
 }
@@ -126,14 +122,20 @@
     } else {
         user.email = self.emailAddress.text;
         user.password = self.password.text;
+        
     }
 
     MMDBFetcher *fetcher = [[MMDBFetcher get] init];
     NSInteger resultCode = [fetcher userVerified:user];
+    
 
-    if (resultCode > 0)
+    if (resultCode > 0){
+        user = [fetcher getUser:user.email];
+        NSUserDefaults * userPreferances = [NSUserDefaults standardUserDefaults];
+        NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
+        [userPreferances setObject:encodedUser forKey:kCurrentUser];
         [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
-    else {
+    }else {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
                                                           message:@"Please enter a valid user name and password."
                                                          delegate:nil
@@ -142,5 +144,6 @@
         [message show];
     }
 }
+
 
 @end
