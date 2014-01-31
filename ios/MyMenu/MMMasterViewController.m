@@ -27,8 +27,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-
-
     MMDBFetcher *fetcher = [MMDBFetcher get];
     _restaurants = [fetcher getCompressedMerchants];
 
@@ -72,7 +70,6 @@
         //   reuseIdentifier:CellIdentifier];
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
-
     cell.nameLabel.text = [[_restaurants objectAtIndex:indexPath.row] businessname];
     cell.numberLabel.text = [[_restaurants objectAtIndex:indexPath.row] phone];
     cell.ratinglabel.text = [[_restaurants objectAtIndex:indexPath.row] rating];
@@ -85,7 +82,6 @@
     [cell.ratingview setProgressViewStyle:UIProgressViewStyleBar];
 
     return cell;
-
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
