@@ -37,12 +37,12 @@
 #pragma mark Setup Next View for Type
 // TODO: Use right numbers for the type in database
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"Dessert"]) {
-        [(MMSpecialsCollectionViewController *) [segue destinationViewController] setSpecialsType:0];
-    } else if ([[segue identifier] isEqualToString:@"Food"]) {
+    if ([[segue identifier] isEqualToString:@"Food"]) {
         [(MMSpecialsCollectionViewController *) [segue destinationViewController] setSpecialsType:1];
-    } else if ([[segue identifier] isEqualToString:@"Drinks"]) {
+    } else if ([[segue identifier] isEqualToString:@"Drink"]) {
         [(MMSpecialsCollectionViewController *) [segue destinationViewController] setSpecialsType:2];
+    } else if ([[segue identifier] isEqualToString:@"Dessert"]) {
+        [(MMSpecialsCollectionViewController *) [segue destinationViewController] setSpecialsType:3];
     }
 }
 

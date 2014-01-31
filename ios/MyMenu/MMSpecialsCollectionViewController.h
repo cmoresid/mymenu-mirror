@@ -11,5 +11,8 @@
 @interface MMSpecialsCollectionViewController : UICollectionViewController
 
 @property(nonatomic) int specialsType;
+@property(nonatomic, weak) IBOutlet UISegmentedControl *tabOutlet;
+
+- (IBAction)dayChanged:(UISegmentedControl *)sender;
 
 @end
