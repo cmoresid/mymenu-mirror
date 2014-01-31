@@ -32,8 +32,8 @@
                             action:@selector(updateSelectedBirthday)
                   forControlEvents:UIControlEventValueChanged];
 
-    self.cities = [[NSArray alloc] initWithObjects:@"Choose City", @"Edmonton", @"Calgary", @"Vancouver", nil];
-    self.provinces = [[NSArray alloc] initWithObjects:@"Choose Province", @"Alberta", @"British Columbia", @"Manitoba", @"New Brunswick", @"Newfoundland", @"Northwest Territories", @"Nova Scotia", @"Nunavut", @"Ontario", @"Prince Edward Island", @"Quebec", @"Saskatewan", @"Yukon", nil];
+    self.cities = [[NSArray alloc] initWithObjects:@"Choose City", @"Edmonton", nil];
+    self.provinces = [[NSArray alloc] initWithObjects:@"Choose Province", @"Alberta", nil];
     self.gender = [[NSArray alloc] initWithObjects:@"Choose Your Gender", @"Unspecified", @"Male", @"Female", nil];
 
     self.selectedValue = nil;

@@ -160,9 +160,12 @@ static MMDBFetcher *instance;
         NSString *query = [NSString stringWithFormat:queryFormat, [restrictions objectAtIndex:i], email];
         [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
         [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-        [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
+        NSURLResponse *response = [[NSURLResponse alloc] init];
+        NSError *error = [[NSError alloc] init];
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
     }
+
 }
 
 - (void)removeUserRestrictions:(NSString *)email {
@@ -171,12 +174,16 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictionuserlink/custom.php"]];
 
-    NSString *queryFormat = @"delete from restrictionuserlink where email=%@";
+    NSString *queryFormat = @"query=delete from restrictionuserlink where email='%@'";
     NSString *query = [NSString stringWithFormat:queryFormat, email];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    NSURLResponse *response = [[NSURLResponse alloc] init];
+    NSError *error = [[NSError alloc] init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    NSLog(@"remove");
 }
 
 - (NSArray *)getUserRestrictions:(NSString *)email {
