@@ -134,12 +134,10 @@ NSMutableArray *dietaryRestrictions;
         MMDBFetcher *fetcher = [MMDBFetcher get];
         [fetcher addUser:self.userProfile];
         NSArray *finalRestrictions = [dietaryRestrictions copy];
-        NSLog(@"%@", self.userProfile.email);
         [fetcher addUserRestrictions:self.userProfile.email :finalRestrictions];
         NSUserDefaults * userPreferances = [NSUserDefaults standardUserDefaults];
         NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:self.userProfile];
         [userPreferances setObject:encodedUser forKey:kCurrentUser];
-
     }
 }
 

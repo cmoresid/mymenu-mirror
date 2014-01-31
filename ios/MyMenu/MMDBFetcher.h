@@ -44,4 +44,6 @@
 
 -(MMUser *)getUser:(NSString * )email;
 
+-(MMUser *)getUser:(NSString * )email;
+
 @end
