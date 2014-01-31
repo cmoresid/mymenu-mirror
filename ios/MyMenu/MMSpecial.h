@@ -13,6 +13,7 @@
 @property(nonatomic, readonly) NSNumber *id;
 @property(nonatomic) NSNumber *merchid;
 @property(nonatomic) NSString *name;
+@property(nonatomic) NSString *merchant;
 @property(nonatomic) NSString *desc;
 @property(nonatomic) NSNumber *categoryid;
 @property(nonatomic) NSString *picture;

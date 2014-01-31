@@ -36,6 +36,10 @@
 
 - (NSArray *)getUserRestrictions:(NSString *)email;
 
-- (MMMerchant *)getMerchant:(NSInteger *)merchid;
+- (MMMerchant *)getMerchant:(NSNumber *)merchid;
+
+- (void)editUser:(MMUser*)user;
+
+- (MMUser *)getUser:(NSString *)email;
 
 @end
