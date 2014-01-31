@@ -35,9 +35,7 @@ NSMutableArray *dietaryRestrictions;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    MMDBFetcher *DBFetcher = [[MMDBFetcher alloc] init];
-
-    allRestrictions = DBFetcher.getAllRestrictions;
+    allRestrictions = [[MMDBFetcher get] getAllRestrictions];
     dietaryRestrictions = [[NSMutableArray alloc] init];
 }
 
@@ -108,10 +106,10 @@ NSMutableArray *dietaryRestrictions;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Make sure your segue name in storyboard is the same as this line
     if ([[segue identifier] isEqualToString:@"goToMainView"]) {
-        MMDBFetcher *dbFetcher = [[MMDBFetcher alloc] init];
-        [dbFetcher addUser:self.userProfile];
+        MMDBFetcher *fetcher = [MMDBFetcher get];
+        [fetcher addUser:self.userProfile];
         NSArray *finalRestrictions = [dietaryRestrictions copy];
-        [dbFetcher addUserRestrictions:self.userProfile.email :finalRestrictions];
+        [fetcher addUserRestrictions:self.userProfile.email :finalRestrictions];
     }
 }
 
