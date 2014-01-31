@@ -34,7 +34,6 @@ static MMDBFetcher *instance;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/put.php"]];
 
     NSString *queryFormat = @"email=%@&firstname=%@&lastname=%@&password=%@&city=%@&locality=%@&country=%@&gender=%c&birthday=%@&birthmonth=%@&birthyear=%@&confirmcode=y";
@@ -50,15 +49,14 @@ static MMDBFetcher *instance;
 }
 
 - (MMUser *)getUser:(NSString *)email {
-
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
-
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+
     NSString *prequery = @"query=select * from users where email = '%@'";
     NSString *query = [NSString stringWithFormat:prequery, email];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-
+    
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSError *error = [[NSError alloc] init];
@@ -247,7 +245,6 @@ static MMDBFetcher *instance;
         special.desc = [e child:@"description"].text;
         special.picture = [e child:@"picture"].text;
         special.occurtype = [NSNumber numberWithInt:[e child:@"occurtype"].textAsInt];
-
         [specials addObject:special];
     }];
 
@@ -317,8 +314,6 @@ static MMDBFetcher *instance;
         merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
 
     }];
-
-
     return merchant;
 }
 

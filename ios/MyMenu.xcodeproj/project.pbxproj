@@ -28,6 +28,7 @@
 		8333C40A1894B5680028FFBE /* thai_shrimp_cake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8333C3FA1894B5680028FFBE /* thai_shrimp_cake.jpg */; };
 		8333C40B1894B5680028FFBE /* vegetable_curry.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8333C3FB1894B5680028FFBE /* vegetable_curry.jpg */; };
 		8333C40C1894B5680028FFBE /* white_chocolate_donut.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8333C3FC1894B5680028FFBE /* white_chocolate_donut.jpg */; };
+		83527CB5189AE16D008285C8 /* MMSpecialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83527CB4189AE16D008285C8 /* MMSpecialsViewController.m */; };
 		83655AA01891E2DF005EBF8A /* MapViewToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83655A9F1891E2DF005EBF8A /* MapViewToolbar.xib */; };
 		837FE29418945CB800A0720E /* MMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FE29318945CB800A0720E /* MMButton.m */; };
 		83893EAB18919AD400D36670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAA18919AD400D36670 /* Foundation.framework */; };
@@ -120,6 +121,8 @@
 		8333C3FA1894B5680028FFBE /* thai_shrimp_cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thai_shrimp_cake.jpg; sourceTree = "<group>"; };
 		8333C3FB1894B5680028FFBE /* vegetable_curry.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vegetable_curry.jpg; sourceTree = "<group>"; };
 		8333C3FC1894B5680028FFBE /* white_chocolate_donut.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white_chocolate_donut.jpg; sourceTree = "<group>"; };
+		83527CB3189AE16D008285C8 /* MMSpecialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialsViewController.h; sourceTree = "<group>"; };
+		83527CB4189AE16D008285C8 /* MMSpecialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialsViewController.m; sourceTree = "<group>"; };
 		83655A9F1891E2DF005EBF8A /* MapViewToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewToolbar.xib; sourceTree = "<group>"; };
 		837FE29218945CB800A0720E /* MMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMButton.h; sourceTree = "<group>"; };
 		837FE29318945CB800A0720E /* MMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMButton.m; sourceTree = "<group>"; };
@@ -409,6 +412,8 @@
 				B097D700189392FC00142F8D /* MMMainTabBarViewController.m */,
 				83B85B841897029100195F05 /* MMSpecialsCollectionViewController.h */,
 				83B85B851897029100195F05 /* MMSpecialsCollectionViewController.m */,
+				83527CB3189AE16D008285C8 /* MMSpecialsViewController.h */,
+				83527CB4189AE16D008285C8 /* MMSpecialsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -556,6 +561,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83527CB5189AE16D008285C8 /* MMSpecialsViewController.m in Sources */,
 				174FE0C218945E5900CB82C0 /* RestaurantCell.m in Sources */,
 				9B4E24701891D37500F5B955 /* MMUser.m in Sources */,
 				9BBD913318943D77006DDBCE /* MMDBFetcher.m in Sources */,
