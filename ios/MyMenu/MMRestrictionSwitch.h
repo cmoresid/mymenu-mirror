@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MMRestrictionSwitch : UISwitch
-@property (nonatomic) NSNumber * restId;
+@property(nonatomic) NSNumber *restId;
 
 @end

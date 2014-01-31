@@ -11,9 +11,9 @@
 
 @interface MMDietaryRestrictionsViewController : UIViewController <UICollectionViewDataSource>
 
-@property MMUser* userProfile;
-@property (nonatomic, weak) IBOutlet UICollectionView* collectionView;
-@property (nonatomic, weak) IBOutlet UISwitch* onSwitch;
+@property MMUser *userProfile;
+@property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property(nonatomic, weak) IBOutlet UISwitch *onSwitch;
 
 
 @end

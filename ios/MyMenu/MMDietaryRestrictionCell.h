@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MMDietaryRestrictionCell : UICollectionViewCell
-@property (nonatomic, weak) IBOutlet UISwitch* onSwitch;
-@property (nonatomic, weak) IBOutlet UILabel * restName;
+@property(nonatomic, weak) IBOutlet UISwitch *onSwitch;
+@property(nonatomic, weak) IBOutlet UILabel *restName;
 
 @end

@@ -10,7 +10,7 @@
 
 @interface MMSpecialType : NSObject
 
-@property (nonatomic) NSString * title;
-@property (nonatomic) UIImage * image;
+@property(nonatomic) NSString *title;
+@property(nonatomic) UIImage *image;
 
 @end

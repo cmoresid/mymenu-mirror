@@ -15,8 +15,7 @@
 
 @implementation MMSpecialsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -24,14 +23,12 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -40,13 +37,13 @@
 #pragma mark Setup Next View for Type
 // TODO: Use right numbers for the type in database
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	if([[segue identifier] isEqualToString:@"Dessert"]) {
-		[(MMSpecialsCollectionViewController *)[segue destinationViewController] setSpecialsType:0];
-	} else if ([[segue identifier] isEqualToString:@"Food"]) {
-		[(MMSpecialsCollectionViewController *)[segue destinationViewController] setSpecialsType:1];
-	} else if([[segue identifier] isEqualToString:@"Drinks"]) {
-		[(MMSpecialsCollectionViewController *)[segue destinationViewController] setSpecialsType:2];
-	}
+    if ([[segue identifier] isEqualToString:@"Dessert"]) {
+        [(MMSpecialsCollectionViewController *) [segue destinationViewController] setSpecialsType:0];
+    } else if ([[segue identifier] isEqualToString:@"Food"]) {
+        [(MMSpecialsCollectionViewController *) [segue destinationViewController] setSpecialsType:1];
+    } else if ([[segue identifier] isEqualToString:@"Drinks"]) {
+        [(MMSpecialsCollectionViewController *) [segue destinationViewController] setSpecialsType:2];
+    }
 }
 
 @end

@@ -10,6 +10,6 @@
 
 @interface MMSpecialsCollectionViewController : UICollectionViewController
 
-@property (nonatomic) int specialsType;
+@property(nonatomic) int specialsType;
 
 @end

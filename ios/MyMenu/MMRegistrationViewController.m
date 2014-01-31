@@ -9,7 +9,6 @@
 #import "MMRegistrationViewController.h"
 #import "MMRegistrationPopoverViewController.h"
 #import "MMDietaryRestrictionsViewController.h"
-#import <Foundation/Foundation.h>
 
 @interface MMRegistrationViewController ()
 
@@ -83,13 +82,12 @@
         case ProvinceValue:
             self.userProfile.locality = selectedValue.selectedValue;
             break;
-        case BirthdayValue:
-        {
+        case BirthdayValue: {
             NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:selectedValue.selectedValue];
-        
-            self.userProfile.birthday = [NSString stringWithFormat:@"%ld", (long)[components day]];
-            self.userProfile.birthmonth = [NSString stringWithFormat:@"%ld", (long)[components month]];
-            self.userProfile.birthyear = [NSString stringWithFormat:@"%ld", (long)[components year]];
+
+            self.userProfile.birthday = [NSString stringWithFormat:@"%ld", (long) [components day]];
+            self.userProfile.birthmonth = [NSString stringWithFormat:@"%ld", (long) [components month]];
+            self.userProfile.birthyear = [NSString stringWithFormat:@"%ld", (long) [components year]];
             break;
         }
         default:
@@ -123,62 +121,57 @@
     else
         return CGSizeMake(350.0f, 200.0f);
 }
+
 // Call this method somewhere in your view controller setup code.
-- (void)registerForKeyboardNotifications
-{
+- (void)registerForKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
-    
+
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
-    NSDictionary* info = [aNotification userInfo];
+- (void)keyboardWasShown:(NSNotification *)aNotification {
+    NSDictionary *info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
+
     kbSize.height = kbSize.height / 2.1f;
     kbSize.width = kbSize.width / 2.1f;
-    
+
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
-    
+
     // If active text field is hidden by keyboard, scroll it so it's visible
     // Your app might not need or want this behavior.
     CGRect aRect = self.view.frame;
     aRect.size.height -= kbSize.height;
-    
-    if (!CGRectContainsPoint(aRect, self.activeField.frame.origin) ) {
+
+    if (!CGRectContainsPoint(aRect, self.activeField.frame.origin)) {
         [self.scrollView scrollRectToVisible:self.activeField.frame animated:YES];
     }
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
+- (void)keyboardWillBeHidden:(NSNotification *)aNotification {
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.activeField = textField;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     self.activeField = nil;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Make sure your segue name in storyboard is the same as this line
     if ([[segue identifier] isEqualToString:@"userInfoSegue"]) {
         self.userProfile.email = self.emailField.text;
@@ -186,9 +179,9 @@
         self.userProfile.firstName = self.firstNameField.text;
         self.userProfile.lastName = self.lastNameField.text;
         self.userProfile.country = @"CAN";
-        
-        MMDietaryRestrictionsViewController *destinationController = [segue  destinationViewController];
-        
+
+        MMDietaryRestrictionsViewController *destinationController = [segue destinationViewController];
+
         destinationController.userProfile = self.userProfile;
     }
 }
