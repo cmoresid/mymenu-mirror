@@ -35,30 +35,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //self.emailField.delegate = self;
-    //self.passwordField.delegate = self;
-    //self.confirmPasswordField.delegate = self;
+
+    // Allow view controller to act as
+    // delegate for the following text fields.
     self.cityField.delegate = self;
     self.genderField.delegate = self;
     self.provinceField.delegate = self;
     self.birthdayField.delegate = self;
 
+    // Initialize shared user profile page
     self.userProfile = [[MMUser alloc] init];
+    
+    // Register for keyboard notifications to allow
+    // for view to scroll to text field
     [self registerForKeyboardNotifications];
     [self.emailField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
+// If cancel button is clicked in navigation bar, dismiss
+// the modal view.
 - (IBAction)unwindToLoginScreen:(UIStoryboardSegue *)segue {
-    NSLog(@"Dismiss...");
     [self dismissViewControllerAnimated:TRUE completion:nil];
 }
 
+// Configure text fields that require a popover view.
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     MMRegistrationPopoverViewController *locationContent = [self getPopoverViewControllerForTextField:textField];
     locationContent.delegate = self;
@@ -79,6 +83,8 @@
     return FALSE;
 }
 
+// Custom delegate method that allows for data transfer
+// from a popover view controller to this view controller.
 - (void)didSelectValue:(MMPopoverDataPair *)selectedValue {
     switch (selectedValue.dataType) {
         case CityValue:
@@ -92,6 +98,7 @@
             self.userProfile.locality = selectedValue.selectedValue;
             break;
         case BirthdayValue: {
+            // TODO: Refactor
             NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:selectedValue.selectedValue];
 
             self.userProfile.birthday = [NSString stringWithFormat:@"%ld", (long) [components day]];
@@ -111,6 +118,8 @@
     return FALSE;
 }
 
+// Instaniate the proper view controller depending on what text
+// field is selected.
 - (id)getPopoverViewControllerForTextField:(UITextField *)textField {
     if (textField == self.cityField)
         return [self.storyboard instantiateViewControllerWithIdentifier:@"CityPopoverViewController"];
@@ -124,6 +133,8 @@
     return nil;
 }
 
+// Set the popover view size depending on which text field
+// is selected.
 - (CGSize)getPopoverViewSizeForTextField:(UITextField *)textField {
     if (textField == self.birthdayField)
         return CGSizeMake(450.0f, 220.0f);
@@ -143,7 +154,9 @@
 
 }
 
-// Called when the UIKeyboardDidShowNotification is sent.
+// If a text field is not visible, move the content view
+// using an animation to bring the text field into view by
+// scrolling the content view.
 - (void)keyboardWasShown:(NSNotification *)aNotification {
     NSDictionary *info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
@@ -165,17 +178,22 @@
     }
 }
 
-// Called when the UIKeyboardWillHideNotification is sent
+// Reset the scroll view to the default location when the
+// keyboard is hidden.
 - (void)keyboardWillBeHidden:(NSNotification *)aNotification {
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
+
+// Set the reference to the text field that should be
+// focused on.
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.activeField = textField;
 }
 
+// Remove the reference to the active textfield.
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     self.activeField = nil;
 }
