@@ -169,9 +169,9 @@ static MMDBFetcher *instance;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictionuserlink/delete.php"]];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictionuserlink/custom.php"]];
 
-    NSString *queryFormat = @"email=%@";
+    NSString *queryFormat = @"delete from restrictionuserlink where email=%@";
     NSString *query = [NSString stringWithFormat:queryFormat, email];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
