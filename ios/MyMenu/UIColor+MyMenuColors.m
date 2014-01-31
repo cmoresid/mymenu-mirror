@@ -1,9 +1,18 @@
 //
-//  UIColor+MyMenuColors.m
-//  MyMenu
+//  Copyright (C) 2014  MyMenu, Inc.
 //
-//  Created by Connor Moreside on 1/24/2014.
-//  Copyright (c) 2014 MyMenu. All rights reserved.
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
 #import "UIColor+MyMenuColors.h"
@@ -14,11 +23,11 @@
     return [[UIColor alloc] initWithRed:26 / 255.0f green:188 / 255.0f blue:156 / 255.0f alpha:1.0f];
 }
 
-+ (UIColor *)mmOrangeColor {
++ (UIColor *)orangeColor {
     return [[UIColor alloc] initWithRed:233.0 / 255.0f green:182.0 / 255.0f blue:83.0 / 255.0f alpha:1.0f];
 }
 
-+ (UIColor *)mmRedColor {
++ (UIColor *)redColor {
     //204	69	85
     return [[UIColor alloc] initWithRed:204.0 / 255.0f green:69.0 / 255.0f blue:85.0 / 255.0f alpha:1.0f];
 }

@@ -1,9 +1,18 @@
 //
-//  MMDBFetcher.h
-//  MyMenu
+//  Copyright (C) 2014  MyMenu, Inc.
 //
-//  Created by Chris Moulds on 1/25/2014.
-//  Copyright (c) 2014 MyMenu. All rights reserved.
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
 #import <Foundation/Foundation.h>
@@ -12,34 +21,86 @@
 #import "MMSpecial.h"
 #import "MMMerchant.h"
 
+/**
+* A model for qeurying data from the api.
+*/
 @interface MMDBFetcher : NSObject <NSURLConnectionDataDelegate>
 
+/**
+* Get a singleton instance of this class.
+* Clients should use this, and not initialize a new instance for every request.
+*
+* NOTE: The idea is to encapsulate request merging in this class, so a singleton will give us
+* significant performance improvements.
+*
+*/
 + (id)get;
 
+/**
+* Add a user to the service.
+*/
 - (void)addUser:(MMUser *)user;
 
+/**
+* Check if the user with this email address exists already.
+*/
 - (bool)userExists:(NSString *)email;
 
+/**
+* Checks if the password for the user is entered correctly (for login).
+*/
 - (NSInteger)userVerified:(MMUser *)user;
 
+/**
+* Get specials for the given day of the given type.
+*/
 - (NSArray *)getSpecials:(NSString *)day :(NSInteger)type;
 
-- (void)addUserRestrictions:(NSString *)uid :(NSArray *)restrictions;
+/**
+* Add all given restrictions for the given user.
+*/
+- (void)addUserRestrictions:(NSString *)email :(NSArray *)restrictions;
 
+/**
+* Remove all given restrictions for the given user.
+*/
 - (void)removeUserRestrictions:(NSString *)email;
 
+/**
+* Get all merchants. Only return a subset of the fields to minify data.
+*
+* TODO: filter by nearby
+*/
 - (NSArray *)getCompressedMerchants;
 
+/**
+* Get the menu for the restaurant.
+*/
 - (NSArray *)getMenu:(NSInteger *)merchid;
 
+/**
+* Get all restrictions that we support.
+*/
 - (NSArray *)getAllRestrictions;
 
+/**
+* Get all restrictions for the given user.
+*/
 - (NSArray *)getUserRestrictions:(NSString *)email;
 
+/**
+* Get all information about the merchant (restaurant) with the given id.
+*/
 - (MMMerchant *)getMerchant:(NSNumber *)merchid;
 
-- (void)editUser:(MMUser*)user;
+/**
+* Edit the given user's information on the server.
+*/
+- (void)editUser:(MMUser *)user;
 
+/**
+* Get all information for the user with the given email.
+*/
 - (MMUser *)getUser:(NSString *)email;
 
 -(MMUser *)getUser:(NSString * )email;

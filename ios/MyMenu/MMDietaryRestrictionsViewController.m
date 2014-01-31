@@ -1,9 +1,18 @@
 //
-//  MMDietaryRestrictionsViewController.m
-//  MyMenu
+//  Copyright (C) 2014  MyMenu, Inc.
 //
-//  Created by Connor Moreside on 1/24/2014.
-//  Copyright (c) 2014 MyMenu. All rights reserved.
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
 #import "MMDietaryRestrictionsViewController.h"
@@ -17,22 +26,21 @@
 
 @interface MMDietaryRestrictionsViewController ()
 
-
 @end
 
 @implementation MMDietaryRestrictionsViewController
 
-// Internal
-// Contains All Restrictions
-NSArray *allRestrictions;
-NSMutableArray *dietaryRestrictions;
+NSArray *allRestrictions; // all restrictions
+NSMutableArray *dietaryRestrictions; // dietary restrictions
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
 
+    if (self) {
+        // Initialize
     }
+
     return self;
 }
 
@@ -49,6 +57,7 @@ NSMutableArray *dietaryRestrictions;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     allRestrictions = [[MMDBFetcher get] getAllRestrictions];
     dietaryRestrictions = [[NSMutableArray alloc] init];
     NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
@@ -64,12 +73,11 @@ NSMutableArray *dietaryRestrictions;
     }
 }
 
-/*
- Called everytime a switch is turned off or on in this screen
- it either adds or deletes a restriction from the array
+/**
+* Called everytime a switch is turned off or on in this screen.
+* It either adds or deletes a restriction from the array.
  */
 - (void)switchFlicked:(id)sender {
-
     MMRestrictionSwitch *restriction = ((MMRestrictionSwitch *) sender);
 
     if (restriction.on) {
@@ -85,6 +93,7 @@ NSMutableArray *dietaryRestrictions;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 #pragma mark -
 #pragma mark Collection View
 
@@ -125,7 +134,6 @@ NSMutableArray *dietaryRestrictions;
     }
 
     return cell;
-
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -140,6 +148,5 @@ NSMutableArray *dietaryRestrictions;
         [userPreferances setObject:encodedUser forKey:kCurrentUser];
     }
 }
-
 
 @end
