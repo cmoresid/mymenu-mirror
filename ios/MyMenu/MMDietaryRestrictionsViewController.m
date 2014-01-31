@@ -44,17 +44,7 @@ NSMutableArray *dietaryRestrictions; // dietary restrictions
     return self;
 }
 
-//- (void)viewDidAppear:(BOOL)animated {
-//    dietaryRestrictions = [[NSMutableArray alloc] init];
-//    NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
-//    NSData * currentUser = [perfs objectForKey:kCurrentUser];
-//    self.userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
-//    if (currentUser != nil) {
-//        MMDBFetcher *dbFetch = [[MMDBFetcher alloc] init];
-//        dietaryRestrictions = [[dbFetch getUserRestrictions:self.userProfile.email] mutableCopy];
-//    }
-//}
-
+//loads the view with the dietary restrictions already chosen by the user.
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -73,10 +63,10 @@ NSMutableArray *dietaryRestrictions; // dietary restrictions
     }
 }
 
-/**
-* Called everytime a switch is turned off or on in this screen.
-* It either adds or deletes a restriction from the array.
- */
+
+//Called everytime a switch is turned off or on in this screen.
+//It either adds or deletes a restriction from the array.
+
 - (void)switchFlicked:(id)sender {
     MMRestrictionSwitch *restriction = ((MMRestrictionSwitch *) sender);
 
@@ -101,7 +91,8 @@ NSMutableArray *dietaryRestrictions; // dietary restrictions
     return allRestrictions.count;
 }
 
-
+//fills the collection view with all of the dietary restrictions available flagging the necessary
+//switches to either false or true depending on the current user.
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"Cell";
 
@@ -135,7 +126,8 @@ NSMutableArray *dietaryRestrictions; // dietary restrictions
 
     return cell;
 }
-
+//adds to the database and saves the users information in the shared preferences
+//only called when the "Done button is pushed
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Make sure your segue name in storyboard is the same as this line
     if ([[segue identifier] isEqualToString:@"goToMainView"]) {
