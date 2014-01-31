@@ -34,12 +34,14 @@ static MMDBFetcher *instance;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/put.php"]];
 
-    NSString *queryFormat = @"email=%@&firstname=%@&lastname=%@&password=%@&city=%@&locality=%@&country=%@&gender=%@&birthday=%@&birthmonth=%@&birthyear=%@&confirmcode=y";
+    NSString *queryFormat = @"email=%@&firstname=%@&lastname=%@&password=%@&city=%@&locality=%@&country=%@&gender=%c&birthday=%@&birthmonth=%@&birthyear=%@&confirmcode=y";
     NSString *query = [NSString stringWithFormat:queryFormat, user.email, user.firstName,
                                                  user.lastName, user.password, user.city, user.locality, user.country,
                                                  user.gender, user.birthday, user.birthmonth, user.birthyear];
+
 
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -143,6 +145,7 @@ static MMDBFetcher *instance;
         [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
         [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
         [[NSURLConnection alloc] initWithRequest:request delegate:self];
+
     }
 }
 
@@ -279,7 +282,7 @@ static MMDBFetcher *instance;
         merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
         merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
 
-        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
+        merchant.rating = [e child:@"rating"].text;
         merchant.picture = [e child:@"business_picture"].text;
         [merchants addObject:merchant];
     }];
