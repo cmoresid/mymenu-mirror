@@ -53,29 +53,35 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     [super viewDidLoad];
 
     NSString *day = [self getToday];
-    int index;
 
+    // find the index that today is at
+    int index;
     for (int i = 0; i < 7; i++) {
         if ([[days[i] lowercaseString] isEqualToString:[day lowercaseString]]) {
             index = i;
-            NSLog(@"today is at index %d", index);
             break;
         }
     }
 
+    // set today as selected
     [self.tabOutlet setSelectedSegmentIndex:index];
     [self loadDay:[self getToday]];
 }
 
+/**
+* Get today as a string, e.g. 'tuesday'
+*/
 - (NSString *)getToday {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE"];
     return [[dateFormatter stringFromDate:[NSDate date]] lowercaseString];
 }
 
+/**
+* Request specials for a given day. Uses the specialsType defined by the segue
+*/
 - (void)loadDay:(NSString *)day {
     specials = [[MMDBFetcher get] getSpecials:day :self.specialsType];
-    NSLog(@"got %d specials for %@ with type %d.", specials.count, day, self.specialsType);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,7 +112,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
     [(UIImageView *) [cell viewWithTag:100] setImage:myImage];
 
-    // Set the Restriction Title
+    // Set the text
     UITextView *textView = (UITextView *) [cell viewWithTag:101];
     UITextView *textDesc = (UITextView *) [cell viewWithTag:102];
     textView.text = special.name;

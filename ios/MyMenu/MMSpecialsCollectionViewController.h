@@ -22,6 +22,9 @@
 @property(nonatomic) int specialsType;
 @property(nonatomic, weak) IBOutlet UISegmentedControl *tabOutlet;
 
+/**
+* Called when user clicks on the tab to change the day.
+*/
 - (IBAction)dayChanged:(UISegmentedControl *)sender;
 
 @end
