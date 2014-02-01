@@ -337,8 +337,9 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
 
-    NSString *queryFormat = @"query=select * from merchusers where id = '%d'";
+    NSString *queryFormat = @"query=select * from merchusers where id = %@";
     NSString *query = [NSString stringWithFormat:queryFormat, mid];
+    NSLog(@"%@", query);
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 

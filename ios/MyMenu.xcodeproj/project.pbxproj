@@ -11,6 +11,7 @@
 		171EA8A0189B094E002DEFEF /* MMRestrictionSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 171EA89F189B094E002DEFEF /* MMRestrictionSwitch.m */; };
 		174FE0C218945E5900CB82C0 /* RestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 174FE0C118945E5800CB82C0 /* RestaurantCell.m */; };
 		174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */; };
+		17F6531D189D83F200D63D3D /* MMRestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F6531C189D83F200D63D3D /* MMRestaurantViewController.m */; };
 		17FEDDFD1896FF1400058ABD /* MMRoundedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FEDDFC1896FF1400058ABD /* MMRoundedView.m */; };
 		8333C3FD1894B5680028FFBE /* angry_birds_cake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8333C3ED1894B5680028FFBE /* angry_birds_cake.jpg */; };
 		8333C3FE1894B5680028FFBE /* creme_brelee.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8333C3EE1894B5680028FFBE /* creme_brelee.jpg */; };
@@ -103,6 +104,8 @@
 		174FE0C018945E5800CB82C0 /* RestaurantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantCell.h; sourceTree = "<group>"; };
 		174FE0C118945E5800CB82C0 /* RestaurantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantCell.m; sourceTree = "<group>"; };
 		174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantTableCell.xib; sourceTree = "<group>"; };
+		17F6531B189D83F200D63D3D /* MMRestaurantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMRestaurantViewController.h; path = ../MMRestaurantViewController.h; sourceTree = "<group>"; };
+		17F6531C189D83F200D63D3D /* MMRestaurantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMRestaurantViewController.m; path = ../MMRestaurantViewController.m; sourceTree = "<group>"; };
 		17FEDDFB1896FF1400058ABD /* MMRoundedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRoundedView.h; sourceTree = "<group>"; };
 		17FEDDFC1896FF1400058ABD /* MMRoundedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRoundedView.m; sourceTree = "<group>"; };
 		8333C3ED1894B5680028FFBE /* angry_birds_cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = angry_birds_cake.jpg; sourceTree = "<group>"; };
@@ -394,6 +397,8 @@
 		B097D6FD18938EA300142F8D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				17F6531B189D83F200D63D3D /* MMRestaurantViewController.h */,
+				17F6531C189D83F200D63D3D /* MMRestaurantViewController.m */,
 				B0AC55C01896F8E9000BC0DD /* MMRegistrationPopoverViewController.h */,
 				B0AC55C11896F8E9000BC0DD /* MMRegistrationPopoverViewController.m */,
 				B097D6FA189360A500142F8D /* MMRegistrationViewController.h */,
@@ -587,6 +592,7 @@
 				17FEDDFD1896FF1400058ABD /* MMRoundedView.m in Sources */,
 				83893EB718919AD400D36670 /* main.m in Sources */,
 				9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */,
+				17F6531D189D83F200D63D3D /* MMRestaurantViewController.m in Sources */,
 				B097D701189392FC00142F8D /* MMMainTabBarViewController.m in Sources */,
 				83B85B8B18971A3D00195F05 /* MMSpecialType.m in Sources */,
 				9B4E24881891DCD100F5B955 /* MMMenuItemRating.m in Sources */,
