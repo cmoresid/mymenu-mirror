@@ -19,6 +19,7 @@
 #import "RestaurantCell.h"
 #import "MMDetailViewController.h"
 #import "MMDBFetcher.h"
+#import "MMRestaurantViewController.h"
 
 @interface MMMasterViewController () {
     NSMutableArray *_objects;
@@ -107,8 +108,28 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDate *object = _objects[indexPath.row];
-    self.detailViewController.detailItem = object;
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    NSLog(@"Selected %@", indexPath);
+    NSLog(@"ABC");
+
+    MMDBFetcher *fetcher1 = [MMDBFetcher get];
+    _selectRest = [fetcher1 getMerchant:[[_restaurants objectAtIndex:indexPath.row] mid]];
+    NSLog(@"the id is : @%@", [[_restaurants objectAtIndex:indexPath.row] mid]);
+    NSLog(@"Restaurant desc = %@", _selectRest.desc);
+    //_selectRest = [_restaurants objectAtIndex:indexPath.row];
+    
+    [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"restaurantSegue"]){
+        MMRestaurantViewController *RestaurantController = [segue destinationViewController];
+        NSLog(@"PREPARING FOR SEGUE NOOW");
+        RestaurantController.selectedRestaurant = _selectRest;
+        NSLog(@"PREPARING FOR SEGUE NOOW2222");
+
+        
+    }
 }
 
 @end

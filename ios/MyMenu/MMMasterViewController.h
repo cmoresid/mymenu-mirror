@@ -16,12 +16,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMMerchant.h"
 
 @class MMDetailViewController;
 
 @interface MMMasterViewController : UITableViewController
 
 @property(nonatomic, retain) NSArray *restaurants;
+@property(nonatomic, retain) MMMerchant* selectRest;
 @property(strong, nonatomic) MMDetailViewController *detailViewController;
 
 @end
