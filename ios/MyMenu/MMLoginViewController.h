@@ -16,8 +16,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMDBFetcherDelegate.h"
 
-@interface MMLoginViewController : UIViewController <UITextFieldDelegate>
+@interface MMLoginViewController : UIViewController <UITextFieldDelegate, MMDBFetcherDelegate>
 
 @property(nonatomic, weak) IBOutlet UITextField *emailAddress;
 @property(nonatomic, weak) IBOutlet UITextField *password;

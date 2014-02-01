@@ -17,12 +17,13 @@
 
 #import "MMDBFetcher.h"
 #import "RXMLElement.h"
+#import "MMDBFetcherResponse.h"
 
 @implementation MMDBFetcher
 
 static MMDBFetcher *instance;
 
-+ (id)get {
++ (MMDBFetcher*)get {
     @synchronized (self) {
         if (instance == nil)
             instance = [[self alloc] init];
@@ -54,15 +55,40 @@ static MMDBFetcher *instance;
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    NSString *returnvalue = [request description];
-    
-    NSLog(@"Return value: %@", returnvalue);
-    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                               
+                               if (dbResponse.wasSuccessful) {
+                                   [self.delegate didCreateUser:true withResponse:dbResponse];
+                               }
+                               else {
+                                   [self.delegate didCreateUser:false withResponse:dbResponse];
+                               }
+                           }];
 }
 
-- (MMUser *)getUser:(NSString *)email {
+- (MMDBFetcherResponse*)createResponseWith:(NSData*)data withError:(NSError*)error
+{
+    MMDBFetcherResponse* response = [[MMDBFetcherResponse alloc] init];
+    
+    if ([data length] > 0 && error == nil) {
+        response.wasSuccessful = true;
+    }
+    else {
+        response.wasSuccessful = false;
+        
+        if ([data length] == 0 && error == nil)
+            [response.messages addObject:@"No response received."];
+        else if (error != nil)
+            [response.messages addObject:[NSString stringWithFormat:@"Error : %@", error]];
+    }
+
+    return response;
+}
+
+- (void)getUser:(NSString *)email {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
@@ -72,32 +98,39 @@ static MMDBFetcher *instance;
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
 
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    NSURLResponse *response = [[NSURLResponse alloc] init];
-    NSError *error = [[NSError alloc] init];
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-
-    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-
-    MMUser *user = [[MMUser alloc] init];
-
-    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-
-        user.email = [e child:@"email"].text;
-        user.firstName = [e child:@"firstname"].text;
-        user.lastName = [e child:@"lastname"].text;
-        user.password = [e child:@"password"].text;
-        user.city = [e child:@"city"].text;
-        user.locality = [e child:@"locality"].text;
-        user.country = [e child:@"country"].text;
-        user.gender = (char) [e child:@"gender"].text;
-        user.birthday = [e child:@"birthday"].text;
-        user.birthmonth = [e child:@"birthmonth"].text;
-        user.birthyear = [e child:@"birthyear"].text;
-
-    }];
-
-    return user;
-
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                               
+                               if (dbResponse.wasSuccessful) {
+                                   RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                   
+                                   MMUser *user = [[MMUser alloc] init];
+                                   
+                                   [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                       
+                                       user.email = [e child:@"email"].text;
+                                       user.firstName = [e child:@"firstname"].text;
+                                       user.lastName = [e child:@"lastname"].text;
+                                       user.password = [e child:@"password"].text;
+                                       user.city = [e child:@"city"].text;
+                                       user.locality = [e child:@"locality"].text;
+                                       user.country = [e child:@"country"].text;
+                                       user.gender = (char) [e child:@"gender"].text;
+                                       user.birthday = [e child:@"birthday"].text;
+                                       user.birthmonth = [e child:@"birthmonth"].text;
+                                       user.birthyear = [e child:@"birthyear"].text;
+                                       
+                                   }];
+                                   
+                                   [self.delegate didRetrieveUser:user withResponse:dbResponse];
+                               }
+                               else {
+                                   [self.delegate didRetrieveUser:nil withResponse:dbResponse];
+                               }
+                           }];
 }
 
 - (void)editUser:(MMUser*)user {
@@ -112,13 +145,14 @@ static MMDBFetcher *instance;
                        user.gender, user.birthday, user.birthmonth, user.birthyear, user.email];
     
     
+    
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }
 
-- (bool)userExists:(NSString *)email {
+- (void)userExists:(NSString *)email {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
@@ -129,15 +163,34 @@ static MMDBFetcher *instance;
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
-    NSURLResponse *response = [[NSURLResponse alloc] init];
-    NSError *error = [[NSError alloc] init];
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-    NSArray *rxmlResult = [rootXML children:@"result"];
-    return rxmlResult.count > 0;
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               MMDBFetcherResponse* dbResponse = [[MMDBFetcherResponse alloc] init];
+                               
+                               if ([data length] > 0 && error == nil) {
+                                   dbResponse.wasSuccessful = TRUE;
+                                   
+                                   RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                   NSArray *rxmlResult = [rootXML children:@"result"];
+                                   
+                                   BOOL userExists = (rxmlResult.count > 0);
+                                   
+                                   [self.delegate doesUserExist:userExists withResponse:dbResponse];
+                               }
+                               else {
+                                   dbResponse.wasSuccessful = FALSE;
+                                   
+                                   if (error != nil) {
+                                       [dbResponse.messages addObject:@"error"];
+                                       
+                                       [self.delegate doesUserExist:FALSE withResponse:dbResponse];
+                                   }
+                               }
+                           }];
 }
 
-- (NSInteger)userVerified:(MMUser *)user {
+- (void)userVerified:(MMUser *)user {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
@@ -148,16 +201,23 @@ static MMDBFetcher *instance;
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
-    NSURLResponse *response = [[NSURLResponse alloc] init];
-    NSError *error = [[NSError alloc] init];
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-
-    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-    NSArray *rxmlResult = [rootXML children:@"result"];
-
-    if (rxmlResult.firstObject >= 0)
-        return (NSInteger) rxmlResult.firstObject;
-    else return -1;
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                               
+                               if (dbResponse.wasSuccessful) {
+                                   RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                   NSArray *rxmlResult = [rootXML children:@"result"];
+                                   
+                                   NSInteger resultCode = (rxmlResult.firstObject >= 0) ? ((NSInteger) rxmlResult.firstObject) : -1;
+                                   
+                                   [self.delegate wasUserVerified:resultCode withResponse:dbResponse];
+                               }
+                               else {
+                                   [self.delegate wasUserVerified:-1 withResponse:dbResponse];
+                               }
+                           }];
 }
 
 - (void)addUserRestrictions:(NSString *)email :(NSArray *)restrictions {

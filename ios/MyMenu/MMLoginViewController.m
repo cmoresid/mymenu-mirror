@@ -35,6 +35,29 @@
     return self;
 }
 
+- (void)wasUserVerified:(NSInteger)resultCode withResponse:(MMDBFetcherResponse *)response
+{
+    if (resultCode > 0) {
+        [[MMDBFetcher get] getUser:self.emailAddress.text];
+    }
+    else {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
+                                                          message:@"Please enter a valid user name and password."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+    }
+}
+
+- (void)didRetrieveUser:(MMUser *)user withResponse:(MMDBFetcherResponse *)response
+{
+    NSUserDefaults * userPreferances = [NSUserDefaults standardUserDefaults];
+    NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
+    [userPreferances setObject:encodedUser forKey:kCurrentUser];
+    [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
     NSData * currentUser = [perfs objectForKey:kCurrentUser];
@@ -49,6 +72,7 @@
 
     self.emailAddress.delegate = self;
     self.password.delegate = self;
+    [MMDBFetcher get].delegate = self;
 
 
     [self registerForKeyboardNotifications];
@@ -134,24 +158,8 @@
         
     }
 
-    MMDBFetcher *fetcher = [[MMDBFetcher get] init];
-    NSInteger resultCode = [fetcher userVerified:user];
-    
-
-    if (resultCode > 0){
-        user = [fetcher getUser:user.email];
-        NSUserDefaults * userPreferances = [NSUserDefaults standardUserDefaults];
-        NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
-        [userPreferances setObject:encodedUser forKey:kCurrentUser];
-        [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
-    }else {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
-                                                          message:@"Please enter a valid user name and password."
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [message show];
-    }
+    MMDBFetcher *fetcher = [MMDBFetcher get];
+    [fetcher userVerified:user];
 }
 
 

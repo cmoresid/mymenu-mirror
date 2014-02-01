@@ -77,6 +77,7 @@
 		9BBD9142189478DB006DDBCE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBD9141189478DB006DDBCE /* libxml2.dylib */; };
 		B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57251893084E00DEBAD8 /* MMLoginViewController.m */; };
 		B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */; };
+		B083C7D8189D85550074F7DC /* MMDBFetcherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B083C7D7189D85550074F7DC /* MMDBFetcherResponse.m */; };
 		B097D6F91893608300142F8D /* MMDietaryRestrictionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B097D6F81893608300142F8D /* MMDietaryRestrictionsViewController.m */; };
 		B097D6FC189360A500142F8D /* MMRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B097D6FB189360A500142F8D /* MMRegistrationViewController.m */; };
 		B097D701189392FC00142F8D /* MMMainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B097D700189392FC00142F8D /* MMMainTabBarViewController.m */; };
@@ -183,6 +184,9 @@
 		B07A57251893084E00DEBAD8 /* MMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLoginViewController.m; sourceTree = "<group>"; };
 		B07A57261893084E00DEBAD8 /* UIColor+MyMenuColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyMenuColors.h"; sourceTree = "<group>"; };
 		B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MyMenuColors.m"; sourceTree = "<group>"; };
+		B083C7D5189D85210074F7DC /* MMDBFetcherDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMDBFetcherDelegate.h; sourceTree = "<group>"; };
+		B083C7D6189D85550074F7DC /* MMDBFetcherResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDBFetcherResponse.h; sourceTree = "<group>"; };
+		B083C7D7189D85550074F7DC /* MMDBFetcherResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcherResponse.m; sourceTree = "<group>"; };
 		B097D6F71893608300142F8D /* MMDietaryRestrictionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDietaryRestrictionsViewController.h; sourceTree = "<group>"; };
 		B097D6F81893608300142F8D /* MMDietaryRestrictionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDietaryRestrictionsViewController.m; sourceTree = "<group>"; };
 		B097D6FA189360A500142F8D /* MMRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRegistrationViewController.h; sourceTree = "<group>"; };
@@ -378,6 +382,8 @@
 				B0AC55BE1896F8CB000BC0DD /* MMPopoverDataPair.m */,
 				83B85B8918971A3D00195F05 /* MMSpecialType.h */,
 				83B85B8A18971A3D00195F05 /* MMSpecialType.m */,
+				B083C7D6189D85550074F7DC /* MMDBFetcherResponse.h */,
+				B083C7D7189D85550074F7DC /* MMDBFetcherResponse.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -440,6 +446,7 @@
 			isa = PBXGroup;
 			children = (
 				B0AC55C41896F927000BC0DD /* MMRegistrationPopoverDelegate.h */,
+				B083C7D5189D85210074F7DC /* MMDBFetcherDelegate.h */,
 			);
 			name = Delegate;
 			sourceTree = "<group>";
@@ -579,6 +586,7 @@
 				837FE29418945CB800A0720E /* MMButton.m in Sources */,
 				B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */,
 				83893EBB18919AD400D36670 /* MMAppDelegate.m in Sources */,
+				B083C7D8189D85550074F7DC /* MMDBFetcherResponse.m in Sources */,
 				B097D6FC189360A500142F8D /* MMRegistrationViewController.m in Sources */,
 				9BBD913D189478A8006DDBCE /* RXMLElement.m in Sources */,
 				83B7E44D1891EE0700946784 /* MMMasterViewController.m in Sources */,

@@ -20,11 +20,14 @@
 #import "MMRestriction.h"
 #import "MMSpecial.h"
 #import "MMMerchant.h"
+#import "MMDBFetcherDelegate.h"
 
 /**
 * A model for qeurying data from the api.
 */
 @interface MMDBFetcher : NSObject <NSURLConnectionDataDelegate>
+
+@property (nonatomic, strong) id<MMDBFetcherDelegate> delegate;
 
 /**
 * Get a singleton instance of this class.
@@ -34,7 +37,7 @@
 * significant performance improvements.
 *
 */
-+ (id)get;
++ (MMDBFetcher*)get;
 
 /**
 * Add a user to the service.
@@ -44,12 +47,12 @@
 /**
 * Check if the user with this email address exists already.
 */
-- (bool)userExists:(NSString *)email;
+- (void)userExists:(NSString *)email;
 
 /**
 * Checks if the password for the user is entered correctly (for login).
 */
-- (NSInteger)userVerified:(MMUser *)user;
+- (void)userVerified:(MMUser *)user;
 
 /**
 * Get specials for the given day of the given type.
@@ -101,6 +104,6 @@
 /**
 * Get all information for the user with the given email.
 */
-- (MMUser *)getUser:(NSString *)email;
+- (void)getUser:(NSString *)email;
 
 @end
