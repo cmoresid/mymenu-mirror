@@ -28,20 +28,17 @@
 @implementation MMLoginViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+	
+	
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
-    NSData * currentUser = [perfs objectForKey:kCurrentUser];
-    
-    if (currentUser != nil) {
-        [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
-    }
+
 }
 
 - (void)viewDidLoad {

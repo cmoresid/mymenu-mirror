@@ -13,7 +13,7 @@
 
 
 
-@property(nonatomic, retain) MMMerchant *selectedRestaurant;
+@property MMMerchant *selectedRestaurant;
 @property(nonatomic) IBOutlet UILabel * restName;
 @property(nonatomic) IBOutlet UILabel * restNumber;
 @property(nonatomic) IBOutlet UILabel * restRating;

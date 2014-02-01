@@ -124,12 +124,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"restaurantSegue"]){
         MMRestaurantViewController *RestaurantController = [segue destinationViewController];
+        NSLog(@"PREPARING FOR SEGUE NOOW");
         RestaurantController.selectedRestaurant = _selectRest;
-        
+        NSLog(@"PREPARING FOR SEGUE NOOW2222");
+
         
     }
 }
-//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
-//    NSLog(@"ABC123");
-//}
+
 @end
