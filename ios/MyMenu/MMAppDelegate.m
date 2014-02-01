@@ -16,12 +16,25 @@
 //
 
 #import "MMAppDelegate.h"
+#import "MMMainTabBarViewController.h"
+#define kCurrentUser @"currentUser"
 
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-
+	
+	NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
+	NSData * currentUser = [perfs objectForKey:kCurrentUser];
+	
+	if (currentUser != nil) {
+		//[self.window setRootViewController:[[MMMainTabBarViewController alloc] init]];
+		[self.window makeKeyAndVisible];
+		[self.window.rootViewController performSegueWithIdentifier:@"moveToMainScreen" sender:self];
+	} else {
+		// Load Main
+		
+	}
     return YES;
 }
 
