@@ -47,22 +47,30 @@ NSMutableArray *dietaryRestrictions; // dietary restrictions
 //loads the view with the dietary restrictions already chosen by the user.
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     allRestrictions = [[MMDBFetcher get] getAllRestrictions];
+	[self loadAllImages];
     dietaryRestrictions = [[NSMutableArray alloc] init];
     NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
     NSData * currentUser = [perfs objectForKey:kCurrentUser];
     NSArray * dietaryRestriction = [[NSArray alloc]init];
     self.userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
+	
     if (currentUser != nil) {
         MMDBFetcher *dbFetch = [[MMDBFetcher alloc] init];
         dietaryRestriction = [[dbFetch getUserRestrictions:self.userProfile.email] mutableCopy];
     }
+	
     for (int i = 0; i <dietaryRestriction.count; i++){
         [dietaryRestrictions addObject:((MMRestriction *)dietaryRestriction[i]).id];
     }
 }
 
+
+-(void)loadAllImages {
+		for(MMRestriction * restriction in allRestrictions) {
+			restriction.imageRep = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[restriction image]]]];
+		}
+}
 
 //Called everytime a switch is turned off or on in this screen.
 //It either adds or deletes a restriction from the array.
@@ -110,8 +118,7 @@ NSMutableArray *dietaryRestrictions; // dietary restrictions
     MMRestriction *restriction = [allRestrictions objectAtIndex:indexPath.row];
 
     UIImageView *recipeImageView = (UIImageView *) [cell viewWithTag:100];
-    UIImage *myImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[restriction image]]]];
-    recipeImageView.image = myImage;
+    recipeImageView.image = restriction.imageRep;
 
     // Set the Restriction Title
     UITextView *textView = (UITextView *) [cell viewWithTag:101];
