@@ -55,6 +55,11 @@ static MMDBFetcher *instance;
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    NSString *returnvalue = [request description];
+    
+    NSLog(@"Return value: %@", returnvalue);
+    
 }
 
 - (MMUser *)getUser:(NSString *)email {
@@ -296,7 +301,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
 
-    NSString *query = @"query=select business_name, business_number, rating, business_picture, lat, longa, business_description from merchusers";
+    NSString *query = @"query=select id, business_name, business_number, rating, business_picture, lat, longa, business_description from merchusers";
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
@@ -311,13 +316,12 @@ static MMDBFetcher *instance;
 
     [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
         MMMerchant *merchant = [[MMMerchant alloc] init];
+        merchant.mid = [e child:@"id"].text;
         merchant.businessname = [e child:@"business_name"].text;
         merchant.phone = [e child:@"business_number"].text;
         merchant.desc = [e child:@"business_description"].text;
-
         merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
         merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
-
         merchant.rating = [e child:@"rating"].text;
         merchant.picture = [e child:@"business_picture"].text;
         [merchants addObject:merchant];
@@ -347,10 +351,27 @@ static MMDBFetcher *instance;
     MMMerchant *merchant = [[MMMerchant alloc] init];
 
     [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-
-        merchant.businessname = [e child:@"businessname"].text;
-        merchant.phone = [e child:@"phone"].text;
-        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
+    
+        merchant.mid = [NSNumber numberWithInt: [e child:@"id"].textAsInt];
+        merchant.businessname = [e child:@"business_name"].text;
+        merchant.phone = [e child:@"business_number"].text;
+        merchant.desc = [e child:@"business_description"].text;
+        merchant.address = [e child:@"business_address1"].text;
+        merchant.city = [e child:@"business_city"].text;
+        merchant.locality = [e child:@"business_locality"].text;
+        merchant.postalcode = [e child:@"business_postalcode"].text;
+        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
+        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
+        merchant.rating = [e child:@"rating"].text;
+        merchant.picture = [e child:@"business_picture"].text;
+        merchant.facebook = [e child:@"facebook"].text;
+        merchant.twitter = [e child:@"twitter"].text;
+        merchant.website = [e child:@"website"].text;
+        merchant.pricehigh = [NSNumber numberWithFloat: [e child:@"pricehigh"].textAsInt];
+        merchant.pricelow = [NSNumber numberWithFloat: [e child:@"pricelow"].textAsInt];
+        merchant.opentime = [NSNumber numberWithInt: [e child:@"opentime"].textAsInt];
+        merchant.closetime = [NSNumber numberWithInt: [e child:@"closetime"].textAsInt];
+        
 
     }];
     return merchant;

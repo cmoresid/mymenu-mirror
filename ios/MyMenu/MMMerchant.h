@@ -45,5 +45,9 @@
 @property(nonatomic) NSNumber *rating;
 @property(nonatomic) NSNumber *ratingcount;
 @property(nonatomic) NSNumber *categoryid;
+@property(nonatomic) NSNumber *pricelow;
+@property(nonatomic) NSNumber *pricehigh;
+@property(nonatomic) NSNumber *opentime;
+@property(nonatomic) NSNumber *closetime;
 
 @end
