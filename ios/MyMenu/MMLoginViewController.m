@@ -187,7 +187,11 @@
         user.password = self.password.text;
     }
 
+    // If keyboard is shown, hide it when trying
+    // to login.
     [self.password resignFirstResponder];
+    [self.emailAddress resignFirstResponder];
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[MMDBFetcher get] userVerified:user];
 }

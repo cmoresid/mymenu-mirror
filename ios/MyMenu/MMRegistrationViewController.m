@@ -121,14 +121,35 @@
 // Instaniate the proper view controller depending on what text
 // field is selected.
 - (id)getPopoverViewControllerForTextField:(UITextField *)textField {
-    if (textField == self.cityField)
-        return [self.storyboard instantiateViewControllerWithIdentifier:@"CityPopoverViewController"];
-    else if (textField == self.provinceField)
-        return [self.storyboard instantiateViewControllerWithIdentifier:@"ProvincePopoverViewController"];
-    else if (textField == self.genderField)
-        return [self.storyboard instantiateViewControllerWithIdentifier:@"GenderPopoverViewController"];
-    else if (textField == self.birthdayField)
-        return [self.storyboard instantiateViewControllerWithIdentifier:@"BirthdayPopoverViewController"];
+    // Lazily instaniate popover view controller for text field.
+    if (textField == self.cityField) {
+        if (self.cityPopoverViewController == nil) {
+            self.cityPopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CityPopoverViewController"];
+        }
+        
+        return self.cityPopoverViewController;
+    }
+    else if (textField == self.provinceField) {
+        if (self.provincePopoverViewController == nil) {
+            self.provincePopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CityPopoverViewController"];
+        }
+        
+        return self.provincePopoverViewController;
+    }
+    else if (textField == self.genderField) {
+        if (self.genderPopoverViewController == nil) {
+            self.genderPopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GenderPopoverViewController"];
+        }
+        
+        return self.genderPopoverViewController;
+    }
+    else if (textField == self.birthdayField) {
+        if (self.birthdayPopoverViewController == nil) {
+            self.birthdayPopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BirthdayPopoverViewController"];
+        }
+        
+        return self.birthdayPopoverViewController;
+    }
 
     return nil;
 }
@@ -211,6 +232,13 @@
 
         destinationController.userProfile = self.userProfile;
     }
+}
+
+- (void)dealloc {
+    self.cityPopoverViewController = nil;
+    self.provincePopoverViewController = nil;
+    self.genderPopoverViewController = nil;
+    self.birthdayPopoverViewController = nil;
 }
 
 @end

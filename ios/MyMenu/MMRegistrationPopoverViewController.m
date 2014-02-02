@@ -40,6 +40,7 @@
     [self.birthdayPicker addTarget:self
                             action:@selector(updateSelectedBirthday)
                   forControlEvents:UIControlEventValueChanged];
+    self.birthdayPicker.maximumDate = [NSDate date];
 
     self.cities = [[NSArray alloc] initWithObjects:@"Choose City", @"Edmonton", nil];
     self.provinces = [[NSArray alloc] initWithObjects:@"Choose Province", @"Alberta", nil];
