@@ -55,6 +55,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [MMDBFetcher get].delegate = self;
     [self configureView];
 
     // Set up the map bounds
@@ -71,15 +72,28 @@
     region.span = span;
 
     // Add pins for the restaurants
-    [self pinRestaurants];
+    [[MMDBFetcher get] getCompressedMerchants];
 
     [self.mapView setRegion:region animated:YES];
 }
-// Actually put all the pins on the map for each restaurant
-- (void)pinRestaurants {
-    MMDBFetcher *fetcher = [MMDBFetcher get];
-    NSArray *restaurants = [fetcher getCompressedMerchants];
 
+- (void)didRetrieveCompressedMerchants:(NSArray *)compressedMerchants withResponse:(MMDBFetcherResponse *)response {
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+    [self pinRestaurants:compressedMerchants];
+}
+
+// Actually put all the pins on the map for each restaurant
+- (void)pinRestaurants:(NSArray*)restaurants {
     for (int i = 0; i < restaurants.count; i++) {
         MMMerchant *restaurant = [restaurants objectAtIndex:i];
 

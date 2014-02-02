@@ -57,7 +57,9 @@
 /**
 * Get specials for the given day of the given type.
 */
-- (NSArray *)getSpecials:(NSString *)day :(NSInteger)type;
+
+//- (NSArray *)getSpecials:(NSString *)day :(NSInteger)type;
+- (void)getSpecials:(NSString *)day withType:(NSInteger)type;
 
 /**
 * Add all given restrictions for the given user.
@@ -74,27 +76,28 @@
 *
 * TODO: filter by nearby
 */
-- (NSArray *)getCompressedMerchants;
+//- (NSArray *)getCompressedMerchants;
+- (void)getCompressedMerchants;
 
 /**
 * Get the menu for the restaurant.
 */
-- (NSArray *)getMenu:(NSInteger *)merchid;
+- (void)getMenu:(NSInteger *)merchid;
 
 /**
 * Get all restrictions that we support.
 */
-- (NSArray *)getAllRestrictions;
+- (void)getAllRestrictions;
 
 /**
 * Get all restrictions for the given user.
 */
-- (NSArray *)getUserRestrictions:(NSString *)email;
+- (void)getUserRestrictions:(NSString *)email;
 
 /**
 * Get all information about the merchant (restaurant) with the given id.
 */
-- (MMMerchant *)getMerchant:(NSNumber *)merchid;
+- (void)getMerchant:(NSNumber *)merchid;
 
 /**
 * Edit the given user's information on the server.

@@ -33,11 +33,27 @@
     [super awakeFromNib];
 }
 
+- (void)didRetrieveCompressedMerchants:(NSArray *)compressedMerchants withResponse:(MMDBFetcherResponse *)response {
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+    // Successful retrieved restaurant list.
+    self.restaurants = compressedMerchants;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    MMDBFetcher *fetcher = [MMDBFetcher get];
-    _restaurants = [fetcher getCompressedMerchants];
+    
+    [MMDBFetcher get].delegate = self;
+    [[MMDBFetcher get] getCompressedMerchants];
 
     self.detailViewController = (MMDetailViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
 }
@@ -69,19 +85,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"RestaurantCell";
 
-    RestaurantCell *cell = [tableView
-            dequeueReusableCellWithIdentifier:CellIdentifier];
+    RestaurantCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
+    
     cell.nameLabel.text = [[_restaurants objectAtIndex:indexPath.row] businessname];
     cell.numberLabel.text = [[_restaurants objectAtIndex:indexPath.row] phone];
-    cell.ratinglabel.text = [[_restaurants objectAtIndex:indexPath.row] rating];
+    cell.ratinglabel.text = [NSString stringWithFormat:@"%@", [[_restaurants objectAtIndex:indexPath.row] rating]];
+    
     UIImage *myImage = [UIImage imageWithData:
             [NSData dataWithContentsOfURL:
                     [NSURL URLWithString:[[_restaurants objectAtIndex:indexPath.row] picture]]]];
+    
     cell.thumbnailImageView.image = myImage;
-
     cell.ratingview.progress = [[[_restaurants objectAtIndex:indexPath.row] rating] floatValue] / 10.0;
     [cell.ratingview setProgressViewStyle:UIProgressViewStyleBar];
 

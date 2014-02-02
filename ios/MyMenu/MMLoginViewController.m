@@ -37,8 +37,20 @@
     return self;
 }
 
-- (void)wasUserVerified:(NSInteger)resultCode withResponse:(MMDBFetcherResponse *)response
-{
+- (void)wasUserVerified:(NSInteger)resultCode withResponse:(MMDBFetcherResponse *)response {
+    // Error communicating with server!
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+    // User profile found, now retrieve user's profile.
     if (resultCode > 0) {
         [[MMDBFetcher get] getUser:self.emailAddress.text];
     }
@@ -52,11 +64,24 @@
     }
 }
 
-- (void)didRetrieveUser:(MMUser *)user withResponse:(MMDBFetcherResponse *)response
-{
+- (void)didRetrieveUser:(MMUser *)user withResponse:(MMDBFetcherResponse *)response {
+    // Error communication with server!
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+    // Serialize user profile and save to shared preferences.
     NSUserDefaults * userPreferances = [NSUserDefaults standardUserDefaults];
     NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
     [userPreferances setObject:encodedUser forKey:kCurrentUser];
+    
     [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
 }
 
@@ -140,24 +165,26 @@
 - (IBAction)login:(id)sender {
 
     MMUser *user = [[MMUser alloc] init];
-    if (([self.emailAddress.text isEqualToString:@""] || self.emailAddress.text == nil) || ([self.password.text isEqualToString:@""] || self.password.text == nil)) {
-        NSLog(@"shfdkjshflshldgkhan");
+    if (![self validLoginCredentialFields]) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
                                                           message:@"Please enter a valid user name and password."
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
+        
         return;
     } else {
         user.email = self.emailAddress.text;
         user.password = self.password.text;
-        
     }
 
-    MMDBFetcher *fetcher = [MMDBFetcher get];
-    [fetcher userVerified:user];
+    [[MMDBFetcher get] userVerified:user];
 }
 
+- (BOOL)validLoginCredentialFields
+{
+    return !(([self.emailAddress.text isEqualToString:@""] || self.emailAddress.text == nil) || ([self.password.text isEqualToString:@""] || self.password.text == nil));
+}
 
 @end

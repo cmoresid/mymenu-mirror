@@ -16,8 +16,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMDBFetcherDelegate.h"
 
-@interface MMSpecialsCollectionViewController : UICollectionViewController
+@interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate>
 
 @property(nonatomic) int specialsType;
 @property(nonatomic, weak) IBOutlet UISegmentedControl *tabOutlet;
