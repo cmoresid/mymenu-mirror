@@ -21,6 +21,7 @@
 #import "MMDBFetcher.h"
 #import "MMDietaryRestrictionCell.h"
 #import "MMRestrictionSwitch.h"
+#import "MBProgressHUD.h"
 
 #define kCurrentUser @"currentUser"
 
@@ -51,6 +52,8 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
     // Load all restrictions.
     [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getAllRestrictions];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
 }
 
 - (void)didRetrieveUserRestrictions:(NSArray *)userRestrictions withResponse:(MMDBFetcherResponse *)response {
@@ -69,6 +72,7 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
         [dietaryRestrictionIds addObject:((MMRestriction *)userRestrictions[i]).id];
     }
     
+    [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
     [self.collectionView reloadData];
 }
 
@@ -99,6 +103,7 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
         [[MMDBFetcher get] getUserRestrictions:userProfile.email];
     }
     else {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
         [self.collectionView reloadData];
     }
 }

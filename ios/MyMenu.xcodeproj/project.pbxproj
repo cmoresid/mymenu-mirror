@@ -75,7 +75,6 @@
 		9BBD913E189478A8006DDBCE /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913C189478A8006DDBCE /* RXMLElement.m */; };
 		9BBD9140189478CF006DDBCE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBD913F189478CF006DDBCE /* libz.dylib */; };
 		9BBD9142189478DB006DDBCE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBD9141189478DB006DDBCE /* libxml2.dylib */; };
-		B0760F15189ED18D00C40D15 /* libMBProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0760F14189ED18D00C40D15 /* libMBProgressHUD.a */; };
 		B0760F1A189ED2FA00C40D15 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B0760F19189ED2FA00C40D15 /* MBProgressHUD.m */; };
 		B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57251893084E00DEBAD8 /* MMLoginViewController.m */; };
 		B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */; };
@@ -212,7 +211,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0760F15189ED18D00C40D15 /* libMBProgressHUD.a in Frameworks */,
 				9BBD9142189478DB006DDBCE /* libxml2.dylib in Frameworks */,
 				9BBD9140189478CF006DDBCE /* libz.dylib in Frameworks */,
 				83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */,
