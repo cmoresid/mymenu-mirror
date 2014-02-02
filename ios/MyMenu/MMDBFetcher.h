@@ -67,11 +67,6 @@
 - (void)addUserRestrictions:(NSString *)email :(NSArray *)restrictions;
 
 /**
-* Remove all given restrictions for the given user.
-*/
-- (void)removeUserRestrictions:(NSString *)email;
-
-/**
 * Get all merchants. Only return a subset of the fields to minify data.
 *
 * TODO: filter by nearby

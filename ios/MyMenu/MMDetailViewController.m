@@ -54,8 +54,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [MMDBFetcher get].delegate = self;
     [self configureView];
 
     // Set up the map bounds
@@ -72,7 +70,9 @@
     region.span = span;
 
     // Add pins for the restaurants
-    [[MMDBFetcher get] getCompressedMerchants];
+    self.dbFetcher = [[MMDBFetcher alloc] init];
+    self.dbFetcher.delegate = self;
+    [self.dbFetcher getCompressedMerchants];
 
     [self.mapView setRegion:region animated:YES];
 }
@@ -90,6 +90,32 @@
     }
     
     [self pinRestaurants:compressedMerchants];
+}
+
+- (void)didCreateUser:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Profile Creation Error"
+                                                          message:@"Unable to create user profile."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+}
+
+- (void)didAddUserRestrictions:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Dietary Restriction Error"
+                                                          message:@"Unable to update dietary restrictions."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
 }
 
 // Actually put all the pins on the map for each restaurant

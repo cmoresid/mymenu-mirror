@@ -49,6 +49,7 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
     [super viewDidLoad];
     
     // Load all restrictions.
+    [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getAllRestrictions];
 }
 
@@ -67,6 +68,8 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
     for (int i = 0; i < userRestrictions.count; i++){
         [dietaryRestrictionIds addObject:((MMRestriction *)userRestrictions[i]).id];
     }
+    
+    [self.collectionView reloadData];
 }
 
 - (void)didRetrieveAllRestrictions:(NSArray *)restrictions withResponse:(MMDBFetcherResponse *)response {
@@ -82,16 +85,21 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
     }
     
     allRestrictions = restrictions;
-    [self loadAllImages];
+    
+    // TODO: Remove this in a little bit
+    //[self loadAllImages];
     
     dietaryRestrictionIds = [[NSMutableArray alloc] init];
     
     NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
     NSData * currentUser = [perfs objectForKey:kCurrentUser];
-    self.userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
 	
     if (currentUser != nil) {
-        [[MMDBFetcher get] getUserRestrictions:self.userProfile.email];
+        MMUser* userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
+        [[MMDBFetcher get] getUserRestrictions:userProfile.email];
+    }
+    else {
+        [self.collectionView reloadData];
     }
 }
 
@@ -147,8 +155,11 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
 
     MMRestriction *restriction = [allRestrictions objectAtIndex:indexPath.row];
 
-    UIImageView *recipeImageView = (UIImageView *) [cell viewWithTag:100];
-    recipeImageView.image = restriction.imageRep;
+    /*
+     * Cannot load images now from url! Ignoring for now...
+     */
+    //UIImageView *recipeImageView = (UIImageView *) [cell viewWithTag:100];
+    //recipeImageView.image = restriction.imageRep;
 
     // Set the Restriction Title
     UITextView *textView = (UITextView *) [cell viewWithTag:101];
@@ -169,9 +180,14 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
     // Make sure your segue name in storyboard is the same as this line
     if ([[segue identifier] isEqualToString:@"goToMainView"]) {
         MMDBFetcher *fetcher = [MMDBFetcher get];
+        // Allow destination controller to be delegate now
+        fetcher.delegate = [segue destinationViewController];
+        
         [fetcher addUser:self.userProfile];
+        
         NSArray *finalRestrictions = [dietaryRestrictionIds copy];
         [fetcher addUserRestrictions:self.userProfile.email :finalRestrictions];
+        
         NSUserDefaults * userPreferances = [NSUserDefaults standardUserDefaults];
         NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:self.userProfile];
         [userPreferances setObject:encodedUser forKey:kCurrentUser];

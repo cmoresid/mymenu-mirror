@@ -83,6 +83,8 @@
     [userPreferances setObject:encodedUser forKey:kCurrentUser];
     
     [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
+    
+    [MMDBFetcher get].delegate = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -47,13 +47,15 @@
     
     // Successful retrieved restaurant list.
     self.restaurants = compressedMerchants;
+    [((UITableView*)self.view) reloadData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [MMDBFetcher get].delegate = self;
-    [[MMDBFetcher get] getCompressedMerchants];
+    self.dbFetcher = [[MMDBFetcher alloc] init];
+    self.dbFetcher.delegate = self;
+    [self.dbFetcher getCompressedMerchants];
 
     self.detailViewController = (MMDetailViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
 }

@@ -232,31 +232,53 @@ static MMDBFetcher *instance;
 }
 
 - (void)addUserRestrictions:(NSString *)email :(NSArray *)restrictions {
-    [self removeUserRestrictions:email];
+    NSMutableURLRequest* removeRestrictionsRequest = [self removeUserRestrictions:email];
+    
+    [NSURLConnection sendAsynchronousRequest:removeRestrictionsRequest
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                               
+                               if (dbResponse.wasSuccessful) {
+                                   [self innerAddUserRestrictions:email :restrictions];
+                               }
+                               else {
+                                   [dbResponse.messages addObject:@"Unable to remove existing restrictions."];
+                                   [self.delegate didAddUserRestrictions:FALSE withResponse:dbResponse];
+                               }
+                           }];
+}
 
+- (void)innerAddUserRestrictions:(NSString*)email :(NSArray*)restrictions {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictionuserlink/put.php"]];
-
+    
     NSString *queryFormat = @"restrictid=%@&email=%@";
-
+    
     for (NSUInteger i = 0; i < [restrictions count]; i++) {
         NSString *query = [NSString stringWithFormat:queryFormat, [restrictions objectAtIndex:i], email];
         [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
         [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
         
-        /* Complete */
-        
-        NSURLResponse *response = [[NSURLResponse alloc] init];
-        NSError *error = [[NSError alloc] init];
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                   MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                                   
+                                   if (dbResponse.wasSuccessful) {
+                                       [self.delegate didAddUserRestrictions:TRUE withResponse:dbResponse];
+                                   }
+                                   else {
+                                       [dbResponse.messages addObject:@"Unable to add a dietary restriction."];
+                                       [self.delegate didAddUserRestrictions:FALSE withResponse:dbResponse];
+                                   }
+                               }];
     }
-
 }
 
-- (void)removeUserRestrictions:(NSString *)email {
+- (NSMutableURLRequest*)removeUserRestrictions:(NSString *)email {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
@@ -267,13 +289,7 @@ static MMDBFetcher *instance;
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
     
-    NSURLResponse *response = [[NSURLResponse alloc] init];
-    NSError *error = [[NSError alloc] init];
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    
+    return request;
 }
 
 - (void)getUserRestrictions:(NSString *)email {

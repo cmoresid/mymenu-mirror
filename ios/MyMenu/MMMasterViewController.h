@@ -17,6 +17,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MMDBFetcherDelegate.h"
+#import "MMDBFetcher.h"
 
 @class MMDetailViewController;
 
@@ -24,5 +25,6 @@
 
 @property(nonatomic, retain) NSArray *restaurants;
 @property(strong, nonatomic) MMDetailViewController *detailViewController;
+@property(nonatomic, strong) MMDBFetcher* dbFetcher;
 
 @end
