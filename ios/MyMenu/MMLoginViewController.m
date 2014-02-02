@@ -41,6 +41,7 @@
 - (void)wasUserVerified:(NSInteger)resultCode withResponse:(MMDBFetcherResponse *)response {
     // Error communicating with server!
     if (!response.wasSuccessful) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
                                                           message:@"Unable to communicate with server."
                                                          delegate:nil
@@ -56,6 +57,8 @@
         [[MMDBFetcher get] getUser:self.emailAddress.text];
     }
     else {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
                                                           message:@"Please enter a valid user name and password."
                                                          delegate:nil
@@ -66,6 +69,9 @@
 }
 
 - (void)didRetrieveUser:(MMUser *)user withResponse:(MMDBFetcherResponse *)response {
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
     // Error communication with server!
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
@@ -83,8 +89,6 @@
     NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
     [userPreferances setObject:encodedUser forKey:kCurrentUser];
     [MMDBFetcher get].delegate = nil;
-    
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
 }
@@ -183,6 +187,7 @@
         user.password = self.password.text;
     }
 
+    [self.password resignFirstResponder];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[MMDBFetcher get] userVerified:user];
 }
