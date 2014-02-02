@@ -146,7 +146,7 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
 //switches to either false or true depending on the current user.
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"Cell";
-
+	
     MMDietaryRestrictionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     [cell.onSwitch addTarget:self action:@selector(switchFlicked:) forControlEvents:UIControlEventValueChanged];
 
@@ -156,7 +156,6 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
 
     [collectionView setBackgroundColor:[UIColor tealColor]];
     [cell.contentView setBackgroundColor:[UIColor whiteColor]];
-    NSLog(@"%@", cell.contentView.subviews);
 
     MMRestriction *restriction = [allRestrictions objectAtIndex:indexPath.row];
 
