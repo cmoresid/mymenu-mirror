@@ -18,6 +18,7 @@
 #import "MMLoginViewController.h"
 #import "MMUser.h"
 #import "MMDBFetcher.h"
+#import "MBProgressHUD.h"
 
 #define kCurrentUser @"currentUser"
 
@@ -81,10 +82,11 @@
     NSUserDefaults * userPreferances = [NSUserDefaults standardUserDefaults];
     NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
     [userPreferances setObject:encodedUser forKey:kCurrentUser];
+    [MMDBFetcher get].delegate = nil;
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
-    
-    [MMDBFetcher get].delegate = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -181,6 +183,7 @@
         user.password = self.password.text;
     }
 
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[MMDBFetcher get] userVerified:user];
 }
 

@@ -75,6 +75,8 @@
 		9BBD913E189478A8006DDBCE /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913C189478A8006DDBCE /* RXMLElement.m */; };
 		9BBD9140189478CF006DDBCE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBD913F189478CF006DDBCE /* libz.dylib */; };
 		9BBD9142189478DB006DDBCE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBD9141189478DB006DDBCE /* libxml2.dylib */; };
+		B0760F15189ED18D00C40D15 /* libMBProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0760F14189ED18D00C40D15 /* libMBProgressHUD.a */; };
+		B0760F1A189ED2FA00C40D15 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B0760F19189ED2FA00C40D15 /* MBProgressHUD.m */; };
 		B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57251893084E00DEBAD8 /* MMLoginViewController.m */; };
 		B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */; };
 		B083C7D8189D85550074F7DC /* MMDBFetcherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B083C7D7189D85550074F7DC /* MMDBFetcherResponse.m */; };
@@ -180,6 +182,9 @@
 		9BBD913C189478A8006DDBCE /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXMLElement.m; sourceTree = "<group>"; };
 		9BBD913F189478CF006DDBCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9BBD9141189478DB006DDBCE /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		B0760F14189ED18D00C40D15 /* libMBProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMBProgressHUD.a; path = MyMenu/lib/libMBProgressHUD.a; sourceTree = "<group>"; };
+		B0760F18189ED2FA00C40D15 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
+		B0760F19189ED2FA00C40D15 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		B07A57241893084E00DEBAD8 /* MMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLoginViewController.h; sourceTree = "<group>"; };
 		B07A57251893084E00DEBAD8 /* MMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLoginViewController.m; sourceTree = "<group>"; };
 		B07A57261893084E00DEBAD8 /* UIColor+MyMenuColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyMenuColors.h"; sourceTree = "<group>"; };
@@ -207,6 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0760F15189ED18D00C40D15 /* libMBProgressHUD.a in Frameworks */,
 				9BBD9142189478DB006DDBCE /* libxml2.dylib in Frameworks */,
 				9BBD9140189478CF006DDBCE /* libz.dylib in Frameworks */,
 				83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */,
@@ -287,6 +293,7 @@
 		83893EA918919AD400D36670 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B0760F14189ED18D00C40D15 /* libMBProgressHUD.a */,
 				9BBD9141189478DB006DDBCE /* libxml2.dylib */,
 				9BBD913F189478CF006DDBCE /* libz.dylib */,
 				83A61ED018922E4E00269357 /* MapKit.framework */,
@@ -314,6 +321,7 @@
 				B0AC55C31896F90D000BC0DD /* Delegate */,
 				9B4E248A1891E00100F5B955 /* Model */,
 				83893EB118919AD400D36670 /* Supporting Files */,
+				B0760F17189ED2DA00C40D15 /* MBProgressHUB */,
 				174FE0C018945E5800CB82C0 /* RestaurantCell.h */,
 				171EA89B189B043F002DEFEF /* MMDietaryRestrictionCell.h */,
 				171EA89E189B094E002DEFEF /* MMRestrictionSwitch.h */,
@@ -395,6 +403,15 @@
 				9BBD913C189478A8006DDBCE /* RXMLElement.m */,
 			);
 			path = RaptureXML;
+			sourceTree = "<group>";
+		};
+		B0760F17189ED2DA00C40D15 /* MBProgressHUB */ = {
+			isa = PBXGroup;
+			children = (
+				B0760F18189ED2FA00C40D15 /* MBProgressHUD.h */,
+				B0760F19189ED2FA00C40D15 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUB;
 			sourceTree = "<group>";
 		};
 		B097D6FD18938EA300142F8D /* Controller */ = {
@@ -575,6 +592,7 @@
 				83B85B861897029100195F05 /* MMSpecialsCollectionViewController.m in Sources */,
 				B097D6F91893608300142F8D /* MMDietaryRestrictionsViewController.m in Sources */,
 				9B4E24741891D67300F5B955 /* MMMenuItem.m in Sources */,
+				B0760F1A189ED2FA00C40D15 /* MBProgressHUD.m in Sources */,
 				B0AC55C21896F8E9000BC0DD /* MMRegistrationPopoverViewController.m in Sources */,
 				9B4E248D1891E02B00F5B955 /* MMRestriction.m in Sources */,
 				9B4E247C1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */,
@@ -752,6 +770,10 @@
 					"$(SDK_DIR)\"/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "MyMenu/MyMenu-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/connorm/git/MyMenu/ios/MyMenu/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -770,6 +792,10 @@
 					"$(SDK_DIR)\"/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "MyMenu/MyMenu-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/connorm/git/MyMenu/ios/MyMenu/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
