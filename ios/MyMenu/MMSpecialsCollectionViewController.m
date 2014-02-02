@@ -18,6 +18,7 @@
 #import "MMSpecialsCollectionViewController.h"
 #import "MMSpecial.h"
 #import "MMDBFetcher.h"
+#import "MBProgressHUD.h"
 
 @interface MMSpecialsCollectionViewController ()
 @property(weak, nonatomic) IBOutlet UISegmentedControl *weekDayButtons;
@@ -85,10 +86,30 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 * Request specials for a given day. Uses the specialsType defined by the segue
 */
 - (void)loadDay:(NSString *)day {
+    // Empty out specials array when loading
+    // new data so no artifact data remains when
+    // switching days.
+    specials = [[NSArray alloc] init];
+    [self.collectionView reloadData];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     [[MMDBFetcher get] getSpecials:day withType:self.specialsType];
 }
 
 - (void)didRetrieveSpecials:(NSArray *)webSpecials withResponse:(MMDBFetcherResponse *)response {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+    
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                          message:@"Unable to retrieve specials."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
     specials = webSpecials;
     [[self collectionView] reloadData];
 }
