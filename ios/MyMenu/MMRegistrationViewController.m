@@ -206,7 +206,7 @@
         self.userProfile.firstName = self.firstNameField.text;
         self.userProfile.lastName = self.lastNameField.text;
         self.userProfile.country = @"CAN";
-
+        
         MMDietaryRestrictionsViewController *destinationController = [segue destinationViewController];
 
         destinationController.userProfile = self.userProfile;

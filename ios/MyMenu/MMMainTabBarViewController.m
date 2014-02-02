@@ -41,4 +41,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)didCreateUser:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
+    NSLog(@"Did create user.");
+}
+
+- (void)didAddUserRestrictions:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
+    NSLog(@"Did add user restrictions.");
+}
+
 @end
