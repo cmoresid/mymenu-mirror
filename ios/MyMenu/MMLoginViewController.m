@@ -18,6 +18,7 @@
 #import "MMLoginViewController.h"
 #import "MMUser.h"
 #import "MMDBFetcher.h"
+#import "MBProgressHUD.h"
 
 #define kCurrentUser @"currentUser"
 
@@ -37,6 +38,61 @@
     return self;
 }
 
+- (void)wasUserVerified:(NSInteger)resultCode withResponse:(MMDBFetcherResponse *)response {
+    // Error communicating with server!
+    if (!response.wasSuccessful) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+    // User profile found, now retrieve user's profile.
+    if (resultCode > 0) {
+        [[MMDBFetcher get] getUser:self.emailAddress.text];
+    }
+    else {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
+                                                          message:@"Please enter a valid user name and password."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+    }
+}
+
+- (void)didRetrieveUser:(MMUser *)user withResponse:(MMDBFetcherResponse *)response {
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    // Error communication with server!
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+    // Serialize user profile and save to shared preferences.
+    NSUserDefaults * userPreferances = [NSUserDefaults standardUserDefaults];
+    NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
+    [userPreferances setObject:encodedUser forKey:kCurrentUser];
+    [MMDBFetcher get].delegate = nil;
+    
+    [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
 
 }
@@ -46,6 +102,7 @@
 
     self.emailAddress.delegate = self;
     self.password.delegate = self;
+    [MMDBFetcher get].delegate = self;
 
 
     [self registerForKeyboardNotifications];
@@ -116,40 +173,32 @@
 - (IBAction)login:(id)sender {
 
     MMUser *user = [[MMUser alloc] init];
-    if (([self.emailAddress.text isEqualToString:@""] || self.emailAddress.text == nil) || ([self.password.text isEqualToString:@""] || self.password.text == nil)) {
-        NSLog(@"shfdkjshflshldgkhan");
+    if (![self validLoginCredentialFields]) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
                                                           message:@"Please enter a valid user name and password."
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
+        
         return;
     } else {
         user.email = self.emailAddress.text;
         user.password = self.password.text;
-        
     }
 
-    MMDBFetcher *fetcher = [[MMDBFetcher get] init];
-    NSInteger resultCode = [fetcher userVerified:user];
+    // If keyboard is shown, hide it when trying
+    // to login.
+    [self.password resignFirstResponder];
+    [self.emailAddress resignFirstResponder];
     
-
-    if (resultCode > 0){
-        user = [fetcher getUser:user.email];
-        NSUserDefaults * userPreferances = [NSUserDefaults standardUserDefaults];
-        NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
-        [userPreferances setObject:encodedUser forKey:kCurrentUser];
-        [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
-    }else {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
-                                                          message:@"Please enter a valid user name and password."
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [message show];
-    }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[MMDBFetcher get] userVerified:user];
 }
 
+- (BOOL)validLoginCredentialFields
+{
+    return !(([self.emailAddress.text isEqualToString:@""] || self.emailAddress.text == nil) || ([self.password.text isEqualToString:@""] || self.password.text == nil));
+}
 
 @end

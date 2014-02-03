@@ -34,11 +34,39 @@
     [super awakeFromNib];
 }
 
+- (void)didRetrieveCompressedMerchants:(NSArray *)compressedMerchants withResponse:(MMDBFetcherResponse *)response {
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+    // Successful retrieved restaurant list.
+    self.restaurants = compressedMerchants;
+    [((UITableView*)self.view) reloadData];
+}
+
+- (void)didRetrieveMerchant:(MMMerchant *)merchant withResponse:(MMDBFetcherResponse *)response {
+    
+    self.selectRest = merchant;
+    
+    NSLog(@"the id is : %@", self.selectRest.mid);
+    NSLog(@"Restaurant desc = %@", self.selectRest.desc);
+    
+    [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    MMDBFetcher *fetcher = [MMDBFetcher get];
-    _restaurants = [fetcher getCompressedMerchants];
+    
+    self.dbFetcher = [[MMDBFetcher alloc] init];
+    self.dbFetcher.delegate = self;
+    [self.dbFetcher getCompressedMerchants];
 
     self.detailViewController = (MMDetailViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
 }
@@ -70,19 +98,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"RestaurantCell";
 
-    RestaurantCell *cell = [tableView
-            dequeueReusableCellWithIdentifier:CellIdentifier];
+    RestaurantCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
+    
     cell.nameLabel.text = [[_restaurants objectAtIndex:indexPath.row] businessname];
     cell.numberLabel.text = [[_restaurants objectAtIndex:indexPath.row] phone];
-    cell.ratinglabel.text = [[_restaurants objectAtIndex:indexPath.row] rating];
+    cell.ratinglabel.text = [NSString stringWithFormat:@"%@", [[_restaurants objectAtIndex:indexPath.row] rating]];
+    
     UIImage *myImage = [UIImage imageWithData:
             [NSData dataWithContentsOfURL:
                     [NSURL URLWithString:[[_restaurants objectAtIndex:indexPath.row] picture]]]];
+    
     cell.thumbnailImageView.image = myImage;
-
     cell.ratingview.progress = [[[_restaurants objectAtIndex:indexPath.row] rating] floatValue] / 10.0;
     [cell.ratingview setProgressViewStyle:UIProgressViewStyleBar];
 
@@ -112,13 +141,7 @@
     NSLog(@"Selected %@", indexPath);
     NSLog(@"ABC");
 
-    MMDBFetcher *fetcher1 = [MMDBFetcher get];
-    _selectRest = [fetcher1 getMerchant:[[_restaurants objectAtIndex:indexPath.row] mid]];
-    NSLog(@"the id is : @%@", [[_restaurants objectAtIndex:indexPath.row] mid]);
-    NSLog(@"Restaurant desc = %@", _selectRest.desc);
-    //_selectRest = [_restaurants objectAtIndex:indexPath.row];
-    
-    [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
+    [self.dbFetcher getMerchant:[self.restaurants objectAtIndex:indexPath.row]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

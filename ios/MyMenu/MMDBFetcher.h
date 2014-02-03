@@ -20,11 +20,14 @@
 #import "MMRestriction.h"
 #import "MMSpecial.h"
 #import "MMMerchant.h"
+#import "MMDBFetcherDelegate.h"
 
 /**
 * A model for qeurying data from the api.
 */
 @interface MMDBFetcher : NSObject <NSURLConnectionDataDelegate>
+
+@property (nonatomic, strong) id<MMDBFetcherDelegate> delegate;
 
 /**
 * Get a singleton instance of this class.
@@ -34,7 +37,7 @@
 * significant performance improvements.
 *
 */
-+ (id)get;
++ (MMDBFetcher*)get;
 
 /**
 * Add a user to the service.
@@ -44,17 +47,19 @@
 /**
 * Check if the user with this email address exists already.
 */
-- (bool)userExists:(NSString *)email;
+- (void)userExists:(NSString *)email;
 
 /**
 * Checks if the password for the user is entered correctly (for login).
 */
-- (NSInteger)userVerified:(MMUser *)user;
+- (void)userVerified:(MMUser *)user;
 
 /**
 * Get specials for the given day of the given type.
 */
-- (NSArray *)getSpecials:(NSString *)day :(NSInteger)type;
+
+//- (NSArray *)getSpecials:(NSString *)day :(NSInteger)type;
+- (void)getSpecials:(NSString *)day withType:(NSInteger)type;
 
 /**
 * Add all given restrictions for the given user.
@@ -62,36 +67,32 @@
 - (void)addUserRestrictions:(NSString *)email :(NSArray *)restrictions;
 
 /**
-* Remove all given restrictions for the given user.
-*/
-- (void)removeUserRestrictions:(NSString *)email;
-
-/**
 * Get all merchants. Only return a subset of the fields to minify data.
 *
 * TODO: filter by nearby
 */
-- (NSArray *)getCompressedMerchants;
+//- (NSArray *)getCompressedMerchants;
+- (void)getCompressedMerchants;
 
 /**
 * Get the menu for the restaurant.
 */
-- (NSArray *)getMenu:(NSInteger *)merchid;
+- (void)getMenu:(NSInteger *)merchid;
 
 /**
 * Get all restrictions that we support.
 */
-- (NSArray *)getAllRestrictions;
+- (void)getAllRestrictions;
 
 /**
 * Get all restrictions for the given user.
 */
-- (NSArray *)getUserRestrictions:(NSString *)email;
+- (void)getUserRestrictions:(NSString *)email;
 
 /**
 * Get all information about the merchant (restaurant) with the given id.
 */
-- (MMMerchant *)getMerchant:(NSNumber *)merchid;
+- (void)getMerchant:(NSNumber *)merchid;
 
 /**
 * Edit the given user's information on the server.
@@ -101,6 +102,6 @@
 /**
 * Get all information for the user with the given email.
 */
-- (MMUser *)getUser:(NSString *)email;
+- (void)getUser:(NSString *)email;
 
 @end

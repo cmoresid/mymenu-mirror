@@ -21,6 +21,7 @@
 #import "MMDBFetcher.h"
 #import "MMDietaryRestrictionCell.h"
 #import "MMRestrictionSwitch.h"
+#import "MBProgressHUD.h"
 
 #define kCurrentUser @"currentUser"
 
@@ -31,7 +32,7 @@
 @implementation MMDietaryRestrictionsViewController
 
 NSArray *allRestrictions; // all restrictions
-NSMutableArray *dietaryRestrictions; // dietary restrictions
+NSMutableArray *dietaryRestrictionIds; // dietary restrictions
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -47,21 +48,63 @@ NSMutableArray *dietaryRestrictions; // dietary restrictions
 //loads the view with the dietary restrictions already chosen by the user.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    allRestrictions = [[MMDBFetcher get] getAllRestrictions];
-	[self loadAllImages];
-    dietaryRestrictions = [[NSMutableArray alloc] init];
+    
+    // Load all restrictions.
+    [MMDBFetcher get].delegate = self;
+    [[MMDBFetcher get] getAllRestrictions];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+}
+
+- (void)didRetrieveUserRestrictions:(NSArray *)userRestrictions withResponse:(MMDBFetcherResponse *)response {
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+    for (int i = 0; i < userRestrictions.count; i++){
+        [dietaryRestrictionIds addObject:((MMRestriction *)userRestrictions[i]).id];
+    }
+    
+    [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+    [self.collectionView reloadData];
+}
+
+- (void)didRetrieveAllRestrictions:(NSArray *)restrictions withResponse:(MMDBFetcherResponse *)response {
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+    allRestrictions = restrictions;
+    
+    // TODO: Remove this in a little bit
+    //[self loadAllImages];
+    
+    dietaryRestrictionIds = [[NSMutableArray alloc] init];
+    
     NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
     NSData * currentUser = [perfs objectForKey:kCurrentUser];
-    NSArray * dietaryRestriction = [[NSArray alloc]init];
-    self.userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
 	
     if (currentUser != nil) {
-        MMDBFetcher *dbFetch = [[MMDBFetcher alloc] init];
-        dietaryRestriction = [[dbFetch getUserRestrictions:self.userProfile.email] mutableCopy];
+        MMUser* userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
+        [[MMDBFetcher get] getUserRestrictions:userProfile.email];
     }
-	
-    for (int i = 0; i <dietaryRestriction.count; i++){
-        [dietaryRestrictions addObject:((MMRestriction *)dietaryRestriction[i]).id];
+    else {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+        [self.collectionView reloadData];
     }
 }
 
@@ -79,10 +122,10 @@ NSMutableArray *dietaryRestrictions; // dietary restrictions
     MMRestrictionSwitch *restriction = ((MMRestrictionSwitch *) sender);
 
     if (restriction.on) {
-        if (![dietaryRestrictions containsObject:restriction.restId])
-            [dietaryRestrictions addObject:restriction.restId];
+        if (![dietaryRestrictionIds containsObject:restriction.restId])
+            [dietaryRestrictionIds addObject:restriction.restId];
     } else
-        [dietaryRestrictions removeObject:restriction.restId];
+        [dietaryRestrictionIds removeObject:restriction.restId];
 
 
 }
@@ -116,15 +159,18 @@ NSMutableArray *dietaryRestrictions; // dietary restrictions
 
     MMRestriction *restriction = [allRestrictions objectAtIndex:indexPath.row];
 
-    UIImageView *recipeImageView = (UIImageView *) [cell viewWithTag:100];
-    recipeImageView.image = restriction.imageRep;
+    /*
+     * Cannot load images now from url! Ignoring for now...
+     */
+    //UIImageView *recipeImageView = (UIImageView *) [cell viewWithTag:100];
+    //recipeImageView.image = restriction.imageRep;
 
     // Set the Restriction Title
     UITextView *textView = (UITextView *) [cell viewWithTag:101];
     textView.text = restriction.name;
     MMRestrictionSwitch *restSwitch = (MMRestrictionSwitch *) [cell viewWithTag:102];
     restSwitch.restId = restriction.id;
-    if ([dietaryRestrictions containsObject:restriction.id]) {
+    if ([dietaryRestrictionIds containsObject:restriction.id]) {
         restSwitch.on = TRUE;
     } else {
         restSwitch.on = FALSE;
@@ -138,9 +184,14 @@ NSMutableArray *dietaryRestrictions; // dietary restrictions
     // Make sure your segue name in storyboard is the same as this line
     if ([[segue identifier] isEqualToString:@"goToMainView"]) {
         MMDBFetcher *fetcher = [MMDBFetcher get];
+        // Allow destination controller to be delegate now
+        fetcher.delegate = [segue destinationViewController];
+        
         [fetcher addUser:self.userProfile];
-        NSArray *finalRestrictions = [dietaryRestrictions copy];
+        
+        NSArray *finalRestrictions = [dietaryRestrictionIds copy];
         [fetcher addUserRestrictions:self.userProfile.email :finalRestrictions];
+        
         NSUserDefaults * userPreferances = [NSUserDefaults standardUserDefaults];
         NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:self.userProfile];
         [userPreferances setObject:encodedUser forKey:kCurrentUser];

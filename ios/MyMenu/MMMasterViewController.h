@@ -16,14 +16,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMDBFetcherDelegate.h"
+#import "MMDBFetcher.h"
 #import "MMMerchant.h"
 
 @class MMDetailViewController;
 
-@interface MMMasterViewController : UITableViewController
+@interface MMMasterViewController : UITableViewController <MMDBFetcherDelegate>
 
 @property(nonatomic, retain) NSArray *restaurants;
 @property(nonatomic, retain) MMMerchant* selectRest;
 @property(strong, nonatomic) MMDetailViewController *detailViewController;
+@property(nonatomic, strong) MMDBFetcher* dbFetcher;
 
 @end

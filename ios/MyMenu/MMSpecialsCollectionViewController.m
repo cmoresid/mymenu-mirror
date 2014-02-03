@@ -18,6 +18,7 @@
 #import "MMSpecialsCollectionViewController.h"
 #import "MMSpecial.h"
 #import "MMDBFetcher.h"
+#import "MBProgressHUD.h"
 
 @interface MMSpecialsCollectionViewController ()
 @property(weak, nonatomic) IBOutlet UISegmentedControl *weekDayButtons;
@@ -45,7 +46,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
         NSString *day = days[index];
         NSLog(@"at index, %u, with day %@", index, day);
         [self loadDay:day];
-        [[self collectionView] reloadData];
     }
 }
 
@@ -55,7 +55,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     NSString *day = [self getToday];
 
     // find the index that today is at
-    int index;
+    int index = -1;
     for (int i = 0; i < 7; i++) {
         if ([[days[i] lowercaseString] isEqualToString:[day lowercaseString]]) {
             index = i;
@@ -63,6 +63,11 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
         }
     }
 
+    [MMDBFetcher get].delegate = self;
+    // initialize specials array to be empty
+    // at first for async.
+    specials = [[NSArray alloc] init];
+    
     // set today as selected
     [self.tabOutlet setSelectedSegmentIndex:index];
     [self loadDay:[self getToday]];
@@ -81,7 +86,32 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 * Request specials for a given day. Uses the specialsType defined by the segue
 */
 - (void)loadDay:(NSString *)day {
-    specials = [[MMDBFetcher get] getSpecials:day :self.specialsType];
+    // Empty out specials array when loading
+    // new data so no artifact data remains when
+    // switching days.
+    specials = [[NSArray alloc] init];
+    [self.collectionView reloadData];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+    [[MMDBFetcher get] getSpecials:day withType:self.specialsType];
+}
+
+- (void)didRetrieveSpecials:(NSArray *)webSpecials withResponse:(MMDBFetcherResponse *)response {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+    
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                          message:@"Unable to retrieve specials."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+    specials = webSpecials;
+    [[self collectionView] reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

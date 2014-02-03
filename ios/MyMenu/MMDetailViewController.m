@@ -54,7 +54,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self configureView];
 
     // Set up the map bounds
@@ -71,15 +70,56 @@
     region.span = span;
 
     // Add pins for the restaurants
-    [self pinRestaurants];
+    self.dbFetcher = [[MMDBFetcher alloc] init];
+    self.dbFetcher.delegate = self;
+    [self.dbFetcher getCompressedMerchants];
 
     [self.mapView setRegion:region animated:YES];
 }
-// Actually put all the pins on the map for each restaurant
-- (void)pinRestaurants {
-    MMDBFetcher *fetcher = [MMDBFetcher get];
-    NSArray *restaurants = [fetcher getCompressedMerchants];
 
+- (void)didRetrieveCompressedMerchants:(NSArray *)compressedMerchants withResponse:(MMDBFetcherResponse *)response {
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+    [self pinRestaurants:compressedMerchants];
+}
+
+- (void)didCreateUser:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Profile Creation Error"
+                                                          message:@"Unable to create user profile."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+}
+
+- (void)didAddUserRestrictions:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Dietary Restriction Error"
+                                                          message:@"Unable to update dietary restrictions."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+}
+
+// Actually put all the pins on the map for each restaurant
+- (void)pinRestaurants:(NSArray*)restaurants {
     for (int i = 0; i < restaurants.count; i++) {
         MMMerchant *restaurant = [restaurants objectAtIndex:i];
 

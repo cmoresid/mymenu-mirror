@@ -17,8 +17,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MMUser.h"
+#import "MMDBFetcherDelegate.h"
 
-@interface MMDietaryRestrictionsViewController : UIViewController <UICollectionViewDataSource>
+@interface MMDietaryRestrictionsViewController : UIViewController <UICollectionViewDataSource, MMDBFetcherDelegate>
 
 @property MMUser *userProfile; //current user.
 @property(nonatomic, weak) IBOutlet UICollectionView *collectionView; //collection view reference

@@ -16,7 +16,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMDBFetcherDelegate.h"
 
-@interface MMMainTabBarViewController : UITabBarController
+@interface MMMainTabBarViewController : UITabBarController <MMDBFetcherDelegate>
 
 @end
