@@ -83,33 +83,41 @@
     return FALSE;
 }
 
-// Custom delegate method that allows for data transfer
-// from a popover view controller to this view controller.
-- (void)didSelectValue:(MMPopoverDataPair *)selectedValue {
-    switch (selectedValue.dataType) {
-        case CityValue:
-            self.userProfile.city = selectedValue.selectedValue;
-            break;
-        case GenderValue:
-            self.userProfile.gender = (selectedValue.selectedValue != nil)
-                    ? [selectedValue.selectedValue characterAtIndex:0] : 'U';
-            break;
-        case ProvinceValue:
-            self.userProfile.locality = selectedValue.selectedValue;
-            break;
-        case BirthdayValue: {
-            // TODO: Refactor
-            NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:selectedValue.selectedValue];
+- (void)didSelectCity:(NSString *)city {
+    self.cityField.text = city;
+    self.userProfile.city = city;
+    
+    [self.locationPopoverController dismissPopoverAnimated:YES];
+}
 
-            self.userProfile.birthday = [NSString stringWithFormat:@"%ld", (long) [components day]];
-            self.userProfile.birthmonth = [NSString stringWithFormat:@"%ld", (long) [components month]];
-            self.userProfile.birthyear = [NSString stringWithFormat:@"%ld", (long) [components year]];
-            break;
-        }
-        default:
-            break;
-    }
+- (void)didSelectGender:(NSString *)gender {
+    self.genderField.text = gender;
+    self.userProfile.gender = (gender != nil) ?
+        [gender characterAtIndex:0] : 'U';
+    
+    [self.locationPopoverController dismissPopoverAnimated:YES];
+}
 
+- (void)didSelectProvince:(NSString *)province {
+    self.provinceField.text = province;
+    self.userProfile.locality = province;
+    
+    [self.locationPopoverController dismissPopoverAnimated:YES];
+}
+
+- (void)didSelectBirthday:(NSDate *)birthday {
+    // Set birthday field
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    
+    self.birthdayField.text = [dateFormatter stringFromDate:birthday];
+    
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:birthday];
+    
+    self.userProfile.birthday = [NSString stringWithFormat:@"%ld", (long) [components day]];
+    self.userProfile.birthmonth = [NSString stringWithFormat:@"%ld", (long) [components month]];
+    self.userProfile.birthyear = [NSString stringWithFormat:@"%ld", (long) [components year]];
+    
     [self.locationPopoverController dismissPopoverAnimated:YES];
 }
 
@@ -157,10 +165,8 @@
 // Set the popover view size depending on which text field
 // is selected.
 - (CGSize)getPopoverViewSizeForTextField:(UITextField *)textField {
-    if (textField == self.birthdayField)
-        return CGSizeMake(450.0f, 220.0f);
-    else
-        return CGSizeMake(350.0f, 200.0f);
+    return (textField == self.birthdayField) ?
+        CGSizeMake(450.0f, 220.0f) : CGSizeMake(350.0f, 200.0f);
 }
 
 // Call this method somewhere in your view controller setup code.
@@ -235,6 +241,14 @@
 }
 
 - (void)dealloc {
+    // Compiler hint to remove any strong references to
+    // registration view controller.
+    self.locationPopoverController.delegate = nil;
+    self.cityPopoverViewController.delegate = nil;
+    self.genderPopoverViewController.delegate = nil;
+    self.provincePopoverViewController.delegate = nil;
+    self.birthdayPopoverViewController.delegate = nil;
+    
     self.locationPopoverController = nil;
     self.cityPopoverViewController = nil;
     self.provincePopoverViewController = nil;

@@ -20,6 +20,11 @@
 
 @protocol MMRegistrationPopoverDelegate <NSObject>
 
-- (void)didSelectValue:(MMPopoverDataPair *)selectedValue;
+@optional
+
+- (void)didSelectCity:(NSString*)city;
+- (void)didSelectProvince:(NSString*)province;
+- (void)didSelectGender:(NSString*)gender;
+- (void)didSelectBirthday:(NSDate*)birthday;
 
 @end

@@ -46,7 +46,7 @@
     self.provinces = [[NSArray alloc] initWithObjects:@"Choose Province", @"Alberta", nil];
     self.gender = [[NSArray alloc] initWithObjects:@"Choose Your Gender", @"Unspecified", @"Male", @"Female", nil];
 
-    self.selectedValue = nil;
+    self.popoverValue = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,40 +83,42 @@ numberOfRowsInComponent:(NSInteger)component {
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (pickerView == self.cityPicker)
-        self.selectedValue = [[MMPopoverDataPair alloc] initWithDataType:CityValue
+        self.popoverValue = [[MMPopoverDataPair alloc] initWithDataType:CityValue
                                                        withSelectedValue:self.cities[row]];
     else if (pickerView == self.provPicker)
-        self.selectedValue = [[MMPopoverDataPair alloc] initWithDataType:ProvinceValue
+        self.popoverValue = [[MMPopoverDataPair alloc] initWithDataType:ProvinceValue
                                                        withSelectedValue:self.provinces[row]];
     else if (pickerView == self.genderPicker)
-        self.selectedValue = [[MMPopoverDataPair alloc] initWithDataType:GenderValue
+        self.popoverValue = [[MMPopoverDataPair alloc] initWithDataType:GenderValue
                                                        withSelectedValue:self.gender[row]];
 }
 
 - (void)updateSelectedBirthday {
-    self.selectedValue = [[MMPopoverDataPair alloc] initWithDataType:BirthdayValue
+    self.popoverValue = [[MMPopoverDataPair alloc] initWithDataType:BirthdayValue
                                                    withSelectedValue:self.birthdayPicker.date];
 }
 
 - (IBAction)selectChoice:(id)sender {
-    self.popoverField.text = [self convertToString:self.selectedValue];
-
-    [self.delegate didSelectValue:self.selectedValue];
-}
-
-- (NSString *)convertToString:(MMPopoverDataPair *)data {
-    if (data.dataType == BirthdayValue)
-        return [self convertDateToString:data.selectedValue];
-    else
-        return data.selectedValue;
-
-}
-
-- (NSString *)convertDateToString:(NSDate *)date {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-
-    return [dateFormatter stringFromDate:date];
+    switch (self.popoverValue.dataType) {
+        case CityValue:
+            [self.delegate didSelectCity:self.popoverValue.selectedValue];
+            break;
+        
+        case GenderValue:
+            [self.delegate didSelectGender:self.popoverValue.selectedValue];
+            break;
+        
+        case ProvinceValue:
+            [self.delegate didSelectProvince:self.popoverValue.selectedValue];
+            break;
+        
+        case BirthdayValue:
+            [self.delegate didSelectBirthday:self.popoverValue.selectedValue];
+            break;
+        
+        default:
+            break;
+    }
 }
 
 @end

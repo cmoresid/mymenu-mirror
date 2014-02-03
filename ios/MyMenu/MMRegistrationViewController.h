@@ -16,6 +16,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMRegistrationPopoverViewController.h"
 #import "MMRegistrationPopoverDelegate.h"
 #import "MMUser.h"
 
@@ -35,10 +36,10 @@
 
 @property(nonatomic, strong) UIPopoverController *locationPopoverController;
 
-@property(nonatomic, strong) UIViewController *cityPopoverViewController;
-@property(nonatomic, strong) UIViewController *provincePopoverViewController;
-@property(nonatomic, strong) UIViewController *genderPopoverViewController;
-@property(nonatomic, strong) UIViewController *birthdayPopoverViewController;
+@property(nonatomic, strong) MMRegistrationPopoverViewController *cityPopoverViewController;
+@property(nonatomic, strong) MMRegistrationPopoverViewController *provincePopoverViewController;
+@property(nonatomic, strong) MMRegistrationPopoverViewController *genderPopoverViewController;
+@property(nonatomic, strong) MMRegistrationPopoverViewController *birthdayPopoverViewController;
 
 @property(readwrite) MMUser *userProfile;
 
