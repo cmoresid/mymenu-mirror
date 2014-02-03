@@ -235,6 +235,7 @@
 }
 
 - (void)dealloc {
+    self.locationPopoverController = nil;
     self.cityPopoverViewController = nil;
     self.provincePopoverViewController = nil;
     self.genderPopoverViewController = nil;

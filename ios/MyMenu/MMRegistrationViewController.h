@@ -35,10 +35,10 @@
 
 @property(nonatomic, strong) UIPopoverController *locationPopoverController;
 
-@property (nonatomic, strong) UIViewController *cityPopoverViewController;
-@property (nonatomic, strong) UIViewController *provincePopoverViewController;
-@property (nonatomic, strong) UIViewController *genderPopoverViewController;
-@property (nonatomic, strong) UIViewController *birthdayPopoverViewController;
+@property(nonatomic, strong) UIViewController *cityPopoverViewController;
+@property(nonatomic, strong) UIViewController *provincePopoverViewController;
+@property(nonatomic, strong) UIViewController *genderPopoverViewController;
+@property(nonatomic, strong) UIViewController *birthdayPopoverViewController;
 
 @property(readwrite) MMUser *userProfile;
 
