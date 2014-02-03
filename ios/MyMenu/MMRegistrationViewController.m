@@ -131,7 +131,7 @@
     }
     else if (textField == self.provinceField) {
         if (self.provincePopoverViewController == nil) {
-            self.provincePopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CityPopoverViewController"];
+            self.provincePopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProvincePopoverViewController"];
         }
         
         return self.provincePopoverViewController;

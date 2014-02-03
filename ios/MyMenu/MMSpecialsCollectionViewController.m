@@ -19,6 +19,7 @@
 #import "MMSpecial.h"
 #import "MMDBFetcher.h"
 #import "MBProgressHUD.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface MMSpecialsCollectionViewController ()
 @property(weak, nonatomic) IBOutlet UISegmentedControl *weekDayButtons;
@@ -132,15 +133,14 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 
     // Rounded Corners
-    [cell.contentView setBackgroundColor:[UIColor whiteColor]];
-
+    cell.contentView.backgroundColor = [UIColor whiteColor];
     cell.contentView.layer.cornerRadius = 5;
     cell.contentView.layer.masksToBounds = YES;
 
     MMSpecial *special = [specials objectAtIndex:indexPath.row];
-    UIImage *myImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:special.picture]]];
-
-    [(UIImageView *) [cell viewWithTag:100] setImage:myImage];
+    
+    UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
+    [imageView setImageWithURL:[NSURL URLWithString:[special picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
 
     // Set the text
     UITextView *textView = (UITextView *) [cell viewWithTag:101];
