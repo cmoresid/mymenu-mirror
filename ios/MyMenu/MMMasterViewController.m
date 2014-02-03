@@ -20,6 +20,7 @@
 #import "MMDetailViewController.h"
 #import "MMDBFetcher.h"
 #import "MMRestaurantViewController.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface MMMasterViewController () {
     NSMutableArray *_objects;
@@ -107,12 +108,11 @@
     cell.numberLabel.text = [[_restaurants objectAtIndex:indexPath.row] phone];
     cell.ratinglabel.text = [NSString stringWithFormat:@"%@", [[_restaurants objectAtIndex:indexPath.row] rating]];
     
-    UIImage *myImage = [UIImage imageWithData:
-            [NSData dataWithContentsOfURL:
-                    [NSURL URLWithString:[[_restaurants objectAtIndex:indexPath.row] picture]]]];
+    MMMerchant __weak *merchant = [_restaurants objectAtIndex:indexPath.row];
     
-    cell.thumbnailImageView.image = myImage;
-    cell.ratingview.progress = [[[_restaurants objectAtIndex:indexPath.row] rating] floatValue] / 10.0;
+    [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:[merchant picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+    
+    cell.ratingview.progress = [[merchant rating] floatValue] / 10.0;
     [cell.ratingview setProgressViewStyle:UIProgressViewStyleBar];
 
     return cell;

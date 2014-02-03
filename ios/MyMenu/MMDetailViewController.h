@@ -22,8 +22,8 @@
 
 @interface MMDetailViewController : UIViewController <UISplitViewControllerDelegate, MKMapViewDelegate, MMDBFetcherDelegate>
 
-@property(strong, nonatomic) id detailItem;
-@property(weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property(nonatomic, strong) id detailItem;
+@property(nonatomic, weak) IBOutlet UILabel *detailDescriptionLabel;
 @property(nonatomic, strong) MMDBFetcher* dbFetcher;
 // Put the restaurant points on the map
 - (void)pinRestaurants:(NSArray*)restaurants;

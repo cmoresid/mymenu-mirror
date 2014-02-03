@@ -22,6 +22,7 @@
 #import "MMDietaryRestrictionCell.h"
 #import "MMRestrictionSwitch.h"
 #import "MBProgressHUD.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 #define kCurrentUser @"currentUser"
 
@@ -108,13 +109,6 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
     }
 }
 
-
--(void)loadAllImages {
-		for(MMRestriction * restriction in allRestrictions) {
-			restriction.imageRep = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[restriction image]]]];
-		}
-}
-
 //Called everytime a switch is turned off or on in this screen.
 //It either adds or deletes a restriction from the array.
 
@@ -158,23 +152,17 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
     [cell.contentView setBackgroundColor:[UIColor whiteColor]];
 
     MMRestriction *restriction = [allRestrictions objectAtIndex:indexPath.row];
-
-    /*
-     * Cannot load images now from url! Ignoring for now...
-     */
-    //UIImageView *recipeImageView = (UIImageView *) [cell viewWithTag:100];
-    //recipeImageView.image = restriction.imageRep;
+    
+    UIImageView *recipeImageView = (UIImageView *) [cell viewWithTag:100];
+    [recipeImageView setImageWithURL:[NSURL URLWithString:[restriction image]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
 
     // Set the Restriction Title
     UITextView *textView = (UITextView *) [cell viewWithTag:101];
     textView.text = restriction.name;
+    
     MMRestrictionSwitch *restSwitch = (MMRestrictionSwitch *) [cell viewWithTag:102];
     restSwitch.restId = restriction.id;
-    if ([dietaryRestrictionIds containsObject:restriction.id]) {
-        restSwitch.on = TRUE;
-    } else {
-        restSwitch.on = FALSE;
-    }
+    restSwitch.on = ([dietaryRestrictionIds containsObject:restriction.id]);
 
     return cell;
 }
