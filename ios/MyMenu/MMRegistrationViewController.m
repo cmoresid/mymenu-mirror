@@ -66,7 +66,6 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     MMRegistrationPopoverViewController *locationContent = [self getPopoverViewControllerForTextField:textField];
     locationContent.delegate = self;
-    locationContent.popoverField = textField;
 
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:locationContent];
 
