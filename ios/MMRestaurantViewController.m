@@ -32,16 +32,16 @@
 }
 
 - (void)viewDidLoad
-{
+{	
     [super viewDidLoad];
     NSLog(@"Restaurant Name = @%@" , _selectedRestaurant.businessname);
     _restName.text = _selectedRestaurant.businessname;
-    _restNumber.text = _selectedRestaurant.businessnumber;
-    _restRating.text = _selectedRestaurant.rating;
+    _restNumber.text = _selectedRestaurant.phone;
+    _restRating.text = [_selectedRestaurant.rating stringValue];
     _restDescription.text = _selectedRestaurant.desc;
     _restImage.image = [UIImage imageWithData:                                                                      [NSData dataWithContentsOfURL:                                                                            [NSURL URLWithString: _selectedRestaurant.picture]]];
     
-    
+    NSLog(@"?????");
 
 	// Do any additional setup after loading the view.
 }

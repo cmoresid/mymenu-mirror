@@ -140,8 +140,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSLog(@"Selected %@", indexPath);
     NSLog(@"ABC");
-
-    [self.dbFetcher getMerchant:[self.restaurants objectAtIndex:indexPath.row]];
+    NSLog(@"the ID is %@" , [[self.restaurants objectAtIndex:indexPath.row] mid]);
+    //_selectRest = [self.restaurants objectAtIndex:indexPath.row];
+    
+    [self.dbFetcher getMerchant:[[self.restaurants objectAtIndex:indexPath.row] mid]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

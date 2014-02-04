@@ -475,7 +475,7 @@ static MMDBFetcher *instance;
                                        merchant.postalcode = [e child:@"business_postalcode"].text;
                                        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
                                        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
-                                       merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
+                                       merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
                                        merchant.picture = [e child:@"business_picture"].text;
                                        merchant.facebook = [e child:@"facebook"].text;
                                        merchant.twitter = [e child:@"twitter"].text;
