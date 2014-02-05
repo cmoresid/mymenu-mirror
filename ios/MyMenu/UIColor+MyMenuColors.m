@@ -32,5 +32,10 @@
     return [[UIColor alloc] initWithRed:204.0 / 255.0f green:69.0 / 255.0f blue:85.0 / 255.0f alpha:1.0f];
 }
 
++ (UIColor *)darkTealColor {
+    
+    return [[UIColor alloc] initWithRed:41.0 / 255.0f green:169.0 / 255.0f blue:149.0 / 255.0f alpha:1.0f];
+}
+
 
 @end
