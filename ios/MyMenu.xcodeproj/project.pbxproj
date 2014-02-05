@@ -77,8 +77,6 @@
 		9BBD913E189478A8006DDBCE /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913C189478A8006DDBCE /* RXMLElement.m */; };
 		9BBD9140189478CF006DDBCE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBD913F189478CF006DDBCE /* libz.dylib */; };
 		9BBD9142189478DB006DDBCE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBD9141189478DB006DDBCE /* libxml2.dylib */; };
-		9BBDE02918A1A05A005EDA0B /* 29-heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BBDE02818A1A05A005EDA0B /* 29-heart.png */; };
-		9BBDE02A18A1A05A005EDA0B /* 29-heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BBDE02818A1A05A005EDA0B /* 29-heart.png */; };
 		9BBDE03318A1A59D005EDA0B /* MMParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMParentViewController.m */; };
 		9BBDE03418A1A59D005EDA0B /* MMParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMParentViewController.m */; };
 		9BBDE03D18A1B6E9005EDA0B /* MMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */; };
@@ -211,7 +209,6 @@
 		9BBD913C189478A8006DDBCE /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXMLElement.m; sourceTree = "<group>"; };
 		9BBD913F189478CF006DDBCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9BBD9141189478DB006DDBCE /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		9BBDE02818A1A05A005EDA0B /* 29-heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "29-heart.png"; path = "../../../../../Downloads/glyphish-icons/PNG icons/29-heart.png"; sourceTree = "<group>"; };
 		9BBDE03118A1A59D005EDA0B /* MMParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMParentViewController.h; sourceTree = "<group>"; };
 		9BBDE03218A1A59D005EDA0B /* MMParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMParentViewController.m; sourceTree = "<group>"; };
 		9BBDE03B18A1B6E9005EDA0B /* MMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSettingsViewController.h; sourceTree = "<group>"; };
@@ -309,7 +306,6 @@
 				B0627E2918A2CB3700EAA045 /* 125-food.png */,
 				B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */,
 				B0627E2B18A2CB3700EAA045 /* 184-warning.png */,
-				9BBDE02818A1A05A005EDA0B /* 29-heart.png */,
 				B06B61A7189F4AD300A51A81 /* restriction_placeholder.png */,
 				833C8C82189D9B85007CB562 /* logo.png */,
 				83B85B87189705FF00195F05 /* rest.jpg */,
@@ -687,7 +683,6 @@
 				8333C3FE1894B5680028FFBE /* creme_brelee.jpg in Resources */,
 				8333C4091894B5680028FFBE /* starbucks_coffee.jpg in Resources */,
 				83893EB518919AD400D36670 /* InfoPlist.strings in Resources */,
-				9BBDE02918A1A05A005EDA0B /* 29-heart.png in Resources */,
 				83893EBE18919AD400D36670 /* Main.storyboard in Resources */,
 				83655AA01891E2DF005EBF8A /* MapViewToolbar.xib in Resources */,
 				8333C3FF1894B5680028FFBE /* egg_benedict.jpg in Resources */,
@@ -700,7 +695,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				83893ED718919AD400D36670 /* InfoPlist.strings in Resources */,
-				9BBDE02A18A1A05A005EDA0B /* 29-heart.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
