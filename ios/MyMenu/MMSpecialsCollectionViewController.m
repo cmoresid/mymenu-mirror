@@ -72,6 +72,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     // set today as selected
     [self.tabOutlet setSelectedSegmentIndex:index];
     [self loadDay:[self getToday]];
+    [self.tabOutlet setTintColor: [UIColor whiteColor]];
+    
 }
 
 /**

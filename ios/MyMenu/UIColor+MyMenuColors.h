@@ -24,6 +24,8 @@
 
 + (UIColor *)tealColor;
 
++ (UIColor *)darkTealColor;
+
 + (UIColor *)orangeColor;
 
 + (UIColor *)redColor;
