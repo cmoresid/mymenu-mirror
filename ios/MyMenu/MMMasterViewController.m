@@ -21,6 +21,7 @@
 #import "MMDBFetcher.h"
 #import "MMRestaurantViewController.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "UIColor+MyMenuColors.h"
 
 @interface MMMasterViewController () {
     NSMutableArray *_objects;
@@ -103,17 +104,19 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
-    
+	cell.ratingBg.backgroundColor = [UIColor lightBackgroundGray];
+	cell.ratingBg.layer.cornerRadius = 5;
     cell.nameLabel.text = [[_restaurants objectAtIndex:indexPath.row] businessname];
     cell.numberLabel.text = [[_restaurants objectAtIndex:indexPath.row] phone];
-    cell.ratinglabel.text = [NSString stringWithFormat:@"%@", [[_restaurants objectAtIndex:indexPath.row] rating]];
+	NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+	[formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+	[formatter setMaximumFractionDigits:10];
+	NSLog(@"Rating : %@",[[_restaurants objectAtIndex:indexPath.row] rating]);
+    cell.ratinglabel.text = [NSString stringWithFormat:@"%@", [[_restaurants objectAtIndex:indexPath.row] rating] ];
     
     MMMerchant __weak *merchant = [_restaurants objectAtIndex:indexPath.row];
     
     [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:[merchant picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
-    
-    cell.ratingview.progress = [[merchant rating] floatValue] / 10.0;
-    [cell.ratingview setProgressViewStyle:UIProgressViewStyleBar];
 
     return cell;
 }

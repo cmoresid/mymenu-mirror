@@ -14,42 +14,42 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KtH-hU-ueu">
-                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                        <rect key="frame" x="240" y="0.0" width="80" height="80"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyL-p2-C7p">
-                        <rect key="frame" x="88" y="10" width="156" height="20"/>
+                        <rect key="frame" x="77" y="10" width="156" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRE-lt-2mo">
-                        <rect key="frame" x="88" y="38" width="180" height="15"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="91" placeholderIntrinsicHeight="20" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EWV-Dk-aDR">
-                        <rect key="frame" x="124" y="63" width="176" height="10"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="10" id="Stk-bh-69O"/>
-                        </constraints>
-                    </progressView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUi-1t-QMz">
-                        <rect key="frame" x="88" y="60" width="28" height="17"/>
+                        <rect key="frame" x="77" y="38" width="180" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lXw-Cu-fKv">
+                        <rect key="frame" x="9" y="10" width="60" height="60"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQc-q2-YGO">
+                                <rect key="frame" x="0.0" y="8" width="60" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="29"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="nameLabel" destination="LyL-p2-C7p" id="tJc-9s-bnM"/>
                 <outlet property="numberLabel" destination="DRE-lt-2mo" id="q0i-pY-7Mt"/>
-                <outlet property="ratinglabel" destination="SUi-1t-QMz" id="TZ8-Zr-Z66"/>
-                <outlet property="ratingview" destination="EWV-Dk-aDR" id="iui-LE-w1F"/>
+                <outlet property="ratingBg" destination="lXw-Cu-fKv" id="tfj-Eg-7n0"/>
+                <outlet property="ratinglabel" destination="OQc-q2-YGO" id="Fy4-Sh-y0o"/>
                 <outlet property="thumbnailImageView" destination="KtH-hU-ueu" id="2tt-6R-Ijc"/>
             </connections>
         </tableViewCell>

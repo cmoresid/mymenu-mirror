@@ -30,4 +30,12 @@
 
 + (UIColor *)redColor;
 
++ (UIColor *)sidebarBackgroundGray;
+
++ (UIColor *)lightBackgroundGray;
+
++ (UIColor *)lightBlueHighlight;
+
++ (UIColor *)secondaryBlueBar;
+
 @end

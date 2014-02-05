@@ -148,8 +148,7 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
     cell.contentView.layer.cornerRadius = 20;
     cell.contentView.layer.masksToBounds = YES;
 
-    [collectionView setBackgroundColor:[UIColor tealColor]];
-    [cell.contentView setBackgroundColor:[UIColor whiteColor]];
+    [cell.contentView setBackgroundColor:[UIColor secondaryBlueBar]];
 
     MMRestriction *restriction = [allRestrictions objectAtIndex:indexPath.row];
     
@@ -167,7 +166,7 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
     return cell;
 }
 //adds to the database and saves the users information in the shared preferences
-//only called when the "Done button is pushed
+//only called when the "Done button is pusheda
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Make sure your segue name in storyboard is the same as this line
     if ([[segue identifier] isEqualToString:@"goToMainView"]) {
