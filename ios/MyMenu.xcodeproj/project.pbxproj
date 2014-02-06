@@ -45,7 +45,6 @@
 		83893ECE18919AD400D36670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAA18919AD400D36670 /* Foundation.framework */; };
 		83893ECF18919AD400D36670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAE18919AD400D36670 /* UIKit.framework */; };
 		83893ED718919AD400D36670 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83893ED518919AD400D36670 /* InfoPlist.strings */; };
-		83893ED918919AD400D36670 /* MyMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83893ED818919AD400D36670 /* MyMenuTests.m */; };
 		83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A61ED018922E4E00269357 /* MapKit.framework */; };
 		83B7E44D1891EE0700946784 /* MMMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44A1891EE0700946784 /* MMMasterViewController.m */; };
 		83B7E44E1891EE0700946784 /* MMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44C1891EE0700946784 /* MMDetailViewController.m */; };
@@ -81,6 +80,10 @@
 		9BBDE03418A1A59D005EDA0B /* MMParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMParentViewController.m */; };
 		9BBDE03D18A1B6E9005EDA0B /* MMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */; };
 		9BBDE03E18A1B6E9005EDA0B /* MMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */; };
+		B027167018A3515F0027BF4E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBD9141189478DB006DDBCE /* libxml2.dylib */; };
+		B027167118A3515F0027BF4E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBD913F189478CF006DDBCE /* libz.dylib */; };
+		B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */; };
+		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
 		B0627E2C18A2CB3700EAA045 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2818A2CB3700EAA045 /* 19-gear.png */; };
 		B0627E2D18A2CB3700EAA045 /* 125-food.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2918A2CB3700EAA045 /* 125-food.png */; };
 		B0627E2E18A2CB3700EAA045 /* 172-pricetag.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */; };
@@ -103,6 +106,7 @@
 		B0760F1A189ED2FA00C40D15 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B0760F19189ED2FA00C40D15 /* MBProgressHUD.m */; };
 		B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57251893084E00DEBAD8 /* MMLoginViewController.m */; };
 		B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */; };
+		B083AFD918A37CA200CDD0C9 /* MMNetworkClientProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B083AFD818A37CA200CDD0C9 /* MMNetworkClientProxy.m */; };
 		B083C7D8189D85550074F7DC /* MMDBFetcherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B083C7D7189D85550074F7DC /* MMDBFetcherResponse.m */; };
 		B097D6F91893608300142F8D /* MMDietaryRestrictionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B097D6F81893608300142F8D /* MMDietaryRestrictionsViewController.m */; };
 		B097D6FC189360A500142F8D /* MMRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B097D6FB189360A500142F8D /* MMRegistrationViewController.m */; };
@@ -172,7 +176,6 @@
 		83893ECC18919AD400D36670 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		83893ED418919AD400D36670 /* MyMenuTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyMenuTests-Info.plist"; sourceTree = "<group>"; };
 		83893ED618919AD400D36670 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		83893ED818919AD400D36670 /* MyMenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMenuTests.m; sourceTree = "<group>"; };
 		83A61ED018922E4E00269357 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		83B7E4491891EE0700946784 /* MMMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMasterViewController.h; sourceTree = "<group>"; };
 		83B7E44A1891EE0700946784 /* MMMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMasterViewController.m; sourceTree = "<group>"; };
@@ -213,6 +216,9 @@
 		9BBDE03218A1A59D005EDA0B /* MMParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMParentViewController.m; sourceTree = "<group>"; };
 		9BBDE03B18A1B6E9005EDA0B /* MMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSettingsViewController.h; sourceTree = "<group>"; };
 		9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSettingsViewController.m; sourceTree = "<group>"; };
+		B027167618A3527D0027BF4E /* MMMockDBFetcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMockDBFetcherDelegate.h; sourceTree = "<group>"; };
+		B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMockDBFetcherDelegate.m; sourceTree = "<group>"; };
+		B027167918A3574B0027BF4E /* MMDBFetcherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcherTests.m; sourceTree = "<group>"; };
 		B0627E2818A2CB3700EAA045 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
 		B0627E2918A2CB3700EAA045 /* 125-food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "125-food.png"; sourceTree = "<group>"; };
 		B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "172-pricetag.png"; sourceTree = "<group>"; };
@@ -254,6 +260,9 @@
 		B07A57251893084E00DEBAD8 /* MMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLoginViewController.m; sourceTree = "<group>"; };
 		B07A57261893084E00DEBAD8 /* UIColor+MyMenuColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyMenuColors.h"; sourceTree = "<group>"; };
 		B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MyMenuColors.m"; sourceTree = "<group>"; };
+		B083AFD618A37C7C00CDD0C9 /* MMNetworkClientProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMNetworkClientProtocol.h; sourceTree = "<group>"; };
+		B083AFD718A37CA200CDD0C9 /* MMNetworkClientProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMNetworkClientProxy.h; sourceTree = "<group>"; };
+		B083AFD818A37CA200CDD0C9 /* MMNetworkClientProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMNetworkClientProxy.m; sourceTree = "<group>"; };
 		B083C7D5189D85210074F7DC /* MMDBFetcherDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMDBFetcherDelegate.h; sourceTree = "<group>"; };
 		B083C7D6189D85550074F7DC /* MMDBFetcherResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDBFetcherResponse.h; sourceTree = "<group>"; };
 		B083C7D7189D85550074F7DC /* MMDBFetcherResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcherResponse.m; sourceTree = "<group>"; };
@@ -290,6 +299,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B027167018A3515F0027BF4E /* libxml2.dylib in Frameworks */,
+				B027167118A3515F0027BF4E /* libz.dylib in Frameworks */,
 				83893ECD18919AD400D36670 /* XCTest.framework in Frameworks */,
 				83893ECF18919AD400D36670 /* UIKit.framework in Frameworks */,
 				83893ECE18919AD400D36670 /* Foundation.framework in Frameworks */,
@@ -418,7 +429,9 @@
 		83893ED218919AD400D36670 /* MyMenuTests */ = {
 			isa = PBXGroup;
 			children = (
-				83893ED818919AD400D36670 /* MyMenuTests.m */,
+				B027167618A3527D0027BF4E /* MMMockDBFetcherDelegate.h */,
+				B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */,
+				B027167918A3574B0027BF4E /* MMDBFetcherTests.m */,
 				83893ED318919AD400D36670 /* Supporting Files */,
 			);
 			path = MyMenuTests;
@@ -463,6 +476,9 @@
 				83B85B8A18971A3D00195F05 /* MMSpecialType.m */,
 				B083C7D6189D85550074F7DC /* MMDBFetcherResponse.h */,
 				B083C7D7189D85550074F7DC /* MMDBFetcherResponse.m */,
+				B083AFD618A37C7C00CDD0C9 /* MMNetworkClientProtocol.h */,
+				B083AFD718A37CA200CDD0C9 /* MMNetworkClientProxy.h */,
+				B083AFD818A37CA200CDD0C9 /* MMNetworkClientProxy.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -742,6 +758,7 @@
 				83893EB718919AD400D36670 /* main.m in Sources */,
 				9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */,
 				17F6531D189D83F200D63D3D /* MMRestaurantViewController.m in Sources */,
+				B083AFD918A37CA200CDD0C9 /* MMNetworkClientProxy.m in Sources */,
 				B097D701189392FC00142F8D /* MMMainTabBarViewController.m in Sources */,
 				B06B619E189F474300A51A81 /* SDWebImageDownloader.m in Sources */,
 				83B85B8B18971A3D00195F05 /* MMSpecialType.m in Sources */,
@@ -764,8 +781,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B4E24891891DCD100F5B955 /* MMMenuItemRating.m in Sources */,
+				B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */,
 				9BBDE03418A1A59D005EDA0B /* MMParentViewController.m in Sources */,
 				9BBD913418943D77006DDBCE /* MMDBFetcher.m in Sources */,
+				B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */,
 				9B4E24811891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */,
 				9B4E24711891D37500F5B955 /* MMUser.m in Sources */,
 				9B4E24751891D67300F5B955 /* MMMenuItem.m in Sources */,
@@ -773,7 +792,6 @@
 				9BBD913E189478A8006DDBCE /* RXMLElement.m in Sources */,
 				9B4E247D1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */,
 				9B4E248E1891E02B00F5B955 /* MMRestriction.m in Sources */,
-				83893ED918919AD400D36670 /* MyMenuTests.m in Sources */,
 				9B4E24791891D8C600F5B955 /* MMMerchant.m in Sources */,
 				9B4E24921891E06200F5B955 /* MMSpecial.m in Sources */,
 				9BBDE03E18A1B6E9005EDA0B /* MMSettingsViewController.m in Sources */,
@@ -821,7 +839,7 @@
 		83893EDA18919AD400D36670 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -853,6 +871,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SDK_DIR)\"/usr/include/libxml2",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "C242E115-B748-4086-BF5D-14FDBE4FF357";
@@ -864,7 +887,7 @@
 		83893EDB18919AD400D36670 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -889,6 +912,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SDK_DIR)\"/usr/include/libxml2",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PROVISIONING_PROFILE = "C242E115-B748-4086-BF5D-14FDBE4FF357";
 				SDKROOT = iphoneos;
@@ -910,10 +938,7 @@
 				);
 				INFOPLIST_FILE = "MyMenu/MyMenu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/connorm/git/MyMenu/ios/MyMenu/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -932,10 +957,7 @@
 				);
 				INFOPLIST_FILE = "MyMenu/MyMenu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/connorm/git/MyMenu/ios/MyMenu/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -944,6 +966,7 @@
 		83893EE018919AD400D36670 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyMenu.app/MyMenu";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -967,6 +990,7 @@
 		83893EE118919AD400D36670 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyMenu.app/MyMenu";
 				FRAMEWORK_SEARCH_PATHS = (
