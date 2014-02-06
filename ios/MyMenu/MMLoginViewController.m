@@ -15,10 +15,10 @@
 //  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "MMLoginViewController.h"
 #import "MMUser.h"
 #import "MMDBFetcher.h"
-#import "MBProgressHUD.h"
 
 #define kCurrentUser @"currentUser"
 
