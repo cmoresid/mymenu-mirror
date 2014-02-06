@@ -21,13 +21,15 @@
 #import "MMSpecial.h"
 #import "MMMerchant.h"
 #import "MMDBFetcherDelegate.h"
+#import "MMNetworkClientProtocol.h"
 
 /**
 * A model for qeurying data from the api.
 */
 @interface MMDBFetcher : NSObject <NSURLConnectionDataDelegate>
 
-@property (nonatomic, strong) id<MMDBFetcherDelegate> delegate;
+@property(nonatomic, strong) id<MMDBFetcherDelegate> delegate;
+@property(nonatomic, strong) id<MMNetworkClientProtocol> networkClient;
 
 /**
 * Get a singleton instance of this class.
@@ -38,6 +40,8 @@
 *
 */
 + (MMDBFetcher*)get;
+
+- (id)initWithNetworkClient:(id<MMNetworkClientProtocol>)client;
 
 /**
 * Add a user to the service.

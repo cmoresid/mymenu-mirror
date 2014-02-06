@@ -15,13 +15,13 @@
 //  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "MMDietaryRestrictionsViewController.h"
 #import "UIColor+MyMenuColors.h"
 #import "MMRestriction.h"
 #import "MMDBFetcher.h"
 #import "MMDietaryRestrictionCell.h"
 #import "MMRestrictionSwitch.h"
-#import "MBProgressHUD.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 
 #define kCurrentUser @"currentUser"
