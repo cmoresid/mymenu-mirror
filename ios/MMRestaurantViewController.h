@@ -25,6 +25,6 @@
 @property(nonatomic, weak) IBOutlet UILabel * restRating;
 @property(nonatomic, weak) IBOutlet UILabel * restDescription;
 @property(nonatomic, weak) IBOutlet UIImageView * restImage;
-
+@property(nonatomic, weak) NSArray *menuItems;
 @end
 
