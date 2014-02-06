@@ -108,11 +108,9 @@
 	cell.ratingBg.layer.cornerRadius = 5;
     cell.nameLabel.text = [[_restaurants objectAtIndex:indexPath.row] businessname];
     cell.numberLabel.text = [[_restaurants objectAtIndex:indexPath.row] phone];
-	NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
-	[formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-	[formatter setMaximumFractionDigits:10];
-	NSLog(@"Rating : %@",[[_restaurants objectAtIndex:indexPath.row] rating]);
-    cell.ratinglabel.text = [NSString stringWithFormat:@"%@", [[_restaurants objectAtIndex:indexPath.row] rating] ];
+	NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+	formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    cell.ratinglabel.text = [NSString stringWithFormat:@"%@", [formatter stringFromNumber:[[_restaurants objectAtIndex:indexPath.row] rating] ]];
     
     MMMerchant __weak *merchant = [_restaurants objectAtIndex:indexPath.row];
     
