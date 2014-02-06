@@ -129,7 +129,7 @@ static MMDBFetcher *instance;
                                         user.city = [e child:@"city"].text;
                                         user.locality = [e child:@"locality"].text;
                                         user.country = [e child:@"country"].text;
-                                        user.gender = (char) [e child:@"gender"].text;
+                                        user.gender = [[e child:@"gender"].text characterAtIndex:0];
                                         user.birthday = [e child:@"birthday"].text;
                                         user.birthmonth = [e child:@"birthmonth"].text;
                                         user.birthyear = [e child:@"birthyear"].text;

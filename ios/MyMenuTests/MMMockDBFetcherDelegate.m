@@ -7,15 +7,10 @@
 //
 
 #import "MMMockDBFetcherDelegate.h"
+#import "MMNetworkClientProtocol.h"
 
 
 @implementation MMMockDBFetcherDelegate
-
-BooleanResponseBlock booleanResponseCallback;
-ArrayResponseBlock arrayResponseCallback;
-IntegerResponseBlock integerResponseCallback;
-MerchantResponseBlock merchantResponseCallback;
-UserResponseBlock userResponseCallback;
 
 - (id)init {
     self = [super init];
@@ -40,7 +35,7 @@ UserResponseBlock userResponseCallback;
 //}
 //
 - (void)didRetrieveUser:(MMUser*)user withResponse:(MMDBFetcherResponse*)response {
-    _userResponseCallback(user, response);
+    self.userResponseCallback(user, response);
 }
 //
 //- (void)didRetrieveSpecials:(NSArray*)specials withResponse:(MMDBFetcherResponse*)response {
