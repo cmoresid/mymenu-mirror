@@ -24,12 +24,14 @@
 @synthesize ratinglabel = _ratinglabel;
 @synthesize thumbnailImageView = _thumbnailImageView;
 @synthesize ratingview = _ratingview;
+@synthesize ratingBg = _ratingBg;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+
     }
     return self;
 }
@@ -39,5 +41,7 @@
 
     // Configure the view for the selected state
 }
+
+
 
 @end

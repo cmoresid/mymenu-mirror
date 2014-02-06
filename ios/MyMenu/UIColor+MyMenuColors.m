@@ -20,7 +20,7 @@
 @implementation UIColor (MyMenuColors)
 
 + (UIColor *)tealColor {
-    return [[UIColor alloc] initWithRed:26 / 255.0f green:188 / 255.0f blue:156 / 255.0f alpha:1.0f];
+    return [[UIColor alloc] initWithRed:67 / 255.0f green:199 / 255.0f blue:174 / 255.0f alpha:1.0f];
 }
 
 + (UIColor *)orangeColor {
@@ -37,5 +37,25 @@
     return [[UIColor alloc] initWithRed:41.0 / 255.0f green:169.0 / 255.0f blue:149.0 / 255.0f alpha:1.0f];
 }
 
++ (UIColor *)sidebarBackgroundGray {
+    
+    return [[UIColor alloc] initWithRed:91.0 / 255.0f green:91.0 / 255.0f blue:91.0 / 255.0f alpha:1.0f];
+}
+
++ (UIColor *)lightBackgroundGray {
+    
+    return [[UIColor alloc] initWithRed:179.0 / 255.0f green:179.0 / 255.0f blue:179.0 / 255.0f alpha:1.0f];
+}
+
+
++ (UIColor *)lightBlueHighlight {
+	return [[UIColor alloc] initWithRed:236.0 / 255.0f green:249.0 / 255.0f blue:247.0 / 255.0f alpha:1.0f];
+
+}
+
++ (UIColor *)secondaryBlueBar {
+	return [[UIColor alloc] initWithRed:142.0 / 255.0f green:221.0 / 255.0f blue:206.0 / 255.0f alpha:1.0f];
+	
+}
 
 @end
