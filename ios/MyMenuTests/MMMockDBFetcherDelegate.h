@@ -21,11 +21,7 @@ typedef void (^UserResponseBlock)(MMUser*, MMDBFetcherResponse*);
 
 @interface MMMockDBFetcherDelegate : NSObject <MMDBFetcherDelegate>
 
-@property(nonatomic, strong) BooleanResponseBlock booleanResponseCallback;
-@property(nonatomic, strong) ArrayResponseBlock arrayResponseCallback;
-@property(nonatomic, strong) IntegerResponseBlock integerResponseCallback;
-@property(nonatomic, strong) MerchantResponseBlock merchantResponseCallback;
-@property(nonatomic, strong) UserResponseBlock userResponseCallback;
-
+@property(readwrite, copy) MerchantResponseBlock merchantResponseCallback;
+@property(readwrite, copy) UserResponseBlock userResponseCallback;
 
 @end
