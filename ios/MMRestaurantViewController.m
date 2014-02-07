@@ -17,14 +17,17 @@
 #import "MMRestaurantViewController.h"
 #import "MMMenuItem.h"
 #import "MBProgressHUD.h"
+#import "UIColor+MyMenuColors.h"
 //#import "SDWebImage/UIImageView+WebCache.h"
 
 
 @interface MMRestaurantViewController ()
 
+
 @end
 
 @implementation MMRestaurantViewController
+
 
 static NSString * menuCateogires = {@"Dinner", @"Breakfast", @"Lunch", @"Dessert", @"Drink", @"Appetizer"};
 
@@ -35,6 +38,10 @@ static NSString * menuCateogires = {@"Dinner", @"Breakfast", @"Lunch", @"Dessert
         // Custom initialization
     }
     return self;
+}
+
+- (void) foodCategoryChanged:(UISegmentedControl *)sender {
+    
 }
 
 - (void)viewDidLoad
@@ -49,11 +56,33 @@ static NSString * menuCateogires = {@"Dinner", @"Breakfast", @"Lunch", @"Dessert
     [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
     [formatter setMaximumFractionDigits:3];
     //NSLog(@"%@",[formatter  stringFromNumber:_selectedRestaurant.rating]);
-    _restRating.text = [formatter  stringFromNumber:_selectedRestaurant.rating];
+
+    for (UIView *subView in self.search.subviews)
+    {
+        for (UIView *secondLevelSubview in subView.subviews){
+            if ([secondLevelSubview isKindOfClass:[UITextField class]])
+            {
+                UITextField *searchBarTextField = (UITextField *)secondLevelSubview;
+                
+                //set font color here
+                searchBarTextField.textColor = [UIColor whiteColor];
+                //searchBarTextField.font = [UIFont systemFontOfSize:22.0];
+                //searchBarTextField.tintColor = [UIColor whiteColor];
+               
+                
+                break;
+            }
+        }
+    }
     
-    
-    _restDescription.text = _selectedRestaurant.desc;
+    [_restDescription  setText:_selectedRestaurant.desc];
+
+    [_restDescription setTextColor:[UIColor whiteColor]];
+    [_restDescription setFont:[UIFont systemFontOfSize:24.0]];
     _restImage.image = [UIImage imageWithData:                                                                      [NSData dataWithContentsOfURL:                                                                            [NSURL URLWithString: _selectedRestaurant.picture]]];
+    _ratingView.backgroundColor = [UIColor lightBackgroundGray];
+	_ratingView.layer.cornerRadius = 17.5;
+    _restRating.text = [formatter  stringFromNumber:_selectedRestaurant.rating];
 
 
 	// Do any additional setup after loading the view.

@@ -38,4 +38,6 @@
 
 + (UIColor *)secondaryBlueBar;
 
++ (UIColor *)whiteColor;
+
 @end
