@@ -452,7 +452,10 @@ static MMDBFetcher *instance;
                                             merchant.picture = [e child:@"business_picture"].text;
                                             merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
                                             merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
+                                            merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
+                                            merchant.picture = [e child:@"business_picture"].text;
                                             merchant.distfromuser = [NSNumber numberWithDouble:[e child:@"distance"].textAsDouble];
+                                            
                                             [merchants addObject:merchant];
                                         }];
                                     

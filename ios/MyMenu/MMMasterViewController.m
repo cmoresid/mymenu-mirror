@@ -62,7 +62,7 @@
     self.selectRest = merchant;
     
     NSLog(@"the id is : %@", self.selectRest.mid);
-    NSLog(@"Restaurant desc = %@", self.selectRest.desc);
+    //NSLog(@"Restaurant desc = %@", self.selectRest.desc);
     
     [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
 }
@@ -130,9 +130,16 @@
 	cell.ratingBg.layer.cornerRadius = 5;
     cell.nameLabel.text = [[_restaurants objectAtIndex:indexPath.row] businessname];
     cell.numberLabel.text = [[_restaurants objectAtIndex:indexPath.row] phone];
-	NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-	formatter.numberStyle = NSNumberFormatterDecimalStyle;
-    cell.ratinglabel.text = [NSString stringWithFormat:@"%@", [formatter stringFromNumber:[[_restaurants objectAtIndex:indexPath.row] rating] ]];
+    
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+    [formatter setMaximumFractionDigits:3];
+    
+    NSString * rate =[formatter  stringFromNumber:[[_restaurants objectAtIndex:indexPath.row] rating]];
+    if ([rate isEqualToString:@"0"]){
+        rate = @"N/A";
+    }
+    [cell.ratinglabel setText: rate];
     
     MMMerchant __weak *merchant = [_restaurants objectAtIndex:indexPath.row];
     

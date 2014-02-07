@@ -57,5 +57,9 @@
 	return [[UIColor alloc] initWithRed:142.0 / 255.0f green:221.0 / 255.0f blue:206.0 / 255.0f alpha:1.0f];
 	
 }
++ (UIColor *)whiteColor {
+	return [[UIColor alloc] initWithRed:255.0 / 255.0f green:255.0 / 255.0f blue:255.0 / 255.0f alpha:1.0f];
+	
+}
 
 @end

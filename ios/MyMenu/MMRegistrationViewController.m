@@ -187,8 +187,8 @@
     NSDictionary *info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 
-    kbSize.height = kbSize.height / 2.1f;
-    kbSize.width = kbSize.width / 2.1f;
+    kbSize.height = kbSize.height / 1.8f;
+    kbSize.width = kbSize.width / 1.8f;
 
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
     self.scrollView.contentInset = contentInsets;
