@@ -23,8 +23,16 @@
 @property(nonatomic, weak) IBOutlet UILabel * restName;
 @property(nonatomic, weak) IBOutlet UILabel * restNumber;
 @property(nonatomic, weak) IBOutlet UILabel * restRating;
-@property(nonatomic, weak) IBOutlet UILabel * restDescription;
+@property(nonatomic, weak) IBOutlet UITextView * restDescription;
 @property(nonatomic, weak) IBOutlet UIImageView * restImage;
+@property(nonatomic, weak) IBOutlet UIView *ratingView;
+@property(nonatomic, weak) IBOutlet UISearchBar * search;
+@property(nonatomic, weak) IBOutlet UIButton * categoryButton;
+
+@property(nonatomic, weak) IBOutlet UISegmentedControl *tabOutlet;
+
 @property(nonatomic, weak) NSArray *menuItems;
+
+- (IBAction)foodCategoryChanged:(UISegmentedControl *)sender;
 @end
 
