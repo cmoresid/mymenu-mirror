@@ -54,21 +54,32 @@
     [super viewDidLoad];
     [self configureView];
     
-    self.mapDelegate = [[MMMapDelegate alloc] initWithConfigurationBlock:^(MKMapView *mapView, MKUserLocation* location) {
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManagerDelegate = [[MMMapDelegate alloc] initWithConfigurationBlock:^(CLLocationManager *locationManager, NSArray *locations) {
+        [self.locationManager stopUpdatingLocation];
+        
+        CLLocation *currentLocation = [locations lastObject];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kRetrievedUserLocation
+                                                            object:currentLocation];
         MKCoordinateSpan span;
         span.latitudeDelta = .5;
         span.longitudeDelta = .5;
         
         MKCoordinateRegion region;
-        region.center = location.coordinate;
+        region.center = currentLocation.coordinate;
         region.span = span;
         
-        [self.mapView setCenterCoordinate:location.coordinate animated:YES];
+        [self.mapView setCenterCoordinate:currentLocation.coordinate animated:YES];
         [self.mapView setRegion:region animated:YES];
-        [self.dbFetcher getCompressedMerchants:location];
+        
+        [self.dbFetcher getCompressedMerchants:currentLocation];
     }];
     
-    self.mapView.delegate = self.mapDelegate;
+    self.locationManager.delegate = self.locationManagerDelegate;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    
+    [self.locationManager startUpdatingLocation];
 
     self.dbFetcher = [[MMDBFetcher alloc] init];
     self.dbFetcher.delegate = self;

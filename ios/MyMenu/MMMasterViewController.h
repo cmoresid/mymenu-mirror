@@ -16,6 +16,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+
 #import "MMDBFetcherDelegate.h"
 #import "MMDBFetcher.h"
 #import "MMMerchant.h"
@@ -28,5 +30,6 @@
 @property(nonatomic, strong) MMMerchant* selectRest;
 @property(nonatomic, strong) MMDetailViewController *detailViewController;
 @property(nonatomic, strong) MMDBFetcher* dbFetcher;
+@property(nonatomic, strong) CLLocationManager *locationManager;
 
 @end

@@ -22,21 +22,8 @@ NSString* const kRetrievedUserLocation = @"RetrievedUserLocation";
     return self;
 }
 
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    self.userloc = userLocation;
-
-    
-#if TARGET_IPHONE_SIMULATOR    
-    self.userloc.coordinate = CLLocationCoordinate2DMake(53.53333, -113.5000);
-#endif
-    
-    CLLocationCoordinate2D coords = self.userloc.coordinate;
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kRetrievedUserLocation
-                                                        object:self.userloc];
-    
-    self.configBlock(mapView, self.userloc);
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    self.configBlock(manager, locations);
 }
-
 
 @end

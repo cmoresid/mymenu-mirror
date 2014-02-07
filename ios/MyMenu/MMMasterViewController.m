@@ -52,7 +52,7 @@
     
     // Successful retrieved restaurant list.
     
-    self.restaurants = [compressedMerchants sortMerchant];
+    self.restaurants = compressedMerchants;
     
     [((UITableView*)self.view) reloadData];
 }
@@ -83,13 +83,12 @@
 }
 
 - (void)didReceiveUserLocation:(NSNotification*)notification {
-    MKUserLocation *location = notification.object;
+    CLLocation *location = notification.object;
     CLLocationCoordinate2D coordinate = location.coordinate;
     
     NSLog(@"Lat: %@", [NSNumber numberWithDouble:coordinate.latitude]);
     NSLog(@"Longa: %@", [NSNumber numberWithDouble:coordinate.longitude]);
     
-    NSLog(@"Did recieve user location.");
     self.dbFetcher = [[MMDBFetcher alloc] init];
     self.dbFetcher.delegate = self;
     [self.dbFetcher getCompressedMerchants:location];
