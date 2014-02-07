@@ -49,5 +49,6 @@
 @property(nonatomic) NSNumber *pricehigh;
 @property(nonatomic) NSNumber *opentime;
 @property(nonatomic) NSNumber *closetime;
+@property(nonatomic) NSNumber *distfromuser;
 
 @end

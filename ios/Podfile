@@ -4,4 +4,4 @@ pod 'OCMock', '~> 2.2.2'
 pod 'RaptureXML', '~> 1.0.1'
 pod 'MBProgressHUD', '~> 0.8'
 pod 'SDWebImage', '~> 3.5.2'
-
+pod 'NSString-UrlEncode', '~> 1.0.0'
