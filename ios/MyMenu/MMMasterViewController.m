@@ -16,12 +16,14 @@
 //
 
 #import "MMMasterViewController.h"
+#import "MMMapDelegate.h"
 #import "RestaurantCell.h"
 #import "MMDetailViewController.h"
 #import "MMDBFetcher.h"
 #import "MMRestaurantViewController.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UIColor+MyMenuColors.h"
+#import "NSArray+MerchantSort.h"
 
 @interface MMMasterViewController () {
     NSMutableArray *_objects;
@@ -49,7 +51,9 @@
     }
     
     // Successful retrieved restaurant list.
-    self.restaurants = compressedMerchants;
+    
+    self.restaurants = [compressedMerchants sortMerchant];
+    
     [((UITableView*)self.view) reloadData];
 }
 
@@ -66,11 +70,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.dbFetcher = [[MMDBFetcher alloc] init];
-    self.dbFetcher.delegate = self;
-    [self.dbFetcher getCompressedMerchants];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUserLocation:)
+                                                 name:kRetrievedUserLocation
+                                               object:nil];
 
     self.detailViewController = (MMDetailViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)didReceiveUserLocation:(NSNotification*)notification {
+    MKUserLocation *location = notification.object;
+    CLLocationCoordinate2D coordinate = location.coordinate;
+    
+    NSLog(@"Lat: %@", [NSNumber numberWithDouble:coordinate.latitude]);
+    NSLog(@"Longa: %@", [NSNumber numberWithDouble:coordinate.longitude]);
+    
+    NSLog(@"Did recieve user location.");
+    self.dbFetcher = [[MMDBFetcher alloc] init];
+    self.dbFetcher.delegate = self;
+    [self.dbFetcher getCompressedMerchants:location];
 }
 
 - (void)didReceiveMemoryWarning {

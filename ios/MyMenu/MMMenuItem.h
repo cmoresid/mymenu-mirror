@@ -32,5 +32,6 @@
 @property(nonatomic) NSNumber *rating;
 @property(nonatomic) NSNumber *ratingcount;
 @property(nonatomic) NSNumber *categoryid;
+@property(nonatomic) NSNumber *restrictionflag;
 
 @end

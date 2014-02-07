@@ -18,10 +18,12 @@
 #import "MMDetailViewController.h"
 #import "MMMerchant.h"
 #import "MMDBFetcher.h"
+#import "MMMapDelegate.h"
 
 @interface MMDetailViewController ()
 @property(strong, nonatomic) IBOutlet MKMapView *mapView;
 @property(strong, nonatomic) UIPopoverController *masterPopoverController;
+@property(strong, nonatomic) id<MKMapViewDelegate> mapDelegate;
 
 - (void)configureView;
 @end
@@ -41,10 +43,6 @@
     }
 }
 
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    [self.mapView setCenterCoordinate:userLocation.coordinate animated:YES];
-}
-
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
@@ -55,26 +53,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureView];
+    
+    self.mapDelegate = [[MMMapDelegate alloc] initWithConfigurationBlock:^(MKMapView *mapView, MKUserLocation* location) {
+        MKCoordinateSpan span;
+        span.latitudeDelta = .5;
+        span.longitudeDelta = .5;
+        
+        MKCoordinateRegion region;
+        region.center = location.coordinate;
+        region.span = span;
+        
+        [self.mapView setCenterCoordinate:location.coordinate animated:YES];
+        [self.mapView setRegion:region animated:YES];
+        [self.dbFetcher getCompressedMerchants:location];
+    }];
+    
+    self.mapView.delegate = self.mapDelegate;
 
-    // Set up the map bounds
-    // TODO: use the user's location
-    MKCoordinateSpan span;
-    span.latitudeDelta = .5;
-    span.longitudeDelta = .5;
-    CLLocationCoordinate2D start;
-    start.latitude = 53.53333;
-    start.longitude = -113.5000;
-    // Hard coded to Edmonton
-    MKCoordinateRegion region;
-    region.center = start;
-    region.span = span;
-
-    // Add pins for the restaurants
     self.dbFetcher = [[MMDBFetcher alloc] init];
     self.dbFetcher.delegate = self;
-    [self.dbFetcher getCompressedMerchants];
-
-    [self.mapView setRegion:region animated:YES];
 }
 
 - (void)didRetrieveCompressedMerchants:(NSArray *)compressedMerchants withResponse:(MMDBFetcherResponse *)response {

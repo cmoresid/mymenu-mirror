@@ -19,6 +19,9 @@
 #import "RXMLElement.h"
 #import "MMDBFetcherResponse.h"
 #import "MMNetworkClientProxy.h"
+#import <MapKit/MapKit.h>
+#import "NSString+UrlEncode.h"
+
 
 @implementation MMDBFetcher
 
@@ -106,7 +109,7 @@ static MMDBFetcher *instance;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
 
-    NSString *prequery = @"query=select * from users where email = '%@'";
+    NSString *prequery = @"query=SELECT * FROM users WHERE email = '%@'";
     NSString *query = [NSString stringWithFormat:prequery, email];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
 
@@ -149,7 +152,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/update.php"]];
     
-    NSString *queryFormat = @"query=set firstname='%@',lastname='%@',city='%@',locality='%@',gender='%c',birthday='%@',birthmonth='%@',birthyear='%@' where email = '%@'";
+    NSString *queryFormat = @"query=set firstname='%@',lastname='%@',city='%@',locality='%@',gender='%c',birthday='%@',birthmonth='%@',birthyear='%@' WHERE email = '%@'";
     NSString *query = [NSString stringWithFormat:queryFormat, user.firstName,
                        user.lastName, user.city, user.locality,
                        user.gender, user.birthday, user.birthmonth, user.birthyear, user.email];
@@ -178,7 +181,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
 
-    NSString *queryFormat = @"query=select id from users where email='%@'";
+    NSString *queryFormat = @"query=SELECT id FROM users WHERE email='%@'";
     NSString *query = [NSString stringWithFormat:queryFormat, email];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -215,7 +218,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
 
-    NSString *queryFormat = @"query=select id from users where email='%@' AND password='%@'";
+    NSString *queryFormat = @"query=SELECT id FROM users WHERE email='%@' AND password='%@'";
     NSString *query = [NSString stringWithFormat:queryFormat, user.email, user.password];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -289,7 +292,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictionuserlink/custom.php"]];
 
-    NSString *queryFormat = @"query=delete from restrictionuserlink where email='%@'";
+    NSString *queryFormat = @"query=DELETE FROM restrictionuserlink WHERE email='%@'";
     NSString *query = [NSString stringWithFormat:queryFormat, email];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -303,7 +306,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictionuserlink/custom.php"]];
 
-    NSString *queryFormat = @"query=select restrictid from restrictionuserlink where email ='%@'";
+    NSString *queryFormat = @"query=SELECT restrictid FROM restrictionuserlink WHERE email ='%@'";
     NSString *query = [NSString stringWithFormat:queryFormat, email];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -337,7 +340,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/restrictions/custom.php"]];
 
-    NSString *query = @"query=select id, user_label, picture from restrictions";
+    NSString *query = @"query=SELECT id, user_label, picture FROM restrictions";
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
     
@@ -374,7 +377,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/specials/custom.php"]];
 
-    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType  FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' AND specials.categoryid = %d";
+    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' AND specials.categoryid = %d";
     NSString *query = [NSString stringWithFormat:queryFormat, day, type];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -406,15 +409,24 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getCompressedMerchants {
+- (void)getCompressedMerchants: (MKUserLocation*) usrloc  {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
+    
+    CLLocationCoordinate2D coords = usrloc.coordinate;
 
-    NSString *query = @"query=select id, business_name, business_number, rating, business_picture, lat, longa, business_description from merchusers";
-    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    NSString *queryFormat = @"query=SELECT id, business_name, business_number, rating, business_picture, business_description, distance, lat, longa FROM (SELECT id, business_name, business_number, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT id, business_name, business_number, rating, business_picture, business_description, lat, longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m) AS temp) AS distances WHERE distance<10";
+    
+    NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude]];
+    
+    NSString* encodedQuery = [query stringByAddingPercentEscapesUsingEncoding:
+                              NSUTF8StringEncoding];
+    
+    
+    [request setValue:[NSString stringWithFormat:@"%d", [encodedQuery length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[encodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
 
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -430,10 +442,11 @@ static MMDBFetcher *instance;
                                             merchant.businessname = [e child:@"business_name"].text;
                                             merchant.phone = [e child:@"business_number"].text;
                                             merchant.desc = [e child:@"business_description"].text;
-                                            merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble ];
-                                            merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
                                             merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
                                             merchant.picture = [e child:@"business_picture"].text;
+                                            merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
+                                            merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
+                                            merchant.distfromuser = [NSNumber numberWithDouble:[e child:@"distance"].textAsDouble];
                                             [merchants addObject:merchant];
                                         }];
                                     
@@ -451,7 +464,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
 
-    NSString *queryFormat = @"query=select * from merchusers where id = %@ ";
+    NSString *queryFormat = @"query=SELECT * FROM merchusers WHERE id = %@ ";
     NSString *query = [NSString stringWithFormat:queryFormat, mid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];

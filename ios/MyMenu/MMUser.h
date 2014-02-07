@@ -35,5 +35,6 @@
 @property(nonatomic) NSString *birthmonth;
 @property(nonatomic) NSString *birthyear;
 @property(nonatomic) NSString *confirm;
+@property(nonatomic) NSMutableArray *restrictions;
 
 @end

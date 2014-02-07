@@ -26,6 +26,7 @@
 	
 	NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
 	NSData * currentUser = [perfs objectForKey:kCurrentUser];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	
 	if (currentUser != nil) {
 		//[self.window setRootViewController:[[MMMainTabBarViewController alloc] init]];
