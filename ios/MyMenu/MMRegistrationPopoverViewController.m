@@ -82,15 +82,17 @@ numberOfRowsInComponent:(NSInteger)component {
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    if (pickerView == self.cityPicker)
+    if (pickerView == self.cityPicker && row > 0)
         self.popoverValue = [[MMPopoverDataPair alloc] initWithDataType:CityValue
                                                        withSelectedValue:self.cities[row]];
-    else if (pickerView == self.provPicker)
+    else if (pickerView == self.provPicker && row > 0)
         self.popoverValue = [[MMPopoverDataPair alloc] initWithDataType:ProvinceValue
                                                        withSelectedValue:self.provinces[row]];
-    else if (pickerView == self.genderPicker)
+    else if (pickerView == self.genderPicker && row > 0)
         self.popoverValue = [[MMPopoverDataPair alloc] initWithDataType:GenderValue
                                                        withSelectedValue:self.gender[row]];
+    else
+        self.popoverValue = nil;
 }
 
 - (void)updateSelectedBirthday {

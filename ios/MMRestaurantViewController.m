@@ -65,9 +65,14 @@ static NSString * menuCateogires = {@"Dinner", @"Breakfast", @"Lunch", @"Dessert
                 UITextField *searchBarTextField = (UITextField *)secondLevelSubview;
                 
                 //set font color here
+
                 searchBarTextField.textColor = [UIColor whiteColor];
-                //searchBarTextField.font = [UIFont systemFontOfSize:22.0];
-                //searchBarTextField.tintColor = [UIColor whiteColor];
+                searchBarTextField.font = [UIFont systemFontOfSize:22.0];
+                searchBarTextField.tintColor = [UIColor whiteColor];
+                searchBarTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search By Name" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+                UIImage *magna = [UIImage imageNamed:@"06-magnify.png"];
+                UIImageView * mag = [[UIImageView alloc] initWithImage:magna];
+                searchBarTextField.leftView = mag;
                
                 
                 break;
