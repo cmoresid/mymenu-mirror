@@ -134,6 +134,12 @@ static MMDBFetcher *instance;
                                         user.birthmonth = [e child:@"birthmonth"].text;
                                         user.birthyear = [e child:@"birthyear"].text;
                                     }];
+                                    
+                                    // Check if user was found, based on whether or not
+                                    // email was populated.
+                                    if (user.email == nil) {
+                                        user = nil;
+                                    }
             
                                     [self.delegate didRetrieveUser:user withResponse:dbResponse];
                                 }
