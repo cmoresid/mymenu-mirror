@@ -22,7 +22,8 @@
 #import "MMMerchant.h"
 #import "MMDBFetcherDelegate.h"
 #import "MMNetworkClientProtocol.h"
-@class MKUserLocation;
+
+@class CLLocation;
 
 /**
 * A model for qeurying data from the api.
@@ -77,7 +78,7 @@
 * TODO: filter by nearby
 */
 //- (NSArray *)getCompressedMerchants;
-- (void)getCompressedMerchants:(MKUserLocation*) usrloc;
+- (void)getCompressedMerchants:(CLLocation*) usrloc;
 
 /**
 * Get the menu for the restaurant.

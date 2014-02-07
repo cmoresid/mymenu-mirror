@@ -8,17 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-typedef void (^ConfigureMapView)(MKMapView*, MKUserLocation*);
+typedef void (^ConfigureMapView)(CLLocationManager*, NSArray*);
 
 extern NSString* const kRetrievedUserLocation;
 
-@interface MMMapDelegate : NSObject <MKMapViewDelegate>
+@interface MMMapDelegate : NSObject <CLLocationManagerDelegate>
 
 @property MKUserLocation *userloc;
 @property(nonatomic,copy) ConfigureMapView configBlock;
 
 - (id)initWithConfigurationBlock:(ConfigureMapView)conf;
+
 
 
 

@@ -20,6 +20,7 @@
 #import "MMDBFetcherResponse.h"
 #import "MMNetworkClientProxy.h"
 #import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "NSString+UrlEncode.h"
 
 
@@ -415,7 +416,7 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getCompressedMerchants: (MKUserLocation*) usrloc  {
+- (void)getCompressedMerchants: (CLLocation*) usrloc  {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
@@ -423,7 +424,7 @@ static MMDBFetcher *instance;
     
     CLLocationCoordinate2D coords = usrloc.coordinate;
 
-    NSString *queryFormat = @"query=SELECT id, business_name, business_number, rating, business_picture, business_description, distance, lat, longa FROM (SELECT id, business_name, business_number, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT id, business_name, business_number, rating, business_picture, business_description, lat, longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m) AS temp) AS distances WHERE distance<10";
+    NSString *queryFormat = @"query=SELECT id, business_name, business_number, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, business_number, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT id, business_name, business_number, rating, business_picture, business_description, lat, longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m) AS temp) AS distances ORDER BY distance ASC LIMIT 50";
     
     NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude]];
     
