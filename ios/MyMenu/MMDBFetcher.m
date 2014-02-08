@@ -423,7 +423,7 @@ static MMDBFetcher *instance;
     
     CLLocationCoordinate2D coords = usrloc.coordinate;
 
-    NSString *queryFormat = @"query=SELECT id, business_name, business_number, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, business_number, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT id, business_name, business_number, rating, business_picture, business_description, lat, longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m) AS temp) AS distances ORDER BY distance ASC LIMIT 50";
+    NSString *queryFormat = @"query=SELECT id, business_name, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT id, business_name, business_number, business_address1, rating, business_picture, business_description, lat, longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m) AS temp) AS distances ORDER BY distance ASC LIMIT 50";
     
     NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude]];
     
@@ -446,6 +446,7 @@ static MMDBFetcher *instance;
                                             MMMerchant *merchant = [[MMMerchant alloc] init];
                                             merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
                                             merchant.businessname = [e child:@"business_name"].text;
+                                            merchant.address = [e child:@"business_address1"].text;
                                             merchant.phone = [e child:@"business_number"].text;
                                             merchant.desc = [e child:@"business_description"].text;
                                             merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
@@ -453,7 +454,6 @@ static MMDBFetcher *instance;
                                             merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
                                             merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
                                             merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
-                                            merchant.picture = [e child:@"business_picture"].text;
                                             merchant.distfromuser = [NSNumber numberWithDouble:[e child:@"distance"].textAsDouble];
                                             
                                             [merchants addObject:merchant];
