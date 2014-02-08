@@ -23,7 +23,6 @@
 @synthesize numberLabel = _numberLabel;
 @synthesize ratinglabel = _ratinglabel;
 @synthesize thumbnailImageView = _thumbnailImageView;
-@synthesize ratingview = _ratingview;
 @synthesize ratingBg = _ratingBg;
 
 

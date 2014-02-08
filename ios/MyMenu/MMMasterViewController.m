@@ -125,10 +125,13 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
+    
+    MMMerchant *restaurant = [_restaurants objectAtIndex:indexPath.row];
+    
 	cell.ratingBg.backgroundColor = [UIColor lightBackgroundGray];
 	cell.ratingBg.layer.cornerRadius = 5;
-    cell.nameLabel.text = [[_restaurants objectAtIndex:indexPath.row] businessname];
-    cell.numberLabel.text = [[_restaurants objectAtIndex:indexPath.row] phone];
+    cell.nameLabel.text = restaurant.businessname;
+    cell.numberLabel.text = restaurant.phone;
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
@@ -138,7 +141,30 @@
     if ([rate isEqualToString:@"0"]){
         rate = @"N/A";
     }
-    [cell.ratinglabel setText: rate];
+    
+    if ([restaurant.distfromuser compare:[NSNumber numberWithFloat:0.0f]] == NSOrderedAscending) {
+        NSNumberFormatter *oneDecFormat = [[NSNumberFormatter alloc] init];
+        [oneDecFormat setRoundingMode:NSNumberFormatterRoundHalfUp];
+        [oneDecFormat setMaximumFractionDigits:0];
+        
+        NSString *stringFormat = @"%@ m";
+        NSNumber *dist = [NSNumber numberWithDouble:restaurant.distfromuser.doubleValue * 1000.0];
+        NSString *formattedValue = [oneDecFormat stringFromNumber:dist];
+        
+        cell.distanceLabel.text = [NSString stringWithFormat:stringFormat,formattedValue];
+    } else {
+        NSNumberFormatter *oneDecFormat = [[NSNumberFormatter alloc] init];
+        [oneDecFormat setRoundingMode:NSNumberFormatterRoundHalfUp];
+        [oneDecFormat setMaximumFractionDigits:1];
+        
+        NSString *stringFormat = @"%@ km";
+        NSString *formattedValue = [oneDecFormat stringFromNumber:restaurant.distfromuser];
+        
+        cell.distanceLabel.text = [NSString stringWithFormat:stringFormat,formattedValue];
+    }
+
+    cell.ratinglabel.text = rate;
+    cell.addressLabel.text = restaurant.address;
     
     MMMerchant __weak *merchant = [_restaurants objectAtIndex:indexPath.row];
     

@@ -22,8 +22,9 @@
 @property(nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property(nonatomic, weak) IBOutlet UILabel *numberLabel;
 @property(nonatomic, weak) IBOutlet UILabel *ratinglabel;
+@property(nonatomic, weak) IBOutlet UILabel *distanceLabel;
+@property(nonatomic, weak) IBOutlet UILabel *addressLabel;
 @property(nonatomic, weak) IBOutlet UIView *ratingBg;
 @property(nonatomic, weak) IBOutlet UIImageView *thumbnailImageView;
-@property(nonatomic, weak) IBOutlet UIProgressView *ratingview;
 
 @end
