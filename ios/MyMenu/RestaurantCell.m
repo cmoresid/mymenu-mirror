@@ -20,7 +20,6 @@
 @implementation RestaurantCell
 
 @synthesize nameLabel = _nameLabel;
-@synthesize numberLabel = _numberLabel;
 @synthesize ratinglabel = _ratinglabel;
 @synthesize thumbnailImageView = _thumbnailImageView;
 @synthesize ratingBg = _ratingBg;
