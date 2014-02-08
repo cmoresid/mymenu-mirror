@@ -44,7 +44,7 @@
 @property(nonatomic) NSString *website;
 @property(nonatomic) NSNumber *rating;
 @property(nonatomic) NSNumber *ratingcount;
-@property(nonatomic) NSNumber *categoryid;
+@property(nonatomic) NSString *category;
 @property(nonatomic) NSNumber *pricelow;
 @property(nonatomic) NSNumber *pricehigh;
 @property(nonatomic) NSNumber *opentime;

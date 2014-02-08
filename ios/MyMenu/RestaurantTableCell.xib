@@ -23,7 +23,7 @@
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRE-lt-2mo">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRE-lt-2mo">
                         <rect key="frame" x="77" y="38" width="180" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -61,9 +61,9 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="addressLabel" destination="4Js-4v-wFm" id="GlH-AA-3SC"/>
+                <outlet property="categoryLabel" destination="DRE-lt-2mo" id="CcH-sS-UIm"/>
                 <outlet property="distanceLabel" destination="aim-EL-itj" id="XVk-m2-1ui"/>
                 <outlet property="nameLabel" destination="LyL-p2-C7p" id="tJc-9s-bnM"/>
-                <outlet property="numberLabel" destination="DRE-lt-2mo" id="q0i-pY-7Mt"/>
                 <outlet property="ratingBg" destination="lXw-Cu-fKv" id="tfj-Eg-7n0"/>
                 <outlet property="ratinglabel" destination="OQc-q2-YGO" id="Fy4-Sh-y0o"/>
                 <outlet property="thumbnailImageView" destination="KtH-hU-ueu" id="2tt-6R-Ijc"/>

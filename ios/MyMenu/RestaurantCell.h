@@ -20,7 +20,7 @@
 @interface RestaurantCell : UITableViewCell
 
 @property(nonatomic, weak) IBOutlet UILabel *nameLabel;
-@property(nonatomic, weak) IBOutlet UILabel *numberLabel;
+@property(nonatomic, weak) IBOutlet UILabel *categoryLabel;
 @property(nonatomic, weak) IBOutlet UILabel *ratinglabel;
 @property(nonatomic, weak) IBOutlet UILabel *distanceLabel;
 @property(nonatomic, weak) IBOutlet UILabel *addressLabel;
