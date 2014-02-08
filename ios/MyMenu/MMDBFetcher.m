@@ -21,7 +21,6 @@
 #import "MMNetworkClientProxy.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "NSString+UrlEncode.h"
 
 
 @implementation MMDBFetcher
