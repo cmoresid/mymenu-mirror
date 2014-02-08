@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		171EA89D189B043F002DEFEF /* MMDietaryRestrictionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 171EA89C189B043F002DEFEF /* MMDietaryRestrictionCell.m */; };
 		171EA8A0189B094E002DEFEF /* MMRestrictionSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 171EA89F189B094E002DEFEF /* MMRestrictionSwitch.m */; };
-		1731DFAA18A57B99008BE05B /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731DFA918A57B99008BE05B /* 06-magnify.png */; };
+		1731DFAC18A59B0F008BE05B /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731DFAB18A59B0F008BE05B /* 06-magnify.png */; };
+		1731DFAE18A6CFB2008BE05B /* MenuItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1731DFAD18A6CFB2008BE05B /* MenuItemCell.xib */; };
+		1731DFB118A6D28B008BE05B /* MMMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1731DFB018A6D28B008BE05B /* MMMenuItemCell.m */; };
 		174FE0C218945E5900CB82C0 /* RestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 174FE0C118945E5800CB82C0 /* RestaurantCell.m */; };
 		174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */; };
 		17F6531D189D83F200D63D3D /* MMRestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F6531C189D83F200D63D3D /* MMRestaurantViewController.m */; };
@@ -121,7 +123,10 @@
 		171EA89C189B043F002DEFEF /* MMDietaryRestrictionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDietaryRestrictionCell.m; sourceTree = "<group>"; };
 		171EA89E189B094E002DEFEF /* MMRestrictionSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRestrictionSwitch.h; sourceTree = "<group>"; };
 		171EA89F189B094E002DEFEF /* MMRestrictionSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestrictionSwitch.m; sourceTree = "<group>"; };
-		1731DFA918A57B99008BE05B /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify.png"; sourceTree = "<group>"; };
+		1731DFAB18A59B0F008BE05B /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify.png"; sourceTree = "<group>"; };
+		1731DFAD18A6CFB2008BE05B /* MenuItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuItemCell.xib; sourceTree = "<group>"; };
+		1731DFAF18A6D28B008BE05B /* MMMenuItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemCell.h; sourceTree = "<group>"; };
+		1731DFB018A6D28B008BE05B /* MMMenuItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemCell.m; sourceTree = "<group>"; };
 		174FE0C018945E5800CB82C0 /* RestaurantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantCell.h; sourceTree = "<group>"; };
 		174FE0C118945E5800CB82C0 /* RestaurantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantCell.m; sourceTree = "<group>"; };
 		174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantTableCell.xib; sourceTree = "<group>"; };
@@ -285,7 +290,7 @@
 		8333C3EC1894B5680028FFBE /* image_pack */ = {
 			isa = PBXGroup;
 			children = (
-				1731DFA918A57B99008BE05B /* 06-magnify.png */,
+				1731DFAB18A59B0F008BE05B /* 06-magnify.png */,
 				B0627E2818A2CB3700EAA045 /* 19-gear.png */,
 				B0627E2918A2CB3700EAA045 /* 125-food.png */,
 				B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */,
@@ -389,6 +394,8 @@
 				171EA89F189B094E002DEFEF /* MMRestrictionSwitch.m */,
 				171EA89C189B043F002DEFEF /* MMDietaryRestrictionCell.m */,
 				174FE0C118945E5800CB82C0 /* RestaurantCell.m */,
+				1731DFAF18A6D28B008BE05B /* MMMenuItemCell.h */,
+				1731DFB018A6D28B008BE05B /* MMMenuItemCell.m */,
 			);
 			path = MyMenu;
 			sourceTree = "<group>";
@@ -396,6 +403,7 @@
 		83893EB118919AD400D36670 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1731DFAD18A6CFB2008BE05B /* MenuItemCell.xib */,
 				174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */,
 				83893EB218919AD400D36670 /* MyMenu-Info.plist */,
 				83893EB318919AD400D36670 /* InfoPlist.strings */,
@@ -607,6 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0627E2D18A2CB3700EAA045 /* 125-food.png in Resources */,
+				1731DFAE18A6CFB2008BE05B /* MenuItemCell.xib in Resources */,
 				B0627E2E18A2CB3700EAA045 /* 172-pricetag.png in Resources */,
 				8333C4071894B5680028FFBE /* mushroom_risotto.jpg in Resources */,
 				833C8C83189D9B85007CB562 /* logo.png in Resources */,
@@ -625,7 +634,7 @@
 				8333C40A1894B5680028FFBE /* thai_shrimp_cake.jpg in Resources */,
 				8333C40C1894B5680028FFBE /* white_chocolate_donut.jpg in Resources */,
 				B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */,
-				1731DFAA18A57B99008BE05B /* 06-magnify.png in Resources */,
+				1731DFAC18A59B0F008BE05B /* 06-magnify.png in Resources */,
 				8333C4011894B5680028FFBE /* green_tea.jpg in Resources */,
 				8333C4081894B5680028FFBE /* noodle_with_bbq_pork.jpg in Resources */,
 				8333C3FE1894B5680028FFBE /* creme_brelee.jpg in Resources */,
@@ -702,6 +711,7 @@
 				171EA8A0189B094E002DEFEF /* MMRestrictionSwitch.m in Sources */,
 				B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */,
 				171EA89D189B043F002DEFEF /* MMDietaryRestrictionCell.m in Sources */,
+				1731DFB118A6D28B008BE05B /* MMMenuItemCell.m in Sources */,
 				9B4E24841891DC3D00F5B955 /* MMMerchantCategory.m in Sources */,
 				837FE29418945CB800A0720E /* MMButton.m in Sources */,
 				B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */,

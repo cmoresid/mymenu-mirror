@@ -56,7 +56,7 @@
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManagerDelegate = [[MMMapDelegate alloc] initWithConfigurationBlock:^(CLLocationManager *locationManager, NSArray *locations) {
-        [self.locationManager stopUpdatingLocation];
+        //[self.locationManager stopUpdatingLocation];
         
         CLLocation *currentLocation = [locations lastObject];
         
@@ -79,7 +79,7 @@
     self.locationManager.delegate = self.locationManagerDelegate;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     
-    [self.locationManager startUpdatingLocation];
+    [self.locationManager startMonitoringSignificantLocationChanges];
 
     self.dbFetcher = [[MMDBFetcher alloc] init];
     self.dbFetcher.delegate = self;

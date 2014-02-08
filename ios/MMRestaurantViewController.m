@@ -70,14 +70,14 @@ static NSString * menuCateogires = {@"Dinner", @"Breakfast", @"Lunch", @"Dessert
                 searchBarTextField.font = [UIFont systemFontOfSize:22.0];
                 searchBarTextField.tintColor = [UIColor whiteColor];
                 searchBarTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search By Name" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-                UIImage *magna = [UIImage imageNamed:@"06-magnify.png"];
-                UIImageView * mag = [[UIImageView alloc] initWithImage:magna];
-                searchBarTextField.leftView = mag;
+
                
                 
                 break;
             }
+          
         }
+
     }
     
     [_restDescription  setText:_selectedRestaurant.desc];
@@ -87,7 +87,12 @@ static NSString * menuCateogires = {@"Dinner", @"Breakfast", @"Lunch", @"Dessert
     _restImage.image = [UIImage imageWithData:                                                                      [NSData dataWithContentsOfURL:                                                                            [NSURL URLWithString: _selectedRestaurant.picture]]];
     _ratingView.backgroundColor = [UIColor lightBackgroundGray];
 	_ratingView.layer.cornerRadius = 17.5;
-    _restRating.text = [formatter  stringFromNumber:_selectedRestaurant.rating];
+    NSString * rate =[formatter  stringFromNumber:_selectedRestaurant.rating];
+    //NSNumber * rate = _selectedRestaurant.rating;
+    if ([rate isEqualToString:@"0"]){
+        rate = @"N/A";
+    }
+    _restRating.text = rate;
 
 
 	// Do any additional setup after loading the view.
