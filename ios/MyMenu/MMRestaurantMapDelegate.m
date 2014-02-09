@@ -41,6 +41,10 @@
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews {
     for (MKAnnotationView *annView in annotationViews) {
+        if ([annView.annotation isKindOfClass:[MKUserLocation class]]) {
+            continue;
+        }
+        
         CGRect endFrame = annView.frame;
         annView.frame = CGRectOffset(endFrame, 0, -500);
         
