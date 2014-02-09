@@ -21,6 +21,7 @@
 #import "MMNetworkClientProxy.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "MMMenuItem.h"
 
 
 @implementation MMDBFetcher
@@ -517,8 +518,96 @@ static MMDBFetcher *instance;
 }
 
 // TODO
-- (void)getMenu:(NSInteger *)merchid {
-    [self.delegate didRetrieveMenuItems:[[NSArray alloc] init] withResponse:nil];
+- (void)getMenuWithMerchantId:(NSInteger)merchid withUserEmail:(NSString*)email; {
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/menu/custom.php"]];
+
+    NSString *queryFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.category FROM menu m, menucategories mc WHERE id IN(SELECT DISTINCT menuid from restrictonmenulink where menuid IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid NOT IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id" ;
+    
+    
+    NSString *query =[NSString stringWithFormat:queryFormat, email, merchid];
+    
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    NSMutableArray *menuitems = [[NSMutableArray alloc] init];
+                                    
+                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                        MMMenuItem *item = [[MMMenuItem alloc] init];
+                                        item.itemid = [NSNumber numberWithInt: [e child:@"id"].textAsInt];
+                                        item.merchid = [NSNumber numberWithInt: [e child:@"merchid"].textAsInt];
+                                        item.name = [e child:@"name"].text;
+                                        item.cost = [NSNumber numberWithDouble: [e child:@"cost"].textAsDouble];
+                                        item.picture = [e child:@"picture"].text;
+                                        item.desc = [e child:@"description"].text;
+                                        item.rating = [NSNumber numberWithDouble: [e child:@"rating"].textAsDouble];
+                                        item.category = [e child:@"category"].text;
+                                        item.restrictionflag = FALSE;
+                                        
+                                        [menuitems addObject:item];
+                                    }];
+                                    
+                                    [self getRestrictedMenu:merchid withUserEmail:email withAllowedMenuItems:menuitems];
+                                }
+                                else {
+                                    [self.delegate didRetrieveMenuItems:nil withResponse:dbResponse];
+                                }
+                            }];
 }
+
+- (void)getRestrictedMenu:(NSInteger)merchid withUserEmail:(NSString*)email withAllowedMenuItems:(NSMutableArray*)allowedItems {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/menu/custom.php"]];
+    
+    /* Get restricted */
+    
+    NSString *queryFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.category FROM menu m, menucategories mc WHERE id IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id";
+    
+    NSString *query =[NSString stringWithFormat:queryFormat, email, merchid];
+    
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    
+                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                        MMMenuItem *item = [[MMMenuItem alloc] init];
+                                        item.itemid = [NSNumber numberWithInt: [e child:@"id"].textAsInt];
+                                        item.merchid = [NSNumber numberWithInt: [e child:@"merchid"].textAsInt];
+                                        item.name = [e child:@"name"].text;
+                                        item.cost = [NSNumber numberWithDouble: [e child:@"cost"].textAsDouble];
+                                        item.picture = [e child:@"picture"].text;
+                                        item.desc = [e child:@"description"].text;
+                                        item.rating = [NSNumber numberWithDouble: [e child:@"rating"].textAsDouble];
+                                        item.category = [e child:@"category"].text;
+                                        item.restrictionflag = TRUE;
+                                        
+                                        [allowedItems addObject:item];
+                                    }];
+                                    
+                                    [self.delegate didRetrieveMenuItems:[allowedItems copy] withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didRetrieveMenuItems:nil withResponse:dbResponse];
+                                }
+                            }];
+}
+
 
 @end

@@ -61,12 +61,8 @@
 		9B4E24751891D67300F5B955 /* MMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24731891D67300F5B955 /* MMMenuItem.m */; };
 		9B4E24781891D8C600F5B955 /* MMMerchant.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24771891D8C600F5B955 /* MMMerchant.m */; };
 		9B4E24791891D8C600F5B955 /* MMMerchant.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24771891D8C600F5B955 /* MMMerchant.m */; };
-		9B4E247C1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E247B1891DA7B00F5B955 /* MMMenuItemCategory.m */; };
-		9B4E247D1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E247B1891DA7B00F5B955 /* MMMenuItemCategory.m */; };
 		9B4E24801891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E247F1891DAC700F5B955 /* MMMenuItemFavLink.m */; };
 		9B4E24811891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E247F1891DAC700F5B955 /* MMMenuItemFavLink.m */; };
-		9B4E24841891DC3D00F5B955 /* MMMerchantCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24831891DC3D00F5B955 /* MMMerchantCategory.m */; };
-		9B4E24851891DC3D00F5B955 /* MMMerchantCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24831891DC3D00F5B955 /* MMMerchantCategory.m */; };
 		9B4E24881891DCD100F5B955 /* MMMenuItemRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24871891DCD100F5B955 /* MMMenuItemRating.m */; };
 		9B4E24891891DCD100F5B955 /* MMMenuItemRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24871891DCD100F5B955 /* MMMenuItemRating.m */; };
 		9B4E248D1891E02B00F5B955 /* MMRestriction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E248C1891E02B00F5B955 /* MMRestriction.m */; };
@@ -190,12 +186,8 @@
 		9B4E24731891D67300F5B955 /* MMMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItem.m; sourceTree = "<group>"; };
 		9B4E24761891D8C600F5B955 /* MMMerchant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMerchant.h; sourceTree = "<group>"; };
 		9B4E24771891D8C600F5B955 /* MMMerchant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMerchant.m; sourceTree = "<group>"; };
-		9B4E247A1891DA7B00F5B955 /* MMMenuItemCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemCategory.h; sourceTree = "<group>"; };
-		9B4E247B1891DA7B00F5B955 /* MMMenuItemCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemCategory.m; sourceTree = "<group>"; };
 		9B4E247E1891DAC700F5B955 /* MMMenuItemFavLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemFavLink.h; sourceTree = "<group>"; };
 		9B4E247F1891DAC700F5B955 /* MMMenuItemFavLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemFavLink.m; sourceTree = "<group>"; };
-		9B4E24821891DC3D00F5B955 /* MMMerchantCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMerchantCategory.h; sourceTree = "<group>"; };
-		9B4E24831891DC3D00F5B955 /* MMMerchantCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMerchantCategory.m; sourceTree = "<group>"; };
 		9B4E24861891DCD100F5B955 /* MMMenuItemRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemRating.h; sourceTree = "<group>"; };
 		9B4E24871891DCD100F5B955 /* MMMenuItemRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemRating.m; sourceTree = "<group>"; };
 		9B4E248B1891E02B00F5B955 /* MMRestriction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRestriction.h; sourceTree = "<group>"; };
@@ -434,14 +426,10 @@
 				9B4E246F1891D37500F5B955 /* MMUser.m */,
 				9B4E24721891D67300F5B955 /* MMMenuItem.h */,
 				9B4E24761891D8C600F5B955 /* MMMerchant.h */,
-				9B4E247A1891DA7B00F5B955 /* MMMenuItemCategory.h */,
 				9B4E247E1891DAC700F5B955 /* MMMenuItemFavLink.h */,
-				9B4E24821891DC3D00F5B955 /* MMMerchantCategory.h */,
 				9B4E24861891DCD100F5B955 /* MMMenuItemRating.h */,
 				9B4E24871891DCD100F5B955 /* MMMenuItemRating.m */,
-				9B4E24831891DC3D00F5B955 /* MMMerchantCategory.m */,
 				9B4E247F1891DAC700F5B955 /* MMMenuItemFavLink.m */,
-				9B4E247B1891DA7B00F5B955 /* MMMenuItemCategory.m */,
 				9B4E24771891D8C600F5B955 /* MMMerchant.m */,
 				9B4E24731891D67300F5B955 /* MMMenuItem.m */,
 				9B4E248B1891E02B00F5B955 /* MMRestriction.h */,
@@ -697,12 +685,10 @@
 				9B4E24741891D67300F5B955 /* MMMenuItem.m in Sources */,
 				B0AC55C21896F8E9000BC0DD /* MMRegistrationPopoverViewController.m in Sources */,
 				9B4E248D1891E02B00F5B955 /* MMRestriction.m in Sources */,
-				9B4E247C1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */,
 				9B4E24801891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */,
 				171EA8A0189B094E002DEFEF /* MMRestrictionSwitch.m in Sources */,
 				B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */,
 				171EA89D189B043F002DEFEF /* MMDietaryRestrictionCell.m in Sources */,
-				9B4E24841891DC3D00F5B955 /* MMMerchantCategory.m in Sources */,
 				837FE29418945CB800A0720E /* MMButton.m in Sources */,
 				B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */,
 				83893EBB18919AD400D36670 /* MMAppDelegate.m in Sources */,
@@ -742,8 +728,6 @@
 				9B4E24811891DAC700F5B955 /* MMMenuItemFavLink.m in Sources */,
 				9B4E24711891D37500F5B955 /* MMUser.m in Sources */,
 				9B4E24751891D67300F5B955 /* MMMenuItem.m in Sources */,
-				9B4E24851891DC3D00F5B955 /* MMMerchantCategory.m in Sources */,
-				9B4E247D1891DA7B00F5B955 /* MMMenuItemCategory.m in Sources */,
 				9B4E248E1891E02B00F5B955 /* MMRestriction.m in Sources */,
 				9B1CFF7E18A442C700E9F778 /* MMMapDelegate.m in Sources */,
 				9B4E24791891D8C600F5B955 /* MMMerchant.m in Sources */,
