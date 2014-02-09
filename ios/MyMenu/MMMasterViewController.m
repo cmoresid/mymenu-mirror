@@ -16,7 +16,7 @@
 //
 
 #import "MMMasterViewController.h"
-#import "MMMapDelegate.h"
+#import "MMLocationManager.h"
 #import "RestaurantCell.h"
 #import "MMDetailViewController.h"
 #import "MMDBFetcher.h"

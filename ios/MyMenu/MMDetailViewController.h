@@ -21,15 +21,16 @@
 
 #import "MMDBFetcherDelegate.h"
 #import "MMDBFetcher.h"
-#import "MMMapDelegate.h"
 
-@interface MMDetailViewController : UIViewController <UISplitViewControllerDelegate, MKMapViewDelegate, MMDBFetcherDelegate>
+@class MMLocationManager;
+@class MMRestaurantMapDelegate;
+
+@interface MMDetailViewController : UIViewController <UISplitViewControllerDelegate, MMDBFetcherDelegate>
 
 @property(nonatomic, strong) id detailItem;
 @property(nonatomic, weak) IBOutlet UILabel *detailDescriptionLabel;
 @property(nonatomic, strong) MMDBFetcher* dbFetcher;
-@property(nonatomic, strong) CLLocationManager *locationManager;
-@property(nonatomic, strong) MMMapDelegate* locationManagerDelegate;
+@property(nonatomic, strong) MMLocationManager *locationManager;
 
 // Put the restaurant points on the map
 - (void)pinRestaurants:(NSArray*)restaurants;
