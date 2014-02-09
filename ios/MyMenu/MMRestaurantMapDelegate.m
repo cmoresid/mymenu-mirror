@@ -35,6 +35,7 @@
     
     annotationView.image = [UIImage imageNamed:imageName];
     annotationView.annotation = annotation;
+    annotationView.canShowCallout = TRUE;
         
     return annotationView;
 }
