@@ -84,6 +84,8 @@
 		B0627E2E18A2CB3700EAA045 /* 172-pricetag.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */; };
 		B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2B18A2CB3700EAA045 /* 184-warning.png */; };
 		B065BEAD18A40F8700EEA46B /* libPods-SDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B065BEAC18A40F8700EEA46B /* libPods-SDWebImage.a */; };
+		B068A13218A738B5005E8036 /* MMSocialMediaService.m in Sources */ = {isa = PBXBuildFile; fileRef = B068A13118A738B5005E8036 /* MMSocialMediaService.m */; };
+		B068A13418A738F4005E8036 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B068A13318A738F4005E8036 /* Social.framework */; };
 		B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = B06B61A7189F4AD300A51A81 /* restriction_placeholder.png */; };
 		B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57251893084E00DEBAD8 /* MMLoginViewController.m */; };
 		B07A57291893084E00DEBAD8 /* UIColor+MyMenuColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B07A57271893084E00DEBAD8 /* UIColor+MyMenuColors.m */; };
@@ -212,6 +214,9 @@
 		B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "172-pricetag.png"; sourceTree = "<group>"; };
 		B0627E2B18A2CB3700EAA045 /* 184-warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "184-warning.png"; sourceTree = "<group>"; };
 		B065BEAC18A40F8700EEA46B /* libPods-SDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SDWebImage.a"; path = "Pods/build/Debug-iphoneos/libPods-SDWebImage.a"; sourceTree = "<group>"; };
+		B068A13018A738B5005E8036 /* MMSocialMediaService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSocialMediaService.h; path = ../MMSocialMediaService.h; sourceTree = "<group>"; };
+		B068A13118A738B5005E8036 /* MMSocialMediaService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSocialMediaService.m; path = ../MMSocialMediaService.m; sourceTree = "<group>"; };
+		B068A13318A738F4005E8036 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B06B61A7189F4AD300A51A81 /* restriction_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restriction_placeholder.png; sourceTree = "<group>"; };
 		B0760F14189ED18D00C40D15 /* libMBProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMBProgressHUD.a; path = MyMenu/lib/libMBProgressHUD.a; sourceTree = "<group>"; };
 		B07A57241893084E00DEBAD8 /* MMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLoginViewController.h; sourceTree = "<group>"; };
@@ -253,6 +258,7 @@
 				B065BEAD18A40F8700EEA46B /* libPods-SDWebImage.a in Frameworks */,
 				B0EB0C8718A40E2E00CAAF44 /* libPods-MBProgressHUD.a in Frameworks */,
 				B09C25EA18A38E3E00E05289 /* libPods-RaptureXML.a in Frameworks */,
+				B068A13418A738F4005E8036 /* Social.framework in Frameworks */,
 				83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */,
 				83893EAD18919AD400D36670 /* CoreGraphics.framework in Frameworks */,
 				83893EAF18919AD400D36670 /* UIKit.framework in Frameworks */,
@@ -340,6 +346,7 @@
 		83893EA918919AD400D36670 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B068A13318A738F4005E8036 /* Social.framework */,
 				9B1CFF7F18A46CF600E9F778 /* libPods-NSString-UrlEncode.a */,
 				B065BEAC18A40F8700EEA46B /* libPods-SDWebImage.a */,
 				B0EB0C8618A40E2E00CAAF44 /* libPods-MBProgressHUD.a */,
@@ -381,6 +388,8 @@
 				171EA89F189B094E002DEFEF /* MMRestrictionSwitch.m */,
 				171EA89C189B043F002DEFEF /* MMDietaryRestrictionCell.m */,
 				174FE0C118945E5800CB82C0 /* RestaurantCell.m */,
+				B068A13018A738B5005E8036 /* MMSocialMediaService.h */,
+				B068A13118A738B5005E8036 /* MMSocialMediaService.m */,
 			);
 			path = MyMenu;
 			sourceTree = "<group>";
@@ -710,6 +719,7 @@
 				9B4E24781891D8C600F5B955 /* MMMerchant.m in Sources */,
 				9B1CFF7D18A442C700E9F778 /* MMMapDelegate.m in Sources */,
 				83B7E44E1891EE0700946784 /* MMDetailViewController.m in Sources */,
+				B068A13218A738B5005E8036 /* MMSocialMediaService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
