@@ -55,4 +55,19 @@
     }
 }
 
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+//    [mapView deselectAnnotation:view.annotation animated:YES];
+//    
+//    DetailsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailsPopover"];
+//    controller.annotation = view.annotation; // it's useful to have property in your view controller for whatever data it needs to present the annotation's details
+//    
+//    self.popover = [[UIPopoverController alloc] initWithContentViewController:controller];
+//    self.popover.delegate = self;
+//    
+//    [self.popover presentPopoverFromRect:view.frame
+//                                  inView:view.superview
+//                permittedArrowDirections:UIPopoverArrowDirectionAny
+//                                animated:YES];
+}
+
 @end
