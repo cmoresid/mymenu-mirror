@@ -54,9 +54,9 @@
 //    self.arrayResponseCallback(compressedMerchants, response);
 //}
 //
-//- (void)didRetrieveMenuItems:(NSArray*)menuItems withResponse:(MMDBFetcherResponse*)response {
-//    self.arrayResponseCallback(menuItems, response);
-//}
+- (void)didRetrieveMenuItems:(NSArray*)menuItems withResponse:(MMDBFetcherResponse*)response {
+    self.getMenuResponseCallback(menuItems, response);
+}
 //
 //- (void)didRetrieveAllRestrictions:(NSArray*)allRestrictions withResponse:(MMDBFetcherResponse*)response {
 //    self.arrayResponseCallback(allRestrictions, response);

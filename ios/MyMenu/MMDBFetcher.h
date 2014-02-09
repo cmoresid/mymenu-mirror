@@ -83,7 +83,7 @@
 /**
 * Get the menu for the restaurant.
 */
-- (void)getMenu:(NSInteger *)merchid;
+- (void)getMenuWithMerchantId:(NSInteger)merchid withUserEmail:(NSString*)email;
 
 /**
 * Get all restrictions that we support.

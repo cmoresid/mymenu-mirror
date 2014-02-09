@@ -23,5 +23,6 @@ typedef void (^UserResponseBlock)(MMUser*, MMDBFetcherResponse*);
 
 @property(nonatomic, copy) MerchantResponseBlock merchantResponseCallback;
 @property(nonatomic, copy) UserResponseBlock userResponseCallback;
+@property(nonatomic, copy) ArrayResponseBlock getMenuResponseCallback;
 
 @end
