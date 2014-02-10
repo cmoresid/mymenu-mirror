@@ -80,6 +80,8 @@
 //- (NSArray *)getCompressedMerchants;
 - (void)getCompressedMerchants:(CLLocation*) usrloc;
 
+- (void)getCompressedSpecificMerchants:(CLLocation*) usrloc withName: (NSString*) merchname;
+
 /**
 * Get the menu for the restaurant.
 */
@@ -109,5 +111,11 @@
 * Get all information for the user with the given email.
 */
 - (void)getUser:(NSString *)email;
+
+
+/**
+ * Get all modifications for a specific menu item with the given email.
+ */
+- (void)getModifications:(NSNumber *)menuid withUser:(NSString *)email;
 
 @end

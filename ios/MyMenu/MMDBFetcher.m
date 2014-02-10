@@ -424,6 +424,7 @@ static MMDBFetcher *instance;
     
     CLLocationCoordinate2D coords = usrloc.coordinate;
 
+
     NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances ORDER BY distance ASC LIMIT 50";
     
     NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude]];
@@ -465,6 +466,59 @@ static MMDBFetcher *instance;
                                     else {
                                         [self.delegate didRetrieveCompressedMerchants:nil withResponse:dbResponse];
                                     }
+                            }];
+}
+
+- (void)getCompressedSpecificMerchants: (CLLocation*) usrloc withName: (NSString*) merchname  {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
+    
+    CLLocationCoordinate2D coords = usrloc.coordinate;
+    
+    
+    NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE business_name = '%@' ORDER BY distance ASC LIMIT 25";
+    
+    NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], merchname];
+    
+    NSString* encodedQuery = [query stringByAddingPercentEscapesUsingEncoding:
+                              NSUTF8StringEncoding];
+    
+    
+    [request setValue:[NSString stringWithFormat:@"%d", [encodedQuery length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[encodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    NSMutableArray *merchants = [[NSMutableArray alloc] init];
+                                    
+                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                        MMMerchant *merchant = [[MMMerchant alloc] init];
+                                        merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
+                                        merchant.businessname = [e child:@"business_name"].text;
+                                        merchant.category = [e child:@"category"].text;
+                                        merchant.address = [e child:@"business_address1"].text;
+                                        merchant.desc = [e child:@"business_description"].text;
+                                        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
+                                        merchant.picture = [e child:@"business_picture"].text;
+                                        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
+                                        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
+                                        merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
+                                        merchant.distfromuser = [NSNumber numberWithDouble:[e child:@"distance"].textAsDouble];
+                                        
+                                        [merchants addObject:merchant];
+                                    }];
+                                    
+                                    [self.delegate didRetrieveCompressedMerchants:merchants withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didRetrieveCompressedMerchants:nil withResponse:dbResponse];
+                                }
                             }];
 }
 
@@ -609,5 +663,41 @@ static MMDBFetcher *instance;
                             }];
 }
 
+
+- (void)getModifications:(NSNumber *)menuid withUser:(NSString *)email {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/modificationmenulink/custom.php"]];
+    
+    NSString *queryFormat = @"query=SELECT modification FROM modificationmenulink WHERE menuid = %@ AND restrictid IN(SELECT restrictid FROM restrictionuserlink WHERE email = '%@')";
+    
+    NSString *query =[NSString stringWithFormat:queryFormat, menuid, email];
+    
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    
+                                    NSMutableArray *modifications = [[NSMutableArray alloc] init];
+                                    
+                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                        NSString* modification;
+                                        modification = [e child:@"modification"].text;
+                                        [modifications addObject:modification];
+                                    }];
+                                    
+                                    [self.delegate didRetrieveModifications:modifications withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didRetrieveModifications:nil withResponse:dbResponse];
+                                }
+                            }];
+}
 
 @end
