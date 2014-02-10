@@ -53,8 +53,8 @@
 		83B85B861897029100195F05 /* MMSpecialsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B85B851897029100195F05 /* MMSpecialsCollectionViewController.m */; };
 		83B85B88189705FF00195F05 /* rest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 83B85B87189705FF00195F05 /* rest.jpg */; };
 		83B85B8B18971A3D00195F05 /* MMSpecialType.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B85B8A18971A3D00195F05 /* MMSpecialType.m */; };
-		9B1CFF7D18A442C700E9F778 /* MMMapDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CFF7C18A442C700E9F778 /* MMMapDelegate.m */; };
-		9B1CFF7E18A442C700E9F778 /* MMMapDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CFF7C18A442C700E9F778 /* MMMapDelegate.m */; };
+		9B1CFF7D18A442C700E9F778 /* MMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CFF7C18A442C700E9F778 /* MMLocationManager.m */; };
+		9B1CFF7E18A442C700E9F778 /* MMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CFF7C18A442C700E9F778 /* MMLocationManager.m */; };
 		9B4E24701891D37500F5B955 /* MMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E246F1891D37500F5B955 /* MMUser.m */; };
 		9B4E24711891D37500F5B955 /* MMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E246F1891D37500F5B955 /* MMUser.m */; };
 		9B4E24741891D67300F5B955 /* MMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24731891D67300F5B955 /* MMMenuItem.m */; };
@@ -99,6 +99,9 @@
 		B09C25EC18A38EE000E05289 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09C25EB18A38EE000E05289 /* libPods.a */; };
 		B0AC55BF1896F8CB000BC0DD /* MMPopoverDataPair.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AC55BE1896F8CB000BC0DD /* MMPopoverDataPair.m */; };
 		B0AC55C21896F8E9000BC0DD /* MMRegistrationPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AC55C11896F8E9000BC0DD /* MMRegistrationPopoverViewController.m */; };
+		B0B0C4DB18A81FAE00BA47CB /* MMRestaurantMapDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B0C4DA18A81FAE00BA47CB /* MMRestaurantMapDelegate.m */; };
+		B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */; };
+		B0B0C4DF18A8245600BA47CB /* LocationMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DD18A8245600BA47CB /* LocationMarker.png */; };
 		B0EB0C8418A397A200CAAF44 /* MMMockNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB0C8318A397A200CAAF44 /* MMMockNetworkClient.m */; };
 		B0EB0C8518A39C0500CAAF44 /* MMDBFetcherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B083C7D7189D85550074F7DC /* MMDBFetcherResponse.m */; };
 		B0EB0C8718A40E2E00CAAF44 /* libPods-MBProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0EB0C8618A40E2E00CAAF44 /* libPods-MBProgressHUD.a */; };
@@ -179,8 +182,8 @@
 		83B85B8918971A3D00195F05 /* MMSpecialType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialType.h; sourceTree = "<group>"; };
 		83B85B8A18971A3D00195F05 /* MMSpecialType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialType.m; sourceTree = "<group>"; };
 		8FD0A88C83664DE885E9A628 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B1CFF7B18A442C700E9F778 /* MMMapDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMapDelegate.h; sourceTree = "<group>"; };
-		9B1CFF7C18A442C700E9F778 /* MMMapDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMapDelegate.m; sourceTree = "<group>"; };
+		9B1CFF7B18A442C700E9F778 /* MMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLocationManager.h; sourceTree = "<group>"; };
+		9B1CFF7C18A442C700E9F778 /* MMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLocationManager.m; sourceTree = "<group>"; };
 		9B1CFF7F18A46CF600E9F778 /* libPods-NSString-UrlEncode.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-NSString-UrlEncode.a"; path = "Pods/build/Debug-iphoneos/libPods-NSString-UrlEncode.a"; sourceTree = "<group>"; };
 		9B4E246E1891D37500F5B955 /* MMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMUser.h; sourceTree = "<group>"; };
 		9B4E246F1891D37500F5B955 /* MMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMUser.m; sourceTree = "<group>"; };
@@ -245,6 +248,10 @@
 		B0AC55C01896F8E9000BC0DD /* MMRegistrationPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRegistrationPopoverViewController.h; sourceTree = "<group>"; };
 		B0AC55C11896F8E9000BC0DD /* MMRegistrationPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRegistrationPopoverViewController.m; sourceTree = "<group>"; };
 		B0AC55C41896F927000BC0DD /* MMRegistrationPopoverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRegistrationPopoverDelegate.h; sourceTree = "<group>"; };
+		B0B0C4D918A81FAE00BA47CB /* MMRestaurantMapDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRestaurantMapDelegate.h; sourceTree = "<group>"; };
+		B0B0C4DA18A81FAE00BA47CB /* MMRestaurantMapDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestaurantMapDelegate.m; sourceTree = "<group>"; };
+		B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentLocation.png; sourceTree = "<group>"; };
+		B0B0C4DD18A8245600BA47CB /* LocationMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocationMarker.png; sourceTree = "<group>"; };
 		B0EB0C8218A397A200CAAF44 /* MMMockNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMockNetworkClient.h; sourceTree = "<group>"; };
 		B0EB0C8318A397A200CAAF44 /* MMMockNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMockNetworkClient.m; sourceTree = "<group>"; };
 		B0EB0C8618A40E2E00CAAF44 /* libPods-MBProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-MBProgressHUD.a"; path = "Pods/build/Debug-iphoneos/libPods-MBProgressHUD.a"; sourceTree = "<group>"; };
@@ -283,6 +290,8 @@
 		8333C3EC1894B5680028FFBE /* image_pack */ = {
 			isa = PBXGroup;
 			children = (
+				B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */,
+				B0B0C4DD18A8245600BA47CB /* LocationMarker.png */,
 				1731DFA918A57B99008BE05B /* 06-magnify.png */,
 				B0627E2818A2CB3700EAA045 /* 19-gear.png */,
 				B0627E2918A2CB3700EAA045 /* 125-food.png */,
@@ -456,10 +465,12 @@
 				B083AFD618A37C7C00CDD0C9 /* MMNetworkClientProtocol.h */,
 				B083AFD718A37CA200CDD0C9 /* MMNetworkClientProxy.h */,
 				B083AFD818A37CA200CDD0C9 /* MMNetworkClientProxy.m */,
-				9B1CFF7B18A442C700E9F778 /* MMMapDelegate.h */,
-				9B1CFF7C18A442C700E9F778 /* MMMapDelegate.m */,
+				9B1CFF7B18A442C700E9F778 /* MMLocationManager.h */,
+				9B1CFF7C18A442C700E9F778 /* MMLocationManager.m */,
 				9B776FDD18A564D00057B6E1 /* NSArray+MerchantSort.h */,
 				9B776FDE18A564D00057B6E1 /* NSArray+MerchantSort.m */,
+				B0B0C4D918A81FAE00BA47CB /* MMRestaurantMapDelegate.h */,
+				B0B0C4DA18A81FAE00BA47CB /* MMRestaurantMapDelegate.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -609,6 +620,7 @@
 				833C8C83189D9B85007CB562 /* logo.png in Resources */,
 				B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */,
 				8333C4061894B5680028FFBE /* japanese_noodle_with_pork.jpg in Resources */,
+				B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */,
 				174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */,
 				8333C4031894B5680028FFBE /* ham_and_egg_sandwich.jpg in Resources */,
 				83893EC618919AD400D36670 /* Images.xcassets in Resources */,
@@ -631,6 +643,7 @@
 				83893EBE18919AD400D36670 /* Main.storyboard in Resources */,
 				83655AA01891E2DF005EBF8A /* MapViewToolbar.xib in Resources */,
 				8333C3FF1894B5680028FFBE /* egg_benedict.jpg in Resources */,
+				B0B0C4DF18A8245600BA47CB /* LocationMarker.png in Resources */,
 				8333C4021894B5680028FFBE /* ham_and_cheese_panini.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -713,11 +726,12 @@
 				B083AFD918A37CA200CDD0C9 /* MMNetworkClientProxy.m in Sources */,
 				B097D701189392FC00142F8D /* MMMainTabBarViewController.m in Sources */,
 				83B85B8B18971A3D00195F05 /* MMSpecialType.m in Sources */,
+				B0B0C4DB18A81FAE00BA47CB /* MMRestaurantMapDelegate.m in Sources */,
 				9B4E24881891DCD100F5B955 /* MMMenuItemRating.m in Sources */,
 				B097D7091893A6B200142F8D /* MMMainTabViewSegue.m in Sources */,
 				9BBDE03318A1A59D005EDA0B /* MMParentViewController.m in Sources */,
 				9B4E24781891D8C600F5B955 /* MMMerchant.m in Sources */,
-				9B1CFF7D18A442C700E9F778 /* MMMapDelegate.m in Sources */,
+				9B1CFF7D18A442C700E9F778 /* MMLocationManager.m in Sources */,
 				83B7E44E1891EE0700946784 /* MMDetailViewController.m in Sources */,
 				B068A13218A738B5005E8036 /* MMSocialMediaService.m in Sources */,
 			);
@@ -739,7 +753,7 @@
 				9B4E24711891D37500F5B955 /* MMUser.m in Sources */,
 				9B4E24751891D67300F5B955 /* MMMenuItem.m in Sources */,
 				9B4E248E1891E02B00F5B955 /* MMRestriction.m in Sources */,
-				9B1CFF7E18A442C700E9F778 /* MMMapDelegate.m in Sources */,
+				9B1CFF7E18A442C700E9F778 /* MMLocationManager.m in Sources */,
 				9B4E24791891D8C600F5B955 /* MMMerchant.m in Sources */,
 				9B4E24921891E06200F5B955 /* MMSpecial.m in Sources */,
 				9BBDE03E18A1B6E9005EDA0B /* MMSettingsViewController.m in Sources */,
