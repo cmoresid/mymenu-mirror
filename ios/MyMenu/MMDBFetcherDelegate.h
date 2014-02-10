@@ -36,5 +36,6 @@
 - (void)didRetrieveUserRestrictions:(NSArray*)userRestrictions withResponse:(MMDBFetcherResponse*)response;
 - (void)didRetrieveMerchant:(MMMerchant*)merchant withResponse:(MMDBFetcherResponse*)response;
 - (void)didUpdateUser:(BOOL)successful withResponse:(MMDBFetcherResponse*)response;
+- (void)didRetrieveModifications:(NSArray*)modifications withResponse:(MMDBFetcherResponse*)response;
 
 @end
