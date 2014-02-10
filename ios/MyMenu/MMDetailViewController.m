@@ -55,7 +55,9 @@
     [super viewDidLoad];
     [self configureView];
     
+
     self.locationManager = [[MMLocationManager alloc] initWithConfigurationBlock:^(CLLocationManager *locationManager, NSArray *locations) {
+
         CLLocation *currentLocation = [locations lastObject];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kRetrievedUserLocation
@@ -77,6 +79,8 @@
     self.mapDelegate = [[MMRestaurantMapDelegate alloc] init];
     self.mapView.delegate = self.mapDelegate;
     
+
+
     self.dbFetcher = [[MMDBFetcher alloc] init];
     self.dbFetcher.delegate = self;
 }

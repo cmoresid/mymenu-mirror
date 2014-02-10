@@ -525,7 +525,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/menu/custom.php"]];
 
-    NSString *queryFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.category FROM menu m, menucategories mc WHERE id IN(SELECT DISTINCT menuid from restrictonmenulink where menuid IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid NOT IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id" ;
+    NSString *queryFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.name AS category FROM menu m, menucategories mc WHERE m.id not IN(SELECT Distinct rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id" ;
     
     
     NSString *query =[NSString stringWithFormat:queryFormat, email, merchid];
@@ -572,7 +572,7 @@ static MMDBFetcher *instance;
     
     /* Get restricted */
     
-    NSString *queryFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.category FROM menu m, menucategories mc WHERE id IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id";
+    NSString *queryFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.name AS category FROM menu m, menucategories mc WHERE m.id IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id";
     
     NSString *query =[NSString stringWithFormat:queryFormat, email, merchid];
     

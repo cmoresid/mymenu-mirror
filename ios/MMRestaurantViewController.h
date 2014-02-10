@@ -16,8 +16,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MMMerchant.h"
+#import "MMDBFetcherDelegate.h"
 
-@interface MMRestaurantViewController : UIViewController
+@interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, MMDBFetcherDelegate>
 
 @property MMMerchant *selectedRestaurant;
 @property(nonatomic, weak) IBOutlet UILabel * restName;
@@ -28,11 +29,8 @@
 @property(nonatomic, weak) IBOutlet UIView *ratingView;
 @property(nonatomic, weak) IBOutlet UISearchBar * search;
 @property(nonatomic, weak) IBOutlet UIButton * categoryButton;
+@property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
-@property(nonatomic, weak) IBOutlet UISegmentedControl *tabOutlet;
-
-@property(nonatomic, weak) NSArray *menuItems;
-
-- (IBAction)foodCategoryChanged:(UISegmentedControl *)sender;
+//- (IBAction)foodCategoryChanged:(UISegmentedControl *)sender;
 @end
 

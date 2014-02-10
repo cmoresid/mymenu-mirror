@@ -50,6 +50,7 @@
     // for view to scroll to text field
     [self registerForKeyboardNotifications];
     [self.emailField becomeFirstResponder];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -129,8 +130,12 @@
 // field is selected.
 - (id)getPopoverViewControllerForTextField:(UITextField *)textField {
     // Lazily instaniate popover view controller for text field.
+    [self hideKeyboard];
     if (textField == self.cityField) {
         if (self.cityPopoverViewController == nil) {
+            UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+            self.scrollView.contentInset = contentInsets;
+            self.scrollView.scrollIndicatorInsets = contentInsets;
             self.cityPopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CityPopoverViewController"];
         }
         
@@ -138,6 +143,9 @@
     }
     else if (textField == self.provinceField) {
         if (self.provincePopoverViewController == nil) {
+            UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+            self.scrollView.contentInset = contentInsets;
+            self.scrollView.scrollIndicatorInsets = contentInsets;
             self.provincePopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProvincePopoverViewController"];
         }
         
@@ -145,6 +153,10 @@
     }
     else if (textField == self.genderField) {
         if (self.genderPopoverViewController == nil) {
+
+            UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+            self.scrollView.contentInset = contentInsets;
+            self.scrollView.scrollIndicatorInsets = contentInsets;
             self.genderPopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GenderPopoverViewController"];
         }
         
@@ -152,6 +164,9 @@
     }
     else if (textField == self.birthdayField) {
         if (self.birthdayPopoverViewController == nil) {
+            UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+            self.scrollView.contentInset = contentInsets;
+            self.scrollView.scrollIndicatorInsets = contentInsets;
             self.birthdayPopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BirthdayPopoverViewController"];
         }
         
@@ -159,6 +174,18 @@
     }
 
     return nil;
+}
+-(void)hideKeyboard{
+    [self.firstNameField resignFirstResponder];
+    [self.lastNameField resignFirstResponder];
+    [self.emailField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+    [self.confirmPasswordField resignFirstResponder];
+    [self.genderField resignFirstResponder];
+    [self.birthdayField resignFirstResponder];
+    [self.cityField resignFirstResponder];
+    [self.provinceField resignFirstResponder];
+    
 }
 
 // Set the popover view size depending on which text field
@@ -216,7 +243,9 @@
 // Set the reference to the text field that should be
 // focused on.
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    self.activeField = textField;
+
+        self.activeField = textField;
+        
 }
 
 // Remove the reference to the active textfield.
@@ -224,9 +253,15 @@
     self.activeField = nil;
 }
 
+- (IBAction)next:(id)sender{
+    NSLog(@"heyyyyyyyyyyyss");
+    [self performSegueWithIdentifier:@"regToDietRest" sender:self];
+    
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Make sure your segue name in storyboard is the same as this line
-    if ([[segue identifier] isEqualToString:@"userInfoSegue"]) {
+    if ([[segue identifier] isEqualToString:@"regToDietRest"]) {
         self.userProfile.email = self.emailField.text;
         self.userProfile.password = self.passwordField.text;
         self.userProfile.firstName = self.firstNameField.text;
