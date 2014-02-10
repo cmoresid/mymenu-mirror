@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMMenuItemCell : UITableViewCell
+@interface MMMenuItemCell : UICollectionViewCell
 
 @property(nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property(nonatomic, weak) IBOutlet UILabel *priceLabel;

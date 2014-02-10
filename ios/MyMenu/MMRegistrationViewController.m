@@ -253,9 +253,15 @@
     self.activeField = nil;
 }
 
+- (IBAction)next:(id)sender{
+    NSLog(@"heyyyyyyyyyyyss");
+    [self performSegueWithIdentifier:@"regToDietRest" sender:self];
+    
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Make sure your segue name in storyboard is the same as this line
-    if ([[segue identifier] isEqualToString:@"userInfoSegue"]) {
+    if ([[segue identifier] isEqualToString:@"regToDietRest"]) {
         self.userProfile.email = self.emailField.text;
         self.userProfile.password = self.passwordField.text;
         self.userProfile.firstName = self.firstNameField.text;

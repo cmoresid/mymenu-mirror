@@ -61,7 +61,7 @@
     
     self.selectRest = merchant;
     
-    NSLog(@"the id is : %@", self.selectRest.mid);
+    //NSLog(@"the id is : %@", self.selectRest.mid);
     //NSLog(@"Restaurant desc = %@", self.selectRest.desc);
     
     [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
@@ -86,8 +86,8 @@
     CLLocation *location = notification.object;
     CLLocationCoordinate2D coordinate = location.coordinate;
     
-    NSLog(@"Lat: %@", [NSNumber numberWithDouble:coordinate.latitude]);
-    NSLog(@"Longa: %@", [NSNumber numberWithDouble:coordinate.longitude]);
+//    NSLog(@"Lat: %@", [NSNumber numberWithDouble:coordinate.latitude]);
+//    NSLog(@"Longa: %@", [NSNumber numberWithDouble:coordinate.longitude]);
     
     self.dbFetcher = [[MMDBFetcher alloc] init];
     self.dbFetcher.delegate = self;
@@ -193,9 +193,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    NSLog(@"Selected %@", indexPath);
-    NSLog(@"ABC");
-    NSLog(@"the ID is %@" , [[self.restaurants objectAtIndex:indexPath.row] mid]);
+//    NSLog(@"Selected %@", indexPath);
+//    NSLog(@"ABC");
+//    NSLog(@"the ID is %@" , [[self.restaurants objectAtIndex:indexPath.row] mid]);
     //_selectRest = [self.restaurants objectAtIndex:indexPath.row];
     
     [self.dbFetcher getMerchant:[[self.restaurants objectAtIndex:indexPath.row] mid]];
@@ -204,9 +204,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"restaurantSegue"]){
         MMRestaurantViewController *RestaurantController = [segue destinationViewController];
-        NSLog(@"PREPARING FOR SEGUE NOOW");
         RestaurantController.selectedRestaurant = _selectRest;
-        NSLog(@"PREPARING FOR SEGUE NOOW2222");
+
 
         
     }

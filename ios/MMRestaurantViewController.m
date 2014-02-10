@@ -18,8 +18,12 @@
 #import "MMMenuItem.h"
 #import "MBProgressHUD.h"
 #import "UIColor+MyMenuColors.h"
-//#import "SDWebImage/UIImageView+WebCache.h"
+#import "MMDBFetcher.h"
+#import "MMMenuItemCell.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
+
+#define kCurrentUser @"currentUser"
 
 @interface MMRestaurantViewController ()
 
@@ -28,8 +32,7 @@
 
 @implementation MMRestaurantViewController
 
-
-static NSString * menuCateogires = {@"Dinner", @"Breakfast", @"Lunch", @"Dessert", @"Drink", @"Appetizer"};
+NSArray *menuItems;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,12 +47,31 @@ static NSString * menuCateogires = {@"Dinner", @"Breakfast", @"Lunch", @"Dessert
     
 }
 
+
+- (void)didRetrieveMenuItems:(NSArray *)menu withResponse:(MMDBFetcherResponse *)response{
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }else{
+        menuItems = menu;
+        [self.collectionView reloadData];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+    }
+    
+}
 - (void)viewDidLoad
 {	
     [super viewDidLoad];
     //NSLog(@"Restaurant Name = @%@" , _selectedRestaurant.businessname);
     _restName.text = _selectedRestaurant.businessname;
     _restNumber.text = _selectedRestaurant.phone;
+    menuItems = [[NSMutableArray alloc] init];
     
     	
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
@@ -94,6 +116,25 @@ static NSString * menuCateogires = {@"Dinner", @"Breakfast", @"Lunch", @"Dessert
     }
     _restRating.text = rate;
 
+//    MMMenuItem * tempItem = [[MMMenuItem alloc]init];
+//    tempItem.name = @"Chicken + Wonton";
+//    tempItem.cost = [NSNumber numberWithDouble:12.00];
+//    
+//    tempItem.picture = @"i.imgur.com/BfStevU.jpg";
+//    tempItem.desc = @"this is so gd tasty";
+//    tempItem.rating = [NSNumber numberWithDouble:9.3];
+//    tempItem.restrictionflag = TRUE;
+//    
+//    [menuItems addObject:tempItem];
+    NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
+    NSData * currentUser = [perfs objectForKey:kCurrentUser];
+    MMUser* userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
+    [MMDBFetcher get].delegate = self;
+    [[MMDBFetcher get] getMenuWithMerchantId:[_selectedRestaurant.mid integerValue] withUserEmail:userProfile.email];
+    
+    [self.collectionView registerNib:[UINib nibWithNibName:@"MenuItemCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
+    
+
 
 	// Do any additional setup after loading the view.
 }
@@ -110,33 +151,59 @@ static NSString * menuCateogires = {@"Dinner", @"Breakfast", @"Lunch", @"Dessert
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _menuItems.count;
+    return menuItems.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"Cell";
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    MMMenuItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"MenuItemCell" owner:self options:NULL] objectAtIndex:0];
+    }
     // Rounded Corners
     cell.contentView.backgroundColor = [UIColor whiteColor];
     cell.contentView.layer.cornerRadius = 5;
     cell.contentView.layer.masksToBounds = YES;
     
-    MMMenuItem *menitem = [_menuItems objectAtIndex:indexPath.row];
+    MMMenuItem *menitem = [menuItems objectAtIndex:indexPath.row];
     
-    UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
-    //[imageView setImageWithURL:[NSURL URLWithString:[menitem picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+    //UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
+    //[imageView setImageWithURL:[NSURL URLWithString:menitem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+    UIImage * temp = [[UIImage alloc] init];
+    temp = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: [menitem picture]]]];
+    [cell.menuImageView setImage:temp];
     
+    //[imageView temp];
+    //[cell.menuImageView setImageWithURL:[NSURL URLWithString:[menitem picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
     // Set the text
-    UITextView *textView = (UITextView *) [cell viewWithTag:101];
-    UITextView *textDesc = (UITextView *) [cell viewWithTag:102];
-    textView.text = menitem.name;
+    
+    
+    UILabel *textTitle = (UILabel *) [cell viewWithTag:101];
+    UILabel *textDesc = (UILabel *) [cell viewWithTag:102];
+    UILabel * textPrice = (UILabel *) [cell viewWithTag:103];
+    UILabel * textRating = (UILabel *) [cell viewWithTag:104];
+    UILabel * textMod = (UILabel *) [cell viewWithTag:105];
+    UIView * labelBack = (UIView * ) [cell viewWithTag:106];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+    [formatter setMaximumFractionDigits:3];
+    labelBack.backgroundColor = [UIColor lightBackgroundGray];
+	labelBack.layer.cornerRadius = 5;
+    textPrice.text = [formatter  stringFromNumber:menitem.cost];
+    textRating.text = [formatter  stringFromNumber:menitem.rating];
+    textTitle.text = menitem.name;
     textDesc.text = menitem.desc;
-    [textDesc sizeToFit];
+    if (menitem.restrictionflag == FALSE){
+        textMod.hidden = TRUE;
+    }
+    //[textDesc sizeToFit];
     
     return cell;
 }
+
+
 
 // I implemented didSelectItemAtIndexPath:, but you could use willSelectItemAtIndexPath: depending on what you intend to do. See the docs of these two methods for the differences.
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

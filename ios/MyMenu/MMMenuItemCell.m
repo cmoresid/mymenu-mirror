@@ -9,21 +9,30 @@
 #import "MMMenuItemCell.h"
 
 @implementation MMMenuItemCell
+@synthesize titleLabel = _titleLabel;
+@synthesize ratinglabel = _ratinglabel;
+@synthesize menuImageView = _menuImageView;
+@synthesize ratingBg = _ratingBg;
+@synthesize priceLabel = _priceLabel;
+@synthesize restrictionLabel = _restrictionLabel;
+@synthesize descriptionLabel = _descriptionLabel;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
     }
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
+/*
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 @end
