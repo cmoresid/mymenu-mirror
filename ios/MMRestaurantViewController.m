@@ -49,6 +49,7 @@ NSArray *menuItems;
 
 
 - (void)didRetrieveMenuItems:(NSArray *)menu withResponse:(MMDBFetcherResponse *)response{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
                                                           message:@"Unable to communicate with server."
@@ -61,7 +62,6 @@ NSArray *menuItems;
     }else{
         menuItems = menu;
         [self.collectionView reloadData];
-        [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
     }
     
 }
@@ -116,21 +116,13 @@ NSArray *menuItems;
     }
     _restRating.text = rate;
 
-//    MMMenuItem * tempItem = [[MMMenuItem alloc]init];
-//    tempItem.name = @"Chicken + Wonton";
-//    tempItem.cost = [NSNumber numberWithDouble:12.00];
-//    
-//    tempItem.picture = @"i.imgur.com/BfStevU.jpg";
-//    tempItem.desc = @"this is so gd tasty";
-//    tempItem.rating = [NSNumber numberWithDouble:9.3];
-//    tempItem.restrictionflag = TRUE;
-//    
-//    [menuItems addObject:tempItem];
+
     NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
     NSData * currentUser = [perfs objectForKey:kCurrentUser];
     MMUser* userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
     [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getMenuWithMerchantId:[_selectedRestaurant.mid integerValue] withUserEmail:userProfile.email];
+    [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"MenuItemCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
     
@@ -169,18 +161,12 @@ NSArray *menuItems;
     
     MMMenuItem *menitem = [menuItems objectAtIndex:indexPath.row];
     
-    //UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
-    //[imageView setImageWithURL:[NSURL URLWithString:menitem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
-    UIImage * temp = [[UIImage alloc] init];
-    temp = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: [menitem picture]]]];
-    [cell.menuImageView setImage:temp];
-    
-    //[imageView temp];
-    //[cell.menuImageView setImageWithURL:[NSURL URLWithString:[menitem picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+    UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
+    [imageView setImageWithURL:[NSURL URLWithString:menitem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
     // Set the text
-    
-    
     UILabel *textTitle = (UILabel *) [cell viewWithTag:101];
+    textTitle.numberOfLines = 2;
+    [textTitle sizeToFit];
     UILabel *textDesc = (UILabel *) [cell viewWithTag:102];
     UILabel * textPrice = (UILabel *) [cell viewWithTag:103];
     UILabel * textRating = (UILabel *) [cell viewWithTag:104];
@@ -189,16 +175,22 @@ NSArray *menuItems;
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
     [formatter setMaximumFractionDigits:3];
+    [formatter setMinimumFractionDigits:2];
     labelBack.backgroundColor = [UIColor lightBackgroundGray];
 	labelBack.layer.cornerRadius = 5;
-    textPrice.text = [formatter  stringFromNumber:menitem.cost];
+    textPrice.text = [NSString stringWithFormat:@"$%@", [formatter  stringFromNumber:menitem.cost]];
     textRating.text = [formatter  stringFromNumber:menitem.rating];
     textTitle.text = menitem.name;
     textDesc.text = menitem.desc;
-    if (menitem.restrictionflag == FALSE){
-        textMod.hidden = TRUE;
+    if (menitem.itemid.integerValue == 88){
+        NSLog(@"testingininging: %@ and %d", menitem.itemid, menitem.restrictionflag);
     }
-    //[textDesc sizeToFit];
+    if (menitem.restrictionflag == FALSE){
+        textMod.text = @"";
+    }else{
+        textMod.text = @"!";
+    }
+    
     
     return cell;
 }
@@ -206,7 +198,7 @@ NSArray *menuItems;
 
 
 // I implemented didSelectItemAtIndexPath:, but you could use willSelectItemAtIndexPath: depending on what you intend to do. See the docs of these two methods for the differences.
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView willSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // If you need to use the touched cell, you can retrieve it like so
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     NSLog(@"touched cell %@ at indexPath %@", cell, indexPath);
