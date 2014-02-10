@@ -478,7 +478,7 @@ static MMDBFetcher *instance;
     CLLocationCoordinate2D coords = usrloc.coordinate;
     
     
-    NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE business_name = '%@' ORDER BY distance ASC LIMIT 25";
+    NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE UPPER(business_name) = UPPER('%@') ORDER BY distance ASC LIMIT 25";
     
     NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], merchname];
     
