@@ -18,7 +18,8 @@
 #import "MMDetailViewController.h"
 #import "MMMerchant.h"
 #import "MMDBFetcher.h"
-#import "MMMapDelegate.h"
+#import "MMLocationManager.h"
+#import "MMRestaurantMapDelegate.h"
 
 @interface MMDetailViewController ()
 @property(strong, nonatomic) IBOutlet MKMapView *mapView;
@@ -54,17 +55,16 @@
     [super viewDidLoad];
     [self configureView];
     
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManagerDelegate = [[MMMapDelegate alloc] initWithConfigurationBlock:^(CLLocationManager *locationManager, NSArray *locations) {
-        //[self.locationManager stopUpdatingLocation];
-        
+
+    self.locationManager = [[MMLocationManager alloc] initWithConfigurationBlock:^(CLLocationManager *locationManager, NSArray *locations) {
+
         CLLocation *currentLocation = [locations lastObject];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kRetrievedUserLocation
                                                             object:currentLocation];
         MKCoordinateSpan span;
-        span.latitudeDelta = .5;
-        span.longitudeDelta = .5;
+        span.latitudeDelta = .25;
+        span.longitudeDelta = .25;
         
         MKCoordinateRegion region;
         region.center = currentLocation.coordinate;
@@ -76,13 +76,21 @@
         [self.dbFetcher getCompressedMerchants:currentLocation];
     }];
     
-    self.locationManager.delegate = self.locationManagerDelegate;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    self.mapDelegate = [[MMRestaurantMapDelegate alloc] init];
+    self.mapView.delegate = self.mapDelegate;
     
-    [self.locationManager startMonitoringSignificantLocationChanges];
+
 
     self.dbFetcher = [[MMDBFetcher alloc] init];
     self.dbFetcher.delegate = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.locationManager startTrackingUserLocation];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.locationManager stopTrackingUserLocation];
 }
 
 - (void)didRetrieveCompressedMerchants:(NSArray *)compressedMerchants withResponse:(MMDBFetcherResponse *)response {

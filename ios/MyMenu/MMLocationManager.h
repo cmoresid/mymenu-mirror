@@ -14,12 +14,14 @@ typedef void (^ConfigureMapView)(CLLocationManager*, NSArray*);
 
 extern NSString* const kRetrievedUserLocation;
 
-@interface MMMapDelegate : NSObject <CLLocationManagerDelegate>
+@interface MMLocationManager : NSObject <CLLocationManagerDelegate>
 
-@property MKUserLocation *userloc;
 @property(nonatomic,copy) ConfigureMapView configBlock;
+@property(nonatomic, strong) CLLocationManager *locationManager;
 
 - (id)initWithConfigurationBlock:(ConfigureMapView)conf;
+- (void)startTrackingUserLocation;
+- (void)stopTrackingUserLocation;
 
 
 
