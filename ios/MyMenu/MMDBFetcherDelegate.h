@@ -37,5 +37,7 @@
 - (void)didRetrieveMerchant:(MMMerchant*)merchant withResponse:(MMDBFetcherResponse*)response;
 - (void)didUpdateUser:(BOOL)successful withResponse:(MMDBFetcherResponse*)response;
 - (void)didRetrieveModifications:(NSArray*)modifications withResponse:(MMDBFetcherResponse*)response;
+- (void)didCreateRating:(BOOL)successful withResponse:(MMDBFetcherResponse*)response;
+- (void)didRetrieveItemRatings:(NSArray*)ratings withResponse:(MMDBFetcherResponse*)response;
 
 @end

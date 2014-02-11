@@ -22,6 +22,7 @@
 #import "MMMerchant.h"
 #import "MMDBFetcherDelegate.h"
 #import "MMNetworkClientProtocol.h"
+#import "MMMenuItemRating.h"
 
 @class CLLocation;
 
@@ -73,6 +74,11 @@
 - (void)addUserRestrictions:(NSString *)email :(NSArray *)restrictions;
 
 /**
+ * Add a rating/review for a menu item.
+ */
+- (void)addMenuRating:(MMMenuItemRating *) rating;
+
+/**
 * Get all merchants. Only return a subset of the fields to minify data.
 *
 * TODO: filter by nearby
@@ -117,5 +123,10 @@
  * Get all modifications for a specific menu item with the given email.
  */
 - (void)getModifications:(NSNumber *)menuid withUser:(NSString *)email;
+
+/**
+ * Get all ratings for a specific meny item with the given menuid
+ */
+- (void)getItemRatings:(NSNumber *)menuid;
 
 @end
