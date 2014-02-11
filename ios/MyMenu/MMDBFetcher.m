@@ -22,6 +22,7 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "MMMenuItem.h"
+#import "MMMenuItemRating.h"
 
 
 @implementation MMDBFetcher
@@ -84,6 +85,72 @@ static MMDBFetcher *instance;
                                     [self.delegate didCreateUser:false withResponse:dbResponse];
                                 }
                             }];
+}
+
+- (void)addMenuRating:(MMMenuItemRating *)rating {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/put.php"]];
+    
+    NSString *queryFormat = @"useremail=%@&menuid=%d&rating=%d&merchid=%d&review=%@&ratingdate=sysdate";
+    NSString *query = [NSString stringWithFormat:queryFormat, rating.useremail, rating.menuid, rating.rating, rating.merchid, rating.review];
+    
+    
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    [self.delegate didCreateRating:true withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didCreateRating:false withResponse:dbResponse];
+                                }
+                            }];
+}
+
+- (void)getItemRatings:(NSNumber *)itemid {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
+    
+    NSString *queryFormat = @"query=SELECT useremail, rating, ratingdate, ratingdescription FROM ratings WHERE menuid=%@";
+    NSString *query = [NSString stringWithFormat:queryFormat, itemid];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    
+                                    NSMutableArray *ratings = [[NSMutableArray alloc] init];
+                                    NSDateFormatter *dateform = [[NSDateFormatter alloc] init];
+                                    [dateform setDateFormat:@"yyyy-MM--d H:m:s"];
+                                    
+                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                        MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
+                                        rating.useremail = [e child: @"useremail"].text;
+                                        rating.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];\
+                                        rating.date = [dateform dateFromString:[e child: @"ratingdate"].text];
+                                        rating.review = [e child: @"ratingdescription"].text;
+                                        [ratings addObject:rating];
+                                    }];
+                                    
+                                    [self.delegate didRetrieveItemRatings:ratings withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didRetrieveItemRatings:nil withResponse:dbResponse];
+                                }
+                            }];
+    
 }
 
 - (MMDBFetcherResponse*)createResponseWith:(NSData*)data withError:(NSError*)error
@@ -528,7 +595,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
 
-    NSString *queryFormat = @"query=SELECT * FROM merchusers WHERE id = %@ ";
+    NSString *queryFormat = @"query=SELECT * FROM merchusers WHERE id = %@";
     NSString *query = [NSString stringWithFormat:queryFormat, mid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
