@@ -18,7 +18,7 @@
 #import "MMMerchant.h"
 #import "MMDBFetcherDelegate.h"
 
-@interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, MMDBFetcherDelegate>
+@interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MMDBFetcherDelegate>
 
 @property MMMerchant *selectedRestaurant;
 @property(nonatomic, weak) IBOutlet UILabel * restName;
