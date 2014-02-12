@@ -12,6 +12,6 @@
 @interface MMMenuItemViewController : UIViewController
 
 @property MMMenuItem *touchedItem;
-@property(nonatomic, weak) IBOutlet UILabel * itemName;
+@property(nonatomic, weak) IBOutlet UILabel *itemName;
 
 @end

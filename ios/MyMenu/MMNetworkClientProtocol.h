@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^NetworkResponseBlock)(NSURLResponse*, NSData*, NSError*);
+typedef void (^NetworkResponseBlock)(NSURLResponse *, NSData *, NSError *);
 
 @protocol MMNetworkClientProtocol <NSObject>
 
-- (void)performNetworkRequest:(NSMutableURLRequest*)request completionHandler:(NetworkResponseBlock)completionBlock;
+- (void)performNetworkRequest:(NSMutableURLRequest *)request completionHandler:(NetworkResponseBlock)completionBlock;
 
 @end

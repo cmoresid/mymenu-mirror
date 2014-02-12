@@ -27,9 +27,9 @@
 @interface MMMasterViewController : UITableViewController <MMDBFetcherDelegate>
 
 @property(nonatomic, strong) NSArray *restaurants;
-@property(nonatomic, strong) MMMerchant* selectRest;
+@property(nonatomic, strong) MMMerchant *selectRest;
 @property(nonatomic, strong) MMDetailViewController *detailViewController;
-@property(nonatomic, strong) MMDBFetcher* dbFetcher;
+@property(nonatomic, strong) MMDBFetcher *dbFetcher;
 @property(nonatomic, strong) CLLocationManager *locationManager;
 
 @end

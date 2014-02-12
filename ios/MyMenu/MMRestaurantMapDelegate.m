@@ -13,10 +13,10 @@
 - (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation {
     static NSString *AnnotationViewID = @"annotationViewID";
     static NSString *UserAnnotationViewID = @"userAnnotationViewID";
-    
+
     NSString *annotationId;
     NSString *imageName;
-    
+
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         annotationId = UserAnnotationViewID;
         imageName = @"CurrentLocation.png";
@@ -25,18 +25,18 @@
         annotationId = AnnotationViewID;
         imageName = @"LocationMarker.png";
     }
-    
-    MKAnnotationView *annotationView = (MKAnnotationView *)[map dequeueReusableAnnotationViewWithIdentifier:annotationId];
-    
+
+    MKAnnotationView *annotationView = (MKAnnotationView *) [map dequeueReusableAnnotationViewWithIdentifier:annotationId];
+
     if (annotationView == nil) {
         annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationId];
     }
-    
-    
+
+
     annotationView.image = [UIImage imageNamed:imageName];
     annotationView.annotation = annotation;
     annotationView.canShowCallout = TRUE;
-        
+
     return annotationView;
 }
 
@@ -45,10 +45,10 @@
         if ([annView.annotation isKindOfClass:[MKUserLocation class]]) {
             continue;
         }
-        
+
         CGRect endFrame = annView.frame;
         annView.frame = CGRectOffset(endFrame, 0, -500);
-        
+
         [UIView animateWithDuration:0.5
                          animations:^{
                              annView.frame = endFrame;

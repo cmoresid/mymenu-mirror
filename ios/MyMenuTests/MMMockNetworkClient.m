@@ -8,7 +8,7 @@
 
 #import "MMMockNetworkClient.h"
 
-@interface MMMockNetworkClient()
+@interface MMMockNetworkClient ()
 
 @property(nonatomic, strong) NSURLResponse *fakeResponse;
 @property(nonatomic, strong) NSString *fakeData;
@@ -18,21 +18,21 @@
 
 @implementation MMMockNetworkClient
 
-- (id)initWithFakeResponse:(NSURLResponse*)response withFakeData:(NSString*)data withFakeError:(NSError*)error {
+- (id)initWithFakeResponse:(NSURLResponse *)response withFakeData:(NSString *)data withFakeError:(NSError *)error {
     self = [super init];
-    
+
     if (self != nil) {
         self.fakeResponse = response;
         self.fakeData = data;
         self.fakeError = error;
     }
-    
+
     return self;
 }
 
 - (void)performNetworkRequest:(NSMutableURLRequest *)request completionHandler:(NetworkResponseBlock)completionBlock {
     NSData *fakeData = [self.fakeData dataUsingEncoding:NSUTF8StringEncoding];
-    
+
     completionBlock(self.fakeResponse, fakeData, self.fakeError);
 }
 

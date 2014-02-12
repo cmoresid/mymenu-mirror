@@ -84,20 +84,20 @@ numberOfRowsInComponent:(NSInteger)component {
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (pickerView == self.cityPicker && row > 0)
         self.popoverValue = [[MMPopoverDataPair alloc] initWithDataType:CityValue
-                                                       withSelectedValue:self.cities[row]];
+                                                      withSelectedValue:self.cities[row]];
     else if (pickerView == self.provPicker && row > 0)
         self.popoverValue = [[MMPopoverDataPair alloc] initWithDataType:ProvinceValue
-                                                       withSelectedValue:self.provinces[row]];
+                                                      withSelectedValue:self.provinces[row]];
     else if (pickerView == self.genderPicker && row > 0)
         self.popoverValue = [[MMPopoverDataPair alloc] initWithDataType:GenderValue
-                                                       withSelectedValue:self.gender[row]];
+                                                      withSelectedValue:self.gender[row]];
     else
         self.popoverValue = nil;
 }
 
 - (void)updateSelectedBirthday {
     self.popoverValue = [[MMPopoverDataPair alloc] initWithDataType:BirthdayValue
-                                                   withSelectedValue:self.birthdayPicker.date];
+                                                  withSelectedValue:self.birthdayPicker.date];
 }
 
 - (IBAction)selectChoice:(id)sender {
@@ -105,19 +105,19 @@ numberOfRowsInComponent:(NSInteger)component {
         case CityValue:
             [self.delegate didSelectCity:self.popoverValue.selectedValue];
             break;
-        
+
         case GenderValue:
             [self.delegate didSelectGender:self.popoverValue.selectedValue];
             break;
-        
+
         case ProvinceValue:
             [self.delegate didSelectProvince:self.popoverValue.selectedValue];
             break;
-        
+
         case BirthdayValue:
             [self.delegate didSelectBirthday:self.popoverValue.selectedValue];
             break;
-        
+
         default:
             break;
     }

@@ -29,10 +29,10 @@
 
 @property(nonatomic, strong) id detailItem;
 @property(nonatomic, weak) IBOutlet UILabel *detailDescriptionLabel;
-@property(nonatomic, strong) MMDBFetcher* dbFetcher;
+@property(nonatomic, strong) MMDBFetcher *dbFetcher;
 @property(nonatomic, strong) MMLocationManager *locationManager;
 
 // Put the restaurant points on the map
-- (void)pinRestaurants:(NSArray*)restaurants;
+- (void)pinRestaurants:(NSArray *)restaurants;
 
 @end

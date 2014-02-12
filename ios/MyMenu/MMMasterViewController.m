@@ -19,11 +19,9 @@
 #import "MMLocationManager.h"
 #import "RestaurantCell.h"
 #import "MMDetailViewController.h"
-#import "MMDBFetcher.h"
 #import "MMRestaurantViewController.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UIColor+MyMenuColors.h"
-#import "NSArray+MerchantSort.h"
 
 @interface MMMasterViewController () {
     NSMutableArray *_objects;
@@ -46,30 +44,30 @@
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
-    
+
     // Successful retrieved restaurant list.
-    
+
     self.restaurants = compressedMerchants;
-    
-    [((UITableView*)self.view) reloadData];
+
+    [((UITableView *) self.view) reloadData];
 }
 
 - (void)didRetrieveMerchant:(MMMerchant *)merchant withResponse:(MMDBFetcherResponse *)response {
-    
+
     self.selectRest = merchant;
-    
+
     //NSLog(@"the id is : %@", self.selectRest.mid);
     //NSLog(@"Restaurant desc = %@", self.selectRest.desc);
-    
+
     [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveUserLocation:)
                                                  name:kRetrievedUserLocation
@@ -82,13 +80,13 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)didReceiveUserLocation:(NSNotification*)notification {
+- (void)didReceiveUserLocation:(NSNotification *)notification {
     CLLocation *location = notification.object;
     CLLocationCoordinate2D coordinate = location.coordinate;
-    
+
 //    NSLog(@"Lat: %@", [NSNumber numberWithDouble:coordinate.latitude]);
 //    NSLog(@"Longa: %@", [NSNumber numberWithDouble:coordinate.longitude]);
-    
+
     self.dbFetcher = [[MMDBFetcher alloc] init];
     self.dbFetcher.delegate = self;
     [self.dbFetcher getCompressedMerchants:location];
@@ -113,6 +111,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
+
 // Return the amount of restaurants.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _restaurants.count;
@@ -125,49 +124,49 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
-    
+
     MMMerchant *restaurant = [_restaurants objectAtIndex:indexPath.row];
-    
-	cell.ratingBg.backgroundColor = [UIColor lightBackgroundGray];
-	cell.ratingBg.layer.cornerRadius = 5;
+
+    cell.ratingBg.backgroundColor = [UIColor lightBackgroundGray];
+    cell.ratingBg.layer.cornerRadius = 5;
     cell.nameLabel.text = restaurant.businessname;
     cell.categoryLabel.text = restaurant.category;
-    
+
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
     [formatter setMaximumFractionDigits:3];
-    
-    NSString * rate =[formatter  stringFromNumber:[[_restaurants objectAtIndex:indexPath.row] rating]];
-    if ([rate isEqualToString:@"0"]){
+
+    NSString *rate = [formatter stringFromNumber:[[_restaurants objectAtIndex:indexPath.row] rating]];
+    if ([rate isEqualToString:@"0"]) {
         rate = @"N/A";
     }
-    
+
     if ([restaurant.distfromuser compare:[NSNumber numberWithFloat:0.0f]] == NSOrderedAscending) {
         NSNumberFormatter *oneDecFormat = [[NSNumberFormatter alloc] init];
         [oneDecFormat setRoundingMode:NSNumberFormatterRoundHalfUp];
         [oneDecFormat setMaximumFractionDigits:0];
-        
+
         NSString *stringFormat = @"%@ m";
         NSNumber *dist = [NSNumber numberWithDouble:restaurant.distfromuser.doubleValue * 1000.0];
         NSString *formattedValue = [oneDecFormat stringFromNumber:dist];
-        
-        cell.distanceLabel.text = [NSString stringWithFormat:stringFormat,formattedValue];
+
+        cell.distanceLabel.text = [NSString stringWithFormat:stringFormat, formattedValue];
     } else {
         NSNumberFormatter *oneDecFormat = [[NSNumberFormatter alloc] init];
         [oneDecFormat setRoundingMode:NSNumberFormatterRoundHalfUp];
         [oneDecFormat setMaximumFractionDigits:1];
-        
+
         NSString *stringFormat = @"%@ km";
         NSString *formattedValue = [oneDecFormat stringFromNumber:restaurant.distfromuser];
-        
-        cell.distanceLabel.text = [NSString stringWithFormat:stringFormat,formattedValue];
+
+        cell.distanceLabel.text = [NSString stringWithFormat:stringFormat, formattedValue];
     }
 
     cell.ratinglabel.text = rate;
     cell.addressLabel.text = restaurant.address;
-    
+
     MMMerchant __weak *merchant = [_restaurants objectAtIndex:indexPath.row];
-    
+
     [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:[merchant picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
 
     return cell;
@@ -186,6 +185,7 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
+
 // Cell size is 80 so its hard coded in.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80;
@@ -197,15 +197,15 @@
 //    NSLog(@"ABC");
 //    NSLog(@"the ID is %@" , [[self.restaurants objectAtIndex:indexPath.row] mid]);
     //_selectRest = [self.restaurants objectAtIndex:indexPath.row];
-    
+
     [self.dbFetcher getMerchant:[[self.restaurants objectAtIndex:indexPath.row] mid]];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([[segue identifier] isEqualToString:@"restaurantSegue"]){
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"restaurantSegue"]) {
         MMRestaurantViewController *RestaurantController = [segue destinationViewController];
         RestaurantController.selectedRestaurant = _selectRest;
-        
+
     }
 }
 

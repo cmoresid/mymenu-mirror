@@ -10,20 +10,20 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-typedef void (^ConfigureMapView)(CLLocationManager*, NSArray*);
+typedef void (^ConfigureMapView)(CLLocationManager *, NSArray *);
 
-extern NSString* const kRetrievedUserLocation;
+extern NSString *const kRetrievedUserLocation;
 
 @interface MMLocationManager : NSObject <CLLocationManagerDelegate>
 
-@property(nonatomic,copy) ConfigureMapView configBlock;
+@property(nonatomic, copy) ConfigureMapView configBlock;
 @property(nonatomic, strong) CLLocationManager *locationManager;
 
 - (id)initWithConfigurationBlock:(ConfigureMapView)conf;
+
 - (void)startTrackingUserLocation;
+
 - (void)stopTrackingUserLocation;
-
-
 
 
 @end

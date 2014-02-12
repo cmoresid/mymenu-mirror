@@ -13,11 +13,15 @@
 @class MMMerchant;
 @class MMUser;
 
-typedef void (^BooleanResponseBlock)(BOOL, MMDBFetcherResponse*);
-typedef void (^ArrayResponseBlock)(NSArray*, MMDBFetcherResponse*);
-typedef void (^IntegerResponseBlock)(NSInteger, MMDBFetcherResponse*);
-typedef void (^MerchantResponseBlock)(MMMerchant*, MMDBFetcherResponse*);
-typedef void (^UserResponseBlock)(MMUser*, MMDBFetcherResponse*);
+typedef void (^BooleanResponseBlock)(BOOL, MMDBFetcherResponse *);
+
+typedef void (^ArrayResponseBlock)(NSArray *, MMDBFetcherResponse *);
+
+typedef void (^IntegerResponseBlock)(NSInteger, MMDBFetcherResponse *);
+
+typedef void (^MerchantResponseBlock)(MMMerchant *, MMDBFetcherResponse *);
+
+typedef void (^UserResponseBlock)(MMUser *, MMDBFetcherResponse *);
 
 @interface MMMockDBFetcherDelegate : NSObject <MMDBFetcherDelegate>
 

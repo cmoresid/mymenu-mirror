@@ -17,7 +17,6 @@
 
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "MMLoginViewController.h"
-#import "MMUser.h"
 #import "MMDBFetcher.h"
 
 #define kCurrentUser @"currentUser"
@@ -29,8 +28,8 @@
 @implementation MMLoginViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	
-	
+
+
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 
@@ -48,17 +47,17 @@
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
-    
+
     // User profile found, now retrieve user's profile.
     if (resultCode > 0) {
         [[MMDBFetcher get] getUser:self.emailAddress.text];
     }
     else {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
+
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
                                                           message:@"Please enter a valid user name and password."
                                                          delegate:nil
@@ -69,9 +68,9 @@
 }
 
 - (void)didRetrieveUser:(MMUser *)user withResponse:(MMDBFetcherResponse *)response {
-    
+
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
+
     // Error communication with server!
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
@@ -80,16 +79,16 @@
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
-    
+
     // Serialize user profile and save to shared preferences.
-    NSUserDefaults * userPreferances = [NSUserDefaults standardUserDefaults];
-    NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
+    NSUserDefaults *userPreferances = [NSUserDefaults standardUserDefaults];
+    NSData *encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
     [userPreferances setObject:encodedUser forKey:kCurrentUser];
     [MMDBFetcher get].delegate = nil;
-    
+
     [self performSegueWithIdentifier:@"moveToMainScreen" sender:self];
 }
 
@@ -180,7 +179,7 @@
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     } else {
         user.email = self.emailAddress.text;
@@ -191,13 +190,12 @@
     // to login.
     [self.password resignFirstResponder];
     [self.emailAddress resignFirstResponder];
-    
+
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[MMDBFetcher get] userVerified:user];
 }
 
-- (BOOL)validLoginCredentialFields
-{
+- (BOOL)validLoginCredentialFields {
     return !(([self.emailAddress.text isEqualToString:@""] || self.emailAddress.text == nil) || ([self.password.text isEqualToString:@""] || self.password.text == nil));
 }
 
