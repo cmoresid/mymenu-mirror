@@ -80,12 +80,13 @@
 
 /**
 * Get all merchants. Only return a subset of the fields to minify data.
-*
-* TODO: filter by nearby
 */
-//- (NSArray *)getCompressedMerchants;
 - (void)getCompressedMerchants:(CLLocation*) usrloc;
 
+
+/**
+ * Get a subset of the merchants filtered by name.
+ */
 - (void)getCompressedSpecificMerchants:(CLLocation*) usrloc withName: (NSString*) merchname;
 
 /**
@@ -128,5 +129,10 @@
  * Get all ratings for a specific meny item with the given menuid
  */
 - (void)getItemRatings:(NSNumber *)menuid;
+
+/**
+ * Get all menu item ratings for a specific merchant.
+ */
+- (void)getItemRatingsMerchant:(NSNumber *)merchid;
 
 @end

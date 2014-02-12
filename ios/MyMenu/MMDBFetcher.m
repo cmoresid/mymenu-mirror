@@ -113,13 +113,53 @@ static MMDBFetcher *instance;
                             }];
 }
 
+- (void)getItemRatingsMerchant:(NSNumber *)merchid {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
+    
+    NSString *queryFormat = @"query=SELECT useremail, rating, ratingdate, ratingdescription FROM ratings WHERE merchid=%@ ORDER BY ratingdate";
+    NSString *query = [NSString stringWithFormat:queryFormat, merchid];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    
+                                    NSMutableArray *ratings = [[NSMutableArray alloc] init];
+                                    NSDateFormatter *dateform = [[NSDateFormatter alloc] init];
+                                    [dateform setDateFormat:@"yyyy-MM--d H:m:s"];
+                                    
+                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                        MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
+                                        rating.useremail = [e child: @"useremail"].text;
+                                        rating.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];\
+                                        rating.date = [dateform dateFromString:[e child: @"ratingdate"].text];
+                                        rating.review = [e child: @"ratingdescription"].text;
+                                        [ratings addObject:rating];
+                                    }];
+                                    
+                                    [self.delegate didRetrieveItemRatings:ratings withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didRetrieveItemRatings:nil withResponse:dbResponse];
+                                }
+                            }];
+    
+}
+
 - (void)getItemRatings:(NSNumber *)itemid {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT useremail, rating, ratingdate, ratingdescription FROM ratings WHERE menuid=%@";
+    NSString *queryFormat = @"query=SELECT useremail, rating, ratingdate, ratingdescription FROM ratings WHERE menuid=%@ ORDER BY ratingdate";
     NSString *query = [NSString stringWithFormat:queryFormat, itemid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -153,8 +193,7 @@ static MMDBFetcher *instance;
     
 }
 
-- (MMDBFetcherResponse*)createResponseWith:(NSData*)data withError:(NSError*)error
-{
+- (MMDBFetcherResponse*)createResponseWith:(NSData*)data withError:(NSError*)error {
     MMDBFetcherResponse* response = [[MMDBFetcherResponse alloc] init];
     
     if ([data length] > 0 && error == nil) {
@@ -177,7 +216,7 @@ static MMDBFetcher *instance;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
 
-    NSString *prequery = @"query=SELECT * FROM users WHERE email = '%@'";
+    NSString *prequery = @"query=SELECT * FROM users WHERE email='%@'";
     NSString *query = [NSString stringWithFormat:prequery, email];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
 
@@ -315,7 +354,7 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)addUserRestrictions:(NSString *)email :(NSArray *)restrictions {
+- (void)addUserRestrictions:(NSString *)email:(NSArray *)restrictions {
     NSMutableURLRequest* removeRestrictionsRequest = [self removeUserRestrictions:email];
     
     [self.networkClient performNetworkRequest:removeRestrictionsRequest
@@ -483,7 +522,7 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getCompressedMerchants: (CLLocation*) usrloc  {
+- (void)getCompressedMerchants:(CLLocation*) usrloc  {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
@@ -536,7 +575,7 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getCompressedSpecificMerchants: (CLLocation*) usrloc withName: (NSString*) merchname  {
+- (void)getCompressedSpecificMerchants:(CLLocation*) usrloc withName: (NSString*) merchname  {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
@@ -595,7 +634,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
 
-    NSString *queryFormat = @"query=SELECT * FROM merchusers WHERE id = %@";
+    NSString *queryFormat = @"query=SELECT * FROM merchusers WHERE id=%@";
     NSString *query = [NSString stringWithFormat:queryFormat, mid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -646,7 +685,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/menu/custom.php"]];
 
-    NSString *queryFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.name AS category FROM menu m, menucategories mc WHERE m.id not IN(SELECT Distinct rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id" ;
+    NSString *queryFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.name AS category FROM menu m, menucategories mc WHERE m.id not IN(SELECT Distinct rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid=%d AND m.categoryid=mc.id" ;
     
     
     NSString *query =[NSString stringWithFormat:queryFormat, email, merchid];
@@ -693,7 +732,7 @@ static MMDBFetcher *instance;
     
     /* Get restricted */
     
-    NSString *queryFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.name AS category FROM menu m, menucategories mc WHERE m.id IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id";
+    NSString *queryFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.name AS category FROM menu m, menucategories mc WHERE m.id IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid=%d AND m.categoryid=mc.id";
     
     NSString *query =[NSString stringWithFormat:queryFormat, email, merchid];
     
@@ -737,7 +776,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/modificationmenulink/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT modification FROM modificationmenulink WHERE menuid = %@ AND restrictid IN(SELECT restrictid FROM restrictionuserlink WHERE email = '%@')";
+    NSString *queryFormat = @"query=SELECT modification FROM modificationmenulink WHERE menuid=%@ AND restrictid IN(SELECT restrictid FROM restrictionuserlink WHERE email='%@')";
     
     NSString *query =[NSString stringWithFormat:queryFormat, menuid, email];
     
