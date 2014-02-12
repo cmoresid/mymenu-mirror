@@ -205,8 +205,6 @@
     if ([[segue identifier] isEqualToString:@"restaurantSegue"]){
         MMRestaurantViewController *RestaurantController = [segue destinationViewController];
         RestaurantController.selectedRestaurant = _selectRest;
-
-
         
     }
 }
