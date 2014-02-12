@@ -30,6 +30,8 @@
 		174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */; };
 		17F6531D189D83F200D63D3D /* MMRestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F6531C189D83F200D63D3D /* MMRestaurantViewController.m */; };
 		17F9F80918AAEA17006B7DD0 /* MMMenuItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F9F80818AAEA17006B7DD0 /* MMMenuItemViewController.m */; };
+		17F9F80D18AC3565006B7DD0 /* facebookshare.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17F9F80C18AC3565006B7DD0 /* facebookshare.jpg */; };
+		17F9F80F18AC356F006B7DD0 /* twittershare.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17F9F80E18AC356F006B7DD0 /* twittershare.jpg */; };
 		17FEDDFD1896FF1400058ABD /* MMRoundedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FEDDFC1896FF1400058ABD /* MMRoundedView.m */; };
 		833C8C83189D9B85007CB562 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 833C8C82189D9B85007CB562 /* logo.png */; };
 		83527CB5189AE16D008285C8 /* MMSpecialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83527CB4189AE16D008285C8 /* MMSpecialsViewController.m */; };
@@ -133,6 +135,8 @@
 		17F6531C189D83F200D63D3D /* MMRestaurantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMRestaurantViewController.m; path = ../MMRestaurantViewController.m; sourceTree = "<group>"; };
 		17F9F80718AAEA17006B7DD0 /* MMMenuItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemViewController.h; sourceTree = "<group>"; };
 		17F9F80818AAEA17006B7DD0 /* MMMenuItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemViewController.m; sourceTree = "<group>"; };
+		17F9F80C18AC3565006B7DD0 /* facebookshare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = facebookshare.jpg; sourceTree = "<group>"; };
+		17F9F80E18AC356F006B7DD0 /* twittershare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = twittershare.jpg; sourceTree = "<group>"; };
 		17FEDDFB1896FF1400058ABD /* MMRoundedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRoundedView.h; sourceTree = "<group>"; };
 		17FEDDFC1896FF1400058ABD /* MMRoundedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRoundedView.m; sourceTree = "<group>"; };
 		5C67526E59F84C8AAF4F8411 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -278,6 +282,8 @@
 		8333C3EC1894B5680028FFBE /* image_pack */ = {
 			isa = PBXGroup;
 			children = (
+				17F9F80E18AC356F006B7DD0 /* twittershare.jpg */,
+				17F9F80C18AC3565006B7DD0 /* facebookshare.jpg */,
 				1731DFAB18A59B0F008BE05B /* 06-magnify.png */,
 				B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */,
 				B0B0C4DD18A8245600BA47CB /* LocationMarker.png */,
@@ -598,8 +604,17 @@
 				B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */,
 				B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */,
 				174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */,
+				17F9F80F18AC356F006B7DD0 /* twittershare.jpg in Resources */,
+				8333C4031894B5680028FFBE /* ham_and_egg_sandwich.jpg in Resources */,
 				83893EC618919AD400D36670 /* Images.xcassets in Resources */,
 				B0627E2C18A2CB3700EAA045 /* 19-gear.png in Resources */,
+				8333C4051894B5680028FFBE /* instant_noodle_with_egg.jpg in Resources */,
+				8333C4041894B5680028FFBE /* hamburger.jpg in Resources */,
+				8333C3FD1894B5680028FFBE /* angry_birds_cake.jpg in Resources */,
+				8333C40B1894B5680028FFBE /* vegetable_curry.jpg in Resources */,
+				8333C40A1894B5680028FFBE /* thai_shrimp_cake.jpg in Resources */,
+				8333C40C1894B5680028FFBE /* white_chocolate_donut.jpg in Resources */,
+				17F9F80D18AC3565006B7DD0 /* facebookshare.jpg in Resources */,
 				B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */,
 				1731DFAC18A59B0F008BE05B /* 06-magnify.png in Resources */,
 				83893EB518919AD400D36670 /* InfoPlist.strings in Resources */,
