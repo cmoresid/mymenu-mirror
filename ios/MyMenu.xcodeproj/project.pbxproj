@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B023EEAD18A9BF0500A3DBF8 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B023EEB018A9BF0500A3DBF8 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				B023EEB118A9BF8100A3DBF8 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		171EA89D189B043F002DEFEF /* MMDietaryRestrictionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 171EA89C189B043F002DEFEF /* MMDietaryRestrictionCell.m */; };
 		171EA8A0189B094E002DEFEF /* MMRestrictionSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 171EA89F189B094E002DEFEF /* MMRestrictionSwitch.m */; };
@@ -618,6 +632,7 @@
 			targets = (
 				83893EA618919AD400D36670 /* MyMenu */,
 				83893ECA18919AD400D36670 /* MyMenuTests */,
+				B023EEAD18A9BF0500A3DBF8 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -673,6 +688,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		B023EEB118A9BF8100A3DBF8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Start constants\ncompany=\"MyMenu\";\ncompanyID=\"ca.mymenu\";\ncompanyURL=\"http://mymenuapp.ca\";\ntarget=\"iphoneos\";\noutputPath=\"../docs/ios\";\n\n# End constants\n./appledoc/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${outputPath}\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n\"${PROJECT_DIR}\"";
+		};
 		B531E901D50543BAB3F10BB7 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -985,6 +1013,20 @@
 			};
 			name = Release;
 		};
+		B023EEAE18A9BF0500A3DBF8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B023EEAF18A9BF0500A3DBF8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1011,6 +1053,15 @@
 			buildConfigurations = (
 				83893EE018919AD400D36670 /* Debug */,
 				83893EE118919AD400D36670 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B023EEB018A9BF0500A3DBF8 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B023EEAE18A9BF0500A3DBF8 /* Debug */,
+				B023EEAF18A9BF0500A3DBF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
