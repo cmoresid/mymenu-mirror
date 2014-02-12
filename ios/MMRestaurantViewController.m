@@ -89,7 +89,7 @@ MMMenuItem * touchedItem;
     
     [_restDescription  setText:_selectedRestaurant.desc];
 
-    [_restDescription setTextColor:[UIColor whiteColor]];
+    [_restDescription setTextColor:[UIColor blackColor]];
     [_restDescription setFont:[UIFont systemFontOfSize:24.0]];
     _restImage.image = [UIImage imageWithData:                                                                      [NSData dataWithContentsOfURL:                                                                            [NSURL URLWithString: _selectedRestaurant.picture]]];
     _ratingView.backgroundColor = [UIColor lightBackgroundGray];
@@ -202,6 +202,7 @@ MMMenuItem * touchedItem;
     if ([[segue identifier] isEqualToString:@"showMenuItem"]){
         MMMenuItemViewController *menuItemController = [segue destinationViewController];
         menuItemController.touchedItem = touchedItem;
+        menuItemController.selectedRestaurant = _selectedRestaurant;
         
     }
 }
