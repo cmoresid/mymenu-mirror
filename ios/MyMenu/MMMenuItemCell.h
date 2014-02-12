@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMMenuItem.h"
 
 @interface MMMenuItemCell : UICollectionViewCell
 
+@property(nonatomic) MMMenuItem *menuItem;
 @property(nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property(nonatomic, weak) IBOutlet UILabel *priceLabel;
 @property(nonatomic, weak) IBOutlet UILabel *descriptionLabel;

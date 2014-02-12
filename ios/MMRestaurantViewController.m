@@ -21,6 +21,7 @@
 #import "MMDBFetcher.h"
 #import "MMMenuItemCell.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "MMMenuItemViewController.h"
 
 
 #define kCurrentUser @"currentUser"
@@ -35,6 +36,7 @@
 
 
 NSArray *menuItems;
+MMMenuItem * touchedItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -154,6 +156,7 @@ NSArray *menuItems;
         textRating.text = [formatter  stringFromNumber:menitem.rating];
         textTitle.text = menitem.name;
         textDesc.text = menitem.desc;
+        cell.menuItem = menitem;
         if (menitem.restrictionflag == FALSE){
             textMod.text = @"";
         }else{
@@ -184,12 +187,24 @@ NSArray *menuItems;
     
     
     // I implemented didSelectItemAtIndexPath:, but you could use willSelectItemAtIndexPath: depending on what you intend to do. See the docs of these two methods for the differences.
-    - (BOOL)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         // If you need to use the touched cell, you can retrieve it like so
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+        MMMenuItemCell * itemCell = (MMMenuItemCell *) cell;
         NSLog(@"touched cell %@ at indexPath %@", cell, indexPath);
-        return YES;
+        touchedItem = [[MMMenuItem alloc ]init];
+        touchedItem = itemCell.menuItem;
+
+        [self performSegueWithIdentifier:@"showMenuItem" sender:self];
+
     }
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"showMenuItem"]){
+        MMMenuItemViewController *menuItemController = [segue destinationViewController];
+        menuItemController.touchedItem = touchedItem;
+        
+    }
+}
 
 
 
