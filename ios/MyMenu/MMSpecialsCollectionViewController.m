@@ -68,12 +68,12 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     // initialize specials array to be empty
     // at first for async.
     specials = [[NSArray alloc] init];
-    
+
     // set today as selected
     [self.tabOutlet setSelectedSegmentIndex:index];
     [self loadDay:[self getToday]];
-    [self.tabOutlet setTintColor: [UIColor whiteColor]];
-    
+    [self.tabOutlet setTintColor:[UIColor whiteColor]];
+
 }
 
 /**
@@ -94,14 +94,14 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     // switching days.
     specials = [[NSArray alloc] init];
     [self.collectionView reloadData];
-    
+
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     [[MMDBFetcher get] getSpecials:day withType:self.specialsType];
 }
 
 - (void)didRetrieveSpecials:(NSArray *)webSpecials withResponse:(MMDBFetcherResponse *)response {
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
-    
+
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
                                                           message:@"Unable to retrieve specials."
@@ -109,10 +109,10 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
-    
+
     specials = webSpecials;
     [[self collectionView] reloadData];
 }
@@ -140,7 +140,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     cell.contentView.layer.masksToBounds = YES;
 
     MMSpecial *special = [specials objectAtIndex:indexPath.row];
-    
+
     UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
     [imageView setImageWithURL:[NSURL URLWithString:[special picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
 

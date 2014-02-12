@@ -16,15 +16,13 @@
 //
 
 #import "MMDetailViewController.h"
-#import "MMMerchant.h"
-#import "MMDBFetcher.h"
 #import "MMLocationManager.h"
 #import "MMRestaurantMapDelegate.h"
 
 @interface MMDetailViewController ()
 @property(strong, nonatomic) IBOutlet MKMapView *mapView;
 @property(strong, nonatomic) UIPopoverController *masterPopoverController;
-@property(strong, nonatomic) id<MKMapViewDelegate> mapDelegate;
+@property(strong, nonatomic) id <MKMapViewDelegate> mapDelegate;
 
 - (void)configureView;
 @end
@@ -54,31 +52,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureView];
-    
+
 
     self.locationManager = [[MMLocationManager alloc] initWithConfigurationBlock:^(CLLocationManager *locationManager, NSArray *locations) {
 
         CLLocation *currentLocation = [locations lastObject];
-        
+
         [[NSNotificationCenter defaultCenter] postNotificationName:kRetrievedUserLocation
                                                             object:currentLocation];
         MKCoordinateSpan span;
         span.latitudeDelta = .25;
         span.longitudeDelta = .25;
-        
+
         MKCoordinateRegion region;
         region.center = currentLocation.coordinate;
         region.span = span;
-        
+
         [self.mapView setCenterCoordinate:currentLocation.coordinate animated:YES];
         [self.mapView setRegion:region animated:YES];
-        
+
         [self.dbFetcher getCompressedMerchants:currentLocation];
     }];
-    
+
     self.mapDelegate = [[MMRestaurantMapDelegate alloc] init];
     self.mapView.delegate = self.mapDelegate;
-    
 
 
     self.dbFetcher = [[MMDBFetcher alloc] init];
@@ -101,10 +98,10 @@
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
-    
+
     [self pinRestaurants:compressedMerchants];
 }
 
@@ -116,7 +113,7 @@
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
 }
@@ -129,13 +126,13 @@
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
 }
 
 // Actually put all the pins on the map for each restaurant
-- (void)pinRestaurants:(NSArray*)restaurants {
+- (void)pinRestaurants:(NSArray *)restaurants {
     for (int i = 0; i < restaurants.count; i++) {
         MMMerchant *restaurant = [restaurants objectAtIndex:i];
 

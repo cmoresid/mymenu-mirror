@@ -16,7 +16,6 @@
 //
 
 #import "MMRegistrationViewController.h"
-#import "MMRegistrationPopoverViewController.h"
 #import "MMDietaryRestrictionsViewController.h"
 
 @interface MMRegistrationViewController ()
@@ -45,7 +44,7 @@
 
     // Initialize shared user profile page
     self.userProfile = [[MMUser alloc] init];
-    
+
     // Register for keyboard notifications to allow
     // for view to scroll to text field
     [self registerForKeyboardNotifications];
@@ -86,22 +85,22 @@
 - (void)didSelectCity:(NSString *)city {
     self.cityField.text = city;
     self.userProfile.city = city;
-    
+
     [self.locationPopoverController dismissPopoverAnimated:YES];
 }
 
 - (void)didSelectGender:(NSString *)gender {
     self.genderField.text = gender;
     self.userProfile.gender = (gender != nil) ?
-        [gender characterAtIndex:0] : 'U';
-    
+            [gender characterAtIndex:0] : 'U';
+
     [self.locationPopoverController dismissPopoverAnimated:YES];
 }
 
 - (void)didSelectProvince:(NSString *)province {
     self.provinceField.text = province;
     self.userProfile.locality = province;
-    
+
     [self.locationPopoverController dismissPopoverAnimated:YES];
 }
 
@@ -109,15 +108,15 @@
     // Set birthday field
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-    
+
     self.birthdayField.text = [dateFormatter stringFromDate:birthday];
-    
+
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:birthday];
-    
+
     self.userProfile.birthday = [NSString stringWithFormat:@"%ld", (long) [components day]];
     self.userProfile.birthmonth = [NSString stringWithFormat:@"%ld", (long) [components month]];
     self.userProfile.birthyear = [NSString stringWithFormat:@"%ld", (long) [components year]];
-    
+
     [self.locationPopoverController dismissPopoverAnimated:YES];
 }
 
@@ -138,7 +137,7 @@
             self.scrollView.scrollIndicatorInsets = contentInsets;
             self.cityPopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CityPopoverViewController"];
         }
-        
+
         return self.cityPopoverViewController;
     }
     else if (textField == self.provinceField) {
@@ -148,7 +147,7 @@
             self.scrollView.scrollIndicatorInsets = contentInsets;
             self.provincePopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProvincePopoverViewController"];
         }
-        
+
         return self.provincePopoverViewController;
     }
     else if (textField == self.genderField) {
@@ -159,7 +158,7 @@
             self.scrollView.scrollIndicatorInsets = contentInsets;
             self.genderPopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GenderPopoverViewController"];
         }
-        
+
         return self.genderPopoverViewController;
     }
     else if (textField == self.birthdayField) {
@@ -169,13 +168,14 @@
             self.scrollView.scrollIndicatorInsets = contentInsets;
             self.birthdayPopoverViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BirthdayPopoverViewController"];
         }
-        
+
         return self.birthdayPopoverViewController;
     }
 
     return nil;
 }
--(void)hideKeyboard{
+
+- (void)hideKeyboard {
     [self.firstNameField resignFirstResponder];
     [self.lastNameField resignFirstResponder];
     [self.emailField resignFirstResponder];
@@ -185,14 +185,14 @@
     [self.birthdayField resignFirstResponder];
     [self.cityField resignFirstResponder];
     [self.provinceField resignFirstResponder];
-    
+
 }
 
 // Set the popover view size depending on which text field
 // is selected.
 - (CGSize)getPopoverViewSizeForTextField:(UITextField *)textField {
     return (textField == self.birthdayField) ?
-        CGSizeMake(450.0f, 220.0f) : CGSizeMake(350.0f, 200.0f);
+            CGSizeMake(450.0f, 220.0f) : CGSizeMake(350.0f, 200.0f);
 }
 
 // Call this method somewhere in your view controller setup code.
@@ -244,8 +244,8 @@
 // focused on.
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
 
-        self.activeField = textField;
-        
+    self.activeField = textField;
+
 }
 
 // Remove the reference to the active textfield.
@@ -253,10 +253,10 @@
     self.activeField = nil;
 }
 
-- (IBAction)next:(id)sender{
+- (IBAction)next:(id)sender {
     NSLog(@"heyyyyyyyyyyyss");
     [self performSegueWithIdentifier:@"regToDietRest" sender:self];
-    
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -267,7 +267,7 @@
         self.userProfile.firstName = self.firstNameField.text;
         self.userProfile.lastName = self.lastNameField.text;
         self.userProfile.country = @"CAN";
-        
+
         MMDietaryRestrictionsViewController *destinationController = [segue destinationViewController];
 
         destinationController.userProfile = self.userProfile;
@@ -282,7 +282,7 @@
     self.genderPopoverViewController.delegate = nil;
     self.provincePopoverViewController.delegate = nil;
     self.birthdayPopoverViewController.delegate = nil;
-    
+
     self.locationPopoverController = nil;
     self.cityPopoverViewController = nil;
     self.provincePopoverViewController = nil;

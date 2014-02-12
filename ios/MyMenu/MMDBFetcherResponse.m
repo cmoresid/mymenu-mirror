@@ -18,14 +18,13 @@
 
 @implementation MMDBFetcherResponse
 
-- (id)init
-{
+- (id)init {
     self = [super init];
-    
+
     if (self != nil) {
         self.messages = [[NSMutableArray alloc] init];
     }
-    
+
     return self;
 }
 

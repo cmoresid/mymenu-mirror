@@ -10,7 +10,7 @@
 
 @implementation MMNetworkRequestProxy
 
-- (void)performNetworkRequest:(NSMutableURLRequest*)request completionHandler:(NetworkResponseBlock)completionBlock {
+- (void)performNetworkRequest:(NSMutableURLRequest *)request completionHandler:(NetworkResponseBlock)completionBlock {
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:completionBlock];

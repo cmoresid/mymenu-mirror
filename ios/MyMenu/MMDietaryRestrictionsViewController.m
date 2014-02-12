@@ -49,11 +49,11 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
 //loads the view with the dietary restrictions already chosen by the user.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // Load all restrictions.
     [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getAllRestrictions];
-    
+
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
 }
 
@@ -65,14 +65,14 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
-    
-    for (int i = 0; i < userRestrictions.count; i++){
-        [dietaryRestrictionIds addObject:((MMRestriction *)userRestrictions[i]).id];
+
+    for (int i = 0; i < userRestrictions.count; i++) {
+        [dietaryRestrictionIds addObject:((MMRestriction *) userRestrictions[i]).id];
     }
-    
+
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
     [self.collectionView reloadData];
 }
@@ -85,22 +85,22 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
-    
+
     allRestrictions = restrictions;
-    
+
     // TODO: Remove this in a little bit
     //[self loadAllImages];
-    
+
     dietaryRestrictionIds = [[NSMutableArray alloc] init];
-    
+
     NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
-    NSData * currentUser = [perfs objectForKey:kCurrentUser];
-	
+    NSData *currentUser = [perfs objectForKey:kCurrentUser];
+
     if (currentUser != nil) {
-        MMUser* userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
+        MMUser *userProfile = (MMUser *) [NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
         [[MMDBFetcher get] getUserRestrictions:userProfile.email];
     }
     else {
@@ -140,7 +140,7 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
 //switches to either false or true depending on the current user.
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"Cell";
-	
+
     MMDietaryRestrictionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     [cell.onSwitch addTarget:self action:@selector(switchFlicked:) forControlEvents:UIControlEventValueChanged];
 
@@ -151,20 +151,21 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
     [cell.contentView setBackgroundColor:[UIColor secondaryBlueBar]];
 
     MMRestriction *restriction = [allRestrictions objectAtIndex:indexPath.row];
-    
+
     UIImageView *recipeImageView = (UIImageView *) [cell viewWithTag:100];
     [recipeImageView setImageWithURL:[NSURL URLWithString:[restriction image]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
 
     // Set the Restriction Title
     UITextView *textView = (UITextView *) [cell viewWithTag:101];
     textView.text = restriction.name;
-    
+
     MMRestrictionSwitch *restSwitch = (MMRestrictionSwitch *) [cell viewWithTag:102];
     restSwitch.restId = restriction.id;
     restSwitch.on = ([dietaryRestrictionIds containsObject:restriction.id]);
 
     return cell;
 }
+
 //adds to the database and saves the users information in the shared preferences
 //only called when the "Done button is pusheda
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -173,14 +174,14 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
         MMDBFetcher *fetcher = [MMDBFetcher get];
         // Allow destination controller to be delegate now
         fetcher.delegate = [segue destinationViewController];
-        
+
         [fetcher addUser:self.userProfile];
-        
+
         NSArray *finalRestrictions = [dietaryRestrictionIds copy];
         [fetcher addUserRestrictions:self.userProfile.email :finalRestrictions];
-        
-        NSUserDefaults * userPreferances = [NSUserDefaults standardUserDefaults];
-        NSData * encodedUser = [NSKeyedArchiver archivedDataWithRootObject:self.userProfile];
+
+        NSUserDefaults *userPreferances = [NSUserDefaults standardUserDefaults];
+        NSData *encodedUser = [NSKeyedArchiver archivedDataWithRootObject:self.userProfile];
         [userPreferances setObject:encodedUser forKey:kCurrentUser];
     }
 }

@@ -17,6 +17,7 @@
 
 #import <UIKit/UIKit.h>
 
+// Rounded view for consistency through the app
 @interface MMRoundedView : UIView
 
 @end

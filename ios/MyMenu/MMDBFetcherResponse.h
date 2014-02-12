@@ -17,10 +17,9 @@
 #import <Foundation/Foundation.h>
 
 
-
 @interface MMDBFetcherResponse : NSObject
 
-@property (atomic) BOOL wasSuccessful;
-@property (atomic) NSMutableArray* messages;
+@property(atomic) BOOL wasSuccessful;
+@property(atomic) NSMutableArray *messages;
 
 @end

@@ -11,6 +11,6 @@
 
 @interface MMMockNetworkClient : NSObject <MMNetworkClientProtocol>
 
-- (id)initWithFakeResponse:(NSURLResponse*)response withFakeData:(NSString*)data withFakeError:(NSError*)error;
+- (id)initWithFakeResponse:(NSURLResponse *)response withFakeData:(NSString *)data withFakeError:(NSError *)error;
 
 @end

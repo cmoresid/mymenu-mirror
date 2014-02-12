@@ -31,8 +31,8 @@
 */
 @interface MMDBFetcher : NSObject <NSURLConnectionDataDelegate>
 
-@property(nonatomic, strong) id<MMDBFetcherDelegate> delegate;
-@property(nonatomic, strong) id<MMNetworkClientProtocol> networkClient;
+@property(nonatomic, strong) id <MMDBFetcherDelegate> delegate;
+@property(nonatomic, strong) id <MMNetworkClientProtocol> networkClient;
 
 /**
 * Get a singleton instance of this class.
@@ -42,9 +42,9 @@
 * significant performance improvements.
 *
 */
-+ (MMDBFetcher*)get;
++ (MMDBFetcher *)get;
 
-- (id)initWithNetworkClient:(id<MMNetworkClientProtocol>)client;
+- (id)initWithNetworkClient:(id <MMNetworkClientProtocol>)client;
 
 /**
 * Add a user to the service.
@@ -76,23 +76,20 @@
 /**
  * Add a rating/review for a menu item.
  */
-- (void)addMenuRating:(MMMenuItemRating *) rating;
+- (void)addMenuRating:(MMMenuItemRating *)rating;
 
 /**
 * Get all merchants. Only return a subset of the fields to minify data.
 */
-- (void)getCompressedMerchants:(CLLocation*) usrloc;
+//- (NSArray *)getCompressedMerchants;
+- (void)getCompressedMerchants:(CLLocation *)usrloc;
 
-
-/**
- * Get a subset of the merchants filtered by name.
- */
 - (void)getCompressedSpecificMerchants:(CLLocation*) usrloc withName: (NSString*) merchname;
 
 /**
 * Get the menu for the restaurant.
 */
-- (void)getMenuWithMerchantId:(NSInteger)merchid withUserEmail:(NSString*)email;
+- (void)getMenuWithMerchantId:(NSInteger)merchid withUserEmail:(NSString *)email;
 
 /**
 * Get all restrictions that we support.

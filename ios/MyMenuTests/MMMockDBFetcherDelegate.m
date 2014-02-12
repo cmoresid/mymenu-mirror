@@ -7,18 +7,17 @@
 //
 
 #import "MMMockDBFetcherDelegate.h"
-#import "MMNetworkClientProtocol.h"
 
 
 @implementation MMMockDBFetcherDelegate
 
 - (id)init {
     self = [super init];
-    
+
     if (self != nil) {
-        
+
     }
-    
+
     return self;
 }
 
@@ -34,9 +33,10 @@
 //    self.integerResponseCallback(resultCode, response);
 //}
 //
-- (void)didRetrieveUser:(MMUser*)user withResponse:(MMDBFetcherResponse*)response {
+- (void)didRetrieveUser:(MMUser *)user withResponse:(MMDBFetcherResponse *)response {
     self.userResponseCallback(user, response);
 }
+
 //
 //- (void)didRetrieveSpecials:(NSArray*)specials withResponse:(MMDBFetcherResponse*)response {
 //    self.arrayResponseCallback(specials, response);
@@ -54,7 +54,7 @@
 //    self.arrayResponseCallback(compressedMerchants, response);
 //}
 //
-- (void)didRetrieveMenuItems:(NSArray*)menuItems withResponse:(MMDBFetcherResponse*)response {
+- (void)didRetrieveMenuItems:(NSArray *)menuItems withResponse:(MMDBFetcherResponse *)response {
     self.getMenuResponseCallback(menuItems, response);
 }
 //

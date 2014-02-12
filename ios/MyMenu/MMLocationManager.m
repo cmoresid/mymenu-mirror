@@ -8,19 +8,19 @@
 
 #import "MMLocationManager.h"
 
-NSString* const kRetrievedUserLocation = @"RetrievedUserLocation";
+NSString *const kRetrievedUserLocation = @"RetrievedUserLocation";
 
 @implementation MMLocationManager
 
 - (id)initWithConfigurationBlock:(ConfigureMapView)conf {
     self = [super init];
-    
+
     if (self != nil) {
         self.configBlock = conf;
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
     }
-    
+
     return self;
 }
 

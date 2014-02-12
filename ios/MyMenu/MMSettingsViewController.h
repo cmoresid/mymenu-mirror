@@ -10,10 +10,11 @@
 
 @interface MMSettingsViewController : UIViewController
 
-@property(nonatomic,weak) IBOutlet UIButton *login;
-@property(nonatomic,weak) IBOutlet UIButton *logout;
+@property(nonatomic, weak) IBOutlet UIButton *login;
+@property(nonatomic, weak) IBOutlet UIButton *logout;
 
 - (IBAction)logout:(id)sender;
+
 - (IBAction)login:(id)sender;
 
 @end

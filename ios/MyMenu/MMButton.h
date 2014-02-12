@@ -17,6 +17,7 @@
 
 #import <UIKit/UIKit.h>
 
+// Rounded button for consistency with other components
 @interface MMButton : UIButton
 
 @end

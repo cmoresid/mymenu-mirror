@@ -11,11 +11,11 @@
 
 @implementation NSArray (MerchantSort)
 
-- (NSArray*)sortMerchant {
+- (NSArray *)sortMerchant {
     return [self sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSNumber *first = ((MMMerchant*) obj1).distfromuser;
-        NSNumber *second = ((MMMerchant*) obj2).distfromuser;
-        
+        NSNumber *first = ((MMMerchant *) obj1).distfromuser;
+        NSNumber *second = ((MMMerchant *) obj2).distfromuser;
+
         return [first compare:second] == NSOrderedDescending;
     }];
 }
