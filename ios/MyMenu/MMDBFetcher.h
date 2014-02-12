@@ -81,10 +81,18 @@
 /**
 * Get all merchants. Only return a subset of the fields to minify data.
 */
-//- (NSArray *)getCompressedMerchants;
+
 - (void)getCompressedMerchants:(CLLocation *)usrloc;
 
-- (void)getCompressedSpecificMerchants:(CLLocation*) usrloc withName: (NSString*) merchname;
+/**
+ * Get all merchants with name = merchname. Only return a subset of the fields to minify data.
+ */
+- (void)getCompressedMerchantsByName:(CLLocation*) usrloc withName: (NSString*) merchname;
+
+/**
+ * Get all merchants with category cuisine. Only return a subset of the fields to minify data.
+ */
+- (void)getCompressedMerchantsbyCuisine:(CLLocation*) usrloc withCusine: (NSString*) cuisine;
 
 /**
 * Get the menu for the restaurant.
