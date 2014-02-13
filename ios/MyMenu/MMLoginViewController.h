@@ -18,6 +18,11 @@
 #import <UIKit/UIKit.h>
 #import "MMDBFetcherDelegate.h"
 
+/**
+ Login view controller.
+ A view controller that logs in a user.
+ User is prompted for their email address (id) and their password.
+ */
 @interface MMLoginViewController : UIViewController <UITextFieldDelegate, MMDBFetcherDelegate>
 
 @property(nonatomic, weak) IBOutlet UITextField *emailAddress;

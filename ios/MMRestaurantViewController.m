@@ -157,13 +157,12 @@ MMMenuItem * touchedItem;
         textTitle.text = menitem.name;
         textDesc.text = menitem.desc;
         cell.menuItem = menitem;
-        if (menitem.restrictionflag == FALSE){
+        if (menitem.restrictionflag == FALSE) {
             textMod.text = @"";
-        }else{
+        }
+        else {
             textMod.text = @"!";
         }
-        
-        
         return cell;
     }
     
@@ -178,7 +177,8 @@ MMMenuItem * touchedItem;
             [message show];
             
             return;
-        }else{
+        }
+        else {
             menuItems = menu;
             [self.collectionView reloadData];
         }
@@ -203,12 +203,8 @@ MMMenuItem * touchedItem;
         MMMenuItemViewController *menuItemController = [segue destinationViewController];
         menuItemController.touchedItem = touchedItem;
         menuItemController.selectedRestaurant = _selectedRestaurant;
-        
     }
 }
-
-
-
 
 - (void)setViews
 {
@@ -220,6 +216,5 @@ MMMenuItem * touchedItem;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

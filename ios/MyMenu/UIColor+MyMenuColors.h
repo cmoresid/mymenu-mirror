@@ -18,7 +18,7 @@
 #import <UIKit/UIKit.h>
 
 /**
-* Some colors for our color scheme as provided by the designer.
+* Colors for our color scheme as provided by the designer.
 */
 @interface UIColor (MyMenuColors)
 

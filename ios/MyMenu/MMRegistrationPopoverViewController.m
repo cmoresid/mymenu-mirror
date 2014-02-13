@@ -33,7 +33,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     self.cityPicker.delegate = self;
     self.provPicker.delegate = self;
     self.genderPicker.delegate = self;
@@ -41,11 +40,9 @@
                             action:@selector(updateSelectedBirthday)
                   forControlEvents:UIControlEventValueChanged];
     self.birthdayPicker.maximumDate = [NSDate date];
-
     self.cities = [[NSArray alloc] initWithObjects:@"Choose City", @"Edmonton", nil];
     self.provinces = [[NSArray alloc] initWithObjects:@"Choose Province", @"Alberta", nil];
     self.gender = [[NSArray alloc] initWithObjects:@"Choose Your Gender", @"Unspecified", @"Male", @"Female", nil];
-
     self.popoverValue = nil;
 }
 
@@ -68,7 +65,6 @@ numberOfRowsInComponent:(NSInteger)component {
     else
         return _gender.count;
 }
-
 
 - (NSString *)pickerView:(UIPickerView *)pickerView
              titleForRow:(NSInteger)row
@@ -105,19 +101,15 @@ numberOfRowsInComponent:(NSInteger)component {
         case CityValue:
             [self.delegate didSelectCity:self.popoverValue.selectedValue];
             break;
-
         case GenderValue:
             [self.delegate didSelectGender:self.popoverValue.selectedValue];
             break;
-
         case ProvinceValue:
             [self.delegate didSelectProvince:self.popoverValue.selectedValue];
             break;
-
         case BirthdayValue:
             [self.delegate didSelectBirthday:self.popoverValue.selectedValue];
             break;
-
         default:
             break;
     }

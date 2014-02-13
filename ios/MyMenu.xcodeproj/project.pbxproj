@@ -615,6 +615,15 @@
 				17F9F80F18AC356F006B7DD0 /* twittershare.jpg in Resources */,
 				83893EC618919AD400D36670 /* Images.xcassets in Resources */,
 				B0627E2C18A2CB3700EAA045 /* 19-gear.png in Resources */,
+				8333C4031894B5680028FFBE,
+				83893EC618919AD400D36670 /* Images.xcassets in Resources */,
+				B0627E2C18A2CB3700EAA045 /* 19-gear.png in Resources */,
+				8333C4051894B5680028FFBE,
+				8333C4041894B5680028FFBE,
+				8333C3FD1894B5680028FFBE,
+				8333C40B1894B5680028FFBE,
+				8333C40A1894B5680028FFBE,
+				8333C40C1894B5680028FFBE,
 				17F9F80D18AC3565006B7DD0 /* facebookshare.jpg in Resources */,
 				B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */,
 				1731DFAC18A59B0F008BE05B /* 06-magnify.png in Resources */,
@@ -647,7 +656,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Start constants\ncompany=\"MyMenu\";\ncompanyID=\"ca.mymenu\";\ncompanyURL=\"http://mymenuapp.ca\";\ntarget=\"iphoneos\";\noutputPath=\"../docs/ios\";\n\n# End constants\n./appledoc/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${outputPath}\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n\"${PROJECT_DIR}\"";
+			shellScript = "# Start constants\ncompany=\"MyMenu\";\ncompanyID=\"ca.mymenu\";\ncompanyURL=\"http://mymenuapp.ca\";\ntarget=\"iphoneos\";\noutputPath=\"../docs/ios\";\n\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${outputPath}\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n\"${PROJECT_DIR}\"";
 		};
 		B531E901D50543BAB3F10BB7 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
