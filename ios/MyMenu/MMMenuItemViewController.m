@@ -10,6 +10,8 @@
 #import "UIColor+MyMenuColors.h"
 #import "MMRestaurantViewController.h"
 #import "MMMerchant.h"
+#import "MMSocialMediaService.h"
+#import <Social/Social.h>
 
 @interface MMMenuItemViewController ()
 
@@ -46,6 +48,22 @@
         MMRestaurantViewController *restaurantController = [segue destinationViewController];
         restaurantController.selectedRestaurant = _selectedRestaurant;
         
+    }
+}
+
+- (IBAction)shareViaFacebook:(id)sender {
+    SLComposeViewController *controller = [MMSocialMediaService shareMenuItem:self.touchedItem withService:SLServiceTypeFacebook];
+    
+    if (controller) {
+        [self presentViewController:controller animated:TRUE completion:nil];
+    }
+}
+
+- (IBAction)shareViaTwitter:(id)sender {
+    SLComposeViewController *controller = [MMSocialMediaService shareMenuItem:self.touchedItem withService:SLServiceTypeTwitter];
+    
+    if (controller) {
+        [self presentViewController:controller animated:TRUE completion:nil];
     }
 }
 
