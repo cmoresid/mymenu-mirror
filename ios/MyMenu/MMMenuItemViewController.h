@@ -22,4 +22,7 @@
 @property(nonatomic, weak) IBOutlet UIImageView * itemImage;
 @property(nonatomic, weak) IBOutlet UIView *itemView;
 
+- (IBAction)shareViaFacebook:(id)sender;
+- (IBAction)shareViaTwitter:(id)sender;
+
 @end

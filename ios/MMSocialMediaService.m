@@ -29,7 +29,7 @@
     
     SLComposeViewController *fbComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
     
-    NSString *initialMessage = @"I just tried %@! You should try it to!";
+    NSString *initialMessage = @"I just tried %@! You should try it to! http://www.mymenuapp.ca";
 
     [fbComposer setInitialText:[NSString stringWithFormat:initialMessage, menuItem.name]];
     [fbComposer addImage:[self getImageForMenuItem:menuItem]];
@@ -43,7 +43,7 @@
     
     SLComposeViewController *twitterComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
     
-    NSString *initialMessage = @"I just tried %@! You should try it to!";
+    NSString *initialMessage = @"I just tried %@! You should try it to! http://www.mymenuapp.ca";
     
     [twitterComposer setInitialText:[NSString stringWithFormat:initialMessage, menuItem.name]];
     [twitterComposer addImage:[self getImageForMenuItem:menuItem]];

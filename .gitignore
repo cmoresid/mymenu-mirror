@@ -12,6 +12,7 @@
 *.class
 
 # generated files
+#
 bin/
 gen/
 
