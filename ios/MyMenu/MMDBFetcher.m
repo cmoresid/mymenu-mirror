@@ -825,7 +825,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/modificationmenulink/custom.php"]];
 
-    NSString *queryFormat = @"query=SELECT modification FROM modificationmenulink WHERE menuid = %@ AND restrictid IN(SELECT restrictid FROM restrictionuserlink WHERE email = '%@')";
+    NSString *queryFormat = @"query=SELECT modification FROM modificationmenulink WHERE menuid = %d AND restrictid IN(SELECT restrictid FROM restrictionuserlink WHERE email = '%@')";
 
     NSString *query = [NSString stringWithFormat:queryFormat, menuid, email];
 
@@ -846,8 +846,9 @@ static MMDBFetcher *instance;
                                         modification = [e child:@"modification"].text;
                                         [modifications addObject:modification];
                                     }];
-
-                                    [self.delegate didRetrieveModifications:modifications withResponse:dbResponse];
+                                    
+                                    NSArray * modificationArray = [modifications copy];
+                                    [self.delegate didRetrieveModifications:modificationArray  withResponse:dbResponse];
                                 }
                                 else {
                                     [self.delegate didRetrieveModifications:nil withResponse:dbResponse];

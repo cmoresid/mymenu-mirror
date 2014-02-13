@@ -22,6 +22,9 @@
 #import "MMRestaurantViewController.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UIColor+MyMenuColors.h"
+#import "MMUser.h"
+
+#define kCurrentUser @"currentUser"
 
 @interface MMMasterViewController () {
     NSMutableArray *_objects;
@@ -67,7 +70,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveUserLocation:)
                                                  name:kRetrievedUserLocation
