@@ -204,7 +204,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
-
 }
 
 // If a text field is not visible, move the content view
@@ -239,13 +238,10 @@
     self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
-
 // Set the reference to the text field that should be
 // focused on.
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-
     self.activeField = textField;
-
 }
 
 // Remove the reference to the active textfield.
@@ -256,7 +252,6 @@
 - (IBAction)next:(id)sender {
     NSLog(@"heyyyyyyyyyyyss");
     [self performSegueWithIdentifier:@"regToDietRest" sender:self];
-
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -267,9 +262,7 @@
         self.userProfile.firstName = self.firstNameField.text;
         self.userProfile.lastName = self.lastNameField.text;
         self.userProfile.country = @"CAN";
-
         MMDietaryRestrictionsViewController *destinationController = [segue destinationViewController];
-
         destinationController.userProfile = self.userProfile;
     }
 }
@@ -282,7 +275,6 @@
     self.genderPopoverViewController.delegate = nil;
     self.provincePopoverViewController.delegate = nil;
     self.birthdayPopoverViewController.delegate = nil;
-
     self.locationPopoverController = nil;
     self.cityPopoverViewController = nil;
     self.provincePopoverViewController = nil;

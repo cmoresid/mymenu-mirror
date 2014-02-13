@@ -19,6 +19,11 @@
 #import "MMPopoverDataPair.h"
 #import "MMRegistrationPopoverDelegate.h"
 
+/**
+ Registration Popover View Controller class.
+ Used for popover view elements in the registration page.
+ Tied to MMRegistrationViewController.
+ */
 @interface MMRegistrationPopoverViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property(nonatomic, strong) NSArray *cities;

@@ -18,18 +18,25 @@
 #import "MMMerchant.h"
 #import "MMDBFetcherDelegate.h"
 
+/** The restaurant view controller.
+ This displays a single restaurant in detail.
+ Information such as restaurant name, rating, description, etc.
+ This is where the restaurant's menu is displayed.
+ This view will also allow the user to filter through the menu,
+ either by rating, category or name.
+*/
 @interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MMDBFetcherDelegate>
 
 @property MMMerchant *selectedRestaurant;
-@property(nonatomic, weak) IBOutlet UILabel * restName;
-@property(nonatomic, weak) IBOutlet UILabel * restNumber;
-@property(nonatomic, weak) IBOutlet UILabel * restRating;
-@property(nonatomic, weak) IBOutlet UITextView * restDescription;
-@property(nonatomic, weak) IBOutlet UIImageView * restImage;
-@property(nonatomic, weak) IBOutlet UIView *ratingView;
-@property(nonatomic, weak) IBOutlet UISearchBar * search;
-@property(nonatomic, weak) IBOutlet UIButton * categoryButton;
-@property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property(nonatomic, weak) IBOutlet UILabel * restName; // restaurant name
+@property(nonatomic, weak) IBOutlet UILabel * restNumber; // restaurant phone number
+@property(nonatomic, weak) IBOutlet UILabel * restRating; // restaurant rating
+@property(nonatomic, weak) IBOutlet UITextView * restDescription; // restaurant description
+@property(nonatomic, weak) IBOutlet UIImageView * restImage; // restaurant image
+@property(nonatomic, weak) IBOutlet UIView *ratingView; // rounded background for restaurant rating
+@property(nonatomic, weak) IBOutlet UISearchBar * search; // field for search by name
+@property(nonatomic, weak) IBOutlet UIButton * categoryButton; // filter by category buttton
+@property(nonatomic, weak) IBOutlet UICollectionView *collectionView; // the menu collection
 
 //- (IBAction)foodCategoryChanged:(UISegmentedControl *)sender;
 @end
