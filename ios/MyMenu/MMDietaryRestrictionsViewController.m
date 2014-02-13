@@ -34,6 +34,7 @@
 
 NSArray *allRestrictions; // all restrictions
 NSMutableArray *dietaryRestrictionIds; // dietary restrictions
+MMUser * user;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -49,7 +50,7 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
 //loads the view with the dietary restrictions already chosen by the user.
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    user = [[MMUser alloc]init];
     // Load all restrictions.
     [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getAllRestrictions];
@@ -98,10 +99,11 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
 
     NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
     NSData *currentUser = [perfs objectForKey:kCurrentUser];
+    user = (MMUser *) [NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
 
-    if (currentUser != nil) {
-        MMUser *userProfile = (MMUser *) [NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
-        [[MMDBFetcher get] getUserRestrictions:userProfile.email];
+    
+    if (user.email != nil) {
+        [[MMDBFetcher get] getUserRestrictions:user.email];
     }
     else {
         [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
@@ -174,15 +176,19 @@ NSMutableArray *dietaryRestrictionIds; // dietary restrictions
         MMDBFetcher *fetcher = [MMDBFetcher get];
         // Allow destination controller to be delegate now
         fetcher.delegate = [segue destinationViewController];
+        if (user.email == nil){
+            [fetcher addUser:self.userProfile];
 
-        [fetcher addUser:self.userProfile];
+            NSArray *finalRestrictions = [dietaryRestrictionIds copy];
+            [fetcher addUserRestrictions:self.userProfile.email :finalRestrictions];
 
-        NSArray *finalRestrictions = [dietaryRestrictionIds copy];
-        [fetcher addUserRestrictions:self.userProfile.email :finalRestrictions];
-
-        NSUserDefaults *userPreferances = [NSUserDefaults standardUserDefaults];
-        NSData *encodedUser = [NSKeyedArchiver archivedDataWithRootObject:self.userProfile];
-        [userPreferances setObject:encodedUser forKey:kCurrentUser];
+            NSUserDefaults *userPreferances = [NSUserDefaults standardUserDefaults];
+            NSData *encodedUser = [NSKeyedArchiver archivedDataWithRootObject:self.userProfile];
+            [userPreferances setObject:encodedUser forKey:kCurrentUser];
+        } else  {
+            NSArray *finalRestrictions = [dietaryRestrictionIds copy];
+            [fetcher addUserRestrictions:user.email :finalRestrictions];
+        }
     }
 }
 

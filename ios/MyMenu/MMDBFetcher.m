@@ -846,8 +846,9 @@ static MMDBFetcher *instance;
                                         modification = [e child:@"modification"].text;
                                         [modifications addObject:modification];
                                     }];
-
-                                    [self.delegate didRetrieveModifications:modifications withResponse:dbResponse];
+                                    
+                                    NSArray * modificationArray = [modifications copy];
+                                    [self.delegate didRetrieveModifications:modificationArray  withResponse:dbResponse];
                                 }
                                 else {
                                     [self.delegate didRetrieveModifications:nil withResponse:dbResponse];

@@ -49,7 +49,7 @@
 
 - (void)didUpdateUser:(BOOL)successful withResponse:(MMDBFetcherResponse *)response;
 
-- (void)didRetrieveModifications:(NSArray *)modifications withResponse:(MMDBFetcherResponse *)response;
+- (void)didRetrieveModifications:(NSArray *)modificationsArray withResponse:(MMDBFetcherResponse *)response;
 
 - (void)didCreateRating:(BOOL)successful withResponse:(MMDBFetcherResponse *)response;
 
