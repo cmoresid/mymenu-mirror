@@ -49,6 +49,7 @@ NSMutableArray * mods;
     NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
     NSData * currentUser = [perfs objectForKey:kCurrentUser];
     MMUser* userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
+    [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getModifications:_touchedItem.itemid withUser:userProfile.email];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     [self.tableView reloadData];

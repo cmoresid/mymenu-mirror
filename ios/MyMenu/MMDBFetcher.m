@@ -825,7 +825,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/modificationmenulink/custom.php"]];
 
-    NSString *queryFormat = @"query=SELECT modification FROM modificationmenulink WHERE menuid = %d AND restrictid IN(SELECT restrictid FROM restrictionuserlink WHERE email = '%@')";
+    NSString *queryFormat = @"query=SELECT modification FROM modificationmenulink WHERE menuid = %@ AND restrictid IN(SELECT restrictid FROM restrictionuserlink WHERE email = '%@')";
 
     NSString *query = [NSString stringWithFormat:queryFormat, menuid, email];
 
