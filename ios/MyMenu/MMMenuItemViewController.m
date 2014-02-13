@@ -15,6 +15,8 @@
 #import "MMDBFetcher.h"
 #import "MMUser.h"
 #import "MBProgressHUD.h"
+#import "MMMenuItemPopOverViewController.h"
+
 #define kCurrentUser @"currentUser"
 
 
@@ -24,6 +26,8 @@
 
 @implementation MMMenuItemViewController
 NSMutableArray * mods;
+NSInteger ratingValue;
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -38,6 +42,8 @@ NSMutableArray * mods;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     mods = [[NSMutableArray alloc] init];
+    [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.ratingButton setTitle:@"Rate This Item"  forState:UIControlStateNormal];
     _itemName.text = _touchedItem.name;
     _itemDescription.text = _touchedItem.desc;
     [_itemDescription setTextColor:[UIColor blackColor]];
@@ -104,6 +110,10 @@ NSMutableArray * mods;
     return cell;
 }
 
+-(BOOL) popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController{
+    return FALSE;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -131,6 +141,31 @@ NSMutableArray * mods;
     if (controller) {
         [self presentViewController:controller animated:TRUE completion:nil];
     }
+}
+
+- (IBAction)ratingButton:(id)sender{
+    MMMenuItemPopOverViewController *ratingPop = [[MMMenuItemPopOverViewController alloc] init];
+    
+    ratingPop = [self.storyboard instantiateViewControllerWithIdentifier:@"ratingPopOver"];
+    ratingPop.returnBlock = ^(NSInteger rating){
+        [self.ratingButton setTitle:[[NSString alloc] initWithFormat:@"Your Rating: %d", rating] forState:UIControlStateNormal];
+        [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        ratingValue = rating;
+        [self.popOverController dismissPopoverAnimated:YES];
+    };
+
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:ratingPop];
+    
+    popover.popoverContentSize = CGSizeMake(250, 200);
+    popover.delegate = self;
+    
+    self.popOverController = popover;
+    
+    [self.popOverController presentPopoverFromRect:self.ratingButton.frame
+                                                    inView:self.ratingButton.superview
+                                  permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                  animated:YES];
+    
 }
 
 @end
