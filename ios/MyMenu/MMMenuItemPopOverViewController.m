@@ -30,8 +30,6 @@
     self.ratingPicker.delegate = self;
     self.ratings =[[NSArray alloc] initWithObjects:@"Your Rating", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", nil];
     
-    //[self.ratingPicker reloadAllComponents];
-    
 }
 - (NSInteger)numberOfComponentsInPickerView:
 (UIPickerView *)pickerView {
@@ -50,7 +48,10 @@ numberOfRowsInComponent:(NSInteger)component {
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    self.rate = row;
+    if (row != 0){
+        self.rate = row;
+    }
+    
 }
 
 
