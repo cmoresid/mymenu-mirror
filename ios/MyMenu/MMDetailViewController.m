@@ -51,7 +51,16 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 }
 
 - (void) didUpdateList :(NSNotification *)notification {
-    [_mapView removeAnnotations:_mapView.annotations];
+    
+    NSMutableArray *annots = [_mapView.annotations mutableCopy];
+    
+    for(int i = 0;i<[annots count];i++){
+        if([[annots objectAtIndex:i] isKindOfClass: [MKUserLocation class]])
+                [annots removeObjectAtIndex:i];
+    }
+    
+    [_mapView removeAnnotations:[annots copy]];
+    
     [self pinRestaurants:notification.object];
 
 }
