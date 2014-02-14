@@ -846,7 +846,6 @@ static MMDBFetcher *instance;
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 
                                     NSMutableArray *modifications = [[NSMutableArray alloc] init];
-
                                     [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
                                         NSString *modification;
                                         modification = [e child:@"modification"].text;
@@ -860,6 +859,42 @@ static MMDBFetcher *instance;
                                     [self.delegate didRetrieveModifications:nil withResponse:dbResponse];
                                 }
                             }];
+}
+
+- (void)getCategories {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchcategories/custom.php"]];
+    
+    NSString *query = @"query=SELECT name FROM merchcategories";
+   
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    
+                                    NSMutableArray *categories = [[NSMutableArray alloc] init];
+                                    [categories addObject:@"All Categories"];
+                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                        NSString *category;
+                                        category = [e child:@"name"].text;
+                                        [categories addObject:category];
+                                    }];
+                                    
+                                    NSArray * categoryArray = [categories copy];
+                                    [self.delegate didRetrieveCategories:categoryArray withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didRetrieveCategories:nil withResponse:dbResponse];
+                                }
+                            }];
+    
 }
 
 @end

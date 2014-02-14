@@ -140,4 +140,10 @@
  */
 - (void)getItemRatingsMerchant:(NSNumber *)merchid;
 
+
+/**
+ * Get all merchant categories.
+ */
+- (void)getCategories;
+
 @end
