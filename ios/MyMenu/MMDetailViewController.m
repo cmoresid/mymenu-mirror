@@ -18,7 +18,8 @@
 #import "MMDetailViewController.h"
 #import "MMLocationManager.h"
 #import "MMRestaurantMapDelegate.h"
-
+#import "MMMasterViewController.h"
+NSString *const kDidUpdateList = @"DidUpdateList";
 @interface MMDetailViewController ()
 @property(strong, nonatomic) IBOutlet MKMapView *mapView;
 @property(strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -49,6 +50,12 @@
     }
 }
 
+- (void) didUpdateList :(NSNotification *)notification {
+    [_mapView removeAnnotations:_mapView.annotations];
+    [self pinRestaurants:notification.object];
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureView];
@@ -71,7 +78,7 @@
         [self.mapView setCenterCoordinate:currentLocation.coordinate animated:YES];
         [self.mapView setRegion:region animated:YES];
 
-        [self.dbFetcher getCompressedMerchants:currentLocation];
+        //[self.dbFetcher getCompressedMerchants:currentLocation];
     }];
 
     self.mapDelegate = [[MMRestaurantMapDelegate alloc] init];
@@ -80,6 +87,14 @@
 
     self.dbFetcher = [[MMDBFetcher alloc] init];
     self.dbFetcher.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didUpdateList:)
+                                                 name:kDidUpdateList
+                                               object:nil];
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -90,20 +105,6 @@
     [self.locationManager stopTrackingUserLocation];
 }
 
-- (void)didRetrieveCompressedMerchants:(NSArray *)compressedMerchants withResponse:(MMDBFetcherResponse *)response {
-    if (!response.wasSuccessful) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
-                                                          message:@"Unable to communicate with server."
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [message show];
-
-        return;
-    }
-
-    [self pinRestaurants:compressedMerchants];
-}
 
 - (void)didCreateUser:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
     if (!response.wasSuccessful) {

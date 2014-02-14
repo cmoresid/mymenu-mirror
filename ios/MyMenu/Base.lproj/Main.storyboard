@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="E4e-Ge-d3g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="E4e-Ge-d3g">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -1034,9 +1034,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="0TO-Dl-cRz">
+                            <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="barTintColor" red="0.16078431369999999" green="0.66274509800000003" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                            <connections>
+                                <outlet property="delegate" destination="Goi-vq-mlv" id="Htb-3H-RN2"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="80" id="NiY-e1-4dW" customClass="RestaurantCell">
-                                <rect key="frame" x="0.0" y="22" width="1024" height="80"/>
+                                <rect key="frame" x="0.0" y="66" width="1024" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NiY-e1-4dW" id="c2C-rF-PWa">
                                     <rect key="frame" x="0.0" y="0.0" width="991" height="79"/>
@@ -1049,15 +1062,28 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </prototypes>
                         <sections/>
                         <connections>
-                            <outlet property="dataSource" destination="Goi-vq-mlv" id="ONe-QU-vwk"/>
-                            <outlet property="delegate" destination="Goi-vq-mlv" id="gRu-mP-SwD"/>
+                            <outlet property="dataSource" destination="Goi-vq-mlv" id="8SS-F3-1nX"/>
+                            <outlet property="delegate" destination="Goi-vq-mlv" id="Zf3-Nu-10v"/>
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Restaurants" id="lLE-5b-SsI"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="merchantsearch" destination="0TO-Dl-cRz" id="N5T-ve-I7r"/>
+                        <outlet property="searchDisplayController" destination="cx9-p0-4dK" id="nBc-zk-Hwd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xHD-LM-Dip" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="cx9-p0-4dK">
+                    <connections>
+                        <outlet property="delegate" destination="Goi-vq-mlv" id="sXG-ig-4Qz"/>
+                        <outlet property="searchBar" destination="0TO-Dl-cRz" id="gMZ-EA-Jyl"/>
+                        <outlet property="searchContentsController" destination="Goi-vq-mlv" id="C4w-me-Vjq"/>
+                        <outlet property="searchResultsDataSource" destination="Goi-vq-mlv" id="bWx-MO-Hoy"/>
+                        <outlet property="searchResultsDelegate" destination="Goi-vq-mlv" id="WUS-tl-exA"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="8412" y="-681"/>
         </scene>
@@ -1497,9 +1523,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="9fc-nU-7db"/>
-        <segue reference="Se9-MU-bdg"/>
-        <segue reference="RIF-ia-52c"/>
+        <segue reference="ANn-JM-0R7"/>
         <segue reference="BdE-8K-hFB"/>
         <segue reference="SHi-7D-H4s"/>
+        <segue reference="RIF-ia-52c"/>
     </inferredMetricsTieBreakers>
 </document>
