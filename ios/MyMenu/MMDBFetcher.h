@@ -92,7 +92,7 @@
 /**
  * Get all merchants with category cuisine. Only return a subset of the fields to minify data.
  */
-- (void)getCompressedMerchantsbyCuisine:(CLLocation*) usrloc withCusine: (NSString*) cuisine;
+- (void)getCompressedMerchantsByCuisine:(CLLocation *)usrloc withCuisine:(NSString *)cuisine;
 
 /**
 * Get the menu for the restaurant.

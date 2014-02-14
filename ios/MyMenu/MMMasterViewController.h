@@ -21,15 +21,23 @@
 #import "MMDBFetcherDelegate.h"
 #import "MMDBFetcher.h"
 #import "MMMerchant.h"
-
+#import "MMLocationManager.h"
+extern NSString *const kDidUpdateList;
 @class MMDetailViewController;
 
-@interface MMMasterViewController : UITableViewController <MMDBFetcherDelegate>
+@interface MMMasterViewController : UITableViewController <MMDBFetcherDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property(nonatomic, strong) NSArray *restaurants;
+@property(nonatomic, strong) NSArray *filteredrestaurants;
 @property(nonatomic, strong) MMMerchant *selectRest;
 @property(nonatomic, strong) MMDetailViewController *detailViewController;
 @property(nonatomic, strong) MMDBFetcher *dbFetcher;
-@property(nonatomic, strong) CLLocationManager *locationManager;
+@property(nonatomic, strong) MMLocationManager *locationManager;
+@property(nonatomic) CLLocation *location;
+@property(nonatomic) BOOL searchflag;
+
+
+@property IBOutlet UISearchBar *merchantsearch;
+
 
 @end

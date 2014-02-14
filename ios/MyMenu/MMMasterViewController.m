@@ -53,9 +53,22 @@
 
     // Successful retrieved restaurant list.
 
-    self.restaurants = compressedMerchants;
+    if (_searchflag == TRUE){
+        _filteredrestaurants = compressedMerchants;
+        
+        
+        _searchflag = FALSE;
+            [((UITableView *) self.searchDisplayController.searchResultsTableView) reloadData];
+    }
+    else{
+    _restaurants = compressedMerchants;
 
+    }
     [((UITableView *) self.view) reloadData];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList
+                                                        object:_restaurants];
+    
+    _searchflag = FALSE;
 }
 
 - (void)didRetrieveMerchant:(MMMerchant *)merchant withResponse:(MMDBFetcherResponse *)response {
@@ -75,8 +88,12 @@
                                              selector:@selector(didReceiveUserLocation:)
                                                  name:kRetrievedUserLocation
                                                object:nil];
+    
+    _searchflag = false;
+
 
     self.detailViewController = (MMDetailViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
+    _filteredrestaurants = [NSMutableArray arrayWithCapacity:20];
 }
 
 - (void)dealloc {
@@ -84,15 +101,11 @@
 }
 
 - (void)didReceiveUserLocation:(NSNotification *)notification {
-    CLLocation *location = notification.object;
-    CLLocationCoordinate2D coordinate = location.coordinate;
-
-//    NSLog(@"Lat: %@", [NSNumber numberWithDouble:coordinate.latitude]);
-//    NSLog(@"Longa: %@", [NSNumber numberWithDouble:coordinate.longitude]);
+    _location = notification.object;
 
     self.dbFetcher = [[MMDBFetcher alloc] init];
     self.dbFetcher.delegate = self;
-    [self.dbFetcher getCompressedMerchants:location];
+    [self.dbFetcher getCompressedMerchants:_location];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -117,7 +130,12 @@
 
 // Return the amount of restaurants.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _restaurants.count;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [_filteredrestaurants count];
+    } else {
+        return [_restaurants count];
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -128,7 +146,14 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
 
-    MMMerchant *restaurant = [_restaurants objectAtIndex:indexPath.row];
+    
+    MMMerchant *restaurant;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        restaurant = [_filteredrestaurants objectAtIndex:indexPath.row];
+    } else {
+        restaurant = [_restaurants objectAtIndex:indexPath.row];
+    }
+    
 
     cell.ratingBg.backgroundColor = [UIColor lightBackgroundGray];
     cell.ratingBg.layer.cornerRadius = 5;
@@ -168,9 +193,7 @@
     cell.ratinglabel.text = rate;
     cell.addressLabel.text = restaurant.address;
 
-    MMMerchant __weak *merchant = [_restaurants objectAtIndex:indexPath.row];
-
-    [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:[merchant picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+    [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:[restaurant picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
 
     return cell;
 }
@@ -196,11 +219,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-//    NSLog(@"Selected %@", indexPath);
-//    NSLog(@"ABC");
-//    NSLog(@"the ID is %@" , [[self.restaurants objectAtIndex:indexPath.row] mid]);
-    //_selectRest = [self.restaurants objectAtIndex:indexPath.row];
-
     [self.dbFetcher getMerchant:[[self.restaurants objectAtIndex:indexPath.row] mid]];
 }
 
@@ -211,5 +229,32 @@
 
     }
 }
+
+#pragma mark - UISearchDisplayController Delegate Methods
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+//    _searchflag = TRUE;
+//    NSLog(@"Clicked: %@", searchString);
+//    self.dbFetcher = [[MMDBFetcher alloc] init];
+//    self.dbFetcher.delegate = self;
+//    [self.dbFetcher getCompressedMerchantsByName:_location withName:searchString];
+    return YES;
+}
+//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
+    
+    
+    
+//}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    _searchflag = TRUE;
+    NSLog(@"Clicked: %@", searchBar.text);
+     self.dbFetcher = [[MMDBFetcher alloc] init];
+     self.dbFetcher.delegate = self;
+    [self.dbFetcher getCompressedMerchantsByName:_location withName:searchBar.text];
+
+    
+}
+
+
 
 @end

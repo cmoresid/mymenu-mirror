@@ -40,6 +40,8 @@
     UINavigationController *navigationController = [self.viewControllers lastObject];
     self.delegate = (id) navigationController.topViewController;
     // Do any additional setup after loading the view.
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
