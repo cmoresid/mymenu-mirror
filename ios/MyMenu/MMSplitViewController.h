@@ -16,7 +16,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMLocationManager.h"
 
 @interface MMSplitViewController : UISplitViewController
+@property(nonatomic, strong) MMLocationManager *locationManager;
+
 
 @end

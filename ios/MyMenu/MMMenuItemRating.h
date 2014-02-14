@@ -25,6 +25,7 @@
 @property(nonatomic) NSNumber *id;
 @property(nonatomic) NSString *useremail;
 @property(nonatomic) NSNumber *menuid;
+@property(nonatomic) NSString *menuitemname;
 @property(nonatomic) NSNumber *rating;
 @property(nonatomic) NSNumber *merchid;
 @property(nonatomic) NSString *review;
