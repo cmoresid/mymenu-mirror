@@ -60,49 +60,41 @@ NSString *const kDidUpdateList = @"DidUpdateList";
     [super viewDidLoad];
     [self configureView];
 
-
-    self.locationManager = [[MMLocationManager alloc] initWithConfigurationBlock:^(CLLocationManager *locationManager, NSArray *locations) {
-
-        CLLocation *currentLocation = [locations lastObject];
-
-        [[NSNotificationCenter defaultCenter] postNotificationName:kRetrievedUserLocation
-                                                            object:currentLocation];
-        MKCoordinateSpan span;
-        span.latitudeDelta = .25;
-        span.longitudeDelta = .25;
-
-        MKCoordinateRegion region;
-        region.center = currentLocation.coordinate;
-        region.span = span;
-
-        [self.mapView setCenterCoordinate:currentLocation.coordinate animated:YES];
-        [self.mapView setRegion:region animated:YES];
-
-        //[self.dbFetcher getCompressedMerchants:currentLocation];
-    }];
-
-    self.mapDelegate = [[MMRestaurantMapDelegate alloc] init];
-    self.mapView.delegate = self.mapDelegate;
-
-
-    self.dbFetcher = [[MMDBFetcher alloc] init];
-    self.dbFetcher.delegate = self;
+    /* Observer watching for a user location update notification */
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveUserLocation:)
+                                                 name:kRetrievedUserLocation
+                                               object:nil];
+   
     
+    /* Obeserver watching for the master list to be updated */
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didUpdateList:)
                                                  name:kDidUpdateList
                                                object:nil];
 }
+
+- (void)didReceiveUserLocation:(NSNotification *)notification {
+    _location = notification.object;
+    
+    MKCoordinateSpan span;
+    span.latitudeDelta = .25;
+    span.longitudeDelta = .25;
+    
+    MKCoordinateRegion region;
+    region.center = _location.coordinate;
+    region.span = span;
+    
+    [self.mapView setCenterCoordinate:_location.coordinate animated:YES];
+    [self.mapView setRegion:region animated:YES];
+    self.mapDelegate = [[MMRestaurantMapDelegate alloc] init];
+    self.mapView.delegate = self.mapDelegate;
+
+ 
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self.locationManager startTrackingUserLocation];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [self.locationManager stopTrackingUserLocation];
 }
 
 
@@ -134,6 +126,38 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 
 // Actually put all the pins on the map for each restaurant
 - (void)pinRestaurants:(NSArray *)restaurants {
+    
+    if([restaurants count] == 1){
+        MKCoordinateSpan span;
+        span.latitudeDelta = .25;
+        span.longitudeDelta = .25;
+        
+        MMMerchant *merch = [restaurants objectAtIndex:0];
+        
+        MKCoordinateRegion region;
+        CLLocationCoordinate2D start;
+        start.latitude = [merch.lat doubleValue];
+        start.longitude = [merch.longa doubleValue];
+        region.center = start;
+        region.span = span;
+        
+        [self.mapView setRegion:region animated:YES];
+        
+    }
+    
+    else{
+    
+    MKCoordinateSpan span;
+    span.latitudeDelta = .25;
+    span.longitudeDelta = .25;
+    
+    MKCoordinateRegion region;
+    region.center = _location.coordinate;
+    region.span = span;
+    [self.mapView setCenterCoordinate:_location.coordinate animated:YES];
+    [self.mapView setRegion:region animated:YES];
+    }
+    
     for (int i = 0; i < restaurants.count; i++) {
         MMMerchant *restaurant = [restaurants objectAtIndex:i];
 
@@ -147,6 +171,8 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 
         [self.mapView addAnnotation:annotation];
     }
+    
+   
 }
 
 - (void)didReceiveMemoryWarning {

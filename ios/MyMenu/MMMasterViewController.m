@@ -56,7 +56,6 @@
     if (_searchflag == TRUE){
         _filteredrestaurants = compressedMerchants;
         [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList object:_filteredrestaurants];
-        
         _searchflag = FALSE;
             [((UITableView *) self.searchDisplayController.searchResultsTableView) reloadData];
     }
@@ -64,21 +63,13 @@
     _restaurants = compressedMerchants;
     [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList
                                                            object:_restaurants];
-
     }
+    
     [((UITableView *) self.view) reloadData];
-    
-    
-    _searchflag = FALSE;
 }
 
 - (void)didRetrieveMerchant:(MMMerchant *)merchant withResponse:(MMDBFetcherResponse *)response {
-
     self.selectRest = merchant;
-
-    //NSLog(@"the id is : %@", self.selectRest.mid);
-    //NSLog(@"Restaurant desc = %@", self.selectRest.desc);
-
     [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
 }
 
@@ -92,10 +83,8 @@
     
     _searchflag = false;
 
-
-    
     self.detailViewController = (MMDetailViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
-    _filteredrestaurants = [NSMutableArray arrayWithCapacity:20];
+
 }
 
 - (void)dealloc {
@@ -104,7 +93,6 @@
 
 - (void)didReceiveUserLocation:(NSNotification *)notification {
     _location = notification.object;
-
     self.dbFetcher = [[MMDBFetcher alloc] init];
     self.dbFetcher.delegate = self;
     [self.dbFetcher getCompressedMerchants:_location];
@@ -239,35 +227,23 @@
     }
 }
 
-
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    _searchflag = TRUE;
-    NSLog(@"Clicked: %@", searchBar.text);
     
+    _searchflag = TRUE;
     if ([searchBar.text length] != 0){
         self.dbFetcher = [[MMDBFetcher alloc] init];
         self.dbFetcher.delegate = self;
         [self.dbFetcher getCompressedMerchantsByName:_location withName:searchBar.text];
-        
     }
-    
-
     
 }
 
+/* When the user clicks 'cancel' */
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
-    
-    NSLog(@"Hiding");
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList
                                                         object:_restaurants];
 
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView{
-    
-    
-    
 }
 
 @end
