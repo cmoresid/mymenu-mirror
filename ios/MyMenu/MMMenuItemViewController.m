@@ -16,6 +16,7 @@
 #import "MMUser.h"
 #import "MBProgressHUD.h"
 #import "MMMenuItemPopOverViewController.h"
+#import "MMMenuItemRating.h"
 
 #define kCurrentUser @"currentUser"
 
@@ -27,6 +28,7 @@
 @implementation MMMenuItemViewController
 NSMutableArray * mods;
 NSInteger ratingValue;
+MMUser * userProfile;
 
 
 
@@ -42,6 +44,13 @@ NSInteger ratingValue;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     mods = [[NSMutableArray alloc] init];
+    self.reviewField.delegate = self;
+    // Register for keyboard notifications to allow
+    // for view to scroll to text field
+    [self registerForKeyboardNotifications];
+    [[self.reviewField layer] setBorderColor:[[UIColor tealColor] CGColor]];
+    [[self.reviewField layer] setBorderWidth:2.3];
+    [[self.reviewField layer] setCornerRadius:5];
     [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.ratingButton setTitle:@"Rate This Item"  forState:UIControlStateNormal];
     _itemName.text = _touchedItem.name;
@@ -54,7 +63,7 @@ NSInteger ratingValue;
     self.tableView.dataSource = self;
     NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
     NSData * currentUser = [perfs objectForKey:kCurrentUser];
-    MMUser* userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
+    userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
     [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getModifications:_touchedItem.itemid withUser:userProfile.email];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
@@ -119,6 +128,63 @@ NSInteger ratingValue;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+// If a text field is not visible, move the content view
+// using an animation to bring the text field into view by
+// scrolling the content view.
+- (void)keyboardWasShown:(NSNotification *)aNotification {
+    NSDictionary *info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    //float copyHeight = kbSize.height /2.0f;
+    kbSize.height = kbSize.height * .35f;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your app might not need or want this behavior.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    
+    if (CGRectContainsPoint(aRect, self.activeField.frame.origin)) {
+        
+        [self.scrollView scrollRectToVisible:self.activeField.frame animated:YES];
+    }
+}
+
+// Reset the scroll view to the default location when the
+// keyboard is hidden.
+- (void)keyboardWillBeHidden:(NSNotification *)aNotification {
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+}
+
+// Set the reference to the text field that should be
+// focused on.
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([textView.text isEqualToString:@"Please enter your review here..."]){
+        textView.text = @"";
+    }
+    self.activeField = textView;
+}
+
+// Remove the reference to the active textfield.
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    self.activeField = nil;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"backToRestPage"]){
         MMRestaurantViewController *restaurantController = [segue destinationViewController];
@@ -166,6 +232,57 @@ NSInteger ratingValue;
                                   permittedArrowDirections:UIPopoverArrowDirectionAny
                                                   animated:YES];
     
+}
+-(void)didCreateRating:(BOOL)successful withResponse:(MMDBFetcherResponse *)response{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    if (successful == FALSE){
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Your Review did not send.  Please check your internet connection and try again."
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+            
+            return;
+    } else {
+        self.reviewField.text = @"Please enter your review here...";
+        [self.ratingButton setTitle:[[NSString alloc] initWithFormat:@"Rate This Item"] forState:UIControlStateNormal];
+        [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+        
+
+}
+
+- (IBAction)saveButton:(id)sender{
+    MMMenuItemRating *currentRating = [[MMMenuItemRating alloc] init];
+    currentRating.rating = [NSNumber numberWithInteger:ratingValue];
+    if ((self.reviewField.text == nil || [self.reviewField.text isEqualToString:@""]) || [self.reviewField.text isEqualToString:@"Please enter your review here..."]){
+        
+        currentRating.review = @"";
+    } else {
+        currentRating.review = self.reviewField.text;
+    }
+    currentRating.menuid = self.touchedItem.itemid;
+    currentRating.merchid = self.selectedRestaurant.mid;
+    currentRating.useremail = userProfile.email;
+    [[MMDBFetcher get] addMenuRating:currentRating];
+    [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+}
+
+- (IBAction)clearButton:(id)sender{
+    self.reviewField.text = @"Please enter your review here...";
+    [self.ratingButton setTitle:[[NSString alloc] initWithFormat:@"Rate This Item"] forState:UIControlStateNormal];
+    [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
 @end

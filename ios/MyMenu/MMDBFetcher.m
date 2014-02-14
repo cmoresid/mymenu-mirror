@@ -88,10 +88,16 @@ static MMDBFetcher *instance;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/put.php"]];
-
-    NSString *queryFormat = @"useremail=%@&menuid=%d&rating=%d&merchid=%d&review=%@&ratingdate=sysdate";
-    NSString *query = [NSString stringWithFormat:queryFormat, rating.useremail, rating.menuid, rating.rating, rating.merchid, rating.review];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
+    NSDate * date = [NSDate date];
+    NSString * dateString = @"yyyy-MM-dd HH:mm:ss";
+    NSDateFormatter * format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:dateString];
+    NSString *currentDate = [format stringFromDate:date];
+    
+    
+    NSString *queryFormat = @"query=insert into ratings (useremail, menuid, merchid, rating, ratingdescription, ratingdate) values('%@', %@, %@, %@, '%@', sysdate())";
+    NSString *query = [NSString stringWithFormat:queryFormat, rating.useremail, rating.menuid, rating.merchid, rating.rating, rating.review];
 
 
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
