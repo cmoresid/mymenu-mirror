@@ -16,6 +16,7 @@
 //
 
 #import "MMSplitViewController.h"
+#import "MMLocationManager.h"
 
 @interface MMSplitViewController ()
 
@@ -36,10 +37,17 @@
     [super viewDidLoad];
     // Get the Nav Controller for the Slider
 
-
     UINavigationController *navigationController = [self.viewControllers lastObject];
     self.delegate = (id) navigationController.topViewController;
     // Do any additional setup after loading the view.
+    
+    self.locationManager = [[MMLocationManager alloc] initWithConfigurationBlock:^(CLLocationManager *locationManager, NSArray *locations) {
+        
+        CLLocation *currentLocation = [locations lastObject];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kRetrievedUserLocation
+                                                            object:currentLocation];
+    }];
     
     
 }
@@ -49,4 +57,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.locationManager startTrackingUserLocation];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.locationManager stopTrackingUserLocation];
+}
 @end

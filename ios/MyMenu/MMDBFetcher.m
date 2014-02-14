@@ -21,6 +21,12 @@
 #import <MapKit/MapKit.h>
 #import "MMMenuItem.h"
 
+@interface MMDBFetcher ()
+
+- (void)compressedMerchantsHelper:(NSMutableURLRequest*)request;
+- (void)getRatingsHelper:(NSMutableURLRequest*) request;
+
+@end
 
 @implementation MMDBFetcher
 
@@ -89,12 +95,9 @@ static MMDBFetcher *instance;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
-    NSDate * date = [NSDate date];
     NSString * dateString = @"yyyy-MM-dd HH:mm:ss";
     NSDateFormatter * format = [[NSDateFormatter alloc] init];
     [format setDateFormat:dateString];
-    NSString *currentDate = [format stringFromDate:date];
-    
     
     NSString *queryFormat = @"query=insert into ratings (useremail, menuid, merchid, rating, ratingdescription, ratingdate) values('%@', %@, %@, %@, '%@', sysdate())";
     NSString *query = [NSString stringWithFormat:queryFormat, rating.useremail, rating.menuid, rating.merchid, rating.rating, rating.review];
@@ -122,37 +125,27 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT useremail, rating, ratingdate, ratingdescription FROM ratings WHERE merchid=%@ ORDER BY ratingdate";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name FROM ratings r, menu m WHERE r.merchid=%@ AND m.merchid = r.merchid AND ORDER BY ratingdate";
     NSString *query = [NSString stringWithFormat:queryFormat, merchid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [self.networkClient performNetworkRequest:request
-                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
-                                
-                                if (dbResponse.wasSuccessful) {
-                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-                                    
-                                    NSMutableArray *ratings = [[NSMutableArray alloc] init];
-                                    NSDateFormatter *dateform = [[NSDateFormatter alloc] init];
-                                    [dateform setDateFormat:@"yyyy-MM--d H:m:s"];
-                                    
-                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-                                        MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
-                                        rating.useremail = [e child: @"useremail"].text;
-                                        rating.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];\
-                                        rating.date = [dateform dateFromString:[e child: @"ratingdate"].text];
-                                        rating.review = [e child: @"ratingdescription"].text;
-                                        [ratings addObject:rating];
-                                    }];
-                                    
-                                    [self.delegate didRetrieveItemRatings:ratings withResponse:dbResponse];
-                                }
-                                else {
-                                    [self.delegate didRetrieveItemRatings:nil withResponse:dbResponse];
-                                }
-                            }];
+    [self getRatingsHelper:request];
+    
+}
+
+- (void)getItemRatingsMerchantTop:(NSNumber *)merchid {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
+    
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name FROM ratings r, menu m WHERE r.merchid=%@ AND m.merchid = r.merchid AND ORDER BY rating DESC";
+    NSString *query = [NSString stringWithFormat:queryFormat, merchid];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self getRatingsHelper:request];
     
 }
 
@@ -162,38 +155,28 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT useremail, rating, ratingdate, ratingdescription FROM ratings WHERE menuid=%@ ORDER BY ratingdate";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name FROM ratings r, menu m WHERE r.merchid=%@ AND m.merchid = r.merchid AND ORDER BY ratingdate";
     NSString *query = [NSString stringWithFormat:queryFormat, itemid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
-    [self.networkClient performNetworkRequest:request
-                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+    [self getRatingsHelper:request];
 
-                                if (dbResponse.wasSuccessful) {
-                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+}
 
-                                    NSMutableArray *ratings = [[NSMutableArray alloc] init];
-                                    NSDateFormatter *dateform = [[NSDateFormatter alloc] init];
-                                    [dateform setDateFormat:@"yyyy-MM--d H:m:s"];
-
-                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-                                        MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
-                                        rating.useremail = [e child:@"useremail"].text;
-                                        rating.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];\
-                                        rating.date = [dateform dateFromString:[e child:@"ratingdate"].text];
-                                        rating.review = [e child:@"ratingdescription"].text;
-                                        [ratings addObject:rating];
-                                    }];
-
-                                    [self.delegate didRetrieveItemRatings:ratings withResponse:dbResponse];
-                                }
-                                else {
-                                    [self.delegate didRetrieveItemRatings:nil withResponse:dbResponse];
-                                }
-                            }];
-
+- (void)getItemRatingsTop:(NSNumber *)itemid {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
+    
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name FROM ratings r, menu m WHERE r.merchid=%@ AND m.merchid = r.merchid AND ORDER BY rating DESC";
+    NSString *query = [NSString stringWithFormat:queryFormat, itemid];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+   [self getRatingsHelper:request];
+    
 }
 
 - (MMDBFetcherResponse *)createResponseWith:(NSData *)data withError:(NSError *)error {
@@ -543,38 +526,9 @@ static MMDBFetcher *instance;
 
     [request setValue:[NSString stringWithFormat:@"%d", [encodedQuery length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[encodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self.networkClient performNetworkRequest:request
-                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-
-                                if (dbResponse.wasSuccessful) {
-                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-                                    NSMutableArray *merchants = [[NSMutableArray alloc] init];
-
-                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-                                        MMMerchant *merchant = [[MMMerchant alloc] init];
-                                        merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
-                                        merchant.businessname = [e child:@"business_name"].text;
-                                        merchant.category = [e child:@"category"].text;
-                                        merchant.address = [e child:@"business_address1"].text;
-                                        merchant.desc = [e child:@"business_description"].text;
-                                        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
-                                        merchant.picture = [e child:@"business_picture"].text;
-                                        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
-                                        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
-                                        merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
-                                        merchant.distfromuser = [NSNumber numberWithDouble:[e child:@"distance"].textAsDouble];
-
-                                        [merchants addObject:merchant];
-                                    }];
-
-                                    [self.delegate didRetrieveCompressedMerchants:merchants withResponse:dbResponse];
-                                }
-                                else {
-                                    [self.delegate didRetrieveCompressedMerchants:nil withResponse:dbResponse];
-                                }
-                            }];
+    
+    [self compressedMerchantsHelper: request];
+    
 }
 
 - (void)getCompressedMerchantsByName:(CLLocation *)usrloc withName:(NSString *)merchname {
@@ -584,8 +538,7 @@ static MMDBFetcher *instance;
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
 
     CLLocationCoordinate2D coords = usrloc.coordinate;
-
-
+    
     NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE UPPER(business_name) = UPPER('%@') ORDER BY distance ASC LIMIT 25";
 
     NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], merchname];
@@ -597,37 +550,7 @@ static MMDBFetcher *instance;
     [request setValue:[NSString stringWithFormat:@"%d", [encodedQuery length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[encodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
 
-    [self.networkClient performNetworkRequest:request
-                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-
-                                if (dbResponse.wasSuccessful) {
-                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-                                    NSMutableArray *merchants = [[NSMutableArray alloc] init];
-
-                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-                                        MMMerchant *merchant = [[MMMerchant alloc] init];
-                                        merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
-                                        merchant.businessname = [e child:@"business_name"].text;
-                                        merchant.category = [e child:@"category"].text;
-                                        merchant.address = [e child:@"business_address1"].text;
-                                        merchant.desc = [e child:@"business_description"].text;
-                                        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
-                                        merchant.picture = [e child:@"business_picture"].text;
-                                        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
-                                        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
-                                        merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
-                                        merchant.distfromuser = [NSNumber numberWithDouble:[e child:@"distance"].textAsDouble];
-
-                                        [merchants addObject:merchant];
-                                    }];
-
-                                    [self.delegate didRetrieveCompressedMerchants:merchants withResponse:dbResponse];
-                                }
-                                else {
-                                    [self.delegate didRetrieveCompressedMerchants:nil withResponse:dbResponse];
-                                }
-                            }];
+    [self compressedMerchantsHelper:request];
 }
 
 - (void)getCompressedMerchantsByCuisine:(CLLocation *)usrloc withCuisine:(NSString *)cuisine {
@@ -650,37 +573,7 @@ static MMDBFetcher *instance;
     [request setValue:[NSString stringWithFormat:@"%d", [encodedQuery length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[encodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [self.networkClient performNetworkRequest:request
-                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-                                
-                                if (dbResponse.wasSuccessful) {
-                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-                                    NSMutableArray *merchants = [[NSMutableArray alloc] init];
-                                    
-                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-                                        MMMerchant *merchant = [[MMMerchant alloc] init];
-                                        merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
-                                        merchant.businessname = [e child:@"business_name"].text;
-                                        merchant.category = [e child:@"category"].text;
-                                        merchant.address = [e child:@"business_address1"].text;
-                                        merchant.desc = [e child:@"business_description"].text;
-                                        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
-                                        merchant.picture = [e child:@"business_picture"].text;
-                                        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
-                                        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
-                                        merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
-                                        merchant.distfromuser = [NSNumber numberWithDouble:[e child:@"distance"].textAsDouble];
-                                        
-                                        [merchants addObject:merchant];
-                                    }];
-                                    
-                                    [self.delegate didRetrieveCompressedMerchants:merchants withResponse:dbResponse];
-                                }
-                                else {
-                                    [self.delegate didRetrieveCompressedMerchants:nil withResponse:dbResponse];
-                                }
-                            }];
+    [self compressedMerchantsHelper:request];
 }
 
 - (void)getMerchant:(NSNumber *)mid {
@@ -732,7 +625,6 @@ static MMDBFetcher *instance;
                             }];
 }
 
-// TODO
 - (void)getMenuWithMerchantId:(NSInteger)merchid withUserEmail:(NSString *)email; {
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -846,7 +738,6 @@ static MMDBFetcher *instance;
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 
                                     NSMutableArray *modifications = [[NSMutableArray alloc] init];
-
                                     [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
                                         NSString *modification;
                                         modification = [e child:@"modification"].text;
@@ -858,6 +749,108 @@ static MMDBFetcher *instance;
                                 }
                                 else {
                                     [self.delegate didRetrieveModifications:nil withResponse:dbResponse];
+                                }
+                            }];
+}
+
+- (void)getCategories {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchcategories/custom.php"]];
+    
+    NSString *query = @"query=SELECT name FROM merchcategories";
+   
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    
+                                    NSMutableArray *categories = [[NSMutableArray alloc] init];
+                                    [categories addObject:@"All Categories"];
+                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                        NSString *category;
+                                        category = [e child:@"name"].text;
+                                        [categories addObject:category];
+                                    }];
+                                    
+                                    NSArray * categoryArray = [categories copy];
+                                    [self.delegate didRetrieveCategories:categoryArray withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didRetrieveCategories:nil withResponse:dbResponse];
+                                }
+                            }];
+    
+}
+
+- (void)compressedMerchantsHelper:(NSMutableURLRequest*) request{
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    NSMutableArray *merchants = [[NSMutableArray alloc] init];
+                                    
+                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                        MMMerchant *merchant = [[MMMerchant alloc] init];
+                                        merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
+                                        merchant.businessname = [e child:@"business_name"].text;
+                                        merchant.category = [e child:@"category"].text;
+                                        merchant.address = [e child:@"business_address1"].text;
+                                        merchant.desc = [e child:@"business_description"].text;
+                                        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
+                                        merchant.picture = [e child:@"business_picture"].text;
+                                        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
+                                        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
+                                        merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
+                                        merchant.distfromuser = [NSNumber numberWithDouble:[e child:@"distance"].textAsDouble];
+                                        
+                                        [merchants addObject:merchant];
+                                    }];
+                                    
+                                    [self.delegate didRetrieveCompressedMerchants:merchants withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didRetrieveCompressedMerchants:nil withResponse:dbResponse];
+                                }
+                            }];
+}
+
+- (void)getRatingsHelper:(NSMutableURLRequest*) request{
+
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    
+                                    NSMutableArray *ratings = [[NSMutableArray alloc] init];
+                                    NSDateFormatter *dateform = [[NSDateFormatter alloc] init];
+                                    [dateform setDateFormat:@"yyyy-MM--d H:m:s"];
+                                    
+                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                        MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
+                                        rating.useremail = [e child: @"useremail"].text;
+                                        rating.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];\
+                                        rating.date = [dateform dateFromString:[e child: @"ratingdate"].text];
+                                        rating.review = [e child: @"ratingdescription"].text;
+                                        rating.menuitemname = [e child:@"name"].text;
+                                        [ratings addObject:rating];
+                                    }];
+                                    
+                                    [self.delegate didRetrieveItemRatings:ratings withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didRetrieveItemRatings:nil withResponse:dbResponse];
                                 }
                             }];
 }

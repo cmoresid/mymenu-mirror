@@ -35,9 +35,6 @@ extern NSString *const kDidUpdateList;
 @property(nonatomic, strong) MMLocationManager *locationManager;
 @property(nonatomic) CLLocation *location;
 @property(nonatomic) BOOL searchflag;
-
-
 @property IBOutlet UISearchBar *merchantsearch;
-
 
 @end

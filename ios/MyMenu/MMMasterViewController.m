@@ -55,29 +55,21 @@
 
     if (_searchflag == TRUE){
         _filteredrestaurants = compressedMerchants;
-        
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList object:_filteredrestaurants];
         _searchflag = FALSE;
             [((UITableView *) self.searchDisplayController.searchResultsTableView) reloadData];
     }
     else{
     _restaurants = compressedMerchants;
-
-    }
-    [((UITableView *) self.view) reloadData];
     [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList
-                                                        object:_restaurants];
+                                                           object:_restaurants];
+    }
     
-    _searchflag = FALSE;
+    [((UITableView *) self.view) reloadData];
 }
 
 - (void)didRetrieveMerchant:(MMMerchant *)merchant withResponse:(MMDBFetcherResponse *)response {
-
     self.selectRest = merchant;
-
-    //NSLog(@"the id is : %@", self.selectRest.mid);
-    //NSLog(@"Restaurant desc = %@", self.selectRest.desc);
-
     [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
 }
 
@@ -91,9 +83,8 @@
     
     _searchflag = false;
 
-
     self.detailViewController = (MMDetailViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
-    _filteredrestaurants = [NSMutableArray arrayWithCapacity:20];
+
 }
 
 - (void)dealloc {
@@ -102,7 +93,6 @@
 
 - (void)didReceiveUserLocation:(NSNotification *)notification {
     _location = notification.object;
-
     self.dbFetcher = [[MMDBFetcher alloc] init];
     self.dbFetcher.delegate = self;
     [self.dbFetcher getCompressedMerchants:_location];
@@ -130,9 +120,11 @@
 
 // Return the amount of restaurants.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return [_filteredrestaurants count];
     } else {
+        
         return [_restaurants count];
     }
     
@@ -219,6 +211,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        [self.dbFetcher getMerchant:[[_filteredrestaurants objectAtIndex:indexPath.row] mid]];
+    } else {
+        [self.dbFetcher getMerchant:[[_restaurants objectAtIndex:indexPath.row] mid]];
+    }
     [self.dbFetcher getMerchant:[[self.restaurants objectAtIndex:indexPath.row] mid]];
 }
 
@@ -230,31 +227,23 @@
     }
 }
 
-#pragma mark - UISearchDisplayController Delegate Methods
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-//    _searchflag = TRUE;
-//    NSLog(@"Clicked: %@", searchString);
-//    self.dbFetcher = [[MMDBFetcher alloc] init];
-//    self.dbFetcher.delegate = self;
-//    [self.dbFetcher getCompressedMerchantsByName:_location withName:searchString];
-    return YES;
-}
-//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
-    
-    
-    
-//}
-
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    
     _searchflag = TRUE;
-    NSLog(@"Clicked: %@", searchBar.text);
-     self.dbFetcher = [[MMDBFetcher alloc] init];
-     self.dbFetcher.delegate = self;
-    [self.dbFetcher getCompressedMerchantsByName:_location withName:searchBar.text];
-
+    if ([searchBar.text length] != 0){
+        self.dbFetcher = [[MMDBFetcher alloc] init];
+        self.dbFetcher.delegate = self;
+        [self.dbFetcher getCompressedMerchantsByName:_location withName:searchBar.text];
+    }
     
 }
 
+/* When the user clicks 'cancel' */
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList
+                                                        object:_restaurants];
 
+}
 
 @end

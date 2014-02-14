@@ -124,7 +124,6 @@
 */
 - (void)getUser:(NSString *)email;
 
-
 /**
  * Get all modifications for a specific menu item with the given email.
  */
@@ -139,5 +138,21 @@
  * Get all menu item ratings for a specific merchant.
  */
 - (void)getItemRatingsMerchant:(NSNumber *)merchid;
+
+/**
+ * Get all merchant categories.
+ */
+- (void)getCategories;
+
+/**
+ * Get all item ratings for a merchant ordered by rating.
+ */
+- (void)getItemRatingsMerchantTop:(NSNumber *)merchid;
+
+/**
+ * Get all ratings for a specific item ordered by rating.
+ */
+- (void)getItemRatingsTop:(NSNumber *)itemid;
+
 
 @end

@@ -74,6 +74,7 @@
 		9B4E24921891E06200F5B955 /* MMSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E24901891E06200F5B955 /* MMSpecial.m */; };
 		9B776FDF18A564D00057B6E1 /* NSArray+MerchantSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B776FDE18A564D00057B6E1 /* NSArray+MerchantSort.m */; };
 		9B776FE018A564D00057B6E1 /* NSArray+MerchantSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B776FDE18A564D00057B6E1 /* NSArray+MerchantSort.m */; };
+		9BB40CAD18ADBE6B00B59A46 /* MMCategoryPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB40CAC18ADBE6B00B59A46 /* MMCategoryPopOverViewController.m */; };
 		9BBD913318943D77006DDBCE /* MMDBFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913218943D77006DDBCE /* MMDBFetcher.m */; };
 		9BBD913418943D77006DDBCE /* MMDBFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913218943D77006DDBCE /* MMDBFetcher.m */; };
 		9BBDE03318A1A59D005EDA0B /* MMParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMParentViewController.m */; };
@@ -198,6 +199,8 @@
 		9B4E24901891E06200F5B955 /* MMSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecial.m; sourceTree = "<group>"; };
 		9B776FDD18A564D00057B6E1 /* NSArray+MerchantSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MerchantSort.h"; sourceTree = "<group>"; };
 		9B776FDE18A564D00057B6E1 /* NSArray+MerchantSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MerchantSort.m"; sourceTree = "<group>"; };
+		9BB40CAB18ADBE6B00B59A46 /* MMCategoryPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCategoryPopOverViewController.h; sourceTree = "<group>"; };
+		9BB40CAC18ADBE6B00B59A46 /* MMCategoryPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCategoryPopOverViewController.m; sourceTree = "<group>"; };
 		9BBD913118943D77006DDBCE /* MMDBFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDBFetcher.h; sourceTree = "<group>"; };
 		9BBD913218943D77006DDBCE /* MMDBFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcher.m; sourceTree = "<group>"; };
 		9BBD913F189478CF006DDBCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -497,6 +500,8 @@
 				17F9F80818AAEA17006B7DD0 /* MMMenuItemViewController.m */,
 				17EEFF4118AD6505003934FC /* MMMenuItemPopOverViewController.h */,
 				17EEFF4218AD6505003934FC /* MMMenuItemPopOverViewController.m */,
+				9BB40CAB18ADBE6B00B59A46 /* MMCategoryPopOverViewController.h */,
+				9BB40CAC18ADBE6B00B59A46 /* MMCategoryPopOverViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -721,6 +726,7 @@
 				83B7E4511891F15100946784 /* MMSplitViewController.m in Sources */,
 				17FEDDFD1896FF1400058ABD /* MMRoundedView.m in Sources */,
 				83893EB718919AD400D36670 /* main.m in Sources */,
+				9BB40CAD18ADBE6B00B59A46 /* MMCategoryPopOverViewController.m in Sources */,
 				9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */,
 				17F6531D189D83F200D63D3D /* MMRestaurantViewController.m in Sources */,
 				B083AFD918A37CA200CDD0C9 /* MMNetworkClientProxy.m in Sources */,
