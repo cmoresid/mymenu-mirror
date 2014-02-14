@@ -55,18 +55,19 @@
 
     if (_searchflag == TRUE){
         _filteredrestaurants = compressedMerchants;
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList object:_filteredrestaurants];
         
         _searchflag = FALSE;
             [((UITableView *) self.searchDisplayController.searchResultsTableView) reloadData];
     }
     else{
     _restaurants = compressedMerchants;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList
+                                                           object:_restaurants];
 
     }
     [((UITableView *) self.view) reloadData];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList
-                                                        object:_restaurants];
+    
     
     _searchflag = FALSE;
 }
@@ -92,6 +93,7 @@
     _searchflag = false;
 
 
+    
     self.detailViewController = (MMDetailViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
     _filteredrestaurants = [NSMutableArray arrayWithCapacity:20];
 }
@@ -130,9 +132,11 @@
 
 // Return the amount of restaurants.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return [_filteredrestaurants count];
     } else {
+        
         return [_restaurants count];
     }
     
@@ -219,6 +223,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        [self.dbFetcher getMerchant:[[_filteredrestaurants objectAtIndex:indexPath.row] mid]];
+    } else {
+        [self.dbFetcher getMerchant:[[_restaurants objectAtIndex:indexPath.row] mid]];
+    }
     [self.dbFetcher getMerchant:[[self.restaurants objectAtIndex:indexPath.row] mid]];
 }
 
@@ -230,31 +239,35 @@
     }
 }
 
-#pragma mark - UISearchDisplayController Delegate Methods
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-//    _searchflag = TRUE;
-//    NSLog(@"Clicked: %@", searchString);
-//    self.dbFetcher = [[MMDBFetcher alloc] init];
-//    self.dbFetcher.delegate = self;
-//    [self.dbFetcher getCompressedMerchantsByName:_location withName:searchString];
-    return YES;
-}
-//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
-    
-    
-    
-//}
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     _searchflag = TRUE;
     NSLog(@"Clicked: %@", searchBar.text);
-     self.dbFetcher = [[MMDBFetcher alloc] init];
-     self.dbFetcher.delegate = self;
-    [self.dbFetcher getCompressedMerchantsByName:_location withName:searchBar.text];
+    
+    if ([searchBar.text length] != 0){
+        self.dbFetcher = [[MMDBFetcher alloc] init];
+        self.dbFetcher.delegate = self;
+        [self.dbFetcher getCompressedMerchantsByName:_location withName:searchBar.text];
+        
+    }
+    
 
     
 }
 
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
+    
+    NSLog(@"Hiding");
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList
+                                                        object:_restaurants];
 
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView{
+    
+    
+    
+}
 
 @end

@@ -55,4 +55,6 @@
 
 - (void)didRetrieveItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response;
 
+- (void)didRetrieveCategories:(NSArray *)categories withResponse:(MMDBFetcherResponse *)response;
+
 @end
