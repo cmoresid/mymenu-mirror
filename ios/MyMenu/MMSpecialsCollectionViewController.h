@@ -21,6 +21,7 @@
 @interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate>
 
 @property(nonatomic) int specialsType;
+@property(atomic) NSMutableArray * specials;
 @property(nonatomic, weak) IBOutlet UISegmentedControl *tabOutlet;
 
 /**

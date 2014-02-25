@@ -27,7 +27,6 @@
 
 @implementation MMSpecialsCollectionViewController
 
-NSArray *specials;
 static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday"};
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -35,6 +34,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
     if (self) {
         // Custom initialization
+		[self setSpecialsType:1];
     }
 
     return self;
@@ -52,7 +52,9 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[self setSpecials:[[NSMutableArray alloc] init]];
 
+	[self setSpecialsType:1];
     NSString *day = [self getToday];
 
     // find the index that today is at
@@ -67,7 +69,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     [MMDBFetcher get].delegate = self;
     // initialize specials array to be empty
     // at first for async.
-    specials = [[NSArray alloc] init];
+    [[self specials] removeAllObjects];
 
     // set today as selected
     [self.tabOutlet setSelectedSegmentIndex:index];
@@ -92,7 +94,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     // Empty out specials array when loading
     // new data so no artifact data remains when
     // switching days.
-    specials = [[NSArray alloc] init];
+    [[self specials] removeAllObjects];
     [self.collectionView reloadData];
 
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
@@ -113,7 +115,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
         return;
     }
 
-    specials = webSpecials;
+    [_specials addObject:webSpecials];
     [[self collectionView] reloadData];
 }
 
@@ -126,10 +128,36 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 #pragma mark Collection View
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return specials.count;
+    return [[[self specials] objectAtIndex:section] count];
+}
+
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+	
+	static NSString *headerIdentifier = @"header";
+	UICollectionReusableView *reusableview = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerIdentifier forIndexPath:indexPath];
+        NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+		
+		[formatter setDateFormat:@"EEEE MMMM dd"];
+		
+		NSString *title = [[NSString alloc]initWithFormat:@" %@", [formatter stringFromDate:[NSDate date]]];
+		UITextView * textView = (UITextView *) [headerView viewWithTag:99];
+        textView.text = title;
+        
+        reusableview = headerView;
+    }
+	return reusableview;
+	
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+	
+		
+	
     static NSString *identifier = @"Cell";
 
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
@@ -139,7 +167,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     cell.contentView.layer.cornerRadius = 5;
     cell.contentView.layer.masksToBounds = YES;
 
-    MMSpecial *special = [specials objectAtIndex:indexPath.row];
+    MMSpecial *special = [[[self specials] objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
 
     UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
     [imageView setImageWithURL:[NSURL URLWithString:[special picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
@@ -161,4 +189,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     NSLog(@"touched cell %@ at indexPath %@", cell, indexPath);
 }
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+
+	return [self specials].count;
+}
 @end

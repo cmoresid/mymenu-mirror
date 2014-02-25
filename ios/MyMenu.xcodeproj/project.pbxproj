@@ -179,6 +179,7 @@
 		83B85B851897029100195F05 /* MMSpecialsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialsCollectionViewController.m; sourceTree = "<group>"; };
 		83B85B8918971A3D00195F05 /* MMSpecialType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialType.h; sourceTree = "<group>"; };
 		83B85B8A18971A3D00195F05 /* MMSpecialType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialType.m; sourceTree = "<group>"; };
+		83B88AE518BBFD55002BAF20 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		8FD0A88C83664DE885E9A628 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B1CFF7B18A442C700E9F778 /* MMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLocationManager.h; sourceTree = "<group>"; };
 		9B1CFF7C18A442C700E9F778 /* MMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLocationManager.m; sourceTree = "<group>"; };
@@ -789,6 +790,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				83893EBD18919AD400D36670 /* Base */,
+				83B88AE518BBFD55002BAF20 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
