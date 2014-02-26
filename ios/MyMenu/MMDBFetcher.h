@@ -62,11 +62,25 @@
 - (void)userVerified:(MMUser *)user;
 
 /**
-* Get specials for the given day of the given type.
+* Get drink specials for the given day of the given type.
 */
 
-//- (NSArray *)getSpecials:(NSString *)day :(NSInteger)type;
-- (void)getSpecials:(NSString *)day withType:(NSInteger)type;
+//- (NSArray *)getDrinkSpecials:(NSString *)weekday :(NSInteger)type;
+- (void)getDrinkSpecials:(NSString *)weekday withDate:(NSDate *)date;
+
+/**
+ * Get dessert specials for the given day of the given type.
+ */
+
+//- (NSArray *)getDessertSpecials:(NSString *)weekday :(NSInteger)type;
+- (void)getDessertSpecials:(NSString *)weekday withDate:(NSDate *)date;
+
+/**
+ * Get food specials for the given day of the given type.
+ */
+
+//- (NSArray *)getFoodSpecials:(NSString *)weekday :(NSInteger)type;
+- (void)getFoodSpecials:(NSString *)weekday withDate:(NSDate *)date;
 
 /**
 * Add all given restrictions for the given user.
