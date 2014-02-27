@@ -97,7 +97,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     [self.collectionView reloadData];
 
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-    [[MMDBFetcher get] getSpecials:day withType:self.specialsType];
+   // [[MMDBFetcher get] getSpecials:day withType:self.specialsType];
 }
 
 - (void)didRetrieveSpecials:(NSArray *)webSpecials withResponse:(MMDBFetcherResponse *)response {

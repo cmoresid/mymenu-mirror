@@ -469,14 +469,18 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getSpecials:(NSString *)day withType:(NSInteger)type {
+- (void)getDrinkSpecials:(NSString *)weekday withDate:(NSDate *)date {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/specials/custom.php"]];
 
-    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' AND specials.categoryid = %d";
-    NSString *query = [NSString stringWithFormat:queryFormat, day, type];
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"YYYY-MM-DD"];
+    NSString *dateString = [format stringFromDate:date];
+    
+    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (specials.startdate<='%@' AND specials.enddate>='%@') AND specials.categoryid=2";
+    NSString *query = [NSString stringWithFormat:queryFormat, weekday, dateString, dateString];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
@@ -495,10 +499,91 @@ static MMDBFetcher *instance;
                                         special.name = [e child:@"name"].text;
                                         special.desc = [e child:@"description"].text;
                                         special.picture = [e child:@"picture"].text;
-                                        special.occurtype = [NSNumber numberWithInt:[e child:@"occurtype"].textAsInt];
                                         [specials addObject:special];
                                     }];
 
+                                    [self.delegate didRetrieveSpecials:specials withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didRetrieveSpecials:nil withResponse:dbResponse];
+                                }
+                            }];
+}
+
+- (void)getFoodSpecials:(NSString *)weekday withDate:(NSDate *)date {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/specials/custom.php"]];
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"YYYY-MM-DD"];
+    NSString *dateString = [format stringFromDate:date];
+    
+    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (specials.startdate<='%@' AND specials.enddate>='%@') AND specials.categoryid=1";
+    NSString *query = [NSString stringWithFormat:queryFormat, weekday, dateString, dateString];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    NSMutableArray *specials = [[NSMutableArray alloc] init];
+                                    
+                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                        MMSpecial *special = [[MMSpecial alloc] init];
+                                        special.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
+                                        special.merchant = [e child:@"business"].text;
+                                        special.name = [e child:@"name"].text;
+                                        special.desc = [e child:@"description"].text;
+                                        special.picture = [e child:@"picture"].text;
+                                        [specials addObject:special];
+                                    }];
+                                    
+                                    [self.delegate didRetrieveSpecials:specials withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didRetrieveSpecials:nil withResponse:dbResponse];
+                                }
+                            }];
+}
+
+- (void)getDessertSpecials:(NSString *)weekday withDate:(NSDate *)date {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/specials/custom.php"]];
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"YYYY-MM-DD"];
+    NSString *dateString = [format stringFromDate:date];
+    
+    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (specials.startdate<='%@' AND specials.enddate>='%@') AND specials.categoryid=3";
+    NSString *query = [NSString stringWithFormat:queryFormat, weekday, dateString, dateString];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    NSMutableArray *specials = [[NSMutableArray alloc] init];
+                                    
+                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                        MMSpecial *special = [[MMSpecial alloc] init];
+                                        special.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
+                                        special.merchant = [e child:@"business"].text;
+                                        special.name = [e child:@"name"].text;
+                                        special.desc = [e child:@"description"].text;
+                                        special.picture = [e child:@"picture"].text;
+                                        [specials addObject:special];
+                                    }];
+                                    
                                     [self.delegate didRetrieveSpecials:specials withResponse:dbResponse];
                                 }
                                 else {
@@ -539,7 +624,7 @@ static MMDBFetcher *instance;
 
     CLLocationCoordinate2D coords = usrloc.coordinate;
     
-    NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE UPPER(business_name) = UPPER('%@') ORDER BY distance ASC LIMIT 25";
+    NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE UPPER(business_name) LIKE UPPER('%%%@%') ORDER BY distance ASC LIMIT 25";
 
     NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], merchname];
 
