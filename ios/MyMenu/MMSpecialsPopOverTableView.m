@@ -56,14 +56,17 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+	// Get the Type
 	NSString * type =[self.specialItems objectAtIndex:indexPath.item];
 	
+	// When loading make sure we know which one should be checkmarked or not
 	if(![self.specialsCollectionController containsShowType:type]) {
 		cell.accessoryType = UITableViewCellAccessoryNone;
 	} else {
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 	}
 	
+	// Set the Proper Text
     [cell.textLabel setText:[self.specialItems objectAtIndex:indexPath.item]];
     return cell;
 }
@@ -71,6 +74,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 	
+	// If user Selects the item, uncheck it or check it and update the Data model
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;

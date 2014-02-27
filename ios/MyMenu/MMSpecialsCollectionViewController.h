@@ -26,11 +26,18 @@
 @property(nonatomic,readwrite) NSDate * currentDate;
 
 /**
-* Called when user clicks on the tab to change the day.
-*/
-- (IBAction)dayChanged:(UISegmentedControl *)sender;
+ * Adds a Special type to show, and reloads the view as Needed.
+ */
 -(void)addShowType:(NSString *)type;
+
+/**
+ * Removes a Special type to show, and reloads the view as Needed.
+ */
 -(void)removeShowType:(NSString *)type;
+
+/**
+ * Checks if a Type is "Currently" being displayed.
+ */
 -(bool)containsShowType:(NSString *)type;
 
 @end
