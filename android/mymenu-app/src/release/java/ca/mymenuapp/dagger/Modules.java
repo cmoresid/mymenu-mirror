@@ -19,6 +19,9 @@ package ca.mymenuapp.dagger;
 
 import ca.mymenuapp.MyMenuApplication;
 
+/**
+ * Release modules.
+ */
 public class Modules {
 
   private Modules() {

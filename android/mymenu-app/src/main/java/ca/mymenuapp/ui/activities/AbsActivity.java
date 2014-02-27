@@ -23,17 +23,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import butterknife.ButterKnife;
-import ca.mymenuapp.BuildConfig;
 import ca.mymenuapp.MyMenuApplication;
 import ca.mymenuapp.dagger.ActivityModule;
 import ca.mymenuapp.dagger.scopes.ForApplication;
-import ca.mymenuapp.dev.DevDrawer;
 import com.f2prateek.dart.Dart;
 import com.squareup.otto.Bus;
 import dagger.ObjectGraph;
 import javax.inject.Inject;
 
-public class BaseActivity extends Activity {
+/**
+ * Do not extend from this, extend from BaseActivity instead, which lets us configure build type
+ * specific stuff.
+ */
+public class AbsActivity extends Activity {
 
   private ObjectGraph activityGraph;
   @Inject Bus bus;
@@ -56,15 +58,6 @@ public class BaseActivity extends Activity {
   @Override protected void onPause() {
     bus.unregister(this);
     super.onPause();
-  }
-
-  @Override
-  protected void onPostCreate(Bundle savedInstanceState) {
-    super.onPostCreate(savedInstanceState);
-    if (BuildConfig.DEBUG) {
-      DevDrawer devDrawer = new DevDrawer(this);
-      devDrawer.wrapInside(this);
-    }
   }
 
   @Override public void setContentView(int layoutResID) {

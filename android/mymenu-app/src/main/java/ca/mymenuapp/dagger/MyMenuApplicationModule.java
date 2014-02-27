@@ -18,12 +18,16 @@
 package ca.mymenuapp.dagger;
 
 import android.content.Context;
+import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.MyMenuApplication;
 import ca.mymenuapp.dagger.scopes.ForApplication;
 import com.squareup.otto.Bus;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
+import org.simpleframework.xml.core.Persister;
+import retrofit.RestAdapter;
+import retrofit.converter.SimpleXMLConverter;
 
 @Module(
     injects = MyMenuApplication.class,
@@ -42,5 +46,13 @@ public class MyMenuApplicationModule {
 
   @Provides @Singleton Bus provideBus() {
     return new Bus();
+  }
+
+  @Provides @Singleton MyMenuApi provideMyMenuApi() {
+    RestAdapter restAdapter = new RestAdapter.Builder() //
+        .setServer("http://mymenuapp.ca/rest")
+        .setConverter(new SimpleXMLConverter(new Persister()))
+        .build();
+    return restAdapter.create(MyMenuApi.class);
   }
 }

@@ -15,16 +15,24 @@
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package ca.mymenuapp.dagger.scopes;
+package ca.mymenuapp;
 
-import java.lang.annotation.Retention;
-import javax.inject.Qualifier;
+import ca.mymenuapp.model.Menu;
+import ca.mymenuapp.model.User;
+import retrofit.Callback;
+import retrofit.client.Response;
+import retrofit.http.Body;
+import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
+import retrofit.http.GET;
+import retrofit.http.POST;
+import retrofit.http.Path;
 
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+public interface MyMenuApi {
+  @GET("/menu/{id}") void getMenu(@Path("id") long id, Callback<Menu> cb);
 
-/**
- * Identifies {@link android.app.Activity} scoped dependencies.
- */
-@Qualifier @Retention(RUNTIME)
-public @interface ForActivity {
+  @POST("/users") void createUser(@Body User user, Callback<User> cb);
+
+  @FormUrlEncoded @POST("/menucategories")
+  void createMenuCategory(@Field("name") String name, Callback<Response> cb);
 }

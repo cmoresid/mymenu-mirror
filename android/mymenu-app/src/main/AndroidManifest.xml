@@ -20,6 +20,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ca.mymenuapp">
 
+  <uses-permission android:name="android.permission.INTERNET" />
+
   <application
       android:name=".MyMenuApplication"
       android:allowBackup="true"

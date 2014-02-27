@@ -15,16 +15,22 @@
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package ca.mymenuapp.dagger.scopes;
+package ca.mymenuapp.dagger;
 
-import java.lang.annotation.Retention;
-import javax.inject.Qualifier;
-
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import ca.mymenuapp.MyMenuApplication;
 
 /**
- * Identifies {@link android.app.Activity} scoped dependencies.
+ * Debug modules.
  */
-@Qualifier @Retention(RUNTIME)
-public @interface ForActivity {
+public class Modules {
+
+  private Modules() {
+    // No instances
+  }
+
+  public static Object[] list(MyMenuApplication application) {
+    return new Object[] {
+        new MyMenuApplicationModule(application)
+    };
+  }
 }

@@ -23,8 +23,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import butterknife.InjectView;
+import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.R;
+import ca.mymenuapp.model.Menu;
 import com.f2prateek.dart.InjectExtra;
+import com.f2prateek.ln.Ln;
+import javax.inject.Inject;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -38,6 +45,7 @@ public class PlaceholderFragment extends BaseFragment {
 
   @InjectExtra(ARG_SECTION_NUMBER) int sectionNumber;
   @InjectView(R.id.section_label) TextView sectionLabel;
+  @Inject MyMenuApi myMenuApi;
 
   /**
    * Returns a new instance of this fragment for the given section
@@ -57,8 +65,18 @@ public class PlaceholderFragment extends BaseFragment {
     return inflater.inflate(R.layout.fragment_main, container, false);
   }
 
-  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
+  @Override public void onResume() {
+    super.onResume();
+    myMenuApi.getMenu(sectionNumber, new Callback<Menu>() {
+      @Override public void success(Menu menu, Response response) {
+        sectionLabel.setText(String.valueOf(menu));
+      }
+
+      @Override public void failure(RetrofitError retrofitError) {
+        Ln.e(retrofitError.getCause());
+        sectionLabel.setText(String.valueOf(retrofitError));
+      }
+    });
     sectionLabel.setText(String.valueOf(sectionNumber));
   }
 }

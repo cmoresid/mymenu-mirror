@@ -15,16 +15,20 @@
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package ca.mymenuapp.dagger.scopes;
+package ca.mymenuapp.model;
 
-import java.lang.annotation.Retention;
-import javax.inject.Qualifier;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+@Root(name = "row")
+public class MenuCategory {
+  @Element(name = "id") public long id;
+  @Element(name = "name") public String name;
 
-/**
- * Identifies {@link android.app.Activity} scoped dependencies.
- */
-@Qualifier @Retention(RUNTIME)
-public @interface ForActivity {
+  @Override public String toString() {
+    return "MenuCategory{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        '}';
+  }
 }

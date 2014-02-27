@@ -19,7 +19,7 @@ package ca.mymenuapp.dagger;
 
 import android.content.Context;
 import ca.mymenuapp.dagger.scopes.ForActivity;
-import ca.mymenuapp.ui.activities.BaseActivity;
+import ca.mymenuapp.ui.activities.AbsActivity;
 import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.ui.fragments.BaseFragment;
 import ca.mymenuapp.ui.fragments.PlaceholderFragment;
@@ -30,7 +30,7 @@ import javax.inject.Singleton;
 @Module(
     injects = {
         // Activities
-        BaseActivity.class, MainActivity.class,
+        AbsActivity.class, MainActivity.class,
 
         // Fragments
         BaseFragment.class, PlaceholderFragment.class
@@ -38,9 +38,9 @@ import javax.inject.Singleton;
     addsTo = MyMenuApplicationModule.class)
 public class ActivityModule {
 
-  private final BaseActivity activity;
+  private final AbsActivity activity; // for type safety
 
-  public ActivityModule(BaseActivity activity) {
+  public ActivityModule(AbsActivity activity) {
     this.activity = activity;
   }
 

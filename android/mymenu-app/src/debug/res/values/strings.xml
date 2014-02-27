@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (C) 2014 MyMenu, Inc.
   ~
@@ -17,9 +18,22 @@
 
 <resources>
 
-  <!-- Base application theme. -->
-  <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-    <!-- Customize your theme here. -->
-  </style>
+  <!-- Dev !-->
+  <string-array name="ln_level_array">
+    <item>VERBOSE</item>
+    <item>DEBUG</item>
+    <item>INFO</item>
+    <item>WARN</item>
+    <item>ERROR</item>
+  </string-array>
+  <string name="scalpel">Scalpel</string>
+  <string name="draw_views">Draw Views</string>
+  <string name="draw_ids">Draw Ids</string>
+  <string name="logging">Logging</string>
+  <string name="build_information">Build Information</string>
+  <string name="build_name">Name \t %1$s</string>
+  <string name="build_code">Code \t %1$d</string>
+  <string name="build_sha">SHA \t %1$s</string>
+  <string name="build_time">Time \t %1$s</string>
 
 </resources>
