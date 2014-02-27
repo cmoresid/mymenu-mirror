@@ -35,4 +35,7 @@
 @property(nonatomic) NSDate *enddate;
 @property(nonatomic) char yearly;
 
+// Internal Use
+@property(nonatomic) NSDate * fetchDate;
+
 @end

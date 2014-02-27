@@ -499,13 +499,14 @@ static MMDBFetcher *instance;
                                         special.name = [e child:@"name"].text;
                                         special.desc = [e child:@"description"].text;
                                         special.picture = [e child:@"picture"].text;
+										special.categoryid = [NSNumber numberWithInt:2];
                                         [specials addObject:special];
                                     }];
 
-                                    [self.delegate didRetrieveSpecials:specials withResponse:dbResponse];
+                                    [self.delegate didRetrieveSpecials:specials forDate:date  withResponse:dbResponse];
                                 }
                                 else {
-                                    [self.delegate didRetrieveSpecials:nil withResponse:dbResponse];
+                                    [self.delegate didRetrieveSpecials:nil forDate:nil withResponse:dbResponse];
                                 }
                             }];
 }
@@ -540,13 +541,14 @@ static MMDBFetcher *instance;
                                         special.name = [e child:@"name"].text;
                                         special.desc = [e child:@"description"].text;
                                         special.picture = [e child:@"picture"].text;
+										special.categoryid = [NSNumber numberWithInt:1];
                                         [specials addObject:special];
                                     }];
                                     
-                                    [self.delegate didRetrieveSpecials:specials withResponse:dbResponse];
+                                    [self.delegate didRetrieveSpecials:specials forDate:date withResponse:dbResponse];
                                 }
                                 else {
-                                    [self.delegate didRetrieveSpecials:nil withResponse:dbResponse];
+                                    [self.delegate didRetrieveSpecials:nil forDate:nil withResponse:dbResponse];
                                 }
                             }];
 }
@@ -581,13 +583,15 @@ static MMDBFetcher *instance;
                                         special.name = [e child:@"name"].text;
                                         special.desc = [e child:@"description"].text;
                                         special.picture = [e child:@"picture"].text;
+										special.categoryid = [NSNumber numberWithInt:3];
+										special.fetchDate = date;
                                         [specials addObject:special];
                                     }];
                                     
-                                    [self.delegate didRetrieveSpecials:specials withResponse:dbResponse];
+                                    [self.delegate didRetrieveSpecials:specials forDate:date withResponse:dbResponse];
                                 }
                                 else {
-                                    [self.delegate didRetrieveSpecials:nil withResponse:dbResponse];
+                                    [self.delegate didRetrieveSpecials:nil forDate:nil withResponse:dbResponse];
                                 }
                             }];
 }
