@@ -151,6 +151,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 		[formatter setDateFormat:@"EEEE MMMM dd"];
 		
 		NSString *title = [[NSString alloc]initWithFormat:@" %@", [formatter stringFromDate:[self currentDate]]];
+		NSLog(@"%@",[[self.specials objectAtIndex:self.specials.count-1] firstObject]);
 		UITextView * textView = (UITextView *) [headerView viewWithTag:99];
         textView.text = title;
         
