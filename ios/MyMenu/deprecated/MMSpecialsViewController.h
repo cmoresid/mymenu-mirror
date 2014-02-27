@@ -16,16 +16,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MMDBFetcherDelegate.h"
 
-@interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate>
-
-@property(nonatomic) int specialsType;
-@property(atomic) NSMutableArray * specials;
-
-/**
-* Called when user clicks on the tab to change the day.
-*/
-- (IBAction)dayChanged:(UISegmentedControl *)sender;
+@interface MMSpecialsViewController : UIViewController
 
 @end

@@ -20,6 +20,7 @@
 #import "MMSpecial.h"
 #import "MMDBFetcher.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "MMSpecialsPopOverTableView.h"
 
 @interface MMSpecialsCollectionViewController ()
 @property(weak, nonatomic) IBOutlet UISegmentedControl *weekDayButtons;
@@ -72,9 +73,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     [[self specials] removeAllObjects];
 
     // set today as selected
-    [self.tabOutlet setSelectedSegmentIndex:index];
     [self loadDay:[self getToday]];
-    [self.tabOutlet setTintColor:[UIColor whiteColor]];
 
 }
 
@@ -192,5 +191,12 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 
 	return [self specials].count;
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	MMSpecialsPopOverTableView * popover = segue.destinationViewController;
+	popover.specialItems =[NSArray arrayWithObjects:@"Food",@"Dessert",@"Drinks", nil];
+	
+	//[[popover.contentViewController.childViewControllers objectAtIndex:0] setSpecialItems:[NSArray arrayWithObjects:@"1",@"2",@"3", nil]];
 }
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="E4e-Ge-d3g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="E4e-Ge-d3g">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -55,26 +55,23 @@
             </objects>
             <point key="canvasLocation" x="5925" y="-893"/>
         </scene>
-        <!--Parent View Controller - Specials-->
-        <scene sceneID="Y6J-AW-PN6">
+        <!--Navigation Controller - Specials-->
+        <scene sceneID="Mrm-CJ-YaM">
             <objects>
-                <navigationController definesPresentationContext="YES" id="y1r-IA-XFF" customClass="MMParentViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Specials" image="172-pricetag.png" id="lYe-N2-T3k"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qcP-C1-B2D">
+                <navigationController definesPresentationContext="YES" id="zcW-v1-Rcz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Specials" image="172-pricetag.png" id="EPN-Eg-pOo"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="q7W-Ll-Sy2">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="CBd-Gv-KGP" kind="relationship" relationship="rootViewController" id="qHv-w9-6uc"/>
+                        <segue destination="CBd-Gv-KGP" kind="relationship" relationship="rootViewController" id="CgB-V4-wzn"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x0s-Nb-HAA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LFw-W6-ATn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4088" y="3230"/>
+            <point key="canvasLocation" x="4174" y="1684"/>
         </scene>
-        <!--Specials Collection View Controller-->
+        <!--Specials Collection View Controller - Specials-->
         <scene sceneID="5VH-A9-Dqa">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="CBd-Gv-KGP" customClass="MMSpecialsCollectionViewController" sceneMemberID="viewController">
@@ -92,7 +89,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Ogx-a1-AnN">
-                                <rect key="frame" x="10" y="60" width="497" height="130"/>
+                                <rect key="frame" x="10" y="124" width="497" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="497" height="130"/>
@@ -129,7 +126,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="s3w-fw-3Eq">
-                            <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
+                            <rect key="frame" x="0.0" y="64" width="1024" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="99" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBl-PZ-IgP" userLabel="title">
@@ -146,14 +143,54 @@
                             <outlet property="delegate" destination="CBd-Gv-KGP" id="mzb-Ph-yuF"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="oUl-ee-aSd">
-                        <nil key="title"/>
+                    <tabBarItem key="tabBarItem" title="Specials" image="172-pricetag.png" id="Oec-yr-pdH"/>
+                    <navigationItem key="navigationItem" title="Specials" id="Rbw-5N-Uuw">
+                        <barButtonItem key="leftBarButtonItem" title="Filter " id="ZYT-Wb-4Ss">
+                            <connections>
+                                <segue destination="tbY-4J-YA6" kind="popover" popoverAnchorBarButtonItem="ZYT-Wb-4Ss" id="fkb-J4-P5h">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8s-V8-U9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5438" y="3202"/>
+            <point key="canvasLocation" x="5352" y="1272"/>
+        </scene>
+        <!--Specials Pop Over Table View-->
+        <scene sceneID="qK5-bh-RWR">
+            <objects>
+                <tableViewController modalPresentationStyle="currentContext" clearsSelectionOnViewWillAppear="NO" id="tbY-4J-YA6" customClass="MMSpecialsPopOverTableView" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nFJ-MU-F25">
+                        <rect key="frame" x="0.0" y="0.0" width="190" height="132"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="T5f-z4-tU9">
+                                <rect key="frame" x="0.0" y="22" width="190" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T5f-z4-tU9" id="JNX-ox-dMD">
+                                    <rect key="frame" x="0.0" y="0.0" width="151" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tbY-4J-YA6" id="2bt-hB-i4h"/>
+                            <outlet property="delegate" destination="tbY-4J-YA6" id="QkK-71-Wsq"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g2H-Jl-02o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5470" y="2202"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="6si-Sh-Tds">
@@ -301,10 +338,10 @@
             </objects>
             <point key="canvasLocation" x="-2039" y="550"/>
         </scene>
-        <!--Parent View Controller-->
+        <!--Specials View Controller-->
         <scene sceneID="2FG-zV-dHB">
             <objects>
-                <navigationController definesPresentationContext="YES" id="8Kr-Za-oMu" customClass="MMParentViewController" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="8Kr-Za-oMu" customClass="MMSpecialsViewController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="i9P-rE-bAg">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -770,14 +807,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </tabBar>
                     <connections>
                         <segue destination="k2K-2H-fJm" kind="relationship" relationship="viewControllers" id="CaQ-TS-aWX"/>
-                        <segue destination="y1r-IA-XFF" kind="relationship" relationship="viewControllers" id="13t-BL-dic"/>
+                        <segue destination="zcW-v1-Rcz" kind="relationship" relationship="viewControllers" id="KbT-fe-Y6Z"/>
                         <segue destination="Qf2-dp-tSr" kind="relationship" relationship="viewControllers" id="CF7-0B-fMf"/>
                         <segue destination="W4l-pq-p7Q" kind="relationship" relationship="viewControllers" id="DQM-Xu-eRE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2995" y="550"/>
+            <point key="canvasLocation" x="3033" y="564"/>
         </scene>
         <!--Dietary Restrictions View Controller - Dietary Restrictions-->
         <scene sceneID="IDW-UL-YJN">
@@ -872,10 +909,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1708" y="550"/>
         </scene>
-        <!--Parent View Controller - Restrictions-->
+        <!--Specials View Controller - Restrictions-->
         <scene sceneID="bO6-dT-mTB">
             <objects>
-                <navigationController definesPresentationContext="YES" id="Qf2-dp-tSr" customClass="MMParentViewController" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="Qf2-dp-tSr" customClass="MMSpecialsViewController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Restrictions" image="184-warning.png" id="Sw3-oP-a89"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="J9e-Ae-vFN">
@@ -889,10 +926,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="2680" y="1578"/>
         </scene>
-        <!--Parent View Controller-->
+        <!--Specials View Controller-->
         <scene sceneID="Ls7-U7-ImO">
             <objects>
-                <navigationController id="6qb-L1-qgW" customClass="MMParentViewController" sceneMemberID="viewController">
+                <navigationController id="6qb-L1-qgW" customClass="MMSpecialsViewController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="i6C-o9-IR8">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -913,11 +950,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <viewControllerLayoutGuide type="bottom" id="iXA-U9-XYE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RPR-qE-Ycv">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fS8-Ez-M2O">
-                                <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                                <rect key="frame" x="0.0" y="64" width="703" height="655"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="RPR-qE-Ycv" id="SLJ-qL-5hj"/>
@@ -965,12 +1002,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <objects>
                 <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="Goi-vq-mlv" customClass="MMMasterViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dRt-Ku-fso">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="0TO-Dl-cRz">
-                            <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="barTintColor" red="0.16078431369999999" green="0.66274509800000003" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
                             <textInputTraits key="textInputTraits"/>
@@ -980,10 +1017,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="80" id="NiY-e1-4dW" customClass="RestaurantCell">
-                                <rect key="frame" x="0.0" y="66" width="1024" height="80"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NiY-e1-4dW" id="c2C-rF-PWa">
-                                    <rect key="frame" x="0.0" y="0.0" width="991" height="79"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1016,7 +1053,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="8412" y="-681"/>
+            <point key="canvasLocation" x="8164" y="-825"/>
         </scene>
         <!--Restaurant View Controller - Restaurant Information-->
         <scene sceneID="iXZ-fF-lSm">
@@ -1589,10 +1626,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="10712" y="292"/>
         </scene>
-        <!--Parent View Controller-->
+        <!--Specials View Controller-->
         <scene sceneID="fE2-Eu-0gs">
             <objects>
-                <navigationController id="6Lw-kW-0RB" customClass="MMParentViewController" sceneMemberID="viewController">
+                <navigationController id="6Lw-kW-0RB" customClass="MMSpecialsViewController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="6iN-jg-rxd">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1688,6 +1725,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     <resources>
         <image name="125-food.png" width="29" height="23"/>
         <image name="172-pricetag.png" width="28" height="23"/>
+        <image name="172-pricetag.png" width="28" height="23"/>
         <image name="184-warning.png" width="24" height="19"/>
         <image name="19-gear.png" width="26" height="26"/>
         <image name="FacebookIcon.png" width="40" height="40"/>
@@ -1700,9 +1738,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="9fc-nU-7db"/>
-        <segue reference="ANn-JM-0R7"/>
-        <segue reference="BdE-8K-hFB"/>
+        <segue reference="xXR-CJ-Zij"/>
         <segue reference="SHi-7D-H4s"/>
+        <segue reference="BdE-8K-hFB"/>
+        <segue reference="ANn-JM-0R7"/>
     </inferredMetricsTieBreakers>
 </document>
