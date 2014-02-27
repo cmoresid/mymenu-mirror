@@ -30,66 +30,54 @@
 
 static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday"};
 
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 
     if (self) {
         // Custom initialization
 		[self setSpecialsType:1];
+		[self setShowTypes:[NSMutableArray arrayWithObjects:@"Food",@"Drinks",@"Dessert", nil]];
     }
 
     return self;
 }
 
-- (IBAction)dayChanged:(UISegmentedControl *)sender {
-    NSUInteger index = (NSUInteger) sender.selectedSegmentIndex;
-
-    if (UISegmentedControlNoSegment != index) {
-        NSString *day = days[index];
-        NSLog(@"at index, %u, with day %@", index, day);
-        [self loadDay:day];
-    }
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self setSpecials:[[NSMutableArray alloc] init]];
-
-	[self setSpecialsType:1];
-    NSString *day = [self getToday];
-
-    // find the index that today is at
-    int index = -1;
-    for (int i = 0; i < 7; i++) {
-        if ([[days[i] lowercaseString] isEqualToString:[day lowercaseString]]) {
-            index = i;
-            break;
-        }
-    }
+	[self setShowTypes:[NSMutableArray arrayWithObjects:@"Food",@"Drinks",@"Dessert", nil]];
+	// Initialize to the current Day
+	[self setCurrentDate:[NSDate date]];
 
     [MMDBFetcher get].delegate = self;
     // initialize specials array to be empty
     // at first for async.
     [[self specials] removeAllObjects];
+	
 
     // set today as selected
-    [self loadDay:[self getToday]];
+	[self loadDay];
 
 }
 
 /**
 * Get today as a string, e.g. 'tuesday'
 */
-- (NSString *)getToday {
+- (NSString *)getDay{
+	
+	NSDate * date = [self currentDate];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE"];
-    return [[dateFormatter stringFromDate:[NSDate date]] lowercaseString];
+    return [[dateFormatter stringFromDate:date] lowercaseString];
 }
 
 /**
 * Request specials for a given day. Uses the specialsType defined by the segue
 */
-- (void)loadDay:(NSString *)day {
+- (void)loadDay {
     // Empty out specials array when loading
     // new data so no artifact data remains when
     // switching days.
@@ -97,7 +85,20 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     [self.collectionView reloadData];
 
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-   // [[MMDBFetcher get] getSpecials:day withType:self.specialsType];
+	
+	if([self.showTypes containsObject:@"Food"])
+		[[MMDBFetcher get] getFoodSpecials:[self getDay] withDate:[self currentDate]];
+	
+	if([self.showTypes containsObject:@"Drinks"])
+		[[MMDBFetcher get] getDrinkSpecials:[self getDay] withDate:[self currentDate]];
+	
+	if([self.showTypes containsObject:@"Dessert"])
+		[[MMDBFetcher get] getDessertSpecials:[self getDay] withDate:[self currentDate]];
+	
+	if(self.showTypes.count == 0)
+		[MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+	
+	// TODO: display message no options selected?
 }
 
 - (void)didRetrieveSpecials:(NSArray *)webSpecials withResponse:(MMDBFetcherResponse *)response {
@@ -114,8 +115,15 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
         return;
     }
 
-    [_specials addObject:webSpecials];
-    [[self collectionView] reloadData];
+	if(webSpecials.count > 0) {
+		[_specials addObject:webSpecials];
+		[[self collectionView] reloadData];
+	}
+}
+
+// Adds one day to the current date
+-(void)incrementCurrentDay {
+	[self setCurrentDate:[self.currentDate dateByAddingTimeInterval:60*60*24*1]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -136,14 +144,13 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	
 	static NSString *headerIdentifier = @"header";
 	UICollectionReusableView *reusableview = nil;
-    
     if (kind == UICollectionElementKindSectionHeader) {
         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerIdentifier forIndexPath:indexPath];
         NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
 		
 		[formatter setDateFormat:@"EEEE MMMM dd"];
 		
-		NSString *title = [[NSString alloc]initWithFormat:@" %@", [formatter stringFromDate:[NSDate date]]];
+		NSString *title = [[NSString alloc]initWithFormat:@" %@", [formatter stringFromDate:[self currentDate]]];
 		UITextView * textView = (UITextView *) [headerView viewWithTag:99];
         textView.text = title;
         
@@ -153,10 +160,29 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	
 }
 
+-(void)removeShowType:(NSString *) type {
+	[[self showTypes] removeObject:type];
+	[self loadDay];
+	[self.collectionView reloadData];
+}
+
+-(void)addShowType:(NSString *) type {
+	if(![self.showTypes containsObject:type]) {
+		[[self showTypes] addObject:type];
+		[self loadDay];
+		[self.collectionView reloadData];
+	}
+}
+
+-(bool)containsShowType:(NSString *)type {
+	if(![self.showTypes containsObject:type]) {
+		return false;
+	}
+	return true;
+}
+
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-	
-		
-	
     static NSString *identifier = @"Cell";
 
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
@@ -166,8 +192,9 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     cell.contentView.layer.cornerRadius = 5;
     cell.contentView.layer.masksToBounds = YES;
 
+	if([[[self specials] objectAtIndex:indexPath.section] count] > 0) {
     MMSpecial *special = [[[self specials] objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
-
+	
     UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
     [imageView setImageWithURL:[NSURL URLWithString:[special picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
 
@@ -177,7 +204,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     textView.text = special.name;
     textDesc.text = special.desc;
     [textDesc sizeToFit];
-
+	}
     return cell;
 }
 
@@ -196,6 +223,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 {
 	MMSpecialsPopOverTableView * popover = segue.destinationViewController;
 	popover.specialItems =[NSArray arrayWithObjects:@"Food",@"Dessert",@"Drinks", nil];
+	[popover setSpecialsCollectionController:self];
 	
 	//[[popover.contentViewController.childViewControllers objectAtIndex:0] setSpecialItems:[NSArray arrayWithObjects:@"1",@"2",@"3", nil]];
 }

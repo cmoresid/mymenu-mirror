@@ -26,7 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self.tableView sizeToFit];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -57,6 +56,14 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+	NSString * type =[self.specialItems objectAtIndex:indexPath.item];
+	
+	if(![self.specialsCollectionController containsShowType:type]) {
+		cell.accessoryType = UITableViewCellAccessoryNone;
+	} else {
+		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	}
+	
     [cell.textLabel setText:[self.specialItems objectAtIndex:indexPath.item]];
     return cell;
 }
@@ -68,8 +75,10 @@
 	if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         // Reflect selection in data model
+		[self.specialsCollectionController addShowType:[cell.textLabel text]];
     } else if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
         cell.accessoryType = UITableViewCellAccessoryNone;
+		[self.specialsCollectionController removeShowType:[cell.textLabel text]];
         // Reflect deselection in data model
     }
 }

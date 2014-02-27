@@ -21,11 +21,16 @@
 @interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate>
 
 @property(nonatomic) int specialsType;
+@property(nonatomic) NSMutableArray * showTypes;
 @property(atomic) NSMutableArray * specials;
+@property(nonatomic,readwrite) NSDate * currentDate;
 
 /**
 * Called when user clicks on the tab to change the day.
 */
 - (IBAction)dayChanged:(UISegmentedControl *)sender;
+-(void)addShowType:(NSString *)type;
+-(void)removeShowType:(NSString *)type;
+-(bool)containsShowType:(NSString *)type;
 
 @end
