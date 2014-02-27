@@ -1,0 +1,258 @@
+
+/* Class = "IBUISearchBar"; placeholder = "Search"; ObjectID = "0TO-Dl-cRz"; */
+"0TO-Dl-cRz.placeholder" = "Search";
+
+/* Class = "IBUINavigationItem"; title = "Menu Item Information"; ObjectID = "2GO-1z-fuV"; */
+"2GO-1z-fuV.title" = "Menu Item Information";
+
+/* Class = "IBUITextField"; placeholder = "Password"; ObjectID = "2WO-hZ-E8v"; */
+"2WO-hZ-E8v.placeholder" = "Password";
+
+/* Class = "IBUILabel"; text = "1. Required Information"; ObjectID = "2b2-iV-HKk"; */
+"2b2-iV-HKk.text" = "1. Required Information";
+
+/* Class = "IBUINavigationItem"; title = "Test"; ObjectID = "38u-Ce-eW8"; */
+"38u-Ce-eW8.title" = "Test";
+
+/* Class = "IBUITextField"; placeholder = "Your given name"; ObjectID = "4uG-8A-jfC"; */
+"4uG-8A-jfC.placeholder" = "Your given name";
+
+/* Class = "IBUILabel"; text = "Email Address/Username"; ObjectID = "5kj-G2-DxS"; */
+"5kj-G2-DxS.text" = "Email Address/Username";
+
+/* Class = "IBUILabel"; text = "Password"; ObjectID = "6O3-GJ-6WO"; */
+"6O3-GJ-6WO.text" = "Password";
+
+/* Class = "IBUILabel"; text = "MyMenu"; ObjectID = "6Xi-4Y-lHf"; */
+"6Xi-4Y-lHf.text" = "MyMenu";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "78J-OK-1b9"; */
+"78J-OK-1b9.text" = "Title";
+
+/* Class = "IBUILabel"; text = "Location"; ObjectID = "7i8-m6-8d2"; */
+"7i8-m6-8d2.text" = "Location";
+
+/* Class = "IBUITabBarItem"; title = "Restaurants"; ObjectID = "8dX-gg-6FO"; */
+"8dX-gg-6FO.title" = "Restaurants";
+
+/* Class = "IBUISearchBar"; placeholder = "Search By Name"; ObjectID = "9Nh-Kd-VfY"; */
+"9Nh-Kd-VfY.placeholder" = "Search By Name";
+
+/* Class = "IBUITextField"; placeholder = "Your password"; ObjectID = "9V2-KD-8ZN"; */
+"9V2-KD-8ZN.placeholder" = "Your password";
+
+/* Class = "IBUILabel"; text = "Birth Date"; ObjectID = "A5f-3A-QSw"; */
+"A5f-3A-QSw.text" = "Birth Date";
+
+/* Class = "IBUIButton"; normalTitle = "Done"; ObjectID = "ANm-Gz-Ypx"; */
+"ANm-Gz-Ypx.normalTitle" = "Done";
+
+/* Class = "IBUILabel"; text = "Given Name"; ObjectID = "ATX-e8-WUZ"; */
+"ATX-e8-WUZ.text" = "Given Name";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "BTr-Sc-IMT"; */
+"BTr-Sc-IMT.text" = "Label";
+
+/* Class = "IBUITextField"; placeholder = "Your gender"; ObjectID = "Cov-Dy-ahy"; */
+"Cov-Dy-ahy.placeholder" = "Your gender";
+
+/* Class = "IBUILabel"; text = "Surname"; ObjectID = "DFz-m1-oYT"; */
+"DFz-m1-oYT.text" = "Surname";
+
+/* Class = "IBUITextField"; placeholder = "Your surname"; ObjectID = "DSY-Kf-EFA"; */
+"DSY-Kf-EFA.placeholder" = "Your surname";
+
+/* Class = "IBUITabBarItem"; title = "Settings"; ObjectID = "DrQ-Ns-CMY"; */
+"DrQ-Ns-CMY.title" = "Settings";
+
+/* Class = "IBUIButton"; normalTitle = "Login"; ObjectID = "Epg-H7-7WF"; */
+"Epg-H7-7WF.normalTitle" = "Login";
+
+/* Class = "IBUIButton"; normalTitle = "Clear"; ObjectID = "GPM-aG-HVn"; */
+"GPM-aG-HVn.normalTitle" = "Clear";
+
+/* Class = "IBUILabel"; text = "Review This Menu Item"; ObjectID = "GbB-R7-6HJ"; */
+"GbB-R7-6HJ.text" = "Review This Menu Item";
+
+/* Class = "IBUITableViewController"; title = "Master"; ObjectID = "Goi-vq-mlv"; */
+"Goi-vq-mlv.title" = "Master";
+
+/* Class = "IBUITextField"; placeholder = "Email Address / User Name"; ObjectID = "HAS-lm-Xwz"; */
+"HAS-lm-Xwz.placeholder" = "Email Address / User Name";
+
+/* Class = "IBUIButton"; normalTitle = "Sign up"; ObjectID = "Hoc-9s-2YX"; */
+"Hoc-9s-2YX.normalTitle" = "Sign up";
+
+/* Class = "IBUITextField"; placeholder = "Your province"; ObjectID = "HqQ-xV-jFu"; */
+"HqQ-xV-jFu.placeholder" = "Your province";
+
+/* Class = "IBUIButton"; normalTitle = "Drink"; ObjectID = "JV9-hv-6nk"; */
+"JV9-hv-6nk.normalTitle" = "Drink";
+
+/* Class = "IBUIBarButtonItem"; title = "Next"; ObjectID = "Jr1-OJ-AH8"; */
+"Jr1-OJ-AH8.title" = "Next";
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "LJ0-b5-51E"; */
+"LJ0-b5-51E.title" = "Back";
+
+/* Class = "IBUINavigationItem"; title = "Map"; ObjectID = "Le1-xF-NQU"; */
+"Le1-xF-NQU.title" = "Map";
+
+/* Class = "IBUITabBarItem"; title = "Restrictions"; ObjectID = "Lk9-1v-kcA"; */
+"Lk9-1v-kcA.title" = "Restrictions";
+
+/* Class = "IBUITextField"; placeholder = "Your city"; ObjectID = "LlK-KV-xNe"; */
+"LlK-KV-xNe.placeholder" = "Your city";
+
+/* Class = "IBUILabel"; text = "Confirm Password"; ObjectID = "LoN-vP-Bfv"; */
+"LoN-vP-Bfv.text" = "Confirm Password";
+
+/* Class = "IBUITextField"; placeholder = "Confirm your password"; ObjectID = "MvD-2d-axD"; */
+"MvD-2d-axD.placeholder" = "Confirm your password";
+
+/* Class = "IBUITextField"; placeholder = "Your birthday"; ObjectID = "Pgq-zr-GKt"; */
+"Pgq-zr-GKt.placeholder" = "Your birthday";
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "QWI-ku-QDZ"; */
+"QWI-ku-QDZ.title" = "Back";
+
+/* Class = "IBUILabel"; text = "Modifications:"; ObjectID = "S1m-kE-qDX"; */
+"S1m-kE-qDX.text" = "Modifications:";
+
+/* Class = "IBUITabBarItem"; title = "Restrictions"; ObjectID = "Sw3-oP-a89"; */
+"Sw3-oP-a89.title" = "Restrictions";
+
+/* Class = "IBUIButton"; normalTitle = "Food"; ObjectID = "Txq-RZ-DWB"; */
+"Txq-RZ-DWB.normalTitle" = "Food";
+
+/* Class = "IBUIButton"; normalTitle = "Done"; ObjectID = "UH5-YJ-Ad5"; */
+"UH5-YJ-Ad5.normalTitle" = "Done";
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "Wxd-zo-ki8"; */
+"Wxd-zo-ki8.title" = "Back";
+
+/* Class = "IBUISegmentedControl"; YKj-Vc-rBB.segmentTitles[0] = "Top Rated"; ObjectID = "YKj-Vc-rBB"; */
+"YKj-Vc-rBB.segmentTitles[0]" = "Top Rated";
+
+/* Class = "IBUISegmentedControl"; YKj-Vc-rBB.segmentTitles[1] = "Most Recently Review"; ObjectID = "YKj-Vc-rBB"; */
+"YKj-Vc-rBB.segmentTitles[1]" = "Most Recently Review";
+
+/* Class = "IBUIButton"; normalTitle = "Dessert"; ObjectID = "ZRm-7C-lfm"; */
+"ZRm-7C-lfm.normalTitle" = "Dessert";
+
+/* Class = "IBUIButton"; normalTitle = "Done"; ObjectID = "Zba-4G-Hf0"; */
+"Zba-4G-Hf0.normalTitle" = "Done";
+
+/* Class = "IBUINavigationItem"; title = "Dietary Restrictions"; ObjectID = "Zks-L5-CYQ"; */
+"Zks-L5-CYQ.title" = "Dietary Restrictions";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "alg-2K-uKy"; */
+"alg-2K-uKy.text" = "Label";
+
+/* Class = "IBUIButton"; normalTitle = "Logout"; ObjectID = "cF4-gQ-sGI"; */
+"cF4-gQ-sGI.normalTitle" = "Logout";
+
+/* Class = "IBUITextField"; placeholder = "Email Address/Username"; ObjectID = "chc-jk-ZUj"; */
+"chc-jk-ZUj.placeholder" = "Email Address/Username";
+
+/* Class = "IBUILabel"; accessibilityLabel = "Title_Label"; ObjectID = "dRz-uF-pGY"; */
+"dRz-uF-pGY.accessibilityLabel" = "Title_Label";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "dRz-uF-pGY"; */
+"dRz-uF-pGY.text" = "Title";
+
+/* Class = "IBUINavigationItem"; title = "Restaurant Information"; ObjectID = "e9S-J0-K9d"; */
+"e9S-J0-K9d.title" = "Restaurant Information";
+
+/* Class = "IBUIViewController"; title = "Detail"; ObjectID = "emY-ge-kNc"; */
+"emY-ge-kNc.title" = "Detail";
+
+/* Class = "IBUIBarButtonItem"; title = "Save"; ObjectID = "gKx-JV-bIT"; */
+"gKx-JV-bIT.title" = "Save";
+
+/* Class = "IBUILabel"; text = "10"; ObjectID = "gYw-FS-28Z"; */
+"gYw-FS-28Z.text" = "10";
+
+/* Class = "IBUIButton"; normalTitle = "Guest"; ObjectID = "ge7-VU-fMk"; */
+"ge7-VU-fMk.normalTitle" = "Guest";
+
+/* Class = "IBUIButton"; normalTitle = "Done"; ObjectID = "igL-Tr-U4Q"; */
+"igL-Tr-U4Q.normalTitle" = "Done";
+
+/* Class = "IBUILabel"; text = "Gender"; ObjectID = "kN4-1F-CS4"; */
+"kN4-1F-CS4.text" = "Gender";
+
+/* Class = "IBUISegmentedControl"; lJ1-oJ-nBg.segmentTitles[0] = "Monday"; ObjectID = "lJ1-oJ-nBg"; */
+"lJ1-oJ-nBg.segmentTitles[0]" = "Monday";
+
+/* Class = "IBUISegmentedControl"; lJ1-oJ-nBg.segmentTitles[1] = "Tuesday"; ObjectID = "lJ1-oJ-nBg"; */
+"lJ1-oJ-nBg.segmentTitles[1]" = "Tuesday";
+
+/* Class = "IBUISegmentedControl"; lJ1-oJ-nBg.segmentTitles[2] = "Wednesday"; ObjectID = "lJ1-oJ-nBg"; */
+"lJ1-oJ-nBg.segmentTitles[2]" = "Wednesday";
+
+/* Class = "IBUISegmentedControl"; lJ1-oJ-nBg.segmentTitles[3] = "Thursday"; ObjectID = "lJ1-oJ-nBg"; */
+"lJ1-oJ-nBg.segmentTitles[3]" = "Thursday";
+
+/* Class = "IBUISegmentedControl"; lJ1-oJ-nBg.segmentTitles[4] = "Friday"; ObjectID = "lJ1-oJ-nBg"; */
+"lJ1-oJ-nBg.segmentTitles[4]" = "Friday";
+
+/* Class = "IBUISegmentedControl"; lJ1-oJ-nBg.segmentTitles[5] = "Saturday"; ObjectID = "lJ1-oJ-nBg"; */
+"lJ1-oJ-nBg.segmentTitles[5]" = "Saturday";
+
+/* Class = "IBUISegmentedControl"; lJ1-oJ-nBg.segmentTitles[6] = "Sunday"; ObjectID = "lJ1-oJ-nBg"; */
+"lJ1-oJ-nBg.segmentTitles[6]" = "Sunday";
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "lJb-yj-5td"; */
+"lJb-yj-5td.title" = "Back";
+
+/* Class = "IBUINavigationItem"; title = "Restaurants"; ObjectID = "lLE-5b-SsI"; */
+"lLE-5b-SsI.title" = "Restaurants";
+
+/* Class = "IBUITabBarItem"; title = "Specials"; ObjectID = "lYe-N2-T3k"; */
+"lYe-N2-T3k.title" = "Specials";
+
+/* Class = "IBUIButton"; normalTitle = "Done"; ObjectID = "lzf-K8-t1i"; */
+"lzf-K8-t1i.normalTitle" = "Done";
+
+/* Class = "IBUINavigationItem"; title = "Registration"; ObjectID = "mFb-qx-bvj"; */
+"mFb-qx-bvj.title" = "Registration";
+
+/* Class = "IBUIButton"; normalTitle = "Filter By Category"; ObjectID = "nOS-mw-3T0"; */
+"nOS-mw-3T0.normalTitle" = "Filter By Category";
+
+/* Class = "IBUITextView"; text = "Please enter your review here..."; ObjectID = "p9Y-dl-y5V"; */
+"p9Y-dl-y5V.text" = "Please enter your review here...";
+
+/* Class = "IBUIButton"; normalTitle = "Rate This Item"; ObjectID = "pN7-Gw-KQN"; */
+"pN7-Gw-KQN.normalTitle" = "Rate This Item";
+
+/* Class = "IBUIButton"; normalTitle = "Login/Register"; ObjectID = "ra5-ua-Fj2"; */
+"ra5-ua-Fj2.normalTitle" = "Login/Register";
+
+/* Class = "IBUIButton"; normalTitle = "Done"; ObjectID = "trs-63-X8E"; */
+"trs-63-X8E.normalTitle" = "Done";
+
+/* Class = "IBUISegmentedControl"; uxd-Gc-ng1.segmentTitles[0] = "Top Rated"; ObjectID = "uxd-Gc-ng1"; */
+"uxd-Gc-ng1.segmentTitles[0]" = "Top Rated";
+
+/* Class = "IBUISegmentedControl"; uxd-Gc-ng1.segmentTitles[1] = "Most Recently Review"; ObjectID = "uxd-Gc-ng1"; */
+"uxd-Gc-ng1.segmentTitles[1]" = "Most Recently Review";
+
+/* Class = "IBUITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "uxk-gS-tH9"; */
+"uxk-gS-tH9.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "IBUILabel"; accessibilityLabel = "Title_Label"; ObjectID = "w9H-eR-X6u"; */
+"w9H-eR-X6u.accessibilityLabel" = "Title_Label";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "w9H-eR-X6u"; */
+"w9H-eR-X6u.text" = "Title";
+
+/* Class = "IBUINavigationItem"; title = "Restaurant Information"; ObjectID = "wnQ-z1-rsN"; */
+"wnQ-z1-rsN.title" = "Restaurant Information";
+
+/* Class = "IBUILabel"; text = "10"; ObjectID = "xnk-SN-jwt"; */
+"xnk-SN-jwt.text" = "10";
+
+/* Class = "IBUIButton"; normalTitle = "Save"; ObjectID = "z5P-O7-G80"; */
+"z5P-O7-G80.normalTitle" = "Save";

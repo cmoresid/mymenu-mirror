@@ -15,7 +15,8 @@
 //  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
-#import "MMSpecial.h"
-@implementation MMSpecial
+#import <UIKit/UIKit.h>
+
+@interface MMSpecialsViewController : UIViewController
 
 @end

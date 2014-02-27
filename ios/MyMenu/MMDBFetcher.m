@@ -469,7 +469,17 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getDrinkSpecials:(NSString *)weekday withDate:(NSDate *)date {
+/**
+ * Get today as a string, e.g. 'tuesday'
+ */
+- (NSString *)getDay:(NSDate *) date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE"];
+    return [[dateFormatter stringFromDate:date] lowercaseString];
+}
+
+- (void)getDrinkSpecialsForDate:(NSDate *)date {
+	NSString * weekday = [self getDay:date];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
@@ -499,18 +509,20 @@ static MMDBFetcher *instance;
                                         special.name = [e child:@"name"].text;
                                         special.desc = [e child:@"description"].text;
                                         special.picture = [e child:@"picture"].text;
+										special.categoryid = [NSNumber numberWithInt:2];
                                         [specials addObject:special];
                                     }];
 
-                                    [self.delegate didRetrieveSpecials:specials withResponse:dbResponse];
+                                    [self.delegate didRetrieveSpecials:specials forDate:date  withResponse:dbResponse];
                                 }
                                 else {
-                                    [self.delegate didRetrieveSpecials:nil withResponse:dbResponse];
+                                    [self.delegate didRetrieveSpecials:nil forDate:nil withResponse:dbResponse];
                                 }
                             }];
 }
 
-- (void)getFoodSpecials:(NSString *)weekday withDate:(NSDate *)date {
+- (void)getFoodSpecialsForDate:(NSDate *)date {
+	NSString * weekday = [self getDay:date];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
@@ -540,18 +552,20 @@ static MMDBFetcher *instance;
                                         special.name = [e child:@"name"].text;
                                         special.desc = [e child:@"description"].text;
                                         special.picture = [e child:@"picture"].text;
+										special.categoryid = [NSNumber numberWithInt:1];
                                         [specials addObject:special];
                                     }];
                                     
-                                    [self.delegate didRetrieveSpecials:specials withResponse:dbResponse];
+                                    [self.delegate didRetrieveSpecials:specials forDate:date withResponse:dbResponse];
                                 }
                                 else {
-                                    [self.delegate didRetrieveSpecials:nil withResponse:dbResponse];
+                                    [self.delegate didRetrieveSpecials:nil forDate:nil withResponse:dbResponse];
                                 }
                             }];
 }
 
-- (void)getDessertSpecials:(NSString *)weekday withDate:(NSDate *)date {
+- (void)getDessertSpecialsForDate:(NSDate *)date {
+	NSString * weekday = [self getDay:date];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
@@ -581,13 +595,15 @@ static MMDBFetcher *instance;
                                         special.name = [e child:@"name"].text;
                                         special.desc = [e child:@"description"].text;
                                         special.picture = [e child:@"picture"].text;
+										special.categoryid = [NSNumber numberWithInt:3];
+										special.fetchDate = date;
                                         [specials addObject:special];
                                     }];
                                     
-                                    [self.delegate didRetrieveSpecials:specials withResponse:dbResponse];
+                                    [self.delegate didRetrieveSpecials:specials forDate:date withResponse:dbResponse];
                                 }
                                 else {
-                                    [self.delegate didRetrieveSpecials:nil withResponse:dbResponse];
+                                    [self.delegate didRetrieveSpecials:nil forDate:nil withResponse:dbResponse];
                                 }
                             }];
 }

@@ -1,22 +1,13 @@
 //
-//  Copyright (C) 2014  MyMenu, Inc.
+//  MMParentViewController.m
+//  MyMenu
 //
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
+//  Created by Chris Moulds on 2/4/2014.
 //
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
 #import "MMSpecialsViewController.h"
-#import "MMSpecialsCollectionViewController.h"
+#import "UIColor+MyMenuColors.h"
 
 @interface MMSpecialsViewController ()
 
@@ -34,25 +25,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor darkTealColor]];
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark -
-#pragma mark Setup Next View for Type
-// TODO: Use right numbers for the type in database
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"Food"]) {
-        [(MMSpecialsCollectionViewController *) [segue destinationViewController] setSpecialsType:1];
-    } else if ([[segue identifier] isEqualToString:@"Drink"]) {
-        [(MMSpecialsCollectionViewController *) [segue destinationViewController] setSpecialsType:2];
-    } else if ([[segue identifier] isEqualToString:@"Dessert"]) {
-        [(MMSpecialsCollectionViewController *) [segue destinationViewController] setSpecialsType:3];
-    }
 }
 
 @end

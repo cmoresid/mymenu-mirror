@@ -20,88 +20,152 @@
 #import "MMSpecial.h"
 #import "MMDBFetcher.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "MMSpecialsPopOverTableView.h"
 
-@interface MMSpecialsCollectionViewController ()
-@property(weak, nonatomic) IBOutlet UISegmentedControl *weekDayButtons;
+@interface MMSpecialsCollectionViewController () {
+	NSArray const * types;
+}
+	@property(weak, nonatomic) IBOutlet UISegmentedControl *weekDayButtons;
+
 @end
 
 @implementation MMSpecialsCollectionViewController
 
-NSArray *specials;
 static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday"};
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 
     if (self) {
         // Custom initialization
-    }
+	}
 
     return self;
 }
 
-- (IBAction)dayChanged:(UISegmentedControl *)sender {
-    NSUInteger index = (NSUInteger) sender.selectedSegmentIndex;
-
-    if (UISegmentedControlNoSegment != index) {
-        NSString *day = days[index];
-        NSLog(@"at index, %u, with day %@", index, day);
-        [self loadDay:day];
-    }
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	// Setup the Types we Can filter.
+	// These need to be in this order, Food,Drinks,Dessert represent type in the database by 1,2,3.
+	types = [NSArray arrayWithObjects:@"Food",@"Drinks",@"Dessert", nil];
+	
+	// Set which types we initially show, Default is ALL.
+	[self setShowTypes:[NSMutableArray arrayWithObjects:@"Food",@"Drinks",@"Dessert", nil]];
+	
+	// Create Array For Holding Specials and the Date Index (Headers)
+	[self setSpecials:[[NSMutableArray alloc] init]];
+	[self setDateIndex:[[NSMutableArray alloc]init]];
+	
+	// Initialize to the current Day
+	[self setCurrentDate:[NSDate date]];
 
-    NSString *day = [self getToday];
-
-    // find the index that today is at
-    int index = -1;
-    for (int i = 0; i < 7; i++) {
-        if ([[days[i] lowercaseString] isEqualToString:[day lowercaseString]]) {
-            index = i;
-            break;
-        }
-    }
-
+	// Delegate our self to the db fetcher.
     [MMDBFetcher get].delegate = self;
-    // initialize specials array to be empty
-    // at first for async.
-    specials = [[NSArray alloc] init];
 
+	// Load the first 5 Days
     // set today as selected
-    [self.tabOutlet setSelectedSegmentIndex:index];
-    [self loadDay:[self getToday]];
-    [self.tabOutlet setTintColor:[UIColor whiteColor]];
+	[self loadDate:self.currentDate];
+	[self loadDate:[self getCurrentDatePlusDays:1]];
+	[self loadDate:[self getCurrentDatePlusDays:2]];
+	[self loadDate:[self getCurrentDatePlusDays:3]];
+	[self loadDate:[self getCurrentDatePlusDays:4]];
 
 }
 
-/**
-* Get today as a string, e.g. 'tuesday'
-*/
-- (NSString *)getToday {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEEE"];
-    return [[dateFormatter stringFromDate:[NSDate date]] lowercaseString];
-}
+#pragma mark -
+#pragma mark Date Functions
+
+
 
 /**
-* Request specials for a given day. Uses the specialsType defined by the segue
+* Request specials for a given day. Uses the specialsType defined in the showTypes Array.
 */
-- (void)loadDay:(NSString *)day {
-    // Empty out specials array when loading
-    // new data so no artifact data remains when
-    // switching days.
-    specials = [[NSArray alloc] init];
+- (void)loadDate:(NSDate *) date {
+
+	// Remove All Objects for the current Date if it exsits
+	NSUInteger index = [self indexOfDate:date];
+    if(index != NSNotFound) {
+		[[self.specials objectAtIndex:index] removeAllObjects];
+	}
+	// Refresh the View
     [self.collectionView reloadData];
 
+	// Show Loading
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-   // [[MMDBFetcher get] getSpecials:day withType:self.specialsType];
+	
+	
+	// Check each Type if we are returned that type
+	if([self.showTypes containsObject:@"Food"])
+		[[MMDBFetcher get] getFoodSpecialsForDate:date];
+	
+	if([self.showTypes containsObject:@"Drinks"])
+		[[MMDBFetcher get] getDrinkSpecialsForDate:date];
+	
+	if([self.showTypes containsObject:@"Dessert"])
+		[[MMDBFetcher get] getDessertSpecialsForDate:date];
+	
+	// Hide the Indicator if for some reason the user selects nothing to be shown.
+	if(self.showTypes.count == 0)
+		[MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+	
+	// TODO: display message no options selected?
 }
 
-- (void)didRetrieveSpecials:(NSArray *)webSpecials withResponse:(MMDBFetcherResponse *)response {
-    [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+/**
+ * Request specials for a given day, with a Given Type
+ */
+- (void)loadDate:(NSDate *) date forType:(NSString *) type{
+	
+	// Show Indicator
+    [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+	
+	// Check for which type we need, and if it is the showTypes array.
+	
+	if([self.showTypes containsObject:@"Food"] && [type isEqualToString:@"Food"])
+		[[MMDBFetcher get] getFoodSpecialsForDate:date];
+	
+	if([self.showTypes containsObject:@"Drinks"] && [type isEqualToString:@"Drinks"])
+		[[MMDBFetcher get] getDrinkSpecialsForDate:date];
+	
+	if([self.showTypes containsObject:@"Dessert"] && [type isEqualToString:@"Dessert"])
+		[[MMDBFetcher get] getDessertSpecialsForDate:date];
+	
+	
+	// Safety check if no type is selected, we need to close the loading
+	if(self.showTypes.count == 0)
+		[MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+	
+	// TODO: display message no options selected?
+}
 
+
+/**
+ * Find the Index for a particular date in the in dateIndex Array
+ */
+-(NSUInteger)indexOfDate:(NSDate *) date {
+	return [[self dateIndex] indexOfObject:date];
+}
+
+/**
+ * Returns a New Date from the current date + the number of days specified.
+ */
+-(NSDate *) getCurrentDatePlusDays: (NSUInteger) days {
+	return [self.currentDate dateByAddingTimeInterval:60*60*24*days];
+}
+
+#pragma mark -
+#pragma mark DBFetcherDelegate Methods
+/**
+ * The DBFetcher Sends our info here. We need the date to place it accordingly.
+ */
+- (void)didRetrieveSpecials:(NSArray *)webSpecials forDate:(NSDate *)date withResponse:(MMDBFetcherResponse *)response {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+	
+	// If there is some error show it.
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
                                                           message:@"Unable to retrieve specials."
@@ -109,25 +173,59 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-
         return;
     }
-
-    specials = webSpecials;
-    [[self collectionView] reloadData];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	
+	// Check that the query returned something
+	if(webSpecials.count > 0) {
+		NSUInteger index = [self indexOfDate:date];
+		if(index != NSNotFound) {
+			// Add to a previous section
+			[[self.specials objectAtIndex:index] addObjectsFromArray:webSpecials];
+		} else {
+			// If we do not have content for the current date create a new "section"
+			[self.dateIndex addObject:date];
+			[self.specials addObject:webSpecials];
+		}
+		// Reload the View
+		[[self collectionView] reloadData];
+	}
 }
 
 #pragma mark -
 #pragma mark Collection View
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return specials.count;
+	return [[self.specials objectAtIndex:section] count];
 }
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+	
+	// Get the HeaderView
+	static NSString *headerIdentifier = @"header";
+	UICollectionReusableView *reusableview = nil;
+    if (kind == UICollectionElementKindSectionHeader) {
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerIdentifier forIndexPath:indexPath];
+        
+		// Format for Header Date
+		NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+		[formatter setDateFormat:@"EEEE MMMM dd"];
+		
+		// Get the Date for that section
+		NSString *title = [formatter stringFromDate:[self.dateIndex objectAtIndex:indexPath.section]];
+		
+		// Get View and set
+		UITextView * textView = (UITextView *) [headerView viewWithTag:99];
+		textView.text = title;
+		
+		// Return the setupview
+		reusableview = headerView;
+    }
+	return reusableview;
+	
+}
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"Cell";
@@ -139,10 +237,12 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     cell.contentView.layer.cornerRadius = 5;
     cell.contentView.layer.masksToBounds = YES;
 
-    MMSpecial *special = [specials objectAtIndex:indexPath.row];
-
-    UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
-    [imageView setImageWithURL:[NSURL URLWithString:[special picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+	// Get the Special
+	MMSpecial *special = [[self.specials objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
+	
+	// Load the Image in
+	UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
+	[imageView setImageWithURL:[NSURL URLWithString:[special picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
 
     // Set the text
     UITextView *textView = (UITextView *) [cell viewWithTag:101];
@@ -150,7 +250,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     textView.text = special.name;
     textDesc.text = special.desc;
     [textDesc sizeToFit];
-
+	
     return cell;
 }
 
@@ -159,6 +259,100 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     // If you need to use the touched cell, you can retrieve it like so
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     NSLog(@"touched cell %@ at indexPath %@", cell, indexPath);
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+	return self.dateIndex.count;
+}
+
+#pragma mark - 
+#pragma mark Show Type Functions
+
+/**
+ * Removes a particular ShowType and updates the Collection View As needed.
+ */
+-(void)removeShowType:(NSString *) type {
+	[[self showTypes] removeObject:type];
+	
+	NSUInteger categoryId = [types indexOfObject:type];
+	
+	int currentDateIndex = 0;
+	
+	// We don't need to reload since we are removing things...
+	for (NSDate * date in self.dateIndex) {
+		
+		// Section
+		NSMutableArray * currentDateIndexArray = [self.specials objectAtIndex:currentDateIndex];
+		
+		// Set of Items needing to be removed
+		NSMutableIndexSet * set = [[NSMutableIndexSet alloc] init];
+		int i = 0;
+		
+		// Check all the specials for this date if they are of the same type.
+		for (MMSpecial * special in currentDateIndexArray) {
+			if (([[special categoryid] unsignedIntegerValue]-1) == categoryId) {
+				[set addIndex:i];
+			}
+			i++;
+		}
+		
+		// Remove all of the same type
+		[currentDateIndexArray removeObjectsAtIndexes:set];
+		[set removeAllIndexes];
+		
+		currentDateIndex++;
+	}
+	
+	// Refresh the view
+	[self.collectionView reloadData];
+}
+
+/**
+ * Adds a show type and updates the view as needed
+ */
+
+-(void)addShowType:(NSString *) type {
+	// Check if the Type is there or not
+	if(![self containsShowType:type]) {
+		
+		// If it is not add it.
+		[[self showTypes] addObject:type];
+		
+		// Reload all the dates for the type added, since it will be removed at this time.
+		for (NSDate * date in self.dateIndex) {
+			[self loadDate:date forType:type];
+		}
+		// Refresh View
+		[self.collectionView reloadData];
+	}
+}
+
+/**
+ * Check if the view is showing a type
+ */
+-(bool)containsShowType:(NSString *)type {
+	if(![self.showTypes containsObject:type]) {
+		return false;
+	}
+	return true;
+}
+
+#pragma mark -
+#pragma mark Other
+
+/**
+ * Prepares for the popup window, sets up the proper types needed.
+ */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	MMSpecialsPopOverTableView * popover = segue.destinationViewController;
+	[popover setSpecialItems:types];
+	[popover setSpecialsCollectionController:self];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end
