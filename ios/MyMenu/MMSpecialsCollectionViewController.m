@@ -96,7 +96,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 	// Remove All Objects for the current Date if it exsits
 	NSUInteger index = [self indexOfDate:date];
-    if(index != -1) {
+    if(index != NSNotFound) {
 		[[self.specials objectAtIndex:index] removeAllObjects];
 	}
 	// Refresh the View
