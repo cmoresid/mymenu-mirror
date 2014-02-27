@@ -78,15 +78,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 #pragma mark -
 #pragma mark Date Functions
-/**
-* Get today as a string, e.g. 'tuesday'
-*/
-- (NSString *)getDay{
-	NSDate * date = [self currentDate];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEEE"];
-    return [[dateFormatter stringFromDate:date] lowercaseString];
-}
+
 
 
 /**
@@ -108,13 +100,13 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	
 	// Check each Type if we are returned that type
 	if([self.showTypes containsObject:@"Food"])
-		[[MMDBFetcher get] getFoodSpecials:[self getDay] withDate:date];
+		[[MMDBFetcher get] getFoodSpecialsForDate:date];
 	
 	if([self.showTypes containsObject:@"Drinks"])
-		[[MMDBFetcher get] getDrinkSpecials:[self getDay] withDate:date];
+		[[MMDBFetcher get] getDrinkSpecialsForDate:date];
 	
 	if([self.showTypes containsObject:@"Dessert"])
-		[[MMDBFetcher get] getDessertSpecials:[self getDay] withDate:date];
+		[[MMDBFetcher get] getDessertSpecialsForDate:date];
 	
 	// Hide the Indicator if for some reason the user selects nothing to be shown.
 	if(self.showTypes.count == 0)
@@ -134,13 +126,13 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	// Check for which type we need, and if it is the showTypes array.
 	
 	if([self.showTypes containsObject:@"Food"] && [type isEqualToString:@"Food"])
-		[[MMDBFetcher get] getFoodSpecials:[self getDay] withDate:date];
+		[[MMDBFetcher get] getFoodSpecialsForDate:date];
 	
 	if([self.showTypes containsObject:@"Drinks"] && [type isEqualToString:@"Drinks"])
-		[[MMDBFetcher get] getDrinkSpecials:[self getDay] withDate:date];
+		[[MMDBFetcher get] getDrinkSpecialsForDate:date];
 	
 	if([self.showTypes containsObject:@"Dessert"] && [type isEqualToString:@"Dessert"])
-		[[MMDBFetcher get] getDessertSpecials:[self getDay] withDate:date];
+		[[MMDBFetcher get] getDessertSpecialsForDate:date];
 	
 	
 	// Safety check if no type is selected, we need to close the loading

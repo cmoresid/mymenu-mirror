@@ -66,21 +66,21 @@
 */
 
 //- (NSArray *)getDrinkSpecials:(NSString *)weekday :(NSInteger)type;
-- (void)getDrinkSpecials:(NSString *)weekday withDate:(NSDate *)date;
+- (void)getDrinkSpecialsForDate:(NSDate *)date;
 
 /**
  * Get dessert specials for the given day of the given type.
  */
 
 //- (NSArray *)getDessertSpecials:(NSString *)weekday :(NSInteger)type;
-- (void)getDessertSpecials:(NSString *)weekday withDate:(NSDate *)date;
+- (void)getDessertSpecialsForDate:(NSDate *)date;
 
 /**
  * Get food specials for the given day of the given type.
  */
 
 //- (NSArray *)getFoodSpecials:(NSString *)weekday :(NSInteger)type;
-- (void)getFoodSpecials:(NSString *)weekday withDate:(NSDate *)date;
+- (void)getFoodSpecialsForDate:(NSDate *)date;
 
 /**
 * Add all given restrictions for the given user.
@@ -168,5 +168,9 @@
  */
 - (void)getItemRatingsTop:(NSNumber *)itemid;
 
+/**
+ * Get today as a string, e.g. 'tuesday'
+ */
+- (NSString *)getDay:(NSDate *) date;
 
 @end

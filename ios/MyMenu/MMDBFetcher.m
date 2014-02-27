@@ -469,7 +469,17 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getDrinkSpecials:(NSString *)weekday withDate:(NSDate *)date {
+/**
+ * Get today as a string, e.g. 'tuesday'
+ */
+- (NSString *)getDay:(NSDate *) date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE"];
+    return [[dateFormatter stringFromDate:date] lowercaseString];
+}
+
+- (void)getDrinkSpecialsForDate:(NSDate *)date {
+	NSString * weekday = [self getDay:date];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
@@ -511,7 +521,8 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getFoodSpecials:(NSString *)weekday withDate:(NSDate *)date {
+- (void)getFoodSpecialsForDate:(NSDate *)date {
+	NSString * weekday = [self getDay:date];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
@@ -553,7 +564,8 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getDessertSpecials:(NSString *)weekday withDate:(NSDate *)date {
+- (void)getDessertSpecialsForDate:(NSDate *)date {
+	NSString * weekday = [self getDay:date];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
