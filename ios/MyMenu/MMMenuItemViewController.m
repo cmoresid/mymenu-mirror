@@ -58,6 +58,11 @@ MMUser * userProfile;
     [_itemDescription setTextColor:[UIColor blackColor]];
     [_itemDescription setFont:[UIFont systemFontOfSize:24.0]];
     _itemImage.image = [UIImage imageWithData:                                                                      [NSData dataWithContentsOfURL:                                                                            [NSURL URLWithString: _touchedItem.picture]]];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+    [formatter setMaximumFractionDigits:1];
+    [formatter setMinimumFractionDigits:1];
+    _itemRating.text = [formatter stringFromNumber: _touchedItem.rating];
     _itemView.backgroundColor = [UIColor lightBackgroundGray];
 	_itemView.layer.cornerRadius = 17.5;
     self.tableView.dataSource = self;
@@ -284,5 +289,7 @@ MMUser * userProfile;
     [self.ratingButton setTitle:[[NSString alloc] initWithFormat:@"Rate This Item"] forState:UIControlStateNormal];
     [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
+
+
 
 @end

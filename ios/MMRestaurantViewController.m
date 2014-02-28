@@ -61,7 +61,8 @@ MMMenuItem * touchedItem;
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatter setMaximumFractionDigits:3];
+    [formatter setMaximumFractionDigits:2];
+    [formatter setMinimumFractionDigits:1];
     //NSLog(@"%@",[formatter  stringFromNumber:_selectedRestaurant.rating]);
 
     for (UIView *subView in self.search.subviews)
@@ -96,7 +97,7 @@ MMMenuItem * touchedItem;
 	_ratingView.layer.cornerRadius = 17.5;
     NSString * rate =[formatter  stringFromNumber:_selectedRestaurant.rating];
     //NSNumber * rate = _selectedRestaurant.rating;
-    if ([rate isEqualToString:@"0"]){
+    if ([rate isEqualToString:@".0"]){
         rate = @"N/A";
     }
     _restRating.text = rate;
@@ -145,7 +146,8 @@ MMMenuItem * touchedItem;
         UIView * labelBack = (UIView * ) [cell viewWithTag:106];
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-        [formatter setMaximumFractionDigits:3];
+        [formatter setMaximumFractionDigits:1];
+        [formatter setMinimumFractionDigits:1];
         NSNumberFormatter *formatterCost = [[NSNumberFormatter alloc] init];
         [formatterCost setRoundingMode:NSNumberFormatterRoundHalfUp];
         [formatterCost setMaximumFractionDigits:3];

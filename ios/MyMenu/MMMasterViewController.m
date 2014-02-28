@@ -154,10 +154,11 @@
 
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatter setMaximumFractionDigits:3];
+    [formatter setMaximumFractionDigits:1];
+    [formatter setMinimumFractionDigits:1];
 
     NSString *rate = [formatter stringFromNumber:[[_restaurants objectAtIndex:indexPath.row] rating]];
-    if ([rate isEqualToString:@"0"]) {
+    if ([rate isEqualToString:@".0"]) {
         rate = @"N/A";
     }
 
