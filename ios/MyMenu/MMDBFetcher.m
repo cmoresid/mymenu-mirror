@@ -155,7 +155,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name FROM ratings r, menu m WHERE r.merchid=%@ AND m.merchid = r.merchid AND ORDER BY ratingdate";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name FROM ratings r, menu m WHERE m.id=%@ AND m.id = r.menuid AND ORDER BY ratingdate";
     NSString *query = [NSString stringWithFormat:queryFormat, itemid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -478,6 +478,7 @@ static MMDBFetcher *instance;
     return [[dateFormatter stringFromDate:date] lowercaseString];
 }
 
+
 - (void)getDrinkSpecialsForDate:(NSDate *)date {
 	NSString * weekday = [self getDay:date];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -486,11 +487,14 @@ static MMDBFetcher *instance;
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/specials/custom.php"]];
 
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"YYYY-MM-DD"];
+    [format setDateFormat:@"YYYY-MM-dd"];
     NSString *dateString = [format stringFromDate:date];
     
-    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (specials.startdate<='%@' AND specials.enddate>='%@') AND specials.categoryid=2";
+    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (datediff(specials.startdate, '%@')<= 0 AND datediff('%@', specials.enddate)<=0) AND specials.categoryid=2";
     NSString *query = [NSString stringWithFormat:queryFormat, weekday, dateString, dateString];
+    
+
+    
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
@@ -529,10 +533,10 @@ static MMDBFetcher *instance;
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/specials/custom.php"]];
     
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"YYYY-MM-DD"];
+    [format setDateFormat:@"YYYY-MM-dd"];
     NSString *dateString = [format stringFromDate:date];
     
-    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (specials.startdate<='%@' AND specials.enddate>='%@') AND specials.categoryid=1";
+    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (datediff(specials.startdate, '%@')<= 0 AND datediff('%@', specials.enddate)<=0) AND specials.categoryid=1";
     NSString *query = [NSString stringWithFormat:queryFormat, weekday, dateString, dateString];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -572,10 +576,10 @@ static MMDBFetcher *instance;
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/specials/custom.php"]];
     
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"YYYY-MM-DD"];
+    [format setDateFormat:@"YYYY-MM-dd"];
     NSString *dateString = [format stringFromDate:date];
     
-    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (specials.startdate<='%@' AND specials.enddate>='%@') AND specials.categoryid=3";
+    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (datediff(specials.startdate, '%@')<= 0 AND datediff('%@', specials.enddate)<=0) AND specials.categoryid=3";
     NSString *query = [NSString stringWithFormat:queryFormat, weekday, dateString, dateString];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -640,7 +644,7 @@ static MMDBFetcher *instance;
 
     CLLocationCoordinate2D coords = usrloc.coordinate;
     
-    NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE UPPER(business_name) LIKE UPPER('%%%@%') ORDER BY distance ASC LIMIT 25";
+    NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE UPPER(business_name) LIKE UPPER('%%%@%%') ORDER BY distance ASC LIMIT 25";
 
     NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], merchname];
 
