@@ -21,9 +21,11 @@
 @interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate>
 
 @property(nonatomic) NSMutableArray * showTypes;
+@property(nonatomic) NSDate * selectedDate;
 @property(nonatomic) NSMutableArray * dateIndex;
 @property(atomic) NSMutableArray * specials;
 @property(nonatomic,readwrite) NSDate * currentDate;
+
 
 /**
  * Adds a Special type to show, and reloads the view as Needed.
@@ -39,5 +41,7 @@
  * Checks if a Type is "Currently" being displayed.
  */
 -(bool)containsShowType:(NSString *)type;
+
+-(void)loadWeek:(NSDate *)date;
 
 @end

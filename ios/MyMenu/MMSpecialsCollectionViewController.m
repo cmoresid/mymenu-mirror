@@ -21,6 +21,7 @@
 #import "MMDBFetcher.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "MMSpecialsPopOverTableView.h"
+#import "MMSpecialsPopOverWeek.h"
 
 @interface MMSpecialsCollectionViewController () {
 	NSArray const * types;
@@ -48,7 +49,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
 	// Setup the Types we Can filter.
 	// These need to be in this order, Food,Drinks,Dessert represent type in the database by 1,2,3.
 	types = [NSArray arrayWithObjects:@"Food",@"Drinks",@"Dessert", nil];
@@ -66,13 +66,29 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	// Delegate our self to the db fetcher.
     [MMDBFetcher get].delegate = self;
 
-	// Load the first 5 Days
-    // set today as selected
-	[self loadDate:self.currentDate];
-	[self loadDate:[self getCurrentDatePlusDays:1]];
-	[self loadDate:[self getCurrentDatePlusDays:2]];
-	[self loadDate:[self getCurrentDatePlusDays:3]];
-	[self loadDate:[self getCurrentDatePlusDays:4]];
+	[self loadWeek:[self currentDate]];
+
+
+}
+
+#pragma mark -
+#pragma Helper Functions
+
+/**
+ * Loads 7 days from the date specified
+ */
+-(void)loadWeek:(NSDate *)date {
+	// Loads 7 days from the Date Specified
+	[self setSelectedDate:date];
+	
+	// Remove all specials first.
+	[[self dateIndex] removeAllObjects];
+	[[self specials] removeAllObjects];
+	[self.collectionView reloadData];
+	
+	for (int i = 0; i < 7; i++) {
+		[self loadDate:[self getDate:date PlusDays:i]];
+	}
 
 }
 
@@ -156,6 +172,14 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 -(NSDate *) getCurrentDatePlusDays: (NSUInteger) days {
 	return [self.currentDate dateByAddingTimeInterval:60*60*24*days];
 }
+
+/**
+ * Returns a New Date from the date specified + the number of days specified.
+ */
+-(NSDate *) getDate:(NSDate *) date PlusDays:(NSUInteger) days {
+	return [date dateByAddingTimeInterval:60*60*24*days];
+}
+
 
 #pragma mark -
 #pragma mark DBFetcherDelegate Methods
@@ -249,7 +273,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     UITextView *textDesc = (UITextView *) [cell viewWithTag:102];
     textView.text = special.name;
     textDesc.text = special.desc;
-    [textDesc sizeToFit];
+    //[textDesc sizeToFit];
 	
     return cell;
 }
@@ -345,14 +369,30 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
  */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	MMSpecialsPopOverTableView * popover = segue.destinationViewController;
-	[popover setSpecialItems:types];
-	[popover setSpecialsCollectionController:self];
+	id popover = segue.destinationViewController;
+	if([popover isKindOfClass:[MMSpecialsPopOverTableView class]]) {
+		
+		popover = (MMSpecialsPopOverTableView *)popover;
+		[popover setSpecialItems:types];
+		[popover setSpecialsCollectionController:self];
+		
+	} else if([popover isKindOfClass:[MMSpecialsPopOverWeek class]]) {
+		
+		popover = (MMSpecialsPopOverWeek *)popover;
+		NSMutableArray * weeks = [[NSMutableArray alloc] init];
+		for(int i =0; i < 10; i ++) {
+			[weeks addObject:[self getCurrentDatePlusDays:i*7]];
+		}
+		[popover setWeeks:weeks];
+		[popover setSelectedWeek:[weeks indexOfObject:self.selectedDate]];
+		[popover setSpecialsCollectionController:self];
+	}
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end
