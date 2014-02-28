@@ -22,8 +22,8 @@
 
 @property(nonatomic) NSMutableArray * showTypes;
 @property(nonatomic) NSDate * selectedDate;
-@property(nonatomic) NSMutableArray * dateIndex;
-@property(atomic) NSMutableArray * specials;
+@property(nonatomic) NSMutableArray * dateKeys;
+@property(atomic) NSMutableDictionary * specials;
 @property(nonatomic,readwrite) NSDate * currentDate;
 
 

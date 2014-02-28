@@ -57,8 +57,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	[self setShowTypes:[NSMutableArray arrayWithObjects:@"Food",@"Drinks",@"Dessert", nil]];
 	
 	// Create Array For Holding Specials and the Date Index (Headers)
-	[self setSpecials:[[NSMutableArray alloc] init]];
-	[self setDateIndex:[[NSMutableArray alloc]init]];
+	[self setSpecials:[[NSMutableDictionary alloc] init]];
+	[self setDateKeys:[[NSMutableArray alloc]init]];
 	
 	// Initialize to the current Day
 	[self setCurrentDate:[NSDate date]];
@@ -72,7 +72,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 }
 
 #pragma mark -
-#pragma Helper Functions
+#pragma mark Helper Functions
 
 /**
  * Loads 7 days from the date specified
@@ -82,10 +82,9 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	[self setSelectedDate:date];
 	
 	// Remove all specials first.
-	[[self dateIndex] removeAllObjects];
+	[[self dateKeys] removeAllObjects];
 	[[self specials] removeAllObjects];
 	[self.collectionView reloadData];
-	
 	for (int i = 0; i < 7; i++) {
 		[self loadDate:[self getDate:date PlusDays:i]];
 	}
@@ -103,9 +102,9 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 - (void)loadDate:(NSDate *) date {
 
 	// Remove All Objects for the current Date if it exsits
-	NSUInteger index = [self indexOfDate:date];
-    if(index != NSNotFound) {
-		[[self.specials objectAtIndex:index] removeAllObjects];
+	[self.dateKeys removeObjectIdenticalTo:date];
+    if([self.specials objectForKey:date] != nil) {
+		[[self.specials objectForKey:date] removeAllObjects];
 	}
 	// Refresh the View
     [self.collectionView reloadData];
@@ -137,8 +136,14 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 - (void)loadDate:(NSDate *) date forType:(NSString *) type{
 	
 	// Show Indicator
+	
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
 	
+	
+	[self.dateKeys removeAllObjects];
+    if([self.specials objectForKey:date] != nil) {
+		[[self.specials objectForKey:date] removeAllObjects];
+	}
 	// Check for which type we need, and if it is the showTypes array.
 	
 	if([self.showTypes containsObject:@"Food"] && [type isEqualToString:@"Food"])
@@ -160,18 +165,12 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 
 /**
- * Find the Index for a particular date in the in dateIndex Array
- */
--(NSUInteger)indexOfDate:(NSDate *) date {
-	return [[self dateIndex] indexOfObject:date];
-}
-
-/**
  * Returns a New Date from the current date + the number of days specified.
  */
 -(NSDate *) getCurrentDatePlusDays: (NSUInteger) days {
 	return [self.currentDate dateByAddingTimeInterval:60*60*24*days];
 }
+
 
 /**
  * Returns a New Date from the date specified + the number of days specified.
@@ -202,6 +201,17 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	
 	// Check that the query returned something
 	if(webSpecials.count > 0) {
+		if([self.specials objectForKey:date] != nil) {
+			NSLog(@"Added Special %@",date);
+			NSLog(@"specials: %@",self.specials);
+			NSMutableArray * array = [self.specials objectForKey:date];
+			[array addObjectsFromArray:webSpecials];
+			[self.specials setObject:array forKey:date];
+		} else {
+			[[self dateKeys] addObject:date];
+			[self.specials setObject:[webSpecials mutableCopy] forKey:date];
+		}
+		/*
 		NSUInteger index = [self indexOfDate:date];
 		if(index != NSNotFound) {
 			// Add to a previous section
@@ -210,17 +220,21 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 			// If we do not have content for the current date create a new "section"
 			[self.dateIndex addObject:date];
 			[self.specials addObject:webSpecials];
+		 */
 		}
+		
+		// Sort keys
+		[self.dateKeys sortUsingSelector:@selector(compare:)];
 		// Reload the View
 		[[self collectionView] reloadData];
-	}
 }
 
 #pragma mark -
 #pragma mark Collection View
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return [[self.specials objectAtIndex:section] count];
+	
+	return [[self.specials objectForKey:[[self dateKeys] objectAtIndex:section]] count];
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -237,7 +251,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 		[formatter setDateFormat:@"EEEE MMMM dd"];
 		
 		// Get the Date for that section
-		NSString *title = [formatter stringFromDate:[self.dateIndex objectAtIndex:indexPath.section]];
+		NSString *title = [formatter stringFromDate:[self.dateKeys objectAtIndex:indexPath.section]];
 		
 		// Get View and set
 		UITextView * textView = (UITextView *) [headerView viewWithTag:99];
@@ -262,7 +276,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     cell.contentView.layer.masksToBounds = YES;
 
 	// Get the Special
-	MMSpecial *special = [[self.specials objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
+	MMSpecial *special = [[self.specials objectForKey:[self.dateKeys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.item];
 	
 	// Load the Image in
 	UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
@@ -286,7 +300,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-	return self.dateIndex.count;
+	return [self.dateKeys count];
 }
 
 #pragma mark - 
@@ -303,10 +317,10 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	int currentDateIndex = 0;
 	
 	// We don't need to reload since we are removing things...
-	for (NSDate * date in self.dateIndex) {
+	for (NSDate * date in self.dateKeys) {
 		
 		// Section
-		NSMutableArray * currentDateIndexArray = [self.specials objectAtIndex:currentDateIndex];
+		NSMutableArray * currentDateIndexArray = [self.specials objectForKey:date];
 		
 		// Set of Items needing to be removed
 		NSMutableIndexSet * set = [[NSMutableIndexSet alloc] init];
@@ -343,7 +357,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 		[[self showTypes] addObject:type];
 		
 		// Reload all the dates for the type added, since it will be removed at this time.
-		for (NSDate * date in self.dateIndex) {
+		for (NSDate * date in self.dateKeys) {
 			[self loadDate:date forType:type];
 		}
 		// Refresh View
