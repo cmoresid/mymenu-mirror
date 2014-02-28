@@ -136,14 +136,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 - (void)loadDate:(NSDate *) date forType:(NSString *) type{
 	
 	// Show Indicator
-	
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
 	
-	
-	[self.dateKeys removeAllObjects];
-    if([self.specials objectForKey:date] != nil) {
-		[[self.specials objectForKey:date] removeAllObjects];
-	}
 	// Check for which type we need, and if it is the showTypes array.
 	
 	if([self.showTypes containsObject:@"Food"] && [type isEqualToString:@"Food"])
@@ -202,8 +196,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	// Check that the query returned something
 	if(webSpecials.count > 0) {
 		if([self.specials objectForKey:date] != nil) {
-			NSLog(@"Added Special %@",date);
-			NSLog(@"specials: %@",self.specials);
 			NSMutableArray * array = [self.specials objectForKey:date];
 			[array addObjectsFromArray:webSpecials];
 			[self.specials setObject:array forKey:date];
@@ -311,7 +303,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
  */
 -(void)removeShowType:(NSString *) type {
 	[[self showTypes] removeObject:type];
-	
 	NSUInteger categoryId = [types indexOfObject:type];
 	
 	int currentDateIndex = 0;

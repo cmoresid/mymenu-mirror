@@ -20,9 +20,9 @@
 
 @interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate>
 
-@property(nonatomic) NSMutableArray * showTypes;
-@property(nonatomic) NSDate * selectedDate;
-@property(nonatomic) NSMutableArray * dateKeys;
+@property(atomic) NSMutableArray * showTypes;
+@property(atomic) NSDate * selectedDate;
+@property(atomic) NSMutableArray * dateKeys;
 @property(atomic) NSMutableDictionary * specials;
 @property(nonatomic,readwrite) NSDate * currentDate;
 
