@@ -24,7 +24,7 @@
 
   <color name="side_bar_dark">#4d4d4d</color>
   <color name="side_bar_light">#5b5b5b</color>
-  <color name="light_blue_highlight">#ecf9f7</color>
+  <color name="highlight">#ecf9f7</color>
   <color name="rating_background">#b3b3b3</color>
 
 </resources>
