@@ -22,6 +22,7 @@ import ca.mymenuapp.dagger.Modules;
 import com.f2prateek.ln.DebugLn;
 import com.f2prateek.ln.Ln;
 import dagger.ObjectGraph;
+import hugo.weaving.DebugLog;
 
 public class MyMenuApplication extends Application {
 
@@ -30,8 +31,7 @@ public class MyMenuApplication extends Application {
   @Override public void onCreate() {
     super.onCreate();
 
-    applicationGraph = ObjectGraph.create(Modules.list(this));
-    applicationGraph.inject(this);
+    buildObjectGraphAndInject();
 
     if (BuildConfig.DEBUG) {
       Ln.set(DebugLn.from(this));
@@ -39,6 +39,12 @@ public class MyMenuApplication extends Application {
       // Crashlytics.start(this);
       // Ln.set(new CrashlyticsLn());
     }
+  }
+
+  @DebugLog
+  public void buildObjectGraphAndInject() {
+    applicationGraph = ObjectGraph.create(Modules.list(this));
+    applicationGraph.inject(this);
   }
 
   public ObjectGraph getApplicationGraph() {
