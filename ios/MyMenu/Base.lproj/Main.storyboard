@@ -797,9 +797,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </tabBar>
                     <connections>
                         <segue destination="k2K-2H-fJm" kind="relationship" relationship="viewControllers" id="CaQ-TS-aWX"/>
+                        <segue destination="CBd-Gv-KGP" kind="relationship" relationship="viewControllers" id="tYH-ud-Bey"/>
                         <segue destination="Qf2-dp-tSr" kind="relationship" relationship="viewControllers" id="CF7-0B-fMf"/>
                         <segue destination="W4l-pq-p7Q" kind="relationship" relationship="viewControllers" id="DQM-Xu-eRE"/>
-                        <segue destination="CBd-Gv-KGP" kind="relationship" relationship="viewControllers" id="tYH-ud-Bey"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

@@ -76,6 +76,14 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 
 }
+#pragma mark -
+#pragma mark Searchbar Delegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+	// do the search here and update the view as needed.
+	NSLog(@"Search Clicked");
+}
+
+
 
 #pragma mark -
 #pragma mark Toolbar
@@ -111,7 +119,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
 	[searchBar setPlaceholder:@"Search..."];
 	[searchBar setShowsCancelButton:YES animated:YES];
-	
+	[searchBar setDelegate:self];
 	// Put it in a button
 	UIBarButtonItem  * searchBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
 	
