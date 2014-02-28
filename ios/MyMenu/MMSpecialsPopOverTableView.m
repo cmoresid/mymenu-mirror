@@ -7,6 +7,7 @@
 //
 
 #import "MMSpecialsPopOverTableView.h"
+#import "UIColor+MyMenuColors.h"
 
 @interface MMSpecialsPopOverTableView ()
 
@@ -26,6 +27,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	CGRect frame = self.tableView.frame;
+	CGSize size = [self contentSizeForViewInPopover];
+	[self.tableView setFrame:CGRectMake(frame.origin.x, frame.origin.y, size.width, size.height)];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -37,6 +42,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (CGSize)contentSizeForViewInPopover {
+    // Currently no way to obtain the width dynamically before viewWillAppear.
+    CGFloat width = 150.0;
+    CGRect rect = [self.tableView rectForSection:[self.tableView numberOfSections] - 1];
+    CGFloat height = CGRectGetMaxY(rect);
+    return (CGSize){width, height};
 }
 
 #pragma mark - Table view data source
@@ -55,7 +69,7 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    [cell setTintColor:[UIColor tealColor]];
 	// Get the Type
 	NSString * type =[self.specialItems objectAtIndex:indexPath.item];
 	

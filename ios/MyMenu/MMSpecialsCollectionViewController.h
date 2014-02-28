@@ -17,14 +17,22 @@
 
 #import <UIKit/UIKit.h>
 #import "MMDBFetcherDelegate.h"
+@class MMSpecialsPopOverTableView;
+@class MMSpecialsPopOverWeek;
 
-@interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate>
+@interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate,UIToolbarDelegate,UIPopoverControllerDelegate>
 
+@property(nonatomic) UIBarButtonItem * button1;
 @property(atomic) NSMutableArray * showTypes;
 @property(atomic) NSDate * selectedDate;
 @property(atomic) NSMutableArray * dateKeys;
 @property(atomic) NSMutableDictionary * specials;
 @property(nonatomic,readwrite) NSDate * currentDate;
+@property(nonatomic) IBOutlet MMSpecialsPopOverTableView * typesController;
+@property(nonatomic) IBOutlet MMSpecialsPopOverWeek * weekController;
+@property (nonatomic, strong) UIPopoverController *typesPopoverController;
+@property (nonatomic, strong) UIPopoverController *weekPopoverController;
+
 
 
 /**

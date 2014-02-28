@@ -7,6 +7,7 @@
 //
 
 #import "MMSpecialsPopOverWeek.h"
+#import "UIColor+MyMenuColors.h"
 
 @interface MMSpecialsPopOverWeek ()
 
@@ -30,7 +31,7 @@
 	
 	CGRect frame = self.tableView.frame;
 	CGSize size = [self contentSizeForViewInPopover];
-	[self.tableView setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, size.height)];
+	[self.tableView setFrame:CGRectMake(frame.origin.x, frame.origin.y, size.width, size.height)];
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
  
@@ -80,7 +81,7 @@
 	
 	// Get the Date for that section
 	NSString *title = [formatter stringFromDate:[self.weeks objectAtIndex:indexPath.item]];
-	
+	[cell setTintColor:[UIColor tealColor]];
     [cell.textLabel setText:title];
     return cell;
 }

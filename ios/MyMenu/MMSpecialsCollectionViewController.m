@@ -22,6 +22,7 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "MMSpecialsPopOverTableView.h"
 #import "MMSpecialsPopOverWeek.h"
+#import "UIColor+MyMenuColors.h"
 
 @interface MMSpecialsCollectionViewController () {
 	NSArray const * types;
@@ -41,14 +42,19 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
     if (self) {
         // Custom initialization
+		
+
 	}
 
     return self;
 }
 
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[self setupToolbar];
 	// Setup the Types we Can filter.
 	// These need to be in this order, Food,Drinks,Dessert represent type in the database by 1,2,3.
 	types = [NSArray arrayWithObjects:@"Food",@"Drinks",@"Dessert", nil];
@@ -70,6 +76,107 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 
 }
+
+#pragma mark -
+#pragma mark Toolbar
+
+// Delegate method.
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
+{
+    return UIBarPositionTopAttached; //or UIBarPositionTopAttached
+}
+
+/**
+ * Sets up the custom toolbar with all buttons, search bar and adds it to the view.
+ */
+-(void)setupToolbar {
+	
+	CGRect rect = self.view.frame;
+	
+	// Adjust for Toolbar and bottom bar.
+	[self.collectionView setContentInset:UIEdgeInsetsMake(64, 0, 64, 0)];
+	
+	//create toolbar and set origin and dimensions
+	UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
+	[toolbar setBarTintColor:[UIColor darkTealColor]];
+	[toolbar setTintColor:[UIColor whiteColor]];
+	[toolbar setDelegate:self];
+	
+	//create buttons and set their corresponding selectorsn
+	UIBarButtonItem *buttonFilter = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filter:)];
+	UIBarButtonItem *buttonWeek = [[UIBarButtonItem alloc] initWithTitle:@"Week" style:UIBarButtonItemStylePlain target:self action:@selector(week:)];
+	UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+	
+	// Search Bar Creation
+	UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+	[searchBar setPlaceholder:@"Search..."];
+	[searchBar setShowsCancelButton:YES animated:YES];
+	
+	// Put it in a button
+	UIBarButtonItem  * searchBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
+	
+	// Adjust for right margin
+	UIBarButtonItem *negativeSeperator = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+	negativeSeperator.width = -18;
+	
+	//add buttons to the toolbar
+	[toolbar setItems:[NSArray arrayWithObjects:buttonFilter, buttonWeek,flexibleSpace,searchBarButtonItem,negativeSeperator, nil]];
+	[toolbar setFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.width, [[UIScreen mainScreen] bounds].size.height, 44)];
+	
+	//add toolbar to the main view
+	[self.view addSubview:toolbar];
+	
+	
+}
+/**
+ * Loads the popover for the user when they click filter
+ */
+-(void)filter:(UIBarButtonItem*)sender {
+	if ([self.typesPopoverController isPopoverVisible]) {
+		[self.typesPopoverController dismissPopoverAnimated:YES];
+	} else {
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+	self.typesController = [storyboard instantiateViewControllerWithIdentifier:@"SpecialsTypes"];
+	
+	// Setup view
+	[self.typesController setSpecialItems:types];
+	[self.typesController setSpecialsCollectionController:self];
+	
+	self.typesPopoverController = [[UIPopoverController alloc] initWithContentViewController:self.typesController];
+		
+	// show view
+	[self.typesPopoverController setDelegate:self];
+	[self.typesPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+	}
+}
+
+/**
+ * Loads the popover when the user clicks the week button
+ */
+-(void)week:(UIBarButtonItem *)sender {
+	if ([self.weekPopoverController isPopoverVisible]) {
+		[self.weekPopoverController dismissPopoverAnimated:YES];
+	} else {
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+	self.weekController = [storyboard instantiateViewControllerWithIdentifier:@"SpecialsWeek"];
+	
+	// Setup the view
+	NSMutableArray * weeks = [[NSMutableArray alloc] init];
+	for(int i =0; i < 10; i ++) {
+		[weeks addObject:[self getCurrentDatePlusDays:i*7]];
+	}
+	[self.weekController setWeeks:weeks];
+	[self.weekController setSelectedWeek:[weeks indexOfObject:self.selectedDate]];
+	[self.weekController setSpecialsCollectionController:self];
+	self.weekPopoverController = [[UIPopoverController alloc] initWithContentViewController:self.weekController];
+	
+	// Show the view using us as delegate
+	[self.weekPopoverController setDelegate:self];
+	[self.weekPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+	}
+}
+
+
 
 #pragma mark -
 #pragma mark Helper Functions
@@ -263,7 +370,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 
     // Rounded Corners
-    cell.contentView.backgroundColor = [UIColor whiteColor];
+    cell.contentView.backgroundColor = [UIColor tealColor];
     cell.contentView.layer.cornerRadius = 5;
     cell.contentView.layer.masksToBounds = YES;
 
