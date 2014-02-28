@@ -17,13 +17,23 @@
 
 #import <UIKit/UIKit.h>
 #import "MMDBFetcherDelegate.h"
+@class MMSpecialsPopOverTableView;
+@class MMSpecialsPopOverWeek;
 
-@interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate>
+@interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate,UIToolbarDelegate,UIPopoverControllerDelegate>
 
-@property(nonatomic) NSMutableArray * showTypes;
-@property(nonatomic) NSMutableArray * dateIndex;
-@property(atomic) NSMutableArray * specials;
+@property(nonatomic) UIBarButtonItem * button1;
+@property(atomic) NSMutableArray * showTypes;
+@property(atomic) NSDate * selectedDate;
+@property(atomic) NSMutableArray * dateKeys;
+@property(atomic) NSMutableDictionary * specials;
 @property(nonatomic,readwrite) NSDate * currentDate;
+@property(nonatomic) IBOutlet MMSpecialsPopOverTableView * typesController;
+@property(nonatomic) IBOutlet MMSpecialsPopOverWeek * weekController;
+@property (nonatomic, strong) UIPopoverController *typesPopoverController;
+@property (nonatomic, strong) UIPopoverController *weekPopoverController;
+
+
 
 /**
  * Adds a Special type to show, and reloads the view as Needed.
@@ -39,5 +49,7 @@
  * Checks if a Type is "Currently" being displayed.
  */
 -(bool)containsShowType:(NSString *)type;
+
+-(void)loadWeek:(NSDate *)date;
 
 @end

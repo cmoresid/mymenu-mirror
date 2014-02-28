@@ -21,6 +21,8 @@
 #import "MMDBFetcher.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "MMSpecialsPopOverTableView.h"
+#import "MMSpecialsPopOverWeek.h"
+#import "UIColor+MyMenuColors.h"
 
 @interface MMSpecialsCollectionViewController () {
 	NSArray const * types;
@@ -40,15 +42,19 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
     if (self) {
         // Custom initialization
+		
+
 	}
 
     return self;
 }
 
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+	[self setupToolbar];
 	// Setup the Types we Can filter.
 	// These need to be in this order, Food,Drinks,Dessert represent type in the database by 1,2,3.
 	types = [NSArray arrayWithObjects:@"Food",@"Drinks",@"Dessert", nil];
@@ -57,8 +63,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	[self setShowTypes:[NSMutableArray arrayWithObjects:@"Food",@"Drinks",@"Dessert", nil]];
 	
 	// Create Array For Holding Specials and the Date Index (Headers)
-	[self setSpecials:[[NSMutableArray alloc] init]];
-	[self setDateIndex:[[NSMutableArray alloc]init]];
+	[self setSpecials:[[NSMutableDictionary alloc] init]];
+	[self setDateKeys:[[NSMutableArray alloc]init]];
 	
 	// Initialize to the current Day
 	[self setCurrentDate:[NSDate date]];
@@ -66,13 +72,137 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	// Delegate our self to the db fetcher.
     [MMDBFetcher get].delegate = self;
 
-	// Load the first 5 Days
-    // set today as selected
-	[self loadDate:self.currentDate];
-	[self loadDate:[self getCurrentDatePlusDays:1]];
-	[self loadDate:[self getCurrentDatePlusDays:2]];
-	[self loadDate:[self getCurrentDatePlusDays:3]];
-	[self loadDate:[self getCurrentDatePlusDays:4]];
+	[self loadWeek:[self currentDate]];
+
+
+}
+#pragma mark -
+#pragma mark Searchbar Delegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+	// do the search here and update the view as needed.
+	NSLog(@"Search Clicked");
+}
+
+
+
+#pragma mark -
+#pragma mark Toolbar
+
+// Delegate method.
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
+{
+    return UIBarPositionTopAttached; //or UIBarPositionTopAttached
+}
+
+/**
+ * Sets up the custom toolbar with all buttons, search bar and adds it to the view.
+ */
+-(void)setupToolbar {
+	
+	CGRect rect = self.view.frame;
+	
+	// Adjust for Toolbar and bottom bar.
+	[self.collectionView setContentInset:UIEdgeInsetsMake(64, 0, 64, 0)];
+	
+	//create toolbar and set origin and dimensions
+	UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
+	[toolbar setBarTintColor:[UIColor darkTealColor]];
+	[toolbar setTintColor:[UIColor whiteColor]];
+	[toolbar setDelegate:self];
+	
+	//create buttons and set their corresponding selectorsn
+	UIBarButtonItem *buttonFilter = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filter:)];
+	UIBarButtonItem *buttonWeek = [[UIBarButtonItem alloc] initWithTitle:@"Week" style:UIBarButtonItemStylePlain target:self action:@selector(week:)];
+	UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+	
+	// Search Bar Creation
+	UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+	[searchBar setPlaceholder:@"Search..."];
+	[searchBar setShowsCancelButton:YES animated:YES];
+	[searchBar setDelegate:self];
+	// Put it in a button
+	UIBarButtonItem  * searchBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
+	
+	// Adjust for right margin
+	UIBarButtonItem *negativeSeperator = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+	negativeSeperator.width = -18;
+	
+	//add buttons to the toolbar
+	[toolbar setItems:[NSArray arrayWithObjects:buttonFilter, buttonWeek,flexibleSpace,searchBarButtonItem,negativeSeperator, nil]];
+	[toolbar setFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.width, [[UIScreen mainScreen] bounds].size.height, 44)];
+	
+	//add toolbar to the main view
+	[self.view addSubview:toolbar];
+	
+	
+}
+/**
+ * Loads the popover for the user when they click filter
+ */
+-(void)filter:(UIBarButtonItem*)sender {
+	if ([self.typesPopoverController isPopoverVisible]) {
+		[self.typesPopoverController dismissPopoverAnimated:YES];
+	} else {
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+	self.typesController = [storyboard instantiateViewControllerWithIdentifier:@"SpecialsTypes"];
+	
+	// Setup view
+	[self.typesController setSpecialItems:types];
+	[self.typesController setSpecialsCollectionController:self];
+	
+	self.typesPopoverController = [[UIPopoverController alloc] initWithContentViewController:self.typesController];
+		
+	// show view
+	[self.typesPopoverController setDelegate:self];
+	[self.typesPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+	}
+}
+
+/**
+ * Loads the popover when the user clicks the week button
+ */
+-(void)week:(UIBarButtonItem *)sender {
+	if ([self.weekPopoverController isPopoverVisible]) {
+		[self.weekPopoverController dismissPopoverAnimated:YES];
+	} else {
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+	self.weekController = [storyboard instantiateViewControllerWithIdentifier:@"SpecialsWeek"];
+	
+	// Setup the view
+	NSMutableArray * weeks = [[NSMutableArray alloc] init];
+	for(int i =0; i < 10; i ++) {
+		[weeks addObject:[self getCurrentDatePlusDays:i*7]];
+	}
+	[self.weekController setWeeks:weeks];
+	[self.weekController setSelectedWeek:[weeks indexOfObject:self.selectedDate]];
+	[self.weekController setSpecialsCollectionController:self];
+	self.weekPopoverController = [[UIPopoverController alloc] initWithContentViewController:self.weekController];
+	
+	// Show the view using us as delegate
+	[self.weekPopoverController setDelegate:self];
+	[self.weekPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+	}
+}
+
+
+
+#pragma mark -
+#pragma mark Helper Functions
+
+/**
+ * Loads 7 days from the date specified
+ */
+-(void)loadWeek:(NSDate *)date {
+	// Loads 7 days from the Date Specified
+	[self setSelectedDate:date];
+	
+	// Remove all specials first.
+	[[self dateKeys] removeAllObjects];
+	[[self specials] removeAllObjects];
+	[self.collectionView reloadData];
+	for (int i = 0; i < 7; i++) {
+		[self loadDate:[self getDate:date PlusDays:i]];
+	}
 
 }
 
@@ -87,9 +217,9 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 - (void)loadDate:(NSDate *) date {
 
 	// Remove All Objects for the current Date if it exsits
-	NSUInteger index = [self indexOfDate:date];
-    if(index != NSNotFound) {
-		[[self.specials objectAtIndex:index] removeAllObjects];
+	[self.dateKeys removeObjectIdenticalTo:date];
+    if([self.specials objectForKey:date] != nil) {
+		[[self.specials objectForKey:date] removeAllObjects];
 	}
 	// Refresh the View
     [self.collectionView reloadData];
@@ -144,18 +274,20 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 
 /**
- * Find the Index for a particular date in the in dateIndex Array
- */
--(NSUInteger)indexOfDate:(NSDate *) date {
-	return [[self dateIndex] indexOfObject:date];
-}
-
-/**
  * Returns a New Date from the current date + the number of days specified.
  */
 -(NSDate *) getCurrentDatePlusDays: (NSUInteger) days {
 	return [self.currentDate dateByAddingTimeInterval:60*60*24*days];
 }
+
+
+/**
+ * Returns a New Date from the date specified + the number of days specified.
+ */
+-(NSDate *) getDate:(NSDate *) date PlusDays:(NSUInteger) days {
+	return [date dateByAddingTimeInterval:60*60*24*days];
+}
+
 
 #pragma mark -
 #pragma mark DBFetcherDelegate Methods
@@ -178,6 +310,15 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	
 	// Check that the query returned something
 	if(webSpecials.count > 0) {
+		if([self.specials objectForKey:date] != nil) {
+			NSMutableArray * array = [self.specials objectForKey:date];
+			[array addObjectsFromArray:webSpecials];
+			[self.specials setObject:array forKey:date];
+		} else {
+			[[self dateKeys] addObject:date];
+			[self.specials setObject:[webSpecials mutableCopy] forKey:date];
+		}
+		/*
 		NSUInteger index = [self indexOfDate:date];
 		if(index != NSNotFound) {
 			// Add to a previous section
@@ -186,17 +327,21 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 			// If we do not have content for the current date create a new "section"
 			[self.dateIndex addObject:date];
 			[self.specials addObject:webSpecials];
+		 */
 		}
+		
+		// Sort keys
+		[self.dateKeys sortUsingSelector:@selector(compare:)];
 		// Reload the View
 		[[self collectionView] reloadData];
-	}
 }
 
 #pragma mark -
 #pragma mark Collection View
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return [[self.specials objectAtIndex:section] count];
+	
+	return [[self.specials objectForKey:[[self dateKeys] objectAtIndex:section]] count];
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -213,7 +358,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 		[formatter setDateFormat:@"EEEE MMMM dd"];
 		
 		// Get the Date for that section
-		NSString *title = [formatter stringFromDate:[self.dateIndex objectAtIndex:indexPath.section]];
+		NSString *title = [formatter stringFromDate:[self.dateKeys objectAtIndex:indexPath.section]];
 		
 		// Get View and set
 		UITextView * textView = (UITextView *) [headerView viewWithTag:99];
@@ -233,12 +378,12 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 
     // Rounded Corners
-    cell.contentView.backgroundColor = [UIColor whiteColor];
+    cell.contentView.backgroundColor = [UIColor tealColor];
     cell.contentView.layer.cornerRadius = 5;
     cell.contentView.layer.masksToBounds = YES;
 
 	// Get the Special
-	MMSpecial *special = [[self.specials objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
+	MMSpecial *special = [[self.specials objectForKey:[self.dateKeys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.item];
 	
 	// Load the Image in
 	UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
@@ -249,7 +394,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     UITextView *textDesc = (UITextView *) [cell viewWithTag:102];
     textView.text = special.name;
     textDesc.text = special.desc;
-    [textDesc sizeToFit];
+    //[textDesc sizeToFit];
 	
     return cell;
 }
@@ -262,7 +407,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-	return self.dateIndex.count;
+	return [self.dateKeys count];
 }
 
 #pragma mark - 
@@ -273,16 +418,15 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
  */
 -(void)removeShowType:(NSString *) type {
 	[[self showTypes] removeObject:type];
-	
 	NSUInteger categoryId = [types indexOfObject:type];
 	
 	int currentDateIndex = 0;
 	
 	// We don't need to reload since we are removing things...
-	for (NSDate * date in self.dateIndex) {
+	for (NSDate * date in self.dateKeys) {
 		
 		// Section
-		NSMutableArray * currentDateIndexArray = [self.specials objectAtIndex:currentDateIndex];
+		NSMutableArray * currentDateIndexArray = [self.specials objectForKey:date];
 		
 		// Set of Items needing to be removed
 		NSMutableIndexSet * set = [[NSMutableIndexSet alloc] init];
@@ -319,7 +463,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 		[[self showTypes] addObject:type];
 		
 		// Reload all the dates for the type added, since it will be removed at this time.
-		for (NSDate * date in self.dateIndex) {
+		for (NSDate * date in self.dateKeys) {
 			[self loadDate:date forType:type];
 		}
 		// Refresh View
@@ -345,14 +489,30 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
  */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	MMSpecialsPopOverTableView * popover = segue.destinationViewController;
-	[popover setSpecialItems:types];
-	[popover setSpecialsCollectionController:self];
+	id popover = segue.destinationViewController;
+	if([popover isKindOfClass:[MMSpecialsPopOverTableView class]]) {
+		
+		popover = (MMSpecialsPopOverTableView *)popover;
+		[popover setSpecialItems:types];
+		[popover setSpecialsCollectionController:self];
+		
+	} else if([popover isKindOfClass:[MMSpecialsPopOverWeek class]]) {
+		
+		popover = (MMSpecialsPopOverWeek *)popover;
+		NSMutableArray * weeks = [[NSMutableArray alloc] init];
+		for(int i =0; i < 10; i ++) {
+			[weeks addObject:[self getCurrentDatePlusDays:i*7]];
+		}
+		[popover setWeeks:weeks];
+		[popover setSelectedWeek:[weeks indexOfObject:self.selectedDate]];
+		[popover setSpecialsCollectionController:self];
+	}
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end
