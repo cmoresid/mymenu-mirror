@@ -37,6 +37,7 @@
 @property(nonatomic, weak) IBOutlet UISearchBar * search; // field for search by name
 @property(nonatomic, weak) IBOutlet UIButton * categoryButton; // filter by category buttton
 @property(nonatomic, weak) IBOutlet UICollectionView *collectionView; // the menu collection
+@property(nonatomic, weak) IBOutlet UINavigationBar *navigationBar;//the navigation bar at the top of the screen
 
 //- (IBAction)foodCategoryChanged:(UISegmentedControl *)sender;
 @end

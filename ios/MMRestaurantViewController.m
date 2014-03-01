@@ -47,13 +47,18 @@ MMMenuItem * touchedItem;
     return self;
 }
 
+// Delegate method.
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
+{
+    return UIBarPositionTopAttached; //or UIBarPositionTopAttached
+}
 
 - (void)viewDidLoad
 {	
     [super viewDidLoad];
-
     menuItems = [[NSArray alloc] init];
     [self.collectionView setDelegate:self];
+    self.navigationBar.delegate = self;
     _restName.text = _selectedRestaurant.businessname;
     _restNumber.text = _selectedRestaurant.phone;
     [[NSNotificationCenter defaultCenter] postNotificationName:kSelectedRestaurant
@@ -61,30 +66,23 @@ MMMenuItem * touchedItem;
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatter setMaximumFractionDigits:3];
+    [formatter setMaximumFractionDigits:2];
+    [formatter setMinimumFractionDigits:1];
     //NSLog(@"%@",[formatter  stringFromNumber:_selectedRestaurant.rating]);
 
-    for (UIView *subView in self.search.subviews)
-    {
+    for (UIView *subView in self.search.subviews){
         for (UIView *secondLevelSubview in subView.subviews){
-            if ([secondLevelSubview isKindOfClass:[UITextField class]])
-            {
+            if ([secondLevelSubview isKindOfClass:[UITextField class]]){
                 UITextField *searchBarTextField = (UITextField *)secondLevelSubview;
                 
                 //set font color here
-
                 searchBarTextField.textColor = [UIColor whiteColor];
                 searchBarTextField.font = [UIFont systemFontOfSize:22.0];
                 searchBarTextField.tintColor = [UIColor whiteColor];
                 searchBarTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search By Name" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-
-               
-                
                 break;
             }
-          
         }
-
     }
     
     [_restDescription  setText:_selectedRestaurant.desc];
@@ -95,8 +93,8 @@ MMMenuItem * touchedItem;
     _ratingView.backgroundColor = [UIColor lightBackgroundGray];
 	_ratingView.layer.cornerRadius = 17.5;
     NSString * rate =[formatter  stringFromNumber:_selectedRestaurant.rating];
-    //NSNumber * rate = _selectedRestaurant.rating;
-    if ([rate isEqualToString:@"0"]){
+
+    if ([rate isEqualToString:@".0"]){
         rate = @"N/A";
     }
     _restRating.text = rate;
@@ -145,7 +143,8 @@ MMMenuItem * touchedItem;
         UIView * labelBack = (UIView * ) [cell viewWithTag:106];
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-        [formatter setMaximumFractionDigits:3];
+        [formatter setMaximumFractionDigits:1];
+        [formatter setMinimumFractionDigits:1];
         NSNumberFormatter *formatterCost = [[NSNumberFormatter alloc] init];
         [formatterCost setRoundingMode:NSNumberFormatterRoundHalfUp];
         [formatterCost setMaximumFractionDigits:3];

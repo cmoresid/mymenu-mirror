@@ -27,6 +27,7 @@
 @property(nonatomic, weak) IBOutlet UITableView * tableView;
 @property (nonatomic, weak) IBOutlet UIButton * ratingButton;
 @property (nonatomic, weak) IBOutlet UIScrollView * scrollView;
+@property (nonatomic, weak) IBOutlet UINavigationBar * navigationBar;
 
 
 - (IBAction)shareViaFacebook:(id)sender;
