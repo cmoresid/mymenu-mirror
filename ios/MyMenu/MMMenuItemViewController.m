@@ -40,11 +40,18 @@ MMUser * userProfile;
     return self;
 }
 
+// Delegate method.
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
+{
+    return UIBarPositionTopAttached; //or UIBarPositionTopAttached
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     mods = [[NSMutableArray alloc] init];
     self.reviewField.delegate = self;
+    self.navigationBar.delegate = self;
     // Register for keyboard notifications to allow
     // for view to scroll to text field
     [self registerForKeyboardNotifications];
