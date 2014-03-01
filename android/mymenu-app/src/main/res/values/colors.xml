@@ -17,7 +17,7 @@
   -->
 
 <resources>
-  
+
   <color name="top_bar">#46c8af</color>
   <color name="secondary_bar">#8fdecf</color>
   <color name="search_box_bg">#3baa95</color>

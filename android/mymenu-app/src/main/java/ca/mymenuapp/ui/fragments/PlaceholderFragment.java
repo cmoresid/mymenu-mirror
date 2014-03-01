@@ -50,6 +50,7 @@ public class PlaceholderFragment extends BaseFragment {
   @InjectView(R.id.menu_picture) ImageView picture;
 
   @Inject MyMenuApi myMenuApi;
+  @Inject Picasso picasso;
 
   /**
    * Returns a new instance of this fragment for the given section
@@ -74,7 +75,7 @@ public class PlaceholderFragment extends BaseFragment {
     myMenuApi.getMenu(sectionNumber, new Callback<Menu>() {
       @Override public void success(Menu menu, Response response) {
         label.setText(String.valueOf(menu));
-        Picasso.with(activityContext).load(menu.picture).into(picture);
+        picasso.load(menu.picture).into(picture);
       }
 
       @Override public void failure(RetrofitError retrofitError) {
