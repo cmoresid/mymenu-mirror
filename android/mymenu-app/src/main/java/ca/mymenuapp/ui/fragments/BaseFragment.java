@@ -22,10 +22,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import butterknife.ButterKnife;
-import com.f2prateek.dart.Dart;
 import ca.mymenuapp.dagger.scopes.ForActivity;
 import ca.mymenuapp.dagger.scopes.ForApplication;
 import ca.mymenuapp.ui.activities.BaseActivity;
+import com.f2prateek.dart.Dart;
 import com.squareup.otto.Bus;
 import javax.inject.Inject;
 

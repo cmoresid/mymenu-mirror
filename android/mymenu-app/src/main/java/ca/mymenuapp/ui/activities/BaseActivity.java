@@ -20,30 +20,36 @@ package ca.mymenuapp.ui.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.view.ViewGroup;
 import butterknife.ButterKnife;
-import ca.mymenuapp.BuildConfig;
-import ca.mymenuapp.MyMenuApplication;
-import ca.mymenuapp.dagger.ActivityModule;
+import ca.mymenuapp.MyMenuApp;
 import ca.mymenuapp.dagger.scopes.ForApplication;
-import ca.mymenuapp.dev.DevDrawer;
+import ca.mymenuapp.ui.ActivityModule;
+import ca.mymenuapp.ui.AppContainer;
 import com.f2prateek.dart.Dart;
 import com.squareup.otto.Bus;
 import dagger.ObjectGraph;
 import javax.inject.Inject;
 
+/**
+ * BaseActivity.
+ */
 public class BaseActivity extends Activity {
 
   private ObjectGraph activityGraph;
   @Inject Bus bus;
   @Inject @ForApplication Context applicationContext;
 
+  @Inject AppContainer appContainer;
+  private ViewGroup container;
+
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    activityGraph = ((MyMenuApplication) getApplication()).getApplicationGraph().plus(getModules());
+    activityGraph = ((MyMenuApp) getApplication()).getApplicationGraph().plus(getModules());
     activityGraph.inject(this);
+
+    container = appContainer.get(this, (MyMenuApp) getApplication());
 
     Dart.inject(this);
   }
@@ -58,27 +64,8 @@ public class BaseActivity extends Activity {
     super.onPause();
   }
 
-  @Override
-  protected void onPostCreate(Bundle savedInstanceState) {
-    super.onPostCreate(savedInstanceState);
-    if (BuildConfig.DEBUG) {
-      DevDrawer devDrawer = new DevDrawer(this);
-      devDrawer.wrapInside(this);
-    }
-  }
-
-  @Override public void setContentView(int layoutResID) {
-    super.setContentView(layoutResID);
-    injectViews();
-  }
-
-  @Override public void setContentView(View view) {
-    super.setContentView(view);
-    injectViews();
-  }
-
-  @Override public void setContentView(View view, ViewGroup.LayoutParams params) {
-    super.setContentView(view, params);
+  public void inflateView(int layoutResourceId) {
+    getLayoutInflater().inflate(layoutResourceId, container);
     injectViews();
   }
 

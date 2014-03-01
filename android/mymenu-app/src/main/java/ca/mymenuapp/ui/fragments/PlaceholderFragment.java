@@ -21,10 +21,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.InjectView;
+import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.R;
+import ca.mymenuapp.model.Menu;
 import com.f2prateek.dart.InjectExtra;
+import com.f2prateek.ln.Ln;
+import com.squareup.picasso.Picasso;
+import javax.inject.Inject;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -37,7 +46,11 @@ public class PlaceholderFragment extends BaseFragment {
   public static final String ARG_SECTION_NUMBER = "section_number";
 
   @InjectExtra(ARG_SECTION_NUMBER) int sectionNumber;
-  @InjectView(R.id.section_label) TextView sectionLabel;
+  @InjectView(R.id.menu_label) TextView label;
+  @InjectView(R.id.menu_picture) ImageView picture;
+
+  @Inject MyMenuApi myMenuApi;
+  @Inject Picasso picasso;
 
   /**
    * Returns a new instance of this fragment for the given section
@@ -54,11 +67,22 @@ public class PlaceholderFragment extends BaseFragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_main, container, false);
+    return inflater.inflate(R.layout.fragment_placeholder, container, false);
   }
 
-  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-    sectionLabel.setText(String.valueOf(sectionNumber));
+  @Override public void onResume() {
+    super.onResume();
+    myMenuApi.getMenu(sectionNumber, new Callback<Menu>() {
+      @Override public void success(Menu menu, Response response) {
+        label.setText(String.valueOf(menu));
+        picasso.load(menu.picture).into(picture);
+      }
+
+      @Override public void failure(RetrofitError retrofitError) {
+        Ln.e(retrofitError.getCause());
+        label.setText(String.valueOf(retrofitError));
+      }
+    });
+    label.setText(String.valueOf(sectionNumber));
   }
 }
