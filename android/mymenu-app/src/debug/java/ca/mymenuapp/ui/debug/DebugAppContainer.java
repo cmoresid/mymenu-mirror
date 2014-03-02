@@ -44,16 +44,7 @@ import butterknife.OnClick;
 import ca.mymenuapp.BuildConfig;
 import ca.mymenuapp.MyMenuApp;
 import ca.mymenuapp.R;
-import ca.mymenuapp.data.AnimationSpeed;
-import ca.mymenuapp.data.ApiEndpoint;
 import ca.mymenuapp.data.ApiEndpoints;
-import ca.mymenuapp.data.NetworkProxy;
-import ca.mymenuapp.data.PicassoDebugging;
-import ca.mymenuapp.data.PixelGridEnabled;
-import ca.mymenuapp.data.PixelRatioEnabled;
-import ca.mymenuapp.data.ScalpelEnabled;
-import ca.mymenuapp.data.ScalpelWireframeEnabled;
-import ca.mymenuapp.data.SeenDebugDrawer;
 import ca.mymenuapp.data.prefs.BooleanPreference;
 import ca.mymenuapp.data.prefs.IntPreference;
 import ca.mymenuapp.data.prefs.StringPreference;
@@ -78,6 +69,7 @@ import java.util.Date;
 import java.util.Set;
 import java.util.TimeZone;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 import retrofit.MockRestAdapter;
 import retrofit.RestAdapter;
@@ -87,6 +79,15 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static butterknife.ButterKnife.findById;
+import static ca.mymenuapp.data.DebugDataModule.DEBUG_ANIMATION_SPEED;
+import static ca.mymenuapp.data.DebugDataModule.DEBUG_API_ENDPOINT;
+import static ca.mymenuapp.data.DebugDataModule.DEBUG_DRAWER_SEEN;
+import static ca.mymenuapp.data.DebugDataModule.DEBUG_NETWORK_PROXY;
+import static ca.mymenuapp.data.DebugDataModule.DEBUG_PICASSO_DEBUGGING;
+import static ca.mymenuapp.data.DebugDataModule.DEBUG_PIXEL_GRID_ENABLED;
+import static ca.mymenuapp.data.DebugDataModule.DEBUG_PIXEL_RATIO_ENABLED;
+import static ca.mymenuapp.data.DebugDataModule.DEBUG_SCALPEL_ENABLED;
+import static ca.mymenuapp.data.DebugDataModule.DEBUG_SCALPEL_WIREFRAME_ENABLED;
 import static java.net.Proxy.Type.HTTP;
 import static retrofit.RestAdapter.LogLevel;
 
@@ -115,17 +116,55 @@ public class DebugAppContainer implements AppContainer {
   MyMenuApp app;
   Activity activity;
   Context drawerContext;
+  @InjectView(R.id.debug_drawer_layout) DrawerLayout drawerLayout;
+  @InjectView(R.id.debug_content) ViewGroup content;
+  @InjectView(R.id.madge_container) MadgeFrameLayout madgeFrameLayout;
+  @InjectView(R.id.debug_content) ScalpelFrameLayout scalpelFrameLayout;
+  @InjectView(R.id.debug_contextual_title) View contextualTitleView;
+  @InjectView(R.id.debug_contextual_list) LinearLayout contextualListView;
+  @InjectView(R.id.debug_network_endpoint) Spinner endpointView;
+  @InjectView(R.id.debug_network_endpoint_edit) View endpointEditView;
+  @InjectView(R.id.debug_network_delay) Spinner networkDelayView;
+  @InjectView(R.id.debug_network_variance) Spinner networkVarianceView;
+  @InjectView(R.id.debug_network_error) Spinner networkErrorView;
+  @InjectView(R.id.debug_network_proxy) Spinner networkProxyView;
+  @InjectView(R.id.debug_network_logging) Spinner networkLoggingView;
+  @InjectView(R.id.debug_ui_animation_speed) Spinner uiAnimationSpeedView;
+  @InjectView(R.id.debug_ui_pixel_grid) Switch uiPixelGridView;
+  @InjectView(R.id.debug_ui_pixel_ratio) Switch uiPixelRatioView;
+  @InjectView(R.id.debug_ui_scalpel) Switch uiScalpelView;
+  @InjectView(R.id.debug_ui_scalpel_wireframe) Switch uiScalpelWireframeView;
+  @InjectView(R.id.debug_build_name) TextView buildNameView;
+  @InjectView(R.id.debug_build_code) TextView buildCodeView;
+  @InjectView(R.id.debug_build_sha) TextView buildShaView;
+  @InjectView(R.id.debug_build_date) TextView buildDateView;
+  @InjectView(R.id.debug_device_make) TextView deviceMakeView;
+  @InjectView(R.id.debug_device_model) TextView deviceModelView;
+  @InjectView(R.id.debug_device_resolution) TextView deviceResolutionView;
+  @InjectView(R.id.debug_device_density) TextView deviceDensityView;
+  @InjectView(R.id.debug_device_release) TextView deviceReleaseView;
+  @InjectView(R.id.debug_device_api) TextView deviceApiView;
+  @InjectView(R.id.debug_picasso_indicators) Switch picassoIndicatorView;
+  @InjectView(R.id.debug_picasso_cache_size) TextView picassoCacheSizeView;
+  @InjectView(R.id.debug_picasso_cache_hit) TextView picassoCacheHitView;
+  @InjectView(R.id.debug_picasso_cache_miss) TextView picassoCacheMissView;
+  @InjectView(R.id.debug_picasso_decoded) TextView picassoDecodedView;
+  @InjectView(R.id.debug_picasso_decoded_total) TextView picassoDecodedTotalView;
+  @InjectView(R.id.debug_picasso_decoded_avg) TextView picassoDecodedAvgView;
+  @InjectView(R.id.debug_picasso_transformed) TextView picassoTransformedView;
+  @InjectView(R.id.debug_picasso_transformed_total) TextView picassoTransformedTotalView;
+  @InjectView(R.id.debug_picasso_transformed_avg) TextView picassoTransformedAvgView;
 
-  @Inject public DebugAppContainer(OkHttpClient client, Picasso picasso,
-      @ApiEndpoint StringPreference networkEndpoint, @NetworkProxy StringPreference networkProxy,
-      @AnimationSpeed IntPreference animationSpeed,
-      @PicassoDebugging BooleanPreference picassoDebugging,
-      @PixelGridEnabled BooleanPreference pixelGridEnabled,
-      @PixelRatioEnabled BooleanPreference pixelRatioEnabled,
-      @ScalpelEnabled BooleanPreference scalpelEnabled,
-      @ScalpelWireframeEnabled BooleanPreference scalpelWireframeEnabled,
-      @SeenDebugDrawer BooleanPreference seenDebugDrawer, RestAdapter restAdapter,
-      MockRestAdapter mockRestAdapter) {
+  @Inject public DebugAppContainer(OkHttpClient client, Picasso picasso, RestAdapter restAdapter,
+      MockRestAdapter mockRestAdapter, @Named(DEBUG_API_ENDPOINT) StringPreference networkEndpoint,
+      @Named(DEBUG_NETWORK_PROXY) StringPreference networkProxy,
+      @Named(DEBUG_ANIMATION_SPEED) IntPreference animationSpeed,
+      @Named(DEBUG_PICASSO_DEBUGGING) BooleanPreference picassoDebugging,
+      @Named(DEBUG_PIXEL_GRID_ENABLED) BooleanPreference pixelGridEnabled,
+      @Named(DEBUG_PIXEL_RATIO_ENABLED) BooleanPreference pixelRatioEnabled,
+      @Named(DEBUG_SCALPEL_ENABLED) BooleanPreference scalpelEnabled,
+      @Named(DEBUG_SCALPEL_WIREFRAME_ENABLED) BooleanPreference scalpelWireframeEnabled,
+      @Named(DEBUG_DRAWER_SEEN) BooleanPreference seenDebugDrawer) {
     this.client = client;
     this.picasso = picasso;
     this.networkEndpoint = networkEndpoint;
@@ -141,51 +180,36 @@ public class DebugAppContainer implements AppContainer {
     this.restAdapter = restAdapter;
   }
 
-  @InjectView(R.id.debug_drawer_layout) DrawerLayout drawerLayout;
-  @InjectView(R.id.debug_content) ViewGroup content;
+  private static String getDensityString(DisplayMetrics displayMetrics) {
+    switch (displayMetrics.densityDpi) {
+      case DisplayMetrics.DENSITY_LOW:
+        return "ldpi";
+      case DisplayMetrics.DENSITY_MEDIUM:
+        return "mdpi";
+      case DisplayMetrics.DENSITY_HIGH:
+        return "hdpi";
+      case DisplayMetrics.DENSITY_XHIGH:
+        return "xhdpi";
+      case DisplayMetrics.DENSITY_XXHIGH:
+        return "xxhdpi";
+      case DisplayMetrics.DENSITY_XXXHIGH:
+        return "xxxhdpi";
+      case DisplayMetrics.DENSITY_TV:
+        return "tvdpi";
+      default:
+        return "unknown";
+    }
+  }
 
-  @InjectView(R.id.madge_container) MadgeFrameLayout madgeFrameLayout;
-  @InjectView(R.id.debug_content) ScalpelFrameLayout scalpelFrameLayout;
-
-  @InjectView(R.id.debug_contextual_title) View contextualTitleView;
-  @InjectView(R.id.debug_contextual_list) LinearLayout contextualListView;
-
-  @InjectView(R.id.debug_network_endpoint) Spinner endpointView;
-  @InjectView(R.id.debug_network_endpoint_edit) View endpointEditView;
-  @InjectView(R.id.debug_network_delay) Spinner networkDelayView;
-  @InjectView(R.id.debug_network_variance) Spinner networkVarianceView;
-  @InjectView(R.id.debug_network_error) Spinner networkErrorView;
-  @InjectView(R.id.debug_network_proxy) Spinner networkProxyView;
-  @InjectView(R.id.debug_network_logging) Spinner networkLoggingView;
-
-  @InjectView(R.id.debug_ui_animation_speed) Spinner uiAnimationSpeedView;
-  @InjectView(R.id.debug_ui_pixel_grid) Switch uiPixelGridView;
-  @InjectView(R.id.debug_ui_pixel_ratio) Switch uiPixelRatioView;
-  @InjectView(R.id.debug_ui_scalpel) Switch uiScalpelView;
-  @InjectView(R.id.debug_ui_scalpel_wireframe) Switch uiScalpelWireframeView;
-
-  @InjectView(R.id.debug_build_name) TextView buildNameView;
-  @InjectView(R.id.debug_build_code) TextView buildCodeView;
-  @InjectView(R.id.debug_build_sha) TextView buildShaView;
-  @InjectView(R.id.debug_build_date) TextView buildDateView;
-
-  @InjectView(R.id.debug_device_make) TextView deviceMakeView;
-  @InjectView(R.id.debug_device_model) TextView deviceModelView;
-  @InjectView(R.id.debug_device_resolution) TextView deviceResolutionView;
-  @InjectView(R.id.debug_device_density) TextView deviceDensityView;
-  @InjectView(R.id.debug_device_release) TextView deviceReleaseView;
-  @InjectView(R.id.debug_device_api) TextView deviceApiView;
-
-  @InjectView(R.id.debug_picasso_indicators) Switch picassoIndicatorView;
-  @InjectView(R.id.debug_picasso_cache_size) TextView picassoCacheSizeView;
-  @InjectView(R.id.debug_picasso_cache_hit) TextView picassoCacheHitView;
-  @InjectView(R.id.debug_picasso_cache_miss) TextView picassoCacheMissView;
-  @InjectView(R.id.debug_picasso_decoded) TextView picassoDecodedView;
-  @InjectView(R.id.debug_picasso_decoded_total) TextView picassoDecodedTotalView;
-  @InjectView(R.id.debug_picasso_decoded_avg) TextView picassoDecodedAvgView;
-  @InjectView(R.id.debug_picasso_transformed) TextView picassoTransformedView;
-  @InjectView(R.id.debug_picasso_transformed_total) TextView picassoTransformedTotalView;
-  @InjectView(R.id.debug_picasso_transformed_avg) TextView picassoTransformedAvgView;
+  private static String getSizeString(long bytes) {
+    String[] units = new String[] { "B", "KB", "MB", "GB" };
+    int unit = 0;
+    while (bytes >= 1024) {
+      bytes /= 1024;
+      unit += 1;
+    }
+    return bytes + units[unit];
+  }
 
   @Override public ViewGroup get(final Activity activity, MyMenuApp app) {
     this.app = app;
@@ -526,37 +550,6 @@ public class DebugAppContainer implements AppContainer {
     } catch (Exception e) {
       throw new RuntimeException("Unable to apply animation speed.", e);
     }
-  }
-
-  private static String getDensityString(DisplayMetrics displayMetrics) {
-    switch (displayMetrics.densityDpi) {
-      case DisplayMetrics.DENSITY_LOW:
-        return "ldpi";
-      case DisplayMetrics.DENSITY_MEDIUM:
-        return "mdpi";
-      case DisplayMetrics.DENSITY_HIGH:
-        return "hdpi";
-      case DisplayMetrics.DENSITY_XHIGH:
-        return "xhdpi";
-      case DisplayMetrics.DENSITY_XXHIGH:
-        return "xxhdpi";
-      case DisplayMetrics.DENSITY_XXXHIGH:
-        return "xxxhdpi";
-      case DisplayMetrics.DENSITY_TV:
-        return "tvdpi";
-      default:
-        return "unknown";
-    }
-  }
-
-  private static String getSizeString(long bytes) {
-    String[] units = new String[] {"B", "KB", "MB", "GB"};
-    int unit = 0;
-    while (bytes >= 1024) {
-      bytes /= 1024;
-      unit += 1;
-    }
-    return bytes + units[unit];
   }
 
   private void showNewNetworkProxyDialog(final ProxyAdapter proxyAdapter) {
