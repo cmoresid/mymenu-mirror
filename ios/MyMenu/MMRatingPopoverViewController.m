@@ -48,26 +48,28 @@
     UITouch *touch = [touches anyObject];
     
     if (touch.view == self.ratingView) {
-        
-        // TODO: Actually make the touch work properly. Was just copying
-        // Mark's code to some extent. Doesn't quite work 100% here.
-        
         CGPoint touchLocation = [touch locationInView:self.ratingView];
         
-        double angleRadians = fabs(atan2(touchLocation.y, touchLocation.x) - atan2(-250.0, 0));
+        float centerX = CGRectGetMidX(self.ratingView.bounds);
+        float centerY = CGRectGetMidY(self.ratingView.bounds);
+        
+        float deltaX = touchLocation.x - centerX;
+        float deltaY = touchLocation.y - centerY;
+        
+        double angleRadians = fabs(atan2(deltaX, deltaY));
         
         if (angleRadians > 0.5 * M_PI)
             angleRadians = M_PI - angleRadians;
         
         double degrees = angleRadians * (180.0 / M_PI);
         
-        if (touchLocation.x >= 0 && touchLocation.y >= 0) {
+        if (touchLocation.x >= centerX && touchLocation.y >= centerY) {
             degrees = degrees + 180.0;
         }
-        else if (touchLocation.x >= 0) {
+        else if (touchLocation.x >= centerX) {
             degrees = 270.0 + (90.0 - fabs(degrees));
         }
-        else if (touchLocation.y >= 0) {
+        else if (touchLocation.y >= centerY) {
             degrees = 90.0 + (90.0 - fabs(degrees));
         }
         
