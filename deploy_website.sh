@@ -12,7 +12,7 @@ git clone git@github.com:UniversityOfAlberta/MyMenu.git $DIR
 
 # Build the Documentation for ios
 cd ios
-xcodebuild -workspace MyMenu.xcworkspace -scheme Documentation
+xcodebuild -workspace MyMenu.xcworkspace -scheme Documentation > /dev/null
 cd ..
 
 # Move working directory into temp folder
