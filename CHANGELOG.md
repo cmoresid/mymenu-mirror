@@ -1,5 +1,14 @@
 ## Change Log
 
+### upcoming (2014/03/02 04:19 +00:00)
+- [3385b5b](https://github.com/UniversityOfAlberta/MyMenu/commit/3385b5b96646633dc8706d3fe01f099179fdd764) Rename deploy.sh to release.sh (@f2prateek)
+
+### $1 (2014/03/02 04:13 +00:00)
+- [dc00111](https://github.com/UniversityOfAlberta/MyMenu/commit/dc00111320c4fbb0dd01bd2488a70b7be896e661) Make script executable (@f2prateek)
+- [b9643c1](https://github.com/UniversityOfAlberta/MyMenu/commit/b9643c1f6242596456b4b4891e3218a57ed8ea70) Suppress documentation generation (@f2prateek)
+- [69a2801](https://github.com/UniversityOfAlberta/MyMenu/commit/69a280147fdb96cb85e8d180132c3b405e7d7498) Automate deployment (@f2prateek)
+- [534a257](https://github.com/UniversityOfAlberta/MyMenu/commit/534a257dfb60d73e7eae106efbb8ad81cc704ff6) Add a deploy script (@f2prateek)
+
 ### 1.0.0 (2014/03/02 03:40 +00:00)
 - [2ce2b84](https://github.com/UniversityOfAlberta/MyMenu/commit/2ce2b84b89e91dfe00e04f07045b878388d3f1f1) Initial commit (@guana)
 - [d826693](https://github.com/UniversityOfAlberta/MyMenu/commit/d826693079c7120ef44ac11f2489fbed96070d9e) Initial commit. (@cmoresid)
@@ -28,8 +37,8 @@
 - [d3218f4](https://github.com/UniversityOfAlberta/MyMenu/commit/d3218f4b5819ece01b2e7bacc15d6fbeaf8f5a4f) Merge branch 'klafound-mergingreg' (@cmoresid)
 - [0ed6c29](https://github.com/UniversityOfAlberta/MyMenu/commit/0ed6c291ce166094e012eb42e824a94f035040fb) Merged kevin's changes in to master. (@cmoresid)
 - [901fc1a](https://github.com/UniversityOfAlberta/MyMenu/commit/901fc1af3bc8cebcecc06d93eae7068cbc1d0bb9) networking skeleton (@chrismoulds)
-- [fa0e81d](https://github.com/UniversityOfAlberta/MyMenu/commit/fa0e81d096375b6be16c982b56ebac7b2a32b313) Whitespace (@f2prateek)
 - [813e6b8](https://github.com/UniversityOfAlberta/MyMenu/commit/813e6b8bccd15fce4f1f64661806423240475dc4) added checkuser/validateuser/adduser (@chrismoulds)
+- [fa0e81d](https://github.com/UniversityOfAlberta/MyMenu/commit/fa0e81d096375b6be16c982b56ebac7b2a32b313) Whitespace (@f2prateek)
 - [#44](https://github.com/UniversityOfAlberta/MyMenu/pull/44) Merge pull request #44 from UniversityOfAlberta/chris/networks (@UniversityOfAlberta)
 - [2d453a1](https://github.com/UniversityOfAlberta/MyMenu/commit/2d453a1462fbc478b6176838e98b4ac6f6d2f97b) Added restaurants displaying in the list
 - [#45](https://github.com/UniversityOfAlberta/MyMenu/pull/45) Merge pull request #45 from UniversityOfAlberta/hassaan1/restaurant-list (@UniversityOfAlberta)
@@ -172,10 +181,8 @@
 - [0183dd9](https://github.com/UniversityOfAlberta/MyMenu/commit/0183dd937a26a5db46785542c55202b09ed8ddd9) Update project file. (@cmoresid)
 - [c16a027](https://github.com/UniversityOfAlberta/MyMenu/commit/c16a02783c2b4c73f253c53a550a0fc5116915f5) Updated restaurant cell to show distance and address. (@cmoresid)
 - [#107](https://github.com/UniversityOfAlberta/MyMenu/pull/107) Merge pull request #107 from UniversityOfAlberta/cmoresid-AddDistance (@UniversityOfAlberta)
-- [48e7032](https://github.com/UniversityOfAlberta/MyMenu/commit/48e70326fbb6536289c50efcc417c2d6429cdd7d) pushing to save merged changes (@klafond)
 - [9b8e1d8](https://github.com/UniversityOfAlberta/MyMenu/commit/9b8e1d832c7cbd86618eab986d08c552d6c73aa2) Added restaurant type to cell. (@cmoresid)
 - [#108](https://github.com/UniversityOfAlberta/MyMenu/pull/108) Merge pull request #108 from UniversityOfAlberta/cmoresid-AddDistance (@UniversityOfAlberta)
-- [88d83f5](https://github.com/UniversityOfAlberta/MyMenu/commit/88d83f5babba0771b8eecc5365cd7869d3b90a52) Merge branch 'master' of https://github.com/UniversityOfAlberta/MyMenu into klaf-restpage (@klafond)
 - [9c398ed](https://github.com/UniversityOfAlberta/MyMenu/commit/9c398ed7027bd07107fc44ce9d44b05e75a01996) added method getMenu to DBfetcher (@chrismoulds)
 - [#109](https://github.com/UniversityOfAlberta/MyMenu/pull/109) Merge pull request #109 from UniversityOfAlberta/menuitemsfetcher (@UniversityOfAlberta)
 - [f3bcbe1](https://github.com/UniversityOfAlberta/MyMenu/commit/f3bcbe10b1867678fb552e13730fcc132021fc4e) Added social media behavior. (@cmoresid)
