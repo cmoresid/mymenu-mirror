@@ -54,20 +54,25 @@
     }
 }
 
+/*
+ * Adaptation of Mark's code for the phone app.
+ */
 - (void)moveRatingWheelWithTouch:(CGPoint)touchLocation {
     float centerX = CGRectGetMidX(self.ratingView.bounds);
     float centerY = CGRectGetMidY(self.ratingView.bounds);
     
     float deltaX = touchLocation.x - centerX;
     float deltaY = touchLocation.y - centerY;
-    
-    double angleRadians = fabs(atan2(deltaX, deltaY));
+
+    double angleRadians = atan(deltaX / deltaY);
     
     if (angleRadians > 0.5 * M_PI)
         angleRadians = M_PI - angleRadians;
     
     double degrees = angleRadians * (180.0 / M_PI);
     
+    // Check which quadrant the touch occured in and adjust
+    // the angle appropriately.
     if (touchLocation.x >= centerX && touchLocation.y >= centerY) {
         degrees = degrees + 180.0;
     }

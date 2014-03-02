@@ -228,6 +228,9 @@ MMUser * userProfile;
     ratingPop.menuItem = self.touchedItem;
     ratingPop.menuRestaurant = self.selectedRestaurant;
     
+    // Check if a rating has been previously selected. If one has
+    // been, pre-select that value in the ratings wheel in the
+    // popover.
     if (self.rating != nil || [self.rating intValue] > 0) {
         ratingPop.currentRating = [self.rating floatValue] / 10.0f;
     }

@@ -18,6 +18,8 @@
 #import "MMRatingView.h"
 #include <math.h>
 
+const CGFloat kReferenceAngle = -90.0;
+
 @interface MMRatingView()
 
 - (CGFloat)degreesToRadians:(CGFloat)radians;
@@ -39,7 +41,10 @@
 }
 
 - (void)setWheelPercentage:(CGFloat)wheelPercentage {
-    _wheelPercentage = fmaxf(0.0f, fminf(1.0f, wheelPercentage));
+    // Bounded between 0.1 and 1.0
+    _wheelPercentage = fmaxf(0.1f, fminf(1.0f, wheelPercentage));
+    
+    // Update the integer representation of the wheel percentage
     _rating = [NSNumber numberWithInteger:((NSInteger)round(_wheelPercentage * 10))];
     
     [self setNeedsDisplay];
@@ -60,6 +65,7 @@
 - (void)drawRect:(CGRect)rect {
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
+    // Fill in the background color for the wheel.
 	if (_wheelBackgroundColor) {
 		[_wheelBackgroundColor set];
 		CGContextFillEllipseInRect(context, rect);
@@ -67,18 +73,23 @@
     
 	CGPoint center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
 	CGFloat radius = center.y;
-	CGFloat angle = [self degreesToRadians:(360.0f * self.wheelPercentage) + -90.0f];
+	CGFloat angle = [self degreesToRadians:(360.0f * self.wheelPercentage) + kReferenceAngle];
+    
+    // Create the points for the bezier curve
 	CGPoint points[3] = {
 		CGPointMake(center.x, 0.0f),
 		center,
 		CGPointMake(center.x + radius * cosf(angle), center.y + radius * sinf(angle))
 	};
     
+    
 	if (self.wheelFillColor) {
 		[self.wheelFillColor set];
 		if (self.wheelPercentage > 0.0f) {
+            // Create the bezier curve that represents the filled in
+            // portion of the wheels
 			CGContextAddLines(context, points, sizeof(points) / sizeof(points[0]));
-			CGContextAddArc(context, center.x, center.y, radius, [self degreesToRadians:-90.0], angle, false);
+			CGContextAddArc(context, center.x, center.y, radius, [self degreesToRadians:kReferenceAngle], angle, false);
 			CGContextDrawPath(context, kCGPathEOFill);
 		}
 	}
