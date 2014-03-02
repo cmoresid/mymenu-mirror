@@ -84,6 +84,8 @@
 		9BBDE03418A1A59D005EDA0B /* MMSpecialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMSpecialsViewController.m */; };
 		9BBDE03D18A1B6E9005EDA0B /* MMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */; };
 		9BBDE03E18A1B6E9005EDA0B /* MMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */; };
+		B022D81A18C2F6970077D908 /* MMRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B022D81918C2F6970077D908 /* MMRatingView.m */; };
+		B022D81D18C2FD410077D908 /* MMRatingPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B022D81C18C2FD410077D908 /* MMRatingPopoverViewController.m */; };
 		B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */; };
 		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
 		B0627E2C18A2CB3700EAA045 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2818A2CB3700EAA045 /* 19-gear.png */; };
@@ -215,6 +217,10 @@
 		9BBDE03218A1A59D005EDA0B /* MMSpecialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialsViewController.m; sourceTree = "<group>"; };
 		9BBDE03B18A1B6E9005EDA0B /* MMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSettingsViewController.h; sourceTree = "<group>"; };
 		9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSettingsViewController.m; sourceTree = "<group>"; };
+		B022D81818C2F6970077D908 /* MMRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRatingView.h; sourceTree = "<group>"; };
+		B022D81918C2F6970077D908 /* MMRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRatingView.m; sourceTree = "<group>"; };
+		B022D81B18C2FD410077D908 /* MMRatingPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRatingPopoverViewController.h; sourceTree = "<group>"; };
+		B022D81C18C2FD410077D908 /* MMRatingPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRatingPopoverViewController.m; sourceTree = "<group>"; };
 		B027167618A3527D0027BF4E /* MMMockDBFetcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMockDBFetcherDelegate.h; sourceTree = "<group>"; };
 		B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMockDBFetcherDelegate.m; sourceTree = "<group>"; };
 		B027167918A3574B0027BF4E /* MMDBFetcherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcherTests.m; sourceTree = "<group>"; };
@@ -323,6 +329,8 @@
 				837FE29318945CB800A0720E /* MMButton.m */,
 				17FEDDFB1896FF1400058ABD /* MMRoundedView.h */,
 				17FEDDFC1896FF1400058ABD /* MMRoundedView.m */,
+				B022D81818C2F6970077D908 /* MMRatingView.h */,
+				B022D81918C2F6970077D908 /* MMRatingView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -510,6 +518,8 @@
 				17EEFF4218AD6505003934FC /* MMMenuItemPopOverViewController.m */,
 				9BB40CAB18ADBE6B00B59A46 /* MMCategoryPopOverViewController.h */,
 				9BB40CAC18ADBE6B00B59A46 /* MMCategoryPopOverViewController.m */,
+				B022D81B18C2FD410077D908 /* MMRatingPopoverViewController.h */,
+				B022D81C18C2FD410077D908 /* MMRatingPopoverViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -724,6 +734,7 @@
 				17EEFF4318AD6505003934FC /* MMMenuItemPopOverViewController.m in Sources */,
 				171EA8A0189B094E002DEFEF /* MMRestrictionSwitch.m in Sources */,
 				B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */,
+				B022D81D18C2FD410077D908 /* MMRatingPopoverViewController.m in Sources */,
 				171EA89D189B043F002DEFEF /* MMDietaryRestrictionCell.m in Sources */,
 				1731DFB118A6D28B008BE05B /* MMMenuItemCell.m in Sources */,
 				837FE29418945CB800A0720E /* MMButton.m in Sources */,
@@ -739,6 +750,7 @@
 				83893EB718919AD400D36670 /* main.m in Sources */,
 				9BB40CAD18ADBE6B00B59A46 /* MMCategoryPopOverViewController.m in Sources */,
 				9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */,
+				B022D81A18C2F6970077D908 /* MMRatingView.m in Sources */,
 				17F6531D189D83F200D63D3D /* MMRestaurantViewController.m in Sources */,
 				B083AFD918A37CA200CDD0C9 /* MMNetworkClientProxy.m in Sources */,
 				B097D701189392FC00142F8D /* MMMainTabBarViewController.m in Sources */,

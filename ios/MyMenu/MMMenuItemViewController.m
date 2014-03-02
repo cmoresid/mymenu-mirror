@@ -15,7 +15,7 @@
 #import "MMDBFetcher.h"
 #import "MMUser.h"
 #import "MBProgressHUD.h"
-#import "MMMenuItemPopOverViewController.h"
+#import "MMRatingPopoverViewController.h"
 #import "MMMenuItemRating.h"
 
 #define kCurrentUser @"currentUser"
@@ -50,6 +50,7 @@ MMUser * userProfile;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     mods = [[NSMutableArray alloc] init];
+    self.rating = nil;
     self.reviewField.delegate = self;
     self.navigationBar.delegate = self;
     // Register for keyboard notifications to allow
@@ -222,19 +223,31 @@ MMUser * userProfile;
 }
 
 - (IBAction)ratingButton:(id)sender{
-    MMMenuItemPopOverViewController *ratingPop = [[MMMenuItemPopOverViewController alloc] init];
+    MMRatingPopoverViewController *ratingPop = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuItemRatingPopover"];
     
-    ratingPop = [self.storyboard instantiateViewControllerWithIdentifier:@"ratingPopOver"];
-    ratingPop.returnBlock = ^(NSInteger rating){
-        [self.ratingButton setTitle:[[NSString alloc] initWithFormat:@"Your Rating: %d", rating] forState:UIControlStateNormal];
+    ratingPop.menuItem = self.touchedItem;
+    ratingPop.menuRestaurant = self.selectedRestaurant;
+    
+    if (self.rating != nil || [self.rating intValue] > 0) {
+        ratingPop.currentRating = [self.rating floatValue] / 10.0f;
+    }
+    
+    ratingPop.selectedRating = ^(NSNumber *rating) {
+        self.rating = rating;
+        [self.ratingButton setTitle:[[NSString alloc] initWithFormat:@"Your Rating: %d", [rating integerValue]] forState:UIControlStateNormal];
         [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        ratingValue = rating;
+        
+        ratingValue = [rating integerValue];
+        [self.popOverController dismissPopoverAnimated:YES];
+    };
+    
+    ratingPop.cancelRating = ^(NSNumber *rating) {
         [self.popOverController dismissPopoverAnimated:YES];
     };
 
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:ratingPop];
     
-    popover.popoverContentSize = CGSizeMake(250, 200);
+    popover.popoverContentSize = CGSizeMake(500, 500);
     popover.delegate = self;
     
     self.popOverController = popover;
@@ -293,6 +306,7 @@ MMUser * userProfile;
 
 - (IBAction)clearButton:(id)sender{
     self.reviewField.text = @"Please enter your review here...";
+    self.rating = nil;
     [self.ratingButton setTitle:[[NSString alloc] initWithFormat:@"Rate This Item"] forState:UIControlStateNormal];
     [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }

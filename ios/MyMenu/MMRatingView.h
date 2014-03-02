@@ -17,29 +17,11 @@
 
 #import <UIKit/UIKit.h>
 
-/**
-* Colors for our color scheme as provided by the designer.
-*/
-@interface UIColor (MyMenuColors)
+@interface MMRatingView : UIView
 
-+ (UIColor *)tealColor;
-
-+ (UIColor *)darkTealColor;
-
-+ (UIColor *)lightTealColor;
-
-+ (UIColor *)orangeColor;
-
-+ (UIColor *)redColor;
-
-+ (UIColor *)sidebarBackgroundGray;
-
-+ (UIColor *)lightBackgroundGray;
-
-+ (UIColor *)lightBlueHighlight;
-
-+ (UIColor *)secondaryBlueBar;
-
-+ (UIColor *)whiteColor;
+@property(nonatomic, assign)   CGFloat  wheelPercentage;
+@property(nonatomic, readonly) NSNumber *rating;
+@property(nonatomic, strong)   UIColor  *wheelFillColor;
+@property(nonatomic, strong)   UIColor  *wheelBackgroundColor;
 
 @end

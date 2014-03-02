@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="E4e-Ge-d3g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="E4e-Ge-d3g">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -1641,34 +1641,101 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="7370" y="204"/>
         </scene>
-        <!--Menu Item Pop Over View Controller-->
-        <scene sceneID="tU2-uJ-ECM">
+        <!--Rating Popover View Controller-->
+        <scene sceneID="Qr4-eS-w6V">
             <objects>
-                <viewController storyboardIdentifier="ratingPopOver" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qgW-RC-ol9" customClass="MMMenuItemPopOverViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuItemRatingPopover" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uh9-eI-I3P" customClass="MMRatingPopoverViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="PVI-vo-bfr"/>
-                        <viewControllerLayoutGuide type="bottom" id="uAN-AW-PhL"/>
+                        <viewControllerLayoutGuide type="top" id="8JG-km-zfv"/>
+                        <viewControllerLayoutGuide type="bottom" id="rh1-nS-1Kl"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" placeholderIntrinsicWidth="250" placeholderIntrinsicHeight="200" id="cBl-9c-jQG">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="200"/>
+                    <view key="view" contentMode="scaleToFill" id="0YC-cI-9w1">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trs-63-X8E">
-                                <rect key="frame" x="203" y="0.0" width="37" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kIk-g2-85M">
+                                <rect key="frame" x="0.0" y="0.0" width="500" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Done">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doneSelected:" destination="qgW-RC-ol9" eventType="touchUpInside" id="2IA-Jc-k2I"/>
-                                </connections>
-                            </button>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eTL-S2-3iV">
-                                <rect key="frame" x="8" y="-22" width="167" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnk-rY-AvE">
+                                        <rect key="frame" x="450" y="7" width="37" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="submitReview:" destination="Uh9-eI-I3P" eventType="touchUpInside" id="Ojk-IB-fCl"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6z-4G-rV5">
+                                        <rect key="frame" x="11" y="8" width="48" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelReview:" destination="Uh9-eI-I3P" eventType="touchUpInside" id="jbZ-Nu-Dzw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="x6z-4G-rV5" secondAttribute="bottom" constant="5" id="AGA-4R-Ah4"/>
+                                    <constraint firstAttribute="trailing" secondItem="wnk-rY-AvE" secondAttribute="trailing" constant="13" id="EDP-be-vW2"/>
+                                    <constraint firstItem="wnk-rY-AvE" firstAttribute="top" secondItem="kIk-g2-85M" secondAttribute="top" constant="7" id="QN7-ob-X4f"/>
+                                    <constraint firstItem="x6z-4G-rV5" firstAttribute="leading" secondItem="kIk-g2-85M" secondAttribute="leading" constant="11" id="b6Q-NV-b5J"/>
+                                    <constraint firstItem="x6z-4G-rV5" firstAttribute="top" secondItem="kIk-g2-85M" secondAttribute="top" constant="8" id="wge-lF-LGv"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bGJ-Tw-t95" customClass="MMRatingView">
+                                <rect key="frame" x="107" y="162" width="300" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JkR-ol-wfa">
+                                <rect key="frame" x="14" y="55" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="YWS-KN-w2m"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Item" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSX-kg-wpj">
+                                <rect key="frame" x="108" y="58" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="Y83-33-bB2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1l-oV-MnF">
+                                <rect key="frame" x="110" y="101" width="84" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kIk-g2-85M" firstAttribute="top" secondItem="0YC-cI-9w1" secondAttribute="top" id="272-eR-KKq"/>
+                            <constraint firstAttribute="trailing" secondItem="kIk-g2-85M" secondAttribute="trailing" id="7ah-TU-TaG"/>
+                            <constraint firstAttribute="trailing" secondItem="bGJ-Tw-t95" secondAttribute="trailing" constant="93" id="8OO-DN-hl6"/>
+                            <constraint firstItem="S1l-oV-MnF" firstAttribute="leading" secondItem="JkR-ol-wfa" secondAttribute="trailing" constant="21" id="APZ-Ey-kOE"/>
+                            <constraint firstItem="rh1-nS-1Kl" firstAttribute="top" secondItem="bGJ-Tw-t95" secondAttribute="bottom" constant="38" id="Mkv-wz-YQH"/>
+                            <constraint firstItem="rh1-nS-1Kl" firstAttribute="top" secondItem="JkR-ol-wfa" secondAttribute="bottom" constant="370" id="VWe-rT-ySe"/>
+                            <constraint firstItem="bGJ-Tw-t95" firstAttribute="leading" secondItem="0YC-cI-9w1" secondAttribute="leading" constant="107" id="WxJ-tQ-426"/>
+                            <constraint firstItem="S1l-oV-MnF" firstAttribute="top" secondItem="fSX-kg-wpj" secondAttribute="bottom" constant="9" id="XGR-sc-03r"/>
+                            <constraint firstItem="JkR-ol-wfa" firstAttribute="top" secondItem="kIk-g2-85M" secondAttribute="bottom" constant="12" id="YSU-pW-S1a"/>
+                            <constraint firstItem="fSX-kg-wpj" firstAttribute="top" secondItem="kIk-g2-85M" secondAttribute="bottom" constant="15" id="apg-ui-RcT"/>
+                            <constraint firstItem="JkR-ol-wfa" firstAttribute="leading" secondItem="0YC-cI-9w1" secondAttribute="leading" constant="14" id="e71-l4-bLi"/>
+                            <constraint firstAttribute="trailing" secondItem="fSX-kg-wpj" secondAttribute="trailing" constant="18" id="fXH-mV-0FR"/>
+                            <constraint firstItem="bGJ-Tw-t95" firstAttribute="top" secondItem="S1l-oV-MnF" secondAttribute="bottom" constant="40" id="hpJ-6N-hJ8"/>
+                            <constraint firstItem="kIk-g2-85M" firstAttribute="leading" secondItem="0YC-cI-9w1" secondAttribute="leading" id="mX7-fz-3UT"/>
+                            <constraint firstItem="fSX-kg-wpj" firstAttribute="leading" secondItem="JkR-ol-wfa" secondAttribute="trailing" constant="19" id="uBm-d6-Pb2"/>
+                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -1677,12 +1744,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="ratingPicker" destination="eTL-S2-3iV" id="vsp-38-XYG"/>
+                        <outlet property="menuItemImage" destination="JkR-ol-wfa" id="IFk-4U-FtP"/>
+                        <outlet property="menuItemName" destination="fSX-kg-wpj" id="2ra-79-IGT"/>
+                        <outlet property="ratingView" destination="bGJ-Tw-t95" id="oWn-AU-Qdh"/>
+                        <outlet property="restaurantName" destination="S1l-oV-MnF" id="BNc-Tu-1ba"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FYu-LB-hBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aIG-Kv-fq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10156" y="528"/>
+            <point key="canvasLocation" x="10026" y="849"/>
         </scene>
         <!--Menu Item Pop Over View Controller-->
         <scene sceneID="tsO-uu-R2l">
