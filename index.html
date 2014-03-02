@@ -55,24 +55,7 @@
             <h3 id="building">Building</h3>
             <p>The code base is organized into three main folders <code>ios</code>, <code>android</code> and <code>design</code>.</p>
             <p>To deploy a release :</p>
-            <pre>
-# commit all changes
-
-# generate a changelog
-github-changes -o UniversityOfAlberta -r MyMenu -a
-
-# commit the changelog, and offically commit the release
-git add -A
-git commit -m 'Release version 1.0.0'
-git tag '1.0.0'
-
-# push upstream
-git push -u origin master
-git push --tags
-
-# deploy the website
-./deploy_website.sh
-            </pre>
+            <pre>./release.sh $version</pre>
 
             <h4 id="ios">iOS</h4>
             <p>This folder contains the source code for the iOS project. Dependencies are managed using <a href="http://cocoapods.org/">CocoaPods</a>. Be sure to use <code>MyMenu.xcworkspace</code> (not <code>MyMenu.xcodeproject</code>) when in <code>XCode</code> or building from the command line. Both XCode and AppCode will can be used.</p>
