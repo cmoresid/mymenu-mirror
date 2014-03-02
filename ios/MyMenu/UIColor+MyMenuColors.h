@@ -28,9 +28,9 @@
 
 + (UIColor *)lightTealColor;
 
-+ (UIColor *)orangeColor;
++ (UIColor *)accentOrangeColor;
 
-+ (UIColor *)redColor;
++ (UIColor *)accentRedColor;
 
 + (UIColor *)sidebarBackgroundGray;
 
@@ -39,7 +39,5 @@
 + (UIColor *)lightBlueHighlight;
 
 + (UIColor *)secondaryBlueBar;
-
-+ (UIColor *)whiteColor;
 
 @end

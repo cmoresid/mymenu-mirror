@@ -25,7 +25,7 @@
 #import "UIColor+MyMenuColors.h"
 
 @interface MMSpecialsCollectionViewController () {
-	NSArray const * types;
+	NSArray *types;
 }
 	@property(weak, nonatomic) IBOutlet UISegmentedControl *weekDayButtons;
 
@@ -98,9 +98,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
  * Sets up the custom toolbar with all buttons, search bar and adds it to the view.
  */
 -(void)setupToolbar {
-	
-	CGRect rect = self.view.frame;
-	
 	// Adjust for Toolbar and bottom bar.
 	[self.collectionView setContentInset:UIEdgeInsetsMake(64, 0, 64, 0)];
 	

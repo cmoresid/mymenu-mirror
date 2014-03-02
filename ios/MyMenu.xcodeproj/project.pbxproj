@@ -38,7 +38,6 @@
 		833C8C83189D9B85007CB562 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 833C8C82189D9B85007CB562 /* logo.png */; };
 		83655AA01891E2DF005EBF8A /* MapViewToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83655A9F1891E2DF005EBF8A /* MapViewToolbar.xib */; };
 		8373638A18C00CBD00608DC6 /* MMSpecialsPopOverWeek.m in Resources */ = {isa = PBXBuildFile; fileRef = 8373638918C00CBD00608DC6 /* MMSpecialsPopOverWeek.m */; };
-		8373638C18C00EC400608DC6 /* MMSpecialsPopOverWeek.h in Sources */ = {isa = PBXBuildFile; fileRef = 8373638B18C00CD000608DC6 /* MMSpecialsPopOverWeek.h */; };
 		8373638D18C00EC400608DC6 /* MMSpecialsPopOverWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373638918C00CBD00608DC6 /* MMSpecialsPopOverWeek.m */; };
 		837FE29418945CB800A0720E /* MMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FE29318945CB800A0720E /* MMButton.m */; };
 		83893EAB18919AD400D36670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAA18919AD400D36670 /* Foundation.framework */; };
@@ -88,7 +87,6 @@
 		B022D81D18C2FD410077D908 /* MMRatingPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B022D81C18C2FD410077D908 /* MMRatingPopoverViewController.m */; };
 		B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */; };
 		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
-		B0627E2C18A2CB3700EAA045 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2818A2CB3700EAA045 /* 19-gear.png */; };
 		B0627E2D18A2CB3700EAA045 /* 125-food.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2918A2CB3700EAA045 /* 125-food.png */; };
 		B0627E2E18A2CB3700EAA045 /* 172-pricetag.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */; };
 		B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2B18A2CB3700EAA045 /* 184-warning.png */; };
@@ -643,9 +641,7 @@
 				174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */,
 				17F9F80F18AC356F006B7DD0 /* twittershare.jpg in Resources */,
 				83893EC618919AD400D36670 /* Images.xcassets in Resources */,
-				B0627E2C18A2CB3700EAA045 /* 19-gear.png in Resources */,
 				83893EC618919AD400D36670 /* Images.xcassets in Resources */,
-				B0627E2C18A2CB3700EAA045 /* 19-gear.png in Resources */,
 				17F9F80D18AC3565006B7DD0 /* facebookshare.jpg in Resources */,
 				B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */,
 				1731DFAC18A59B0F008BE05B /* 06-magnify.png in Resources */,
@@ -717,7 +713,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8373638C18C00EC400608DC6 /* MMSpecialsPopOverWeek.h in Sources */,
 				8373638D18C00EC400608DC6 /* MMSpecialsPopOverWeek.m in Sources */,
 				9B776FDF18A564D00057B6E1 /* NSArray+MerchantSort.m in Sources */,
 				174FE0C218945E5900CB82C0 /* RestaurantCell.m in Sources */,
