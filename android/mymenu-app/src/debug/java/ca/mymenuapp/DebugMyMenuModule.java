@@ -21,6 +21,10 @@ import ca.mymenuapp.data.DebugDataModule;
 import ca.mymenuapp.ui.DebugUiModule;
 import dagger.Module;
 
+/**
+ * Entry point for all debugging {@link dagger.Module} classes. Used to override bindings in
+ * {@link ca.mymenuapp.MyMenuModule} for debug mode.
+ */
 @Module(
     addsTo = MyMenuModule.class,
     includes = {

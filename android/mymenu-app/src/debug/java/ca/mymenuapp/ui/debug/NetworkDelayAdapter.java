@@ -26,6 +26,9 @@ import ca.mymenuapp.ui.misc.BindableAdapter;
 
 import static butterknife.ButterKnife.findById;
 
+/**
+ * A {@link ca.mymenuapp.ui.misc.BindableAdapter} to displays choices for mocking network delay.
+ */
 class NetworkDelayAdapter extends BindableAdapter<Long> {
   private static final long[] VALUES = {
       250, 500, 1000, 2000, 3000

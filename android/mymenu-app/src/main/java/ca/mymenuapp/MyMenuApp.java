@@ -23,6 +23,11 @@ import com.f2prateek.ln.Ln;
 import dagger.ObjectGraph;
 import hugo.weaving.DebugLog;
 
+/**
+ * Custom {@link android.app.Application} instance.
+ * Sets up an {@link dagger.ObjectGraph} which is shared by the entire application.
+ * Also configures {@link com.f2prateek.ln.Ln}.
+ */
 public class MyMenuApp extends Application {
 
   private ObjectGraph applicationGraph;

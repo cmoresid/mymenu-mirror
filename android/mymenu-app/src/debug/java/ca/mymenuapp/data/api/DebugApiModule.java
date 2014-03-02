@@ -19,11 +19,11 @@ package ca.mymenuapp.data.api;
 
 import android.content.SharedPreferences;
 import ca.mymenuapp.MyMenuApi;
-import ca.mymenuapp.data.ApiEndpoint;
 import ca.mymenuapp.data.IsMockMode;
 import ca.mymenuapp.data.prefs.StringPreference;
 import dagger.Module;
 import dagger.Provides;
+import javax.inject.Named;
 import javax.inject.Singleton;
 import retrofit.Endpoint;
 import retrofit.Endpoints;
@@ -31,14 +31,16 @@ import retrofit.MockRestAdapter;
 import retrofit.RestAdapter;
 import retrofit.android.AndroidMockValuePersistence;
 
+import static ca.mymenuapp.data.DebugDataModule.DEBUG_API_ENDPOINT;
+
 @Module(
     complete = false,
     library = true,
-    overrides = true
-)
+    overrides = true)
 public final class DebugApiModule {
 
-  @Provides @Singleton Endpoint provideEndpoint(@ApiEndpoint StringPreference apiEndpoint) {
+  @Provides @Singleton
+  Endpoint provideEndpoint(@Named(DEBUG_API_ENDPOINT) StringPreference apiEndpoint) {
     return Endpoints.newFixedEndpoint(apiEndpoint.get());
   }
 

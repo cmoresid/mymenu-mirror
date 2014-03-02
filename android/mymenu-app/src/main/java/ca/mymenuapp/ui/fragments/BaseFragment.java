@@ -29,6 +29,13 @@ import com.f2prateek.dart.Dart;
 import com.squareup.otto.Bus;
 import javax.inject.Inject;
 
+/**
+ * Base Fragment for performing operations in all fragments.
+ * This injects us into the activity graph provided by
+ * {@link ca.mymenuapp.ui.activities.BaseActivity}, registers itself with the application
+ * {@link com.squareup.otto.Bus}, and sets up {@link com.f2prateek.dart.Dart} and
+ * {@link butterknife.ButterKnife}.
+ */
 public class BaseFragment extends Fragment {
 
   @Inject Bus bus;

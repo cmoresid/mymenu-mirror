@@ -18,6 +18,7 @@
 package ca.mymenuapp.ui;
 
 import android.content.Context;
+import ca.mymenuapp.MyMenuModule;
 import ca.mymenuapp.dagger.scopes.ForActivity;
 import ca.mymenuapp.ui.activities.BaseActivity;
 import ca.mymenuapp.ui.activities.MainActivity;
@@ -35,7 +36,7 @@ import javax.inject.Singleton;
         BaseFragment.class, PlaceholderFragment.class
     },
     complete = false,
-    addsTo = UiModule.class)
+    addsTo = MyMenuModule.class)
 public class ActivityModule {
   private final BaseActivity activity;
 

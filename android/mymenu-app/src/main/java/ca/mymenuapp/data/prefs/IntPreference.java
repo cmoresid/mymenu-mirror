@@ -19,15 +19,24 @@ package ca.mymenuapp.data.prefs;
 
 import android.content.SharedPreferences;
 
+/**
+ * A wrapper for working with int preferences.
+ */
 public class IntPreference {
   private final SharedPreferences preferences;
   private final String key;
   private final int defaultValue;
 
+  /**
+   * Initialize an int preference with the given key and 0 as default.
+   */
   public IntPreference(SharedPreferences preferences, String key) {
     this(preferences, key, 0);
   }
 
+  /**
+   * Initialize an int preference with the given key and the provided default value.
+   */
   public IntPreference(SharedPreferences preferences, String key, int defaultValue) {
     this.preferences = preferences;
     this.key = key;

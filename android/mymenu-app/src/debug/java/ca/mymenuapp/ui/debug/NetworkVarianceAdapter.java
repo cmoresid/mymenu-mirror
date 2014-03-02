@@ -26,6 +26,9 @@ import ca.mymenuapp.ui.misc.BindableAdapter;
 
 import static butterknife.ButterKnife.findById;
 
+/**
+ * A {@link ca.mymenuapp.ui.misc.BindableAdapter} to displays choices for mocking network variance.
+ */
 class NetworkVarianceAdapter extends BindableAdapter<Integer> {
   private static final int[] VALUES = {
       20, 40, 60

@@ -15,13 +15,11 @@
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package ca.mymenuapp.data;
+package ca.mymenuapp.model;
 
-import java.lang.annotation.Retention;
-import javax.inject.Qualifier;
+import org.simpleframework.xml.Element;
 
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-@Qualifier @Retention(RUNTIME)
-public @interface PixelGridEnabled {
+public class MenuItem {
+  @Element(name = "id") public long id;
+  @Element(name = "picture", required = false) public String picture;
 }

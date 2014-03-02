@@ -23,6 +23,9 @@ import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
 
+/**
+ * A debug module that overrides bindings in {@link ca.mymenuapp.ui.UiModule}.
+ */
 @Module(
     injects = DebugAppContainer.class,
     complete = false,

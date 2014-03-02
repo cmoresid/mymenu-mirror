@@ -23,8 +23,7 @@ import javax.inject.Singleton;
 
 @Module(
     complete = false,
-    library = true
-)
+    library = true)
 public class UiModule {
   @Provides @Singleton AppContainer provideAppContainer() {
     return AppContainer.DEFAULT;

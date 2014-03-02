@@ -22,6 +22,9 @@ import javax.inject.Qualifier;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ * Identifies when the app is running in mock mode.
+ */
 @Qualifier @Retention(RUNTIME)
 public @interface IsMockMode {
 }

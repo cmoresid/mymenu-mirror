@@ -27,14 +27,17 @@ import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
 
+/**
+ * Entry point for all modules in {@link ca.mymenuapp.MyMenuApp}.
+ * This module provides all bindings required for the app.
+ */
 @Module(
     includes = {
         UiModule.class, DataModule.class
     },
     injects = MyMenuApp.class,
     complete = false,
-    library = true
-)
+    library = true)
 public class MyMenuModule {
 
   private final MyMenuApp application;

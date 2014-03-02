@@ -27,6 +27,10 @@ import ca.mymenuapp.ui.misc.BindableAdapter;
 
 import static butterknife.ButterKnife.findById;
 
+/**
+ * A {@link ca.mymenuapp.ui.misc.BindableAdapter} to display all {@link
+ * ca.mymenuapp.data.DebugDataModule#DEBUG_NETWORK_PROXY} choices.
+ */
 class ProxyAdapter extends BindableAdapter<String> {
   public static final int NONE = 0;
   public static final int PROXY = 1;
@@ -50,7 +54,7 @@ class ProxyAdapter extends BindableAdapter<String> {
       return "None";
     }
     if (position == getCount() - 1) {
-      return "Set…";
+      return "Set...";
     }
     return proxy.get();
   }
