@@ -54,8 +54,8 @@
 		83893ECF18919AD400D36670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAE18919AD400D36670 /* UIKit.framework */; };
 		83893ED718919AD400D36670 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83893ED518919AD400D36670 /* InfoPlist.strings */; };
 		83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A61ED018922E4E00269357 /* MapKit.framework */; };
-		83B7E44D1891EE0700946784 /* MMMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44A1891EE0700946784 /* MMMasterViewController.m */; };
-		83B7E44E1891EE0700946784 /* MMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44C1891EE0700946784 /* MMDetailViewController.m */; };
+		83B7E44D1891EE0700946784 /* MMMasterRestaurantTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44A1891EE0700946784 /* MMMasterRestaurantTableViewController.m */; };
+		83B7E44E1891EE0700946784 /* MMDetailMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44C1891EE0700946784 /* MMDetailMapViewController.m */; };
 		83B7E4511891F15100946784 /* MMSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E4501891F15100946784 /* MMSplitViewController.m */; };
 		83B85B861897029100195F05 /* MMSpecialsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B85B851897029100195F05 /* MMSpecialsCollectionViewController.m */; };
 		83B85B8B18971A3D00195F05 /* MMSpecialType.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B85B8A18971A3D00195F05 /* MMSpecialType.m */; };
@@ -176,10 +176,10 @@
 		83893ED418919AD400D36670 /* MyMenuTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyMenuTests-Info.plist"; sourceTree = "<group>"; };
 		83893ED618919AD400D36670 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83A61ED018922E4E00269357 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		83B7E4491891EE0700946784 /* MMMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMasterViewController.h; sourceTree = "<group>"; };
-		83B7E44A1891EE0700946784 /* MMMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMasterViewController.m; sourceTree = "<group>"; };
-		83B7E44B1891EE0700946784 /* MMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDetailViewController.h; sourceTree = "<group>"; };
-		83B7E44C1891EE0700946784 /* MMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDetailViewController.m; sourceTree = "<group>"; };
+		83B7E4491891EE0700946784 /* MMMasterRestaurantTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMasterRestaurantTableViewController.h; sourceTree = "<group>"; };
+		83B7E44A1891EE0700946784 /* MMMasterRestaurantTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMasterRestaurantTableViewController.m; sourceTree = "<group>"; };
+		83B7E44B1891EE0700946784 /* MMDetailMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDetailMapViewController.h; sourceTree = "<group>"; };
+		83B7E44C1891EE0700946784 /* MMDetailMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDetailMapViewController.m; sourceTree = "<group>"; };
 		83B7E44F1891F15100946784 /* MMSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSplitViewController.h; sourceTree = "<group>"; };
 		83B7E4501891F15100946784 /* MMSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSplitViewController.m; sourceTree = "<group>"; };
 		83B85B841897029100195F05 /* MMSpecialsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialsCollectionViewController.h; sourceTree = "<group>"; };
@@ -500,10 +500,10 @@
 				B097D6F81893608300142F8D /* MMDietaryRestrictionsViewController.m */,
 				83B7E44F1891F15100946784 /* MMSplitViewController.h */,
 				83B7E4501891F15100946784 /* MMSplitViewController.m */,
-				83B7E4491891EE0700946784 /* MMMasterViewController.h */,
-				83B7E44A1891EE0700946784 /* MMMasterViewController.m */,
-				83B7E44B1891EE0700946784 /* MMDetailViewController.h */,
-				83B7E44C1891EE0700946784 /* MMDetailViewController.m */,
+				83B7E4491891EE0700946784 /* MMMasterRestaurantTableViewController.h */,
+				83B7E44A1891EE0700946784 /* MMMasterRestaurantTableViewController.m */,
+				83B7E44B1891EE0700946784 /* MMDetailMapViewController.h */,
+				83B7E44C1891EE0700946784 /* MMDetailMapViewController.m */,
 				B097D6FF189392FC00142F8D /* MMMainTabBarViewController.h */,
 				B097D700189392FC00142F8D /* MMMainTabBarViewController.m */,
 				83B85B841897029100195F05 /* MMSpecialsCollectionViewController.h */,
@@ -742,7 +742,7 @@
 				83893EBB18919AD400D36670 /* MMAppDelegate.m in Sources */,
 				B083C7D8189D85550074F7DC /* MMDBFetcherResponse.m in Sources */,
 				B097D6FC189360A500142F8D /* MMRegistrationViewController.m in Sources */,
-				83B7E44D1891EE0700946784 /* MMMasterViewController.m in Sources */,
+				83B7E44D1891EE0700946784 /* MMMasterRestaurantTableViewController.m in Sources */,
 				8339D73318BEB05C00CC7EC0 /* MMSpecialsPopOverTableView.m in Sources */,
 				B0AC55BF1896F8CB000BC0DD /* MMPopoverDataPair.m in Sources */,
 				83B7E4511891F15100946784 /* MMSplitViewController.m in Sources */,
@@ -761,7 +761,7 @@
 				9BBDE03318A1A59D005EDA0B /* MMSpecialsViewController.m in Sources */,
 				9B4E24781891D8C600F5B955 /* MMMerchant.m in Sources */,
 				9B1CFF7D18A442C700E9F778 /* MMLocationManager.m in Sources */,
-				83B7E44E1891EE0700946784 /* MMDetailViewController.m in Sources */,
+				83B7E44E1891EE0700946784 /* MMDetailMapViewController.m in Sources */,
 				B068A13218A738B5005E8036 /* MMSocialMediaService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

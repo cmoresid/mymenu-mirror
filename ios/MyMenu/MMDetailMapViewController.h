@@ -25,7 +25,7 @@
 @class MMLocationManager;
 @class MMRestaurantMapDelegate;
 
-@interface MMDetailViewController : UIViewController <UISplitViewControllerDelegate, MMDBFetcherDelegate>
+@interface MMDetailMapViewController : UIViewController <UISplitViewControllerDelegate, MMDBFetcherDelegate>
 
 @property(nonatomic, strong) id detailItem;
 @property(nonatomic, weak) IBOutlet UILabel *detailDescriptionLabel;

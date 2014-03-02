@@ -23,14 +23,14 @@
 #import "MMMerchant.h"
 #import "MMLocationManager.h"
 extern NSString *const kDidUpdateList;
-@class MMDetailViewController;
+@class MMDetailMapViewController;
 
-@interface MMMasterViewController : UITableViewController <MMDBFetcherDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface MMMasterRestaurantTableViewController : UITableViewController <MMDBFetcherDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property(nonatomic, strong) NSArray *restaurants;
 @property(nonatomic, strong) NSArray *filteredrestaurants;
 @property(nonatomic, strong) MMMerchant *selectRest;
-@property(nonatomic, strong) MMDetailViewController *detailViewController;
+@property(nonatomic, strong) MMDetailMapViewController *detailViewController;
 @property(nonatomic, strong) MMDBFetcher *dbFetcher;
 @property(nonatomic, strong) MMLocationManager *locationManager;
 @property(nonatomic) CLLocation *location;

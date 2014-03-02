@@ -15,20 +15,24 @@
 //  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
-#import "MMDetailViewController.h"
+#import "MMDetailMapViewController.h"
 #import "MMLocationManager.h"
 #import "MMRestaurantMapDelegate.h"
-#import "MMMasterViewController.h"
+#import "MMMasterRestaurantTableViewController.h"
+
 NSString *const kDidUpdateList = @"DidUpdateList";
-@interface MMDetailViewController ()
+
+@interface MMDetailMapViewController ()
+
 @property(strong, nonatomic) IBOutlet MKMapView *mapView;
 @property(strong, nonatomic) UIPopoverController *masterPopoverController;
 @property(strong, nonatomic) id <MKMapViewDelegate> mapDelegate;
 
 - (void)configureView;
+
 @end
 
-@implementation MMDetailViewController
+@implementation MMDetailMapViewController
 
 #pragma mark - Managing the detail item
 #pragma TODO: Setup map to point to user location

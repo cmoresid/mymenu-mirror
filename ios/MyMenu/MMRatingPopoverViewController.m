@@ -41,7 +41,9 @@
     self.menuItemName.text = self.menuItem.name;
     self.restaurantName.text = self.menuRestaurant.businessname;
     
-    [self.menuItemImage setImageWithURL:[NSURL URLWithString:self.menuItem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+    if (self.menuItem.picture != nil && ![self.menuItem.picture isEqualToString:@"null"]) {
+        [self.menuItemImage setImageWithURL:[NSURL URLWithString:self.menuItem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -66,7 +68,7 @@
 
     double angleRadians = atan(deltaX / deltaY);
     
-    if (angleRadians > 0.5 * M_PI)
+    if (angleRadians > M_PI_2)
         angleRadians = M_PI - angleRadians;
     
     double degrees = angleRadians * (180.0 / M_PI);

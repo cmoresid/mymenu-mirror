@@ -15,10 +15,10 @@
 //  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
-#import "MMMasterViewController.h"
+#import "MMMasterRestaurantTableViewController.h"
 #import "MMLocationManager.h"
 #import "RestaurantCell.h"
-#import "MMDetailViewController.h"
+#import "MMDetailMapViewController.h"
 #import "MMRestaurantViewController.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UIColor+MyMenuColors.h"
@@ -26,12 +26,12 @@
 
 #define kCurrentUser @"currentUser"
 
-@interface MMMasterViewController () {
+@interface MMMasterRestaurantTableViewController () {
     NSMutableArray *_objects;
 }
 @end
 
-@implementation MMMasterViewController
+@implementation MMMasterRestaurantTableViewController
 
 - (void)awakeFromNib {
     self.clearsSelectionOnViewWillAppear = NO;
@@ -83,7 +83,7 @@
     
     _searchflag = false;
 
-    self.detailViewController = (MMDetailViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
+    self.detailViewController = (MMDetailMapViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
 
 }
 
