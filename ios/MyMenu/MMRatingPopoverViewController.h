@@ -29,4 +29,6 @@ typedef void (^RatingsReturnBlock)(NSNumber*);
 - (IBAction)submitReview:(id)sender;
 - (IBAction)cancelReview:(id)sender;
 
+- (void)moveRatingWheelWithTouch:(CGPoint)touchLocation;
+
 @end

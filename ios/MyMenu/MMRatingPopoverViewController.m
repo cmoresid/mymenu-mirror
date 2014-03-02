@@ -50,33 +50,37 @@
     if (touch.view == self.ratingView) {
         CGPoint touchLocation = [touch locationInView:self.ratingView];
         
-        float centerX = CGRectGetMidX(self.ratingView.bounds);
-        float centerY = CGRectGetMidY(self.ratingView.bounds);
-        
-        float deltaX = touchLocation.x - centerX;
-        float deltaY = touchLocation.y - centerY;
-        
-        double angleRadians = fabs(atan2(deltaX, deltaY));
-        
-        if (angleRadians > 0.5 * M_PI)
-            angleRadians = M_PI - angleRadians;
-        
-        double degrees = angleRadians * (180.0 / M_PI);
-        
-        if (touchLocation.x >= centerX && touchLocation.y >= centerY) {
-            degrees = degrees + 180.0;
-        }
-        else if (touchLocation.x >= centerX) {
-            degrees = 270.0 + (90.0 - fabs(degrees));
-        }
-        else if (touchLocation.y >= centerY) {
-            degrees = 90.0 + (90.0 - fabs(degrees));
-        }
-        
-        double percentageOfCircle = (1 - (degrees / 360.0));
-        
-        self.ratingView.wheelPercentage = percentageOfCircle;
+        [self moveRatingWheelWithTouch:touchLocation];
     }
+}
+
+- (void)moveRatingWheelWithTouch:(CGPoint)touchLocation {
+    float centerX = CGRectGetMidX(self.ratingView.bounds);
+    float centerY = CGRectGetMidY(self.ratingView.bounds);
+    
+    float deltaX = touchLocation.x - centerX;
+    float deltaY = touchLocation.y - centerY;
+    
+    double angleRadians = fabs(atan2(deltaX, deltaY));
+    
+    if (angleRadians > 0.5 * M_PI)
+        angleRadians = M_PI - angleRadians;
+    
+    double degrees = angleRadians * (180.0 / M_PI);
+    
+    if (touchLocation.x >= centerX && touchLocation.y >= centerY) {
+        degrees = degrees + 180.0;
+    }
+    else if (touchLocation.x >= centerX) {
+        degrees = 270.0 + (90.0 - fabs(degrees));
+    }
+    else if (touchLocation.y >= centerY) {
+        degrees = 90.0 + (90.0 - fabs(degrees));
+    }
+    
+    double percentageOfCircle = (1 - (degrees / 360.0));
+    
+    self.ratingView.wheelPercentage = percentageOfCircle;
 }
 
 - (void)didReceiveMemoryWarning
