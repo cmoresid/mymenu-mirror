@@ -1,0 +1,14 @@
+ca.mymenuapp
+ca.mymenuapp.dagger.scopes
+ca.mymenuapp.data
+ca.mymenuapp.data.api
+ca.mymenuapp.data.api.model
+ca.mymenuapp.data.prefs
+ca.mymenuapp.model
+ca.mymenuapp.ui
+ca.mymenuapp.ui.activities
+ca.mymenuapp.ui.debug
+ca.mymenuapp.ui.fragments
+ca.mymenuapp.ui.misc
+ca.mymenuapp.ui.widgets
+ca.mymenuapp.util
