@@ -178,8 +178,5 @@ DerivedData
 *.hmap
 *.ipa
 
-# appledoc
-docs/ios/docset
-docs/ios/docset-installed.txt
-docs/ios/html
-docs/ios/publish
+# docs
+website/docs
