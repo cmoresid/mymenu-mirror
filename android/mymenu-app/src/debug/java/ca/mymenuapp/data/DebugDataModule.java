@@ -40,21 +40,50 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import retrofit.MockRestAdapter;
 
+/**
+ * A debug module that overrides bindings in {@link ca.mymenuapp.data.DataModule}.
+ */
 @Module(
     includes = DebugApiModule.class,
     complete = false,
     library = true,
     overrides = true)
 public final class DebugDataModule {
-  // identifiers for identifying debug preferences
+  /**
+   * Identifies speed at which we should run animations.
+   */
   public static final String DEBUG_ANIMATION_SPEED = "debug_animation_speed";
+  /**
+   * Identifies application Endpoint in use. See {@link ca.mymenuapp.data.ApiEndpoints}
+   */
   public static final String DEBUG_API_ENDPOINT = "debug_endpoint";
+  /**
+   * Identifies any network proxy in use.
+   */
   public static final String DEBUG_NETWORK_PROXY = "debug_network_proxy";
+  /**
+   * Identifies whether {@link com.squareup.picasso.Picasso} has debugging enabled.
+   */
   public static final String DEBUG_PICASSO_DEBUGGING = "debug_picasso_debugging";
+  /**
+   * Identifies whether {@link com.jakewharton.madge.MadgeFrameLayout} displays a grid.
+   */
   public static final String DEBUG_PIXEL_GRID_ENABLED = "debug_pixel_grid_enabled";
+  /**
+   * Identifies whether {@link com.jakewharton.madge.MadgeFrameLayout} displays pixel ratio.
+   */
   public static final String DEBUG_PIXEL_RATIO_ENABLED = "debug_pixel_ratio_enabled";
+  /**
+   * Identifies whether {@link com.jakewharton.scalpel.ScalpelFrameLayout} is enabled.
+   */
   public static final String DEBUG_SCALPEL_ENABLED = "debug_scalpel_enabled";
+  /**
+   * Identifies whether {@link com.jakewharton.scalpel.ScalpelFrameLayout} draws wireframes.
+   */
   public static final String DEBUG_SCALPEL_WIREFRAME_ENABLED = "debug_scalpel_wireframe_drawer";
+  /**
+   * Identifies whether the debug drawer has been displayed at least once.
+   */
   public static final String DEBUG_DRAWER_SEEN = "debug_seen_debug_drawer";
 
   private static final int DEFAULT_ANIMATION_SPEED = 1; // 1x (normal) speed.

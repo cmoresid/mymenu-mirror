@@ -31,6 +31,10 @@ import retrofit.client.OkClient;
 import retrofit.converter.Converter;
 import retrofit.converter.SimpleXMLConverter;
 
+/**
+ * Module for talking to the backend API.
+ * Has direct dependencies on {@link ca.mymenuapp.data.DataModule} for obvious reasons.
+ */
 @Module(
     complete = false,
     library = true)

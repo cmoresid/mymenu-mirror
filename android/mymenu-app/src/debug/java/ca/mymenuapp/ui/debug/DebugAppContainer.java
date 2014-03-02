@@ -101,7 +101,7 @@ public class DebugAppContainer implements AppContainer {
 
   private final OkHttpClient client;
   private final Picasso picasso;
-  private final StringPreference networkEndpoint;
+  private final StringPreference apiEndpoint;
   private final StringPreference networkProxy;
   private final IntPreference animationSpeed;
   private final BooleanPreference picassoDebugging;
@@ -156,7 +156,7 @@ public class DebugAppContainer implements AppContainer {
   @InjectView(R.id.debug_picasso_transformed_avg) TextView picassoTransformedAvgView;
 
   @Inject public DebugAppContainer(OkHttpClient client, Picasso picasso, RestAdapter restAdapter,
-      MockRestAdapter mockRestAdapter, @Named(DEBUG_API_ENDPOINT) StringPreference networkEndpoint,
+      MockRestAdapter mockRestAdapter, @Named(DEBUG_API_ENDPOINT) StringPreference apiEndpoint,
       @Named(DEBUG_NETWORK_PROXY) StringPreference networkProxy,
       @Named(DEBUG_ANIMATION_SPEED) IntPreference animationSpeed,
       @Named(DEBUG_PICASSO_DEBUGGING) BooleanPreference picassoDebugging,
@@ -167,7 +167,7 @@ public class DebugAppContainer implements AppContainer {
       @Named(DEBUG_DRAWER_SEEN) BooleanPreference seenDebugDrawer) {
     this.client = client;
     this.picasso = picasso;
-    this.networkEndpoint = networkEndpoint;
+    this.apiEndpoint = apiEndpoint;
     this.scalpelEnabled = scalpelEnabled;
     this.scalpelWireframeEnabled = scalpelWireframeEnabled;
     this.seenDebugDrawer = seenDebugDrawer;
@@ -258,7 +258,7 @@ public class DebugAppContainer implements AppContainer {
   }
 
   private void setupNetworkSection() {
-    final ApiEndpoints currentEndpoint = ApiEndpoints.from(networkEndpoint.get());
+    final ApiEndpoints currentEndpoint = ApiEndpoints.from(apiEndpoint.get());
     final EnumAdapter<ApiEndpoints> endpointAdapter =
         new EnumAdapter<>(drawerContext, ApiEndpoints.class);
     endpointView.setAdapter(endpointAdapter);
@@ -404,7 +404,7 @@ public class DebugAppContainer implements AppContainer {
   @OnClick(R.id.debug_network_endpoint_edit) void onEditEndpointClicked() {
     Ln.d("Prompting to edit custom endpoint URL.");
     // Pass in the currently selected position since we are merely editing.
-    showCustomEndpointDialog(endpointView.getSelectedItemPosition(), networkEndpoint.get());
+    showCustomEndpointDialog(endpointView.getSelectedItemPosition(), apiEndpoint.get());
   }
 
   private void setupUserInterfaceSection() {
@@ -628,7 +628,7 @@ public class DebugAppContainer implements AppContainer {
 
   private void setEndpointAndRelaunch(String endpoint) {
     Ln.d("Setting network endpoint to %s", endpoint);
-    networkEndpoint.set(endpoint);
+    apiEndpoint.set(endpoint);
 
     Intent newApp = new Intent(app, MainActivity.class);
     newApp.setFlags(FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NEW_TASK);

@@ -27,10 +27,16 @@ public class BooleanPreference {
   private final String key;
   private final boolean defaultValue;
 
+  /**
+   * Initialize a boolean preference with the given key and false as default.
+   */
   public BooleanPreference(SharedPreferences preferences, String key) {
     this(preferences, key, false);
   }
 
+  /**
+   * Initialize a boolean preference with the given key and the provided default value.
+   */
   public BooleanPreference(SharedPreferences preferences, String key, boolean defaultValue) {
     this.preferences = preferences;
     this.key = key;

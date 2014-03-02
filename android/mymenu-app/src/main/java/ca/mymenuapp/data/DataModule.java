@@ -20,6 +20,7 @@ package ca.mymenuapp.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import ca.mymenuapp.BuildConfig;
 import ca.mymenuapp.dagger.scopes.ForApplication;
 import ca.mymenuapp.data.api.ApiModule;
 import com.f2prateek.ln.Ln;
@@ -33,16 +34,35 @@ import java.io.File;
 import java.io.IOException;
 import javax.inject.Singleton;
 
+/**
+ * Module for any data sources, including databases (which we don't use), http clients, image
+ * loaders and preferences.
+ */
 @Module(
     includes = ApiModule.class,
     complete = false,
     library = true)
 public final class DataModule {
+
   static final int DISK_CACHE_SIZE = 50 * 1024 * 1024; // 50MB
+
+  static OkHttpClient createOkHttpClient(Context app) {
+    OkHttpClient client = new OkHttpClient();
+    // Install an HTTP cache in the application cache directory.
+    try {
+      File cacheDir = new File(app.getCacheDir(), "http");
+      HttpResponseCache cache = new HttpResponseCache(cacheDir, DISK_CACHE_SIZE);
+      client.setResponseCache(cache);
+    } catch (IOException e) {
+      Ln.e(e, "Unable to install disk cache.");
+    }
+
+    return client;
+  }
 
   @Provides @Singleton
   SharedPreferences provideSharedPreferences(@ForApplication Context applicationContext) {
-    return applicationContext.getSharedPreferences("mymenu", Context.MODE_PRIVATE);
+    return applicationContext.getSharedPreferences(BuildConfig.PACKAGE_NAME, Context.MODE_PRIVATE);
   }
 
   @Provides @Singleton
@@ -59,20 +79,5 @@ public final class DataModule {
           }
         })
         .build();
-  }
-
-  static OkHttpClient createOkHttpClient(Context app) {
-    OkHttpClient client = new OkHttpClient();
-
-    // Install an HTTP cache in the application cache directory.
-    try {
-      File cacheDir = new File(app.getCacheDir(), "http");
-      HttpResponseCache cache = new HttpResponseCache(cacheDir, DISK_CACHE_SIZE);
-      client.setResponseCache(cache);
-    } catch (IOException e) {
-      Ln.e(e, "Unable to install disk cache.");
-    }
-
-    return client;
   }
 }

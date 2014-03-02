@@ -27,10 +27,16 @@ public class StringPreference {
   private final String key;
   private final String defaultValue;
 
+  /**
+   * Initialize a String preference with the given key and null as default.
+   */
   public StringPreference(SharedPreferences preferences, String key) {
     this(preferences, key, null);
   }
 
+  /**
+   * Initialize a String preference with the given key and the provided default value.
+   */
   public StringPreference(SharedPreferences preferences, String key, String defaultValue) {
     this.preferences = preferences;
     this.key = key;
