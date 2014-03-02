@@ -30,7 +30,7 @@ proguard/
 ### Gradle ###
 .gradle
 build/
-
+.gradletasknamecache
 
 ### Maven ###
 target/

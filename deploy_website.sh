@@ -10,9 +10,15 @@ rm -rf $DIR
 # Clone the current repo into temp folder
 git clone git@github.com:UniversityOfAlberta/MyMenu.git $DIR
 
-# Build the Documentation for ios
+# Build ios documentation
 cd ios
 xcodebuild -workspace MyMenu.xcworkspace -scheme Documentation > /dev/null
+cd ..
+
+# Build android documentation
+cd android
+./gradlew :mymenu-app:javadocDebug > /dev/null
+cp -R mymenu-app/build/docs/javadoc/* ../website/docs/android
 cd ..
 
 # Move working directory into temp folder
