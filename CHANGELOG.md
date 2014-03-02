@@ -1,6 +1,6 @@
 ## Change Log
 
-### upcoming (2014/03/02 03:40 +00:00)
+### 1.0.0 (2014/03/02 03:40 +00:00)
 - [2ce2b84](https://github.com/UniversityOfAlberta/MyMenu/commit/2ce2b84b89e91dfe00e04f07045b878388d3f1f1) Initial commit (@guana)
 - [d826693](https://github.com/UniversityOfAlberta/MyMenu/commit/d826693079c7120ef44ac11f2489fbed96070d9e) Initial commit. (@cmoresid)
 - [#16](https://github.com/UniversityOfAlberta/MyMenu/pull/16) Merge pull request #16 from UniversityOfAlberta/cmoresid-basestructure (@UniversityOfAlberta)
@@ -28,8 +28,8 @@
 - [d3218f4](https://github.com/UniversityOfAlberta/MyMenu/commit/d3218f4b5819ece01b2e7bacc15d6fbeaf8f5a4f) Merge branch 'klafound-mergingreg' (@cmoresid)
 - [0ed6c29](https://github.com/UniversityOfAlberta/MyMenu/commit/0ed6c291ce166094e012eb42e824a94f035040fb) Merged kevin's changes in to master. (@cmoresid)
 - [901fc1a](https://github.com/UniversityOfAlberta/MyMenu/commit/901fc1af3bc8cebcecc06d93eae7068cbc1d0bb9) networking skeleton (@chrismoulds)
-- [813e6b8](https://github.com/UniversityOfAlberta/MyMenu/commit/813e6b8bccd15fce4f1f64661806423240475dc4) added checkuser/validateuser/adduser (@chrismoulds)
 - [fa0e81d](https://github.com/UniversityOfAlberta/MyMenu/commit/fa0e81d096375b6be16c982b56ebac7b2a32b313) Whitespace (@f2prateek)
+- [813e6b8](https://github.com/UniversityOfAlberta/MyMenu/commit/813e6b8bccd15fce4f1f64661806423240475dc4) added checkuser/validateuser/adduser (@chrismoulds)
 - [#44](https://github.com/UniversityOfAlberta/MyMenu/pull/44) Merge pull request #44 from UniversityOfAlberta/chris/networks (@UniversityOfAlberta)
 - [2d453a1](https://github.com/UniversityOfAlberta/MyMenu/commit/2d453a1462fbc478b6176838e98b4ac6f6d2f97b) Added restaurants displaying in the list
 - [#45](https://github.com/UniversityOfAlberta/MyMenu/pull/45) Merge pull request #45 from UniversityOfAlberta/hassaan1/restaurant-list (@UniversityOfAlberta)
@@ -269,3 +269,6 @@
 - [583ee53](https://github.com/UniversityOfAlberta/MyMenu/commit/583ee5368b733eed4d05f63d9b9b2e9e632a458c) So Much Android (@f2prateek)
 - [#181](https://github.com/UniversityOfAlberta/MyMenu/pull/181) Merge pull request #181 from UniversityOfAlberta/f2prateek/android (@UniversityOfAlberta)
 - [#183](https://github.com/UniversityOfAlberta/MyMenu/pull/183) Merge pull request #183 from UniversityOfAlberta/klaf-menuitempage (@UniversityOfAlberta)
+- [72e8c51](https://github.com/UniversityOfAlberta/MyMenu/commit/72e8c511dbddef1ca7f86990bcb527470cac190a) Remove docs from project (@f2prateek)
+- [7792cda](https://github.com/UniversityOfAlberta/MyMenu/commit/7792cda0431ad7796630c11202b5cd5abf085f81) Add a website (@f2prateek)
+- [7bdecf1](https://github.com/UniversityOfAlberta/MyMenu/commit/7bdecf13158a83b7db6fff0d30b6dd7570983ffd) Release Version 1.0.0 (@f2prateek)

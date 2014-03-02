@@ -18,8 +18,8 @@ github-changes -o UniversityOfAlberta -r MyMenu -a
 
 # commit the changelog, and offically commit the release
 git add -A
-git commit -m 'Release $1'
-git tag '$1'
+git commit -m 'Release '+$1
+git tag $1
 
 # push upstream
 git push -u origin master
