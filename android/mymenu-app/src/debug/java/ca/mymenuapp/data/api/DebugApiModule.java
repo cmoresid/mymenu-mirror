@@ -36,11 +36,11 @@ import static ca.mymenuapp.data.DebugDataModule.DEBUG_API_ENDPOINT;
 @Module(
     complete = false,
     library = true,
-    overrides = true
-)
+    overrides = true)
 public final class DebugApiModule {
 
-  @Provides @Singleton Endpoint provideEndpoint(@Named(DEBUG_API_ENDPOINT) StringPreference apiEndpoint) {
+  @Provides @Singleton
+  Endpoint provideEndpoint(@Named(DEBUG_API_ENDPOINT) StringPreference apiEndpoint) {
     return Endpoints.newFixedEndpoint(apiEndpoint.get());
   }
 

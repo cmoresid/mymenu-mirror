@@ -25,6 +25,9 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import ca.mymenuapp.ui.misc.BindableAdapter;
 
+/**
+ * A {@link ca.mymenuapp.ui.misc.BindableAdapter} that displays all values for the given enum.
+ */
 class EnumAdapter<T extends Enum<T>> extends BindableAdapter<T> {
   private final T[] enumConstants;
   private final boolean showNull;

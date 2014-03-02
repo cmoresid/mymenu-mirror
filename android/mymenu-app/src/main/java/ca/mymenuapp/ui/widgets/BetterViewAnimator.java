@@ -21,11 +21,23 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ViewAnimator;
 
+/**
+ * A {@link android.widget.ViewAnimator} which looks up children by id instead of position.
+ */
 public class BetterViewAnimator extends ViewAnimator {
   public BetterViewAnimator(Context context, AttributeSet attrs) {
     super(context, attrs);
   }
 
+  public int getDisplayedChildId() {
+    return getChildAt(getDisplayedChild()).getId();
+  }
+
+  /**
+   * Sets which child view will be displayed.
+   *
+   * @param id the resource id of the child view to display
+   */
   public void setDisplayedChildId(int id) {
     if (getDisplayedChildId() == id) {
       return;
@@ -37,9 +49,5 @@ public class BetterViewAnimator extends ViewAnimator {
       }
     }
     throw new IllegalArgumentException("No view with ID " + id);
-  }
-
-  public int getDisplayedChildId() {
-    return getChildAt(getDisplayedChild()).getId();
   }
 }

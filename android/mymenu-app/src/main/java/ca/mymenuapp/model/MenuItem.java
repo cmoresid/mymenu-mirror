@@ -15,21 +15,11 @@
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package ca.mymenuapp.ui;
+package ca.mymenuapp.model;
 
-import dagger.Module;
-import dagger.Provides;
-import javax.inject.Singleton;
+import org.simpleframework.xml.Element;
 
-@Module(
-    complete = false,
-    library = true)
-public class UiModule {
-  @Provides @Singleton AppContainer provideAppContainer() {
-    return AppContainer.DEFAULT;
-  }
-
-  @Provides @Singleton ActivityHierarchyServer provideActivityHierarchyServer() {
-    return ActivityHierarchyServer.NONE;
-  }
+public class MenuItem {
+  @Element(name = "id") public long id;
+  @Element(name = "picture", required = false) public String picture;
 }

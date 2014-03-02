@@ -43,17 +43,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * <p>This class can be used to enable the use of HierarchyViewer inside an
+ * This class can be used to enable the use of HierarchyViewer inside an
  * application. HierarchyViewer is an Android SDK tool that can be used
  * to inspect and debug the user interface of running applications. For
  * security reasons, HierarchyViewer does not work on production builds
  * (for instance phones bought in store.) By using this class, you can
  * make HierarchyViewer work on any device. You must be very careful
  * however to only enable HierarchyViewer when debugging your
- * application.</p>
- *
- * <p>To use this view server, your application must require the INTERNET
- * permission.</p>
+ * application.
  */
 public class SocketActivityHierarchyServer implements Runnable, ActivityHierarchyServer {
   /**

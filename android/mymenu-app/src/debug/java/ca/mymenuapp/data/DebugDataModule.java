@@ -44,8 +44,7 @@ import retrofit.MockRestAdapter;
     includes = DebugApiModule.class,
     complete = false,
     library = true,
-    overrides = true
-)
+    overrides = true)
 public final class DebugDataModule {
   // identifiers for identifying debug preferences
   public static final String DEBUG_ANIMATION_SPEED = "debug_animation_speed";

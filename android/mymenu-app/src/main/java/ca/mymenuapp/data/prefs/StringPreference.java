@@ -19,6 +19,9 @@ package ca.mymenuapp.data.prefs;
 
 import android.content.SharedPreferences;
 
+/**
+ * A wrapper for working with String preferences.
+ */
 public class StringPreference {
   private final SharedPreferences preferences;
   private final String key;

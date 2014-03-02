@@ -22,8 +22,7 @@ import android.view.ViewGroup;
 
 /**
  * A {@link android.view.ViewGroup.OnHierarchyChangeListener hierarchy change listener} which
- * recursively
- * monitors an entire tree of views.
+ * recursively monitors an entire tree of views.
  */
 public final class HierarchyTreeChangeListener implements ViewGroup.OnHierarchyChangeListener {
   /**

@@ -17,6 +17,9 @@
 
 package ca.mymenuapp.util;
 
+/**
+ * String utilities.
+ */
 public final class Strings {
   private Strings() {
     // No instances.
@@ -26,10 +29,12 @@ public final class Strings {
     return (string == null || string.toString().trim().length() == 0);
   }
 
+  /** Returns defaultString if string is blank, otherwise return string. */
   public static String valueOrDefault(String string, String defaultString) {
     return isBlank(string) ? defaultString : string;
   }
 
+  /** Truncate the string at the given index. */
   public static String truncateAt(String string, int length) {
     return string.length() > length ? string.substring(0, length) : string;
   }

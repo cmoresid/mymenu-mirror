@@ -26,10 +26,18 @@ import ca.mymenuapp.ui.misc.BindableAdapter;
 
 import static butterknife.ButterKnife.findById;
 
+/**
+ * A {@link ca.mymenuapp.ui.misc.BindableAdapter} to display all {@link
+ * ca.mymenuapp.data.DebugDataModule#DEBUG_ANIMATION_SPEED} choices.
+ */
 class AnimationSpeedAdapter extends BindableAdapter<Integer> {
   private static final int[] VALUES = {
       1, 2, 3, 5, 10
   };
+
+  AnimationSpeedAdapter(Context context) {
+    super(context);
+  }
 
   public static int getPositionForValue(int value) {
     for (int i = 0; i < VALUES.length; i++) {
@@ -38,10 +46,6 @@ class AnimationSpeedAdapter extends BindableAdapter<Integer> {
       }
     }
     return 0; // Default to 1x if something changes.
-  }
-
-  AnimationSpeedAdapter(Context context) {
-    super(context);
   }
 
   @Override public int getCount() {

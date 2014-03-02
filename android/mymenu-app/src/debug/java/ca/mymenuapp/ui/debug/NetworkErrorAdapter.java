@@ -26,6 +26,9 @@ import ca.mymenuapp.ui.misc.BindableAdapter;
 
 import static butterknife.ButterKnife.findById;
 
+/**
+ * A {@link ca.mymenuapp.ui.misc.BindableAdapter} to displays choices for mocking network error.
+ */
 class NetworkErrorAdapter extends BindableAdapter<Integer> {
   private static final int[] VALUES = {
       0, 3, 10, 25, 100

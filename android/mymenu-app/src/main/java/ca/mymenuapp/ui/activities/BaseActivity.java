@@ -32,15 +32,18 @@ import dagger.ObjectGraph;
 import javax.inject.Inject;
 
 /**
- * BaseActivity.
+ * Base Activity for performing operations in all activities.
+ * This injects us into the application graph, provides a root view from {@link
+ * ca.mymenuapp.ui.AppContainer}, registers itself with the application {@link
+ * com.squareup.otto.Bus}, and sets up {@link com.f2prateek.dart.Dart} and
+ * {@link butterknife.ButterKnife}.
  */
 public class BaseActivity extends Activity {
 
-  private ObjectGraph activityGraph;
   @Inject Bus bus;
   @Inject @ForApplication Context applicationContext;
-
   @Inject AppContainer appContainer;
+  private ObjectGraph activityGraph;
   private ViewGroup container;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
