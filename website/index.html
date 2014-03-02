@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>MyMenu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MyMenu Project for CMPUT 400">
+    <link href="static/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="static/app.css" rel="stylesheet">
+    <link href="static/app-theme.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300italic,100,100italic,300" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]><script src="static/html5shiv.min.js"></script><![endif]-->
+  </head>
+  <body data-target=".content-nav">
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="span5">
+            <h1>MyMenu</h1>
+          </div>
+          <div class="span7">
+            <menu>
+              <ul>
+                <li><a href="https://github.com/UniversityOfAlberta/MyMenu" data-title="View GitHub Project" class="menu github"><img src="static/icon-github.png" alt="GitHub"/></a></li>
+                <li><a href="http://mymenuapp.ca/" data-title="MyMenu Website" class="menu square"><img src="static/icon-mymenu.png" alt="MyMenu"/></a></li>
+              </ul>
+            </menu>
+          </div>
+      </div>
+    </header>
+    <section id="subtitle">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <h2><strong>MyMenu</strong> Project for CMPUT 400</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="body">
+      <div class="container">
+        <div class="row">
+          <div class="span9">
+            <h3 id="introduction">Introduction</h3>
+            <p>Choosing what you can eat has always been a challenge. Our goal is to eliminate the unknown and allow you understand your choices.</p>
+            <p>MyMenu lets you quickly find a restaurant and pull up their menu. We'll customize the menu to accomodate any dietary restrictions you may have.</p>
+
+            <h3 id="screenshots">Screenshots</h4>
+            <p><img src="static/ios-screenshot.png" alt="iOS Screenshot"></p>
+            <p><img src="static/android-screenshot.png" alt="Android Screenshot"></p>
+
+            <h3 id="download">Download</h3>
+            <p>Download link upcoming for Android projects. iOS projects will have to be built manually.</p>
+
+            <h3 id="building">Building</h3>
+            <p>The code base is organized into three main folders <code>ios</code>, <code>android</code> and <code>design</code>.</p>
+            <p>To deploy a release :</p>
+            <pre>
+# commit all changes
+
+# generate a changelog
+github-changes -o UniversityOfAlberta -r MyMenu -a
+
+# commit the changelog, and offically commit the release
+git add -A
+git commit -m 'Release version 1.0.0'
+git tag '1.0.0'
+
+# push upstream
+git push -u origin master
+git push --tags
+
+# deploy the website
+./deploy_website.sh
+            </pre>
+
+            <h4 id="ios">iOS</h4>
+            <p>This folder contains the source code for the iOS project. Dependencies are managed using <a href="http://cocoapods.org/">CocoaPods</a>. Be sure to use <code>MyMenu.xcworkspace</code> (not <code>MyMenu.xcodeproject</code>) when in <code>XCode</code> or building from the command line. Both XCode and AppCode will can be used.</p>
+            <p>List all available targets for this project.</p>
+            <pre>xcodebuild -workspace MyMenu.xcworkspace -list</pre>
+            <p>Generate documentation for the iOS project in <code>website/docs/ios</code>.</p>
+            <pre>xcodebuild -workspace MyMenu.xcworkspace -scheme Documentation</pre>
+            <p>Build the application (requires signing to be set up).</p>
+            <pre>xcodebuild -workspace MyMenu.xcworkspace -scheme MyMenu</pre>
+
+            <h4 id="android">Android</h4>
+            <p>This folder contains the source code for the Android project. Dependencies are managed using <a href="http://www.gradle.org/">Gradle</a>. IntelliJ and Android Studio can both be used. Eclipse may used with a gradle plugin, but will fail to recognize our custom build types. It is recommended to use the Gradle wrapper included with the project.</p>
+            <p>List all available tasks for this project.</p>
+            <pre>./gradlew tasks --all</pre>
+            <p>Clean the project and builds all our build types (release, assemble and beta). Use this before making a pull request.</p>
+            <pre>./gradlew clean build</pre>
+            <p>Build the debug variant of the project. Faster than a full build, use it for debugging.</p>
+            <pre>./gradlew assembleDebug</pre>
+            <p>Run all unit tests (unsupported), checkstyle and instrument tests.</p>
+            <pre>./gradlew check connectedCheck</pre>
+
+            <h3 id="license">License</h3>
+            <pre>Copyright (C) 2014 MyMenu, Inc.
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see [http://www.gnu.org/licenses/].</pre>
+          </div>
+          <div class="span3">
+            <div class="content-nav" data-spy="affix" data-offset-top="80">
+              <ul class="nav nav-tabs nav-stacked primary">
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#screenshots">Screenshots</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#building">Building</a></li>
+                <li><a href="#license">License</a></li>
+              </ul>
+              <ul class="nav nav-pills nav-stacked secondary">
+                <li><a href="docs/ios/html/index.html">iOS Project Documentation</a></li>
+                <li><a href="docs/android/index.html">Android Project Documentation</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span12 logo">
+            <a href="http://mymenuapp.ca/"><img src="static/icon-mymenu.png" alt="MyMenu, Inc."/></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="static/bootstrap.min.js"></script>
+    <script src="static/jquery.smooth-scroll.min.js"></script>
+    <script src="static/jquery-maven-artifact.min.js"></script>
+    <script src="static/prettify.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        // Syntax highlight code blocks.
+        prettyPrint();
+
+        // Spy on scroll position for real-time updating of current section.
+        $('body').scrollspy();
+
+        // Use smooth-scroll for internal links.
+        $('a').smoothScroll();
+
+        // Enable tooltips on the header nav image items.
+        $('.menu').tooltip({
+          placement: 'bottom',
+          trigger: 'hover',
+          container: 'body',
+          delay: {
+            show: 500,
+            hide: 0
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

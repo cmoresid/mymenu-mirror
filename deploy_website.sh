@@ -8,7 +8,12 @@ DIR=temp-clone
 rm -rf $DIR
 
 # Clone the current repo into temp folder
-git clone git@github.com:square/spoon.git $DIR
+git clone git@github.com:UniversityOfAlberta/MyMenu.git $DIR
+
+# Build the Documentation for ios
+cd ios
+xcodebuild -workspace MyMenu.xcworkspace -scheme Documentation
+cd ..
 
 # Move working directory into temp folder
 cd $DIR
@@ -33,3 +38,5 @@ git push origin gh-pages
 # Delete our temp folder
 cd ..
 rm -rf $DIR
+# Delete any documentation
+rm -rf website/docs
