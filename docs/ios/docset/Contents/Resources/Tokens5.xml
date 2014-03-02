@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMLoginViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMLoginViewController</TokenIdentifier>
+			<Abstract type="html">Login view controller.
+A view controller that logs in a user.
+User is prompted for their email address (id) and their password.</Abstract>
+			<DeclaredIn>MMLoginViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="5"/>
+		</Token>
+		
+		
+        
+	</File>
+</Tokens>

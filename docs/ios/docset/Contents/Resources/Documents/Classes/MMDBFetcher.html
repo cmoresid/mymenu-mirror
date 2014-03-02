@@ -1,0 +1,1432 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>MMDBFetcher Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">MyMenu </a></h1>
+				<a id="developerHome" href="../index.html">MyMenu</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MMDBFetcher Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/get">&nbsp;&nbsp;&nbsp;&nbsp;+ get</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addMenuRating:">&nbsp;&nbsp;&nbsp;&nbsp;- addMenuRating:</option>
+	
+	<option value="//api/name/addUser:">&nbsp;&nbsp;&nbsp;&nbsp;- addUser:</option>
+	
+	<option value="//api/name/addUserRestrictions:::">&nbsp;&nbsp;&nbsp;&nbsp;- addUserRestrictions:::</option>
+	
+	<option value="//api/name/editUser:">&nbsp;&nbsp;&nbsp;&nbsp;- editUser:</option>
+	
+	<option value="//api/name/getAllRestrictions">&nbsp;&nbsp;&nbsp;&nbsp;- getAllRestrictions</option>
+	
+	<option value="//api/name/getCategories">&nbsp;&nbsp;&nbsp;&nbsp;- getCategories</option>
+	
+	<option value="//api/name/getCompressedMerchants:">&nbsp;&nbsp;&nbsp;&nbsp;- getCompressedMerchants:</option>
+	
+	<option value="//api/name/getCompressedMerchantsByCuisine:withCuisine:">&nbsp;&nbsp;&nbsp;&nbsp;- getCompressedMerchantsByCuisine:withCuisine:</option>
+	
+	<option value="//api/name/getCompressedMerchantsByName:withName:">&nbsp;&nbsp;&nbsp;&nbsp;- getCompressedMerchantsByName:withName:</option>
+	
+	<option value="//api/name/getDay:">&nbsp;&nbsp;&nbsp;&nbsp;- getDay:</option>
+	
+	<option value="//api/name/getDessertSpecialsForDate:">&nbsp;&nbsp;&nbsp;&nbsp;- getDessertSpecialsForDate:</option>
+	
+	<option value="//api/name/getDrinkSpecialsForDate:">&nbsp;&nbsp;&nbsp;&nbsp;- getDrinkSpecialsForDate:</option>
+	
+	<option value="//api/name/getFoodSpecialsForDate:">&nbsp;&nbsp;&nbsp;&nbsp;- getFoodSpecialsForDate:</option>
+	
+	<option value="//api/name/getItemRatings:">&nbsp;&nbsp;&nbsp;&nbsp;- getItemRatings:</option>
+	
+	<option value="//api/name/getItemRatingsMerchant:">&nbsp;&nbsp;&nbsp;&nbsp;- getItemRatingsMerchant:</option>
+	
+	<option value="//api/name/getItemRatingsMerchantTop:">&nbsp;&nbsp;&nbsp;&nbsp;- getItemRatingsMerchantTop:</option>
+	
+	<option value="//api/name/getItemRatingsTop:">&nbsp;&nbsp;&nbsp;&nbsp;- getItemRatingsTop:</option>
+	
+	<option value="//api/name/getMenuWithMerchantId:withUserEmail:">&nbsp;&nbsp;&nbsp;&nbsp;- getMenuWithMerchantId:withUserEmail:</option>
+	
+	<option value="//api/name/getMerchant:">&nbsp;&nbsp;&nbsp;&nbsp;- getMerchant:</option>
+	
+	<option value="//api/name/getModifications:withUser:">&nbsp;&nbsp;&nbsp;&nbsp;- getModifications:withUser:</option>
+	
+	<option value="//api/name/getUser:">&nbsp;&nbsp;&nbsp;&nbsp;- getUser:</option>
+	
+	<option value="//api/name/getUserRestrictions:">&nbsp;&nbsp;&nbsp;&nbsp;- getUserRestrictions:</option>
+	
+	<option value="//api/name/userExists:">&nbsp;&nbsp;&nbsp;&nbsp;- userExists:</option>
+	
+	<option value="//api/name/userVerified:">&nbsp;&nbsp;&nbsp;&nbsp;- userVerified:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/get">get</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addMenuRating:">addMenuRating:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addUser:">addUser:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addUserRestrictions:::">addUserRestrictions:::</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/editUser:">editUser:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getAllRestrictions">getAllRestrictions</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getCategories">getCategories</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getCompressedMerchants:">getCompressedMerchants:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getCompressedMerchantsByCuisine:withCuisine:">getCompressedMerchantsByCuisine:withCuisine:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getCompressedMerchantsByName:withName:">getCompressedMerchantsByName:withName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDay:">getDay:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDessertSpecialsForDate:">getDessertSpecialsForDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDrinkSpecialsForDate:">getDrinkSpecialsForDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getFoodSpecialsForDate:">getFoodSpecialsForDate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getItemRatings:">getItemRatings:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getItemRatingsMerchant:">getItemRatingsMerchant:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getItemRatingsMerchantTop:">getItemRatingsMerchantTop:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getItemRatingsTop:">getItemRatingsTop:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getMenuWithMerchantId:withUserEmail:">getMenuWithMerchantId:withUserEmail:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getMerchant:">getMerchant:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getModifications:withUser:">getModifications:withUser:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getUser:">getUser:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getUserRestrictions:">getUserRestrictions:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userExists:">userExists:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userVerified:">userVerified:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="MMDBFetcher Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MMDBFetcher Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSURLConnectionDataDelegate</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">MMDBFetcher.h<br />MMDBFetcher.m</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>A model for qeurying data from the api.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/get">+&nbsp;get</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addUser:">&ndash;&nbsp;addUser:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userExists:">&ndash;&nbsp;userExists:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userVerified:">&ndash;&nbsp;userVerified:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getDrinkSpecialsForDate:">&ndash;&nbsp;getDrinkSpecialsForDate:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getDessertSpecialsForDate:">&ndash;&nbsp;getDessertSpecialsForDate:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getFoodSpecialsForDate:">&ndash;&nbsp;getFoodSpecialsForDate:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addUserRestrictions:::">&ndash;&nbsp;addUserRestrictions:::</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addMenuRating:">&ndash;&nbsp;addMenuRating:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getCompressedMerchants:">&ndash;&nbsp;getCompressedMerchants:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getCompressedMerchantsByName:withName:">&ndash;&nbsp;getCompressedMerchantsByName:withName:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getCompressedMerchantsByCuisine:withCuisine:">&ndash;&nbsp;getCompressedMerchantsByCuisine:withCuisine:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getMenuWithMerchantId:withUserEmail:">&ndash;&nbsp;getMenuWithMerchantId:withUserEmail:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getAllRestrictions">&ndash;&nbsp;getAllRestrictions</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getUserRestrictions:">&ndash;&nbsp;getUserRestrictions:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getMerchant:">&ndash;&nbsp;getMerchant:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/editUser:">&ndash;&nbsp;editUser:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getUser:">&ndash;&nbsp;getUser:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getModifications:withUser:">&ndash;&nbsp;getModifications:withUser:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getItemRatings:">&ndash;&nbsp;getItemRatings:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getItemRatingsMerchant:">&ndash;&nbsp;getItemRatingsMerchant:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getCategories">&ndash;&nbsp;getCategories</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getItemRatingsMerchantTop:">&ndash;&nbsp;getItemRatingsMerchantTop:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getItemRatingsTop:">&ndash;&nbsp;getItemRatingsTop:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getDay:">&ndash;&nbsp;getDay:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/get" title="get"></a>
+	<h3 class="subsubtitle method-title">get</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get a singleton instance of this class.
+Clients should use this, and not initialize a new instance for every request.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (MMDBFetcher *)get</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>NOTE: The idea is to encapsulate request merging in this class, so a singleton will give us
+significant performance improvements.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addMenuRating:" title="addMenuRating:"></a>
+	<h3 class="subsubtitle method-title">addMenuRating:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add a rating/review for a menu item.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)addMenuRating:(MMMenuItemRating *)<em>rating</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/addUser:" title="addUser:"></a>
+	<h3 class="subsubtitle method-title">addUser:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add a user to the service.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)addUser:(MMUser *)<em>user</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/addUserRestrictions:::" title="addUserRestrictions:::"></a>
+	<h3 class="subsubtitle method-title">addUserRestrictions:::</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add all given restrictions for the given user.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)addUserRestrictions:(NSString *)<em>email</em> :</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/editUser:" title="editUser:"></a>
+	<h3 class="subsubtitle method-title">editUser:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Edit the given user&rsquo;s information on the server.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)editUser:(MMUser *)<em>user</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getAllRestrictions" title="getAllRestrictions"></a>
+	<h3 class="subsubtitle method-title">getAllRestrictions</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all restrictions that we support.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getAllRestrictions</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getCategories" title="getCategories"></a>
+	<h3 class="subsubtitle method-title">getCategories</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all merchant categories.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getCategories</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getCompressedMerchants:" title="getCompressedMerchants:"></a>
+	<h3 class="subsubtitle method-title">getCompressedMerchants:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all merchants. Only return a subset of the fields to minify data.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getCompressedMerchants:(CLLocation *)<em>usrloc</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getCompressedMerchantsByCuisine:withCuisine:" title="getCompressedMerchantsByCuisine:withCuisine:"></a>
+	<h3 class="subsubtitle method-title">getCompressedMerchantsByCuisine:withCuisine:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all merchants with category cuisine. Only return a subset of the fields to minify data.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getCompressedMerchantsByCuisine:(CLLocation *)<em>usrloc</em> withCuisine:(NSString *)<em>cuisine</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getCompressedMerchantsByName:withName:" title="getCompressedMerchantsByName:withName:"></a>
+	<h3 class="subsubtitle method-title">getCompressedMerchantsByName:withName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all merchants with name = merchname. Only return a subset of the fields to minify data.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getCompressedMerchantsByName:(CLLocation *)<em>usrloc</em> withName:(NSString *)<em>merchname</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getDay:" title="getDay:"></a>
+	<h3 class="subsubtitle method-title">getDay:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get today as a string, e.g. &lsquo;tuesday&rsquo;</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)getDay:(NSDate *)<em>date</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getDessertSpecialsForDate:" title="getDessertSpecialsForDate:"></a>
+	<h3 class="subsubtitle method-title">getDessertSpecialsForDate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get dessert specials for the given day of the given type.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getDessertSpecialsForDate:(NSDate *)<em>date</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getDrinkSpecialsForDate:" title="getDrinkSpecialsForDate:"></a>
+	<h3 class="subsubtitle method-title">getDrinkSpecialsForDate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get drink specials for the given day of the given type.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getDrinkSpecialsForDate:(NSDate *)<em>date</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getFoodSpecialsForDate:" title="getFoodSpecialsForDate:"></a>
+	<h3 class="subsubtitle method-title">getFoodSpecialsForDate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get food specials for the given day of the given type.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getFoodSpecialsForDate:(NSDate *)<em>date</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getItemRatings:" title="getItemRatings:"></a>
+	<h3 class="subsubtitle method-title">getItemRatings:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all ratings for a specific meny item with the given menuid</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getItemRatings:(NSNumber *)<em>menuid</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getItemRatingsMerchant:" title="getItemRatingsMerchant:"></a>
+	<h3 class="subsubtitle method-title">getItemRatingsMerchant:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all menu item ratings for a specific merchant.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getItemRatingsMerchant:(NSNumber *)<em>merchid</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getItemRatingsMerchantTop:" title="getItemRatingsMerchantTop:"></a>
+	<h3 class="subsubtitle method-title">getItemRatingsMerchantTop:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all item ratings for a merchant ordered by rating.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getItemRatingsMerchantTop:(NSNumber *)<em>merchid</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getItemRatingsTop:" title="getItemRatingsTop:"></a>
+	<h3 class="subsubtitle method-title">getItemRatingsTop:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all ratings for a specific item ordered by rating.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getItemRatingsTop:(NSNumber *)<em>itemid</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getMenuWithMerchantId:withUserEmail:" title="getMenuWithMerchantId:withUserEmail:"></a>
+	<h3 class="subsubtitle method-title">getMenuWithMerchantId:withUserEmail:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get the menu for the restaurant.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getMenuWithMerchantId:(NSInteger)<em>merchid</em> withUserEmail:(NSString *)<em>email</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getMerchant:" title="getMerchant:"></a>
+	<h3 class="subsubtitle method-title">getMerchant:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all information about the merchant (restaurant) with the given id.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getMerchant:(NSNumber *)<em>merchid</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getModifications:withUser:" title="getModifications:withUser:"></a>
+	<h3 class="subsubtitle method-title">getModifications:withUser:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all modifications for a specific menu item with the given email.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getModifications:(NSNumber *)<em>menuid</em> withUser:(NSString *)<em>email</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getUser:" title="getUser:"></a>
+	<h3 class="subsubtitle method-title">getUser:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all information for the user with the given email.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getUser:(NSString *)<em>email</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getUserRestrictions:" title="getUserRestrictions:"></a>
+	<h3 class="subsubtitle method-title">getUserRestrictions:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all restrictions for the given user.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)getUserRestrictions:(NSString *)<em>email</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userExists:" title="userExists:"></a>
+	<h3 class="subsubtitle method-title">userExists:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Check if the user with this email address exists already.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)userExists:(NSString *)<em>email</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userVerified:" title="userVerified:"></a>
+	<h3 class="subsubtitle method-title">userVerified:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Checks if the password for the user is entered correctly (for login).</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)userVerified:(MMUser *)<em>user</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMDBFetcher.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+                    
+                    
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 MyMenu. All rights reserved. (Last updated: 2014-03-01)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
