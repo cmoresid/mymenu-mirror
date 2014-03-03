@@ -33,8 +33,6 @@
 @property (nonatomic, strong) UIPopoverController *typesPopoverController;
 @property (nonatomic, strong) UIPopoverController *weekPopoverController;
 
-
-
 /**
  * Adds a Special type to show, and reloads the view as Needed.
  */
@@ -50,6 +48,9 @@
  */
 -(bool)containsShowType:(NSString *)type;
 
+/**
+ * Loads a week of specials from the date
+ */
 -(void)loadWeek:(NSDate *)date;
 
 @end

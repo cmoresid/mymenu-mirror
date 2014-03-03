@@ -78,6 +78,9 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 }
 #pragma mark -
 #pragma mark Searchbar Delegate
+/**
+ * Delegate for Search Bar
+ */
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 	// do the search here and update the view as needed.
 	NSLog(@"Search Clicked");
