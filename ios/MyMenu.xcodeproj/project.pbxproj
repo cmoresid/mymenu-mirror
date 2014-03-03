@@ -79,8 +79,8 @@
 		9BB40CAD18ADBE6B00B59A46 /* MMCategoryPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB40CAC18ADBE6B00B59A46 /* MMCategoryPopOverViewController.m */; };
 		9BBD913318943D77006DDBCE /* MMDBFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913218943D77006DDBCE /* MMDBFetcher.m */; };
 		9BBD913418943D77006DDBCE /* MMDBFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913218943D77006DDBCE /* MMDBFetcher.m */; };
-		9BBDE03318A1A59D005EDA0B /* MMSpecialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMSpecialsViewController.m */; };
-		9BBDE03418A1A59D005EDA0B /* MMSpecialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMSpecialsViewController.m */; };
+		9BBDE03318A1A59D005EDA0B /* MMBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMBaseNavigationController.m */; };
+		9BBDE03418A1A59D005EDA0B /* MMBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMBaseNavigationController.m */; };
 		9BBDE03D18A1B6E9005EDA0B /* MMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */; };
 		9BBDE03E18A1B6E9005EDA0B /* MMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */; };
 		B022D81A18C2F6970077D908 /* MMRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B022D81918C2F6970077D908 /* MMRatingView.m */; };
@@ -211,8 +211,8 @@
 		9BBD913218943D77006DDBCE /* MMDBFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcher.m; sourceTree = "<group>"; };
 		9BBD913F189478CF006DDBCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9BBD9141189478DB006DDBCE /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		9BBDE03118A1A59D005EDA0B /* MMSpecialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialsViewController.h; sourceTree = "<group>"; };
-		9BBDE03218A1A59D005EDA0B /* MMSpecialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialsViewController.m; sourceTree = "<group>"; };
+		9BBDE03118A1A59D005EDA0B /* MMBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBaseNavigationController.h; sourceTree = "<group>"; };
+		9BBDE03218A1A59D005EDA0B /* MMBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBaseNavigationController.m; sourceTree = "<group>"; };
 		9BBDE03B18A1B6E9005EDA0B /* MMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSettingsViewController.h; sourceTree = "<group>"; };
 		9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSettingsViewController.m; sourceTree = "<group>"; };
 		B022D81818C2F6970077D908 /* MMRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRatingView.h; sourceTree = "<group>"; };
@@ -506,8 +506,8 @@
 				B097D700189392FC00142F8D /* MMMainTabBarViewController.m */,
 				83B85B841897029100195F05 /* MMSpecialsCollectionViewController.h */,
 				83B85B851897029100195F05 /* MMSpecialsCollectionViewController.m */,
-				9BBDE03118A1A59D005EDA0B /* MMSpecialsViewController.h */,
-				9BBDE03218A1A59D005EDA0B /* MMSpecialsViewController.m */,
+				9BBDE03118A1A59D005EDA0B /* MMBaseNavigationController.h */,
+				9BBDE03218A1A59D005EDA0B /* MMBaseNavigationController.m */,
 				9BBDE03B18A1B6E9005EDA0B /* MMSettingsViewController.h */,
 				9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */,
 				17F9F80718AAEA17006B7DD0 /* MMMenuItemViewController.h */,
@@ -753,7 +753,7 @@
 				B0B0C4DB18A81FAE00BA47CB /* MMRestaurantMapDelegate.m in Sources */,
 				9B4E24881891DCD100F5B955 /* MMMenuItemRating.m in Sources */,
 				B097D7091893A6B200142F8D /* MMMainTabViewSegue.m in Sources */,
-				9BBDE03318A1A59D005EDA0B /* MMSpecialsViewController.m in Sources */,
+				9BBDE03318A1A59D005EDA0B /* MMBaseNavigationController.m in Sources */,
 				9B4E24781891D8C600F5B955 /* MMMerchant.m in Sources */,
 				9B1CFF7D18A442C700E9F778 /* MMLocationManager.m in Sources */,
 				83B7E44E1891EE0700946784 /* MMDetailMapViewController.m in Sources */,
@@ -769,7 +769,7 @@
 				9B4E24891891DCD100F5B955 /* MMMenuItemRating.m in Sources */,
 				B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */,
 				B0EB0C8418A397A200CAAF44 /* MMMockNetworkClient.m in Sources */,
-				9BBDE03418A1A59D005EDA0B /* MMSpecialsViewController.m in Sources */,
+				9BBDE03418A1A59D005EDA0B /* MMBaseNavigationController.m in Sources */,
 				9BBD913418943D77006DDBCE /* MMDBFetcher.m in Sources */,
 				9B776FE018A564D00057B6E1 /* NSArray+MerchantSort.m in Sources */,
 				B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */,

@@ -25,7 +25,7 @@
 extern NSString *const kDidUpdateList;
 @class MMDetailMapViewController;
 
-@interface MMMasterRestaurantTableViewController : UITableViewController <MMDBFetcherDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface MMMasterRestaurantTableViewController : UIViewController <MMDBFetcherDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic, strong) NSArray *restaurants;
 @property(nonatomic, strong) NSArray *filteredrestaurants;
@@ -35,6 +35,9 @@ extern NSString *const kDidUpdateList;
 @property(nonatomic, strong) MMLocationManager *locationManager;
 @property(nonatomic) CLLocation *location;
 @property(nonatomic) BOOL searchflag;
+
 @property IBOutlet UISearchBar *merchantsearch;
+@property IBOutlet UISegmentedControl *orderbySegmentControl;
+@property IBOutlet UITableView *tableView;
 
 @end

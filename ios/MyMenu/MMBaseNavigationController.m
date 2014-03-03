@@ -6,14 +6,14 @@
 //
 //
 
-#import "MMSpecialsViewController.h"
+#import "MMBaseNavigationController.h"
 #import "UIColor+MyMenuColors.h"
 
-@interface MMSpecialsViewController ()
+@interface MMBaseNavigationController ()
 
 @end
 
-@implementation MMSpecialsViewController
+@implementation MMBaseNavigationController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

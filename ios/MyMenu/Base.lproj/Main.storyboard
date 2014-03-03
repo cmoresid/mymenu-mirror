@@ -180,7 +180,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g2H-Jl-02o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6660" y="1876"/>
+            <point key="canvasLocation" x="6496" y="1164"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="6si-Sh-Tds">
@@ -328,10 +328,10 @@
             </objects>
             <point key="canvasLocation" x="-2039" y="550"/>
         </scene>
-        <!--Specials View Controller-->
+        <!--Base Navigation Controller-->
         <scene sceneID="2FG-zV-dHB">
             <objects>
-                <navigationController definesPresentationContext="YES" id="8Kr-Za-oMu" customClass="MMSpecialsViewController" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="8Kr-Za-oMu" customClass="MMBaseNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="i9P-rE-bAg">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -899,10 +899,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1708" y="550"/>
         </scene>
-        <!--Specials View Controller - Restrictions-->
+        <!--Base Navigation Controller - Restrictions-->
         <scene sceneID="bO6-dT-mTB">
             <objects>
-                <navigationController definesPresentationContext="YES" id="Qf2-dp-tSr" customClass="MMSpecialsViewController" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="Qf2-dp-tSr" customClass="MMBaseNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Restrictions" image="184-warning.png" id="Sw3-oP-a89"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="J9e-Ae-vFN">
@@ -916,15 +916,18 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="2680" y="1578"/>
         </scene>
-        <!--Specials View Controller-->
+        <!--Base Navigation Controller - Restaurants-->
         <scene sceneID="Ls7-U7-ImO">
             <objects>
-                <navigationController id="6qb-L1-qgW" customClass="MMSpecialsViewController" sceneMemberID="viewController">
+                <navigationController title="Restaurants" id="6qb-L1-qgW" customClass="MMBaseNavigationController" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="i6C-o9-IR8">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Goi-vq-mlv" kind="relationship" relationship="rootViewController" id="b1e-bx-Avt"/>
+                        <segue destination="ZLw-0l-L7n" kind="relationship" relationship="rootViewController" id="AD6-Sd-5iB"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FV-77-cEU" sceneMemberID="firstResponder"/>
@@ -944,7 +947,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fS8-Ez-M2O">
-                                <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                                <rect key="frame" x="0.0" y="64" width="768" height="912"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="RPR-qE-Ycv" id="SLJ-qL-5hj"/>
@@ -962,7 +965,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEU-3r-7TP" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8316" y="187"/>
+            <point key="canvasLocation" x="8342" y="323"/>
         </scene>
         <!--Split View Controller - Restaurants-->
         <scene sceneID="Qsk-9G-ooB">
@@ -986,64 +989,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationBar>
             </objects>
             <point key="canvasLocation" x="5937" y="235"/>
-        </scene>
-        <!--Master Restaurant Table View Controller - Master-->
-        <scene sceneID="Ol9-4M-x20">
-            <objects>
-                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="Goi-vq-mlv" customClass="MMMasterRestaurantTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dRt-Ku-fso">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="0TO-Dl-cRz">
-                            <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="barTintColor" red="0.16078431369999999" green="0.66274509800000003" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="Goi-vq-mlv" id="Htb-3H-RN2"/>
-                            </connections>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="80" id="NiY-e1-4dW" customClass="RestaurantCell">
-                                <rect key="frame" x="0.0" y="66" width="1024" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NiY-e1-4dW" id="c2C-rF-PWa">
-                                    <rect key="frame" x="0.0" y="0.0" width="991" height="79"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="cgt-Lx-Vad" kind="modal" identifier="restaurantSegue" id="ANn-JM-0R7"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="Goi-vq-mlv" id="8SS-F3-1nX"/>
-                            <outlet property="delegate" destination="Goi-vq-mlv" id="Zf3-Nu-10v"/>
-                        </connections>
-                    </tableView>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Restaurants" id="lLE-5b-SsI"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <connections>
-                        <outlet property="merchantsearch" destination="0TO-Dl-cRz" id="N5T-ve-I7r"/>
-                        <outlet property="searchDisplayController" destination="cx9-p0-4dK" id="nBc-zk-Hwd"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xHD-LM-Dip" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="cx9-p0-4dK">
-                    <connections>
-                        <outlet property="delegate" destination="Goi-vq-mlv" id="sXG-ig-4Qz"/>
-                        <outlet property="searchBar" destination="0TO-Dl-cRz" id="gMZ-EA-Jyl"/>
-                        <outlet property="searchContentsController" destination="Goi-vq-mlv" id="C4w-me-Vjq"/>
-                        <outlet property="searchResultsDataSource" destination="Goi-vq-mlv" id="bWx-MO-Hoy"/>
-                        <outlet property="searchResultsDelegate" destination="Goi-vq-mlv" id="WUS-tl-exA"/>
-                    </connections>
-                </searchDisplayController>
-            </objects>
-            <point key="canvasLocation" x="8164" y="-825"/>
         </scene>
         <!--Restaurant View Controller - Restaurant Information-->
         <scene sceneID="iXZ-fF-lSm">
@@ -1626,10 +1571,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="10712" y="292"/>
         </scene>
-        <!--Specials View Controller-->
+        <!--Base Navigation Controller-->
         <scene sceneID="fE2-Eu-0gs">
             <objects>
-                <navigationController id="6Lw-kW-0RB" customClass="MMSpecialsViewController" sceneMemberID="viewController">
+                <navigationController id="6Lw-kW-0RB" customClass="MMBaseNavigationController" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="6iN-jg-rxd">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1639,7 +1585,110 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Jc-w7-T0a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7370" y="204"/>
+            <point key="canvasLocation" x="7374" y="464"/>
+        </scene>
+        <!--Master Restaurant Table View Controller - Restaurants-->
+        <scene sceneID="ac2-Qt-6SK">
+            <objects>
+                <viewController id="ZLw-0l-L7n" customClass="MMMasterRestaurantTableViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5eG-wW-Ast"/>
+                        <viewControllerLayoutGuide type="bottom" id="f0E-Ko-fiJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5d4-UG-zrF">
+                        <rect key="frame" x="0.0" y="64" width="320" height="704"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" text="" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="loY-FZ-xWY">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ZLw-0l-L7n" id="g8M-lh-lQ4"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="R1x-s0-eaK">
+                                <rect key="frame" x="0.0" y="87" width="320" height="617"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="JA7-Ru-2c0" customClass="RestaurantCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JA7-Ru-2c0" id="Gd2-9V-Nsy">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="cgt-Lx-Vad" kind="modal" identifier="restaurantSegue" id="9NX-oq-ZFy"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TsL-eg-6M1">
+                                <rect key="frame" x="0.0" y="44" width="320" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Qwt-uj-ZgO">
+                                        <rect key="frame" x="6" y="6" width="307" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="Nearby"/>
+                                            <segment title="Top Rated"/>
+                                            <segment title="Cusine"/>
+                                        </segments>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Qwt-uj-ZgO" firstAttribute="leading" secondItem="TsL-eg-6M1" secondAttribute="leading" constant="6" id="E2l-xG-F35"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qwt-uj-ZgO" secondAttribute="trailing" constant="7" id="KB8-tn-Ur8"/>
+                                    <constraint firstItem="Qwt-uj-ZgO" firstAttribute="top" secondItem="TsL-eg-6M1" secondAttribute="top" constant="6" id="k77-bI-E3p"/>
+                                    <constraint firstAttribute="bottom" secondItem="Qwt-uj-ZgO" secondAttribute="bottom" constant="8" id="zhu-jK-XQP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="R1x-s0-eaK" firstAttribute="leading" secondItem="5d4-UG-zrF" secondAttribute="leading" id="8Un-8E-KxK"/>
+                            <constraint firstAttribute="trailing" secondItem="TsL-eg-6M1" secondAttribute="trailing" id="Fqi-HB-StV"/>
+                            <constraint firstItem="loY-FZ-xWY" firstAttribute="top" secondItem="5d4-UG-zrF" secondAttribute="top" id="Lk8-Jx-9Bo"/>
+                            <constraint firstItem="R1x-s0-eaK" firstAttribute="trailing" secondItem="TsL-eg-6M1" secondAttribute="trailing" id="NPC-xP-MYn"/>
+                            <constraint firstAttribute="bottom" secondItem="R1x-s0-eaK" secondAttribute="bottom" id="Uhd-Ww-5w9"/>
+                            <constraint firstItem="TsL-eg-6M1" firstAttribute="top" secondItem="loY-FZ-xWY" secondAttribute="bottom" id="VLy-U0-la1"/>
+                            <constraint firstItem="TsL-eg-6M1" firstAttribute="trailing" secondItem="loY-FZ-xWY" secondAttribute="trailing" id="oqN-DP-4C4"/>
+                            <constraint firstItem="loY-FZ-xWY" firstAttribute="leading" secondItem="TsL-eg-6M1" secondAttribute="leading" id="t6f-d8-D0S"/>
+                            <constraint firstItem="TsL-eg-6M1" firstAttribute="leading" secondItem="R1x-s0-eaK" secondAttribute="leading" id="tlM-P5-sZW"/>
+                            <constraint firstItem="R1x-s0-eaK" firstAttribute="top" secondItem="TsL-eg-6M1" secondAttribute="bottom" constant="1" id="zeD-VD-ot3"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Restaurants" id="eLa-H1-ySV"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="merchantsearch" destination="loY-FZ-xWY" id="k5D-Hm-omI"/>
+                        <outlet property="orderbySegmentControl" destination="Qwt-uj-ZgO" id="5eI-ZP-WQC"/>
+                        <outlet property="searchDisplayController" destination="aUw-Ns-Ssm" id="ve5-iK-JY0"/>
+                        <outlet property="tableView" destination="R1x-s0-eaK" id="yl9-Wj-S88"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gmr-tk-Ur9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="aUw-Ns-Ssm">
+                    <connections>
+                        <outlet property="delegate" destination="ZLw-0l-L7n" id="gcn-Xb-Yhi"/>
+                        <outlet property="searchBar" destination="loY-FZ-xWY" id="H7D-FD-CkH"/>
+                        <outlet property="searchContentsController" destination="ZLw-0l-L7n" id="9bC-BS-G88"/>
+                        <outlet property="searchResultsDataSource" destination="ZLw-0l-L7n" id="SHH-yB-uMs"/>
+                        <outlet property="searchResultsDelegate" destination="ZLw-0l-L7n" id="gCJ-Pd-rZ6"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="8098" y="-722"/>
         </scene>
         <!--Rating Popover View Controller-->
         <scene sceneID="Qr4-eS-w6V">
@@ -1847,7 +1896,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oi0-OR-f7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6680" y="2139"/>
+            <point key="canvasLocation" x="6660" y="2343"/>
         </scene>
     </scenes>
     <resources>
@@ -1866,9 +1915,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="BdE-8K-hFB"/>
         <segue reference="9fc-nU-7db"/>
-        <segue reference="ANn-JM-0R7"/>
+        <segue reference="9NX-oq-ZFy"/>
+        <segue reference="BdE-8K-hFB"/>
         <segue reference="SHi-7D-H4s"/>
     </inferredMetricsTieBreakers>
 </document>

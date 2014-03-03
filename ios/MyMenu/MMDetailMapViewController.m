@@ -140,7 +140,7 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 // Actually put all the pins on the map for each restaurant
 - (void)pinRestaurants:(NSArray *)restaurants {
     
-    if([restaurants count] == 1){
+    if([restaurants count] == 1) {
         MKCoordinateSpan span;
         span.latitudeDelta = .25;
         span.longitudeDelta = .25;
@@ -155,20 +155,18 @@ NSString *const kDidUpdateList = @"DidUpdateList";
         region.span = span;
         
         [self.mapView setRegion:region animated:YES];
-        
     }
+    else {
+        MKCoordinateSpan span;
+        span.latitudeDelta = .25;
+        span.longitudeDelta = .25;
+
+        MKCoordinateRegion region;
+        region.center = _location.coordinate;
+        region.span = span;
     
-    else{
-    
-    MKCoordinateSpan span;
-    span.latitudeDelta = .25;
-    span.longitudeDelta = .25;
-    
-    MKCoordinateRegion region;
-    region.center = _location.coordinate;
-    region.span = span;
-    [self.mapView setCenterCoordinate:_location.coordinate animated:YES];
-    [self.mapView setRegion:region animated:YES];
+        [self.mapView setCenterCoordinate:_location.coordinate animated:YES];
+        [self.mapView setRegion:region animated:YES];
     }
     
     for (int i = 0; i < restaurants.count; i++) {

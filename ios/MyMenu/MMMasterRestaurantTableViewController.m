@@ -23,20 +23,27 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UIColor+MyMenuColors.h"
 #import "MMUser.h"
+#import "NSArray+MerchantSort.h"
 
 #define kCurrentUser @"currentUser"
 
 @interface MMMasterRestaurantTableViewController () {
     NSMutableArray *_objects;
 }
+
+- (void)updatedOrderByFilter:(UISegmentedControl*)control;
+
 @end
 
 @implementation MMMasterRestaurantTableViewController
 
 - (void)awakeFromNib {
-    self.clearsSelectionOnViewWillAppear = NO;
     self.preferredContentSize = CGSizeMake(320.0, 600.0);
     [super awakeFromNib];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void)didRetrieveCompressedMerchants:(NSArray *)compressedMerchants withResponse:(MMDBFetcherResponse *)response {
@@ -65,7 +72,7 @@
                                                            object:_restaurants];
     }
     
-    [((UITableView *) self.view) reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)didRetrieveMerchant:(MMMerchant *)merchant withResponse:(MMDBFetcherResponse *)response {
@@ -84,7 +91,30 @@
     _searchflag = false;
 
     self.detailViewController = (MMDetailMapViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self.orderbySegmentControl addTarget:self
+                                   action:@selector(updatedOrderByFilter:)
+                         forControlEvents:UIControlEventValueChanged];
+}
 
+- (void)updatedOrderByFilter:(UISegmentedControl*)control {
+    switch ([control selectedSegmentIndex]) {
+        case 0:
+            _restaurants = [_restaurants sortMerchantByDistance];
+            break;
+        case 1:
+            _restaurants = [_restaurants sortMerchantByTopRated];
+            break;
+        case 2:
+            _restaurants = [_restaurants sortMerchantByCusine];
+            break;
+        default:
+            break;
+    }
+
+    [self.tableView reloadData];
 }
 
 - (void)dealloc {
