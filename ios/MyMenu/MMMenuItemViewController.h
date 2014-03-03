@@ -28,6 +28,7 @@
 @property (nonatomic, weak) IBOutlet UIButton * ratingButton;
 @property (nonatomic, weak) IBOutlet UIScrollView * scrollView;
 @property (nonatomic, weak) IBOutlet UINavigationBar * navigationBar;
+@property (nonatomic, strong) NSNumber *rating;
 
 
 - (IBAction)shareViaFacebook:(id)sender;
