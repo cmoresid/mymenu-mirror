@@ -17,6 +17,7 @@
 #import "MBProgressHUD.h"
 #import "MMRatingPopoverViewController.h"
 #import "MMMenuItemRating.h"
+#import "MMMenuItemReviewCell.h"
 
 #define kCurrentUser @"currentUser"
 
@@ -29,6 +30,8 @@
 NSMutableArray * mods;
 NSInteger ratingValue;
 MMUser * userProfile;
+NSMutableArray * reviews;
+NSInteger collIndex;
 
 
 
@@ -43,16 +46,20 @@ MMUser * userProfile;
 // Delegate method.
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
 {
+    
     return UIBarPositionTopAttached; //or UIBarPositionTopAttached
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    collIndex = 0;
     mods = [[NSMutableArray alloc] init];
     self.rating = nil;
     self.reviewField.delegate = self;
     self.navigationBar.delegate = self;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
     // Register for keyboard notifications to allow
     // for view to scroll to text field
     [self registerForKeyboardNotifications];
@@ -80,7 +87,64 @@ MMUser * userProfile;
     [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getModifications:_touchedItem.itemid withUser:userProfile.email];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+        [self.collectionView registerNib:[UINib nibWithNibName:@"MenuItemReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
+    [self.reviewSegment addTarget:self
+                                   action:@selector(changeReviewSort:)
+                         forControlEvents:UIControlEventValueChanged];
     [self.tableView reloadData];
+    [self.collectionView reloadData];
+    
+    
+}
+
+
+- (void)changeReviewSort:(UISegmentedControl*)control {
+    switch ([control selectedSegmentIndex]) {
+        case 0:
+            [[MMDBFetcher get] getItemRatingsTop:_touchedItem.itemid];
+            [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+            break;
+        case 1:
+            [[MMDBFetcher get] getItemRatings:_touchedItem.itemid];
+            [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)didRetrieveItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+    MMMenuItemRating * rating = [[MMMenuItemRating alloc] init];
+    reviews = [[NSMutableArray alloc] init];
+    rating.useremail = @"See More Reviews";
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }else{
+        if (ratings.count != 0){
+            if(ratings.count >= 4){
+                for (NSInteger w = 0; w<=2; w++){
+                    [reviews addObject:[ratings objectAtIndex:w]];
+                }
+            [reviews addObject:rating];
+            }else{
+                reviews = [ratings mutableCopy];
+                [reviews addObject:rating];
+            }
+        } else{
+            rating.review = @"There are not any reviews available for this dish.";
+            [reviews addObject:rating];
+        }
+        [self.collectionView reloadData];
+    }
+
 }
 
 -(void) didRetrieveModifications:(NSArray *)modificationsArray withResponse:(MMDBFetcherResponse *)response{
@@ -102,6 +166,8 @@ MMUser * userProfile;
         }
         [self.tableView reloadData];
     }
+    [[MMDBFetcher get] getItemRatingsTop:_touchedItem.itemid];
+    [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
 }
 
 
@@ -264,6 +330,8 @@ MMUser * userProfile;
                                                   animated:YES];
     
 }
+
+
 -(void)didCreateRating:(BOOL)successful withResponse:(MMDBFetcherResponse *)response{
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
     if (!response.wasSuccessful) {
@@ -292,6 +360,60 @@ MMUser * userProfile;
     }
         
 
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return reviews.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"ReviewCell";
+    
+    MMMenuItemReviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    //cell.userInteractionEnabled = YES;
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"MenuItemReviewCell" owner:self options:NULL] objectAtIndex:0];
+    }
+
+    
+    MMMenuItemRating *menitem = [reviews objectAtIndex:indexPath.row];
+    UILabel *textReview = (UILabel *) [cell viewWithTag:102];
+    UILabel *textName = (UILabel *) [cell viewWithTag:101];
+    UILabel * likeLabel = (UILabel *) [cell viewWithTag:108];
+    UIButton * reportButton = (UIButton *) [cell viewWithTag:109];
+    UIView * labelBack = (UIView * ) [cell viewWithTag:106];
+    [textName sizeToFit];
+    [textReview sizeToFit];
+//    if (collIndex >= 3){
+//        textName.text = @"See More Reviews";
+//        likeLabel.text= @"";
+//        reportButton.hidden = YES;
+//        labelBack.backgroundColor = [UIColor whiteColor];
+//        
+//    }else{
+        // Rounded Corners
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.contentView.layer.cornerRadius = 5;
+        cell.contentView.layer.masksToBounds = YES;
+        UIImageView *imageView = (UIImageView *) [cell viewWithTag:107];
+        //[imageView setImageWithURL:[NSURL URLWithString:] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+        UILabel * textRating = (UILabel *) [cell viewWithTag:104];
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+        [formatter setMaximumFractionDigits:1];
+        [formatter setMinimumFractionDigits:1];
+        NSNumberFormatter *formatterCost = [[NSNumberFormatter alloc] init];
+        [formatterCost setRoundingMode:NSNumberFormatterRoundHalfUp];
+        [formatterCost setMaximumFractionDigits:3];
+        [formatterCost setMinimumFractionDigits:2];
+        labelBack.backgroundColor = [UIColor lightBackgroundGray];
+        labelBack.layer.cornerRadius = 5;
+        textRating.text = [formatter  stringFromNumber:menitem.rating];
+        textName.text = menitem.useremail;
+        textReview.text = menitem.review;
+ //   }
+    collIndex++;
+    return cell;
 }
 
 - (IBAction)saveButton:(id)sender{

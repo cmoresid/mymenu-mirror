@@ -11,7 +11,7 @@
 #import "MMMerchant.h"
 #import "MMDBFetcherDelegate.h"
 
-@interface MMMenuItemViewController : UIViewController <UITableViewDataSource, MMDBFetcherDelegate, UITextViewDelegate, UIPopoverControllerDelegate>
+@interface MMMenuItemViewController : UIViewController <UITableViewDataSource, MMDBFetcherDelegate, UITextViewDelegate, UIPopoverControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property MMMenuItem *touchedItem;
 @property MMMerchant *selectedRestaurant;
@@ -29,6 +29,9 @@
 @property (nonatomic, weak) IBOutlet UIScrollView * scrollView;
 @property (nonatomic, weak) IBOutlet UINavigationBar * navigationBar;
 @property (nonatomic, strong) NSNumber *rating;
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *reviewSegment;
+
 
 
 - (IBAction)shareViaFacebook:(id)sender;
