@@ -15,20 +15,24 @@
 //  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
-#import "MMDetailViewController.h"
+#import "MMDetailMapViewController.h"
 #import "MMLocationManager.h"
 #import "MMRestaurantMapDelegate.h"
-#import "MMMasterViewController.h"
+#import "MMMasterRestaurantTableViewController.h"
+
 NSString *const kDidUpdateList = @"DidUpdateList";
-@interface MMDetailViewController ()
+
+@interface MMDetailMapViewController ()
+
 @property(strong, nonatomic) IBOutlet MKMapView *mapView;
 @property(strong, nonatomic) UIPopoverController *masterPopoverController;
 @property(strong, nonatomic) id <MKMapViewDelegate> mapDelegate;
 
 - (void)configureView;
+
 @end
 
-@implementation MMDetailViewController
+@implementation MMDetailMapViewController
 
 #pragma mark - Managing the detail item
 #pragma TODO: Setup map to point to user location
@@ -136,7 +140,7 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 // Actually put all the pins on the map for each restaurant
 - (void)pinRestaurants:(NSArray *)restaurants {
     
-    if([restaurants count] == 1){
+    if([restaurants count] == 1) {
         MKCoordinateSpan span;
         span.latitudeDelta = .25;
         span.longitudeDelta = .25;
@@ -151,20 +155,18 @@ NSString *const kDidUpdateList = @"DidUpdateList";
         region.span = span;
         
         [self.mapView setRegion:region animated:YES];
-        
     }
+    else {
+        MKCoordinateSpan span;
+        span.latitudeDelta = .25;
+        span.longitudeDelta = .25;
+
+        MKCoordinateRegion region;
+        region.center = _location.coordinate;
+        region.span = span;
     
-    else{
-    
-    MKCoordinateSpan span;
-    span.latitudeDelta = .25;
-    span.longitudeDelta = .25;
-    
-    MKCoordinateRegion region;
-    region.center = _location.coordinate;
-    region.span = span;
-    [self.mapView setCenterCoordinate:_location.coordinate animated:YES];
-    [self.mapView setRegion:region animated:YES];
+        [self.mapView setCenterCoordinate:_location.coordinate animated:YES];
+        [self.mapView setRegion:region animated:YES];
     }
     
     for (int i = 0; i < restaurants.count; i++) {

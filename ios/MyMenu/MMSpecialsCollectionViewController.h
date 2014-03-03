@@ -20,7 +20,7 @@
 @class MMSpecialsPopOverTableView;
 @class MMSpecialsPopOverWeek;
 
-@interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate,UIToolbarDelegate,UIPopoverControllerDelegate>
+@interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate,UIToolbarDelegate,UIPopoverControllerDelegate,UISearchBarDelegate>
 
 @property(nonatomic) UIBarButtonItem * button1;
 @property(atomic) NSMutableArray * showTypes;

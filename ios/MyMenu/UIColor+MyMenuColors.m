@@ -23,11 +23,11 @@
     return [[UIColor alloc] initWithRed:67 / 255.0f green:199 / 255.0f blue:174 / 255.0f alpha:1.0f];
 }
 
-+ (UIColor *)orangeColor {
++ (UIColor *)accentOrangeColor {
     return [[UIColor alloc] initWithRed:233.0 / 255.0f green:182.0 / 255.0f blue:83.0 / 255.0f alpha:1.0f];
 }
 
-+ (UIColor *)redColor {
++ (UIColor *)accentRedColor {
     //204	69	85
     return [[UIColor alloc] initWithRed:204.0 / 255.0f green:69.0 / 255.0f blue:85.0 / 255.0f alpha:1.0f];
 }
@@ -59,11 +59,6 @@
 
 + (UIColor *)secondaryBlueBar {
     return [[UIColor alloc] initWithRed:142.0 / 255.0f green:221.0 / 255.0f blue:206.0 / 255.0f alpha:1.0f];
-
-}
-
-+ (UIColor *)whiteColor {
-    return [[UIColor alloc] initWithRed:255.0 / 255.0f green:255.0 / 255.0f blue:255.0 / 255.0f alpha:1.0f];
 
 }
 

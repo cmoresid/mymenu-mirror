@@ -38,7 +38,6 @@
 		833C8C83189D9B85007CB562 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 833C8C82189D9B85007CB562 /* logo.png */; };
 		83655AA01891E2DF005EBF8A /* MapViewToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83655A9F1891E2DF005EBF8A /* MapViewToolbar.xib */; };
 		8373638A18C00CBD00608DC6 /* MMSpecialsPopOverWeek.m in Resources */ = {isa = PBXBuildFile; fileRef = 8373638918C00CBD00608DC6 /* MMSpecialsPopOverWeek.m */; };
-		8373638C18C00EC400608DC6 /* MMSpecialsPopOverWeek.h in Sources */ = {isa = PBXBuildFile; fileRef = 8373638B18C00CD000608DC6 /* MMSpecialsPopOverWeek.h */; };
 		8373638D18C00EC400608DC6 /* MMSpecialsPopOverWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373638918C00CBD00608DC6 /* MMSpecialsPopOverWeek.m */; };
 		837FE29418945CB800A0720E /* MMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FE29318945CB800A0720E /* MMButton.m */; };
 		83893EAB18919AD400D36670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAA18919AD400D36670 /* Foundation.framework */; };
@@ -54,8 +53,8 @@
 		83893ECF18919AD400D36670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAE18919AD400D36670 /* UIKit.framework */; };
 		83893ED718919AD400D36670 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83893ED518919AD400D36670 /* InfoPlist.strings */; };
 		83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A61ED018922E4E00269357 /* MapKit.framework */; };
-		83B7E44D1891EE0700946784 /* MMMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44A1891EE0700946784 /* MMMasterViewController.m */; };
-		83B7E44E1891EE0700946784 /* MMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44C1891EE0700946784 /* MMDetailViewController.m */; };
+		83B7E44D1891EE0700946784 /* MMMasterRestaurantTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44A1891EE0700946784 /* MMMasterRestaurantTableViewController.m */; };
+		83B7E44E1891EE0700946784 /* MMDetailMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E44C1891EE0700946784 /* MMDetailMapViewController.m */; };
 		83B7E4511891F15100946784 /* MMSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7E4501891F15100946784 /* MMSplitViewController.m */; };
 		83B85B861897029100195F05 /* MMSpecialsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B85B851897029100195F05 /* MMSpecialsCollectionViewController.m */; };
 		83B85B8B18971A3D00195F05 /* MMSpecialType.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B85B8A18971A3D00195F05 /* MMSpecialType.m */; };
@@ -80,15 +79,14 @@
 		9BB40CAD18ADBE6B00B59A46 /* MMCategoryPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB40CAC18ADBE6B00B59A46 /* MMCategoryPopOverViewController.m */; };
 		9BBD913318943D77006DDBCE /* MMDBFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913218943D77006DDBCE /* MMDBFetcher.m */; };
 		9BBD913418943D77006DDBCE /* MMDBFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD913218943D77006DDBCE /* MMDBFetcher.m */; };
-		9BBDE03318A1A59D005EDA0B /* MMSpecialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMSpecialsViewController.m */; };
-		9BBDE03418A1A59D005EDA0B /* MMSpecialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMSpecialsViewController.m */; };
+		9BBDE03318A1A59D005EDA0B /* MMBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMBaseNavigationController.m */; };
+		9BBDE03418A1A59D005EDA0B /* MMBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMBaseNavigationController.m */; };
 		9BBDE03D18A1B6E9005EDA0B /* MMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */; };
 		9BBDE03E18A1B6E9005EDA0B /* MMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */; };
 		B022D81A18C2F6970077D908 /* MMRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B022D81918C2F6970077D908 /* MMRatingView.m */; };
 		B022D81D18C2FD410077D908 /* MMRatingPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B022D81C18C2FD410077D908 /* MMRatingPopoverViewController.m */; };
 		B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */; };
 		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
-		B0627E2C18A2CB3700EAA045 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2818A2CB3700EAA045 /* 19-gear.png */; };
 		B0627E2D18A2CB3700EAA045 /* 125-food.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2918A2CB3700EAA045 /* 125-food.png */; };
 		B0627E2E18A2CB3700EAA045 /* 172-pricetag.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */; };
 		B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2B18A2CB3700EAA045 /* 184-warning.png */; };
@@ -176,10 +174,10 @@
 		83893ED418919AD400D36670 /* MyMenuTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyMenuTests-Info.plist"; sourceTree = "<group>"; };
 		83893ED618919AD400D36670 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83A61ED018922E4E00269357 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		83B7E4491891EE0700946784 /* MMMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMasterViewController.h; sourceTree = "<group>"; };
-		83B7E44A1891EE0700946784 /* MMMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMasterViewController.m; sourceTree = "<group>"; };
-		83B7E44B1891EE0700946784 /* MMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDetailViewController.h; sourceTree = "<group>"; };
-		83B7E44C1891EE0700946784 /* MMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDetailViewController.m; sourceTree = "<group>"; };
+		83B7E4491891EE0700946784 /* MMMasterRestaurantTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMasterRestaurantTableViewController.h; sourceTree = "<group>"; };
+		83B7E44A1891EE0700946784 /* MMMasterRestaurantTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMasterRestaurantTableViewController.m; sourceTree = "<group>"; };
+		83B7E44B1891EE0700946784 /* MMDetailMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDetailMapViewController.h; sourceTree = "<group>"; };
+		83B7E44C1891EE0700946784 /* MMDetailMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDetailMapViewController.m; sourceTree = "<group>"; };
 		83B7E44F1891F15100946784 /* MMSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSplitViewController.h; sourceTree = "<group>"; };
 		83B7E4501891F15100946784 /* MMSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSplitViewController.m; sourceTree = "<group>"; };
 		83B85B841897029100195F05 /* MMSpecialsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialsCollectionViewController.h; sourceTree = "<group>"; };
@@ -213,8 +211,8 @@
 		9BBD913218943D77006DDBCE /* MMDBFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcher.m; sourceTree = "<group>"; };
 		9BBD913F189478CF006DDBCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9BBD9141189478DB006DDBCE /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		9BBDE03118A1A59D005EDA0B /* MMSpecialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialsViewController.h; sourceTree = "<group>"; };
-		9BBDE03218A1A59D005EDA0B /* MMSpecialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialsViewController.m; sourceTree = "<group>"; };
+		9BBDE03118A1A59D005EDA0B /* MMBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBaseNavigationController.h; sourceTree = "<group>"; };
+		9BBDE03218A1A59D005EDA0B /* MMBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBaseNavigationController.m; sourceTree = "<group>"; };
 		9BBDE03B18A1B6E9005EDA0B /* MMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSettingsViewController.h; sourceTree = "<group>"; };
 		9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSettingsViewController.m; sourceTree = "<group>"; };
 		B022D81818C2F6970077D908 /* MMRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRatingView.h; sourceTree = "<group>"; };
@@ -500,16 +498,16 @@
 				B097D6F81893608300142F8D /* MMDietaryRestrictionsViewController.m */,
 				83B7E44F1891F15100946784 /* MMSplitViewController.h */,
 				83B7E4501891F15100946784 /* MMSplitViewController.m */,
-				83B7E4491891EE0700946784 /* MMMasterViewController.h */,
-				83B7E44A1891EE0700946784 /* MMMasterViewController.m */,
-				83B7E44B1891EE0700946784 /* MMDetailViewController.h */,
-				83B7E44C1891EE0700946784 /* MMDetailViewController.m */,
+				83B7E4491891EE0700946784 /* MMMasterRestaurantTableViewController.h */,
+				83B7E44A1891EE0700946784 /* MMMasterRestaurantTableViewController.m */,
+				83B7E44B1891EE0700946784 /* MMDetailMapViewController.h */,
+				83B7E44C1891EE0700946784 /* MMDetailMapViewController.m */,
 				B097D6FF189392FC00142F8D /* MMMainTabBarViewController.h */,
 				B097D700189392FC00142F8D /* MMMainTabBarViewController.m */,
 				83B85B841897029100195F05 /* MMSpecialsCollectionViewController.h */,
 				83B85B851897029100195F05 /* MMSpecialsCollectionViewController.m */,
-				9BBDE03118A1A59D005EDA0B /* MMSpecialsViewController.h */,
-				9BBDE03218A1A59D005EDA0B /* MMSpecialsViewController.m */,
+				9BBDE03118A1A59D005EDA0B /* MMBaseNavigationController.h */,
+				9BBDE03218A1A59D005EDA0B /* MMBaseNavigationController.m */,
 				9BBDE03B18A1B6E9005EDA0B /* MMSettingsViewController.h */,
 				9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */,
 				17F9F80718AAEA17006B7DD0 /* MMMenuItemViewController.h */,
@@ -643,9 +641,7 @@
 				174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */,
 				17F9F80F18AC356F006B7DD0 /* twittershare.jpg in Resources */,
 				83893EC618919AD400D36670 /* Images.xcassets in Resources */,
-				B0627E2C18A2CB3700EAA045 /* 19-gear.png in Resources */,
 				83893EC618919AD400D36670 /* Images.xcassets in Resources */,
-				B0627E2C18A2CB3700EAA045 /* 19-gear.png in Resources */,
 				17F9F80D18AC3565006B7DD0 /* facebookshare.jpg in Resources */,
 				B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */,
 				1731DFAC18A59B0F008BE05B /* 06-magnify.png in Resources */,
@@ -717,7 +713,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8373638C18C00EC400608DC6 /* MMSpecialsPopOverWeek.h in Sources */,
 				8373638D18C00EC400608DC6 /* MMSpecialsPopOverWeek.m in Sources */,
 				9B776FDF18A564D00057B6E1 /* NSArray+MerchantSort.m in Sources */,
 				174FE0C218945E5900CB82C0 /* RestaurantCell.m in Sources */,
@@ -742,7 +737,7 @@
 				83893EBB18919AD400D36670 /* MMAppDelegate.m in Sources */,
 				B083C7D8189D85550074F7DC /* MMDBFetcherResponse.m in Sources */,
 				B097D6FC189360A500142F8D /* MMRegistrationViewController.m in Sources */,
-				83B7E44D1891EE0700946784 /* MMMasterViewController.m in Sources */,
+				83B7E44D1891EE0700946784 /* MMMasterRestaurantTableViewController.m in Sources */,
 				8339D73318BEB05C00CC7EC0 /* MMSpecialsPopOverTableView.m in Sources */,
 				B0AC55BF1896F8CB000BC0DD /* MMPopoverDataPair.m in Sources */,
 				83B7E4511891F15100946784 /* MMSplitViewController.m in Sources */,
@@ -758,10 +753,10 @@
 				B0B0C4DB18A81FAE00BA47CB /* MMRestaurantMapDelegate.m in Sources */,
 				9B4E24881891DCD100F5B955 /* MMMenuItemRating.m in Sources */,
 				B097D7091893A6B200142F8D /* MMMainTabViewSegue.m in Sources */,
-				9BBDE03318A1A59D005EDA0B /* MMSpecialsViewController.m in Sources */,
+				9BBDE03318A1A59D005EDA0B /* MMBaseNavigationController.m in Sources */,
 				9B4E24781891D8C600F5B955 /* MMMerchant.m in Sources */,
 				9B1CFF7D18A442C700E9F778 /* MMLocationManager.m in Sources */,
-				83B7E44E1891EE0700946784 /* MMDetailViewController.m in Sources */,
+				83B7E44E1891EE0700946784 /* MMDetailMapViewController.m in Sources */,
 				B068A13218A738B5005E8036 /* MMSocialMediaService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -774,7 +769,7 @@
 				9B4E24891891DCD100F5B955 /* MMMenuItemRating.m in Sources */,
 				B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */,
 				B0EB0C8418A397A200CAAF44 /* MMMockNetworkClient.m in Sources */,
-				9BBDE03418A1A59D005EDA0B /* MMSpecialsViewController.m in Sources */,
+				9BBDE03418A1A59D005EDA0B /* MMBaseNavigationController.m in Sources */,
 				9BBD913418943D77006DDBCE /* MMDBFetcher.m in Sources */,
 				9B776FE018A564D00057B6E1 /* NSArray+MerchantSort.m in Sources */,
 				B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */,

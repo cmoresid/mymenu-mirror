@@ -48,8 +48,6 @@
 - (IBAction)logout:(id)sender {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kCurrentUser];
 
-    NSData *user = [[NSUserDefaults standardUserDefaults] objectForKey:kCurrentUser];
-
     NSLog(@"Logout");
 }
 

@@ -10,6 +10,8 @@
 
 @interface NSArray (MerchantSort)
 
-- (NSArray *)sortMerchant;
+- (NSArray *)sortMerchantByDistance;
+- (NSArray *)sortMerchantByTopRated;
+- (NSArray *)sortMerchantByCusine;
 
 @end

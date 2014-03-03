@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
 	CGRect frame = self.tableView.frame;
-	CGSize size = [self contentSizeForViewInPopover];
+	CGSize size = [self preferredContentSize];
 	[self.tableView setFrame:CGRectMake(frame.origin.x, frame.origin.y, size.width, size.height)];
 
     // Uncomment the following line to preserve selection between presentations.

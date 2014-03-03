@@ -35,12 +35,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Set the title color of all nested navigation bars
+    // to white.
+    UINavigationController *navController;
+    for (id controller in self.viewControllers) {
+        if ([controller isKindOfClass:[UINavigationController class]]) {
+            navController = (UINavigationController*) controller;
+            navController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+        }
+    }
+    
     // Get the Nav Controller for the Slider
-
     UINavigationController *navigationController = [self.viewControllers lastObject];
     self.delegate = (id) navigationController.topViewController;
-    // Do any additional setup after loading the view.
     
+    // Do any additional setup after loading the view.
     self.locationManager = [[MMLocationManager alloc] initWithConfigurationBlock:^(CLLocationManager *locationManager, NSArray *locations) {
         
         CLLocation *currentLocation = [locations lastObject];
@@ -48,8 +58,6 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:kRetrievedUserLocation
                                                             object:currentLocation];
     }];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

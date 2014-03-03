@@ -255,6 +255,9 @@ MMUser * userProfile;
     
     self.popOverController = popover;
     
+    // Make sure keyboard is hidden before you show popup.
+    [self.reviewField resignFirstResponder];
+    
     [self.popOverController presentPopoverFromRect:self.ratingButton.frame
                                                     inView:self.ratingButton.superview
                                   permittedArrowDirections:UIPopoverArrowDirectionAny

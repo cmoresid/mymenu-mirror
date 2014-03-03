@@ -16,25 +16,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
 #import "MMDBFetcherDelegate.h"
 #import "MMDBFetcher.h"
-#import "MMMerchant.h"
-#import "MMLocationManager.h"
-extern NSString *const kDidUpdateList;
-@class MMDetailViewController;
 
-@interface MMMasterViewController : UITableViewController <MMDBFetcherDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@class MMLocationManager;
+@class MMRestaurantMapDelegate;
 
-@property(nonatomic, strong) NSArray *restaurants;
-@property(nonatomic, strong) NSArray *filteredrestaurants;
-@property(nonatomic, strong) MMMerchant *selectRest;
-@property(nonatomic, strong) MMDetailViewController *detailViewController;
+@interface MMDetailMapViewController : UIViewController <UISplitViewControllerDelegate, MMDBFetcherDelegate>
+
+@property(nonatomic, strong) id detailItem;
+@property(nonatomic, weak) IBOutlet UILabel *detailDescriptionLabel;
 @property(nonatomic, strong) MMDBFetcher *dbFetcher;
-@property(nonatomic, strong) MMLocationManager *locationManager;
 @property(nonatomic) CLLocation *location;
-@property(nonatomic) BOOL searchflag;
-@property IBOutlet UISearchBar *merchantsearch;
+
+// Put the restaurant points on the map
+- (void)pinRestaurants:(NSArray *)restaurants;
 
 @end
