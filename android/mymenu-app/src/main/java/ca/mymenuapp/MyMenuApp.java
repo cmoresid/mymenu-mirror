@@ -35,7 +35,7 @@ public class MyMenuApp extends Application {
   @Override public void onCreate() {
     super.onCreate();
 
-    buildObjectGraphAndInject();
+    buildApplicationGraphAndInject();
 
     if (BuildConfig.DEBUG) {
       Ln.set(DebugLn.from(this));
@@ -46,7 +46,7 @@ public class MyMenuApp extends Application {
   }
 
   @DebugLog
-  public void buildObjectGraphAndInject() {
+  public void buildApplicationGraphAndInject() {
     applicationGraph = ObjectGraph.create(Modules.list(this));
     applicationGraph.inject(this);
   }
