@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMDBFetcher.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMDBFetcher</TokenIdentifier>
+			<Abstract type="html">A model for qeurying data from the api.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+            
+			
+			<NodeRef refid="4"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/MMDBFetcher/get</TokenIdentifier>
+			<Abstract type="html">Get a singleton instance of this class.
+Clients should use this, and not initialize a new instance for every request.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>+ (MMDBFetcher *)get</Declaration>
+			
+			
+			<Anchor>//api/name/get</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/addUser:</TokenIdentifier>
+			<Abstract type="html">Add a user to the service.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)addUser:(MMUser *)user</Declaration>
+			
+			
+			<Anchor>//api/name/addUser:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/userExists:</TokenIdentifier>
+			<Abstract type="html">Check if the user with this email address exists already.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)userExists:(NSString *)email</Declaration>
+			
+			
+			<Anchor>//api/name/userExists:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/userVerified:</TokenIdentifier>
+			<Abstract type="html">Checks if the password for the user is entered correctly (for login).</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)userVerified:(MMUser *)user</Declaration>
+			
+			
+			<Anchor>//api/name/userVerified:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getDrinkSpecialsForDate:</TokenIdentifier>
+			<Abstract type="html">Get drink specials for the given day of the given type.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getDrinkSpecialsForDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/getDrinkSpecialsForDate:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getDessertSpecialsForDate:</TokenIdentifier>
+			<Abstract type="html">Get dessert specials for the given day of the given type.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getDessertSpecialsForDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/getDessertSpecialsForDate:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getFoodSpecialsForDate:</TokenIdentifier>
+			<Abstract type="html">Get food specials for the given day of the given type.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getFoodSpecialsForDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/getFoodSpecialsForDate:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/addUserRestrictions:::</TokenIdentifier>
+			<Abstract type="html">Add all given restrictions for the given user.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)addUserRestrictions:(NSString *)email :</Declaration>
+			
+			
+			<Anchor>//api/name/addUserRestrictions:::</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/addMenuRating:</TokenIdentifier>
+			<Abstract type="html">Add a rating/review for a menu item.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)addMenuRating:(MMMenuItemRating *)rating</Declaration>
+			
+			
+			<Anchor>//api/name/addMenuRating:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getCompressedMerchants:</TokenIdentifier>
+			<Abstract type="html">Get all merchants. Only return a subset of the fields to minify data.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getCompressedMerchants:(CLLocation *)usrloc</Declaration>
+			
+			
+			<Anchor>//api/name/getCompressedMerchants:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getCompressedMerchantsByName:withName:</TokenIdentifier>
+			<Abstract type="html">Get all merchants with name = merchname. Only return a subset of the fields to minify data.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getCompressedMerchantsByName:(CLLocation *)usrloc withName:(NSString *)merchname</Declaration>
+			
+			
+			<Anchor>//api/name/getCompressedMerchantsByName:withName:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getCompressedMerchantsByCuisine:withCuisine:</TokenIdentifier>
+			<Abstract type="html">Get all merchants with category cuisine. Only return a subset of the fields to minify data.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getCompressedMerchantsByCuisine:(CLLocation *)usrloc withCuisine:(NSString *)cuisine</Declaration>
+			
+			
+			<Anchor>//api/name/getCompressedMerchantsByCuisine:withCuisine:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getMenuWithMerchantId:withUserEmail:</TokenIdentifier>
+			<Abstract type="html">Get the menu for the restaurant.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getMenuWithMerchantId:(NSInteger)merchid withUserEmail:(NSString *)email</Declaration>
+			
+			
+			<Anchor>//api/name/getMenuWithMerchantId:withUserEmail:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getAllRestrictions</TokenIdentifier>
+			<Abstract type="html">Get all restrictions that we support.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getAllRestrictions</Declaration>
+			
+			
+			<Anchor>//api/name/getAllRestrictions</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getUserRestrictions:</TokenIdentifier>
+			<Abstract type="html">Get all restrictions for the given user.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getUserRestrictions:(NSString *)email</Declaration>
+			
+			
+			<Anchor>//api/name/getUserRestrictions:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getMerchant:</TokenIdentifier>
+			<Abstract type="html">Get all information about the merchant (restaurant) with the given id.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getMerchant:(NSNumber *)merchid</Declaration>
+			
+			
+			<Anchor>//api/name/getMerchant:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/editUser:</TokenIdentifier>
+			<Abstract type="html">Edit the given user&apos;s information on the server.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)editUser:(MMUser *)user</Declaration>
+			
+			
+			<Anchor>//api/name/editUser:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getUser:</TokenIdentifier>
+			<Abstract type="html">Get all information for the user with the given email.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getUser:(NSString *)email</Declaration>
+			
+			
+			<Anchor>//api/name/getUser:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getModifications:withUser:</TokenIdentifier>
+			<Abstract type="html">Get all modifications for a specific menu item with the given email.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getModifications:(NSNumber *)menuid withUser:(NSString *)email</Declaration>
+			
+			
+			<Anchor>//api/name/getModifications:withUser:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getItemRatings:</TokenIdentifier>
+			<Abstract type="html">Get all ratings for a specific meny item with the given menuid</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getItemRatings:(NSNumber *)menuid</Declaration>
+			
+			
+			<Anchor>//api/name/getItemRatings:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getItemRatingsMerchant:</TokenIdentifier>
+			<Abstract type="html">Get all menu item ratings for a specific merchant.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getItemRatingsMerchant:(NSNumber *)merchid</Declaration>
+			
+			
+			<Anchor>//api/name/getItemRatingsMerchant:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getCategories</TokenIdentifier>
+			<Abstract type="html">Get all merchant categories.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getCategories</Declaration>
+			
+			
+			<Anchor>//api/name/getCategories</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getItemRatingsMerchantTop:</TokenIdentifier>
+			<Abstract type="html">Get all item ratings for a merchant ordered by rating.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getItemRatingsMerchantTop:(NSNumber *)merchid</Declaration>
+			
+			
+			<Anchor>//api/name/getItemRatingsMerchantTop:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getItemRatingsTop:</TokenIdentifier>
+			<Abstract type="html">Get all ratings for a specific item ordered by rating.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getItemRatingsTop:(NSNumber *)itemid</Declaration>
+			
+			
+			<Anchor>//api/name/getItemRatingsTop:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getDay:</TokenIdentifier>
+			<Abstract type="html">Get today as a string, e.g. &apos;tuesday&apos;</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)getDay:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/getDay:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

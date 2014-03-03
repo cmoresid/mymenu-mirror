@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="E4e-Ge-d3g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="E4e-Ge-d3g">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -332,8 +332,12 @@
         <scene sceneID="2FG-zV-dHB">
             <objects>
                 <navigationController definesPresentationContext="YES" id="8Kr-Za-oMu" customClass="MMBaseNavigationController" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="i9P-rE-bAg">
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="fuX-Ai-MYU" kind="relationship" relationship="rootViewController" id="IqC-5j-MRs"/>
@@ -752,11 +756,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Registration" id="mFb-qx-bvj">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="p4o-u9-aWH">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="DH1-C1-Sj4" kind="unwind" unwindAction="unwindToLoginScreen:" id="Qc7-in-G3d"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" style="plain" id="Jr1-OJ-AH8">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="next:" destination="fuX-Ai-MYU" id="vWM-5p-Kwd"/>
                             </connections>
@@ -943,11 +949,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <viewControllerLayoutGuide type="bottom" id="iXA-U9-XYE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RPR-qE-Ycv">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fS8-Ez-M2O">
-                                <rect key="frame" x="0.0" y="64" width="768" height="912"/>
+                                <rect key="frame" x="0.0" y="64" width="703" height="656"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="RPR-qE-Ycv" id="SLJ-qL-5hj"/>
@@ -1007,12 +1013,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.16078431369999999" green="0.66274509800000003" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Restaurant Information" id="e9S-J0-K9d">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="LJ0-b5-51E">
-                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <segue destination="49e-Tb-3d3" kind="custom" customClass="MMMainTabViewSegue" id="9fc-nU-7db"/>
                                             </connections>
@@ -1110,6 +1116,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <size key="customSize" width="512" height="113"/>
                                         <connections>
                                             <segue destination="Xjk-Q4-OJR" kind="modal" identifier="showMenuItem" id="zTX-aN-WTL"/>
                                         </connections>
@@ -1208,12 +1215,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <color key="backgroundColor" red="0.16078431369999999" green="0.66274509800000003" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.16078431369999999" green="0.66274509800000003" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Menu Item Information" id="2GO-1z-fuV">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="Wxd-zo-ki8">
-                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <segue destination="cgt-Lx-Vad" kind="modal" identifier="backToRestPage" id="Se9-MU-bdg"/>
                                             </connections>
@@ -1458,21 +1465,23 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7oT-P7-lOX">
                                                 <rect key="frame" x="0.0" y="576" width="1029" height="115"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2mm-uR-qak">
-                                                    <size key="itemSize" width="50" height="50"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="2mm-uR-qak">
+                                                    <size key="itemSize" width="512" height="113"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Bzf-H4-Gqg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ReviewCell" reuseIdentifier="ReviewCell" id="Bzf-H4-Gqg" customClass="MMMenuItemReviewCell">
+                                                        <rect key="frame" x="0.0" y="0.0" width="512" height="113"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="512" height="113"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
+                                                        <size key="customSize" width="512" height="113"/>
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
@@ -1555,6 +1564,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="collectionView" destination="7oT-P7-lOX" id="iTT-5o-fEU"/>
                         <outlet property="itemDescription" destination="aLf-7R-Obg" id="x90-b9-uRg"/>
                         <outlet property="itemImage" destination="Xb3-Rz-dCX" id="3FD-cI-GfZ"/>
                         <outlet property="itemName" destination="dRz-uF-pGY" id="N5G-zW-EcL"/>
@@ -1563,6 +1573,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="navigationBar" destination="Qg4-pN-Bow" id="LFK-4B-oKW"/>
                         <outlet property="ratingButton" destination="pN7-Gw-KQN" id="067-zD-iil"/>
                         <outlet property="reviewField" destination="p9Y-dl-y5V" id="Qe1-hP-bJH"/>
+                        <outlet property="reviewSegment" destination="YKj-Vc-rBB" id="Vmr-Kd-vbz"/>
                         <outlet property="scrollView" destination="We8-tM-2jA" id="tCZ-Xj-B0t"/>
                         <outlet property="tableView" destination="ftn-Uk-rYS" id="cGQ-Te-0ek"/>
                     </connections>
@@ -1596,7 +1607,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <viewControllerLayoutGuide type="bottom" id="f0E-Ko-fiJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5d4-UG-zrF">
-                        <rect key="frame" x="0.0" y="64" width="320" height="704"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="655"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" text="" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="loY-FZ-xWY">
@@ -1609,7 +1620,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="R1x-s0-eaK">
-                                <rect key="frame" x="0.0" y="87" width="320" height="617"/>
+                                <rect key="frame" x="0.0" y="87" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1915,9 +1926,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="9fc-nU-7db"/>
-        <segue reference="9NX-oq-ZFy"/>
-        <segue reference="BdE-8K-hFB"/>
+        <segue reference="xXR-CJ-Zij"/>
         <segue reference="SHi-7D-H4s"/>
+        <segue reference="BdE-8K-hFB"/>
+        <segue reference="Se9-MU-bdg"/>
     </inferredMetricsTieBreakers>
 </document>
