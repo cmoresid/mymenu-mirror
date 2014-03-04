@@ -160,7 +160,7 @@ static MMDBFetcher *instance;
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
-    [self getRatingsHelper:request];
+    [self getRatingsHelper:request withTopFlag:NO];
 
 }
 
@@ -175,7 +175,7 @@ static MMDBFetcher *instance;
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
     
-   [self getRatingsHelper:request];
+   [self getRatingsHelper:request withTopFlag:YES];
     
 }
 
@@ -929,7 +929,7 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getRatingsHelper:(NSMutableURLRequest*) request{
+- (void)getRatingsHelper:(NSMutableURLRequest*) request withTopFlag:(BOOL)topFlag {
 
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -951,11 +951,16 @@ static MMDBFetcher *instance;
                                         rating.menuitemname = [e child:@"name"].text;
                                         [ratings addObject:rating];
                                     }];
-                                    
-                                    [self.delegate didRetrieveItemRatings:ratings withResponse:dbResponse];
+                                    if (topFlag == YES)
+                                        [self.delegate didRetrieveTopItemRatings:ratings withResponse:dbResponse];
+                                    else
+                                        [self.delegate didRetrieveRecentItemRatings:ratings withResponse:dbResponse];
                                 }
                                 else {
-                                    [self.delegate didRetrieveItemRatings:nil withResponse:dbResponse];
+                                    if (topFlag == YES)
+                                        [self.delegate didRetrieveTopItemRatings:nil withResponse:dbResponse];
+                                    else
+                                        [self.delegate didRetrieveRecentItemRatings:nil withResponse:dbResponse];
                                 }
                             }];
 }
