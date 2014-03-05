@@ -71,6 +71,7 @@ android {
   defaultConfig {
     minSdkVersion 14
     targetSdkVersion 19
+    packageName 'ca.mymenuapp'
     versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
     versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
