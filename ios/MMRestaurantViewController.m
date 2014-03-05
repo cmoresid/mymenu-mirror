@@ -26,6 +26,7 @@
 
 #define kCurrentUser @"currentUser"
 #define kSelectedRestaurant @"kSelectedRestaurant"
+#define kmenuItems @"kmenuItems"
 
 @interface MMRestaurantViewController ()
 
@@ -37,6 +38,8 @@
 
 NSArray *menuItems;
 MMMenuItem * touchedItem;
+NSMutableDictionary * menuItemDictionary;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,6 +59,7 @@ MMMenuItem * touchedItem;
 - (void)viewDidLoad
 {	
     [super viewDidLoad];
+    menuItemDictionary = [[NSMutableDictionary alloc] init];
     menuItems = [[NSArray alloc] init];
     [self.collectionView setDelegate:self];
     self.navigationBar.delegate = self;
@@ -104,8 +108,13 @@ MMMenuItem * touchedItem;
     NSData * currentUser = [perfs objectForKey:kCurrentUser];
     MMUser* userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
     [MMDBFetcher get].delegate = self;
-    [[MMDBFetcher get] getMenuWithMerchantId:[_selectedRestaurant.mid integerValue] withUserEmail:userProfile.email];
-    [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+    if ([menuItemDictionary objectForKey:kmenuItems] == nil){
+        [[MMDBFetcher get] getMenuWithMerchantId:[_selectedRestaurant.mid integerValue] withUserEmail:userProfile.email];
+        [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+    }else{
+        menuItems = [menuItemDictionary objectForKey:kmenuItems];
+        [self.collectionView reloadData];
+    }
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"MenuItemCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
 }
@@ -179,6 +188,7 @@ MMMenuItem * touchedItem;
         }
         else {
             menuItems = menu;
+            [menuItemDictionary setObject:menu forKey:kmenuItems];
             [self.collectionView reloadData];
         }
         

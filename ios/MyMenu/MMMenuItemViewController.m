@@ -20,6 +20,10 @@
 #import "MMMenuItemReviewCell.h"
 
 #define kCurrentUser @"currentUser"
+#define kCondensedTopReviews @"condensedTopReviews"
+#define kCondensedRecentReviews @"condensedRecentReviews"
+#define kAllRecentReviews @"allRecentReviews"
+#define kAllTopReviews @"allTopReviews"
 
 
 @interface MMMenuItemViewController ()
@@ -27,11 +31,16 @@
 @end
 
 @implementation MMMenuItemViewController
+
+
 NSMutableArray * mods;
 NSInteger ratingValue;
 MMUser * userProfile;
-NSMutableArray * reviews;
-NSInteger collIndex;
+NSMutableArray * condensedReviews;
+NSMutableArray * allReviews;
+NSMutableDictionary *reviewDictionary;
+
+
 
 
 
@@ -52,8 +61,8 @@ NSInteger collIndex;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    reviewDictionary = [[NSMutableDictionary alloc] init];
     // Do any additional setup after loading the view.
-    collIndex = 0;
     mods = [[NSMutableArray alloc] init];
     self.rating = nil;
     self.reviewField.delegate = self;
@@ -99,25 +108,38 @@ NSInteger collIndex;
 
 
 - (void)changeReviewSort:(UISegmentedControl*)control {
+    NSMutableArray * reviews = [[NSMutableArray alloc] init];
     switch ([control selectedSegmentIndex]) {
         case 0:
-            [[MMDBFetcher get] getItemRatingsTop:_touchedItem.itemid];
-            [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+            reviews = [reviewDictionary objectForKey:kCondensedTopReviews];
+            if (reviews == nil){
+                [[MMDBFetcher get] getItemRatingsTop:_touchedItem.itemid];
+                [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+            }else
+                condensedReviews = reviews;
+            
             break;
         case 1:
-            [[MMDBFetcher get] getItemRatings:_touchedItem.itemid];
-            [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+            reviews = [reviewDictionary objectForKey:kCondensedRecentReviews];
+            if (reviews == nil){
+                [[MMDBFetcher get] getItemRatings:_touchedItem.itemid];
+                [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+            }else
+                condensedReviews = reviews;
             break;
         default:
             break;
     }
+    [self.collectionView reloadData];
 }
 
-- (void)didRetrieveItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response{
+- (void)didRetrieveTopItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response{
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
     MMMenuItemRating * rating = [[MMMenuItemRating alloc] init];
-    reviews = [[NSMutableArray alloc] init];
+    condensedReviews = [[NSMutableArray alloc] init];
+    allReviews = [[NSMutableArray alloc] init];
     rating.useremail = @"See More Reviews";
+    rating.id = [NSNumber numberWithInt:-1];
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
                                                           message:@"Unable to communicate with server."
@@ -129,22 +151,65 @@ NSInteger collIndex;
         return;
     }else{
         if (ratings.count != 0){
+            allReviews = [ratings mutableCopy];
             if(ratings.count >= 4){
                 for (NSInteger w = 0; w<=2; w++){
-                    [reviews addObject:[ratings objectAtIndex:w]];
+                    [condensedReviews addObject:[ratings objectAtIndex:w]];
                 }
-            [reviews addObject:rating];
+            [condensedReviews addObject:rating];
             }else{
-                reviews = [ratings mutableCopy];
-                [reviews addObject:rating];
+                condensedReviews = [ratings mutableCopy];
+                [condensedReviews addObject:rating];
             }
         } else{
             rating.review = @"There are not any reviews available for this dish.";
-            [reviews addObject:rating];
+            [condensedReviews addObject:rating];
+            [allReviews addObject:rating];
         }
+        [reviewDictionary setObject:allReviews forKey:kAllTopReviews];
+        [reviewDictionary setObject:condensedReviews forKey:kCondensedTopReviews];
         [self.collectionView reloadData];
     }
 
+}
+- (void)didRetrieveRecentItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+    MMMenuItemRating * rating = [[MMMenuItemRating alloc] init];
+    rating.useremail = @"See More Reviews";
+    rating.id = [NSNumber numberWithInt:-1];
+    allReviews = [[NSMutableArray alloc] init];
+    condensedReviews = [[NSMutableArray alloc] init];
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }else{
+        if (ratings.count != 0){
+            allReviews = [ratings mutableCopy];
+            if(ratings.count >= 4){
+                for (NSInteger w = 0; w<=2; w++){
+                    [condensedReviews addObject:[ratings objectAtIndex:w]];
+                }
+                [condensedReviews addObject:rating];
+            }else{
+                condensedReviews = [ratings mutableCopy];
+                [condensedReviews addObject:rating];
+            }
+        } else{
+            rating.review = @"There are not any reviews available for this dish.";
+            [condensedReviews addObject:rating];
+            [allReviews addObject:rating];
+        }
+        [reviewDictionary setObject:allReviews forKey:kAllRecentReviews];
+        [reviewDictionary setObject:condensedReviews forKey:kCondensedRecentReviews];
+        [self.collectionView reloadData];
+    }
+    
 }
 
 -(void) didRetrieveModifications:(NSArray *)modificationsArray withResponse:(MMDBFetcherResponse *)response{
@@ -363,7 +428,7 @@ NSInteger collIndex;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return reviews.count;
+    return condensedReviews.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -376,43 +441,40 @@ NSInteger collIndex;
     }
 
     
-    MMMenuItemRating *menitem = [reviews objectAtIndex:indexPath.row];
+    MMMenuItemRating *menitem = [condensedReviews objectAtIndex:indexPath.row];
     UILabel *textReview = (UILabel *) [cell viewWithTag:102];
     UILabel *textName = (UILabel *) [cell viewWithTag:101];
     UILabel * likeLabel = (UILabel *) [cell viewWithTag:108];
-    UIButton * reportButton = (UIButton *) [cell viewWithTag:109];
     UIView * labelBack = (UIView * ) [cell viewWithTag:106];
-    [textName sizeToFit];
-    [textReview sizeToFit];
-//    if (collIndex >= 3){
-//        textName.text = @"See More Reviews";
-//        likeLabel.text= @"";
-//        reportButton.hidden = YES;
-//        labelBack.backgroundColor = [UIColor whiteColor];
-//        
-//    }else{
+    UIImageView * likeImage = (UIImageView *) [cell viewWithTag:107];
+    UIImage *image = [UIImage imageNamed:@"upvote"];
+
+    if ([menitem.useremail isEqualToString:@"See More Reviews"]){
+        textName.text = @"See More Reviews";
+        likeLabel.text= @"";
+        textReview.text = @"";
+        labelBack.backgroundColor = [UIColor whiteColor];
+        likeImage.hidden = YES;
+    }else{
         // Rounded Corners
+        likeImage.hidden = NO;
         cell.contentView.backgroundColor = [UIColor whiteColor];
         cell.contentView.layer.cornerRadius = 5;
         cell.contentView.layer.masksToBounds = YES;
-        UIImageView *imageView = (UIImageView *) [cell viewWithTag:107];
-        //[imageView setImageWithURL:[NSURL URLWithString:] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
         UILabel * textRating = (UILabel *) [cell viewWithTag:104];
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
         [formatter setMaximumFractionDigits:1];
         [formatter setMinimumFractionDigits:1];
-        NSNumberFormatter *formatterCost = [[NSNumberFormatter alloc] init];
-        [formatterCost setRoundingMode:NSNumberFormatterRoundHalfUp];
-        [formatterCost setMaximumFractionDigits:3];
-        [formatterCost setMinimumFractionDigits:2];
+        likeLabel.text = @"0";
         labelBack.backgroundColor = [UIColor lightBackgroundGray];
         labelBack.layer.cornerRadius = 5;
         textRating.text = [formatter  stringFromNumber:menitem.rating];
         textName.text = menitem.useremail;
-        textReview.text = menitem.review;
- //   }
-    collIndex++;
+        [textReview setText:menitem.review];
+        likeImage.image = image;
+    }
+    cell.rating = menitem;
     return cell;
 }
 

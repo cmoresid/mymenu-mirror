@@ -55,7 +55,9 @@
 
 - (void)didCreateRating:(BOOL)successful withResponse:(MMDBFetcherResponse *)response;
 
-- (void)didRetrieveItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response;
+- (void)didRetrieveTopItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response;
+
+- (void)didRetrieveRecentItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response;
 
 - (void)didRetrieveCategories:(NSArray *)categories withResponse:(MMDBFetcherResponse *)response;
 

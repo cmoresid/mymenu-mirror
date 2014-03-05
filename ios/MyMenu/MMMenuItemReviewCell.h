@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMMenuItemRating.h"
 
 @interface MMMenuItemReviewCell : UICollectionViewCell
 
+@property MMMenuItemRating * rating;
 @property(nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property(nonatomic, weak) IBOutlet UILabel *reviewLabel;
 @property(nonatomic, weak) IBOutlet UILabel *ratinglabel;

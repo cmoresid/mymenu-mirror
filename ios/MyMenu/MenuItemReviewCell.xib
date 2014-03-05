@@ -40,24 +40,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <imageView userInteractionEnabled="NO" tag="107" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jba-0A-xim">
-                        <rect key="frame" x="440" y="5" width="32" height="32"/>
+                        <rect key="frame" x="440" y="19" width="32" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="108" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xsc-jr-v1D">
-                        <rect key="frame" x="435" y="45" width="42" height="21"/>
+                        <rect key="frame" x="435" y="59" width="42" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.26274509800000001" green="0.78039215689999997" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" tag="109" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D60-0m-z9V">
-                        <rect key="frame" x="432" y="74" width="49" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Report">
-                            <color key="titleColor" red="0.26274509800000001" green="0.78039215689999997" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -65,7 +57,6 @@
                 <outlet property="nameLabel" destination="NN9-Av-gCH" id="Szn-R7-Nfc"/>
                 <outlet property="ratingBg" destination="Ddb-YN-yD0" id="gLx-9k-EOi"/>
                 <outlet property="ratinglabel" destination="eDT-D0-H6k" id="j0s-7V-idx"/>
-                <outlet property="reportButton" destination="D60-0m-z9V" id="xVB-4P-THf"/>
                 <outlet property="reviewLabel" destination="Xip-v6-Hp3" id="CBd-0l-Fjt"/>
                 <outlet property="upVotes" destination="Xsc-jr-v1D" id="bQP-Or-srW"/>
             </connections>

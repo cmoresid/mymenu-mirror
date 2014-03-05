@@ -101,10 +101,13 @@
 
     self.emailAddress.delegate = self;
     self.password.delegate = self;
-    [MMDBFetcher get].delegate = self;
 
 
     [self registerForKeyboardNotifications];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [MMDBFetcher get].delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
