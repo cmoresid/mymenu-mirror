@@ -26,7 +26,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -54,7 +53,6 @@ public class DietaryPreferencesFragment extends BaseFragment {
   @Inject Picasso picasso;
   @InjectView(R.id.root) BetterViewAnimator root;
   @InjectView(R.id.grid) GridView grid;
-  @InjectView(R.id.progress) ProgressBar progressBar;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
