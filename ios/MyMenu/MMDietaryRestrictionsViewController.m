@@ -196,10 +196,8 @@ MMUser * user;
 
             NSArray *finalRestrictions = [dietaryRestrictionIds copy];
             [fetcher addUserRestrictions:self.userProfile.email :finalRestrictions];
-
-            NSUserDefaults *userPreferances = [NSUserDefaults standardUserDefaults];
-            NSData *encodedUser = [NSKeyedArchiver archivedDataWithRootObject:self.userProfile];
-            [userPreferances setObject:encodedUser forKey:kCurrentUser];
+            
+            [[MMLoginManager sharedLoginManager] saveUserProfileToDevice:self.userProfile];
         } else  {
             NSArray *finalRestrictions = [dietaryRestrictionIds copy];
             [fetcher addUserRestrictions:user.email :finalRestrictions];

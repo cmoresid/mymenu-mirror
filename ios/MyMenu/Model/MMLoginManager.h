@@ -18,6 +18,7 @@ extern NSString *const kUserUpdateErrorNotification;
 
 + (id)sharedLoginManager;
 - (void)beginLoginWithUserName:(NSString*)userName withPassword:(NSString*)password;
+- (void)saveUserProfileToDevice:(MMUser*)user;
 - (void)logoutUser;
 - (BOOL)isUserLoggedIn;
 - (void)loginAsGuest;
