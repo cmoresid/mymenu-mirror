@@ -18,13 +18,22 @@
 
 <resources>
 
-  <color name="top_bar">#46c8af</color>
-  <color name="secondary_bar">#8fdecf</color>
-  <color name="search_box_bg">#3baa95</color>
+  <color name="turqoise">#46c8af</color>
+  <color name="pale_green">#8fdecf</color>
+  <color name="shamrock">#3baa95</color>
 
-  <color name="side_bar_dark">#4d4d4d</color>
-  <color name="side_bar_light">#5b5b5b</color>
-  <color name="highlight">#ecf9f7</color>
-  <color name="rating_background">#b3b3b3</color>
+  <color name="storm_dust">#4d4d4d</color>
+  <color name="scarpa_flow">#5b5b5b</color>
+  <color name="alice_blue">#ecf9f7</color>
+  <color name="silver">#b3b3b3</color>
+
+  <color name="top_bar">@color/turqoise</color>
+  <color name="secondary_bar">@color/pale_green</color>
+  <color name="search_box_bg">@color/shamrock</color>
+
+  <color name="side_bar_dark">@color/storm_dust</color>
+  <color name="side_bar_light">@color/scarpa_flow</color>
+  <color name="highlight">@color/alice_blue</color>
+  <color name="rating_background">@color/silver</color>
 
 </resources>

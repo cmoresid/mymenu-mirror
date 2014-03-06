@@ -25,6 +25,10 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 import ca.mymenuapp.R;
 
+/**
+ * An {@link android.widget.ImageView} that is able to display selector drawables as it's
+ * foreground.
+ */
 public class ForegroundImageView extends ImageView {
   private Drawable foreground;
 

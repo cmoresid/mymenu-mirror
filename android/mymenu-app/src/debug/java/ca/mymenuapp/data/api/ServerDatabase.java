@@ -17,8 +17,8 @@
 
 package ca.mymenuapp.data.api;
 
+import ca.mymenuapp.data.api.model.Menu;
 import ca.mymenuapp.data.api.model.MockMenuLoader;
-import ca.mymenuapp.model.Menu;
 import com.f2prateek.ln.Ln;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;

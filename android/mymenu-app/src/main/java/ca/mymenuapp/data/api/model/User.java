@@ -15,12 +15,13 @@
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package ca.mymenuapp.model;
+package ca.mymenuapp.data.api.model;
 
+import java.util.List;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-@Root(name = "row")
+@Root(name = "result")
 public class User {
   @Element(name = "id") public long id;
   @Element(name = "email") public String email;
@@ -34,7 +35,10 @@ public class User {
   @Element(name = "birthday") public int birthday;
   @Element(name = "birthmonth") public int birthmonth;
   @Element(name = "birthyear") public int birthyear;
-  @Element(name = "confirmcode") public char confirmcode;
+  @Element(name = "facebookid", required = false) public String facebookid;
+
+  // List of restrictions for this user
+  @Element(required = false) public List<DietaryRestriction> restrictions;
 
   @Override public String toString() {
     return "User{" +
@@ -50,7 +54,8 @@ public class User {
         ", birthday=" + birthday +
         ", birthmonth=" + birthmonth +
         ", birthyear=" + birthyear +
-        ", confirmcode=" + confirmcode +
+        ", facebookid='" + facebookid + '\'' +
+        ", restrictions=" + restrictions +
         '}';
   }
 }

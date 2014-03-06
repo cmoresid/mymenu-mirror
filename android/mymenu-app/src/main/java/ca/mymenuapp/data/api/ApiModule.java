@@ -39,7 +39,7 @@ import retrofit.converter.SimpleXMLConverter;
     complete = false,
     library = true)
 public final class ApiModule {
-  public static final String PRODUCTION_API_URL = "http://mymenuapp.ca/rest";
+  public static final String PRODUCTION_API_URL = "http://mymenuapp.ca";
 
   @Provides @Singleton Endpoint provideEndpoint() {
     return Endpoints.newFixedEndpoint(PRODUCTION_API_URL);
@@ -49,12 +49,8 @@ public final class ApiModule {
     return new OkClient(client);
   }
 
-  @Provides @Singleton Persister providePersister() {
-    return new Persister();
-  }
-
-  @Provides @Singleton Converter provideConverter(Persister persister) {
-    return new SimpleXMLConverter(persister);
+  @Provides @Singleton Converter provideConverter() {
+    return new XmlConverter();
   }
 
   @Provides @Singleton

@@ -15,11 +15,16 @@
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package ca.mymenuapp.model;
+package ca.mymenuapp.data.api.model;
 
-import org.simpleframework.xml.Element;
+public class MenuCategory {
+  public long id;
+  public String name;
 
-public class MenuItem {
-  @Element(name = "id") public long id;
-  @Element(name = "picture", required = false) public String picture;
+  @Override public String toString() {
+    return "MenuCategory{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        '}';
+  }
 }

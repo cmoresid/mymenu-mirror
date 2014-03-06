@@ -62,6 +62,10 @@ public final class DebugDataModule {
    */
   public static final String DEBUG_NETWORK_PROXY = "debug_network_proxy";
   /**
+   * Identifies any logging for the network.
+   */
+  public static final String DEBUG_NETWORK_LOG_LEVEL = "debug_network_log_level";
+  /**
    * Identifies whether {@link com.squareup.picasso.Picasso} has debugging enabled.
    */
   public static final String DEBUG_PICASSO_DEBUGGING = "debug_picasso_debugging";
@@ -138,6 +142,11 @@ public final class DebugDataModule {
   @Provides @Singleton @Named(DEBUG_NETWORK_PROXY)
   StringPreference provideNetworkProxy(SharedPreferences preferences) {
     return new StringPreference(preferences, DEBUG_NETWORK_PROXY);
+  }
+
+  @Provides @Singleton @Named(DEBUG_NETWORK_LOG_LEVEL)
+  IntPreference provideNetworkLogging(SharedPreferences preferences) {
+    return new IntPreference(preferences, DEBUG_NETWORK_LOG_LEVEL);
   }
 
   @Provides @Singleton @Named(DEBUG_ANIMATION_SPEED)

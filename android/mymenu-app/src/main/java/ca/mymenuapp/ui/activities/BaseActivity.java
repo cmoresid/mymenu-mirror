@@ -24,11 +24,13 @@ import android.view.ViewGroup;
 import butterknife.ButterKnife;
 import ca.mymenuapp.MyMenuApp;
 import ca.mymenuapp.dagger.scopes.ForApplication;
+import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.ui.ActivityModule;
 import ca.mymenuapp.ui.AppContainer;
 import com.f2prateek.dart.Dart;
 import com.squareup.otto.Bus;
 import dagger.ObjectGraph;
+import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 
 /**
@@ -49,12 +51,15 @@ public class BaseActivity extends Activity {
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    buildActivityGraphAndInject();
+    container = appContainer.get(this, (MyMenuApp) getApplication());
+    Dart.inject(this);
+  }
+
+  @DebugLog
+  public void buildActivityGraphAndInject() {
     activityGraph = ((MyMenuApp) getApplication()).getApplicationGraph().plus(getModules());
     activityGraph.inject(this);
-
-    container = appContainer.get(this, (MyMenuApp) getApplication());
-
-    Dart.inject(this);
   }
 
   @Override protected void onResume() {
@@ -67,6 +72,10 @@ public class BaseActivity extends Activity {
     super.onPause();
   }
 
+  /**
+   * Inflate the given view into the root provided by {@link ca.mymenuapp.ui.AppContainer}.
+   * Do not use {@link #setContentView(int)} or one of it's overloaded methods.
+   */
   public void inflateView(int layoutResourceId) {
     getLayoutInflater().inflate(layoutResourceId, container);
     injectViews();

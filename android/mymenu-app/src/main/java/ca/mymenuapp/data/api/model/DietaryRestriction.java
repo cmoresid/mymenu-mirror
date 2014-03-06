@@ -15,35 +15,29 @@
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package ca.mymenuapp.model;
+package ca.mymenuapp.data.api.model;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-@Root(name = "row")
-public class Menu {
+@Root(name = "result")
+public class DietaryRestriction {
 
   @Element(name = "id") public long id;
-  @Element(name = "merchid") public long merchantId;
-  @Element(name = "name") public String name;
-  @Element(name = "cost") public float cost;
+  @Element(name = "user_label", required = false) public String userLabel;
+  @Element(name = "merchant_label", required = false) public String merchantLabel;
+  @Element(name = "user_description", required = false) public String userDescription;
+  @Element(name = "merchant_description", required = false) public String merchantDescription;
   @Element(name = "picture", required = false) public String picture;
-  @Element(name = "description") public String description;
-  @Element(name = "rating") public float rating;
-  @Element(name = "ratingcount") public long ratingCount;
-  @Element(name = "categoryid") public int categoryId;
 
   @Override public String toString() {
-    return "Menu{" +
+    return "DietaryRestriction{" +
         "id=" + id +
-        ", merchantId=" + merchantId +
-        ", name='" + name + '\'' +
-        ", cost=" + cost +
+        ", userLabel=" + userLabel +
+        ", merchantLabel='" + merchantLabel + '\'' +
+        ", userDescription=" + userDescription +
+        ", merchantDescription='" + merchantDescription + '\'' +
         ", picture='" + picture + '\'' +
-        ", description='" + description + '\'' +
-        ", rating=" + rating +
-        ", ratingCount=" + ratingCount +
-        ", categoryId=" + categoryId +
         '}';
   }
 }

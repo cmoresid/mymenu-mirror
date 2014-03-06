@@ -15,20 +15,16 @@
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package ca.mymenuapp.model;
+package ca.mymenuapp.data;
 
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
+import java.lang.annotation.Retention;
+import javax.inject.Qualifier;
 
-@Root(name = "row")
-public class MenuCategory {
-  @Element(name = "id") public long id;
-  @Element(name = "name") public String name;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-  @Override public String toString() {
-    return "MenuCategory{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        '}';
-  }
+/**
+ * Identifies user and their dependencies.
+ */
+@Qualifier @Retention(RUNTIME)
+public @interface ForUser {
 }

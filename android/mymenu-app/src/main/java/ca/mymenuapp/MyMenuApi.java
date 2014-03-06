@@ -17,11 +17,11 @@
 
 package ca.mymenuapp;
 
-import ca.mymenuapp.model.Menu;
-import ca.mymenuapp.model.User;
+import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
+import ca.mymenuapp.data.api.model.Menu;
+import ca.mymenuapp.data.api.model.UserResponse;
 import retrofit.Callback;
 import retrofit.client.Response;
-import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
@@ -30,10 +30,23 @@ import retrofit.http.Path;
 
 /** RESTful interface to talk to the MyMenu backend. */
 public interface MyMenuApi {
-  @GET("/menu/{id}") void getMenu(@Path("id") long id, Callback<Menu> cb);
+  String GET_ALL_RESTRICTIONS_QUERY = "SELECT * FROM restrictions";
+  String GET_USER_QUERY = "SELECT * FROM users WHERE email='%s' AND password='%s'";
 
-  @POST("/users") void createUser(@Body User user, Callback<User> cb);
+  @GET("/rest/menu/{id}") void getMenu(@Path("id") long id, Callback<Menu> cb);
 
-  @FormUrlEncoded @POST("/menucategories")
-  void createMenuCategory(@Field("name") String name, Callback<Response> cb);
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  void getAllDietaryRestrictions(@Field("query") String query,
+      Callback<DietaryRestrictionResponse> cb);
+
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  void getUser(@Field("query") String query, Callback<UserResponse> cb);
+
+  @FormUrlEncoded @POST("/php/users/put.php")
+  void createUser(@Field("email") String email, @Field("firstname") String firstname,
+      @Field("lastname") String lastname, @Field("password") String password,
+      @Field("city") String city, @Field("locality") String locality,
+      @Field("country") String country, @Field("gender") char gender,
+      @Field("birthday") int birthday, @Field("birthmonth") int birthmonth,
+      @Field("birthyear") int birthyear, Callback<Response> cb);
 }

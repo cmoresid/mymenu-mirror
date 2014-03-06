@@ -19,7 +19,6 @@ package ca.mymenuapp.data.api.model;
 
 import android.app.Application;
 import android.content.res.AssetManager;
-import ca.mymenuapp.model.MenuItem;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 

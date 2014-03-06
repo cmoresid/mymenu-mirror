@@ -18,20 +18,19 @@
 package ca.mymenuapp.data.api;
 
 import ca.mymenuapp.MyMenuApi;
-import ca.mymenuapp.model.Menu;
-import ca.mymenuapp.model.User;
+import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
+import ca.mymenuapp.data.api.model.Menu;
+import ca.mymenuapp.data.api.model.User;
+import ca.mymenuapp.data.api.model.UserResponse;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import retrofit.Callback;
 import retrofit.client.Response;
-import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.Path;
 
 @Singleton
 final class MockMyMenuApi implements MyMenuApi {
-  private static final int PAGE_SIZE = 50;
-
   private final ServerDatabase serverDatabase;
 
   @Inject MockMyMenuApi(ServerDatabase serverDatabase) {
@@ -42,11 +41,22 @@ final class MockMyMenuApi implements MyMenuApi {
 
   }
 
-  @Override public void createUser(@Body User user, Callback<User> cb) {
+  @Override public void getAllDietaryRestrictions(@Field("query") String query,
+      Callback<DietaryRestrictionResponse> cb) {
 
   }
 
-  @Override public void createMenuCategory(@Field("name") String name, Callback<Response> cb) {
+  @Override public void getUser(@Field("query") String query, Callback<UserResponse> cb) {
+
+  }
+
+  @Override
+  public void createUser(@Field("email") String email, @Field("firstname") String firstname,
+      @Field("lastname") String lastname, @Field("password") String password,
+      @Field("city") String city, @Field("locality") String locality,
+      @Field("country") String country, @Field("gender") char gender,
+      @Field("birthday") int birthday, @Field("birthmonth") int birthmonth,
+      @Field("birthyear") int birthyear, Callback<Response> cb) {
 
   }
 }

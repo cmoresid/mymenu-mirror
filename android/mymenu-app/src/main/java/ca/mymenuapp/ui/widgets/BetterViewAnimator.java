@@ -29,6 +29,9 @@ public class BetterViewAnimator extends ViewAnimator {
     super(context, attrs);
   }
 
+  /**
+   * Get the view id of the displayed view.
+   */
   public int getDisplayedChildId() {
     return getChildAt(getDisplayedChild()).getId();
   }
