@@ -23,10 +23,28 @@
   <string name="logout">Logout</string>
 
   <!-- Login Activity -->
+  <string name="sign_up">Sign Up</string>
   <string name="login">Login</string>
   <string name="password">Password</string>
-  <string name="username">Username</string>
+  <string name="email">Email</string>
   <string name="required">Required</string>
   <string name="password_length">Password too short</string>
   <string name="login_fail">Could not login. Please Check your credentials.</string>
+
+  <!-- Sign Up Activity -->
+  <string name="confirm_password">Confirm Password</string>
+  <string name="given_name">Given Name</string>
+  <string name="surname">Surname</string>
+  <string name="locality">Locality</string>
+  <string name="city">City</string>
+  <string name="birthday">Birthday</string>
+  <string name="gender">Gender</string>
+  <string name="edmonton">Edmonton</string>
+  <string name="alberta">Alberta</string>
+  <string name="male">Male</string>
+  <string name="female">Female</string>
+  <string name="passwords_do_not_match">Passwords Do Not Match</string>
+  <string name="birthday_required">Birthday Required</string>
+  <string name="unspecified">Unspecified</string>
+
 </resources>

@@ -19,9 +19,9 @@ package ca.mymenuapp;
 
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.Menu;
-import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.api.model.UserResponse;
 import retrofit.Callback;
+import retrofit.client.Response;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
@@ -40,7 +40,13 @@ public interface MyMenuApi {
       Callback<DietaryRestrictionResponse> cb);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
-  void getUser(@Field("query") String query,
-      Callback<UserResponse> cb);
+  void getUser(@Field("query") String query, Callback<UserResponse> cb);
 
+  @FormUrlEncoded @POST("/php/users/put.php")
+  void createUser(@Field("email") String email, @Field("firstname") String firstname,
+      @Field("lastname") String lastname, @Field("password") String password,
+      @Field("city") String city, @Field("locality") String locality,
+      @Field("country") String country, @Field("gender") char gender,
+      @Field("birthday") int birthday, @Field("birthmonth") int birthmonth,
+      @Field("birthyear") int birthyear, Callback<Response> cb);
 }

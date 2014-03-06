@@ -40,8 +40,8 @@ import retrofit.client.Response;
 public class LoginActivity extends BaseActivity {
   @Inject MyMenuApi myMenuApi;
   @Inject @ForUser ObjectPreference<User> user;
-  @InjectView(R.id.username) EditText username;
-  @InjectView(R.id.password) EditText password;
+  @InjectView(R.id.email) EditText emailText;
+  @InjectView(R.id.password) EditText passwordText;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -49,33 +49,40 @@ public class LoginActivity extends BaseActivity {
     inflateView(R.layout.activity_login);
   }
 
-  @OnClick(R.id.login) void onLoginClicked() {
+  @OnClick(R.id.sign_up) void onSignUpClicked() {
+    Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    startActivity(intent);
+    finish();
+  }
+
+    @OnClick(R.id.login) void onLoginClicked() {
     boolean hasError = false;
 
-    if (TextUtils.isEmpty(username.getText())) {
-      Ln.e("Username was blank.");
-      username.setError(getString(R.string.required));
+    if (TextUtils.isEmpty(emailText.getText())) {
+      Ln.e("Email was blank.");
+      emailText.setError(getString(R.string.required));
       hasError = true;
     } else {
-      username.setError(null);
+      emailText.setError(null);
     }
 
-    Editable pass = password.getText();
+    Editable pass = passwordText.getText();
     if (TextUtils.isEmpty(pass)) {
       Ln.e("Password was blank.");
-      password.setError(getString(R.string.required));
+      passwordText.setError(getString(R.string.required));
       hasError = true;
     } else if (pass.length() < 5) {
       Ln.e("Password too short.");
-      password.setError(getString(R.string.password_length));
+      passwordText.setError(getString(R.string.password_length));
       hasError = true;
     } else {
-      password.setError(null);
+      passwordText.setError(null);
     }
 
     if (!hasError) {
       myMenuApi.getUser(
-          String.format(MyMenuApi.GET_USER_QUERY, username.getText(), password.getText()),
+          String.format(MyMenuApi.GET_USER_QUERY, emailText.getText(), passwordText.getText()),
           new Callback<UserResponse>() {
             @Override public void success(UserResponse userResponse, Response response) {
               user.set(userResponse.userList.get(0));

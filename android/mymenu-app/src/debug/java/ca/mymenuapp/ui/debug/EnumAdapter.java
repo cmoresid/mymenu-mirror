@@ -28,16 +28,16 @@ import ca.mymenuapp.ui.misc.BindableAdapter;
 /**
  * A {@link ca.mymenuapp.ui.misc.BindableAdapter} that displays all values for the given enum.
  */
-class EnumAdapter<T extends Enum<T>> extends BindableAdapter<T> {
+public class EnumAdapter<T extends Enum<T>> extends BindableAdapter<T> {
   private final T[] enumConstants;
   private final boolean showNull;
   private final int nullOffset;
 
-  EnumAdapter(Context context, Class<T> enumType) {
+  public EnumAdapter(Context context, Class<T> enumType) {
     this(context, enumType, false);
   }
 
-  EnumAdapter(Context context, Class<T> enumType, boolean showNull) {
+  public EnumAdapter(Context context, Class<T> enumType, boolean showNull) {
     super(context);
     this.enumConstants = enumType.getEnumConstants();
     this.showNull = showNull;

@@ -25,6 +25,7 @@ import ca.mymenuapp.data.api.model.UserResponse;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import retrofit.Callback;
+import retrofit.client.Response;
 import retrofit.http.Field;
 import retrofit.http.Path;
 
@@ -46,6 +47,16 @@ final class MockMyMenuApi implements MyMenuApi {
   }
 
   @Override public void getUser(@Field("query") String query, Callback<UserResponse> cb) {
+
+  }
+
+  @Override
+  public void createUser(@Field("email") String email, @Field("firstname") String firstname,
+      @Field("lastname") String lastname, @Field("password") String password,
+      @Field("city") String city, @Field("locality") String locality,
+      @Field("country") String country, @Field("gender") char gender,
+      @Field("birthday") int birthday, @Field("birthmonth") int birthmonth,
+      @Field("birthyear") int birthyear, Callback<Response> cb) {
 
   }
 }
