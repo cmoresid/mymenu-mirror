@@ -39,5 +39,6 @@
 - (IBAction)ratingButton:(id)sender;
 - (IBAction)saveButton:(id)sender;
 - (IBAction)clearButton:(id)sender;
+- (IBAction)iveEatenThis:(id)sender;
 
 @end

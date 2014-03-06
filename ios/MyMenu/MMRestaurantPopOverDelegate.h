@@ -16,20 +16,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MMPopoverDataPair.h"
 
-typedef NS_ENUM(NSInteger, MMPopoverDataType) {
-    CityValue = 0,
-    ProvinceValue = 1,
-    GenderValue = 2,
-    BirthdayValue = 3,
-    CategoryValue = 4
-};
+@protocol MMRestaurantPopOverDelegate <NSObject>
 
-@interface MMPopoverDataPair : NSObject
+@optional
 
-@property(readwrite) MMPopoverDataType dataType;
-@property(readwrite) id selectedValue;
+- (void)didSelectCategory:(NSString *)category;
 
-- (id)initWithDataType:(MMPopoverDataType)dataType withSelectedValue:(id)selectedValue;
 
 @end

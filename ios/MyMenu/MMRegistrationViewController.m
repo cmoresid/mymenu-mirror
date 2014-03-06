@@ -156,7 +156,7 @@
     self.userProfile.gender = (gender != nil) ?
             [gender characterAtIndex:0] : 'U';
 
-    [self.locationPopoverController dismissPopoverAnimated:YES];
+
 }
 
 - (void)didSelectProvince:(NSString *)province {

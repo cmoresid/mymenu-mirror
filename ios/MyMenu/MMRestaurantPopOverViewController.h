@@ -15,21 +15,17 @@
 //  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "MMRestaurantPopOverDelegate.h"
 
-typedef NS_ENUM(NSInteger, MMPopoverDataType) {
-    CityValue = 0,
-    ProvinceValue = 1,
-    GenderValue = 2,
-    BirthdayValue = 3,
-    CategoryValue = 4
-};
+@interface MMRestaurantPopOverViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
 
-@interface MMPopoverDataPair : NSObject
+@property(strong) NSArray *categories;
+@property(nonatomic, weak) IBOutlet UIPickerView *categoryPicker;
+@property(readwrite) MMPopoverDataPair *popoverValue;
 
-@property(readwrite) MMPopoverDataType dataType;
-@property(readwrite) id selectedValue;
+- (IBAction)selectChoice:(id)sender;
 
-- (id)initWithDataType:(MMPopoverDataType)dataType withSelectedValue:(id)selectedValue;
+@property(nonatomic, strong) id <MMRestaurantPopOverDelegate> delegate;
 
 @end
