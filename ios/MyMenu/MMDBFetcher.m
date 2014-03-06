@@ -249,11 +249,11 @@ static MMDBFetcher *instance;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/update.php"]];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
 
-    NSString *queryFormat = @"query=set firstname='%@',lastname='%@',city='%@',locality='%@',gender='%c',birthday='%@',birthmonth='%@',birthyear='%@' WHERE email = '%@'";
+    NSString *queryFormat = @"query=set firstname='%@',lastname='%@', password='%@', city='%@',locality='%@',gender='%c',birthday='%@',birthmonth='%@',birthyear='%@' WHERE email = '%@'";
     NSString *query = [NSString stringWithFormat:queryFormat, user.firstName,
-                                                 user.lastName, user.city, user.locality,
+                                                 user.lastName, user.password, user.city, user.locality,
                                                  user.gender, user.birthday, user.birthmonth, user.birthyear, user.email];
 
 

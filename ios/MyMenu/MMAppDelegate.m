@@ -16,19 +16,16 @@
 //
 
 #import "MMAppDelegate.h"
-
-#define kCurrentUser @"currentUser"
+#import "MMLoginManager.h"
 
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
-    NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
-    NSData *currentUser = [perfs objectForKey:kCurrentUser];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
-    if (currentUser != nil) {
+    if ([[MMLoginManager sharedLoginManager] isUserLoggedIn]) {
         //[self.window setRootViewController:[[MMMainTabBarViewController alloc] init]];
         [self.window makeKeyAndVisible];
         [self.window.rootViewController performSegueWithIdentifier:@"moveToMainScreen" sender:self];
