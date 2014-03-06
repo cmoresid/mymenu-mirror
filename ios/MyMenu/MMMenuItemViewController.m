@@ -425,7 +425,7 @@ NSMutableDictionary *reviewDictionary;
     UIImageView * likeImage = (UIImageView *) [cell viewWithTag:107];
     UIImage *image = [UIImage imageNamed:@"upvote"];
 
-    if ([menitem.useremail isEqualToString:@"See More Reviews"]){
+    if (menitem.id == [NSNumber numberWithInt:-1]){
         textName.text = @"See More Reviews";
         likeLabel.text= @"";
         textReview.text = @"";
@@ -446,7 +446,7 @@ NSMutableDictionary *reviewDictionary;
         labelBack.backgroundColor = [UIColor lightBackgroundGray];
         labelBack.layer.cornerRadius = 5;
         textRating.text = [formatter  stringFromNumber:menitem.rating];
-        textName.text = menitem.useremail;
+        textName.text = [NSString stringWithFormat:@"%@ %@", menitem.firstname, menitem.lastname];
         [textReview setText:menitem.review];
         likeImage.image = image;
     }

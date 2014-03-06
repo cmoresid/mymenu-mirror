@@ -199,7 +199,7 @@ NSMutableDictionary *reviewDictionary;
             labelBack.backgroundColor = [UIColor lightBackgroundGray];
             labelBack.layer.cornerRadius = 5;
             textRating.text = [formatter  stringFromNumber:menitem.rating];
-            textName.text = menitem.useremail;
+            textName.text = [NSString stringWithFormat:@"%@ %@", menitem.firstname, menitem.lastname];
             [textReview setText:menitem.review];
             likeImage.image = image;
         }

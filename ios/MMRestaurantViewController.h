@@ -25,7 +25,7 @@
  This view will also allow the user to filter through the menu,
  either by rating, category or name.
 */
-@interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MMDBFetcherDelegate>
+@interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MMDBFetcherDelegate, UISearchBarDelegate>
 
 @property MMMerchant *selectedRestaurant;
 @property(nonatomic, weak) IBOutlet UILabel * restName; // restaurant name
