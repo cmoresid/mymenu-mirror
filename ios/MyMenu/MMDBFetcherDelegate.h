@@ -61,4 +61,10 @@
 
 - (void)didRetrieveCategories:(NSArray *)categories withResponse:(MMDBFetcherResponse *)response;
 
+- (void)didAddEatenThis:(BOOL)succesful withResponse:(MMDBFetcherResponse *)response;
+
+- (void)didAddReviewLike:(BOOL)succesful withResponse:(MMDBFetcherResponse *)response;
+
+- (void)didAddReviewReport:(BOOL)succesful withResponse:(MMDBFetcherResponse *)response;
+
 @end
