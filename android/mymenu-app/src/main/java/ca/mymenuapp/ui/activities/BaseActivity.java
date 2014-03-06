@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import butterknife.ButterKnife;
 import ca.mymenuapp.MyMenuApp;
 import ca.mymenuapp.dagger.scopes.ForApplication;
+import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.ui.ActivityModule;
 import ca.mymenuapp.ui.AppContainer;
 import com.f2prateek.dart.Dart;

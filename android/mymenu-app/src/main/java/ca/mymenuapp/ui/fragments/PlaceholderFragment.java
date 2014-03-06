@@ -26,7 +26,7 @@ import android.widget.TextView;
 import butterknife.InjectView;
 import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.R;
-import ca.mymenuapp.model.Menu;
+import ca.mymenuapp.data.api.model.Menu;
 import com.f2prateek.dart.InjectExtra;
 import com.f2prateek.ln.Ln;
 import com.squareup.picasso.Picasso;

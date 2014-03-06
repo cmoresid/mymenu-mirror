@@ -18,7 +18,9 @@
 package ca.mymenuapp;
 
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
-import ca.mymenuapp.model.Menu;
+import ca.mymenuapp.data.api.model.Menu;
+import ca.mymenuapp.data.api.model.User;
+import ca.mymenuapp.data.api.model.UserResponse;
 import retrofit.Callback;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
@@ -28,11 +30,17 @@ import retrofit.http.Path;
 
 /** RESTful interface to talk to the MyMenu backend. */
 public interface MyMenuApi {
-  String GET_ALL_RESTRICTIONS_QUERY = "select * from restrictions";
+  String GET_ALL_RESTRICTIONS_QUERY = "SELECT * FROM restrictions";
+  String GET_USER_QUERY = "SELECT * FROM users WHERE email='%s' AND password='%s'";
 
   @GET("/rest/menu/{id}") void getMenu(@Path("id") long id, Callback<Menu> cb);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   void getAllDietaryRestrictions(@Field("query") String query,
       Callback<DietaryRestrictionResponse> cb);
+
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  void getUser(@Field("query") String query,
+      Callback<UserResponse> cb);
+
 }

@@ -15,11 +15,19 @@
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package ca.mymenuapp.model;
+package ca.mymenuapp.data.api.model;
 
-import org.simpleframework.xml.Element;
+import java.util.List;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
-public class MenuItem {
-  @Element(name = "id") public long id;
-  @Element(name = "picture", required = false) public String picture;
+@Root(name = "results")
+public class UserResponse {
+  @ElementList(name = "result", inline = true) public List<User> userList;
+
+  @Override public String toString() {
+    return "UserResponse{" +
+        "userList=" + userList +
+        '}';
+  }
 }

@@ -18,18 +18,26 @@
 package ca.mymenuapp.ui.activities;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
+import ca.mymenuapp.data.ForUser;
+import ca.mymenuapp.data.api.model.User;
+import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.PlaceholderFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import ca.mymenuapp.util.Bundler;
+import javax.inject.Inject;
 
 /** The top level activity that is shown first to the user. */
 public class MainActivity extends BaseActivity {
 
+  @Inject @ForUser ObjectPreference<User> user;
   @InjectView(R.id.pager) ViewPager viewPager;
 
   private SwipeableActionBarTabsAdapter tabsAdapter;
@@ -55,5 +63,24 @@ public class MainActivity extends BaseActivity {
         new Bundler().put(PlaceholderFragment.ARG_SECTION_NUMBER, 3).get());
     tabsAdapter.addTab(actionBar.newTab().setText("4"), DietaryPreferencesFragment.class, null);
     actionBar.setSelectedNavigationItem(tab);
+  }
+
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.activity_main, menu);
+    return true;
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.logout:
+        user.delete();
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
   }
 }

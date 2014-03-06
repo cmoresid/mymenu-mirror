@@ -23,7 +23,11 @@ import android.net.Uri;
 import ca.mymenuapp.BuildConfig;
 import ca.mymenuapp.dagger.scopes.ForApplication;
 import ca.mymenuapp.data.api.ApiModule;
+import ca.mymenuapp.data.api.model.User;
+import ca.mymenuapp.data.prefs.ObjectPreference;
 import com.f2prateek.ln.Ln;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.HttpResponseCache;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.picasso.OkHttpDownloader;
@@ -60,6 +64,10 @@ public final class DataModule {
     return client;
   }
 
+  @Provides @Singleton Gson provideGson() {
+    return new GsonBuilder().create();
+  }
+
   @Provides @Singleton
   SharedPreferences provideSharedPreferences(@ForApplication Context applicationContext) {
     return applicationContext.getSharedPreferences(BuildConfig.PACKAGE_NAME, Context.MODE_PRIVATE);
@@ -79,5 +87,12 @@ public final class DataModule {
           }
         })
         .build();
+  }
+
+  @Provides @Singleton @ForUser
+  ObjectPreference<User> providesUser(SharedPreferences preferences, Gson gson) {
+    ObjectPreference<User> userPreference =
+        new ObjectPreference<>(preferences, gson, User.class, "user");
+    return userPreference;
   }
 }

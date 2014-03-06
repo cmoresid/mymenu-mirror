@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ Copyright (C) 2014 MyMenu, Inc.
   ~
@@ -16,17 +17,10 @@
   ~ along with this program.  If not, see [http://www.gnu.org/licenses/].
   -->
 
-<resources>
-  <string name="app_name">MyMenu</string>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <!-- Main Activity -->
-  <string name="logout">Logout</string>
+  <item android:id="@+id/logout"
+      android:title="@string/logout"
+      android:showAsAction="never"/>
 
-  <!-- Login Activity -->
-  <string name="login">Login</string>
-  <string name="password">Password</string>
-  <string name="username">Username</string>
-  <string name="required">Required</string>
-  <string name="password_length">Password too short</string>
-  <string name="login_fail">Could not login. Please Check your credentials.</string>
-</resources>
+</menu>

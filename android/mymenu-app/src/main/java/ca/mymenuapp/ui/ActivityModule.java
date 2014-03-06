@@ -21,6 +21,7 @@ import android.content.Context;
 import ca.mymenuapp.MyMenuModule;
 import ca.mymenuapp.dagger.scopes.ForActivity;
 import ca.mymenuapp.ui.activities.BaseActivity;
+import ca.mymenuapp.ui.activities.LoginActivity;
 import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.ui.fragments.BaseFragment;
 import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
@@ -32,7 +33,7 @@ import javax.inject.Singleton;
 @Module(
     injects = {
         // Activities
-        BaseActivity.class, MainActivity.class,
+        BaseActivity.class, MainActivity.class, LoginActivity.class,
         // Fragments
         BaseFragment.class, PlaceholderFragment.class, DietaryPreferencesFragment.class
     },

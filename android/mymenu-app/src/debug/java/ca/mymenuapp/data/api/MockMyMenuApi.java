@@ -18,9 +18,10 @@
 package ca.mymenuapp.data.api;
 
 import ca.mymenuapp.MyMenuApi;
-import ca.mymenuapp.data.api.model.DietaryRestriction;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
-import ca.mymenuapp.model.Menu;
+import ca.mymenuapp.data.api.model.Menu;
+import ca.mymenuapp.data.api.model.User;
+import ca.mymenuapp.data.api.model.UserResponse;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import retrofit.Callback;
@@ -29,8 +30,6 @@ import retrofit.http.Path;
 
 @Singleton
 final class MockMyMenuApi implements MyMenuApi {
-  private static final int PAGE_SIZE = 50;
-
   private final ServerDatabase serverDatabase;
 
   @Inject MockMyMenuApi(ServerDatabase serverDatabase) {
@@ -43,6 +42,10 @@ final class MockMyMenuApi implements MyMenuApi {
 
   @Override public void getAllDietaryRestrictions(@Field("query") String query,
       Callback<DietaryRestrictionResponse> cb) {
+
+  }
+
+  @Override public void getUser(@Field("query") String query, Callback<UserResponse> cb) {
 
   }
 }
