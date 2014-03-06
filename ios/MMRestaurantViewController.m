@@ -108,7 +108,10 @@ NSMutableArray * categories;
     }
     
     [_restDescription  setText:_selectedRestaurant.desc];
-
+    [_adress setText:_selectedRestaurant.address];
+    NSString *opentime = [_selectedRestaurant.opentime substringToIndex:[_selectedRestaurant.opentime length]-3];
+    NSString *closetime = [_selectedRestaurant.closetime substringToIndex:[_selectedRestaurant.closetime length]-3];
+    [_hours setText:[NSString stringWithFormat:@"%@ - %@", opentime, closetime]];
     [_restDescription setTextColor:[UIColor blackColor]];
     [_restDescription setFont:[UIFont systemFontOfSize:24.0]];
     _restImage.image = [UIImage imageWithData:                                                                      [NSData dataWithContentsOfURL:                                                                            [NSURL URLWithString: _selectedRestaurant.picture]]];

@@ -47,8 +47,8 @@
 @property(nonatomic) NSString *category;
 @property(nonatomic) NSNumber *pricelow;
 @property(nonatomic) NSNumber *pricehigh;
-@property(nonatomic) NSNumber *opentime;
-@property(nonatomic) NSNumber *closetime;
+@property(nonatomic) NSString *opentime;
+@property(nonatomic) NSString *closetime;
 @property(nonatomic) NSNumber *distfromuser;
 
 @end
