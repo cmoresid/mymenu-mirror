@@ -67,7 +67,9 @@
     // User name validation requires a difference approach since
     // the validation is asynchronous.
     self.userNameValidator = [[MMUserNameValidator alloc] initWithUserNameTextField:self.emailField];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userNameValidate:) name:kAvailableUserNameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userNameValidate:)
+                                                 name:kAvailableUserNameNotification object:nil];
 }
 
 - (void)userNameValidate:(NSNotification*)notificaton {
@@ -309,7 +311,7 @@
 }
 
 - (IBAction)next:(id)sender {
-    NSArray *validationMessages = [self.validationManager performValidation];
+    NSArray *validationMessages = [self.validationManager getValidationMessagesAsArray];
     
     if ([validationMessages count] > 0) {
         NSString *validationMessage = [validationMessages componentsJoinedByString:@"\n"];

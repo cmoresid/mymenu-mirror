@@ -18,20 +18,21 @@
 #import <UIKit/UIKit.h>
 #import "MMDBFetcherDelegate.h"
 
+@class MMValidationManager;
+
 /**
  Login view controller.
  A view controller that logs in a user.
  User is prompted for their email address (id) and their password.
  */
-@interface MMLoginViewController : UIViewController <UITextFieldDelegate, MMDBFetcherDelegate>
+@interface MMLoginViewController : UIViewController <UITextFieldDelegate>
 
 @property(nonatomic, weak) IBOutlet UITextField *emailAddress;
 @property(nonatomic, weak) IBOutlet UITextField *password;
 @property(nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property(nonatomic, weak) IBOutlet UITextField *activeField;
 
-- (IBAction)unwindToLoginScreen:(UIStoryboardSegue *)segue;
-
 - (IBAction)login:(id)sender;
+- (IBAction)loginAsGuest:(id)sender;
 
 @end
