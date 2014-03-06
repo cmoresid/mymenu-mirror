@@ -79,6 +79,7 @@ NSMutableArray * categories;
     self.navigationBar.delegate = self;
     self.search.delegate = self;
     categories = [NSMutableArray new];
+    [categories addObject:@"All Categories"];
     reviewDictionary = [[NSMutableDictionary alloc] init];
     _restName.text = _selectedRestaurant.businessname;
     _restNumber.text = _selectedRestaurant.phone;
@@ -409,7 +410,7 @@ NSMutableArray * categories;
 -(IBAction)categoryPicker:(id)sender{
 
     MMRestaurantPopOverViewController *categoryContent = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuItemCategoryPopoverViewController"];
-    //categoryContent.delegate = self;
+    categoryContent.delegate = self;
     
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];
     [[NSNotificationCenter defaultCenter] postNotificationName:kCategories object:[categories copy]];
@@ -430,7 +431,23 @@ NSMutableArray * categories;
 
 
 -(void) didSelectCategory:(NSString *)category{
-        NSLog(@"CLOSEEEE");
+    NSMutableArray * searchItems = [[NSMutableArray alloc] init];
+    menuItems = [menuItemDictionary objectForKey:kmenuItems];
+    
+    if (![category isEqualToString:@"All Categories"] && category != nil){
+        for (int i = 0; i <menuItems.count; i++){
+            MMMenuItem *menuItemName = [menuItems objectAtIndex:i];
+            if([[menuItemName.category lowercaseString] isEqualToString:[category lowercaseString]]){
+                [searchItems addObject:menuItemName];
+            }
+        }
+        menuItems = [searchItems copy];
+    }
+    
+    [self.collectionView reloadData];
+    
+    [self.popOverController dismissPopoverAnimated:YES];
+    
 }
 
 -(IBAction)categoryClear:(id)sender{
