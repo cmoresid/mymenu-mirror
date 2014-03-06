@@ -125,12 +125,12 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name FROM ratings r, menu m WHERE r.merchid=%@ AND m.merchid = r.merchid ORDER BY ratingdate DESC";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name FROM ratings r, menu m WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid ORDER BY ratingdate DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, merchid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [self getRatingsHelper:request];
+    [self getRatingsHelper:request withTopFlag:NO];
     
 }
 
@@ -140,12 +140,12 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name FROM ratings r, menu m WHERE r.merchid=%@ AND m.merchid = r.merchid ORDER BY rating DESC";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name FROM ratings r, menu m WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid ORDER BY rating DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, merchid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [self getRatingsHelper:request];
+    [self getRatingsHelper:request withTopFlag:YES];
     
 }
 

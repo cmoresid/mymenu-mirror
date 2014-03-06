@@ -38,7 +38,11 @@
 @property(nonatomic, weak) IBOutlet UIButton * categoryButton; // filter by category buttton
 @property(nonatomic, weak) IBOutlet UICollectionView *collectionView; // the menu collection
 @property(nonatomic, weak) IBOutlet UINavigationBar *navigationBar;//the navigation bar at the top of the screen
+@property(nonatomic, weak) IBOutlet UICollectionView *reviewCollection; //review collection view
+@property(nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl; //review segemented control
 
-//- (IBAction)foodCategoryChanged:(UISegmentedControl *)sender;
+
+-(IBAction)categoryClear:(id)sender;
+-(IBAction)searchClear:(id)sender;
 @end
 

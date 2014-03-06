@@ -107,31 +107,7 @@ NSMutableDictionary *reviewDictionary;
 }
 
 
-- (void)changeReviewSort:(UISegmentedControl*)control {
-    NSMutableArray * reviews = [[NSMutableArray alloc] init];
-    switch ([control selectedSegmentIndex]) {
-        case 0:
-            reviews = [reviewDictionary objectForKey:kCondensedTopReviews];
-            if (reviews == nil){
-                [[MMDBFetcher get] getItemRatingsTop:_touchedItem.itemid];
-                [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-            }else
-                condensedReviews = reviews;
-            
-            break;
-        case 1:
-            reviews = [reviewDictionary objectForKey:kCondensedRecentReviews];
-            if (reviews == nil){
-                [[MMDBFetcher get] getItemRatings:_touchedItem.itemid];
-                [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-            }else
-                condensedReviews = reviews;
-            break;
-        default:
-            break;
-    }
-    [self.collectionView reloadData];
-}
+
 
 - (void)didRetrieveTopItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response{
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
@@ -476,6 +452,32 @@ NSMutableDictionary *reviewDictionary;
     }
     cell.rating = menitem;
     return cell;
+}
+
+- (void)changeReviewSort:(UISegmentedControl*)control {
+    NSMutableArray * reviews = [[NSMutableArray alloc] init];
+    switch ([control selectedSegmentIndex]) {
+        case 0:
+            reviews = [reviewDictionary objectForKey:kCondensedTopReviews];
+            if (reviews == nil){
+                [[MMDBFetcher get] getItemRatingsTop:_touchedItem.itemid];
+                [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+            }else
+                condensedReviews = reviews;
+            
+            break;
+        case 1:
+            reviews = [reviewDictionary objectForKey:kCondensedRecentReviews];
+            if (reviews == nil){
+                [[MMDBFetcher get] getItemRatings:_touchedItem.itemid];
+                [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+            }else
+                condensedReviews = reviews;
+            break;
+        default:
+            break;
+    }
+    [self.collectionView reloadData];
 }
 
 - (IBAction)saveButton:(id)sender{
