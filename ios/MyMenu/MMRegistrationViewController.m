@@ -15,10 +15,16 @@
 //  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
+#import "MMValidator.h"
+#import "MMValidationManager.h"
 #import "MMRegistrationViewController.h"
 #import "MMDietaryRestrictionsViewController.h"
+#import "MMUserNameValidator.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface MMRegistrationViewController ()
+
+- (void)configureFormValidation;
 
 @end
 
@@ -32,9 +38,61 @@
     return self;
 }
 
+- (void)configureFormValidation {
+    MMRequiredTextFieldValidator *firstNameValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.firstNameField withValidationMessage:@"* First name is required."];
+    
+    MMRequiredTextFieldValidator *lastNameValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.lastNameField withValidationMessage:@"* Last name is required."];
+    
+    MMRegexTextFieldValidator *emailValidator = [[MMRegexTextFieldValidator alloc] initWithTextField:self.emailField withRegexString:@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$" withValidationMessage:@"* Must be a valid email address."];
+    
+    MMRequiredTextFieldValidator *cityValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.cityField withValidationMessage:@"* City is required."];
+    
+    MMRequiredTextFieldValidator *provinceValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.provinceField withValidationMessage:@"* Province is required."];
+    
+    MMRequiredTextFieldValidator *genderValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.genderField withValidationMessage:@"* Gender is required."];
+    
+    MMRequiredTextFieldValidator *passwordValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.passwordField withValidationMessage:@"* Password must be provided."];
+    
+    MMMatchingTextFieldValidator *passwordMatchingValidator = [[MMMatchingTextFieldValidator alloc] initWithFirstTextField:self.passwordField withSecondTextField:self.confirmPasswordField withValidationMessage:@"* Passwords must match."];
+    
+    [self.validationManager addValidator:firstNameValidator];
+    [self.validationManager addValidator:lastNameValidator];
+    [self.validationManager addValidator:emailValidator];
+    [self.validationManager addValidator:cityValidator];
+    [self.validationManager addValidator:provinceValidator];
+    [self.validationManager addValidator:genderValidator];
+    [self.validationManager addValidator:passwordValidator];
+    [self.validationManager addValidator:passwordMatchingValidator];
+    
+    // User name validation requires a difference approach since
+    // the validation is asynchronous.
+    self.userNameValidator = [[MMUserNameValidator alloc] initWithUserNameTextField:self.emailField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userNameValidate:) name:kAvailableUserNameNotification object:nil];
+}
+
+- (void)userNameValidate:(NSNotification*)notificaton {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    NSNumber *result = notificaton.object;
+    BOOL userExists = result.boolValue;
+    
+    if (userExists) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                          message:@"User Name/Email is already in use."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+    [self performSegueWithIdentifier:@"regToDietRest" sender:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // Allow view controller to act as
     // delegate for the following text fields.
     self.cityField.delegate = self;
@@ -49,9 +107,11 @@
     // for view to scroll to text field
     [self registerForKeyboardNotifications];
     [self.emailField becomeFirstResponder];
-
+    
+    self.validationManager = [[MMValidationManager alloc] init];
+    [self configureFormValidation];
 }
-
+   
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -185,7 +245,6 @@
     [self.birthdayField resignFirstResponder];
     [self.cityField resignFirstResponder];
     [self.provinceField resignFirstResponder];
-
 }
 
 // Set the popover view size depending on which text field
@@ -250,8 +309,26 @@
 }
 
 - (IBAction)next:(id)sender {
-    NSLog(@"heyyyyyyyyyyyss");
-    [self performSegueWithIdentifier:@"regToDietRest" sender:self];
+    NSArray *validationMessages = [self.validationManager performValidation];
+    
+    if ([validationMessages count] > 0) {
+        NSString *validationMessage = [validationMessages componentsJoinedByString:@"\n"];
+        
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Validation Error(s)"
+                                                          message:validationMessage
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+    // Check if user name exists on server, segue will
+    // be performed in the userNameValidate: in this
+    // controller.
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.userNameValidator beginValidation];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

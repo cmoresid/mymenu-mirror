@@ -20,6 +20,9 @@
 #import "MMRegistrationPopoverDelegate.h"
 #import "MMUser.h"
 
+@class MMValidationManager;
+@class MMUserNameValidator;
+
 /**
  
  This view allows a user to provide additional information for their profile.
@@ -47,6 +50,9 @@
 @property(nonatomic, strong) MMRegistrationPopoverViewController *birthdayPopoverViewController;
 
 @property(readwrite) MMUser *userProfile;
+@property(nonatomic, strong) MMValidationManager *validationManager;
+@property(nonatomic, strong) MMUserNameValidator *userNameValidator;
+
 
 - (IBAction)unwindToLoginScreen:(UIStoryboardSegue *)segue;
 
