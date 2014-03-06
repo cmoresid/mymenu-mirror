@@ -34,6 +34,7 @@
 #define kCondensedRecentReviews @"condensedRecentReviews"
 #define kAllRecentReviews @"allRecentReviews"
 #define kAllTopReviews @"allTopReviews"
+#define kCategories @"kCategories"
 
 @interface MMRestaurantViewController ()
 
@@ -406,14 +407,12 @@ NSMutableArray * categories;
 }
 
 -(IBAction)categoryPicker:(id)sender{
-    _restPopOver = [[MMRestaurantPopOverViewController alloc] init];
-    _restPopOver.categories = [NSArray new];
-    _restPopOver.categories = [categories copy];
+
     MMRestaurantPopOverViewController *categoryContent = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuItemCategoryPopoverViewController"];
     //categoryContent.delegate = self;
     
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCategories object:[categories copy]];
     
     popover.popoverContentSize = CGSizeMake(350, 216);
     popover.delegate = self;
@@ -429,9 +428,9 @@ NSMutableArray * categories;
                                           animated:YES];
 }
 
-- (void)didSelectCategory:(NSString *)category{
-    NSLog(@"CLOSEEEE");
-    [self.popOverController dismissPopoverAnimated:YES];
+
+-(void) didSelectCategory:(NSString *)category{
+        NSLog(@"CLOSEEEE");
 }
 
 -(IBAction)categoryClear:(id)sender{

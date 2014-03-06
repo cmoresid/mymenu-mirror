@@ -16,6 +16,8 @@
 //
 #import "MMRestaurantPopOverViewController.h"
 
+#define kCategories @"kCategories"
+
 @interface MMRestaurantPopOverViewController ()
 
 @end
@@ -37,7 +39,10 @@
 	// Do any additional setup after loading the view.
     self.categoryPicker.delegate = self;
     self.categoryPicker.dataSource = self;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveCategories:)
+                                                 name:kCategories
+                                               object:nil];
     //self.categories = [[NSArray alloc] initWithObjects:@"none", @"1", @"2", nil];
     self.popoverValue = nil;
 }
@@ -46,6 +51,9 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void) didReceiveCategories:(NSNotification *)notification{
+    self.categories = notification.object;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:

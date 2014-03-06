@@ -503,6 +503,10 @@ NSMutableDictionary *reviewDictionary;
     [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
+- (IBAction)iveEatenThis:(id)sender{
+    NSLog(@"I've eaten this");
+}
+
 
 
 @end
