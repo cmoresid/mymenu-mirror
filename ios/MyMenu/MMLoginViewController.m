@@ -146,7 +146,7 @@
 }
 
 - (IBAction)login:(id)sender {
-    NSArray *validationMessages = [self.validationManager performValidation];
+    NSArray *validationMessages = [self.validationManager getValidationMessagesAsArray];
     
     if ([validationMessages count] > 0) {
         NSString *validationMessage = [validationMessages componentsJoinedByString:@"\n"];

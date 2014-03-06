@@ -12,9 +12,6 @@
 
 @property(nonatomic,weak) IBOutlet UITextField *givenNameField;
 @property(nonatomic,weak) IBOutlet UITextField *surnameField;
-@property(nonatomic,weak) IBOutlet UITextField *genderField;
-@property(nonatomic,weak) IBOutlet UITextField *birthdayField;
-@property(nonatomic,weak) IBOutlet UITextField *oldPasswordField;
 @property(nonatomic,weak) IBOutlet UITextField *updatedPasswordField;
 @property(nonatomic,weak) IBOutlet UITextField *confirmPasswordField;
 @property(nonatomic,weak) IBOutlet UITextField *defaultLocationField;

@@ -37,7 +37,17 @@
  * @return A list of `NSString` objects that represent the
  *         validation error messages.
  */
-- (NSArray*)performValidation;
+- (NSArray*)getValidationMessagesAsArray;
+
+/**
+ * Iterates through each of the validation objects and calls its
+ * `isValid:` selector. For every object that fails validation, its
+ * error message is added to an `NSArray` which holds all the validation
+ * error messages; which is then converted into a string.
+ *
+ * @return A string representing the error messages.
+ */
+- (NSString*)getValidationMessagesAsString;
 
 /**
  * Adds a validator object to the current validation manager.

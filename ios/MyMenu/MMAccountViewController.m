@@ -9,11 +9,18 @@
 #import "MMAccountViewController.h"
 #import "MMLoginManager.h"
 #import "MMUser.h"
+#import "MMValidator.h"
+#import "MMValidationManager.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface MMAccountViewController ()
 
 - (void)updateUser:(NSNotification*)notification;
 - (void)updateUserError:(NSNotification*)notification;
+- (void)configureValidation;
+
+@property(nonatomic, strong) MMValidationManager *passwordValidationManager;
+@property(nonatomic, strong) MMValidationManager *locationValidationManager;
 
 @end
 
@@ -28,6 +35,23 @@
     return self;
 }
 
+- (void)configureValidation {
+    self.passwordValidationManager = [MMValidationManager new];
+    
+    MMRequiredTextFieldValidator *passwordRequiredValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.updatedPasswordField withValidationMessage:@"* New password must be provided."];
+    
+    MMMatchingTextFieldValidator *passwordMatchingValidator = [[MMMatchingTextFieldValidator alloc] initWithFirstTextField:self.updatedPasswordField withSecondTextField:self.confirmPasswordField withValidationMessage:@"* Passwords must match."];
+    
+    [self.passwordValidationManager addValidator:passwordRequiredValidator];
+    [self.passwordValidationManager addValidator:passwordMatchingValidator];
+
+    self.locationValidationManager = [MMValidationManager new];
+    
+    MMRequiredTextFieldValidator *locationValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.defaultLocationField withValidationMessage:@"* Location cannot be empty"];
+    
+    [self.locationValidationManager addValidator:locationValidator];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -36,12 +60,8 @@
     
     self.givenNameField.text = loggedInUser.firstName;
     self.surnameField.text = loggedInUser.lastName;
-    self.birthdayField.text = [NSString stringWithFormat:@"%@/%@/%@",
-                               loggedInUser.birthmonth,
-                               loggedInUser.birthday,
-                               loggedInUser.birthyear];
-    // TODO: Map to proper values
-    self.genderField.text = @"Male";
+    
+    [self configureValidation];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -65,6 +85,8 @@
 }
 
 - (void)updateUser:(NSNotification*)notification {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Success"
                                                       message:@"Update Successful."
                                                      delegate:nil
@@ -74,6 +96,8 @@
 }
 
 - (void)updateUserError:(NSNotification*)notification {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Unable to update information."
                                                      delegate:nil
@@ -89,18 +113,52 @@
 }
 
 - (IBAction)updatePassword:(id)sender {
-    MMUser *userToUpdate = [[MMLoginManager sharedLoginManager] getLoggedInUser];
+    NSArray *validationErrors  = [self.passwordValidationManager getValidationMessagesAsArray];
     
+    if (validationErrors.count > 0) {
+        NSString *validationMessage = [validationErrors componentsJoinedByString:@"\n"];
+        
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Validation Error(s)"
+                                                          message:validationMessage
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        
+        [message show];
+        return;
+    }
+    
+    MMUser *userToUpdate = [[MMLoginManager sharedLoginManager] getLoggedInUser];
     userToUpdate.password = self.confirmPasswordField.text;
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[MMLoginManager sharedLoginManager] beginUpdateUser:userToUpdate];
 }
 
 - (IBAction)updateDefaultLocation:(id)sender {
+    NSArray *validationErrors  = [self.locationValidationManager getValidationMessagesAsArray];
+    
+    if (validationErrors.count > 0) {
+        NSString *validationMessage = [validationErrors componentsJoinedByString:@"\n"];
+        
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Validation Error(s)"
+                                                          message:validationMessage
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        
+        [message show];
+        return;
+    }
+    
     MMUser *userToUpdate = [[MMLoginManager sharedLoginManager] getLoggedInUser];
-    
     userToUpdate.city = self.defaultLocationField.text;
+
+    [self.updatedPasswordField resignFirstResponder];
+    [self.confirmPasswordField resignFirstResponder];
+    [self.tableView resignFirstResponder];
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[MMLoginManager sharedLoginManager] beginUpdateUser:userToUpdate];
 }
 

@@ -115,11 +115,7 @@ MMUser * user;
     //[self loadAllImages];
 
     dietaryRestrictionIds = [[NSMutableArray alloc] init];
-
-    NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
-    NSData *currentUser = [perfs objectForKey:kCurrentUser];
-    user = (MMUser *) [NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
-
+    user = [[MMLoginManager sharedLoginManager] getLoggedInUser];
     
     if (user.email != nil) {
         [[MMDBFetcher get] getUserRestrictions:user.email];

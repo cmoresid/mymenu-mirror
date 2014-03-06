@@ -37,7 +37,7 @@
     return self;
 }
 
-- (NSArray*)performValidation {
+- (NSArray*)getValidationMessagesAsArray {
     self.validationMessages = [NSMutableArray new];
     
     for (id<MMValidatorProtocol> validator in self.validationObjects) {
@@ -47,6 +47,10 @@
     }
     
     return [self.validationMessages copy];
+}
+
+- (NSString*)getValidationMessagesAsString {
+    return [[self getValidationMessagesAsArray] componentsJoinedByString:@"\n"];
 }
 
 - (void)addValidator:(id<MMValidatorProtocol>)validator {
