@@ -87,6 +87,9 @@
 		9BBDE03418A1A59D005EDA0B /* MMBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03218A1A59D005EDA0B /* MMBaseNavigationController.m */; };
 		9BBDE03D18A1B6E9005EDA0B /* MMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */; };
 		9BBDE03E18A1B6E9005EDA0B /* MMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */; };
+		B00BE2B218C84B270090F769 /* MMProfileSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00BE2B118C84B270090F769 /* MMProfileSplitViewController.m */; };
+		B00BE2B518C84D720090F769 /* MMMasterProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00BE2B418C84D720090F769 /* MMMasterProfileViewController.m */; };
+		B00BE2B818C859270090F769 /* MMAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00BE2B718C859270090F769 /* MMAccountViewController.m */; };
 		B022D81A18C2F6970077D908 /* MMRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B022D81918C2F6970077D908 /* MMRatingView.m */; };
 		B022D81D18C2FD410077D908 /* MMRatingPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B022D81C18C2FD410077D908 /* MMRatingPopoverViewController.m */; };
 		B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */; };
@@ -119,6 +122,8 @@
 		B0B0C4DB18A81FAE00BA47CB /* MMRestaurantMapDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B0C4DA18A81FAE00BA47CB /* MMRestaurantMapDelegate.m */; };
 		B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */; };
 		B0B0C4DF18A8245600BA47CB /* LocationMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DD18A8245600BA47CB /* LocationMarker.png */; };
+		B0B8288C18C8EC1500FAACAF /* MMLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B8288B18C8EC1500FAACAF /* MMLoginManager.m */; };
+		B0B8288D18C904C600FAACAF /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2818A2CB3700EAA045 /* 19-gear.png */; };
 		B0DF9BD318AC43C800BB42FA /* FacebookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0DF9BD118AC43C800BB42FA /* FacebookIcon.png */; };
 		B0DF9BD418AC43C800BB42FA /* TwitterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0DF9BD218AC43C800BB42FA /* TwitterIcon.png */; };
 		B0EB0C8418A397A200CAAF44 /* MMMockNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB0C8318A397A200CAAF44 /* MMMockNetworkClient.m */; };
@@ -231,6 +236,12 @@
 		9BBDE03218A1A59D005EDA0B /* MMBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBaseNavigationController.m; sourceTree = "<group>"; };
 		9BBDE03B18A1B6E9005EDA0B /* MMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSettingsViewController.h; sourceTree = "<group>"; };
 		9BBDE03C18A1B6E9005EDA0B /* MMSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSettingsViewController.m; sourceTree = "<group>"; };
+		B00BE2B018C84B270090F769 /* MMProfileSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProfileSplitViewController.h; sourceTree = "<group>"; };
+		B00BE2B118C84B270090F769 /* MMProfileSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProfileSplitViewController.m; sourceTree = "<group>"; };
+		B00BE2B318C84D720090F769 /* MMMasterProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMasterProfileViewController.h; sourceTree = "<group>"; };
+		B00BE2B418C84D720090F769 /* MMMasterProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMasterProfileViewController.m; sourceTree = "<group>"; };
+		B00BE2B618C859270090F769 /* MMAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAccountViewController.h; sourceTree = "<group>"; };
+		B00BE2B718C859270090F769 /* MMAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAccountViewController.m; sourceTree = "<group>"; };
 		B022D81818C2F6970077D908 /* MMRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRatingView.h; sourceTree = "<group>"; };
 		B022D81918C2F6970077D908 /* MMRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRatingView.m; sourceTree = "<group>"; };
 		B022D81B18C2FD410077D908 /* MMRatingPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRatingPopoverViewController.h; sourceTree = "<group>"; };
@@ -292,6 +303,8 @@
 		B0B0C4DA18A81FAE00BA47CB /* MMRestaurantMapDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestaurantMapDelegate.m; sourceTree = "<group>"; };
 		B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentLocation.png; sourceTree = "<group>"; };
 		B0B0C4DD18A8245600BA47CB /* LocationMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocationMarker.png; sourceTree = "<group>"; };
+		B0B8288A18C8EC1500FAACAF /* MMLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMLoginManager.h; path = Model/MMLoginManager.h; sourceTree = "<group>"; };
+		B0B8288B18C8EC1500FAACAF /* MMLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMLoginManager.m; path = Model/MMLoginManager.m; sourceTree = "<group>"; };
 		B0DF9BD118AC43C800BB42FA /* FacebookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FacebookIcon.png; sourceTree = "<group>"; };
 		B0DF9BD218AC43C800BB42FA /* TwitterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwitterIcon.png; sourceTree = "<group>"; };
 		B0EB0C8218A397A200CAAF44 /* MMMockNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMockNetworkClient.h; sourceTree = "<group>"; };
@@ -513,6 +526,8 @@
 				9B776FDE18A564D00057B6E1 /* NSArray+MerchantSort.m */,
 				B0B0C4D918A81FAE00BA47CB /* MMRestaurantMapDelegate.h */,
 				B0B0C4DA18A81FAE00BA47CB /* MMRestaurantMapDelegate.m */,
+				B0B8288A18C8EC1500FAACAF /* MMLoginManager.h */,
+				B0B8288B18C8EC1500FAACAF /* MMLoginManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -556,6 +571,12 @@
 				9BB40CAC18ADBE6B00B59A46 /* MMCategoryPopOverViewController.m */,
 				B022D81B18C2FD410077D908 /* MMRatingPopoverViewController.h */,
 				B022D81C18C2FD410077D908 /* MMRatingPopoverViewController.m */,
+				B00BE2B018C84B270090F769 /* MMProfileSplitViewController.h */,
+				B00BE2B118C84B270090F769 /* MMProfileSplitViewController.m */,
+				B00BE2B318C84D720090F769 /* MMMasterProfileViewController.h */,
+				B00BE2B418C84D720090F769 /* MMMasterProfileViewController.m */,
+				B00BE2B618C859270090F769 /* MMAccountViewController.h */,
+				B00BE2B718C859270090F769 /* MMAccountViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -690,6 +711,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0B8288D18C904C600FAACAF /* 19-gear.png in Resources */,
 				B0627E2D18A2CB3700EAA045 /* 125-food.png in Resources */,
 				1722200318C279380022FE8B /* MenuItemReviewCell.xib in Resources */,
 				B0DF9BD418AC43C800BB42FA /* TwitterIcon.png in Resources */,
@@ -797,6 +819,7 @@
 				B071FA7C18C7F62B00605907 /* MMCompareTextFieldValidator.m in Sources */,
 				B071FA7F18C7F62B00605907 /* MMRequiredTextFieldValidator.m in Sources */,
 				B07A57281893084E00DEBAD8 /* MMLoginViewController.m in Sources */,
+				B00BE2B518C84D720090F769 /* MMMasterProfileViewController.m in Sources */,
 				B022D81D18C2FD410077D908 /* MMRatingPopoverViewController.m in Sources */,
 				171EA89D189B043F002DEFEF /* MMDietaryRestrictionCell.m in Sources */,
 				1731DFB118A6D28B008BE05B /* MMMenuItemCell.m in Sources */,
@@ -815,16 +838,19 @@
 				9BB40CAD18ADBE6B00B59A46 /* MMCategoryPopOverViewController.m in Sources */,
 				9B4E24911891E06200F5B955 /* MMSpecial.m in Sources */,
 				B022D81A18C2F6970077D908 /* MMRatingView.m in Sources */,
+				B00BE2B218C84B270090F769 /* MMProfileSplitViewController.m in Sources */,
 				B071FA8018C7F62B00605907 /* MMTextFieldValidator.m in Sources */,
 				17F6531D189D83F200D63D3D /* MMRestaurantViewController.m in Sources */,
 				B083AFD918A37CA200CDD0C9 /* MMNetworkClientProxy.m in Sources */,
 				B097D701189392FC00142F8D /* MMMainTabBarViewController.m in Sources */,
+				B0B8288C18C8EC1500FAACAF /* MMLoginManager.m in Sources */,
 				83B85B8B18971A3D00195F05 /* MMSpecialType.m in Sources */,
 				B0B0C4DB18A81FAE00BA47CB /* MMRestaurantMapDelegate.m in Sources */,
 				9B4E24881891DCD100F5B955 /* MMMenuItemRating.m in Sources */,
 				B097D7091893A6B200142F8D /* MMMainTabViewSegue.m in Sources */,
 				9BBDE03318A1A59D005EDA0B /* MMBaseNavigationController.m in Sources */,
 				9B4E24781891D8C600F5B955 /* MMMerchant.m in Sources */,
+				B00BE2B818C859270090F769 /* MMAccountViewController.m in Sources */,
 				9B1CFF7D18A442C700E9F778 /* MMLocationManager.m in Sources */,
 				B071FA7D18C7F62B00605907 /* MMMatchingTextFieldValidator.m in Sources */,
 				83B7E44E1891EE0700946784 /* MMDetailMapViewController.m in Sources */,

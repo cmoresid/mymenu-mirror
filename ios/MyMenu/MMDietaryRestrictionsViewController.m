@@ -23,6 +23,7 @@
 #import "MMDietaryRestrictionCell.h"
 #import "MMRestrictionSwitch.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "MMLoginManager.h"
 
 #define kCurrentUser @"currentUser"
 
@@ -47,9 +48,17 @@ MMUser * user;
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if ([[MMLoginManager sharedLoginManager] isUserLoggedInAsGuest]) {
+        [[MMLoginManager sharedLoginManager] logoutUser];
+        [self performSegueWithIdentifier:@"userMustLogin" sender:self];
+    }
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     [MMDBFetcher get].delegate = self;
-    
 }
 
 //will be used in the future.....
