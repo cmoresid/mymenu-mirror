@@ -13,13 +13,14 @@ NSString *const kCurrentUser = @"kCurrentUser";
 NSString *const kUserLoginNotification = @"kUserLoginNotification";
 NSString *const kUserLoginErrorNotification = @"kUserLoginErrorNotification";
 NSString *const kGuestLogin = @"kGuestLogin";
+NSString *const kUserUpdatedNotification = @"kUserUpdatedNotification";
+NSString *const kUserUpdateErrorNotification = @"kUserUpdateErrorNotification";
 
 @interface MMLoginManager() {
     MMDBFetcher *_dbFetcher;
     NSString *_userToLogin;
+    MMUser *_userToUpdate;
 }
-
-- (MMUser*)getLoggedInUser;
 
 @end
 
@@ -84,6 +85,20 @@ static MMLoginManager *instance;
     return ([[self getLoggedInUser].email isEqualToString:kGuestLogin]);
 }
 
+- (MMUser*)getLoggedInUser {
+    NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
+    NSData *currentUserData = [perfs objectForKey:kCurrentUser];
+    MMUser *currentUser = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUserData];
+    
+    return currentUser;
+}
+
+- (void)beginUpdateUser:(MMUser *)userToUpdate {
+    _userToUpdate = userToUpdate;
+    
+    [_dbFetcher editUser:userToUpdate];
+}
+
 #pragma mark - Delegate Methods Implemented
 
 - (void)wasUserVerified:(NSInteger)resultCode withResponse:(MMDBFetcherResponse *)response {
@@ -116,14 +131,26 @@ static MMLoginManager *instance;
                                                         object:user];
 }
 
-#pragma mark - Private Methods
-
-- (MMUser*)getLoggedInUser {
-    NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
-    NSData *currentUserData = [perfs objectForKey:kCurrentUser];
-    MMUser *currentUser = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUserData];
+- (void)didUpdateUser:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
+    if (!response.wasSuccessful) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUserUpdateErrorNotification
+                                                            object:nil];
+        return;
+    }
     
-    return currentUser;
+    if (successful) {
+        // Save updated user.
+        NSUserDefaults *userPreferances = [NSUserDefaults standardUserDefaults];
+        NSData *encodedUser = [NSKeyedArchiver archivedDataWithRootObject:_userToUpdate];
+        [userPreferances setObject:encodedUser forKey:kCurrentUser];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUserUpdatedNotification
+                                                            object:nil];
+    }
+    else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUserUpdateErrorNotification
+                                                            object:nil];
+    }
 }
 
 @end

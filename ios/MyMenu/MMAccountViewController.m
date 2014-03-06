@@ -8,10 +8,12 @@
 
 #import "MMAccountViewController.h"
 #import "MMLoginManager.h"
-
-#define kCurrentUser @"currentUser"
+#import "MMUser.h"
 
 @interface MMAccountViewController ()
+
+- (void)updateUser:(NSNotification*)notification;
+- (void)updateUserError:(NSNotification*)notification;
 
 @end
 
@@ -30,11 +32,54 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    MMUser *loggedInUser = [[MMLoginManager sharedLoginManager] getLoggedInUser];
+    
+    self.givenNameField.text = loggedInUser.firstName;
+    self.surnameField.text = loggedInUser.lastName;
+    self.birthdayField.text = [NSString stringWithFormat:@"%@/%@/%@",
+                               loggedInUser.birthmonth,
+                               loggedInUser.birthday,
+                               loggedInUser.birthyear];
+    // TODO: Map to proper values
+    self.genderField.text = @"Male";
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateUser:)
+                                                 name:kUserUpdatedNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateUserError:)
+                                                 name:kUserUpdateErrorNotification
+                                               object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)updateUser:(NSNotification*)notification {
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                      message:@"Update Successful."
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    [message show];
+}
+
+- (void)updateUserError:(NSNotification*)notification {
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:@"Unable to update information."
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    [message show];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,11 +89,19 @@
 }
 
 - (IBAction)updatePassword:(id)sender {
+    MMUser *userToUpdate = [[MMLoginManager sharedLoginManager] getLoggedInUser];
     
+    userToUpdate.password = self.confirmPasswordField.text;
+    
+    [[MMLoginManager sharedLoginManager] beginUpdateUser:userToUpdate];
 }
 
 - (IBAction)updateDefaultLocation:(id)sender {
+    MMUser *userToUpdate = [[MMLoginManager sharedLoginManager] getLoggedInUser];
     
+    userToUpdate.city = self.defaultLocationField.text;
+    
+    [[MMLoginManager sharedLoginManager] beginUpdateUser:userToUpdate];
 }
 
 - (IBAction)logout:(id)sender {

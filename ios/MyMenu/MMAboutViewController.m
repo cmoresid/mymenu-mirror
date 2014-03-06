@@ -24,13 +24,6 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.aboutWebView.delegate = self;
-    [self.aboutWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mymenuapp.ca/about"]]];
-}
-
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
@@ -43,6 +36,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.aboutWebView.delegate = self;
+    [self.aboutWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mymenuapp.ca/about"]]];
 }
 
 - (void)didReceiveMemoryWarning

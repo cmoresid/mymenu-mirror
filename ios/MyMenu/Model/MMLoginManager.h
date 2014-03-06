@@ -11,6 +11,8 @@
 
 extern NSString *const kUserLoginNotification;
 extern NSString *const kUserLoginErrorNotification;
+extern NSString *const kUserUpdatedNotification;
+extern NSString *const kUserUpdateErrorNotification;
 
 @interface MMLoginManager : NSObject <MMDBFetcherDelegate>
 
@@ -20,5 +22,7 @@ extern NSString *const kUserLoginErrorNotification;
 - (BOOL)isUserLoggedIn;
 - (void)loginAsGuest;
 - (BOOL)isUserLoggedInAsGuest;
+- (MMUser*)getLoggedInUser;
+- (void)beginUpdateUser:(MMUser*)userToUpdate;
 
 @end
