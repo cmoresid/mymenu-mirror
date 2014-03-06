@@ -718,8 +718,8 @@ static MMDBFetcher *instance;
                                         merchant.website = [e child:@"website"].text;
                                         merchant.pricehigh = [NSNumber numberWithFloat:[e child:@"pricehigh"].textAsInt];
                                         merchant.pricelow = [NSNumber numberWithFloat:[e child:@"pricelow"].textAsInt];
-                                        merchant.opentime = [NSNumber numberWithInt:[e child:@"opentime"].textAsInt];
-                                        merchant.closetime = [NSNumber numberWithInt:[e child:@"closetime"].textAsInt];
+                                        merchant.opentime = [e child:@"opentime"].text;
+                                        merchant.closetime = [e child:@"closetime"].text;
                                     }];
 
                                     [self.delegate didRetrieveMerchant:merchant withResponse:dbResponse];

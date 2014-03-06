@@ -45,6 +45,8 @@
 @property(nonatomic, weak) IBOutlet UINavigationBar *navigationBar;//the navigation bar at the top of the screen
 @property(nonatomic, weak) IBOutlet UICollectionView *reviewCollection; //review collection view
 @property(nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl; //review segemented control
+@property(nonatomic, weak) IBOutlet UILabel * hours;
+@property(nonatomic, weak) IBOutlet UILabel * adress;
 @property (nonatomic, strong) UIPopoverController * popOverController;
 @property (nonatomic, strong) MMRestaurantPopOverViewController * restPopOver;
 
