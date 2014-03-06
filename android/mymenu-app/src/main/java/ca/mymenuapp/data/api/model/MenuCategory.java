@@ -15,24 +15,16 @@
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package ca.mymenuapp;
+package ca.mymenuapp.data.api.model;
 
-import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
-import ca.mymenuapp.model.Menu;
-import retrofit.Callback;
-import retrofit.http.Field;
-import retrofit.http.FormUrlEncoded;
-import retrofit.http.GET;
-import retrofit.http.POST;
-import retrofit.http.Path;
+public class MenuCategory {
+  public long id;
+  public String name;
 
-/** RESTful interface to talk to the MyMenu backend. */
-public interface MyMenuApi {
-  String GET_ALL_RESTRICTIONS_QUERY = "select * from restrictions";
-
-  @GET("/rest/menu/{id}") void getMenu(@Path("id") long id, Callback<Menu> cb);
-
-  @FormUrlEncoded @POST("/php/users/custom.php")
-  void getAllDietaryRestrictions(@Field("query") String query,
-      Callback<DietaryRestrictionResponse> cb);
+  @Override public String toString() {
+    return "MenuCategory{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        '}';
+  }
 }

@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
+import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.PlaceholderFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import ca.mymenuapp.util.Bundler;
@@ -52,6 +53,7 @@ public class MainActivity extends BaseActivity {
         new Bundler().put(PlaceholderFragment.ARG_SECTION_NUMBER, 2).get());
     tabsAdapter.addTab(actionBar.newTab().setText("3"), PlaceholderFragment.class,
         new Bundler().put(PlaceholderFragment.ARG_SECTION_NUMBER, 3).get());
+    tabsAdapter.addTab(actionBar.newTab().setText("4"), DietaryPreferencesFragment.class, null);
     actionBar.setSelectedNavigationItem(tab);
   }
 }

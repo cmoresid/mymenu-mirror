@@ -23,6 +23,7 @@ import ca.mymenuapp.dagger.scopes.ForActivity;
 import ca.mymenuapp.ui.activities.BaseActivity;
 import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.ui.fragments.BaseFragment;
+import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.PlaceholderFragment;
 import dagger.Module;
 import dagger.Provides;
@@ -33,7 +34,7 @@ import javax.inject.Singleton;
         // Activities
         BaseActivity.class, MainActivity.class,
         // Fragments
-        BaseFragment.class, PlaceholderFragment.class
+        BaseFragment.class, PlaceholderFragment.class, DietaryPreferencesFragment.class
     },
     complete = false,
     addsTo = MyMenuModule.class)

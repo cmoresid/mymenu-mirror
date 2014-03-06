@@ -18,13 +18,12 @@
 package ca.mymenuapp.data.api;
 
 import ca.mymenuapp.MyMenuApi;
+import ca.mymenuapp.data.api.model.DietaryRestriction;
+import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.model.Menu;
-import ca.mymenuapp.model.User;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import retrofit.Callback;
-import retrofit.client.Response;
-import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.Path;
 
@@ -42,11 +41,8 @@ final class MockMyMenuApi implements MyMenuApi {
 
   }
 
-  @Override public void createUser(@Body User user, Callback<User> cb) {
-
-  }
-
-  @Override public void createMenuCategory(@Field("name") String name, Callback<Response> cb) {
+  @Override public void getAllDietaryRestrictions(@Field("query") String query,
+      Callback<DietaryRestrictionResponse> cb) {
 
   }
 }

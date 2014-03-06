@@ -15,24 +15,28 @@
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package ca.mymenuapp;
+package ca.mymenuapp.ui.widgets;
 
-import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
-import ca.mymenuapp.model.Menu;
-import retrofit.Callback;
-import retrofit.http.Field;
-import retrofit.http.FormUrlEncoded;
-import retrofit.http.GET;
-import retrofit.http.POST;
-import retrofit.http.Path;
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.ImageView;
 
-/** RESTful interface to talk to the MyMenu backend. */
-public interface MyMenuApi {
-  String GET_ALL_RESTRICTIONS_QUERY = "select * from restrictions";
+/**
+ * An image view which always remains square with respect to its width.
+ */
+public final class SquaredImageView extends ImageView {
 
-  @GET("/rest/menu/{id}") void getMenu(@Path("id") long id, Callback<Menu> cb);
+  public SquaredImageView(Context context) {
+    this(context, null);
+  }
 
-  @FormUrlEncoded @POST("/php/users/custom.php")
-  void getAllDietaryRestrictions(@Field("query") String query,
-      Callback<DietaryRestrictionResponse> cb);
+  public SquaredImageView(Context context, AttributeSet attrs) {
+    super(context, attrs);
+  }
+
+  @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+    setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
+  }
 }

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ Copyright (C) 2014 MyMenu, Inc.
   ~
@@ -16,24 +17,12 @@
   ~ along with this program.  If not, see [http://www.gnu.org/licenses/].
   -->
 
-<resources>
-
-  <color name="turqoise">#46c8af</color>
-  <color name="pale_green">#8fdecf</color>
-  <color name="shamrock">#3baa95</color>
-
-  <color name="storm_dust">#4d4d4d</color>
-  <color name="scarpa_flow">#5b5b5b</color>
-  <color name="alice_blue">#ecf9f7</color>
-  <color name="silver">#b3b3b3</color>
-
-  <color name="top_bar">@color/turqoise</color>
-  <color name="secondary_bar">@color/pale_green</color>
-  <color name="search_box_bg">@color/shamrock</color>
-
-  <color name="side_bar_dark">@color/storm_dust</color>
-  <color name="side_bar_light">@color/scarpa_flow</color>
-  <color name="highlight">@color/alice_blue</color>
-  <color name="rating_background">@color/silver</color>
-
-</resources>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- Center color favors dark to that the bottom half is a bit darker than the top. -->
+  <gradient
+      android:startColor="#c0000000"
+      android:centerColor="#70000000"
+      android:endColor="#00000000"
+      android:angle="90"
+      />
+</shape>

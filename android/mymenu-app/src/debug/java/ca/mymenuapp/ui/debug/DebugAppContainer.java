@@ -82,6 +82,7 @@ import static butterknife.ButterKnife.findById;
 import static ca.mymenuapp.data.DebugDataModule.DEBUG_ANIMATION_SPEED;
 import static ca.mymenuapp.data.DebugDataModule.DEBUG_API_ENDPOINT;
 import static ca.mymenuapp.data.DebugDataModule.DEBUG_DRAWER_SEEN;
+import static ca.mymenuapp.data.DebugDataModule.DEBUG_NETWORK_LOG_LEVEL;
 import static ca.mymenuapp.data.DebugDataModule.DEBUG_NETWORK_PROXY;
 import static ca.mymenuapp.data.DebugDataModule.DEBUG_PICASSO_DEBUGGING;
 import static ca.mymenuapp.data.DebugDataModule.DEBUG_PIXEL_GRID_ENABLED;
@@ -102,6 +103,7 @@ public class DebugAppContainer implements AppContainer {
   private final OkHttpClient client;
   private final Picasso picasso;
   private final StringPreference apiEndpoint;
+  private final IntPreference networkLogLevel;
   private final StringPreference networkProxy;
   private final IntPreference animationSpeed;
   private final BooleanPreference picassoDebugging;
@@ -158,6 +160,7 @@ public class DebugAppContainer implements AppContainer {
   @Inject public DebugAppContainer(OkHttpClient client, Picasso picasso, RestAdapter restAdapter,
       MockRestAdapter mockRestAdapter, @Named(DEBUG_API_ENDPOINT) StringPreference apiEndpoint,
       @Named(DEBUG_NETWORK_PROXY) StringPreference networkProxy,
+      @Named(DEBUG_NETWORK_LOG_LEVEL) IntPreference networkLogLevel,
       @Named(DEBUG_ANIMATION_SPEED) IntPreference animationSpeed,
       @Named(DEBUG_PICASSO_DEBUGGING) BooleanPreference picassoDebugging,
       @Named(DEBUG_PIXEL_GRID_ENABLED) BooleanPreference pixelGridEnabled,
@@ -173,6 +176,7 @@ public class DebugAppContainer implements AppContainer {
     this.seenDebugDrawer = seenDebugDrawer;
     this.mockRestAdapter = mockRestAdapter;
     this.networkProxy = networkProxy;
+    this.networkLogLevel = networkLogLevel;
     this.animationSpeed = animationSpeed;
     this.picassoDebugging = picassoDebugging;
     this.pixelGridEnabled = pixelGridEnabled;
@@ -383,7 +387,8 @@ public class DebugAppContainer implements AppContainer {
     // We use the JSON rest adapter as the source of truth for the log level.
     final EnumAdapter<LogLevel> loggingAdapter = new EnumAdapter<>(activity, LogLevel.class);
     networkLoggingView.setAdapter(loggingAdapter);
-    networkLoggingView.setSelection(restAdapter.getLogLevel().ordinal());
+    networkLoggingView.setSelection(networkLogLevel.get());
+    restAdapter.setLogLevel(LogLevel.values()[networkLogLevel.get()]);
     networkLoggingView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
@@ -391,6 +396,7 @@ public class DebugAppContainer implements AppContainer {
         if (selected != restAdapter.getLogLevel()) {
           Ln.d("Setting logging level to %s", selected);
           restAdapter.setLogLevel(selected);
+          networkLogLevel.set(selected.ordinal());
         } else {
           Ln.d("Ignoring re-selection of logging level " + selected);
         }
