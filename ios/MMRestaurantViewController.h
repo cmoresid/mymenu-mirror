@@ -17,6 +17,9 @@
 #import <UIKit/UIKit.h>
 #import "MMMerchant.h"
 #import "MMDBFetcherDelegate.h"
+#import "MMRestaurantPopOverDelegate.h"
+
+@class MMRestaurantPopOverViewController;
 
 /** The restaurant view controller.
  This displays a single restaurant in detail.
@@ -25,7 +28,9 @@
  This view will also allow the user to filter through the menu,
  either by rating, category or name.
 */
-@interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MMDBFetcherDelegate, UISearchBarDelegate>
+@interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MMDBFetcherDelegate, UISearchBarDelegate, UIPopoverControllerDelegate, MMRestaurantPopOverDelegate>
+
+
 
 @property MMMerchant *selectedRestaurant;
 @property(nonatomic, weak) IBOutlet UILabel * restName; // restaurant name
@@ -40,9 +45,12 @@
 @property(nonatomic, weak) IBOutlet UINavigationBar *navigationBar;//the navigation bar at the top of the screen
 @property(nonatomic, weak) IBOutlet UICollectionView *reviewCollection; //review collection view
 @property(nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl; //review segemented control
+@property (nonatomic, strong) UIPopoverController * popOverController;
+@property (nonatomic, strong) MMRestaurantPopOverViewController * restPopOver;
 
 
 -(IBAction)categoryClear:(id)sender;
 -(IBAction)searchClear:(id)sender;
+-(IBAction)categoryPicker:(id)sender;
 @end
 

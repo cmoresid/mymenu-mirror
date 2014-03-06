@@ -24,6 +24,7 @@
 #import "MMMenuItemViewController.h"
 #import "MMMenuItemRating.h"
 #import "MMMenuItemReviewCell.h"
+#import "MMRestaurantPopOverViewController.h"
 
 
 #define kCurrentUser @"currentUser"
@@ -48,6 +49,7 @@ NSMutableDictionary * menuItemDictionary;
 NSMutableArray * condensedReviews;
 NSMutableArray * allReviews;
 NSMutableDictionary *reviewDictionary;
+NSMutableArray * categories;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -75,6 +77,7 @@ NSMutableDictionary *reviewDictionary;
     self.reviewCollection.dataSource = self;
     self.navigationBar.delegate = self;
     self.search.delegate = self;
+    categories = [NSMutableArray new];
     reviewDictionary = [[NSMutableDictionary alloc] init];
     _restName.text = _selectedRestaurant.businessname;
     _restNumber.text = _selectedRestaurant.phone;
@@ -271,6 +274,11 @@ NSMutableDictionary *reviewDictionary;
         else {
             menuItems = menu;
             [menuItemDictionary setObject:menu forKey:kmenuItems];
+            for (int i = 0; i<menu.count; i++){
+                if(![categories containsObject:[[menu objectAtIndex:i] category]]){
+                    [categories addObject:[[menu objectAtIndex:i] category]];
+                }
+            }
             [[MMDBFetcher get] getItemRatingsMerchantTop:_selectedRestaurant.mid];
             [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
             [self.collectionView reloadData];
@@ -397,8 +405,38 @@ NSMutableDictionary *reviewDictionary;
     [self.reviewCollection reloadData];
 }
 
--(IBAction)categoryClear:(id)sender{
+-(IBAction)categoryPicker:(id)sender{
+    _restPopOver = [[MMRestaurantPopOverViewController alloc] init];
+    _restPopOver.categories = [NSArray new];
+    _restPopOver.categories = [categories copy];
+    MMRestaurantPopOverViewController *categoryContent = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuItemCategoryPopoverViewController"];
+    //categoryContent.delegate = self;
     
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];
+    
+    
+    popover.popoverContentSize = CGSizeMake(350, 216);
+    popover.delegate = self;
+    
+    self.popOverController = popover;
+    
+    // Make sure keyboard is hidden before you show popup.
+    [self.search resignFirstResponder];
+
+    [self.popOverController presentPopoverFromRect:self.categoryButton.frame
+                                            inView:self.categoryButton.superview
+                          permittedArrowDirections:UIPopoverArrowDirectionAny
+                                          animated:YES];
+}
+
+- (void)didSelectCategory:(NSString *)category{
+    NSLog(@"CLOSEEEE");
+    [self.popOverController dismissPopoverAnimated:YES];
+}
+
+-(IBAction)categoryClear:(id)sender{
+
+
 }
 -(IBAction)searchClear:(id)sender{
     for (UIView *subView in self.search.subviews){
