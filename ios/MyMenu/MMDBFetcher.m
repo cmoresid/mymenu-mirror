@@ -967,4 +967,87 @@ static MMDBFetcher *instance;
                             }];
 }
 
+- (void)eatenThis:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/eatenthis/custom.php"]];
+    
+    NSString *queryFormat = @"query=insert into eatenthis (useremail, menuid, merchid, adddate) values('%@', %@, %@, sysdate())";
+    NSString *query = [NSString stringWithFormat:queryFormat, email, menuid, merchid];
+    
+    
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    [self.delegate didAddEatenThis:true withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didAddEatenThis:false withResponse:dbResponse];
+                                }
+                            }];
+    
+
+}
+
+- (void)reportReview:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid withReview:(NSNumber*)rid {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratingreport/custom.php"]];
+    
+    NSString *queryFormat = @"query=insert into ratingreport (useremail, ratingid, merchid, menuid, adddate) values('%@', %@, %@, %@, sysdate())";
+    NSString *query = [NSString stringWithFormat:queryFormat, email, rid, merchid, menuid];
+    
+    
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    [self.delegate didAddReviewReport:true withResponse:dbResponse];
+                                }
+                                else {
+                                     [self.delegate didAddReviewReport:false withResponse:dbResponse];
+                                }
+                            }];
+    
+}
+
+
+- (void)likeReview:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid withReview:(NSNumber*)rid {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratinglike/custom.php"]];
+    
+    NSString *queryFormat = @"query=insert into ratinglike (useremail, ratingid, merchid, menuid, adddate) values('%@', %@, %@, %@, sysdate())";
+    NSString *query = [NSString stringWithFormat:queryFormat, email, rid, merchid, menuid];
+    
+    
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    [self.delegate didAddReviewLike:true withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didAddReviewLike:false withResponse:dbResponse];
+                                }
+                            }];
+    
+}
+
 @end

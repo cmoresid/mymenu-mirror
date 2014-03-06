@@ -173,4 +173,17 @@
  */
 - (NSString *)getDay:(NSDate *) date;
 
+- (void)getRatingsHelper:(NSMutableURLRequest*) request withTopFlag:(BOOL)topFlag;
+
+- (void)compressedMerchantsHelper:(NSMutableURLRequest*) request;
+
+- (void)reportReview:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid withReview: (NSNumber*)rid;
+
+- (void)likeReview:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid withReview: (NSNumber*)rid;
+
+/**
+ *
+ */
+- (void)eatenThis:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid;
+
 @end
