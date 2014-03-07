@@ -23,7 +23,7 @@ import org.simpleframework.xml.Root;
 
 @Root(name = "results")
 public class DietaryRestrictionResponse {
-  @ElementList(name = "result", inline=true) public List<DietaryRestriction> restrictionList;
+  @ElementList(name = "result", inline = true) public List<DietaryRestriction> restrictionList;
 
   @Override public String toString() {
     return "DietaryRestrictionResponse{" +

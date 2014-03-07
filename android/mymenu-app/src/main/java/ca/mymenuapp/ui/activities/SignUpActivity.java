@@ -36,8 +36,8 @@ import ca.mymenuapp.R;
 import ca.mymenuapp.data.ForUser;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
-import ca.mymenuapp.ui.debug.EnumAdapter;
 import ca.mymenuapp.ui.fragments.DatePickerFragment;
+import ca.mymenuapp.ui.misc.EnumAdapter;
 import com.f2prateek.ln.Ln;
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -137,7 +137,8 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
             @Override public void failure(RetrofitError error) {
 
             }
-          });
+          }
+      );
     }
   }
 

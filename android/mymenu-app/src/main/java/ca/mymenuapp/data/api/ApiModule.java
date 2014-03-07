@@ -22,14 +22,12 @@ import com.squareup.okhttp.OkHttpClient;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
-import org.simpleframework.xml.core.Persister;
 import retrofit.Endpoint;
 import retrofit.Endpoints;
 import retrofit.RestAdapter;
 import retrofit.client.Client;
 import retrofit.client.OkClient;
 import retrofit.converter.Converter;
-import retrofit.converter.SimpleXMLConverter;
 
 /**
  * Module for talking to the backend API.

@@ -50,6 +50,7 @@ import ca.mymenuapp.data.prefs.IntPreference;
 import ca.mymenuapp.data.prefs.StringPreference;
 import ca.mymenuapp.ui.AppContainer;
 import ca.mymenuapp.ui.activities.MainActivity;
+import ca.mymenuapp.ui.misc.EnumAdapter;
 import ca.mymenuapp.util.Strings;
 import com.f2prateek.ln.Ln;
 import com.jakewharton.madge.MadgeFrameLayout;

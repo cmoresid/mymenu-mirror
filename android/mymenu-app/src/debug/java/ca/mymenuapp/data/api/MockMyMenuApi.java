@@ -20,7 +20,6 @@ package ca.mymenuapp.data.api;
 import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.Menu;
-import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.api.model.UserResponse;
 import javax.inject.Inject;
 import javax.inject.Singleton;

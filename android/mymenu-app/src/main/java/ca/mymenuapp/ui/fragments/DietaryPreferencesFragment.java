@@ -74,7 +74,8 @@ public class DietaryPreferencesFragment extends BaseFragment {
           @Override public void failure(RetrofitError error) {
             Ln.e(error.getCause());
           }
-        });
+        }
+    );
   }
 
   class DietaryRestrictionsAdapter extends BindableAdapter<DietaryRestriction>

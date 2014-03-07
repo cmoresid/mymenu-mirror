@@ -56,7 +56,7 @@ public class LoginActivity extends BaseActivity {
     finish();
   }
 
-    @OnClick(R.id.login) void onLoginClicked() {
+  @OnClick(R.id.login) void onLoginClicked() {
     boolean hasError = false;
 
     if (TextUtils.isEmpty(emailText.getText())) {
@@ -96,7 +96,8 @@ public class LoginActivity extends BaseActivity {
               Ln.e(error.getCause());
               Toast.makeText(LoginActivity.this, R.string.login_fail, Toast.LENGTH_LONG).show();
             }
-          });
+          }
+      );
     }
   }
 }
