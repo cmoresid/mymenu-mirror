@@ -62,6 +62,10 @@ public class ObjectPreference<T> {
     return value;
   }
 
+  public void save() {
+    set(value);
+  }
+
   public boolean isSet() {
     return preferences.contains(key);
   }

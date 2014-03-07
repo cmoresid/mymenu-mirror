@@ -21,6 +21,7 @@ import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.Menu;
 import ca.mymenuapp.data.api.model.UserResponse;
+import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import retrofit.Callback;
@@ -46,6 +47,11 @@ final class MockMyMenuApi implements MyMenuApi {
   }
 
   @Override public void getUser(@Field("query") String query, Callback<UserResponse> cb) {
+
+  }
+
+  @Override public void getRestrictionsForUser(@Field("query") String query,
+      Callback<UserRestrictionResponse> cb) {
 
   }
 

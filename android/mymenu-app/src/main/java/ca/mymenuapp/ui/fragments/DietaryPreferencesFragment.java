@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
@@ -31,12 +32,18 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.R;
+import ca.mymenuapp.data.ForUser;
 import ca.mymenuapp.data.api.model.DietaryRestriction;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
+import ca.mymenuapp.data.api.model.User;
+import ca.mymenuapp.data.api.model.UserRestrictionResponse;
+import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.ui.misc.BindableAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
+import ca.mymenuapp.util.CollectionUtils;
 import com.f2prateek.ln.Ln;
 import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import retrofit.Callback;
@@ -51,8 +58,12 @@ public class DietaryPreferencesFragment extends BaseFragment {
 
   @Inject MyMenuApi myMenuApi;
   @Inject Picasso picasso;
+  @Inject @ForUser ObjectPreference<User> user;
+
   @InjectView(R.id.root) BetterViewAnimator root;
   @InjectView(R.id.grid) GridView grid;
+
+  BaseAdapter gridAdapter;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,13 +73,33 @@ public class DietaryPreferencesFragment extends BaseFragment {
 
   @Override public void onResume() {
     super.onResume();
+    myMenuApi.getRestrictionsForUser(
+        String.format(MyMenuApi.GET_USER_RESTRICTIONS, user.get().email),
+        new Callback<UserRestrictionResponse>() {
+          @Override
+          public void success(UserRestrictionResponse response, Response raw) {
+            user.get().restrictions = new ArrayList<>();
+            for (UserRestrictionResponse.UserRestrictionLink link : response.links) {
+              user.get().restrictions.add(link.restrictId);
+            }
+            user.save();
+            if (gridAdapter != null) {
+              gridAdapter.notifyDataSetInvalidated();
+            }
+          }
+
+          @Override public void failure(RetrofitError error) {
+            Ln.e(error.getCause());
+          }
+        }
+    );
     myMenuApi.getAllDietaryRestrictions(MyMenuApi.GET_ALL_RESTRICTIONS_QUERY,
         new Callback<DietaryRestrictionResponse>() {
           @Override
           public void success(DietaryRestrictionResponse response, Response raw) {
             root.setDisplayedChildId(R.id.grid);
-            grid.setAdapter(
-                new DietaryRestrictionsAdapter(activityContext, response.restrictionList));
+            gridAdapter = new DietaryRestrictionsAdapter(activityContext, response.restrictionList);
+            grid.setAdapter(gridAdapter);
           }
 
           @Override public void failure(RetrofitError error) {
@@ -114,8 +145,16 @@ public class DietaryPreferencesFragment extends BaseFragment {
           .fit()
           .centerCrop()
           .into(holder.picture);
-      holder.toggle.setText(item.userLabel);
-      holder.toggle.setOnCheckedChangeListener(this);
+      holder.checkBox.setText(item.userLabel);
+      holder.checkBox.setOnCheckedChangeListener(this);
+
+      if (!CollectionUtils.isEmpty(user.get().restrictions)) {
+        if (user.get().restrictions.contains(Long.valueOf(position + 1))) {
+          holder.checkBox.setChecked(true);
+        } else {
+          holder.checkBox.setChecked(false);
+        }
+      }
     }
 
     @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -124,7 +163,7 @@ public class DietaryPreferencesFragment extends BaseFragment {
 
     class ViewHolder {
       @InjectView(R.id.picture) ImageView picture;
-      @InjectView(R.id.toggle) CheckBox toggle;
+      @InjectView(R.id.toggle) CheckBox checkBox;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);
