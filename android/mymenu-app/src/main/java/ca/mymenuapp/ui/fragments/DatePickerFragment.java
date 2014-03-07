@@ -23,6 +23,10 @@ import android.app.DialogFragment;
 import android.os.Bundle;
 import java.util.Calendar;
 
+/**
+ * {@link android.app.DialogFragment} that allows user to pick a date.
+ * Observers must implement {@link android.app.DatePickerDialog.OnDateSetListener} to be notified.
+ */
 public class DatePickerFragment extends DialogFragment {
 
   @Override

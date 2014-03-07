@@ -126,11 +126,14 @@ public class DietaryPreferencesFragment extends BaseFragment {
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.save:
+        // save this locally
         user.save();
+        // delete all of user's existing restrictions
         myMenuApi.deleteUserRestrictions(
             String.format(MyMenuApi.DELETE_USER_RESTRICTIONS, user.get().email),
             new Callback<Response>() {
               @Override public void success(Response response, Response response2) {
+                // Once deleted, insert all of their restrictions back in.
                 for (Long id : user.get().restrictions) {
                   myMenuApi.putUserRestriction(user.get().email, id, new Callback<Response>() {
                     @Override public void success(Response response, Response response2) {
@@ -195,7 +198,7 @@ public class DietaryPreferencesFragment extends BaseFragment {
       holder.checkBox.setOnCheckedChangeListener(this);
       holder.checkBox.setTag(item.id);
 
-      if (!CollectionUtils.isEmpty(user.get().restrictions)) {
+      if (!CollectionUtils.isNullOrEmpty(user.get().restrictions)) {
         if (user.get().restrictions.contains(Long.valueOf(position + 1))) {
           holder.checkBox.setChecked(true);
         } else {

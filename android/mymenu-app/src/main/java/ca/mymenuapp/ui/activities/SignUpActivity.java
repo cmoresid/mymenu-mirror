@@ -46,6 +46,9 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+/**
+ * Activity that prompts a user to sign up.
+ */
 public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener {
 
   @Inject MyMenuApi myMenuApi;
@@ -223,6 +226,9 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
     int getStringResourceId();
   }
 
+  /**
+   * An {@link ca.mymenuapp.ui.misc.EnumAdapter} that can display localized strings.
+   */
   class DisplayEnumAdapter<T extends LocalizedEnum> extends EnumAdapter {
 
     DisplayEnumAdapter(Context context, Class<T> enumType) {

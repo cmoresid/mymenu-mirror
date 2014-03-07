@@ -24,7 +24,10 @@ public class CollectionUtils {
     // no instances
   }
 
-  public static boolean isEmpty(List<?> list) {
+  /**
+   * Returns true if the list is null or empty.
+   */
+  public static boolean isNullOrEmpty(List<?> list) {
     return list == null || list.size() == 0;
   }
 }

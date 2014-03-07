@@ -29,6 +29,10 @@ import retrofit.client.Response;
 import retrofit.http.Field;
 import retrofit.http.Path;
 
+/**
+ * Mocks {@link ca.mymenuapp.MyMenuApi}.
+ * TODO: doesn't actually do anything yet.
+ */
 @Singleton
 final class MockMyMenuApi implements MyMenuApi {
   private final ServerDatabase serverDatabase;

@@ -62,6 +62,9 @@ public class ObjectPreference<T> {
     return value;
   }
 
+  /**
+   * Save the current value to disk. Must be called explicitly.
+   */
   public void save() {
     set(value);
   }

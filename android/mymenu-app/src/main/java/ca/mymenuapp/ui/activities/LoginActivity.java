@@ -37,6 +37,10 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+/**
+ * Activity that prompts a user to login with their credentials.
+ * TODO: facebook login
+ */
 public class LoginActivity extends BaseActivity {
   @Inject MyMenuApi myMenuApi;
   @Inject @ForUser ObjectPreference<User> user;
