@@ -47,7 +47,7 @@
 
 - (CGSize)contentSizeForViewInPopover {
     // Currently no way to obtain the width dynamically before viewWillAppear.
-    CGFloat width = 150.0;
+    CGFloat width = 200.0;
     CGRect rect = [self.tableView rectForSection:[self.tableView numberOfSections] - 1];
     CGFloat height = CGRectGetMaxY(rect);
     return (CGSize){width, height};

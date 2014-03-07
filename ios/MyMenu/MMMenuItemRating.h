@@ -30,7 +30,9 @@
 @property(nonatomic) NSString *menuitemname;
 @property(nonatomic) NSNumber *rating;
 @property(nonatomic) NSNumber *merchid;
+@property(nonatomic) NSString *merchantName;
 @property(nonatomic) NSString *review;
 @property(nonatomic) NSDate *date;
+@property(nonatomic) NSNumber *likeCount;
 
 @end
