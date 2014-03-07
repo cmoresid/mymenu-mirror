@@ -107,6 +107,8 @@ dependencies {
     exclude module: 'xpp3'
   }
 
+  compile 'com.greenhalolabs:emailautocompletetextview:1.2.0'
+
   debugCompile 'com.squareup.retrofit:retrofit-mock:1.4.1'
   debugCompile 'com.jakewharton.madge:madge:1.1.1'
   debugCompile 'com.jakewharton.scalpel:scalpel:1.1.1'
