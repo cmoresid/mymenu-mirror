@@ -21,6 +21,7 @@
     package="ca.mymenuapp">
 
   <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
 
   <application
       android:name=".MyMenuApp"
