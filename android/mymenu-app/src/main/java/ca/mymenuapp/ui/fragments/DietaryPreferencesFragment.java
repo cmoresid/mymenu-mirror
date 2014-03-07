@@ -20,6 +20,9 @@ package ca.mymenuapp.ui.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -27,7 +30,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ca.mymenuapp.MyMenuApi;
@@ -64,6 +66,11 @@ public class DietaryPreferencesFragment extends BaseFragment {
   @InjectView(R.id.grid) GridView grid;
 
   BaseAdapter gridAdapter;
+
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,6 +116,43 @@ public class DietaryPreferencesFragment extends BaseFragment {
     );
   }
 
+  @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    super.onCreateOptionsMenu(menu, inflater);
+    inflater.inflate(R.menu.fragment_dietary_preferences, menu);
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.save:
+        user.save();
+        myMenuApi.deleteExistingRestrictions(
+            String.format(MyMenuApi.DELETE_USER_RESTRICTIONS, user.get().email),
+            new Callback<Response>() {
+              @Override public void success(Response response, Response response2) {
+                for (Long id : user.get().restrictions) {
+                  myMenuApi.putUserRestriction(user.get().email, id, new Callback<Response>() {
+                    @Override public void success(Response response, Response response2) {
+
+                    }
+
+                    @Override public void failure(RetrofitError error) {
+                      Ln.e(error.getCause());
+                    }
+                  });
+                }
+              }
+
+              @Override public void failure(RetrofitError error) {
+                Ln.e(error.getCause());
+              }
+            }
+        );
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+  }
+
   class DietaryRestrictionsAdapter extends BindableAdapter<DietaryRestriction>
       implements CompoundButton.OnCheckedChangeListener {
     private final List<DietaryRestriction> dietaryRestrictions;
@@ -147,6 +191,7 @@ public class DietaryPreferencesFragment extends BaseFragment {
           .into(holder.picture);
       holder.checkBox.setText(item.userLabel);
       holder.checkBox.setOnCheckedChangeListener(this);
+      holder.checkBox.setTag(item.id);
 
       if (!CollectionUtils.isEmpty(user.get().restrictions)) {
         if (user.get().restrictions.contains(Long.valueOf(position + 1))) {
@@ -158,7 +203,17 @@ public class DietaryPreferencesFragment extends BaseFragment {
     }
 
     @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-      Toast.makeText(activityContext, "Selected", Toast.LENGTH_SHORT).show();
+      long id = (long) buttonView.getTag();
+      if (isChecked) {
+        if (!user.get().restrictions.contains(id)) {
+          user.get().restrictions.add(id);
+        }
+      } else {
+        if (user.get().restrictions.contains(id)) {
+          user.get().restrictions.remove(id);
+        }
+      }
+      user.save();
     }
 
     class ViewHolder {

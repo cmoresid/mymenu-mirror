@@ -47,4 +47,7 @@
   <string name="birthday_required">Birthday Required</string>
   <string name="unspecified">Unspecified</string>
 
+  <!-- Dietary Preferences Fragment -->
+  <string name="save">Save</string>
+
 </resources>

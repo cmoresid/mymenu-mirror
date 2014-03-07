@@ -64,4 +64,15 @@ final class MockMyMenuApi implements MyMenuApi {
       @Field("birthyear") int birthyear, Callback<Response> cb) {
 
   }
+
+  @Override
+  public void deleteExistingRestrictions(@Field("email") String email, Callback<Response> cb) {
+
+  }
+
+  @Override
+  public void putUserRestriction(@Field("email") String email, @Field("restrictid") long restrictId,
+      Callback<Response> cb) {
+
+  }
 }
