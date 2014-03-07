@@ -126,10 +126,12 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
       user.birthyear = birthDate.get(Calendar.YEAR);
       user.gender = ((Gender) genderSpinner.getSelectedItem()).value;
 
+      setProgressBarIndeterminateVisibility(true);
       myMenuApi.createUser(user.email, user.firstName, user.lastName, user.password, user.city,
           user.locality, user.country, user.gender, user.birthday, user.birthmonth, user.birthyear,
           new Callback<Response>() {
             @Override public void success(Response response, Response response2) {
+              setProgressBarIndeterminateVisibility(false);
               userPreference.set(user);
               Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
               intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -138,7 +140,8 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
             }
 
             @Override public void failure(RetrofitError error) {
-
+              setProgressBarIndeterminateVisibility(false);
+              Ln.e(error.getCause());
             }
           }
       );

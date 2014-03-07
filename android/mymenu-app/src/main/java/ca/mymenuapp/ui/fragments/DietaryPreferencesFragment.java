@@ -128,6 +128,7 @@ public class DietaryPreferencesFragment extends BaseFragment {
       case R.id.save:
         // save this locally
         user.save();
+        getActivity().setProgressBarIndeterminateVisibility(true);
         // delete all of user's existing restrictions
         myMenuApi.deleteUserRestrictions(
             String.format(MyMenuApi.DELETE_USER_RESTRICTIONS, user.get().email),
@@ -137,10 +138,11 @@ public class DietaryPreferencesFragment extends BaseFragment {
                 for (Long id : user.get().restrictions) {
                   myMenuApi.putUserRestriction(user.get().email, id, new Callback<Response>() {
                     @Override public void success(Response response, Response response2) {
-
+                      getActivity().setProgressBarIndeterminateVisibility(false);
                     }
 
                     @Override public void failure(RetrofitError error) {
+                      getActivity().setProgressBarIndeterminateVisibility(false);
                       Ln.e(error.getCause());
                     }
                   });

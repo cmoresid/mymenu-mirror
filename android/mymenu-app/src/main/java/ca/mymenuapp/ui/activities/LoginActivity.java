@@ -85,10 +85,12 @@ public class LoginActivity extends BaseActivity {
     }
 
     if (!hasError) {
+      setProgressBarIndeterminateVisibility(true);
       myMenuApi.getUser(
           String.format(MyMenuApi.GET_USER_QUERY, emailText.getText(), passwordText.getText()),
           new Callback<UserResponse>() {
             @Override public void success(UserResponse userResponse, Response response) {
+              setProgressBarIndeterminateVisibility(false);
               user.set(userResponse.userList.get(0));
               Intent intent = new Intent(LoginActivity.this, MainActivity.class);
               intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -97,6 +99,7 @@ public class LoginActivity extends BaseActivity {
             }
 
             @Override public void failure(RetrofitError error) {
+              setProgressBarIndeterminateVisibility(false);
               Ln.e(error.getCause());
               Toast.makeText(LoginActivity.this, R.string.login_fail, Toast.LENGTH_LONG).show();
             }
