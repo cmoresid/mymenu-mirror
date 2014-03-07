@@ -33,6 +33,18 @@
 						<NodeRef refid="20"/>
 						<NodeRef refid="21"/>
 						<NodeRef refid="22"/>
+						<NodeRef refid="23"/>
+						<NodeRef refid="24"/>
+						<NodeRef refid="25"/>
+						<NodeRef refid="26"/>
+						<NodeRef refid="27"/>
+						<NodeRef refid="28"/>
+						<NodeRef refid="29"/>
+						<NodeRef refid="30"/>
+						<NodeRef refid="31"/>
+						<NodeRef refid="32"/>
+						<NodeRef refid="33"/>
+						<NodeRef refid="34"/>
 						
 					</Subnodes>
 				</Node>
@@ -42,9 +54,10 @@
 					<Name>Categories</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="23"/>
-						<NodeRef refid="24"/>
-						<NodeRef refid="25"/>
+						<NodeRef refid="35"/>
+						<NodeRef refid="36"/>
+						<NodeRef refid="37"/>
+						<NodeRef refid="38"/>
 						
 					</Subnodes>
 				</Node>
@@ -54,9 +67,12 @@
 					<Name>Protocols</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="26"/>
-						<NodeRef refid="27"/>
-						<NodeRef refid="28"/>
+						<NodeRef refid="39"/>
+						<NodeRef refid="40"/>
+						<NodeRef refid="41"/>
+						<NodeRef refid="42"/>
+						<NodeRef refid="43"/>
+						<NodeRef refid="44"/>
 						
 					</Subnodes>
 				</Node>
@@ -66,7 +82,7 @@
 					<Name>Constants</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="29"/>
+						<NodeRef refid="45"/>
 						
 					</Subnodes>
 				</Node>
@@ -170,6 +186,39 @@
             
         </Node>
 		<Node id="4" type="file" documentType="reference">
+            <Name>MMCompareTextFieldValidator</Name>
+            <Path>Classes/MMCompareTextFieldValidator.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MMCompareTextFieldValidator.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MMCompareTextFieldValidator.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/MMCompareTextFieldValidator.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/MMCompareTextFieldValidator.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="5" type="file" documentType="reference">
             <Name>MMDBFetcher</Name>
             <Path>Classes/MMDBFetcher.html</Path>
             
@@ -202,62 +251,312 @@
             </Subnodes>
             
         </Node>
-		<Node id="5" type="file" documentType="reference">
+		<Node id="6" type="file" documentType="reference">
+            <Name>MMDBFetcherResponse</Name>
+            <Path>Classes/MMDBFetcherResponse.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MMDBFetcherResponse.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MMDBFetcherResponse.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/MMDBFetcherResponse.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="7" type="file" documentType="reference">
+            <Name>MMDietaryRestrictionCell</Name>
+            <Path>Classes/MMDietaryRestrictionCell.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MMDietaryRestrictionCell.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MMDietaryRestrictionCell.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/MMDietaryRestrictionCell.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="8" type="file" documentType="reference">
             <Name>MMLoginViewController</Name>
             <Path>Classes/MMLoginViewController.html</Path>
             
         </Node>
-		<Node id="6" type="file" documentType="reference">
+		<Node id="9" type="file" documentType="reference">
+            <Name>MMMatchingTextFieldValidator</Name>
+            <Path>Classes/MMMatchingTextFieldValidator.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MMMatchingTextFieldValidator.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MMMatchingTextFieldValidator.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/MMMatchingTextFieldValidator.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="10" type="file" documentType="reference">
             <Name>MMMenuItem</Name>
             <Path>Classes/MMMenuItem.html</Path>
             
         </Node>
-		<Node id="7" type="file" documentType="reference">
+		<Node id="11" type="file" documentType="reference">
             <Name>MMMenuItemFavLink</Name>
             <Path>Classes/MMMenuItemFavLink.html</Path>
             
         </Node>
-		<Node id="8" type="file" documentType="reference">
+		<Node id="12" type="file" documentType="reference">
             <Name>MMMenuItemRating</Name>
             <Path>Classes/MMMenuItemRating.html</Path>
             
         </Node>
-		<Node id="9" type="file" documentType="reference">
+		<Node id="13" type="file" documentType="reference">
             <Name>MMMerchant</Name>
             <Path>Classes/MMMerchant.html</Path>
             
         </Node>
-		<Node id="10" type="file" documentType="reference">
+		<Node id="14" type="file" documentType="reference">
+            <Name>MMPopoverDataPair</Name>
+            <Path>Classes/MMPopoverDataPair.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MMPopoverDataPair.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MMPopoverDataPair.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/MMPopoverDataPair.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/MMPopoverDataPair.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="15" type="file" documentType="reference">
+            <Name>MMRatingView</Name>
+            <Path>Classes/MMRatingView.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MMRatingView.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MMRatingView.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/MMRatingView.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="16" type="file" documentType="reference">
+            <Name>MMRegexTextFieldValidator</Name>
+            <Path>Classes/MMRegexTextFieldValidator.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MMRegexTextFieldValidator.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MMRegexTextFieldValidator.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/MMRegexTextFieldValidator.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/MMRegexTextFieldValidator.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="17" type="file" documentType="reference">
             <Name>MMRegistrationPopoverViewController</Name>
             <Path>Classes/MMRegistrationPopoverViewController.html</Path>
             
         </Node>
-		<Node id="11" type="file" documentType="reference">
+		<Node id="18" type="file" documentType="reference">
             <Name>MMRegistrationViewController</Name>
             <Path>Classes/MMRegistrationViewController.html</Path>
             
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MMRegistrationViewController.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MMRegistrationViewController.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/MMRegistrationViewController.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
         </Node>
-		<Node id="12" type="file" documentType="reference">
+		<Node id="19" type="file" documentType="reference">
+            <Name>MMRequiredTextFieldValidator</Name>
+            <Path>Classes/MMRequiredTextFieldValidator.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MMRequiredTextFieldValidator.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MMRequiredTextFieldValidator.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/MMRequiredTextFieldValidator.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="20" type="file" documentType="reference">
+            <Name>MMRestaurantMapDelegate</Name>
+            <Path>Classes/MMRestaurantMapDelegate.html</Path>
+            
+        </Node>
+		<Node id="21" type="file" documentType="reference">
             <Name>MMRestaurantViewController</Name>
             <Path>Classes/MMRestaurantViewController.html</Path>
             
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MMRestaurantViewController.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MMRestaurantViewController.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/MMRestaurantViewController.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
         </Node>
-		<Node id="13" type="file" documentType="reference">
+		<Node id="22" type="file" documentType="reference">
             <Name>MMRestriction</Name>
             <Path>Classes/MMRestriction.html</Path>
             
         </Node>
-		<Node id="14" type="file" documentType="reference">
+		<Node id="23" type="file" documentType="reference">
             <Name>MMSpecial</Name>
             <Path>Classes/MMSpecial.html</Path>
             
         </Node>
-		<Node id="15" type="file" documentType="reference">
+		<Node id="24" type="file" documentType="reference">
             <Name>MMSpecialType</Name>
             <Path>Classes/MMSpecialType.html</Path>
             
         </Node>
-		<Node id="16" type="file" documentType="reference">
+		<Node id="25" type="file" documentType="reference">
             <Name>MMSpecialsCollectionViewController</Name>
             <Path>Classes/MMSpecialsCollectionViewController.html</Path>
             
@@ -284,17 +583,110 @@
             </Subnodes>
             
         </Node>
-		<Node id="17" type="file" documentType="reference">
+		<Node id="26" type="file" documentType="reference">
+            <Name>MMTextFieldValidator</Name>
+            <Path>Classes/MMTextFieldValidator.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MMTextFieldValidator.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MMTextFieldValidator.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/MMTextFieldValidator.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/MMTextFieldValidator.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="27" type="file" documentType="reference">
             <Name>MMUser</Name>
             <Path>Classes/MMUser.html</Path>
             
         </Node>
-		<Node id="18" type="file" documentType="reference">
+		<Node id="28" type="file" documentType="reference">
+            <Name>MMUserNameValidator</Name>
+            <Path>Classes/MMUserNameValidator.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MMUserNameValidator.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MMUserNameValidator.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/MMUserNameValidator.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/MMUserNameValidator.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="29" type="file" documentType="reference">
+            <Name>MMValidationManager</Name>
+            <Path>Classes/MMValidationManager.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/MMValidationManager.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/MMValidationManager.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/MMValidationManager.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="30" type="file" documentType="reference">
             <Name>OCClassMockObject</Name>
             <Path>Classes/OCClassMockObject.html</Path>
             
         </Node>
-		<Node id="19" type="file" documentType="reference">
+		<Node id="31" type="file" documentType="reference">
             <Name>SDImageCache</Name>
             <Path>Classes/SDImageCache.html</Path>
             
@@ -333,7 +725,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="20" type="file" documentType="reference">
+		<Node id="32" type="file" documentType="reference">
             <Name>SDWebImageDownloader</Name>
             <Path>Classes/SDWebImageDownloader.html</Path>
             
@@ -366,7 +758,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="21" type="file" documentType="reference">
+		<Node id="33" type="file" documentType="reference">
             <Name>SDWebImageManager</Name>
             <Path>Classes/SDWebImageManager.html</Path>
             
@@ -405,7 +797,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="22" type="file" documentType="reference">
+		<Node id="34" type="file" documentType="reference">
             <Name>SDWebImagePrefetcher</Name>
             <Path>Classes/SDWebImagePrefetcher.html</Path>
             
@@ -445,7 +837,34 @@
             
         </Node>
 		
-		<Node id="23" type="file" documentType="reference">
+		<Node id="35" type="file" documentType="reference">
+            <Name>NSArray(MerchantSort)</Name>
+            <Path>Categories/NSArray+MerchantSort.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Categories/NSArray+MerchantSort.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Categories/NSArray+MerchantSort.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Categories/NSArray+MerchantSort.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="36" type="file" documentType="reference">
             <Name>UIButton(WebCache)</Name>
             <Path>Categories/UIButton+WebCache.html</Path>
             
@@ -472,12 +891,12 @@
             </Subnodes>
             
         </Node>
-		<Node id="24" type="file" documentType="reference">
+		<Node id="37" type="file" documentType="reference">
             <Name>UIColor(MyMenuColors)</Name>
             <Path>Categories/UIColor+MyMenuColors.html</Path>
             
         </Node>
-		<Node id="25" type="file" documentType="reference">
+		<Node id="38" type="file" documentType="reference">
             <Name>UIImageView(WebCache)</Name>
             <Path>Categories/UIImageView+WebCache.html</Path>
             
@@ -505,7 +924,7 @@
             
         </Node>
 		
-        <Node id="26" type="file" documentType="reference">
+        <Node id="39" type="file" documentType="reference">
             <Name>MBProgressHUDDelegate</Name>
             <Path>Protocols/MBProgressHUDDelegate.html</Path>
             
@@ -532,7 +951,88 @@
             </Subnodes>
             
         </Node>
-		<Node id="27" type="file" documentType="reference">
+		<Node id="40" type="file" documentType="reference">
+            <Name>MMRegistrationPopoverDelegate</Name>
+            <Path>Protocols/MMRegistrationPopoverDelegate.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Protocols/MMRegistrationPopoverDelegate.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Protocols/MMRegistrationPopoverDelegate.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Protocols/MMRegistrationPopoverDelegate.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="41" type="file" documentType="reference">
+            <Name>MMRestaurantPopOverDelegate</Name>
+            <Path>Protocols/MMRestaurantPopOverDelegate.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Protocols/MMRestaurantPopOverDelegate.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Protocols/MMRestaurantPopOverDelegate.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Protocols/MMRestaurantPopOverDelegate.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="42" type="file" documentType="reference">
+            <Name>MMValidatorProtocol</Name>
+            <Path>Protocols/MMValidatorProtocol.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Protocols/MMValidatorProtocol.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Protocols/MMValidatorProtocol.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Protocols/MMValidatorProtocol.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="43" type="file" documentType="reference">
             <Name>SDWebImageManagerDelegate</Name>
             <Path>Protocols/SDWebImageManagerDelegate.html</Path>
             
@@ -559,7 +1059,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="28" type="file" documentType="reference">
+		<Node id="44" type="file" documentType="reference">
             <Name>SDWebImagePrefetcherDelegate</Name>
             <Path>Protocols/SDWebImagePrefetcherDelegate.html</Path>
             
@@ -587,7 +1087,7 @@
             
         </Node>
 		
-        <Node id="29" type="file" documentType="reference">
+        <Node id="45" type="file" documentType="reference">
             <Name>MMPopoverDataType</Name>
             <Path>Constants/MMPopoverDataType.html</Path>
             

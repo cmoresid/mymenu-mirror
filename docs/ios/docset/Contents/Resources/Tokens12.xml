@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMRestaurantViewController.html">
+	<File path="Classes/MMMenuItemRating.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMRestaurantViewController</TokenIdentifier>
-			<Abstract type="html">The restaurant view controller.
-This displays a single restaurant in detail.
-Information such as restaurant name, rating, description, etc.
-This is where the restaurant&apos;s menu is displayed.
-This view will also allow the user to filter through the menu,
-either by rating, category or name.</Abstract>
-			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMenuItemRating</TokenIdentifier>
+			<Abstract type="html">This class represents a review for a menu item, for the table http://mymenuapp.ca/rest/ratings</Abstract>
+			<DeclaredIn>MMMenuItemRating.h</DeclaredIn>
             
 			
 			<NodeRef refid="12"/>

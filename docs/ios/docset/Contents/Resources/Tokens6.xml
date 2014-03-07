@@ -1,16 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMMenuItem.html">
+	<File path="Classes/MMDBFetcherResponse.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMMenuItem</TokenIdentifier>
-			<Abstract type="html">This is a menu item object for the table http://mymenuapp.ca/rest/menu</Abstract>
-			<DeclaredIn>MMMenuItem.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMDBFetcherResponse</TokenIdentifier>
+			<Abstract type="html">An class that is used by MMDBFetcher that
+is used to encapsulate the response from the
+server.</Abstract>
+			<DeclaredIn>MMDBFetcherResponse.h</DeclaredIn>
             
 			
 			<NodeRef refid="6"/>
 		</Token>
 		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcherResponse/setWasSuccessful:</TokenIdentifier>
+			<Abstract type="html">Represents whether or not a service
+call was successful.</Abstract>
+			<DeclaredIn>MMDBFetcherResponse.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) BOOL wasSuccessful</Declaration>
+			
+			
+			<Anchor>//api/name/wasSuccessful</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcherResponse/wasSuccessful</TokenIdentifier>
+			<Abstract type="html">Represents whether or not a service
+call was successful.</Abstract>
+			<DeclaredIn>MMDBFetcherResponse.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) BOOL wasSuccessful</Declaration>
+			
+			
+			<Anchor>//api/name/wasSuccessful</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMDBFetcherResponse/wasSuccessful</TokenIdentifier>
+			<Abstract type="html">Represents whether or not a service
+call was successful.</Abstract>
+			<DeclaredIn>MMDBFetcherResponse.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) BOOL wasSuccessful</Declaration>
+			
+			
+			<Anchor>//api/name/wasSuccessful</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcherResponse/setMessages:</TokenIdentifier>
+			<Abstract type="html">A list of any error messages returned
+by the service call.</Abstract>
+			<DeclaredIn>MMDBFetcherResponse.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSMutableArray *messages</Declaration>
+			
+			
+			<Anchor>//api/name/messages</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcherResponse/messages</TokenIdentifier>
+			<Abstract type="html">A list of any error messages returned
+by the service call.</Abstract>
+			<DeclaredIn>MMDBFetcherResponse.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSMutableArray *messages</Declaration>
+			
+			
+			<Anchor>//api/name/messages</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMDBFetcherResponse/messages</TokenIdentifier>
+			<Abstract type="html">A list of any error messages returned
+by the service call.</Abstract>
+			<DeclaredIn>MMDBFetcherResponse.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSMutableArray *messages</Declaration>
+			
+			
+			<Anchor>//api/name/messages</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
 		
         
 	</File>

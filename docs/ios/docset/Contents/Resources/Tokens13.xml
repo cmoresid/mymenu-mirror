@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMRestriction.html">
+	<File path="Classes/MMMerchant.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMRestriction</TokenIdentifier>
-			<Abstract type="html">This class represents a dietary restriction, for the table http://mymenuapp.ca/rest/restrictions</Abstract>
-			<DeclaredIn>MMRestriction.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMerchant</TokenIdentifier>
+			<Abstract type="html">This class represents a merchant or restaurant for a menu item, for the table http://mymenuapp.ca/rest/merchusers</Abstract>
+			<DeclaredIn>MMMerchant.h</DeclaredIn>
             
 			
 			<NodeRef refid="13"/>

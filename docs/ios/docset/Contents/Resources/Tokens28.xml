@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/SDWebImagePrefetcherDelegate.html">
+	<File path="Classes/MMUserNameValidator.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/SDWebImagePrefetcherDelegate</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>SDWebImagePrefetcher.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMUserNameValidator</TokenIdentifier>
+			<Abstract type="html">A concrete validator that checks the server to see if
+a user name is available.</Abstract>
+			<DeclaredIn>MMUserNameValidator.h</DeclaredIn>
             
 			
 			<NodeRef refid="28"/>
@@ -13,51 +14,72 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/SDWebImagePrefetcherDelegate/imagePrefetcher:didPrefetchURL:finishedCount:totalCount:</TokenIdentifier>
-			<Abstract type="html">Called when an image was prefetched.</Abstract>
-			<DeclaredIn>SDWebImagePrefetcher.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMUserNameValidator/setUserNameTextField:</TokenIdentifier>
+			<Abstract type="html">A text field that contains the user name to be validated.</Abstract>
+			<DeclaredIn>MMUserNameValidator.h</DeclaredIn>
 			
-			<Declaration>- (void)imagePrefetcher:(SDWebImagePrefetcher *)imagePrefetcher didPrefetchURL:(NSURL *)imageURL finishedCount:(NSUInteger)finishedCount totalCount:(NSUInteger)totalCount</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>imagePrefetcher</Name>
-					<Abstract type="html">The current image prefetcher</Abstract>
-				</Parameter><Parameter>
-					<Name>imageURL</Name>
-					<Abstract type="html">The image url that was prefetched</Abstract>
-				</Parameter><Parameter>
-					<Name>finishedCount</Name>
-					<Abstract type="html">The total number of images that were prefetched</Abstract>
-				</Parameter><Parameter>
-					<Name>totalCount</Name>
-					<Abstract type="html">The total number of images that need to be prefetched</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, weak) UITextField *userNameTextField</Declaration>
 			
-			<Anchor>//api/name/imagePrefetcher:didPrefetchURL:finishedCount:totalCount:</Anchor>
+			
+			<Anchor>//api/name/userNameTextField</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/SDWebImagePrefetcherDelegate/imagePrefetcher:didFinishWithTotalCount:skippedCount:</TokenIdentifier>
-			<Abstract type="html">Called when all images are prefetched.</Abstract>
-			<DeclaredIn>SDWebImagePrefetcher.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMUserNameValidator/userNameTextField</TokenIdentifier>
+			<Abstract type="html">A text field that contains the user name to be validated.</Abstract>
+			<DeclaredIn>MMUserNameValidator.h</DeclaredIn>
 			
-			<Declaration>- (void)imagePrefetcher:(SDWebImagePrefetcher *)imagePrefetcher didFinishWithTotalCount:(NSUInteger)totalCount skippedCount:(NSUInteger)skippedCount</Declaration>
+			<Declaration>@property (nonatomic, weak) UITextField *userNameTextField</Declaration>
+			
+			
+			<Anchor>//api/name/userNameTextField</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMUserNameValidator/userNameTextField</TokenIdentifier>
+			<Abstract type="html">A text field that contains the user name to be validated.</Abstract>
+			<DeclaredIn>MMUserNameValidator.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) UITextField *userNameTextField</Declaration>
+			
+			
+			<Anchor>//api/name/userNameTextField</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMUserNameValidator/initWithUserNameTextField:</TokenIdentifier>
+			<Abstract type="html">A constructor that accepts a text field which contains
+a user name to be validated</Abstract>
+			<DeclaredIn>MMUserNameValidator.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithUserNameTextField:(UITextField *)textField</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>imagePrefetcher</Name>
-					<Abstract type="html">The current image prefetcher</Abstract>
-				</Parameter><Parameter>
-					<Name>totalCount</Name>
-					<Abstract type="html">The total number of images that need to be prefetched</Abstract>
-				</Parameter><Parameter>
-					<Name>skippedCount</Name>
-					<Abstract type="html">The total number of images that were skipped</Abstract>
+					<Name>textField</Name>
+					<Abstract type="html">The text field that will contain the user name to be validated.</Abstract>
 				</Parameter>
 			</Parameters>
 			
-			<Anchor>//api/name/imagePrefetcher:didFinishWithTotalCount:skippedCount:</Anchor>
+			<Anchor>//api/name/initWithUserNameTextField:</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMUserNameValidator/beginValidation</TokenIdentifier>
+			<Abstract type="html">Begins an asynchronous request to validate the user name
+against the server database. A notification is posted to
+the default notification center once the validation is
+completed. The notification name is stored in
+kAvailableUserNameNotification.</Abstract>
+			<DeclaredIn>MMUserNameValidator.h</DeclaredIn>
+			
+			<Declaration>- (void)beginValidation</Declaration>
+			
+			
+			<Anchor>//api/name/beginValidation</Anchor>
             <NodeRef refid="28"/>
 		</Token>
 		

@@ -4,7 +4,6 @@ ca.mymenuapp.data
 ca.mymenuapp.data.api
 ca.mymenuapp.data.api.model
 ca.mymenuapp.data.prefs
-ca.mymenuapp.model
 ca.mymenuapp.ui
 ca.mymenuapp.ui.activities
 ca.mymenuapp.ui.debug

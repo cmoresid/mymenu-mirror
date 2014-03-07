@@ -1,16 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMMenuItemFavLink.html">
+	<File path="Classes/MMDietaryRestrictionCell.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMMenuItemFavLink</TokenIdentifier>
-			<Abstract type="html">This links a menu item to user, to mark it as their favorite for the table http://mymenuapp.ca/rest/menufavlink</Abstract>
-			<DeclaredIn>MMMenuItemFavLink.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMDietaryRestrictionCell</TokenIdentifier>
+			<Abstract type="html">A custom cell that dietary restriction. There is a
+a corresponding dynamic prototype in the storyboard
+where the actual UI is defined.</Abstract>
+			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
             
 			
 			<NodeRef refid="7"/>
 		</Token>
 		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDietaryRestrictionCell/setOnSwitch:</TokenIdentifier>
+			<Abstract type="html">A UISwitch that represents whether or not the
+dietary restriction is selected.</Abstract>
+			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UISwitch *onSwitch</Declaration>
+			
+			
+			<Anchor>//api/name/onSwitch</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDietaryRestrictionCell/onSwitch</TokenIdentifier>
+			<Abstract type="html">A UISwitch that represents whether or not the
+dietary restriction is selected.</Abstract>
+			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UISwitch *onSwitch</Declaration>
+			
+			
+			<Anchor>//api/name/onSwitch</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMDietaryRestrictionCell/onSwitch</TokenIdentifier>
+			<Abstract type="html">A UISwitch that represents whether or not the
+dietary restriction is selected.</Abstract>
+			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UISwitch *onSwitch</Declaration>
+			
+			
+			<Anchor>//api/name/onSwitch</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDietaryRestrictionCell/setRestName:</TokenIdentifier>
+			<Abstract type="html">The label that describes the restriction.</Abstract>
+			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *restName</Declaration>
+			
+			
+			<Anchor>//api/name/restName</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDietaryRestrictionCell/restName</TokenIdentifier>
+			<Abstract type="html">The label that describes the restriction.</Abstract>
+			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *restName</Declaration>
+			
+			
+			<Anchor>//api/name/restName</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMDietaryRestrictionCell/restName</TokenIdentifier>
+			<Abstract type="html">The label that describes the restriction.</Abstract>
+			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *restName</Declaration>
+			
+			
+			<Anchor>//api/name/restName</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
 		
         
 	</File>

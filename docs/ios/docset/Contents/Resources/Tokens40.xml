@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/MMRegistrationPopoverDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/MMRegistrationPopoverDelegate</TokenIdentifier>
+			<Abstract type="html">A delegate protocol used by the MMRegistrationPopoverViewController
+to interact with the MMRegistrationViewConroller. The values chosen
+within the popover view controller can be sent back to the parent
+view controller.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverDelegate.h</DeclaredIn>
+            
+			
+			<NodeRef refid="40"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMRegistrationPopoverDelegate/didSelectCity:</TokenIdentifier>
+			<Abstract type="html">Send the selected value of the city from
+the popover view controller to the parent
+view controller.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)didSelectCity:(NSString *)city</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>city</Name>
+					<Abstract type="html">The city that was selected.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/didSelectCity:</Anchor>
+            <NodeRef refid="40"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMRegistrationPopoverDelegate/didSelectProvince:</TokenIdentifier>
+			<Abstract type="html">Send the selected value of the province from
+the popover view controller to the parent
+view controller.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)didSelectProvince:(NSString *)province</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>province</Name>
+					<Abstract type="html">The province that was selected.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/didSelectProvince:</Anchor>
+            <NodeRef refid="40"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMRegistrationPopoverDelegate/didSelectGender:</TokenIdentifier>
+			<Abstract type="html">Send the selected gender from
+the popover view controller to the parent
+view controller.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)didSelectGender:(NSString *)gender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>gender</Name>
+					<Abstract type="html">The gender that was selected.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/didSelectGender:</Anchor>
+            <NodeRef refid="40"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMRegistrationPopoverDelegate/didSelectBirthday:</TokenIdentifier>
+			<Abstract type="html">Send the selected value of the birthday from
+the popover view controller to the parent
+view controller.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)didSelectBirthday:(NSDate *)birthday</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>birthday</Name>
+					<Abstract type="html">The date value of the birthday
+that was selected.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/didSelectBirthday:</Anchor>
+            <NodeRef refid="40"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

@@ -1,16 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMSpecialType.html">
+	<File path="Classes/MMRatingView.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMSpecialType</TokenIdentifier>
-			<Abstract type="html">This class represents a type of special, corresponding to http://mymenuapp.ca/rest/specialscategories</Abstract>
-			<DeclaredIn>MMSpecialType.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMRatingView</TokenIdentifier>
+			<Abstract type="html">A pie chart-like view that allows a user
+to select a number between 1-10 inclusive.</Abstract>
+			<DeclaredIn>MMRatingView.h</DeclaredIn>
             
 			
 			<NodeRef refid="15"/>
 		</Token>
 		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingView/setWheelPercentage:</TokenIdentifier>
+			<Abstract type="html">The current percentage of the wheel that is filled in.</Abstract>
+			<DeclaredIn>MMRatingView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CGFloat wheelPercentage</Declaration>
+			
+			
+			<Anchor>//api/name/wheelPercentage</Anchor>
+            <NodeRef refid="15"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingView/wheelPercentage</TokenIdentifier>
+			<Abstract type="html">The current percentage of the wheel that is filled in.</Abstract>
+			<DeclaredIn>MMRatingView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CGFloat wheelPercentage</Declaration>
+			
+			
+			<Anchor>//api/name/wheelPercentage</Anchor>
+            <NodeRef refid="15"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingView/wheelPercentage</TokenIdentifier>
+			<Abstract type="html">The current percentage of the wheel that is filled in.</Abstract>
+			<DeclaredIn>MMRatingView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CGFloat wheelPercentage</Declaration>
+			
+			
+			<Anchor>//api/name/wheelPercentage</Anchor>
+            <NodeRef refid="15"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingView/setRating:</TokenIdentifier>
+			<Abstract type="html">An integer representation of the current wheel percentage. Automatically updated
+when the wheelPercentage property is updated.</Abstract>
+			<DeclaredIn>MMRatingView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSNumber *rating</Declaration>
+			
+			
+			<Anchor>//api/name/rating</Anchor>
+            <NodeRef refid="15"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingView/rating</TokenIdentifier>
+			<Abstract type="html">An integer representation of the current wheel percentage. Automatically updated
+when the wheelPercentage property is updated.</Abstract>
+			<DeclaredIn>MMRatingView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSNumber *rating</Declaration>
+			
+			
+			<Anchor>//api/name/rating</Anchor>
+            <NodeRef refid="15"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingView/rating</TokenIdentifier>
+			<Abstract type="html">An integer representation of the current wheel percentage. Automatically updated
+when the wheelPercentage property is updated.</Abstract>
+			<DeclaredIn>MMRatingView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSNumber *rating</Declaration>
+			
+			
+			<Anchor>//api/name/rating</Anchor>
+            <NodeRef refid="15"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingView/setWheelFillColor:</TokenIdentifier>
+			<Abstract type="html">The color of the fill color.</Abstract>
+			<DeclaredIn>MMRatingView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIColor *wheelFillColor</Declaration>
+			
+			
+			<Anchor>//api/name/wheelFillColor</Anchor>
+            <NodeRef refid="15"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingView/wheelFillColor</TokenIdentifier>
+			<Abstract type="html">The color of the fill color.</Abstract>
+			<DeclaredIn>MMRatingView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIColor *wheelFillColor</Declaration>
+			
+			
+			<Anchor>//api/name/wheelFillColor</Anchor>
+            <NodeRef refid="15"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingView/wheelFillColor</TokenIdentifier>
+			<Abstract type="html">The color of the fill color.</Abstract>
+			<DeclaredIn>MMRatingView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIColor *wheelFillColor</Declaration>
+			
+			
+			<Anchor>//api/name/wheelFillColor</Anchor>
+            <NodeRef refid="15"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingView/setWheelBackgroundColor:</TokenIdentifier>
+			<Abstract type="html">The background color of the wheel.</Abstract>
+			<DeclaredIn>MMRatingView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIColor *wheelBackgroundColor</Declaration>
+			
+			
+			<Anchor>//api/name/wheelBackgroundColor</Anchor>
+            <NodeRef refid="15"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingView/wheelBackgroundColor</TokenIdentifier>
+			<Abstract type="html">The background color of the wheel.</Abstract>
+			<DeclaredIn>MMRatingView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIColor *wheelBackgroundColor</Declaration>
+			
+			
+			<Anchor>//api/name/wheelBackgroundColor</Anchor>
+            <NodeRef refid="15"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingView/wheelBackgroundColor</TokenIdentifier>
+			<Abstract type="html">The background color of the wheel.</Abstract>
+			<DeclaredIn>MMRatingView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIColor *wheelBackgroundColor</Declaration>
+			
+			
+			<Anchor>//api/name/wheelBackgroundColor</Anchor>
+            <NodeRef refid="15"/>
+		</Token>
 		
         
 	</File>

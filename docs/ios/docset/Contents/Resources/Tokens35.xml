@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSArray+MerchantSort.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSArray(MerchantSort)</TokenIdentifier>
+			<Abstract type="html">An extension (category) method to NSArray so
+one can sort an array of MMMerchUser by a
+number of criteria.</Abstract>
+			<DeclaredIn>NSArray+MerchantSort.h</DeclaredIn>
+            
+			
+			<NodeRef refid="35"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSArray/sortMerchantByDistance</TokenIdentifier>
+			<Abstract type="html">Sort an array of merchant users by
+distance from the user.</Abstract>
+			<DeclaredIn>NSArray+MerchantSort.h</DeclaredIn>
+			
+			<Declaration>- (NSArray *)sortMerchantByDistance</Declaration>
+			
+			
+			<Anchor>//api/name/sortMerchantByDistance</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSArray/sortMerchantByTopRated</TokenIdentifier>
+			<Abstract type="html">Sort an array of merchant users by
+rating in descending order (top rated
+to lowest rating).</Abstract>
+			<DeclaredIn>NSArray+MerchantSort.h</DeclaredIn>
+			
+			<Declaration>- (NSArray *)sortMerchantByTopRated</Declaration>
+			
+			
+			<Anchor>//api/name/sortMerchantByTopRated</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSArray/sortMerchantByCusine</TokenIdentifier>
+			<Abstract type="html">Sort an array of merchant users by
+cusine type.</Abstract>
+			<DeclaredIn>NSArray+MerchantSort.h</DeclaredIn>
+			
+			<Declaration>- (NSArray *)sortMerchantByCusine</Declaration>
+			
+			
+			<Anchor>//api/name/sortMerchantByCusine</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

@@ -1,16 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMMerchant.html">
+	<File path="Classes/MMMatchingTextFieldValidator.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMMerchant</TokenIdentifier>
-			<Abstract type="html">This class represents a merchant or restaurant for a menu item, for the table http://mymenuapp.ca/rest/merchusers</Abstract>
-			<DeclaredIn>MMMerchant.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMatchingTextFieldValidator</TokenIdentifier>
+			<Abstract type="html">A concrete validator that compares two text fields and
+ensures that the contents of the text fields match.</Abstract>
+			<DeclaredIn>MMMatchingTextFieldValidator.h</DeclaredIn>
             
 			
 			<NodeRef refid="9"/>
 		</Token>
 		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMatchingTextFieldValidator/initWithFirstTextField:withSecondTextField:withValidationMessage:</TokenIdentifier>
+			<Abstract type="html">Initializes a comparator validator with the text fields that are to
+be compared and the validation error message to be shown if validation
+fails.</Abstract>
+			<DeclaredIn>MMMatchingTextFieldValidator.m</DeclaredIn>
+			
+			<Declaration>- (id)initWithFirstTextField:(UITextField *)textField1 withSecondTextField:(UITextField *)textField2 withValidationMessage:(NSString *)errorMessage</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>textField1</Name>
+					<Abstract type="html">The first text field to compare.</Abstract>
+				</Parameter><Parameter>
+					<Name>textField2</Name>
+					<Abstract type="html">The second text field to compare.</Abstract>
+				</Parameter><Parameter>
+					<Name>errorMessage</Name>
+					<Abstract type="html">The validation message to be shown if validation fails.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The comparator validator.</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithFirstTextField:withSecondTextField:withValidationMessage:</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMatchingTextFieldValidator/isValid</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MMMatchingTextFieldValidator.m</DeclaredIn>
+			
+			<Declaration>- (BOOL)isValid</Declaration>
+			
+			
+			<Anchor>//api/name/isValid</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
 		
         
 	</File>
