@@ -18,12 +18,15 @@
 #import "MMRatingPopoverViewController.h"
 #import "MMMenuItemRating.h"
 #import "MMMenuItemReviewCell.h"
+#import "MMLoginManager.h"
+#import "MMMenuItemReviewCell.h"
+#import "MMReviewPopOverViewController.h"
 
-#define kCurrentUser @"currentUser"
 #define kCondensedTopReviews @"condensedTopReviews"
 #define kCondensedRecentReviews @"condensedRecentReviews"
 #define kAllRecentReviews @"allRecentReviews"
 #define kAllTopReviews @"allTopReviews"
+#define kReview @"kReview"
 
 
 @interface MMMenuItemViewController ()
@@ -39,6 +42,8 @@ MMUser * userProfile;
 NSMutableArray * condensedReviews;
 NSMutableArray * allReviews;
 NSMutableDictionary *reviewDictionary;
+MMMenuItemRating * touchedItem;
+
 
 
 
@@ -61,6 +66,7 @@ NSMutableDictionary *reviewDictionary;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    userProfile = [[MMUser alloc] init];
     reviewDictionary = [[NSMutableDictionary alloc] init];
     // Do any additional setup after loading the view.
     mods = [[NSMutableArray alloc] init];
@@ -90,9 +96,7 @@ NSMutableDictionary *reviewDictionary;
     _itemView.backgroundColor = [UIColor lightBackgroundGray];
 	_itemView.layer.cornerRadius = 17.5;
     self.tableView.dataSource = self;
-    NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
-    NSData * currentUser = [perfs objectForKey:kCurrentUser];
-    userProfile = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUser];
+    userProfile = [[MMLoginManager sharedLoginManager] getLoggedInUser];
     [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getModifications:_touchedItem.itemid withUser:userProfile.email];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
@@ -407,6 +411,41 @@ NSMutableDictionary *reviewDictionary;
     return condensedReviews.count;
 }
 
+// I implemented didSelectItemAtIndexPath:, but you could use willSelectItemAtIndexPath: depending on what you intend to do. See the docs of these two methods for the differences.
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    // If you need to use the touched cell, you can retrieve it like so
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    MMMenuItemReviewCell * itemCell = (MMMenuItemReviewCell *) cell;
+    NSLog(@"touched cell %@ at indexPath %@", cell, indexPath);
+    touchedItem = [[MMMenuItemRating alloc ]init];
+    touchedItem = itemCell.rating;
+    touchedItem.merchantName = self.selectedRestaurant.businessname;
+    touchedItem.merchid = self.selectedRestaurant.mid;
+    touchedItem.menuid = self.touchedItem.itemid;
+   
+    MMReviewPopOverViewController *categoryContent = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
+   // categoryContent.delegate = self;
+    
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedItem];
+    
+    //popover.popoverContentSize = CGSizeMake(350, 216);
+    popover.delegate = self;
+    
+    self.popOverController = popover;
+    
+    // Make sure keyboard is hidden before you show popup.
+    [self.reviewField resignFirstResponder];
+    
+    [self.popOverController presentPopoverFromRect:cell.frame
+                                            inView:cell.superview
+                          permittedArrowDirections:UIPopoverArrowDirectionAny
+                                          animated:YES];
+    
+   // [self performSegueWithIdentifier:@"showMenuItem" sender:self];
+    
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"ReviewCell";
     
@@ -442,7 +481,7 @@ NSMutableDictionary *reviewDictionary;
         [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
         [formatter setMaximumFractionDigits:1];
         [formatter setMinimumFractionDigits:1];
-        likeLabel.text = @"0";
+        likeLabel.text = [NSString stringWithFormat:@"%@", menitem.likeCount];
         labelBack.backgroundColor = [UIColor lightBackgroundGray];
         labelBack.layer.cornerRadius = 5;
         textRating.text = [formatter  stringFromNumber:menitem.rating];
@@ -503,8 +542,26 @@ NSMutableDictionary *reviewDictionary;
     [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
+- (void) didAddEatenThis:(BOOL)succesful withResponse:(MMDBFetcherResponse *)response{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }
+    
+}
+
 - (IBAction)iveEatenThis:(id)sender{
-    NSLog(@"I've eaten this");
+    [[MMDBFetcher get] eatenThis:userProfile.email withMenuItem:_touchedItem.itemid withMerch:_touchedItem.merchid];
+    [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+    _eatenThisButton.enabled = NO;
+    
 }
 
 
