@@ -33,6 +33,9 @@ import retrofit.android.AndroidMockValuePersistence;
 
 import static ca.mymenuapp.data.DebugDataModule.DEBUG_API_ENDPOINT;
 
+/**
+ * A debug module that overrides bindings in {@link ca.mymenuapp.data.api.ApiModule}.
+ */
 @Module(
     complete = false,
     library = true,

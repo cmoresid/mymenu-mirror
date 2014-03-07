@@ -37,6 +37,10 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+/**
+ * Activity that prompts a user to login with their credentials.
+ * TODO: facebook login
+ */
 public class LoginActivity extends BaseActivity {
   @Inject MyMenuApi myMenuApi;
   @Inject @ForUser ObjectPreference<User> user;
@@ -56,7 +60,7 @@ public class LoginActivity extends BaseActivity {
     finish();
   }
 
-    @OnClick(R.id.login) void onLoginClicked() {
+  @OnClick(R.id.login) void onLoginClicked() {
     boolean hasError = false;
 
     if (TextUtils.isEmpty(emailText.getText())) {
@@ -96,7 +100,8 @@ public class LoginActivity extends BaseActivity {
               Ln.e(error.getCause());
               Toast.makeText(LoginActivity.this, R.string.login_fail, Toast.LENGTH_LONG).show();
             }
-          });
+          }
+      );
     }
   }
 }

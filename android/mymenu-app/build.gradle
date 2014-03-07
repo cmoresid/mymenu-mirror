@@ -3,7 +3,7 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:0.8.+'
+    classpath 'com.android.tools.build:gradle:0.9.+'
     classpath 'com.jakewharton.hugo:hugo-plugin:1.0.1'
   }
 }
@@ -134,7 +134,8 @@ android.applicationVariants.all { variant ->
   // JavaDoc
   task("javadoc${name.capitalize()}", type: Javadoc) {
     source = variant.javaCompile.source
-    ext.androidJar = "${android.plugin.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
+    ext.androidJar =
+        "${android.plugin.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
     classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
     options.links("http://docs.oracle.com/javase/7/docs/api/");
     options.links("http://d.android.com/reference/");

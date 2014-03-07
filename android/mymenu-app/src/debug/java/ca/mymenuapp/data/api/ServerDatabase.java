@@ -25,6 +25,10 @@ import java.util.concurrent.atomic.AtomicLong;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+/**
+ * Simulates in memory database for {@link ca.mymenuapp.data.api.MockMyMenuApi}.
+ * TODO: doesn't do anything yet.
+ */
 @Singleton
 public final class ServerDatabase {
   private static final AtomicLong NEXT_ID = new AtomicLong();

@@ -19,6 +19,10 @@ package ca.mymenuapp.data;
 
 import ca.mymenuapp.data.api.ApiModule;
 
+/**
+ * Wrapper for all supported API endpoints.
+ * We only have production and mock for now.
+ */
 public enum ApiEndpoints {
   PRODUCTION("Production", ApiModule.PRODUCTION_API_URL),
   // STAGING("Staging", "https://api.staging.imgur.com/3/"),

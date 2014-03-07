@@ -38,7 +38,7 @@ public class User {
   @Element(name = "facebookid", required = false) public String facebookid;
 
   // List of restrictions for this user
-  @Element(required = false) public List<DietaryRestriction> restrictions;
+  @Element(required = false) public List<Long> restrictions;
 
   @Override public String toString() {
     return "User{" +

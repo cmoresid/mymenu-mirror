@@ -20,6 +20,7 @@ package ca.mymenuapp;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.Menu;
 import ca.mymenuapp.data.api.model.UserResponse;
+import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import retrofit.Callback;
 import retrofit.client.Response;
 import retrofit.http.Field;
@@ -32,6 +33,8 @@ import retrofit.http.Path;
 public interface MyMenuApi {
   String GET_ALL_RESTRICTIONS_QUERY = "SELECT * FROM restrictions";
   String GET_USER_QUERY = "SELECT * FROM users WHERE email='%s' AND password='%s'";
+  String GET_USER_RESTRICTIONS = "SELECT * FROM restrictionuserlink where email='%s'";
+  String DELETE_USER_RESTRICTIONS = "DELETE from restrictionuserlink WHERE email='%s'";
 
   @GET("/rest/menu/{id}") void getMenu(@Path("id") long id, Callback<Menu> cb);
 
@@ -42,6 +45,9 @@ public interface MyMenuApi {
   @FormUrlEncoded @POST("/php/users/custom.php")
   void getUser(@Field("query") String query, Callback<UserResponse> cb);
 
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  void getRestrictionsForUser(@Field("query") String query, Callback<UserRestrictionResponse> cb);
+
   @FormUrlEncoded @POST("/php/users/put.php")
   void createUser(@Field("email") String email, @Field("firstname") String firstname,
       @Field("lastname") String lastname, @Field("password") String password,
@@ -49,4 +55,11 @@ public interface MyMenuApi {
       @Field("country") String country, @Field("gender") char gender,
       @Field("birthday") int birthday, @Field("birthmonth") int birthmonth,
       @Field("birthyear") int birthyear, Callback<Response> cb);
+
+  @FormUrlEncoded @POST("/php/restrictionuserlink/custom.php")
+  void deleteUserRestrictions(@Field("query") String query, Callback<Response> cb);
+
+  @FormUrlEncoded @POST("/php/restrictionuserlink/put.php")
+  void putUserRestriction(@Field("email") String email, @Field("restrictid") long restrictId,
+      Callback<Response> cb);
 }

@@ -20,8 +20,8 @@ package ca.mymenuapp.data.api;
 import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.Menu;
-import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.api.model.UserResponse;
+import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import retrofit.Callback;
@@ -29,6 +29,10 @@ import retrofit.client.Response;
 import retrofit.http.Field;
 import retrofit.http.Path;
 
+/**
+ * Mocks {@link ca.mymenuapp.MyMenuApi}.
+ * TODO: doesn't actually do anything yet.
+ */
 @Singleton
 final class MockMyMenuApi implements MyMenuApi {
   private final ServerDatabase serverDatabase;
@@ -50,6 +54,11 @@ final class MockMyMenuApi implements MyMenuApi {
 
   }
 
+  @Override public void getRestrictionsForUser(@Field("query") String query,
+      Callback<UserRestrictionResponse> cb) {
+
+  }
+
   @Override
   public void createUser(@Field("email") String email, @Field("firstname") String firstname,
       @Field("lastname") String lastname, @Field("password") String password,
@@ -57,6 +66,17 @@ final class MockMyMenuApi implements MyMenuApi {
       @Field("country") String country, @Field("gender") char gender,
       @Field("birthday") int birthday, @Field("birthmonth") int birthmonth,
       @Field("birthyear") int birthyear, Callback<Response> cb) {
+
+  }
+
+  @Override
+  public void deleteUserRestrictions(@Field("email") String email, Callback<Response> cb) {
+
+  }
+
+  @Override
+  public void putUserRestriction(@Field("email") String email, @Field("restrictid") long restrictId,
+      Callback<Response> cb) {
 
   }
 }

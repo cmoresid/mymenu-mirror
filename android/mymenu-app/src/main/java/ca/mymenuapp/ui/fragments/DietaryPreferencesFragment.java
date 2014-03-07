@@ -20,23 +20,32 @@ package ca.mymenuapp.ui.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.R;
+import ca.mymenuapp.data.ForUser;
 import ca.mymenuapp.data.api.model.DietaryRestriction;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
+import ca.mymenuapp.data.api.model.User;
+import ca.mymenuapp.data.api.model.UserRestrictionResponse;
+import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.ui.misc.BindableAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
+import ca.mymenuapp.util.CollectionUtils;
 import com.f2prateek.ln.Ln;
 import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import retrofit.Callback;
@@ -51,8 +60,17 @@ public class DietaryPreferencesFragment extends BaseFragment {
 
   @Inject MyMenuApi myMenuApi;
   @Inject Picasso picasso;
+  @Inject @ForUser ObjectPreference<User> user;
+
   @InjectView(R.id.root) BetterViewAnimator root;
   @InjectView(R.id.grid) GridView grid;
+
+  BaseAdapter gridAdapter;
+
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,19 +80,82 @@ public class DietaryPreferencesFragment extends BaseFragment {
 
   @Override public void onResume() {
     super.onResume();
-    myMenuApi.getAllDietaryRestrictions(MyMenuApi.GET_ALL_RESTRICTIONS_QUERY,
-        new Callback<DietaryRestrictionResponse>() {
+    myMenuApi.getRestrictionsForUser(
+        String.format(MyMenuApi.GET_USER_RESTRICTIONS, user.get().email),
+        new Callback<UserRestrictionResponse>() {
           @Override
-          public void success(DietaryRestrictionResponse response, Response raw) {
-            root.setDisplayedChildId(R.id.grid);
-            grid.setAdapter(
-                new DietaryRestrictionsAdapter(activityContext, response.restrictionList));
+          public void success(UserRestrictionResponse response, Response raw) {
+            user.get().restrictions = new ArrayList<>();
+            if (response.links != null) {
+              for (UserRestrictionResponse.UserRestrictionLink link : response.links) {
+                user.get().restrictions.add(link.restrictId);
+              }
+              user.save();
+              if (gridAdapter != null) {
+                gridAdapter.notifyDataSetInvalidated();
+              }
+            }
           }
 
           @Override public void failure(RetrofitError error) {
             Ln.e(error.getCause());
           }
-        });
+        }
+    );
+    myMenuApi.getAllDietaryRestrictions(MyMenuApi.GET_ALL_RESTRICTIONS_QUERY,
+        new Callback<DietaryRestrictionResponse>() {
+          @Override
+          public void success(DietaryRestrictionResponse response, Response raw) {
+            root.setDisplayedChildId(R.id.grid);
+            gridAdapter = new DietaryRestrictionsAdapter(activityContext, response.restrictionList);
+            grid.setAdapter(gridAdapter);
+          }
+
+          @Override public void failure(RetrofitError error) {
+            Ln.e(error.getCause());
+          }
+        }
+    );
+  }
+
+  @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    super.onCreateOptionsMenu(menu, inflater);
+    inflater.inflate(R.menu.fragment_dietary_preferences, menu);
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.save:
+        // save this locally
+        user.save();
+        // delete all of user's existing restrictions
+        myMenuApi.deleteUserRestrictions(
+            String.format(MyMenuApi.DELETE_USER_RESTRICTIONS, user.get().email),
+            new Callback<Response>() {
+              @Override public void success(Response response, Response response2) {
+                // Once deleted, insert all of their restrictions back in.
+                for (Long id : user.get().restrictions) {
+                  myMenuApi.putUserRestriction(user.get().email, id, new Callback<Response>() {
+                    @Override public void success(Response response, Response response2) {
+
+                    }
+
+                    @Override public void failure(RetrofitError error) {
+                      Ln.e(error.getCause());
+                    }
+                  });
+                }
+              }
+
+              @Override public void failure(RetrofitError error) {
+                Ln.e(error.getCause());
+              }
+            }
+        );
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
   }
 
   class DietaryRestrictionsAdapter extends BindableAdapter<DietaryRestriction>
@@ -113,17 +194,41 @@ public class DietaryPreferencesFragment extends BaseFragment {
           .fit()
           .centerCrop()
           .into(holder.picture);
-      holder.toggle.setText(item.userLabel);
-      holder.toggle.setOnCheckedChangeListener(this);
+      holder.checkBox.setText(item.userLabel);
+      holder.checkBox.setOnCheckedChangeListener(this);
+      holder.checkBox.setTag(item.id);
+
+      if (!CollectionUtils.isNullOrEmpty(user.get().restrictions)) {
+        if (user.get().restrictions.contains(Long.valueOf(position + 1))) {
+          holder.checkBox.setChecked(true);
+        } else {
+          holder.checkBox.setChecked(false);
+        }
+      }
     }
 
     @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-      Toast.makeText(activityContext, "Selected", Toast.LENGTH_SHORT).show();
+      long id = (long) buttonView.getTag();
+      if (user.get().restrictions == null) {
+        Ln.d("user restrictions not yet ready");
+        buttonView.toggle();
+        return;
+      }
+      if (isChecked) {
+        if (!user.get().restrictions.contains(id)) {
+          user.get().restrictions.add(id);
+        }
+      } else {
+        if (user.get().restrictions.contains(id)) {
+          user.get().restrictions.remove(id);
+        }
+      }
+      user.save();
     }
 
     class ViewHolder {
       @InjectView(R.id.picture) ImageView picture;
-      @InjectView(R.id.toggle) CheckBox toggle;
+      @InjectView(R.id.toggle) CheckBox checkBox;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);

@@ -18,16 +18,33 @@
 package ca.mymenuapp.data.api.model;
 
 import java.util.List;
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root(name = "results")
-public class DietaryRestrictionResponse {
-  @ElementList(name = "result", inline = true) public List<DietaryRestriction> restrictionList;
+public class UserRestrictionResponse {
+  @ElementList(name = "result", required = false, inline = true) public List<UserRestrictionLink>
+      links;
 
   @Override public String toString() {
-    return "DietaryRestrictionResponse{" +
-        "restrictionList=" + restrictionList +
+    return "UserRestrictionResponse{" +
+        "links=" + links +
         '}';
+  }
+
+  @Root(name = "result")
+  public static class UserRestrictionLink {
+    @Element(name = "id") public long id;
+    @Element(name = "restrictid") public long restrictId;
+    @Element(name = "email") public String email;
+
+    @Override public String toString() {
+      return "UserRestrictionLink{" +
+          "id=" + id +
+          ", restrictId=" + restrictId +
+          ", email='" + email + '\'' +
+          '}';
+    }
   }
 }

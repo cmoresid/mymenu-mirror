@@ -32,6 +32,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Watches incoming and outgoing views to display context specific actions.
+ *
+ */
 public class ContextualDebugActions implements ViewGroup.OnHierarchyChangeListener {
   public interface DebugAction<T extends View> {
     String name();

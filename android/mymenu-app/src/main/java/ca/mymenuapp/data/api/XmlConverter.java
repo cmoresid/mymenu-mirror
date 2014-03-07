@@ -17,8 +17,6 @@
 
 package ca.mymenuapp.data.api;
 
-import ca.mymenuapp.R;
-import com.f2prateek.ln.Ln;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

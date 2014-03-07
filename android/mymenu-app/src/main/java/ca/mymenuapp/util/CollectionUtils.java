@@ -15,19 +15,19 @@
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package ca.mymenuapp.data.api.model;
+package ca.mymenuapp.util;
 
 import java.util.List;
-import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.Root;
 
-@Root(name = "results")
-public class DietaryRestrictionResponse {
-  @ElementList(name = "result", inline = true) public List<DietaryRestriction> restrictionList;
+public class CollectionUtils {
+  private CollectionUtils() {
+    // no instances
+  }
 
-  @Override public String toString() {
-    return "DietaryRestrictionResponse{" +
-        "restrictionList=" + restrictionList +
-        '}';
+  /**
+   * Returns true if the list is null or empty.
+   */
+  public static boolean isNullOrEmpty(List<?> list) {
+    return list == null || list.size() == 0;
   }
 }
