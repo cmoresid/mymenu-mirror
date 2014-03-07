@@ -18,7 +18,7 @@ cd ..
 # Build android documentation
 cd android
 ./gradlew :mymenu-app:javadocDebug > /dev/null
-cp -R mymenu-app/build/docs/javadoc/* ../website/docs/android
+cp -R mymenu-app/build/docs/javadoc/ ../website/docs/android
 cd ..
 
 # Move working directory into temp folder
@@ -31,10 +31,10 @@ git checkout -t origin/gh-pages
 rm -rf *
 
 # Copy website files from real repo
-cp -R ../website/* .
+cp -R ../website/ .
 
 # Stage all files in git and create a commit
-git add .
+git add -A
 git add -u
 git commit -m "Website at $(date)"
 
