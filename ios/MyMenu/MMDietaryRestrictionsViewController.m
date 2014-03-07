@@ -35,8 +35,7 @@
 
 NSArray *allRestrictions; // all restrictions
 NSMutableArray *dietaryRestrictionIds; // dietary restrictions
-MMUser * user;
-
+MMUser *user;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
