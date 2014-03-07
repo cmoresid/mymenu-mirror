@@ -576,9 +576,9 @@
 			isa = PBXGroup;
 			children = (
 				B0A9901D18CA43E900AC4CBB /* MMRegistrationPopoverDelegate.h */,
+				B0A9902018CA43E900AC4CBB /* MMRestaurantPopOverDelegate.h */,
 				B0A9901E18CA43E900AC4CBB /* MMRestaurantMapDelegate.h */,
 				B0A9901F18CA43E900AC4CBB /* MMRestaurantMapDelegate.m */,
-				B0A9902018CA43E900AC4CBB /* MMRestaurantPopOverDelegate.h */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";

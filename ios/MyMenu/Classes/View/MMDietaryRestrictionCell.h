@@ -17,8 +17,22 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ * A custom cell that dietary restriction. There is a
+ * a corresponding dynamic prototype in the storyboard
+ * where the actual UI is defined.
+ */
 @interface MMDietaryRestrictionCell : UICollectionViewCell
+
+/**
+ * A `UISwitch` that represents whether or not the
+ * dietary restriction is selected.
+ */
 @property(nonatomic, weak) IBOutlet UISwitch *onSwitch;
+
+/**
+ * The label that describes the restriction.
+ */
 @property(nonatomic, weak) IBOutlet UILabel *restName;
 
 @end

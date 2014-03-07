@@ -16,10 +16,23 @@
 
 #import <Foundation/Foundation.h>
 
-
+/**
+ * An class that is used by `MMDBFetcher` that
+ * is used to encapsulate the response from the
+ * server.
+ */
 @interface MMDBFetcherResponse : NSObject
 
+/**
+ * Represents whether or not a service
+ * call was successful.
+ */
 @property(atomic) BOOL wasSuccessful;
+
+/**
+ * A list of any error messages returned
+ * by the service call.
+ */
 @property(atomic) NSMutableArray *messages;
 
 @end

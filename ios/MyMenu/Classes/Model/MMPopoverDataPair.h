@@ -17,6 +17,10 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * Represents the type of data returned
+ * from as a result of the `MMRegistrationPopoverViewController`.
+ */
 typedef NS_ENUM(NSInteger, MMPopoverDataType) {
     CityValue = 0,
     ProvinceValue = 1,
@@ -25,11 +29,28 @@ typedef NS_ENUM(NSInteger, MMPopoverDataType) {
     CategoryValue = 4
 };
 
+/**
+ * Represents a value that is returned from a `MMResgistrationPopoverViewController`
+ */
 @interface MMPopoverDataPair : NSObject
 
+/**
+ * The type of data returned from the popover view controller.
+ */
 @property(readwrite) MMPopoverDataType dataType;
+
+/**
+ * The value that was selected in the popover view controller.
+ */
 @property(readwrite) id selectedValue;
 
+/**
+ * Constructor that creates a data pair that describes the
+ * data type and the selected value.
+ *
+ * @param dataType The data type.
+ * @param selectedValue The selected value.
+ */
 - (id)initWithDataType:(MMPopoverDataType)dataType withSelectedValue:(id)selectedValue;
 
 @end
