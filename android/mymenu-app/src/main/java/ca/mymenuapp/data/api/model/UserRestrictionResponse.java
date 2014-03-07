@@ -24,7 +24,8 @@ import org.simpleframework.xml.Root;
 
 @Root(name = "results")
 public class UserRestrictionResponse {
-  @ElementList(name = "result", inline = true) public List<UserRestrictionLink> links;
+  @ElementList(name = "result", required = false, inline = true) public List<UserRestrictionLink>
+      links;
 
   @Override public String toString() {
     return "UserRestrictionResponse{" +

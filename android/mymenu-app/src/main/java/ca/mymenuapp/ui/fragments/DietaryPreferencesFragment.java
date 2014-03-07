@@ -86,12 +86,14 @@ public class DietaryPreferencesFragment extends BaseFragment {
           @Override
           public void success(UserRestrictionResponse response, Response raw) {
             user.get().restrictions = new ArrayList<>();
-            for (UserRestrictionResponse.UserRestrictionLink link : response.links) {
-              user.get().restrictions.add(link.restrictId);
-            }
-            user.save();
-            if (gridAdapter != null) {
-              gridAdapter.notifyDataSetInvalidated();
+            if (response.links != null) {
+              for (UserRestrictionResponse.UserRestrictionLink link : response.links) {
+                user.get().restrictions.add(link.restrictId);
+              }
+              user.save();
+              if (gridAdapter != null) {
+                gridAdapter.notifyDataSetInvalidated();
+              }
             }
           }
 
@@ -125,7 +127,7 @@ public class DietaryPreferencesFragment extends BaseFragment {
     switch (item.getItemId()) {
       case R.id.save:
         user.save();
-        myMenuApi.deleteExistingRestrictions(
+        myMenuApi.deleteUserRestrictions(
             String.format(MyMenuApi.DELETE_USER_RESTRICTIONS, user.get().email),
             new Callback<Response>() {
               @Override public void success(Response response, Response response2) {
@@ -204,6 +206,11 @@ public class DietaryPreferencesFragment extends BaseFragment {
 
     @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
       long id = (long) buttonView.getTag();
+      if (user.get().restrictions == null) {
+        Ln.d("user restrictions not yet ready");
+        buttonView.toggle();
+        return;
+      }
       if (isChecked) {
         if (!user.get().restrictions.contains(id)) {
           user.get().restrictions.add(id);

@@ -66,7 +66,7 @@ final class MockMyMenuApi implements MyMenuApi {
   }
 
   @Override
-  public void deleteExistingRestrictions(@Field("email") String email, Callback<Response> cb) {
+  public void deleteUserRestrictions(@Field("email") String email, Callback<Response> cb) {
 
   }
 

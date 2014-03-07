@@ -34,7 +34,7 @@ public interface MyMenuApi {
   String GET_ALL_RESTRICTIONS_QUERY = "SELECT * FROM restrictions";
   String GET_USER_QUERY = "SELECT * FROM users WHERE email='%s' AND password='%s'";
   String GET_USER_RESTRICTIONS = "SELECT * FROM restrictionuserlink where email='%s'";
-  String DELETE_USER_RESTRICTIONS = "DELETE * FROM restrictionuserlink where email='%s'";
+  String DELETE_USER_RESTRICTIONS = "DELETE from restrictionuserlink WHERE email='%s'";
 
   @GET("/rest/menu/{id}") void getMenu(@Path("id") long id, Callback<Menu> cb);
 
@@ -56,8 +56,8 @@ public interface MyMenuApi {
       @Field("birthday") int birthday, @Field("birthmonth") int birthmonth,
       @Field("birthyear") int birthyear, Callback<Response> cb);
 
-  @FormUrlEncoded @POST("/php/users/put.php")
-  void deleteExistingRestrictions(@Field("email") String email, Callback<Response> cb);
+  @FormUrlEncoded @POST("/php/restrictionuserlink/custom.php")
+  void deleteUserRestrictions(@Field("query") String query, Callback<Response> cb);
 
   @FormUrlEncoded @POST("/php/restrictionuserlink/put.php")
   void putUserRestriction(@Field("email") String email, @Field("restrictid") long restrictId,
