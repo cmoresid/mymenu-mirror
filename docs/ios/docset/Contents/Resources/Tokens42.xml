@@ -16,7 +16,8 @@ to this protocol.</Abstract>
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/intfm/MMValidatorProtocol/isValid</TokenIdentifier>
-			<Abstract type="html"></Abstract>
+			<Abstract type="html">Returns whether or not the state of the object that is represented
+by the validator object is valid.</Abstract>
 			<DeclaredIn>MMValidatorProtocol.h</DeclaredIn>
 			
 			<Declaration>- (BOOL)isValid</Declaration>

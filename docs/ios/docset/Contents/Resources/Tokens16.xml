@@ -76,6 +76,19 @@ and the corresponding validation message.</Abstract>
             <NodeRef refid="16"/>
 		</Token>
 		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegexTextFieldValidator/isValid</TokenIdentifier>
+			<Abstract type="html">Returns whether or not the state of the object that is represented
+by the validator object is valid.</Abstract>
+			<DeclaredIn>MMRegexTextFieldValidator.m</DeclaredIn>
+			
+			<Declaration>- (BOOL)isValid</Declaration>
+			
+			
+			<Anchor>//api/name/isValid</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
         
 	</File>
 </Tokens>

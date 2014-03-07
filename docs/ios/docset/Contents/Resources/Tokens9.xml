@@ -38,18 +38,6 @@ fails.</Abstract>
             <NodeRef refid="9"/>
 		</Token>
 		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMMatchingTextFieldValidator/isValid</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>MMMatchingTextFieldValidator.m</DeclaredIn>
-			
-			<Declaration>- (BOOL)isValid</Declaration>
-			
-			
-			<Anchor>//api/name/isValid</Anchor>
-            <NodeRef refid="9"/>
-		</Token>
-		
         
 	</File>
 </Tokens>
