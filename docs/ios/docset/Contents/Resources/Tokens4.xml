@@ -151,8 +151,7 @@ fails.</Abstract>
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/MMCompareTextFieldValidator/isValid</TokenIdentifier>
-			<Abstract type="html">Returns whether or not the state of the object that is represented
-by the validator object is valid.</Abstract>
+			<Abstract type="html"></Abstract>
 			<DeclaredIn>MMCompareTextFieldValidator.m</DeclaredIn>
 			
 			<Declaration>- (BOOL)isValid</Declaration>

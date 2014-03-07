@@ -78,8 +78,7 @@ and the corresponding validation message.</Abstract>
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/MMRegexTextFieldValidator/isValid</TokenIdentifier>
-			<Abstract type="html">Returns whether or not the state of the object that is represented
-by the validator object is valid.</Abstract>
+			<Abstract type="html"></Abstract>
 			<DeclaredIn>MMRegexTextFieldValidator.m</DeclaredIn>
 			
 			<Declaration>- (BOOL)isValid</Declaration>
