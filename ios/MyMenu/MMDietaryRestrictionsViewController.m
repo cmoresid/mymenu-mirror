@@ -35,8 +35,7 @@
 
 NSArray *allRestrictions; // all restrictions
 NSMutableArray *dietaryRestrictionIds; // dietary restrictions
-MMUser * user;
-
+MMUser *user;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -196,10 +195,8 @@ MMUser * user;
 
             NSArray *finalRestrictions = [dietaryRestrictionIds copy];
             [fetcher addUserRestrictions:self.userProfile.email :finalRestrictions];
-
-            NSUserDefaults *userPreferances = [NSUserDefaults standardUserDefaults];
-            NSData *encodedUser = [NSKeyedArchiver archivedDataWithRootObject:self.userProfile];
-            [userPreferances setObject:encodedUser forKey:kCurrentUser];
+            
+            [[MMLoginManager sharedLoginManager] saveUserProfileToDevice:self.userProfile];
         } else  {
             NSArray *finalRestrictions = [dietaryRestrictionIds copy];
             [fetcher addUserRestrictions:user.email :finalRestrictions];

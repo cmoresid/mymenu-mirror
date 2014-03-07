@@ -99,6 +99,12 @@ static MMLoginManager *instance;
     [_dbFetcher editUser:userToUpdate];
 }
 
+- (void)saveUserProfileToDevice:(MMUser*)user {
+    NSUserDefaults *userPreferances = [NSUserDefaults standardUserDefaults];
+    NSData *encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
+    [userPreferances setObject:encodedUser forKey:kCurrentUser];
+}
+
 #pragma mark - Delegate Methods Implemented
 
 - (void)wasUserVerified:(NSInteger)resultCode withResponse:(MMDBFetcherResponse *)response {
