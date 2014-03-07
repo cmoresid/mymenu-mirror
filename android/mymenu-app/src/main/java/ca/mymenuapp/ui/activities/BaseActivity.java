@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.view.Window;
 import butterknife.ButterKnife;
 import ca.mymenuapp.MyMenuApp;
 import ca.mymenuapp.dagger.scopes.ForApplication;
@@ -49,6 +50,10 @@ public class BaseActivity extends Activity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    // request indeterminate support in progress bar
+    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+    setProgressBarIndeterminate(true);
 
     buildActivityGraphAndInject();
     container = appContainer.get(this, (MyMenuApp) getApplication());
