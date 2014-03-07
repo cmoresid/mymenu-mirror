@@ -18,11 +18,22 @@
 #import <Foundation/Foundation.h>
 #import "MMPopoverDataPair.h"
 
+/**
+ * A delegate that is used by `MMRestaurantViewController` and
+ * the `MMRestaurantPopOverViewController` so the popover view
+ * controller can send values back to the `MMRestaurantViewController`.
+ */
 @protocol MMRestaurantPopOverDelegate <NSObject>
 
 @optional
 
+/**
+ * Sends the selected category from the popover
+ * controller back to the parent view controller.
+ *
+ * @param category The string value of the category
+ *                 selected.
+ */
 - (void)didSelectCategory:(NSString *)category;
-
 
 @end

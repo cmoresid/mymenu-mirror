@@ -18,8 +18,8 @@
 #import <UIKit/UIKit.h>
 
 /**
-* Colors for our color scheme as provided by the designer.
-*/
+ * Colors for our color scheme as provided by the designer.
+ */
 @interface UIColor (MyMenuColors)
 
 + (UIColor *)tealColor;

@@ -18,16 +18,51 @@
 #import <Foundation/Foundation.h>
 #import "MMPopoverDataPair.h"
 
+/**
+ * A delegate protocol used by the `MMRegistrationPopoverViewController`
+ * to interact with the `MMRegistrationViewConroller`. The values chosen
+ * within the popover view controller can be sent back to the parent
+ * view controller.
+ */
 @protocol MMRegistrationPopoverDelegate <NSObject>
 
 @optional
 
+/**
+ * Send the selected value of the city from
+ * the popover view controller to the parent
+ * view controller.
+ *
+ * @param city The city that was selected.
+ */
 - (void)didSelectCity:(NSString *)city;
 
+/**
+ * Send the selected value of the province from
+ * the popover view controller to the parent
+ * view controller.
+ *
+ * @param province The province that was selected.
+ */
 - (void)didSelectProvince:(NSString *)province;
 
+/**
+ * Send the selected gender from
+ * the popover view controller to the parent
+ * view controller.
+ *
+ * @param gender The gender that was selected.
+ */
 - (void)didSelectGender:(NSString *)gender;
 
+/**
+ * Send the selected value of the birthday from
+ * the popover view controller to the parent
+ * view controller.
+ *
+ * @param birthday The date value of the birthday 
+ *                 that was selected.
+ */
 - (void)didSelectBirthday:(NSDate *)birthday;
 
 @end
