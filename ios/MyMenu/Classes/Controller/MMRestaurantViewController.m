@@ -36,7 +36,6 @@
 #define kAllRecentReviews @"allRecentReviews"
 #define kAllTopReviews @"allTopReviews"
 #define kCategories @"kCategories"
-#define kRestaurantSelectedFromList @"kRestaurantSelectedFromList"
 
 @interface MMRestaurantViewController ()
 
@@ -58,10 +57,7 @@ NSMutableArray * categories;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(restaurantSelected:)
-                                                     name:kRestaurantSelectedFromList
-                                                   object:nil];
+
     }
     return self;
 }
@@ -72,14 +68,12 @@ NSMutableArray * categories;
     return UIBarPositionTopAttached; //or UIBarPositionTopAttached
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:kRestaurantSelectedFromList
-                                                object:nil];
-}
-
 - (void)restaurantSelected:(NSNotification*)notification {
     _selectedRestaurant = (MMMerchant*)notification.object;
+}
+
+- (IBAction)cancelToMainScreen:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad

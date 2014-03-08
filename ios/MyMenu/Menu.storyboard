@@ -190,7 +190,11 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Restaurant Information" id="2C1-Ok-S0X">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="YUn-uc-Uz5"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="kZP-Wm-vcn">
+                            <connections>
+                                <action selector="cancelToMainScreen:" destination="sDb-0H-8Q4" id="h35-VW-Zhi"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>

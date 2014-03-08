@@ -51,8 +51,10 @@
 @property (nonatomic, strong) MMRestaurantPopOverViewController * restPopOver;
 
 
--(IBAction)categoryClear:(id)sender;
--(IBAction)searchClear:(id)sender;
--(IBAction)categoryPicker:(id)sender;
+- (IBAction)categoryClear:(id)sender;
+- (IBAction)searchClear:(id)sender;
+- (IBAction)categoryPicker:(id)sender;
+- (IBAction)cancelToMainScreen:(id)sender;
+
 @end
 
