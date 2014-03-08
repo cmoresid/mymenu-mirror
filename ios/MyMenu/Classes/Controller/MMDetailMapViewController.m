@@ -47,6 +47,14 @@ NSString *const kDidUpdateList = @"DidUpdateList";
     }
 }
 
+- (BOOL)needsTopLayoutGuide {
+    return FALSE;
+}
+
+- (BOOL)needsBottomLayoutGuide {
+    return FALSE;
+}
+
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
@@ -69,9 +77,14 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self configureView];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureView];
 
     /* Observer watching for a user location update notification */
     [[NSNotificationCenter defaultCenter] addObserver:self

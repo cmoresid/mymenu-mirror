@@ -21,11 +21,12 @@
 
 #import "MMDBFetcherDelegate.h"
 #import "MMDBFetcher.h"
+#import <RBStoryboardLink/RBStoryboardLinkSource.h>
 
 @class MMLocationManager;
 @class MMRestaurantMapDelegate;
 
-@interface MMDetailMapViewController : UIViewController <UISplitViewControllerDelegate, MMDBFetcherDelegate>
+@interface MMDetailMapViewController : UIViewController <UISplitViewControllerDelegate, MMDBFetcherDelegate, RBStoryboardLinkSource>
 
 @property(nonatomic, strong) id detailItem;
 @property(nonatomic, weak) IBOutlet UILabel *detailDescriptionLabel;

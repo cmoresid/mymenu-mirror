@@ -25,6 +25,7 @@
 #import "MMMenuItemRating.h"
 #import "MMMenuItemReviewCell.h"
 #import "MMRestaurantPopOverViewController.h"
+#import "UIStoryboard+UIStoryboard_MyMenu.h"
 
 
 #define kCurrentUser @"currentUser"
@@ -37,7 +38,6 @@
 #define kCategories @"kCategories"
 
 @interface MMRestaurantViewController ()
-
 
 @end
 
@@ -57,7 +57,7 @@ NSMutableArray * categories;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -68,9 +68,18 @@ NSMutableArray * categories;
     return UIBarPositionTopAttached; //or UIBarPositionTopAttached
 }
 
+- (void)restaurantSelected:(NSNotification*)notification {
+    _selectedRestaurant = (MMMerchant*)notification.object;
+}
+
+- (IBAction)cancelToMainScreen:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)viewDidLoad
 {	
     [super viewDidLoad];
+    
     menuItemDictionary = [[NSMutableDictionary alloc] init];
     menuItems = [[NSArray alloc] init];
     [self.collectionView setDelegate:self];
@@ -412,7 +421,7 @@ NSMutableArray * categories;
 
 -(IBAction)categoryPicker:(id)sender{
 
-    MMRestaurantPopOverViewController *categoryContent = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuItemCategoryPopoverViewController"];
+    MMRestaurantPopOverViewController *categoryContent = [[UIStoryboard restaurantStoryboard] instantiateViewControllerWithIdentifier:@"MenuItemCategoryPopoverViewController"];
     categoryContent.delegate = self;
     
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];

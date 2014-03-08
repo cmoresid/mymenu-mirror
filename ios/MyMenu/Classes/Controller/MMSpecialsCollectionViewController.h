@@ -17,10 +17,12 @@
 
 #import <UIKit/UIKit.h>
 #import "MMDBFetcherDelegate.h"
+#import <RBStoryboardLink/RBStoryboardLinkSource.h>
+
 @class MMSpecialsPopOverTableView;
 @class MMSpecialsPopOverWeek;
 
-@interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate,UIToolbarDelegate,UIPopoverControllerDelegate,UISearchBarDelegate>
+@interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate,UIToolbarDelegate,UIPopoverControllerDelegate,UISearchBarDelegate, RBStoryboardLinkSource>
 
 @property(nonatomic) UIBarButtonItem * button1;
 @property(atomic) NSMutableArray * showTypes;
