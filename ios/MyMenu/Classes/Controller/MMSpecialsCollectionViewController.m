@@ -23,6 +23,7 @@
 #import "MMSpecialsPopOverTableView.h"
 #import "MMSpecialsPopOverWeek.h"
 #import "UIColor+MyMenuColors.h"
+#import "UIStoryboard+UIStoryboard_MyMenu.h"
 
 @interface MMSpecialsCollectionViewController () {
 	NSArray *types;
@@ -49,9 +50,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     return self;
 }
 
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self setupToolbar];
@@ -73,8 +71,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     [MMDBFetcher get].delegate = self;
 
 	[self loadWeek:[self currentDate]];
-
-
+    [self.navigationController setNavigationBarHidden:YES];
 }
 #pragma mark -
 #pragma mark Searchbar Delegate
@@ -130,8 +127,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	
 	//add toolbar to the main view
 	[self.view addSubview:toolbar];
-	
-	
 }
 /**
  * Loads the popover for the user when they click filter
@@ -139,20 +134,21 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 -(void)filter:(UIBarButtonItem*)sender {
 	if ([self.typesPopoverController isPopoverVisible]) {
 		[self.typesPopoverController dismissPopoverAnimated:YES];
-	} else {
-	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-	self.typesController = [storyboard instantiateViewControllerWithIdentifier:@"SpecialsTypes"];
-	
-	// Setup view
-	[self.typesController setSpecialItems:types];
-	[self.typesController setSpecialsCollectionController:self];
-	
-	self.typesPopoverController = [[UIPopoverController alloc] initWithContentViewController:self.typesController];
-		
-	// show view
-	[self.typesPopoverController setDelegate:self];
-	[self.typesPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 	}
+    else {
+        UIStoryboard *storyboard = [UIStoryboard restaurantSpecialsStoryboard];
+        self.typesController = [storyboard instantiateViewControllerWithIdentifier:@"SpecialsTypes"];
+	
+        // Setup view
+        [self.typesController setSpecialItems:types];
+        [self.typesController setSpecialsCollectionController:self];
+	
+        self.typesPopoverController = [[UIPopoverController alloc] initWithContentViewController:self.typesController];
+		
+        // Show view
+        [self.typesPopoverController setDelegate:self];
+        [self.typesPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    }
 }
 
 /**
@@ -161,27 +157,27 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 -(void)week:(UIBarButtonItem *)sender {
 	if ([self.weekPopoverController isPopoverVisible]) {
 		[self.weekPopoverController dismissPopoverAnimated:YES];
-	} else {
-	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-	self.weekController = [storyboard instantiateViewControllerWithIdentifier:@"SpecialsWeek"];
-	
-	// Setup the view
-	NSMutableArray * weeks = [[NSMutableArray alloc] init];
-	for(int i =0; i < 10; i ++) {
-		[weeks addObject:[self getCurrentDatePlusDays:i*7]];
 	}
-	[self.weekController setWeeks:weeks];
-	[self.weekController setSelectedWeek:[weeks indexOfObject:self.selectedDate]];
-	[self.weekController setSpecialsCollectionController:self];
-	self.weekPopoverController = [[UIPopoverController alloc] initWithContentViewController:self.weekController];
+    else {
+        UIStoryboard *storyboard = [UIStoryboard restaurantSpecialsStoryboard];
+        self.weekController = [storyboard instantiateViewControllerWithIdentifier:@"SpecialsWeek"];
 	
-	// Show the view using us as delegate
-	[self.weekPopoverController setDelegate:self];
-	[self.weekPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-	}
+        // Setup the view
+        NSMutableArray * weeks = [[NSMutableArray alloc] init];
+        for(int i =0; i < 10; i ++) {
+            [weeks addObject:[self getCurrentDatePlusDays:i*7]];
+        }
+        
+        [self.weekController setWeeks:weeks];
+        [self.weekController setSelectedWeek:[weeks indexOfObject:self.selectedDate]];
+        [self.weekController setSpecialsCollectionController:self];
+        self.weekPopoverController = [[UIPopoverController alloc] initWithContentViewController:self.weekController];
+	
+        // Show the view using us as delegate
+        [self.weekPopoverController setDelegate:self];
+        [self.weekPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    }
 }
-
-
 
 #pragma mark -
 #pragma mark Helper Functions

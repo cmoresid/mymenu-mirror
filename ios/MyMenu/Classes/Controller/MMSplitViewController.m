@@ -36,6 +36,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationController setNavigationBarHidden:YES];
+    
     // Set the title color of all nested navigation bars
     // to white.
     UINavigationController *navController;
