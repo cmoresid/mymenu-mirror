@@ -63,7 +63,17 @@
  */
 @property (nonatomic, strong) UIPopoverController *weekPopoverController;
 
+/**
+ *  The view controller that is presented within the types
+ *  popover.
+ */
+@property (nonatomic, strong) MMSpecialsTypeController *typesController;
 
+/**
+ *  The view controller that is presented within the week
+ *  popover.
+ */
+@property (nonatomic, strong) MMSpecialsWeekController *weekController;
 
 /**
  * Adds a Special type to show, and reloads the view as Needed.
