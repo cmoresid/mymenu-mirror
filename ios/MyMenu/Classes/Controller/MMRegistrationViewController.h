@@ -30,36 +30,122 @@
  */
 @interface MMRegistrationViewController : UIViewController <UITextFieldDelegate, UIPopoverControllerDelegate, MMRegistrationPopoverDelegate>
 
+/**
+ *  Users chosen email textfield
+ */
 @property(nonatomic, weak) IBOutlet UITextField *emailField;
+/**
+ *  Users chosen password textfield
+ */
 @property(nonatomic, weak) IBOutlet UITextField *passwordField;
+/**
+ *  Users chosen password confirm textfield
+ */
 @property(nonatomic, weak) IBOutlet UITextField *confirmPasswordField;
+/**
+ *  Users chosen first name textfield
+ */
 @property(nonatomic, weak) IBOutlet UITextField *firstNameField;
+/**
+ *  Users chosen last name textfield
+ */
 @property(nonatomic, weak) IBOutlet UITextField *lastNameField;
+/**
+ *  Users chosen city textfield
+ */
 @property(nonatomic, weak) IBOutlet UITextField *cityField;
+/**
+ *  Users chosen province textfield
+ */
 @property(nonatomic, weak) IBOutlet UITextField *provinceField;
+/**
+ *  Users chosen gender textfield
+ */
 @property(nonatomic, weak) IBOutlet UITextField *genderField;
+/**
+ *  Users chosen birthday textfield
+ */
 @property(nonatomic, weak) IBOutlet UITextField *birthdayField;
+/**
+ *  The scroll view to move the view up for the keyboard
+ */
 @property(nonatomic, weak) IBOutlet UIScrollView *scrollView;
+/**
+ *  Current selected UITextField
+ */
 @property(nonatomic, weak) IBOutlet UITextField *activeField;
 
+/**
+ *  The UIPopover controller
+ */
 @property(nonatomic, strong) UIPopoverController *locationPopoverController;
 
+/**
+ *  City Popover
+ */
 @property(nonatomic, strong) MMRegistrationPopoverViewController *cityPopoverViewController;
+
+/**
+ *  Province Popover
+ */
 @property(nonatomic, strong) MMRegistrationPopoverViewController *provincePopoverViewController;
+
+/**
+ *  Gener Popover
+ */
 @property(nonatomic, strong) MMRegistrationPopoverViewController *genderPopoverViewController;
+
+/**
+ *  Birthday Popover
+ */
 @property(nonatomic, strong) MMRegistrationPopoverViewController *birthdayPopoverViewController;
 
+/**
+ *  The current user that we are "creating"
+ */
 @property(readwrite) MMUser *userProfile;
+
+/**
+ *  Validates the form (MMUser)
+ */
 @property(nonatomic, strong) MMValidationManager *validationManager;
+
+/**
+ *  used to check if the username is valid, and avaliable.
+ */
 @property(nonatomic, strong) MMUserNameValidator *userNameValidator;
 
 
+/**
+ *  Back button
+ *
+ *  @param segue UIStoryboardSegue
+ */
 - (IBAction)unwindToLoginScreen:(UIStoryboardSegue *)segue;
 
+/**
+ *  Next Button
+ *
+ *  @param sender UIButton
+ */
 - (IBAction)next:(id)sender;
 
+/**
+ *  Returns the popover for the selected textfield, if needed
+ *
+ *  @param textField UITextField
+ *
+ *  @return Returns the view controller for the UITextField
+ */
 - (id)getPopoverViewControllerForTextField:(UITextField *)textField;
 
+/**
+ *  Returns the size needed for the popover
+ *
+ *  @param textField UITextField
+ *
+ *  @return CGSize needed to show all content.
+ */
 - (CGSize)getPopoverViewSizeForTextField:(UITextField *)textField;
 
 @end
