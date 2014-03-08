@@ -19,23 +19,61 @@
 #import "MMDBFetcherDelegate.h"
 #import <RBStoryboardLink/RBStoryboardLinkSource.h>
 
-@class MMSpecialsPopOverTableView;
-@class MMSpecialsPopOverWeek;
+@class MMSpecialsTypeController;
+@class MMSpecialsWeekController;
 
+/**
+ *  Displays the specials
+ */
 @interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate,UIToolbarDelegate,UIPopoverControllerDelegate,UISearchBarDelegate, RBStoryboardLinkSource>
 
-@property(nonatomic) UIBarButtonItem * button1;
+/**
+ *  The types we can show (Food, Dessert, Drinks specials)
+ */
 @property(atomic) NSMutableArray * showTypes;
+
+/**
+ *  Date the user has selected to show a week of
+ */
 @property(atomic) NSDate * selectedDate;
+
+/**
+ *  Headers for the collection view (Dates)
+ */
 @property(atomic) NSMutableArray * dateKeys;
+
+/**
+ *  All specials by key an date
+ */
 @property(atomic) NSMutableDictionary * specials;
+
+/**
+ *  todays date.
+ */
 @property(nonatomic,readwrite) NSDate * currentDate;
-@property(nonatomic) IBOutlet MMSpecialsPopOverTableView * typesController;
-@property(nonatomic) IBOutlet MMSpecialsPopOverWeek * weekController;
+
+
+/**
+ *  The types popover view controller, done programmically
+ */
 @property (nonatomic, strong) UIPopoverController *typesPopoverController;
+
+/**
+ *  The week popover view controller, done programmically
+ */
 @property (nonatomic, strong) UIPopoverController *weekPopoverController;
 
+/**
+ *  The view controller that is presented within the types
+ *  popover.
+ */
+@property (nonatomic, strong) MMSpecialsTypeController *typesController;
 
+/**
+ *  The view controller that is presented within the week
+ *  popover.
+ */
+@property (nonatomic, strong) MMSpecialsWeekController *weekController;
 
 /**
  * Adds a Special type to show, and reloads the view as Needed.
@@ -52,6 +90,11 @@
  */
 -(bool)containsShowType:(NSString *)type;
 
+/**
+ *  load the a week from the data into the collection view
+ *
+ *  @param date NSDate to display from
+ */
 -(void)loadWeek:(NSDate *)date;
 
 @end

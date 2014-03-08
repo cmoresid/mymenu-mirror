@@ -26,14 +26,25 @@
 @class MMLocationManager;
 @class MMRestaurantMapDelegate;
 
+/**
+ *  Map View on the Restaruants tab.
+ */
 @interface MMDetailMapViewController : UIViewController <UISplitViewControllerDelegate, MMDBFetcherDelegate, RBStoryboardLinkSource>
+
 
 @property(nonatomic, strong) id detailItem;
 @property(nonatomic, weak) IBOutlet UILabel *detailDescriptionLabel;
-@property(nonatomic, strong) MMDBFetcher *dbFetcher;
+
+/**
+ *  Current users location, based on GPS
+ */
 @property(nonatomic) CLLocation *location;
 
-// Put the restaurant points on the map
+/**
+ *  Adds the restaurants to the map view.
+ *
+ *  @param restaurants in an NSArray
+ */
 - (void)pinRestaurants:(NSArray *)restaurants;
 
 @end

@@ -20,35 +20,141 @@
 #import "MMMerchant.h"
 #import "MMDBFetcherDelegate.h"
 
+/**
+ *  The controller that shows the selected menu item a user selects.
+ */
 @interface MMMenuItemViewController : UIViewController <UITableViewDataSource, MMDBFetcherDelegate, UITextViewDelegate, UIPopoverControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property MMMenuItem *touchedItem;
-@property MMMerchant *selectedRestaurant;
+/**
+ *  The item that the user touched before
+ */
+@property MMMenuItem *currentMenuItem;
+
+/**
+ *  The current mechant of the menu item
+ */
+@property MMMerchant *currentMerchant;
+
+/**
+ *  Popover view controller
+ */
 @property (nonatomic, strong) UIPopoverController * popOverController;
 
+/**
+ *  The label for the item name
+ */
 @property(nonatomic, weak) IBOutlet UILabel * itemName;
-@property(nonatomic, weak) IBOutlet UITextView * reviewField;
+
+/**
+ *  The input review textview for a user submitted review.
+ */
+@property(nonatomic, weak) IBOutlet UITextView * userReviewField;
+
+/**
+ *  Current Selected Text View
+ */
 @property(nonatomic, weak) IBOutlet UITextView * activeField;
+
+/**
+ *  The Items Rating Label
+ */
 @property(nonatomic, weak) IBOutlet UILabel * itemRating;
+
+/**
+ *  The menu items description
+ */
 @property(nonatomic, weak) IBOutlet UITextView * itemDescription;
+
+/**
+ *  The menu items description
+ */
 @property(nonatomic, weak) IBOutlet UIImageView * itemImage;
-@property(nonatomic, weak) IBOutlet UIView *itemView;
-@property(nonatomic, weak) IBOutlet UITableView * tableView;
+
+/**
+ *  The menu items rating
+ */
+@property(nonatomic, weak) IBOutlet UIView *itemRatingView;
+
+/**
+ *  The tablview that holds the avaliable Restrictions for the menu item
+ */
+@property(nonatomic, weak) IBOutlet UITableView * menuModificationsTableView;
+
+/**
+ *  Rate button
+ */
 @property (nonatomic, weak) IBOutlet UIButton * ratingButton;
+
+/**
+ *  I've eaten this button
+ */
 @property (nonatomic, weak) IBOutlet UIButton * eatenThisButton;
+
+/**
+ *  Scrollview for the Entire view (Mostly for moving textfield up for keyboard)
+ */
 @property (nonatomic, weak) IBOutlet UIScrollView * scrollView;
+
+/**
+ *  The Current Navigation Bar
+ */
 @property (nonatomic, weak) IBOutlet UINavigationBar * navigationBar;
+
+/**
+ *  Current Rating of menu Item
+ */
 @property (nonatomic, strong) NSNumber *rating;
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+
+/**
+ *  Menu Item View for showing reviews.
+ */
+@property (nonatomic, weak) IBOutlet UICollectionView *ratingsCollectionView;
+
+/**
+ *  Switch the ratings view to show top rated first or most recent
+ */
 @property (nonatomic, weak) IBOutlet UISegmentedControl *reviewSegment;
 
-
-
+/**
+ *  Share the menu item via facebook
+ *
+ *  @param sender UIButton
+ */
 - (IBAction)shareViaFacebook:(id)sender;
+
+/**
+ *  Share the menu Item via Twitter
+ *
+ *  @param sender UIButton
+ */
 - (IBAction)shareViaTwitter:(id)sender;
-- (IBAction)ratingButton:(id)sender;
+
+/**
+ *  Rate the menu item button selected
+ *
+ *  @param sender UIButton
+ */
+- (IBAction)rateItem:(id)sender;
+
+/**
+ *  Save the Rating the user inputed
+ *
+ *  @param sender UIButton
+ */
 - (IBAction)saveButton:(id)sender;
+
+/**
+ *  Clear the rating field, and current set rating (From the circle view)
+ *
+ *  @param sender UIButton
+ */
 - (IBAction)clearButton:(id)sender;
+
+/**
+ *  Current user has eaten the menu item.
+ *
+ *  @param sender UIButton
+ */
 - (IBAction)iveEatenThis:(id)sender;
 
 @end

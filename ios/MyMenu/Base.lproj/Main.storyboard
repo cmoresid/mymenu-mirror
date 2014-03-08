@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="E4e-Ge-d3g">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -929,7 +929,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="merchantsearch" destination="B1p-Jc-iBt" id="plQ-na-Ius"/>
+                        <outlet property="merchantSearchBar" destination="B1p-Jc-iBt" id="Gg7-3E-LeO"/>
                         <outlet property="orderbySegmentControl" destination="32O-Gz-2z1" id="Upa-QN-iFV"/>
                         <outlet property="searchDisplayController" destination="56W-t4-YSN" id="8Db-Y2-snP"/>
                         <outlet property="tableView" destination="cNd-Hg-SbY" id="Tkf-I9-K0v"/>
