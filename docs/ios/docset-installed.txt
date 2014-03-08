@@ -1,4 +1,0 @@
-Documentation set was installed to Xcode!
-
-Path: /Users/ninjavmware/Library/Developer/Shared/Documentation/DocSets/ca.mymenu.MyMenu.docset
-Time: 2014-02-28 19:26:11 +0000
