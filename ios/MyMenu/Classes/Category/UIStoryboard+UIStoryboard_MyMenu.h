@@ -11,6 +11,7 @@
 @interface UIStoryboard (UIStoryboard_MyMenu)
 
 + (UIStoryboard*)mainStoryBoard;
-+ (UIStoryboard*)restaurantSpecialsStoryboard;
++ (UIStoryboard*)specialsStoryboard;
++ (UIStoryboard*)restaurantStoryboard;
 
 @end

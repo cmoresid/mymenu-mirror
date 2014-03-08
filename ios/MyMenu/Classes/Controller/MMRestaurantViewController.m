@@ -25,6 +25,7 @@
 #import "MMMenuItemRating.h"
 #import "MMMenuItemReviewCell.h"
 #import "MMRestaurantPopOverViewController.h"
+#import "UIStoryboard+UIStoryboard_MyMenu.h"
 
 
 #define kCurrentUser @"currentUser"
@@ -35,9 +36,9 @@
 #define kAllRecentReviews @"allRecentReviews"
 #define kAllTopReviews @"allTopReviews"
 #define kCategories @"kCategories"
+#define kRestaurantSelectedFromList @"kRestaurantSelectedFromList"
 
 @interface MMRestaurantViewController ()
-
 
 @end
 
@@ -57,7 +58,10 @@ NSMutableArray * categories;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(restaurantSelected:)
+                                                     name:kRestaurantSelectedFromList
+                                                   object:nil];
     }
     return self;
 }
@@ -68,9 +72,20 @@ NSMutableArray * categories;
     return UIBarPositionTopAttached; //or UIBarPositionTopAttached
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kRestaurantSelectedFromList
+                                                object:nil];
+}
+
+- (void)restaurantSelected:(NSNotification*)notification {
+    _selectedRestaurant = (MMMerchant*)notification.object;
+}
+
 - (void)viewDidLoad
 {	
     [super viewDidLoad];
+    
     menuItemDictionary = [[NSMutableDictionary alloc] init];
     menuItems = [[NSArray alloc] init];
     [self.collectionView setDelegate:self];
@@ -412,7 +427,7 @@ NSMutableArray * categories;
 
 -(IBAction)categoryPicker:(id)sender{
 
-    MMRestaurantPopOverViewController *categoryContent = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuItemCategoryPopoverViewController"];
+    MMRestaurantPopOverViewController *categoryContent = [[UIStoryboard restaurantStoryboard] instantiateViewControllerWithIdentifier:@"MenuItemCategoryPopoverViewController"];
     categoryContent.delegate = self;
     
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];

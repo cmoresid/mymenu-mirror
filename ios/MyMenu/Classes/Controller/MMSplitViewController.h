@@ -17,8 +17,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MMLocationManager.h"
+#import <RBStoryboardLink/RBStoryboardLinkSource.h>
 
-@interface MMSplitViewController : UISplitViewController
+@interface MMSplitViewController : UISplitViewController <RBStoryboardLinkSource>
 @property(nonatomic, strong) MMLocationManager *locationManager;
 
 

@@ -50,6 +50,20 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     return self;
 }
 
+- (BOOL)needsTopLayoutGuide {
+    return FALSE;
+}
+
+- (BOOL)needsBottomLayoutGuide {
+    return FALSE;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    self.navigationController.toolbar.hidden = TRUE;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self setupToolbar];
@@ -136,7 +150,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 		[self.typesPopoverController dismissPopoverAnimated:YES];
 	}
     else {
-        UIStoryboard *storyboard = [UIStoryboard restaurantSpecialsStoryboard];
+        UIStoryboard *storyboard = [UIStoryboard specialsStoryboard];
         self.typesController = [storyboard instantiateViewControllerWithIdentifier:@"SpecialsTypes"];
 	
         // Setup view
@@ -159,7 +173,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 		[self.weekPopoverController dismissPopoverAnimated:YES];
 	}
     else {
-        UIStoryboard *storyboard = [UIStoryboard restaurantSpecialsStoryboard];
+        UIStoryboard *storyboard = [UIStoryboard specialsStoryboard];
         self.weekController = [storyboard instantiateViewControllerWithIdentifier:@"SpecialsWeek"];
 	
         // Setup the view

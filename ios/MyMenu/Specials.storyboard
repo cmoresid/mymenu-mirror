@@ -7,7 +7,7 @@
         <!--Specials Collection View Controller - Specials-->
         <scene sceneID="NEW-E3-6fA">
             <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="sDB-Wm-2h8" customClass="MMSpecialsCollectionViewController" sceneMemberID="viewController">
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" extendedLayoutIncludesOpaqueBars="YES" id="sDB-Wm-2h8" customClass="MMSpecialsCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="HhJ-yr-UU1">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,6 +78,7 @@
                             <outlet property="delegate" destination="sDB-Wm-2h8" id="jxJ-mv-RVB"/>
                         </connections>
                     </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="Specials" id="69d-9P-uzr">
                         <barButtonItem key="leftBarButtonItem" title="Filter " id="khE-mk-pJe">
                             <connections>

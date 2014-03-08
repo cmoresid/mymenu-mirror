@@ -23,7 +23,6 @@
         <!--Navigation Controller-->
         <scene sceneID="ZW6-os-5xp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2zn-Jx-13d" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController extendedLayoutIncludesOpaqueBars="YES" definesPresentationContext="YES" id="M10-1E-S4x" sceneMemberID="viewController">
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -35,13 +34,13 @@
                         <segue destination="XiY-uB-P2p" kind="relationship" relationship="rootViewController" id="QK6-Ua-QMs"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2zn-Jx-13d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2237" y="2886"/>
         </scene>
         <!--Base Navigation Controller-->
         <scene sceneID="pk6-jM-0OU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="if3-AB-LPc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController extendedLayoutIncludesOpaqueBars="YES" definesPresentationContext="YES" id="5zn-yb-P5b" customClass="MMBaseNavigationController" sceneMemberID="viewController">
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -52,6 +51,7 @@
                         <segue destination="HQY-NK-KnK" kind="relationship" relationship="rootViewController" id="gb5-3Y-MVY"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="if3-AB-LPc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2260" y="1785"/>
         </scene>
@@ -88,6 +88,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="GRM-5M-iAU" kind="modal" identifier="restaurantSegue" id="S8y-Ji-QMc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -140,7 +143,6 @@
                         <outlet property="orderbySegmentControl" destination="bTx-G1-WWQ" id="Dlp-VH-Y5w"/>
                         <outlet property="searchDisplayController" destination="gvN-Rf-kMl" id="dxm-lt-yyf"/>
                         <outlet property="tableView" destination="YfP-DQ-YKd" id="cV7-iA-K98"/>
-                        <segue destination="GRM-5M-iAU" kind="modal" modalPresentationStyle="currentContext" modalTransitionStyle="coverVertical" id="Loo-ed-9FN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9nZ-99-A5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -156,10 +158,10 @@
             </objects>
             <point key="canvasLocation" x="3202" y="1782"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Base Navigation Controller-->
         <scene sceneID="wl2-ex-hrk">
             <objects>
-                <navigationController definesPresentationContext="YES" id="GRM-5M-iAU" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="GRM-5M-iAU" customClass="MMBaseNavigationController" sceneMemberID="viewController">
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1mE-5d-E1G">
                         <autoresizingMask key="autoresizingMask"/>
@@ -231,7 +233,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="mapView" destination="UhM-lV-2cl" id="Aw1-kq-pSC"/>
+                        <outlet property="mapView" destination="UhM-lV-2cl" id="Z3i-mj-Qcy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RjQ-dm-Hya" sceneMemberID="firstResponder"/>

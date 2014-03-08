@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <RBStoryboardLink/RBStoryboardLinkSource.h>
 
-@interface MMProfileSplitViewController : UISplitViewController
+@interface MMProfileSplitViewController : UISplitViewController <RBStoryboardLinkSource>
 
 @end

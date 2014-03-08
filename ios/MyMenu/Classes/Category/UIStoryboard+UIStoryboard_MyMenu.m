@@ -14,8 +14,12 @@
     return [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 }
 
-+ (UIStoryboard*)restaurantSpecialsStoryboard {
++ (UIStoryboard*)specialsStoryboard {
     return [UIStoryboard storyboardWithName:@"Specials" bundle:nil];
+}
+
++ (UIStoryboard*)restaurantStoryboard {
+    return [UIStoryboard storyboardWithName:@"Menu" bundle:nil];
 }
 
 @end

@@ -75,7 +75,6 @@
 		B0A9907D18CA43E900AC4CBB /* MMRestaurantPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9900D18CA43E900AC4CBB /* MMRestaurantPopOverViewController.m */; };
 		B0A9907E18CA43E900AC4CBB /* MMRestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9900F18CA43E900AC4CBB /* MMRestaurantViewController.m */; };
 		B0A9907F18CA43E900AC4CBB /* MMReviewPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9901118CA43E900AC4CBB /* MMReviewPopOverViewController.m */; };
-		B0A9908018CA43E900AC4CBB /* MMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9901318CA43E900AC4CBB /* MMSettingsViewController.m */; };
 		B0A9908118CA43E900AC4CBB /* MMSpecialsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9901518CA43E900AC4CBB /* MMSpecialsCollectionViewController.m */; };
 		B0A9908218CA43E900AC4CBB /* MMSpecialsPopOverTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9901718CA43E900AC4CBB /* MMSpecialsPopOverTableView.m */; };
 		B0A9908318CA43E900AC4CBB /* MMSpecialsPopOverWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9901918CA43E900AC4CBB /* MMSpecialsPopOverWeek.m */; };
@@ -115,6 +114,7 @@
 		B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */; };
 		B0B0C4DF18A8245600BA47CB /* LocationMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DD18A8245600BA47CB /* LocationMarker.png */; };
 		B0B8288D18C904C600FAACAF /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2818A2CB3700EAA045 /* 19-gear.png */; };
+		B0DE3FF118CAA68800190F2F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0DE3FF018CAA68800190F2F /* Profile.storyboard */; };
 		B0DF9BD318AC43C800BB42FA /* FacebookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0DF9BD118AC43C800BB42FA /* FacebookIcon.png */; };
 		B0DF9BD418AC43C800BB42FA /* TwitterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0DF9BD218AC43C800BB42FA /* TwitterIcon.png */; };
 		B0E7616218CA7C5900D1ABF7 /* libPods-RBStoryboardLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E7616118CA7C5900D1ABF7 /* libPods-RBStoryboardLink.a */; };
@@ -226,8 +226,6 @@
 		B0A9900F18CA43E900AC4CBB /* MMRestaurantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestaurantViewController.m; sourceTree = "<group>"; };
 		B0A9901018CA43E900AC4CBB /* MMReviewPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMReviewPopOverViewController.h; sourceTree = "<group>"; };
 		B0A9901118CA43E900AC4CBB /* MMReviewPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMReviewPopOverViewController.m; sourceTree = "<group>"; };
-		B0A9901218CA43E900AC4CBB /* MMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSettingsViewController.h; sourceTree = "<group>"; };
-		B0A9901318CA43E900AC4CBB /* MMSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSettingsViewController.m; sourceTree = "<group>"; };
 		B0A9901418CA43E900AC4CBB /* MMSpecialsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialsCollectionViewController.h; sourceTree = "<group>"; };
 		B0A9901518CA43E900AC4CBB /* MMSpecialsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialsCollectionViewController.m; sourceTree = "<group>"; };
 		B0A9901618CA43E900AC4CBB /* MMSpecialsPopOverTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialsPopOverTableView.h; sourceTree = "<group>"; };
@@ -308,9 +306,10 @@
 		B0A9906918CA43E900AC4CBB /* RestaurantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantCell.m; sourceTree = "<group>"; };
 		B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentLocation.png; sourceTree = "<group>"; };
 		B0B0C4DD18A8245600BA47CB /* LocationMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocationMarker.png; sourceTree = "<group>"; };
+		B0DE3FF018CAA68800190F2F /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		B0DF9BD118AC43C800BB42FA /* FacebookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FacebookIcon.png; sourceTree = "<group>"; };
 		B0DF9BD218AC43C800BB42FA /* TwitterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwitterIcon.png; sourceTree = "<group>"; };
-		B0E7616118CA7C5900D1ABF7 /* libPods-RBStoryboardLink.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libPods-RBStoryboardLink.a"; path = "Pods/build/Release-iphoneos/libPods-RBStoryboardLink.a"; sourceTree = "<group>"; };
+		B0E7616118CA7C5900D1ABF7 /* libPods-RBStoryboardLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-RBStoryboardLink.a"; path = "Pods/build/Release-iphoneos/libPods-RBStoryboardLink.a"; sourceTree = "<group>"; };
 		B0E7616418CA7EB900D1ABF7 /* Specials.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Specials.storyboard; sourceTree = "<group>"; };
 		B0E7616618CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+UIStoryboard_MyMenu.h"; sourceTree = "<group>"; };
 		B0E7616718CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+UIStoryboard_MyMenu.m"; sourceTree = "<group>"; };
@@ -573,8 +572,6 @@
 				B0A9900F18CA43E900AC4CBB /* MMRestaurantViewController.m */,
 				B0A9901018CA43E900AC4CBB /* MMReviewPopOverViewController.h */,
 				B0A9901118CA43E900AC4CBB /* MMReviewPopOverViewController.m */,
-				B0A9901218CA43E900AC4CBB /* MMSettingsViewController.h */,
-				B0A9901318CA43E900AC4CBB /* MMSettingsViewController.m */,
 				B0A9901418CA43E900AC4CBB /* MMSpecialsCollectionViewController.h */,
 				B0A9901518CA43E900AC4CBB /* MMSpecialsCollectionViewController.m */,
 				B0A9901618CA43E900AC4CBB /* MMSpecialsPopOverTableView.h */,
@@ -720,6 +717,7 @@
 				B0E7616418CA7EB900D1ABF7 /* Specials.storyboard */,
 				B0E7616918CA876600D1ABF7 /* Map.storyboard */,
 				B0E7616B18CA8D2700D1ABF7 /* Menu.storyboard */,
+				B0DE3FF018CAA68800190F2F /* Profile.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -810,6 +808,7 @@
 				B0DF9BD418AC43C800BB42FA /* TwitterIcon.png in Resources */,
 				1731DFAE18A6CFB2008BE05B /* MenuItemCell.xib in Resources */,
 				1744F9C018C524FD009CCC95 /* upvote@2x.png in Resources */,
+				B0DE3FF118CAA68800190F2F /* Profile.storyboard in Resources */,
 				B0627E2E18A2CB3700EAA045 /* 172-pricetag.png in Resources */,
 				833C8C83189D9B85007CB562 /* logo.png in Resources */,
 				B0DF9BD318AC43C800BB42FA /* FacebookIcon.png in Resources */,
@@ -923,7 +922,6 @@
 				B0A9906D18CA43E900AC4CBB /* MMAboutViewController.m in Sources */,
 				B0A9909D18CA43E900AC4CBB /* MMButton.m in Sources */,
 				B0A9909E18CA43E900AC4CBB /* MMDietaryRestrictionCell.m in Sources */,
-				B0A9908018CA43E900AC4CBB /* MMSettingsViewController.m in Sources */,
 				B0A9908418CA43E900AC4CBB /* MMSplitViewController.m in Sources */,
 				B0A9909A18CA43E900AC4CBB /* MMTextFieldValidator.m in Sources */,
 				B0A9907018CA43E900AC4CBB /* MMCategoryPopOverViewController.m in Sources */,
