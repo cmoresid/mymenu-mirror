@@ -17,6 +17,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MMDBFetcherDelegate.h"
+#import <RBStoryboardLink/RBStoryboardLinkSource.h>
 
 @class MMValidationManager;
 
@@ -25,7 +26,7 @@
  A view controller that logs in a user.
  User is prompted for their email address (id) and their password.
  */
-@interface MMLoginViewController : UIViewController <UITextFieldDelegate>
+@interface MMLoginViewController : UIViewController <UITextFieldDelegate, RBStoryboardLinkSource>
 
 @property(nonatomic, weak) IBOutlet UITextField *emailAddress;
 @property(nonatomic, weak) IBOutlet UITextField *password;

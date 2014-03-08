@@ -33,6 +33,10 @@
 
 @implementation MMLoginViewController
 
+- (BOOL)needsTopLayoutGuide {
+    return FALSE;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 

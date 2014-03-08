@@ -25,11 +25,14 @@
 #import "MMMenuItemRating.h"
 #import "MMMenuItemReviewCell.h"
 #import "MMRestaurantPopOverViewController.h"
+#import "UIStoryboard+UIStoryboard_MyMenu.h"
+#import "MMReviewPopOverViewController.h"
 
 
 #define kCurrentUser @"currentUser"
 #define kSelectedRestaurant @"kSelectedRestaurant"
 #define kmenuItems @"kmenuItems"
+#define kReview @"kReview"
 #define kCondensedTopReviews @"condensedTopReviews"
 #define kCondensedRecentReviews @"condensedRecentReviews"
 #define kAllRecentReviews @"allRecentReviews"
@@ -38,7 +41,6 @@
 
 @interface MMRestaurantViewController ()
 
-
 @end
 
 @implementation MMRestaurantViewController
@@ -46,6 +48,7 @@
 
 NSArray *menuItems;
 MMMenuItem * touchedItem;
+MMMenuItemRating * touchedReview;
 NSMutableDictionary * menuItemDictionary;
 NSMutableArray * condensedReviews;
 NSMutableArray * allReviews;
@@ -57,7 +60,7 @@ NSMutableArray * categories;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -68,9 +71,18 @@ NSMutableArray * categories;
     return UIBarPositionTopAttached; //or UIBarPositionTopAttached
 }
 
+- (void)restaurantSelected:(NSNotification*)notification {
+    _selectedRestaurant = (MMMerchant*)notification.object;
+}
+
+- (IBAction)cancelToMainScreen:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)viewDidLoad
 {	
     [super viewDidLoad];
+    
     menuItemDictionary = [[NSMutableDictionary alloc] init];
     menuItems = [[NSArray alloc] init];
     [self.collectionView setDelegate:self];
@@ -106,6 +118,8 @@ NSMutableArray * categories;
             }
         }
     }
+    
+    self.navigationController.toolbar.hidden = TRUE;
     
     [_restDescription  setText:_selectedRestaurant.desc];
     [_adress setText:_selectedRestaurant.address];
@@ -292,18 +306,45 @@ NSMutableArray * categories;
     }
     
     
-    // I implemented didSelectItemAtIndexPath:, but you could use willSelectItemAtIndexPath: depending on what you intend to do. See the docs of these two methods for the differences.
-    - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-        // If you need to use the touched cell, you can retrieve it like so
+// I implemented didSelectItemAtIndexPath:, but you could use willSelectItemAtIndexPath: depending on what you intend to do. See the docs of these two methods for the differences.
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([collectionView.restorationIdentifier isEqualToString:@"ReviewCollection"]){
+        
+        UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+        MMMenuItemReviewCell * itemCell = (MMMenuItemReviewCell *) cell;
+        
+        touchedReview = [[MMMenuItemRating alloc ]init];
+        touchedReview = itemCell.rating;
+        
+        MMReviewPopOverViewController *categoryContent = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
+        // categoryContent.delegate = self;
+        
+        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedReview];
+        
+        //popover.popoverContentSize = CGSizeMake(350, 216);
+        popover.delegate = self;
+        
+        self.popOverController = popover;
+        
+        // Make sure keyboard is hidden before you show popup.
+        [self.search resignFirstResponder];
+        
+        [self.popOverController presentPopoverFromRect:cell.frame
+                                                inView:cell.superview
+                              permittedArrowDirections:UIPopoverArrowDirectionAny
+                                              animated:YES];
+    }else{
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
         MMMenuItemCell * itemCell = (MMMenuItemCell *) cell;
         NSLog(@"touched cell %@ at indexPath %@", cell, indexPath);
         touchedItem = [[MMMenuItem alloc ]init];
         touchedItem = itemCell.menuItem;
-
         [self performSegueWithIdentifier:@"showMenuItem" sender:self];
-
     }
+    
+}
 
 - (void)didRetrieveTopItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response{
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
@@ -412,7 +453,7 @@ NSMutableArray * categories;
 
 -(IBAction)categoryPicker:(id)sender{
 
-    MMRestaurantPopOverViewController *categoryContent = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuItemCategoryPopoverViewController"];
+    MMRestaurantPopOverViewController *categoryContent = [[UIStoryboard restaurantStoryboard] instantiateViewControllerWithIdentifier:@"MenuItemCategoryPopoverViewController"];
     categoryContent.delegate = self;
     
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];

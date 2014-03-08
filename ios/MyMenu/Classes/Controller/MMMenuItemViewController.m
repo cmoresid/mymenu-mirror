@@ -47,8 +47,6 @@ MMMenuItemRating * touchedItem;
 
 
 
-
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -57,12 +55,6 @@ MMMenuItemRating * touchedItem;
     return self;
 }
 
-// Delegate method.
-- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
-{
-    
-    return UIBarPositionTopAttached; //or UIBarPositionTopAttached
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -72,7 +64,6 @@ MMMenuItemRating * touchedItem;
     mods = [[NSMutableArray alloc] init];
     self.rating = nil;
     self.reviewField.delegate = self;
-    self.navigationBar.delegate = self;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     // Register for keyboard notifications to allow
@@ -86,7 +77,7 @@ MMMenuItemRating * touchedItem;
     _itemName.text = _touchedItem.name;
     _itemDescription.text = _touchedItem.desc;
     [_itemDescription setTextColor:[UIColor blackColor]];
-    [_itemDescription setFont:[UIFont systemFontOfSize:24.0]];
+    [_itemDescription setFont:[UIFont systemFontOfSize:19.0]];
     _itemImage.image = [UIImage imageWithData:                                                                      [NSData dataWithContentsOfURL:                                                                            [NSURL URLWithString: _touchedItem.picture]]];
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
@@ -270,7 +261,7 @@ MMMenuItemRating * touchedItem;
     NSDictionary *info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     //float copyHeight = kbSize.height /2.0f;
-    kbSize.height = kbSize.height * .35f;
+    kbSize.height = kbSize.height *0.1f;
     
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
     self.scrollView.contentInset = contentInsets;
@@ -280,10 +271,13 @@ MMMenuItemRating * touchedItem;
     // Your app might not need or want this behavior.
     CGRect aRect = self.view.frame;
     aRect.size.height -= kbSize.height;
+    CGRect bRect = self.activeField.frame;
+    
+    bRect.origin.y += 300;
     
     if (CGRectContainsPoint(aRect, self.activeField.frame.origin)) {
-        
-        [self.scrollView scrollRectToVisible:self.activeField.frame animated:YES];
+    
+        [self.scrollView scrollRectToVisible:bRect animated:YES];
     }
 }
 
@@ -419,9 +413,9 @@ MMMenuItemRating * touchedItem;
     NSLog(@"touched cell %@ at indexPath %@", cell, indexPath);
     touchedItem = [[MMMenuItemRating alloc ]init];
     touchedItem = itemCell.rating;
-    touchedItem.merchantName = self.selectedRestaurant.businessname;
-    touchedItem.merchid = self.selectedRestaurant.mid;
-    touchedItem.menuid = self.touchedItem.itemid;
+//    touchedItem.merchantName = self.selectedRestaurant.businessname;
+//    touchedItem.merchid = self.selectedRestaurant.mid;
+//    touchedItem.menuid = self.touchedItem.itemid;
    
     MMReviewPopOverViewController *categoryContent = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
    // categoryContent.delegate = self;

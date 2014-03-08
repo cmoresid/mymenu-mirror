@@ -34,5 +34,6 @@
 @property(nonatomic) NSString *review;
 @property(nonatomic) NSDate *date;
 @property(nonatomic) NSNumber *likeCount;
+@property(nonatomic) NSString *itemImage;
 
 @end

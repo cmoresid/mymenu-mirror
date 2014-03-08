@@ -24,8 +24,8 @@
 #import "UIColor+MyMenuColors.h"
 #import "MMUser.h"
 #import "NSArray+MerchantSort.h"
-
-#define kCurrentUser @"currentUser"
+#import "MMRestaurantViewController.h"
+#import <RBStoryboardLink/RBStoryboardLink.h>
 
 @interface MMMasterRestaurantTableViewController () {
     NSMutableArray *_objects;
@@ -252,9 +252,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"restaurantSegue"]) {
-        MMRestaurantViewController *RestaurantController = [segue destinationViewController];
-        RestaurantController.selectedRestaurant = _selectRest;
-
+        UINavigationController *controller = segue.destinationViewController;
+        
+        RBStoryboardLink *storyboardLink = [controller.viewControllers firstObject];
+        MMRestaurantViewController *restaurantViewController = (MMRestaurantViewController*)storyboardLink.scene;
+        
+        restaurantViewController.selectedRestaurant = _selectRest;
     }
 }
 

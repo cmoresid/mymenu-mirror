@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_OCMock 2
 #define COCOAPODS_VERSION_PATCH_OCMock 2
 
+// RBStoryboardLink
+#define COCOAPODS_POD_AVAILABLE_RBStoryboardLink
+#define COCOAPODS_VERSION_MAJOR_RBStoryboardLink 0
+#define COCOAPODS_VERSION_MINOR_RBStoryboardLink 0
+#define COCOAPODS_VERSION_PATCH_RBStoryboardLink 8
+
 // RaptureXML
 #define COCOAPODS_POD_AVAILABLE_RaptureXML
 #define COCOAPODS_VERSION_MAJOR_RaptureXML 1

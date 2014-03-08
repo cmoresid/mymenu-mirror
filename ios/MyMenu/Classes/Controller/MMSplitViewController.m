@@ -33,6 +33,10 @@
     return self;
 }
 
+- (BOOL)needsTopLayoutGuide {
+    return FALSE;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
