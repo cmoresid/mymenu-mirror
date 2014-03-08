@@ -515,8 +515,8 @@ NSMutableArray * categories;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"showMenuItem"]){
         MMMenuItemViewController *menuItemController = [segue destinationViewController];
-        menuItemController.touchedItem = touchedItem;
-        menuItemController.selectedRestaurant = _selectedRestaurant;
+        menuItemController.currentMenuItem = touchedItem;
+        menuItemController.currentMerchant = _selectedRestaurant;
     }
 }
 
