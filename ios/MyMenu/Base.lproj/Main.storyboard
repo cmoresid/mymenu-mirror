@@ -625,7 +625,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="4SK-Bh-zIc" kind="relationship" relationship="viewControllers" id="Qs8-zg-cWz"/>
+                        <segue destination="FBe-5D-9yS" kind="relationship" relationship="viewControllers" id="E4k-di-JVA"/>
                         <segue destination="S0i-8e-0sf" kind="relationship" relationship="viewControllers" id="kUg-JP-q64"/>
                         <segue destination="WhE-My-njP" kind="relationship" relationship="viewControllers" id="G70-jF-GDf"/>
                         <segue destination="l3d-rR-VkI" kind="relationship" relationship="viewControllers" id="Wr4-Si-LAR"/>
@@ -634,31 +634,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3033" y="564"/>
-        </scene>
-        <!--Storyboard Link - Restaurants-->
-        <scene sceneID="gDW-Fv-NkA">
-            <objects>
-                <viewController id="4SK-Bh-zIc" customClass="RBStoryboardLink" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Txf-u1-KdX"/>
-                        <viewControllerLayoutGuide type="bottom" id="hr9-e1-zh9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZYg-Qc-y5g">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Restaurants" image="125-food.png" id="pZL-rR-88N"/>
-                    <navigationItem key="navigationItem" id="e3x-GQ-H4P"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="Map"/>
-                    </userDefinedRuntimeAttributes>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gJk-IG-D43" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4596" y="-841"/>
         </scene>
         <!--Storyboard Link - Specials-->
         <scene sceneID="ImC-jW-uRN">
@@ -819,6 +794,242 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="4614" y="2022"/>
         </scene>
+        <!--Split View Controller - Restaurants-->
+        <scene sceneID="ydv-hH-WP7">
+            <objects>
+                <splitViewController extendedLayoutIncludesOpaqueBars="YES" id="FBe-5D-9yS" customClass="MMSplitViewController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="1" title="Restaurants" image="125-food.png" id="dhW-fu-cX2"/>
+                    <toolbarItems/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <segue destination="T0e-TR-sQ7" kind="relationship" relationship="masterViewController" id="smQ-UH-5Ym"/>
+                        <segue destination="5IL-vR-8g5" kind="relationship" relationship="detailViewController" id="hLJ-2o-ZZz"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gkb-ku-8OZ" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4609" y="-916"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="T2Q-P5-9Mg">
+            <objects>
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" definesPresentationContext="YES" id="5IL-vR-8g5" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="80d-tp-k7a">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="4Eb-HS-Udu" kind="relationship" relationship="rootViewController" id="YXl-eZ-ik7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vjh-X9-Jcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6269" y="-417"/>
+        </scene>
+        <!--Base Navigation Controller-->
+        <scene sceneID="Ceq-gj-q5d">
+            <objects>
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" definesPresentationContext="YES" id="T0e-TR-sQ7" customClass="MMBaseNavigationController" sceneMemberID="viewController">
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bbd-5N-nyB">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="QH1-IP-2E5" kind="relationship" relationship="rootViewController" id="SA5-jD-XUp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vA5-vc-JvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6292" y="-1518"/>
+        </scene>
+        <!--Master Restaurant Table View Controller - Restaurants-->
+        <scene sceneID="SUZ-UX-A8W">
+            <objects>
+                <viewController id="QH1-IP-2E5" customClass="MMMasterRestaurantTableViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HlY-0Q-cSs"/>
+                        <viewControllerLayoutGuide type="bottom" id="n2e-Az-066"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dfa-9u-Vio">
+                        <rect key="frame" x="0.0" y="64" width="320" height="704"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" text="" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="B1p-Jc-iBt">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <connections>
+                                    <outlet property="delegate" destination="QH1-IP-2E5" id="pDJ-KV-dns"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cNd-Hg-SbY">
+                                <rect key="frame" x="0.0" y="87" width="320" height="617"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="KJM-f8-J2l" customClass="RestaurantCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KJM-f8-J2l" id="MVK-UH-Jey">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="jEw-El-s0z" kind="modal" identifier="restaurantSegue" id="x0o-2Q-nys"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAQ-6C-lLR">
+                                <rect key="frame" x="0.0" y="44" width="320" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="32O-Gz-2z1">
+                                        <rect key="frame" x="6" y="6" width="307" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="Nearby"/>
+                                            <segment title="Top Rated"/>
+                                            <segment title="Cusine"/>
+                                        </segments>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="32O-Gz-2z1" secondAttribute="bottom" constant="8" id="Na0-XS-NFW"/>
+                                    <constraint firstAttribute="trailing" secondItem="32O-Gz-2z1" secondAttribute="trailing" constant="7" id="SKf-h0-AvB"/>
+                                    <constraint firstItem="32O-Gz-2z1" firstAttribute="leading" secondItem="eAQ-6C-lLR" secondAttribute="leading" constant="6" id="Wfk-0s-LNF"/>
+                                    <constraint firstItem="32O-Gz-2z1" firstAttribute="top" secondItem="eAQ-6C-lLR" secondAttribute="top" constant="6" id="ekv-ji-kN1"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cNd-Hg-SbY" firstAttribute="top" secondItem="eAQ-6C-lLR" secondAttribute="bottom" constant="1" id="JoQ-ZC-a10"/>
+                            <constraint firstItem="eAQ-6C-lLR" firstAttribute="trailing" secondItem="B1p-Jc-iBt" secondAttribute="trailing" id="MUz-6w-PCV"/>
+                            <constraint firstItem="B1p-Jc-iBt" firstAttribute="leading" secondItem="eAQ-6C-lLR" secondAttribute="leading" id="fBm-Wy-Jhw"/>
+                            <constraint firstItem="eAQ-6C-lLR" firstAttribute="leading" secondItem="cNd-Hg-SbY" secondAttribute="leading" id="iCu-3N-SsL"/>
+                            <constraint firstItem="B1p-Jc-iBt" firstAttribute="top" secondItem="dfa-9u-Vio" secondAttribute="top" id="iDt-ir-cZl"/>
+                            <constraint firstAttribute="trailing" secondItem="eAQ-6C-lLR" secondAttribute="trailing" id="iRF-Q1-Is1"/>
+                            <constraint firstItem="eAQ-6C-lLR" firstAttribute="top" secondItem="B1p-Jc-iBt" secondAttribute="bottom" id="j77-Jt-Nci"/>
+                            <constraint firstAttribute="bottom" secondItem="cNd-Hg-SbY" secondAttribute="bottom" id="m6U-df-40n"/>
+                            <constraint firstItem="cNd-Hg-SbY" firstAttribute="trailing" secondItem="eAQ-6C-lLR" secondAttribute="trailing" id="t5Y-dW-Yge"/>
+                            <constraint firstItem="cNd-Hg-SbY" firstAttribute="leading" secondItem="dfa-9u-Vio" secondAttribute="leading" id="x8o-Sc-yTo"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Restaurants" id="WQV-q3-Ada"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="merchantsearch" destination="B1p-Jc-iBt" id="plQ-na-Ius"/>
+                        <outlet property="orderbySegmentControl" destination="32O-Gz-2z1" id="Upa-QN-iFV"/>
+                        <outlet property="searchDisplayController" destination="56W-t4-YSN" id="8Db-Y2-snP"/>
+                        <outlet property="tableView" destination="cNd-Hg-SbY" id="Tkf-I9-K0v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LRc-1Q-Jt2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="56W-t4-YSN">
+                    <connections>
+                        <outlet property="delegate" destination="QH1-IP-2E5" id="9vI-lQ-DcE"/>
+                        <outlet property="searchBar" destination="B1p-Jc-iBt" id="ruH-JD-3uH"/>
+                        <outlet property="searchContentsController" destination="QH1-IP-2E5" id="jTc-Qj-ljo"/>
+                        <outlet property="searchResultsDataSource" destination="QH1-IP-2E5" id="Kfs-iP-hX9"/>
+                        <outlet property="searchResultsDelegate" destination="QH1-IP-2E5" id="ODt-UH-UO2"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="7234" y="-1521"/>
+        </scene>
+        <!--Base Navigation Controller-->
+        <scene sceneID="l09-QL-VmE">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="jEw-El-s0z" customClass="MMBaseNavigationController" sceneMemberID="viewController">
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eJg-nT-0fI">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="S4K-y2-rcY" kind="relationship" relationship="rootViewController" id="m2P-kB-cc1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="agl-X5-P8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8048" y="-1518"/>
+        </scene>
+        <!--Storyboard Link-->
+        <scene sceneID="LDm-vh-uTk">
+            <objects>
+                <viewController id="S4K-y2-rcY" customClass="RBStoryboardLink" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jzM-8b-Kbg"/>
+                        <viewControllerLayoutGuide type="bottom" id="NHM-DK-Igv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T6s-9u-X3s">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zGQ-PB-nFP"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="Menu"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WdU-i9-r9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9384" y="-1521"/>
+        </scene>
+        <!--Detail Map View Controller - Detail-->
+        <scene sceneID="XjI-23-2aY">
+            <objects>
+                <viewController title="Detail" id="4Eb-HS-Udu" customClass="MMDetailMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ul5-Kc-toB"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Bm-bF-mb3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2nE-TQ-7Yp">
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eH9-mO-zrD">
+                                <rect key="frame" x="0.0" y="44" width="703" height="724"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2nE-TQ-7Yp" id="vii-zq-hrN"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="eH9-mO-zrD" secondAttribute="trailing" id="Szd-4h-EHP"/>
+                            <constraint firstAttribute="bottom" secondItem="eH9-mO-zrD" secondAttribute="bottom" id="UWe-ZH-Wuv"/>
+                            <constraint firstItem="eH9-mO-zrD" firstAttribute="leading" secondItem="2nE-TQ-7Yp" secondAttribute="leading" id="Whc-C2-bgk"/>
+                            <constraint firstItem="eH9-mO-zrD" firstAttribute="top" secondItem="Ul5-Kc-toB" secondAttribute="bottom" id="lCu-Px-QR6"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Map" id="QRs-78-VqL"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="eH9-mO-zrD" id="2Xo-Am-JuU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AH4-ls-0x5" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7218" y="-416"/>
+        </scene>
     </scenes>
     <resources>
         <image name="125-food.png" width="29" height="23"/>
@@ -833,6 +1044,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="xXR-CJ-Zij"/>
-        <segue reference="SHi-7D-H4s"/>
+        <segue reference="62S-hN-Lz1"/>
     </inferredMetricsTieBreakers>
 </document>

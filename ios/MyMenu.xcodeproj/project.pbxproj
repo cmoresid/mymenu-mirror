@@ -120,7 +120,6 @@
 		B0E7616218CA7C5900D1ABF7 /* libPods-RBStoryboardLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E7616118CA7C5900D1ABF7 /* libPods-RBStoryboardLink.a */; };
 		B0E7616518CA7EB900D1ABF7 /* Specials.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E7616418CA7EB900D1ABF7 /* Specials.storyboard */; };
 		B0E7616818CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E7616718CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.m */; };
-		B0E7616A18CA876600D1ABF7 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E7616918CA876600D1ABF7 /* Map.storyboard */; };
 		B0E7616C18CA8D2700D1ABF7 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E7616B18CA8D2700D1ABF7 /* Menu.storyboard */; };
 		B0EB0C8418A397A200CAAF44 /* MMMockNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB0C8318A397A200CAAF44 /* MMMockNetworkClient.m */; };
 		B0EB0C8718A40E2E00CAAF44 /* libPods-MBProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0EB0C8618A40E2E00CAAF44 /* libPods-MBProgressHUD.a */; };
@@ -313,7 +312,6 @@
 		B0E7616418CA7EB900D1ABF7 /* Specials.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Specials.storyboard; sourceTree = "<group>"; };
 		B0E7616618CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+UIStoryboard_MyMenu.h"; sourceTree = "<group>"; };
 		B0E7616718CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+UIStoryboard_MyMenu.m"; sourceTree = "<group>"; };
-		B0E7616918CA876600D1ABF7 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		B0E7616B18CA8D2700D1ABF7 /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		B0EB0C8218A397A200CAAF44 /* MMMockNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMockNetworkClient.h; sourceTree = "<group>"; };
 		B0EB0C8318A397A200CAAF44 /* MMMockNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMockNetworkClient.m; sourceTree = "<group>"; };
@@ -715,7 +713,6 @@
 			children = (
 				83893EBC18919AD400D36670 /* Main.storyboard */,
 				B0E7616418CA7EB900D1ABF7 /* Specials.storyboard */,
-				B0E7616918CA876600D1ABF7 /* Map.storyboard */,
 				B0E7616B18CA8D2700D1ABF7 /* Menu.storyboard */,
 				B0DE3FF018CAA68800190F2F /* Profile.storyboard */,
 			);
@@ -826,7 +823,6 @@
 				1744F9BF18C524FD009CCC95 /* upvote.png in Resources */,
 				B0E7616518CA7EB900D1ABF7 /* Specials.storyboard in Resources */,
 				83893EBE18919AD400D36670 /* Main.storyboard in Resources */,
-				B0E7616A18CA876600D1ABF7 /* Map.storyboard in Resources */,
 				83655AA01891E2DF005EBF8A /* MapViewToolbar.xib in Resources */,
 				B0B0C4DF18A8245600BA47CB /* LocationMarker.png in Resources */,
 			);
