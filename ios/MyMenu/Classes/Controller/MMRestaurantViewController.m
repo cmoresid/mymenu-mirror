@@ -119,6 +119,8 @@ NSMutableArray * categories;
         }
     }
     
+    self.navigationController.toolbar.hidden = TRUE;
+    
     [_restDescription  setText:_selectedRestaurant.desc];
     [_adress setText:_selectedRestaurant.address];
     NSString *opentime = [_selectedRestaurant.opentime substringToIndex:[_selectedRestaurant.opentime length]-3];

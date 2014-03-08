@@ -47,8 +47,6 @@ MMMenuItemRating * touchedItem;
 
 
 
-
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -57,12 +55,6 @@ MMMenuItemRating * touchedItem;
     return self;
 }
 
-// Delegate method.
-- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
-{
-    
-    return UIBarPositionTopAttached; //or UIBarPositionTopAttached
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -72,7 +64,6 @@ MMMenuItemRating * touchedItem;
     mods = [[NSMutableArray alloc] init];
     self.rating = nil;
     self.reviewField.delegate = self;
-    self.navigationBar.delegate = self;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     // Register for keyboard notifications to allow
@@ -270,7 +261,7 @@ MMMenuItemRating * touchedItem;
     NSDictionary *info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     //float copyHeight = kbSize.height /2.0f;
-    kbSize.height = kbSize.height * .35f;
+    kbSize.height = kbSize.height *0.1f;
     
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
     self.scrollView.contentInset = contentInsets;
@@ -280,10 +271,13 @@ MMMenuItemRating * touchedItem;
     // Your app might not need or want this behavior.
     CGRect aRect = self.view.frame;
     aRect.size.height -= kbSize.height;
+    CGRect bRect = self.activeField.frame;
+    
+    bRect.origin.y += 300;
     
     if (CGRectContainsPoint(aRect, self.activeField.frame.origin)) {
-        
-        [self.scrollView scrollRectToVisible:self.activeField.frame animated:YES];
+    
+        [self.scrollView scrollRectToVisible:bRect animated:YES];
     }
 }
 
