@@ -31,29 +31,113 @@
 @interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MMDBFetcherDelegate, UISearchBarDelegate, UIPopoverControllerDelegate, MMRestaurantPopOverDelegate>
 
 
+/**
+ *  The current selected merchant.
+ */
+@property MMMerchant *currentMerchant;
 
-@property MMMerchant *selectedRestaurant;
-@property(nonatomic, weak) IBOutlet UILabel * restName; // restaurant name
-@property(nonatomic, weak) IBOutlet UILabel * restNumber; // restaurant phone number
-@property(nonatomic, weak) IBOutlet UILabel * restRating; // restaurant rating
-@property(nonatomic, weak) IBOutlet UITextView * restDescription; // restaurant description
-@property(nonatomic, weak) IBOutlet UIImageView * restImage; // restaurant image
+/**
+ *  The UILabel for the mechant name
+ */
+@property(nonatomic, weak) IBOutlet UILabel * merchantNameLabel; // restaurant name
+/**
+ *  The UILabel for the merchant phone number
+ */
+@property(nonatomic, weak) IBOutlet UILabel * merchantPhoneNumberLabel; // restaurant phone number
+/**
+ *  The UILabel for the merchant rating
+ */
+@property(nonatomic, weak) IBOutlet UILabel * merchantRatingLabel; // restaurant rating
+/**
+ *  The UITextView for the merchant description
+ */
+@property(nonatomic, weak) IBOutlet UITextView * merchantDescriptionTextView; // restaurant description
+/**
+ *  The UIImageView for the merchant image
+ */
+@property(nonatomic, weak) IBOutlet UIImageView * merchantImageView; // restaurant image
+
+/**
+ *  The UIView for the merchant rating
+ */
 @property(nonatomic, weak) IBOutlet UIView *ratingView; // rounded background for restaurant rating
-@property(nonatomic, weak) IBOutlet UISearchBar * search; // field for search by name
+
+/**
+ *  The UISearchBar for searching menu items
+ */
+@property(nonatomic, weak) IBOutlet UISearchBar * searchBar; // field for search by name
+
+/**
+ *  The UIButton to filter by category
+ */
 @property(nonatomic, weak) IBOutlet UIButton * categoryButton; // filter by category buttton
-@property(nonatomic, weak) IBOutlet UICollectionView *collectionView; // the menu collection
+
+/**
+ *  UICollectionView that displays the menu items
+ */
+@property(nonatomic, weak) IBOutlet UICollectionView *menuItemsCollectionView; // the menu collection
+
+/**
+ *  UINavigationBar at the top of the Screen
+ */
 @property(nonatomic, weak) IBOutlet UINavigationBar *navigationBar;//the navigation bar at the top of the screen
-@property(nonatomic, weak) IBOutlet UICollectionView *reviewCollection; //review collection view
+
+/**
+ *  The UICollectionView for reviews
+ */
+@property(nonatomic, weak) IBOutlet UICollectionView *reviewsCollectionView; //review collection view
+
+/**
+ *  The UISegmentedControl for filtering reviews
+ */
 @property(nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl; //review segemented control
-@property(nonatomic, weak) IBOutlet UILabel * hours;
-@property(nonatomic, weak) IBOutlet UILabel * adress;
+
+/**
+ *  Merchant Hours Label
+ */
+@property(nonatomic, weak) IBOutlet UILabel * merchantHoursLabel;
+
+/**
+ *  Merchant Address Label
+ */
+@property(nonatomic, weak) IBOutlet UILabel * merchantAddressLabel;
+
+/**
+ *  Popover View Controller
+ */
 @property (nonatomic, strong) UIPopoverController * popOverController;
+
+/**
+ *  View Controller that gets displayed inside of a popover.
+ */
 @property (nonatomic, strong) MMRestaurantPopOverViewController * restPopOver;
 
-
+/**
+ *  Clear category filter button
+ *
+ *  @param sender UIButton
+ */
 - (IBAction)categoryClear:(id)sender;
+
+/**
+ *  Clear the search bar button
+ *
+ *  @param sender UIButton
+ */
 - (IBAction)searchClear:(id)sender;
+
+/**
+ *  Which category was selected, and filter
+ *
+ *  @param sender UIPickerView
+ */
 - (IBAction)categoryPicker:(id)sender;
+
+/**
+ *  Return to main screen button
+ *
+ *  @param sender UIButton
+ */
 - (IBAction)cancelToMainScreen:(id)sender;
 
 @end

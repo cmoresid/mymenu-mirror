@@ -257,7 +257,7 @@
         RBStoryboardLink *storyboardLink = [controller.viewControllers firstObject];
         MMRestaurantViewController *restaurantViewController = (MMRestaurantViewController*)storyboardLink.scene;
         
-        restaurantViewController.selectedRestaurant = _selectedRestaurant;
+        restaurantViewController.currentMerchant = _selectedRestaurant;
     }
 }
 

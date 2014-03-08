@@ -306,7 +306,7 @@ MMMenuItemRating * touchedItem;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"backToRestPage"]){
         MMRestaurantViewController *restaurantController = [segue destinationViewController];
-        restaurantController.selectedRestaurant = _currentMerchant;
+        restaurantController.currentMerchant = _currentMerchant;
         
     }
 }

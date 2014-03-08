@@ -199,18 +199,18 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="adress" destination="fH4-pF-x8F" id="wko-6b-yQN"/>
                         <outlet property="categoryButton" destination="PVh-nm-d8c" id="y8T-qV-Wti"/>
-                        <outlet property="collectionView" destination="pH9-uF-H80" id="ZOO-Yn-5fu"/>
-                        <outlet property="hours" destination="gko-i2-zZu" id="UsL-ck-99a"/>
+                        <outlet property="menuItemsCollectionView" destination="pH9-uF-H80" id="BjT-2j-aeP"/>
+                        <outlet property="merchantAddressLabel" destination="fH4-pF-x8F" id="kFu-uu-2a1"/>
+                        <outlet property="merchantDescriptionTextView" destination="3nd-G3-sW8" id="5no-rP-p3M"/>
+                        <outlet property="merchantHoursLabel" destination="gko-i2-zZu" id="3xx-ag-pw7"/>
+                        <outlet property="merchantImageView" destination="U2D-DU-XfK" id="MQV-Wd-M6m"/>
+                        <outlet property="merchantNameLabel" destination="OmH-kW-GDf" id="Qet-P6-mZg"/>
+                        <outlet property="merchantPhoneNumberLabel" destination="7X2-T2-PaL" id="TSh-mg-eAS"/>
+                        <outlet property="merchantRatingLabel" destination="Zum-ge-zPF" id="uF9-lj-qfQ"/>
                         <outlet property="ratingView" destination="Ttc-gP-x6J" id="2BP-OO-nbH"/>
-                        <outlet property="restDescription" destination="3nd-G3-sW8" id="9Ch-Ub-Irh"/>
-                        <outlet property="restImage" destination="U2D-DU-XfK" id="QRZ-Wp-4r3"/>
-                        <outlet property="restName" destination="OmH-kW-GDf" id="MBW-9T-6ue"/>
-                        <outlet property="restNumber" destination="7X2-T2-PaL" id="9lk-Oh-KIf"/>
-                        <outlet property="restRating" destination="Zum-ge-zPF" id="IGL-GP-8Aj"/>
-                        <outlet property="reviewCollection" destination="0J3-GC-UHm" id="bo5-M0-buW"/>
-                        <outlet property="search" destination="k70-Tz-ZXb" id="4Qg-pT-yOj"/>
+                        <outlet property="reviewsCollectionView" destination="0J3-GC-UHm" id="KWn-Td-woF"/>
+                        <outlet property="searchBar" destination="k70-Tz-ZXb" id="71I-o7-BvO"/>
                         <outlet property="segmentedControl" destination="gXC-cR-Z3F" id="Chn-xh-8Gr"/>
                     </connections>
                 </viewController>
