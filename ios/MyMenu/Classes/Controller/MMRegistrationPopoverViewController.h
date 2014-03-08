@@ -26,20 +26,62 @@
  */
 @interface MMRegistrationPopoverViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
+/**
+ *  The Cities the user can choose from
+ */
 @property(nonatomic, strong) NSArray *cities;
+
+/**
+ *   Provinces the users can choose from
+ */
 @property(nonatomic, strong) NSArray *provinces;
+
+/**
+ *  Genders the user can choose from
+ */
 @property(nonatomic, strong) NSArray *gender;
 
+
+/**
+ *  The UIPickerView for city selection.
+ */
 @property(nonatomic, weak) IBOutlet UIPickerView *cityPicker;
+
+/**
+ *  The UIPickerView for Province Selection
+ */
 @property(nonatomic, weak) IBOutlet UIPickerView *provPicker;
+
+/**
+ *  The UIPickerView for gender selection.
+ */
 @property(nonatomic, weak) IBOutlet UIPickerView *genderPicker;
+
+/**
+ *  UIDatePicker for birthday.
+ */
 @property(nonatomic, weak) IBOutlet UIDatePicker *birthdayPicker;
 
+/**
+ *  Selected value which the user chose, depending on the view
+ */
 @property(readwrite) MMPopoverDataPair *popoverValue;
+
+/**
+ *  Sets the Delegate for the popover controller
+ */
 @property(nonatomic, strong) id <MMRegistrationPopoverDelegate> delegate;
 
+/**
+ *  Updates the selected birthday
+ */
 - (void)updateSelectedBirthday;
 
+/**
+ *  Selected choice is registered.
+ *
+ *  @param sender
+ */
 - (IBAction)selectChoice:(id)sender;
 
 @end
