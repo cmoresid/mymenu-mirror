@@ -734,8 +734,8 @@
                     <connections>
                         <outlet property="menuItemImage" destination="dlC-8S-Xxx" id="Wc2-JS-pSC"/>
                         <outlet property="menuItemName" destination="tVw-Uv-nRK" id="MvM-1L-ftG"/>
+                        <outlet property="merchantName" destination="JVA-Av-XT9" id="aAK-aM-KXC"/>
                         <outlet property="ratingView" destination="xhG-Zc-XC3" id="wlL-lY-l10"/>
-                        <outlet property="restaurantName" destination="JVA-Av-XT9" id="yW8-th-OYF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byJ-Ct-v25" userLabel="First Responder" sceneMemberID="firstResponder"/>

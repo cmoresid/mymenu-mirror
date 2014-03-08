@@ -331,7 +331,7 @@ MMMenuItemRating * touchedItem;
     MMRatingPopoverViewController *ratingPop = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuItemRatingPopover"];
     
     ratingPop.menuItem = self.currentMenuItem;
-    ratingPop.menuRestaurant = self.currentMerchant;
+    ratingPop.menuItemMerchant = self.currentMerchant;
     
     // Check if a rating has been previously selected. If one has
     // been, pre-select that value in the ratings wheel in the

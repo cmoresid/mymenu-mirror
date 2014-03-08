@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <RBStoryboardLink/RBStoryboardLinkSource.h>
 
+
+/**
+ *  Controller for the Profile tab, splits it into the left and right views
+ */
 @interface MMProfileSplitViewController : UISplitViewController <RBStoryboardLinkSource>
 
 @end
