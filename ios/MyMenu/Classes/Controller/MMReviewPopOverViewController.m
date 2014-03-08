@@ -12,6 +12,8 @@
 #import "MMDBFetcher.h"
 #import "MMLoginManager.h"
 #import "MBProgressHUD.h"
+#import "SDWebImage/UIImageView+WebCache.h"
+
 #define kReview @"kReview"
 
 
@@ -63,7 +65,9 @@ MMUser* userprofile;
     _menuItemName.text = review.menuitemname;
     _restaurantName.text = review.merchantName;
     _likecount.text = [NSString stringWithFormat:@"%@", review.likeCount];
-    
+    if (review.itemImage != nil && ![review.itemImage isEqualToString:@"null"]) {
+        [self.menuItemImage setImageWithURL:[NSURL URLWithString:review.itemImage] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+    }
     
     
 }

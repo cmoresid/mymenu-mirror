@@ -125,7 +125,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, r.id, u.firstname, u.lastname, r.likecount FROM ratings r, menu m, users u, ratinglikes rl WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail ORDER BY ratingdate DESC";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, r.id, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture FROM ratings r, menu m, users u, merchusers mu ratinglikes rl WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, merchid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -140,7 +140,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, r.id, m.name, u.firstname, u.lastname, r.likecount FROM ratings r, menu m, users u WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail ORDER BY r.likecount DESC";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, r.id, m.name, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture FROM ratings r, menu m, users u, merchusers mu WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY r.likecount DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, merchid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -155,7 +155,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, u.firstname, u.lastname, r.id FROM ratings r, menu m, users u WHERE m.id=%@ AND m.id = r.menuid AND u.email = r.useremail ORDER BY ratingdate DESC";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, u.firstname, u.lastname, r.id, mu.business_name, m.picture FROM ratings r, menu m, users u, merchusers mu WHERE m.id=%@ AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, itemid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -170,7 +170,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, r.id, m.name, u.firstname, u.lastname, r.likecount FROM menu m, users u, ratings r WHERE r.menuid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail ORDER BY r.likecount DESC";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, r.id, m.name, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture FROM menu m, users u, ratings r, merchusers mu WHERE r.menuid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY r.likecount DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, itemid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -953,6 +953,8 @@ static MMDBFetcher *instance;
                                         rating.firstname = [e child:@"firstname"].text;
                                         rating.lastname = [e child:@"lastname"].text;
                                         rating.likeCount = [NSNumber numberWithInt:[e child:@"likecount"].textAsInt];
+                                        rating.merchantName = [e child:@"business_name"].text;
+                                        rating.itemImage = [e child:@"picture"].text;
                                         [ratings addObject:rating];
                                     }];
                                     
@@ -974,7 +976,7 @@ static MMDBFetcher *instance;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/eatenthis/custom.php"]];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
     
     NSString *queryFormat = @"query=insert into eatenthis (useremail, menuid, merchid, adddate) values('%@', %@, %@, sysdate())";
     NSString *query = [NSString stringWithFormat:queryFormat, email, menuid, merchid];
@@ -1002,7 +1004,7 @@ static MMDBFetcher *instance;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratingreport/custom.php"]];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
     
     NSString *queryFormat = @"query=insert into ratingreport (useremail, ratingid, merchid, menuid, adddate) values('%@', %@, %@, %@, sysdate())";
     NSString *query = [NSString stringWithFormat:queryFormat, email, rid, merchid, menuid];
@@ -1030,7 +1032,7 @@ static MMDBFetcher *instance;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratinglikes/custom.php"]];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
     
     NSString *queryFormat = @"query=insert into ratinglikes (useremail, ratingid, merchid, menuid, adddate) values('%@', %@, %@, %@, sysdate())";
     NSString *query = [NSString stringWithFormat:queryFormat, email, rid, merchid, menuid];

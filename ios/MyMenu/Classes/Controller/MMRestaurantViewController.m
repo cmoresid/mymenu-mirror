@@ -26,11 +26,13 @@
 #import "MMMenuItemReviewCell.h"
 #import "MMRestaurantPopOverViewController.h"
 #import "UIStoryboard+UIStoryboard_MyMenu.h"
+#import "MMReviewPopOverViewController.h"
 
 
 #define kCurrentUser @"currentUser"
 #define kSelectedRestaurant @"kSelectedRestaurant"
 #define kmenuItems @"kmenuItems"
+#define kReview @"kReview"
 #define kCondensedTopReviews @"condensedTopReviews"
 #define kCondensedRecentReviews @"condensedRecentReviews"
 #define kAllRecentReviews @"allRecentReviews"
@@ -46,6 +48,7 @@
 
 NSArray *menuItems;
 MMMenuItem * touchedItem;
+MMMenuItemRating * touchedReview;
 NSMutableDictionary * menuItemDictionary;
 NSMutableArray * condensedReviews;
 NSMutableArray * allReviews;
@@ -301,18 +304,45 @@ NSMutableArray * categories;
     }
     
     
-    // I implemented didSelectItemAtIndexPath:, but you could use willSelectItemAtIndexPath: depending on what you intend to do. See the docs of these two methods for the differences.
-    - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-        // If you need to use the touched cell, you can retrieve it like so
+// I implemented didSelectItemAtIndexPath:, but you could use willSelectItemAtIndexPath: depending on what you intend to do. See the docs of these two methods for the differences.
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([collectionView.restorationIdentifier isEqualToString:@"ReviewCollection"]){
+        
+        UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+        MMMenuItemReviewCell * itemCell = (MMMenuItemReviewCell *) cell;
+        
+        touchedReview = [[MMMenuItemRating alloc ]init];
+        touchedReview = itemCell.rating;
+        
+        MMReviewPopOverViewController *categoryContent = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
+        // categoryContent.delegate = self;
+        
+        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedReview];
+        
+        //popover.popoverContentSize = CGSizeMake(350, 216);
+        popover.delegate = self;
+        
+        self.popOverController = popover;
+        
+        // Make sure keyboard is hidden before you show popup.
+        [self.search resignFirstResponder];
+        
+        [self.popOverController presentPopoverFromRect:cell.frame
+                                                inView:cell.superview
+                              permittedArrowDirections:UIPopoverArrowDirectionAny
+                                              animated:YES];
+    }else{
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
         MMMenuItemCell * itemCell = (MMMenuItemCell *) cell;
         NSLog(@"touched cell %@ at indexPath %@", cell, indexPath);
         touchedItem = [[MMMenuItem alloc ]init];
         touchedItem = itemCell.menuItem;
-
         [self performSegueWithIdentifier:@"showMenuItem" sender:self];
-
     }
+    
+}
 
 - (void)didRetrieveTopItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response{
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
