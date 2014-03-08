@@ -21,17 +21,12 @@
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
+    // Check to see if user is logged in. If they are logged in, go to the
+    // main screen; otherwise, stay at the login view.
     if ([[MMLoginManager sharedLoginManager] isUserLoggedIn]) {
-        //[self.window setRootViewController:[[MMMainTabBarViewController alloc] init]];
         [self.window makeKeyAndVisible];
-        [self.window.rootViewController performSegueWithIdentifier:@"moveToMainScreen" sender:self];
-    } else {
-        // Load Main
-
+        [self.window.rootViewController performSegueWithIdentifier:@"moveToMainScreen"
+                                                            sender:self];
     }
     return YES;
 }
