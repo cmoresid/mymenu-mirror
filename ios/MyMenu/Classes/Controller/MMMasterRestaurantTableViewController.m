@@ -76,7 +76,7 @@
 }
 
 - (void)didRetrieveMerchant:(MMMerchant *)merchant withResponse:(MMDBFetcherResponse *)response {
-    self.selectRest = merchant;
+    self.selectedRestaurant = merchant;
     [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
 }
 
@@ -257,7 +257,7 @@
         RBStoryboardLink *storyboardLink = [controller.viewControllers firstObject];
         MMRestaurantViewController *restaurantViewController = (MMRestaurantViewController*)storyboardLink.scene;
         
-        restaurantViewController.selectedRestaurant = _selectRest;
+        restaurantViewController.selectedRestaurant = _selectedRestaurant;
     }
 }
 
