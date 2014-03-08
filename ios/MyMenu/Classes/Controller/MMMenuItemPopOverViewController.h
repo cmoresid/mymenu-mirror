@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 typedef void (^ratingsReturnBlock)(NSInteger);
 
+/**
+ *  Rating Popover Circle
+ */
 @interface MMMenuItemPopOverViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
+/**
+ *  <#Description#>
+ */
 @property (nonatomic, strong) NSArray * ratings;
 @property (nonatomic) NSInteger rate;
 @property (nonatomic, copy) ratingsReturnBlock returnBlock;

@@ -66,7 +66,6 @@
 		B0A9907418CA43E900AC4CBB /* MMMainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FFB18CA43E900AC4CBB /* MMMainTabBarViewController.m */; };
 		B0A9907518CA43E900AC4CBB /* MMMasterProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FFD18CA43E900AC4CBB /* MMMasterProfileViewController.m */; };
 		B0A9907618CA43E900AC4CBB /* MMMasterRestaurantTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FFF18CA43E900AC4CBB /* MMMasterRestaurantTableViewController.m */; };
-		B0A9907718CA43E900AC4CBB /* MMMenuItemPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9900118CA43E900AC4CBB /* MMMenuItemPopOverViewController.m */; };
 		B0A9907818CA43E900AC4CBB /* MMMenuItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9900318CA43E900AC4CBB /* MMMenuItemViewController.m */; };
 		B0A9907918CA43E900AC4CBB /* MMProfileSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9900518CA43E900AC4CBB /* MMProfileSplitViewController.m */; };
 		B0A9907A18CA43E900AC4CBB /* MMRatingPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9900718CA43E900AC4CBB /* MMRatingPopoverViewController.m */; };
@@ -207,8 +206,6 @@
 		B0A98FFD18CA43E900AC4CBB /* MMMasterProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMasterProfileViewController.m; sourceTree = "<group>"; };
 		B0A98FFE18CA43E900AC4CBB /* MMMasterRestaurantTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMasterRestaurantTableViewController.h; sourceTree = "<group>"; };
 		B0A98FFF18CA43E900AC4CBB /* MMMasterRestaurantTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMasterRestaurantTableViewController.m; sourceTree = "<group>"; };
-		B0A9900018CA43E900AC4CBB /* MMMenuItemPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemPopOverViewController.h; sourceTree = "<group>"; };
-		B0A9900118CA43E900AC4CBB /* MMMenuItemPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemPopOverViewController.m; sourceTree = "<group>"; };
 		B0A9900218CA43E900AC4CBB /* MMMenuItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemViewController.h; sourceTree = "<group>"; };
 		B0A9900318CA43E900AC4CBB /* MMMenuItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemViewController.m; sourceTree = "<group>"; };
 		B0A9900418CA43E900AC4CBB /* MMProfileSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProfileSplitViewController.h; sourceTree = "<group>"; };
@@ -552,8 +549,6 @@
 				B0A98FFD18CA43E900AC4CBB /* MMMasterProfileViewController.m */,
 				B0A98FFE18CA43E900AC4CBB /* MMMasterRestaurantTableViewController.h */,
 				B0A98FFF18CA43E900AC4CBB /* MMMasterRestaurantTableViewController.m */,
-				B0A9900018CA43E900AC4CBB /* MMMenuItemPopOverViewController.h */,
-				B0A9900118CA43E900AC4CBB /* MMMenuItemPopOverViewController.m */,
 				B0A9900218CA43E900AC4CBB /* MMMenuItemViewController.h */,
 				B0A9900318CA43E900AC4CBB /* MMMenuItemViewController.m */,
 				B0A9900418CA43E900AC4CBB /* MMProfileSplitViewController.h */,
@@ -938,7 +933,6 @@
 				83893EB718919AD400D36670 /* main.m in Sources */,
 				B0A9907418CA43E900AC4CBB /* MMMainTabBarViewController.m in Sources */,
 				B0A9906F18CA43E900AC4CBB /* MMBaseNavigationController.m in Sources */,
-				B0A9907718CA43E900AC4CBB /* MMMenuItemPopOverViewController.m in Sources */,
 				B0A990A318CA43E900AC4CBB /* MMRoundedView.m in Sources */,
 				B0A9907118CA43E900AC4CBB /* MMDetailMapViewController.m in Sources */,
 				B0A990A018CA43E900AC4CBB /* MMMenuItemReviewCell.m in Sources */,
