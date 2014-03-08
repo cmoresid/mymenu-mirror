@@ -43,6 +43,7 @@
 		83893ECF18919AD400D36670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAE18919AD400D36670 /* UIKit.framework */; };
 		83893ED718919AD400D36670 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83893ED518919AD400D36670 /* InfoPlist.strings */; };
 		83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A61ED018922E4E00269357 /* MapKit.framework */; };
+		B025696118CBC92100264A3B /* MMMainTabViewSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B025696018CBC92100264A3B /* MMMainTabViewSegue.m */; };
 		B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */; };
 		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
 		B0627E2D18A2CB3700EAA045 /* 125-food.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2918A2CB3700EAA045 /* 125-food.png */; };
@@ -91,7 +92,6 @@
 		B0A9908E18CA43E900AC4CBB /* MMSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9903518CA43E900AC4CBB /* MMSpecial.m */; };
 		B0A9908F18CA43E900AC4CBB /* MMSpecialType.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9903718CA43E900AC4CBB /* MMSpecialType.m */; };
 		B0A9909018CA43E900AC4CBB /* MMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9903918CA43E900AC4CBB /* MMUser.m */; };
-		B0A9909118CA43E900AC4CBB /* MMMainTabViewSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9903E18CA43E900AC4CBB /* MMMainTabViewSegue.m */; };
 		B0A9909218CA43E900AC4CBB /* MMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9904118CA43E900AC4CBB /* MMLocationManager.m */; };
 		B0A9909318CA43E900AC4CBB /* MMLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9904318CA43E900AC4CBB /* MMLoginManager.m */; };
 		B0A9909418CA43E900AC4CBB /* MMNetworkClientProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9904518CA43E900AC4CBB /* MMNetworkClientProxy.m */; };
@@ -167,6 +167,8 @@
 		9B1CFF7F18A46CF600E9F778 /* libPods-NSString-UrlEncode.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-NSString-UrlEncode.a"; path = "Pods/build/Debug-iphoneos/libPods-NSString-UrlEncode.a"; sourceTree = "<group>"; };
 		9BBD913F189478CF006DDBCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9BBD9141189478DB006DDBCE /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		B025696018CBC92100264A3B /* MMMainTabViewSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMainTabViewSegue.m; sourceTree = "<group>"; };
+		B025696218CBC92C00264A3B /* MMMainTabViewSegue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMMainTabViewSegue.h; sourceTree = "<group>"; };
 		B027167618A3527D0027BF4E /* MMMockDBFetcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMockDBFetcherDelegate.h; sourceTree = "<group>"; };
 		B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMockDBFetcherDelegate.m; sourceTree = "<group>"; };
 		B027167918A3574B0027BF4E /* MMDBFetcherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcherTests.m; sourceTree = "<group>"; };
@@ -261,8 +263,6 @@
 		B0A9903818CA43E900AC4CBB /* MMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMUser.h; sourceTree = "<group>"; };
 		B0A9903918CA43E900AC4CBB /* MMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMUser.m; sourceTree = "<group>"; };
 		B0A9903B18CA43E900AC4CBB /* MMNetworkClientProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMNetworkClientProtocol.h; sourceTree = "<group>"; };
-		B0A9903D18CA43E900AC4CBB /* MMMainTabViewSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMainTabViewSegue.h; sourceTree = "<group>"; };
-		B0A9903E18CA43E900AC4CBB /* MMMainTabViewSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMainTabViewSegue.m; sourceTree = "<group>"; };
 		B0A9904018CA43E900AC4CBB /* MMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLocationManager.h; sourceTree = "<group>"; };
 		B0A9904118CA43E900AC4CBB /* MMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLocationManager.m; sourceTree = "<group>"; };
 		B0A9904218CA43E900AC4CBB /* MMLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLoginManager.h; sourceTree = "<group>"; };
@@ -641,8 +641,8 @@
 		B0A9903C18CA43E900AC4CBB /* Segue */ = {
 			isa = PBXGroup;
 			children = (
-				B0A9903D18CA43E900AC4CBB /* MMMainTabViewSegue.h */,
-				B0A9903E18CA43E900AC4CBB /* MMMainTabViewSegue.m */,
+				B025696218CBC92C00264A3B /* MMMainTabViewSegue.h */,
+				B025696018CBC92100264A3B /* MMMainTabViewSegue.m */,
 			);
 			path = Segue;
 			sourceTree = "<group>";
@@ -898,6 +898,7 @@
 				B0A9908D18CA43E900AC4CBB /* MMRestriction.m in Sources */,
 				B0A9907818CA43E900AC4CBB /* MMMenuItemViewController.m in Sources */,
 				B0A990A118CA43E900AC4CBB /* MMRatingView.m in Sources */,
+				B025696118CBC92100264A3B /* MMMainTabViewSegue.m in Sources */,
 				B0A9909018CA43E900AC4CBB /* MMUser.m in Sources */,
 				B0A9908718CA43E900AC4CBB /* MMDBFetcherResponse.m in Sources */,
 				B0A9908B18CA43E900AC4CBB /* MMMerchant.m in Sources */,
@@ -947,7 +948,6 @@
 				B0A9908918CA43E900AC4CBB /* MMMenuItemFavLink.m in Sources */,
 				B0A9909718CA43E900AC4CBB /* MMMatchingTextFieldValidator.m in Sources */,
 				B0A9907F18CA43E900AC4CBB /* MMReviewPopOverViewController.m in Sources */,
-				B0A9909118CA43E900AC4CBB /* MMMainTabViewSegue.m in Sources */,
 				B0A9908618CA43E900AC4CBB /* MMDBFetcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
