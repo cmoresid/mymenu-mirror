@@ -6,14 +6,14 @@
 //
 //
 
-#import "MMSpecialsPopOverTableView.h"
+#import "MMSpecialsTypeController.h"
 #import "UIColor+MyMenuColors.h"
 
-@interface MMSpecialsPopOverTableView ()
+@interface MMSpecialsTypeController ()
 
 @end
 
-@implementation MMSpecialsPopOverTableView
+@implementation MMSpecialsTypeController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

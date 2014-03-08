@@ -19,7 +19,14 @@
 #import "MMLocationManager.h"
 #import <RBStoryboardLink/RBStoryboardLinkSource.h>
 
+/**
+ *  The split view for displaying the map and restaurants.
+ */
 @interface MMSplitViewController : UISplitViewController <RBStoryboardLinkSource>
+
+/**
+ *  The location manager for the controller
+ */
 @property(nonatomic, strong) MMLocationManager *locationManager;
 
 

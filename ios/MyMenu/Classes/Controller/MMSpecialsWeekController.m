@@ -6,14 +6,14 @@
 //
 //
 
-#import "MMSpecialsPopOverWeek.h"
+#import "MMSpecialsWeekController.h"
 #import "UIColor+MyMenuColors.h"
 
-@interface MMSpecialsPopOverWeek ()
+@interface MMSpecialsWeekController ()
 
 @end
 
-@implementation MMSpecialsPopOverWeek
+@implementation MMSpecialsWeekController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
