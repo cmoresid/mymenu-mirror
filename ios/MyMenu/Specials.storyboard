@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="sDB-Wm-2h8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="sDB-Wm-2h8">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Specials Collection View Controller - Specials-->
@@ -102,10 +102,10 @@
             </objects>
             <point key="canvasLocation" x="1312" y="1464"/>
         </scene>
-        <!--Specials Pop Over Table View-->
+        <!--Specials Type Controller-->
         <scene sceneID="ycr-Bu-Ln2">
             <objects>
-                <tableViewController storyboardIdentifier="SpecialsTypes" modalPresentationStyle="currentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="C2e-ee-QRg" customClass="MMSpecialsPopOverTableView" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SpecialsTypes" modalPresentationStyle="currentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="C2e-ee-QRg" customClass="MMSpecialsTypeController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4bG-7W-ISn">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -135,10 +135,10 @@
             </objects>
             <point key="canvasLocation" x="3048" y="708"/>
         </scene>
-        <!--Specials Pop Over Week-->
+        <!--Specials Week Controller-->
         <scene sceneID="N3S-Ai-KQ7">
             <objects>
-                <tableViewController storyboardIdentifier="SpecialsWeek" modalPresentationStyle="currentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="oFi-HW-5cm" customClass="MMSpecialsPopOverWeek" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SpecialsWeek" modalPresentationStyle="currentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="oFi-HW-5cm" customClass="MMSpecialsWeekController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="150" placeholderIntrinsicHeight="1024" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Pzk-08-iUb">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

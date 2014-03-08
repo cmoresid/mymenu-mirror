@@ -33,10 +33,20 @@
     return self;
 }
 
+/**
+ *  Shows the loading widget
+ *
+ *  @param webView current web view on screen
+ */
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
+/**
+ *  Closes the loading widget
+ *
+ *  @param webView current web view on the screen
+ */
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }

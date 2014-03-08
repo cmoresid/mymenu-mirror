@@ -15,19 +15,20 @@
 //  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
-#import "MMSpecialsPopOverTableView.h"
+#import "MMSpecialsWeekController.h"
 #import "UIColor+MyMenuColors.h"
 
-@interface MMSpecialsPopOverTableView ()
+@interface MMSpecialsWeekController ()
 
 @end
 
-@implementation MMSpecialsPopOverTableView
+@implementation MMSpecialsWeekController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
+		//[self setSelectedWeek:0];
         // Custom initialization
     }
     return self;
@@ -36,12 +37,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
 	CGRect frame = self.tableView.frame;
-	CGSize size = [self preferredContentSize];
+	CGSize size = [self contentSizeForViewInPopover];
 	[self.tableView setFrame:CGRectMake(frame.origin.x, frame.origin.y, size.width, size.height)];
-
     // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -53,10 +54,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 - (CGSize)contentSizeForViewInPopover {
     // Currently no way to obtain the width dynamically before viewWillAppear.
-    CGFloat width = 150.0;
+    CGFloat width = 200.0;
     CGRect rect = [self.tableView rectForSection:[self.tableView numberOfSections] - 1];
     CGFloat height = CGRectGetMaxY(rect);
     return (CGSize){width, height};
@@ -71,26 +71,27 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [self specialItems].count;
+	return [self weeks].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    [cell setTintColor:[UIColor tealColor]];
-	// Get the Type
-	NSString * type =[self.specialItems objectAtIndex:indexPath.item];
 	
 	// When loading make sure we know which one should be checkmarked or not
-	if(![self.specialsCollectionController containsShowType:type]) {
-		cell.accessoryType = UITableViewCellAccessoryNone;
-	} else {
+	if(indexPath.item == self.selectedWeek) {
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 	}
 	
 	// Set the Proper Text
-    [cell.textLabel setText:[self.specialItems objectAtIndex:indexPath.item]];
+	NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"EE MMM dd"];
+	
+	// Get the Date for that section
+	NSString *title = [formatter stringFromDate:[self.weeks objectAtIndex:indexPath.item]];
+	[cell setTintColor:[UIColor tealColor]];
+    [cell.textLabel setText:title];
     return cell;
 }
 
@@ -99,14 +100,17 @@
 	
 	// If user Selects the item, uncheck it or check it and update the Data model
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+	
+	NSIndexPath * oldPath = [NSIndexPath indexPathForItem:self.selectedWeek inSection:0];
+	UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldPath];
+							 
 	if (cell.accessoryType == UITableViewCellAccessoryNone) {
+		oldCell.accessoryType = UITableViewCellAccessoryNone;
+		self.selectedWeek = indexPath.item;
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         // Reflect selection in data model
-		[self.specialsCollectionController addShowType:[cell.textLabel text]];
-    } else if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-		[self.specialsCollectionController removeShowType:[cell.textLabel text]];
-        // Reflect deselection in data model
+		
+		[self.specialsCollectionController loadWeek:[self.weeks objectAtIndex:indexPath.item]];
     }
 }
 

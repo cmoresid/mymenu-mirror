@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="sDb-0H-8Q4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="sDb-0H-8Q4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Restaurant View Controller - Restaurant Information-->
@@ -199,18 +199,18 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="adress" destination="fH4-pF-x8F" id="wko-6b-yQN"/>
                         <outlet property="categoryButton" destination="PVh-nm-d8c" id="y8T-qV-Wti"/>
-                        <outlet property="collectionView" destination="pH9-uF-H80" id="ZOO-Yn-5fu"/>
-                        <outlet property="hours" destination="gko-i2-zZu" id="UsL-ck-99a"/>
+                        <outlet property="menuItemsCollectionView" destination="pH9-uF-H80" id="BjT-2j-aeP"/>
+                        <outlet property="merchantAddressLabel" destination="fH4-pF-x8F" id="kFu-uu-2a1"/>
+                        <outlet property="merchantDescriptionTextView" destination="3nd-G3-sW8" id="5no-rP-p3M"/>
+                        <outlet property="merchantHoursLabel" destination="gko-i2-zZu" id="3xx-ag-pw7"/>
+                        <outlet property="merchantImageView" destination="U2D-DU-XfK" id="MQV-Wd-M6m"/>
+                        <outlet property="merchantNameLabel" destination="OmH-kW-GDf" id="Qet-P6-mZg"/>
+                        <outlet property="merchantPhoneNumberLabel" destination="7X2-T2-PaL" id="TSh-mg-eAS"/>
+                        <outlet property="merchantRatingLabel" destination="Zum-ge-zPF" id="uF9-lj-qfQ"/>
                         <outlet property="ratingView" destination="Ttc-gP-x6J" id="2BP-OO-nbH"/>
-                        <outlet property="restDescription" destination="3nd-G3-sW8" id="9Ch-Ub-Irh"/>
-                        <outlet property="restImage" destination="U2D-DU-XfK" id="QRZ-Wp-4r3"/>
-                        <outlet property="restName" destination="OmH-kW-GDf" id="MBW-9T-6ue"/>
-                        <outlet property="restNumber" destination="7X2-T2-PaL" id="9lk-Oh-KIf"/>
-                        <outlet property="restRating" destination="Zum-ge-zPF" id="IGL-GP-8Aj"/>
-                        <outlet property="reviewCollection" destination="0J3-GC-UHm" id="bo5-M0-buW"/>
-                        <outlet property="search" destination="k70-Tz-ZXb" id="4Qg-pT-yOj"/>
+                        <outlet property="reviewsCollectionView" destination="0J3-GC-UHm" id="KWn-Td-woF"/>
+                        <outlet property="searchBar" destination="k70-Tz-ZXb" id="71I-o7-BvO"/>
                         <outlet property="segmentedControl" destination="gXC-cR-Z3F" id="Chn-xh-8Gr"/>
                     </connections>
                 </viewController>
@@ -385,7 +385,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="ratingButton:" destination="3eX-sQ-SGR" eventType="touchUpInside" id="Aby-bQ-gwa"/>
+                                                    <action selector="rateItem:" destination="3eX-sQ-SGR" eventType="touchUpInside" id="sKF-9m-5H6"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TG6-rI-WDz">
@@ -584,18 +584,18 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="collectionView" destination="TbA-Q0-5P5" id="GoD-nM-kJA"/>
                         <outlet property="eatenThisButton" destination="qME-wY-ASN" id="z37-uT-y8e"/>
                         <outlet property="itemDescription" destination="7un-5J-y4M" id="fgA-4s-imw"/>
                         <outlet property="itemImage" destination="UVj-bN-ThP" id="ovW-k7-fiK"/>
                         <outlet property="itemName" destination="LkY-Io-2o5" id="HdF-Yw-Ni5"/>
                         <outlet property="itemRating" destination="X3W-Ev-1na" id="PFd-ag-IVW"/>
-                        <outlet property="itemView" destination="wLQ-OY-zGp" id="KIy-8N-QHL"/>
+                        <outlet property="itemRatingView" destination="wLQ-OY-zGp" id="eud-gm-XFx"/>
+                        <outlet property="menuModificationsTableView" destination="Jsj-xv-Mhb" id="SrD-Qe-UMk"/>
                         <outlet property="ratingButton" destination="V0F-1W-GoZ" id="wNP-1W-jpG"/>
-                        <outlet property="reviewField" destination="Xvt-6G-L8q" id="1pD-WR-33X"/>
+                        <outlet property="ratingsCollectionView" destination="TbA-Q0-5P5" id="bGG-gD-Csk"/>
                         <outlet property="reviewSegment" destination="un8-2X-oP1" id="pzq-Zo-0Gj"/>
                         <outlet property="scrollView" destination="VVQ-j4-Tda" id="kFj-Ow-BZH"/>
-                        <outlet property="tableView" destination="Jsj-xv-Mhb" id="bTV-hu-jCP"/>
+                        <outlet property="userReviewField" destination="Xvt-6G-L8q" id="KlZ-Qk-HA1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7yh-1G-dzm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -734,8 +734,8 @@
                     <connections>
                         <outlet property="menuItemImage" destination="dlC-8S-Xxx" id="Wc2-JS-pSC"/>
                         <outlet property="menuItemName" destination="tVw-Uv-nRK" id="MvM-1L-ftG"/>
+                        <outlet property="merchantName" destination="JVA-Av-XT9" id="aAK-aM-KXC"/>
                         <outlet property="ratingView" destination="xhG-Zc-XC3" id="wlL-lY-l10"/>
-                        <outlet property="restaurantName" destination="JVA-Av-XT9" id="yW8-th-OYF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byJ-Ct-v25" userLabel="First Responder" sceneMemberID="firstResponder"/>

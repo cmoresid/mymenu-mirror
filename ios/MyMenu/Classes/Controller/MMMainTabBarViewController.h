@@ -18,6 +18,10 @@
 #import <UIKit/UIKit.h>
 #import "MMDBFetcherDelegate.h"
 
+/**
+ *  Custom UITabBarController
+ *  This controller setups up the colours as needed.
+ */
 @interface MMMainTabBarViewController : UITabBarController <MMDBFetcherDelegate>
 
 @end

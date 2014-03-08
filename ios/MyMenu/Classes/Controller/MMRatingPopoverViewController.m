@@ -48,7 +48,7 @@
     self.ratingView.multipleTouchEnabled = FALSE;
     
     self.menuItemName.text = self.menuItem.name;
-    self.restaurantName.text = self.menuRestaurant.businessname;
+    self.merchantName.text = self.menuItemMerchant.businessname;
     
     if (self.menuItem.picture != nil && ![self.menuItem.picture isEqualToString:@"null"]) {
         [self.menuItemImage setImageWithURL:[NSURL URLWithString:self.menuItem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];

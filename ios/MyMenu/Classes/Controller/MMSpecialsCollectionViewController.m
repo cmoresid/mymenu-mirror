@@ -20,8 +20,8 @@
 #import "MMSpecial.h"
 #import "MMDBFetcher.h"
 #import "SDWebImage/UIImageView+WebCache.h"
-#import "MMSpecialsPopOverTableView.h"
-#import "MMSpecialsPopOverWeek.h"
+#import "MMSpecialsTypeController.h"
+#import "MMSpecialsWeekController.h"
 #import "UIColor+MyMenuColors.h"
 #import "UIStoryboard+UIStoryboard_MyMenu.h"
 
@@ -497,15 +497,15 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	id popover = segue.destinationViewController;
-	if([popover isKindOfClass:[MMSpecialsPopOverTableView class]]) {
+	if([popover isKindOfClass:[MMSpecialsTypeController class]]) {
 		
-		popover = (MMSpecialsPopOverTableView *)popover;
+		popover = (MMSpecialsTypeController *)popover;
 		[popover setSpecialItems:types];
 		[popover setSpecialsCollectionController:self];
 		
-	} else if([popover isKindOfClass:[MMSpecialsPopOverWeek class]]) {
+	} else if([popover isKindOfClass:[MMSpecialsWeekController class]]) {
 		
-		popover = (MMSpecialsPopOverWeek *)popover;
+		popover = (MMSpecialsWeekController *)popover;
 		NSMutableArray * weeks = [[NSMutableArray alloc] init];
 		for(int i =0; i < 10; i ++) {
 			[weeks addObject:[self getCurrentDatePlusDays:i*7]];

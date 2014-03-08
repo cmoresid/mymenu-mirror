@@ -28,12 +28,38 @@
  */
 @interface MMLoginViewController : UIViewController <UITextFieldDelegate, RBStoryboardLinkSource>
 
+/**
+ *  The Users email view
+ */
 @property(nonatomic, weak) IBOutlet UITextField *emailAddress;
+
+/**
+ *  The Users Password View
+ */
 @property(nonatomic, weak) IBOutlet UITextField *password;
+
+/**
+ *  The Scroll view on the page, for moving the view up when the keyboard is shown.
+ */
 @property(nonatomic, weak) IBOutlet UIScrollView *scrollView;
+
+/**
+ *  The current selected view.
+ */
 @property(nonatomic, weak) IBOutlet UITextField *activeField;
 
+/**
+ *  Login button
+ *
+ *  @param sender UIButton
+ */
 - (IBAction)login:(id)sender;
+
+/**
+ *  Login as Guest Button
+ *
+ *  @param sender UIButton
+ */
 - (IBAction)loginAsGuest:(id)sender;
 
 @end

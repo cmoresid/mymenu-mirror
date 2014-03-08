@@ -18,12 +18,20 @@
 #import <UIKit/UIKit.h>
 #import "MMSpecialsCollectionViewController.h"
 
-@interface MMSpecialsPopOverWeek : UITableViewController
 
-@property(nonatomic,readwrite) NSArray * weeks;
-@property(nonatomic) NSUInteger selectedWeek;
+/**
+ *  Controller for showing the types of specials in a popover on the specials page
+ */
+@interface MMSpecialsTypeController : UITableViewController
+
+/**
+ *  The types of specials
+ */
+@property(nonatomic,readwrite) NSArray * specialItems;
+
+/**
+ *  The controller we are in (Always MMSpecialsCollectionViewController)
+ */
 @property(nonatomic,readwrite) MMSpecialsCollectionViewController * specialsCollectionController;
-
-- (CGSize)contentSizeForViewInPopover;
 
 @end
