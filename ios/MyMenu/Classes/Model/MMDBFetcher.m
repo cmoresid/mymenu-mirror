@@ -24,7 +24,6 @@
 @interface MMDBFetcher ()
 
 - (void)compressedMerchantsHelper:(NSMutableURLRequest*)request;
-- (void)getRatingsHelper:(NSMutableURLRequest*) request;
 
 @end
 
