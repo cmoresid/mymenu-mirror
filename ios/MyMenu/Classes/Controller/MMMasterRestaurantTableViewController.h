@@ -22,8 +22,17 @@
 #import "MMDBFetcher.h"
 #import "MMMerchant.h"
 #import "MMLocationManager.h"
-extern NSString *const kDidUpdateList;
+
 @class MMDetailMapViewController;
+
+/**
+ *  The identifier for the notification that is
+ *  sent when a user begins searching for a
+ *  a restaurant. When a subscriber receives
+ *  this notification, it updates the restaurant
+ *  list in the `MMMasterRestaurantTableViewController`
+ */
+extern NSString *const kDidUpdateList;
 
 /**
  *  The Restaurant table shown on the Restaurants tab. (Next to the map)
