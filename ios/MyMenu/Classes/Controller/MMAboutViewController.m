@@ -16,6 +16,7 @@
 //
 
 #import "MMAboutViewController.h"
+#import "MMStaticDataHelper.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 
 @interface MMAboutViewController ()
@@ -56,7 +57,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.aboutWebView.delegate = self;
-    [self.aboutWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mymenuapp.ca/about"]]];
+    [self.aboutWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[MMStaticDataHelper sharedDataHelper] getAboutURL]]]];
 }
 
 - (void)didReceiveMemoryWarning

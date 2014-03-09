@@ -45,6 +45,8 @@
 		B025696118CBC92100264A3B /* MMMainTabViewSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B025696018CBC92100264A3B /* MMMainTabViewSegue.m */; };
 		B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */; };
 		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
+		B03D7C8A18CCFD8200F7F5CE /* StaticData.plist in Resources */ = {isa = PBXBuildFile; fileRef = B03D7C8918CCFD8200F7F5CE /* StaticData.plist */; };
+		B03D7C8E18CCFE2000F7F5CE /* MMStaticDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B03D7C8D18CCFE2000F7F5CE /* MMStaticDataHelper.m */; };
 		B0627E2D18A2CB3700EAA045 /* 125-food.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2918A2CB3700EAA045 /* 125-food.png */; };
 		B0627E2E18A2CB3700EAA045 /* 172-pricetag.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */; };
 		B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2B18A2CB3700EAA045 /* 184-warning.png */; };
@@ -170,6 +172,9 @@
 		B027167618A3527D0027BF4E /* MMMockDBFetcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMockDBFetcherDelegate.h; sourceTree = "<group>"; };
 		B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMockDBFetcherDelegate.m; sourceTree = "<group>"; };
 		B027167918A3574B0027BF4E /* MMDBFetcherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcherTests.m; sourceTree = "<group>"; };
+		B03D7C8918CCFD8200F7F5CE /* StaticData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StaticData.plist; sourceTree = "<group>"; };
+		B03D7C8C18CCFE2000F7F5CE /* MMStaticDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMStaticDataHelper.h; path = Helper/MMStaticDataHelper.h; sourceTree = "<group>"; };
+		B03D7C8D18CCFE2000F7F5CE /* MMStaticDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMStaticDataHelper.m; path = Helper/MMStaticDataHelper.m; sourceTree = "<group>"; };
 		B0627E2818A2CB3700EAA045 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
 		B0627E2918A2CB3700EAA045 /* 125-food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "125-food.png"; sourceTree = "<group>"; };
 		B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "172-pricetag.png"; sourceTree = "<group>"; };
@@ -455,9 +460,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B03D7C8818CCFD5E00F7F5CE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B03D7C8918CCFD8200F7F5CE /* StaticData.plist */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		B03D7C8B18CCFDDC00F7F5CE /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				B03D7C8C18CCFE2000F7F5CE /* MMStaticDataHelper.h */,
+				B03D7C8D18CCFE2000F7F5CE /* MMStaticDataHelper.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		B0A98FCA18CA424300AC4CBB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B03D7C8818CCFD5E00F7F5CE /* Data */,
 				B0E7616318CA7C7500D1ABF7 /* Storyboards */,
 				B0A98FCC18CA426800AC4CBB /* Images */,
 				B0A98FCB18CA425300AC4CBB /* XIB */,
@@ -491,6 +514,7 @@
 				B0A98FE618CA43E900AC4CBB /* Category */,
 				B0A98FEB18CA43E900AC4CBB /* Controller */,
 				B0A9901C18CA43E900AC4CBB /* Delegate */,
+				B03D7C8B18CCFDDC00F7F5CE /* Helper */,
 				B0A9902118CA43E900AC4CBB /* Misc */,
 				B0A9902218CA43E900AC4CBB /* Model */,
 				B0A9903A18CA43E900AC4CBB /* Protocol */,
@@ -803,6 +827,7 @@
 				B0627E2E18A2CB3700EAA045 /* 172-pricetag.png in Resources */,
 				833C8C83189D9B85007CB562 /* logo.png in Resources */,
 				B0DF9BD318AC43C800BB42FA /* FacebookIcon.png in Resources */,
+				B03D7C8A18CCFD8200F7F5CE /* StaticData.plist in Resources */,
 				B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */,
 				B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */,
 				174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */,
@@ -933,6 +958,7 @@
 				B0A9907418CA43E900AC4CBB /* MMMainTabBarViewController.m in Sources */,
 				B0A9906F18CA43E900AC4CBB /* MMBaseNavigationController.m in Sources */,
 				B0A990A318CA43E900AC4CBB /* MMRoundedView.m in Sources */,
+				B03D7C8E18CCFE2000F7F5CE /* MMStaticDataHelper.m in Sources */,
 				B0A9907118CA43E900AC4CBB /* MMDetailMapViewController.m in Sources */,
 				B0A990A018CA43E900AC4CBB /* MMMenuItemReviewCell.m in Sources */,
 				B0A9909818CA43E900AC4CBB /* MMRegexTextFieldValidator.m in Sources */,
