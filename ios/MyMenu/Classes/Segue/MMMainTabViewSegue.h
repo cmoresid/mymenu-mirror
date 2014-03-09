@@ -17,6 +17,16 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  A custom segue that does not use any
+ *  sort of transition animation. It used
+ *  primarily as the segue between the
+ *  dietary restrictions page and the main
+ *  tab bar view. It is also used for
+ *  the transition between the login view
+ *  and the main tab bar view when the app
+ *  starts up.
+ */
 @interface MMMainTabViewSegue : UIStoryboardSegue
 
 @end

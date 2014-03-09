@@ -38,7 +38,7 @@ extern NSString *const kRetrievedUserLocation;
 
 /**
  *  An object that implements the `CLLocationManagerDelegate`
- *  provided by Apple. Once
+ *  provided by Apple.
  */
 @interface MMLocationManager : NSObject <CLLocationManagerDelegate>
 

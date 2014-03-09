@@ -67,7 +67,8 @@ extern NSString *const kUserUpdateErrorNotification;
  *  @param userName The user name to login.
  *  @param password The user's password.
  */
-- (void)beginLoginWithUserName:(NSString*)userName withPassword:(NSString*)password;
+- (void)beginLoginWithUserName:(NSString*)userName
+                  withPassword:(NSString*)password;
 
 /**
  *  Serializes the specifid user's profile to 

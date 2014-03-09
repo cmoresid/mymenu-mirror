@@ -17,14 +17,51 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const SLServiceTypeFacebook;
-extern NSString *const SLServiceTypeTwitter;
-
 @class SLComposeViewController;
 @class MMMenuItem;
 
+/**
+ *  Defined within Social.framework. It is used
+ *  by `SLComposeViewController` to display
+ *  a popover to post to Facebook.
+ */
+extern NSString *const SLServiceTypeFacebook;
+
+/**
+ *  Defined within Social.framework. It is used
+ *  by `SLComposeViewController` to display
+ *  a popover to post to Twitter.
+ */
+extern NSString *const SLServiceTypeTwitter;
+
+/**
+ *  A helper class that is a wrapper 
+ *  around `SLComposeViewController`
+ *  that allows a user to share MyMenu
+ *  related content.
+ */
 @interface MMSocialMediaService : NSObject
 
-+ (SLComposeViewController*)shareMenuItem:(MMMenuItem*)menuItem withService:(NSString*)serviceType;
+/**
+ *  A helper method that configures an
+ *  `SLComposeViewController` to share
+ *  a menu item. A view controller must
+ *  then present the returned view controller.
+ *
+ *  @param menuItem    The menu item to share.
+ *  @param serviceType The string that represents
+ *                     which service to share the
+ *                     menu item to.
+ *
+ *  @return A `SLComposeViewController` that is
+ *          configured to share the provided menu
+ *          item.
+ *
+ *  See `presentViewController:animated:completion:`
+ *  of `UIViewController` to use the resulting
+ *  `SLComposeViewController`.
+ */
++ (SLComposeViewController*)shareMenuItem:(MMMenuItem*)menuItem
+                              withService:(NSString*)serviceType;
 
 @end

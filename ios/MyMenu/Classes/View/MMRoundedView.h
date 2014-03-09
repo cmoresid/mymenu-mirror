@@ -17,7 +17,12 @@
 
 #import <UIKit/UIKit.h>
 
-// Rounded view for consistency through the app
+/**
+ *  This custom view provides rounded
+ *  corners to it outer frame. Used throughout
+ *  the application to provided a rounded content
+ *  view.
+ */
 @interface MMRoundedView : UIView
 
 @end

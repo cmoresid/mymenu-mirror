@@ -31,4 +31,8 @@
     return [UIStoryboard storyboardWithName:@"Menu" bundle:nil];
 }
 
++ (UIStoryboard*)profileStoryboard {
+    return [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+}
+
 @end

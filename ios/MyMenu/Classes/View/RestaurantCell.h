@@ -17,14 +17,50 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  A custom table view cell that represents
+ *  a restaurant. This is used in `MMMasterRestaurantTableViewController`. 
+ *  The UI layout resides in an external XIB file, namely
+ *  `Resources/XIB/RestaurantTableCell.xib`
+ */
 @interface RestaurantCell : UITableViewCell
 
-@property(nonatomic, weak) IBOutlet UILabel *nameLabel;
+/**
+ *  The label that contains the name of the restaurant.
+ */
+@property(nonatomic, weak) IBOutlet UILabel *restaurantNameLabel;
+
+/**
+ *  The label that contains the category of the restaurant.
+ */
 @property(nonatomic, weak) IBOutlet UILabel *categoryLabel;
+
+/**
+ *  The label that contains the rating of the restaurant.
+ */
 @property(nonatomic, weak) IBOutlet UILabel *ratinglabel;
+
+/**
+ *  The label that contains the distance from the
+ *  user's location and the restaurant's location.
+ */
 @property(nonatomic, weak) IBOutlet UILabel *distanceLabel;
+
+/**
+ *  The label that contains the address of the restaurant.
+ */
 @property(nonatomic, weak) IBOutlet UILabel *addressLabel;
+
+/**
+ *  The view that the rating label resides in. The background
+ *  color for this view is set to a light grey color.
+ */
 @property(nonatomic, weak) IBOutlet UIView *ratingBg;
+
+/**
+ *  The image view that contains a small thumbnail image 
+ *  of the restaurant.
+ */
 @property(nonatomic, weak) IBOutlet UIImageView *thumbnailImageView;
 
 @end

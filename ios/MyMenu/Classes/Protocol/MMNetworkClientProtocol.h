@@ -34,8 +34,8 @@ typedef void (^NetworkResponseBlock)(NSURLResponse *, NSData *, NSError *);
  *  a server from the intent to retrieve information from
  *  the server. This allows for mocking or allows you to
  *  swap out the object that actually performs a service
- *  call. i.e. Swap out `NSURLConnection` with AFNetwork for
- *  example.
+ *  call. i.e. Swap out `NSURLConnection` with the AFNetwork 
+ *  library for example.
  */
 @protocol MMNetworkClientProtocol <NSObject>
 

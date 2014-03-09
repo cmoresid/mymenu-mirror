@@ -18,16 +18,61 @@
 #import <UIKit/UIKit.h>
 #import "MMMenuItemRating.h"
 
+/**
+ *  A custom collection view cell that represents
+ *  a menu item review. The UI layout resides in an
+ *  external XIB file, namely
+ *  `Resources/XIB/MenuItemReviewCell.xib`
+ */
 @interface MMMenuItemReviewCell : UICollectionViewCell
 
+/**
+ *  The menu item rating model object that this
+ *  cell represents.
+ */
 @property MMMenuItemRating * rating;
+
+/**
+ *  The label that represents the name of the
+ *  reviewer.
+ */
 @property(nonatomic, weak) IBOutlet UILabel *nameLabel;
+
+/**
+ *  The label that contains a portion of the review
+ *  that an individual has written.
+ */
 @property(nonatomic, weak) IBOutlet UILabel *reviewLabel;
+
+/**
+ *  The label that contains the rating that a reviewer
+ *  has given a menu item.
+ */
 @property(nonatomic, weak) IBOutlet UILabel *ratinglabel;
+
+/**
+ *  The view that the rating label resides in. The background
+ *  color for this view is set to a light grey color.
+ */
 @property(nonatomic, weak) IBOutlet UIView *ratingBg;
+
+/**
+ *  An image view that contains the image for the 'up vote'
+ *  button.
+ */
 @property(nonatomic, weak) IBOutlet UIImageView *likeImageView;
-@property(nonatomic, weak) IBOutlet UIButton * reportButton;
-@property(nonatomic, weak) IBOutlet UILabel * upVotes;
+
+/**
+ *  The button that allows one to 'report' a review for
+ *  inappropriate content.
+ */
+@property(nonatomic, weak) IBOutlet UIButton *reportButton;
+
+/**
+ *  The label that contains the number of 'up votes' that
+ *  a review has.
+ */
+@property(nonatomic, weak) IBOutlet UILabel *upVoteCountLabel;
 
 @end
 
