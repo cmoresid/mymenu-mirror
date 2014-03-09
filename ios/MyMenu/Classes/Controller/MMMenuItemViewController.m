@@ -87,7 +87,7 @@ MMMenuItemRating * touchedItem;
     _itemDescription.text = _currentMenuItem.desc;
     [_itemDescription setTextColor:[UIColor blackColor]];
     [_itemDescription setFont:[UIFont systemFontOfSize:19.0]];
-    _itemImage.image = [UIImage imageWithData:                                                                      [NSData dataWithContentsOfURL:                                                                            [NSURL URLWithString: _currentMenuItem.picture]]];
+    _itemImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: _currentMenuItem.picture]]];
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
     [formatter setMaximumFractionDigits:1];
@@ -100,13 +100,17 @@ MMMenuItemRating * touchedItem;
     [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getModifications:_currentMenuItem.itemid withUser:userProfile.email];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-        [self.ratingsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
+    [self.ratingsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
     [self.reviewSegment addTarget:self
                                    action:@selector(changeReviewSort:)
                          forControlEvents:UIControlEventValueChanged];
     [self.menuModificationsTableView reloadData];
     [self.ratingsCollectionView reloadData];
     
+    if([[MMLoginManager sharedLoginManager] isUserLoggedInAsGuest]){
+        _eatenThisButton.enabled = NO;
+        _eatenThisButton.backgroundColor = [UIColor lightGrayColor];
+    }
     
 }
 
@@ -149,6 +153,8 @@ MMMenuItemRating * touchedItem;
         [reviewDictionary setObject:allReviews forKey:kAllTopReviews];
         [reviewDictionary setObject:condensedReviews forKey:kCondensedTopReviews];
         [self.ratingsCollectionView reloadData];
+        [[MMDBFetcher get] eatenThis:userProfile.email withMenuItem:_currentMenuItem.itemid withMerch:_currentMenuItem.merchid];
+        [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     }
 
 }
@@ -422,14 +428,11 @@ MMMenuItemRating * touchedItem;
     NSLog(@"touched cell %@ at indexPath %@", cell, indexPath);
     touchedItem = [[MMMenuItemRating alloc ]init];
     touchedItem = itemCell.rating;
-//    touchedItem.merchantName = self.selectedRestaurant.businessname;
-//    touchedItem.merchid = self.selectedRestaurant.mid;
-//    touchedItem.menuid = self.touchedItem.itemid;
    
-    MMReviewPopOverViewController *categoryContent = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
-   // categoryContent.delegate = self;
+    MMReviewPopOverViewController *reviewContent = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
+    reviewContent.delegate = self;
     
-    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewContent];
     [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedItem];
     
     //popover.popoverContentSize = CGSizeMake(350, 216);
@@ -446,6 +449,33 @@ MMMenuItemRating * touchedItem;
                                           animated:YES];
     
    // [self performSegueWithIdentifier:@"showMenuItem" sender:self];
+    
+}
+- (void)didUserEat:(BOOL)exists withResponse:(MMDBFetcherResponse *)response{
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }else if(exists)
+        _eatenThisButton.enabled = NO;
+        
+}
+
+- (void)didSelectDone:(BOOL)done{
+    [MMDBFetcher get].delegate = self;
+    [self.popOverController dismissPopoverAnimated:YES];
+    
+    
+}
+
+- (void)didSelectCancel:(BOOL)cancel{
+    [MMDBFetcher get].delegate = self;
+    [self.popOverController dismissPopoverAnimated:YES];
     
 }
 
@@ -557,16 +587,17 @@ MMMenuItemRating * touchedItem;
         
         return;
     }
-    
+    else if (succesful){
+        _eatenThisButton.enabled = NO;
+        _eatenThisButton.backgroundColor = [UIColor lightBackgroundGray];
+    }
 }
 
 - (IBAction)iveEatenThis:(id)sender{
+     _eatenThisButton.enabled = NO;
+    _eatenThisButton.backgroundColor = [UIColor lightBackgroundGray];
     [[MMDBFetcher get] eatenThis:userProfile.email withMenuItem:_currentMenuItem.itemid withMerch:_currentMenuItem.merchid];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-    _eatenThisButton.enabled = NO;
-    
 }
-
-
 
 @end

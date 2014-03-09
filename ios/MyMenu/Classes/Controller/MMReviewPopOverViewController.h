@@ -17,9 +17,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MMMenuItem.h"
+#import "MMreviewPopOverDelegate.h"
+#import "MMRatingPopoverViewController.h"
+#import "MMMerchant.h"
+#import "MMDBFetcherDelegate.h"
 
 
-@interface MMReviewPopOverViewController : UIViewController
+@interface MMReviewPopOverViewController : UIViewController <UIPopoverControllerDelegate, MMDBFetcherDelegate>
 
 @property (nonatomic, assign) CGFloat currentRating;
 @property (nonatomic, weak) IBOutlet UILabel *restaurantName;
@@ -30,7 +34,15 @@
 @property (nonatomic, weak) IBOutlet UIButton *report;
 @property (nonatomic, weak) IBOutlet UIButton *edit;
 @property (nonatomic, weak) IBOutlet UILabel *likecount;
+@property (nonatomic, weak) IBOutlet UIView *labelBack;
+@property (nonatomic, weak) IBOutlet UILabel *ratingLabel;
 @property (nonatomic, strong) MMMenuItem *menuItem;
+@property (nonatomic, strong) MMMerchant *selectedRestaurant;
+@property (nonatomic, strong) id <MMReviewPopOverDelegate> delegate;
+@property (nonatomic, strong) MMRatingPopoverViewController *reviewPopOver;
+
+@property (nonatomic, strong) UIPopoverController * popOverController;
+
 
 - (IBAction)submitReview:(id)sender;
 - (IBAction)cancelReview:(id)sender;
