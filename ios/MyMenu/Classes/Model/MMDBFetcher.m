@@ -125,7 +125,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, r.id, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture FROM ratings r, menu m, users u, merchusers mu ratinglikes rl WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, r.id, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, merchid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -140,7 +140,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, r.id, m.name, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture FROM ratings r, menu m, users u, merchusers mu WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY r.likecount DESC";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, r.id, m.name, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY r.likecount DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, merchid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -155,7 +155,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, u.firstname, u.lastname, r.id, mu.business_name, m.picture FROM ratings r, menu m, users u, merchusers mu WHERE m.id=%@ AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, u.firstname, u.lastname, r.id, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE m.id=%@ AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, itemid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -170,7 +170,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
     
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, r.id, m.name, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture FROM menu m, users u, ratings r, merchusers mu WHERE r.menuid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY r.likecount DESC";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, r.id, m.name, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM menu m, users u, ratings r, merchusers mu WHERE r.menuid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY r.likecount DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, itemid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -273,6 +273,32 @@ static MMDBFetcher *instance;
                             }];
 }
 
+- (void)editReview:(MMMenuItemRating *)review {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
+    
+    NSString *queryFormat = @"query=UPDATE ratings SET rating='%@',ratingdescription='%@',ratingdate=sysdate() WHERE id=%@";
+    NSString *query = [NSString stringWithFormat:queryFormat, review.rating, review.review, review.id];
+    
+    
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (dbResponse.wasSuccessful) {
+                                    [self.delegate didUpdateRatings:TRUE withResponse:dbResponse];
+                                }
+                                else {
+                                    [self.delegate didUpdateRatings:FALSE withResponse:dbResponse];
+                                }
+                            }];
+}
+
 - (void)userExists:(NSString *)email {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
@@ -355,6 +381,7 @@ static MMDBFetcher *instance;
                                 }
                             }];
 }
+
 
 - (void)innerAddUserRestrictions:(NSString *)email :(NSArray *)restrictions {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -946,6 +973,8 @@ static MMDBFetcher *instance;
                                         MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
                                         rating.id = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
                                         rating.useremail = [e child: @"useremail"].text;
+                                        rating.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
+                                        rating.menuid = [NSNumber numberWithInt:[e child:@"menuid"].textAsInt];
                                         rating.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
                                         rating.date = [dateform dateFromString:[e child: @"ratingdate"].text];
                                         rating.review = [e child: @"ratingdescription"].text;
@@ -1053,6 +1082,117 @@ static MMDBFetcher *instance;
                                 }
                             }];
     
+}
+
+- (void)userEaten:(NSString *)email withItem: (NSNumber*)mid {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
+    
+    NSString *queryFormat = @"query=SELECT id FROM eatenthis WHERE useremail='%@' AND menuid = %@";
+    NSString *query = [NSString stringWithFormat:queryFormat, email, mid];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse *dbResponse = [[MMDBFetcherResponse alloc] init];
+                                
+                                if ([data length] > 0 && error == nil) {
+                                    dbResponse.wasSuccessful = TRUE;
+                                    
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    NSArray *rxmlResult = [rootXML children:@"result"];
+                                    
+                                    BOOL userEaten = (rxmlResult.count > 0);
+                                    
+                                    [self.delegate didUserEat:userEaten withResponse:dbResponse];
+                                }
+                                else {
+                                    dbResponse.wasSuccessful = FALSE;
+                                    
+                                    if (error != nil) {
+                                        [dbResponse.messages addObject:@"error"];
+                                        
+                                        [self.delegate didUserEat:FALSE withResponse:dbResponse];
+                                    }
+                                }
+                            }];
+}
+
+- (void)userLiked:(NSString *)email withReview: (NSNumber*)rid {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
+    
+    NSString *queryFormat = @"query=SELECT id FROM ratinglikes WHERE useremail='%@' AND ratingid = %@";
+    NSString *query = [NSString stringWithFormat:queryFormat, email, rid];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse *dbResponse = [[MMDBFetcherResponse alloc] init];
+                                
+                                if ([data length] > 0 && error == nil) {
+                                    dbResponse.wasSuccessful = TRUE;
+                                    
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    NSArray *rxmlResult = [rootXML children:@"result"];
+                                    
+                                    BOOL userLiked = (rxmlResult.count > 0);
+                                    
+                                    [self.delegate didUserLike:userLiked withResponse:dbResponse];
+                                }
+                                else {
+                                    dbResponse.wasSuccessful = FALSE;
+                                    
+                                    if (error != nil) {
+                                        [dbResponse.messages addObject:@"error"];
+                                        
+                                        [self.delegate didUserLike:FALSE withResponse:dbResponse];
+                                    }
+                                }
+                            }];
+}
+
+- (void)userReported:(NSString *)email withReview: (NSNumber*)rid {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
+    
+    NSString *queryFormat = @"query=SELECT id FROM ratingreport WHERE useremail='%@' AND ratingid = %@";
+    NSString *query = [NSString stringWithFormat:queryFormat, email, rid];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.networkClient performNetworkRequest:request
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                MMDBFetcherResponse *dbResponse = [[MMDBFetcherResponse alloc] init];
+                                
+                                if ([data length] > 0 && error == nil) {
+                                    dbResponse.wasSuccessful = TRUE;
+                                    
+                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
+                                    NSArray *rxmlResult = [rootXML children:@"result"];
+                                    
+                                    BOOL userReport = (rxmlResult.count > 0);
+                                    
+                                    [self.delegate didUserReport:userReport withResponse:dbResponse];
+                                }
+                                else {
+                                    dbResponse.wasSuccessful = FALSE;
+                                    
+                                    if (error != nil) {
+                                        [dbResponse.messages addObject:@"error"];
+                                        
+                                        [self.delegate didUserReport:FALSE withResponse:dbResponse];
+                                    }
+                                }
+                            }];
 }
 
 @end

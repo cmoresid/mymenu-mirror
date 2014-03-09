@@ -79,6 +79,11 @@ NSMutableArray * categories;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [MMDBFetcher get].delegate = self;
+    
+}
+
 - (void)viewDidLoad
 {	
     [super viewDidLoad];
@@ -100,7 +105,7 @@ NSMutableArray * categories;
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatter setMaximumFractionDigits:2];
+    [formatter setMaximumFractionDigits:1];
     [formatter setMinimumFractionDigits:1];
     //NSLog(@"%@",[formatter  stringFromNumber:_selectedRestaurant.rating]);
 
@@ -155,6 +160,10 @@ NSMutableArray * categories;
                  forControlEvents:UIControlEventValueChanged];
     [self.reviewCollection registerNib:[UINib nibWithNibName:@"MenuItemReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"MenuItemCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
+}
+
+-(BOOL) popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController{
+    return FALSE;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
@@ -317,10 +326,12 @@ NSMutableArray * categories;
         touchedReview = [[MMMenuItemRating alloc ]init];
         touchedReview = itemCell.rating;
         
-        MMReviewPopOverViewController *categoryContent = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
-        // categoryContent.delegate = self;
+        MMReviewPopOverViewController *reviewPop = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
+        reviewPop.delegate = self;
         
-        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];
+        reviewPop.selectedRestaurant = self.selectedRestaurant;
+        
+        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewPop];
         [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedReview];
         
         //popover.popoverContentSize = CGSizeMake(350, 216);
@@ -422,6 +433,18 @@ NSMutableArray * categories;
         [reviewDictionary setObject:condensedReviews forKey:kCondensedRecentReviews];
         [self.reviewCollection reloadData];
     }
+    
+}
+
+- (void)didSelectDone:(BOOL)done{
+    [MMDBFetcher get].delegate = self;
+    [self.popOverController dismissPopoverAnimated:YES];
+    
+}
+
+- (void)didSelectCancel:(BOOL)cancel{
+    [MMDBFetcher get].delegate = self;
+    [self.popOverController dismissPopoverAnimated:YES];
     
 }
 

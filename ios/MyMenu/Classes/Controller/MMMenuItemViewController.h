@@ -10,8 +10,12 @@
 #import "MMMenuItem.h"
 #import "MMMerchant.h"
 #import "MMDBFetcherDelegate.h"
+#import "MMReviewPopOverDelegate.h"
 
-@interface MMMenuItemViewController : UIViewController <UITableViewDataSource, MMDBFetcherDelegate, UITextViewDelegate, UIPopoverControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+
+@class MMReviewPopOverViewController;
+
+@interface MMMenuItemViewController : UIViewController <UITableViewDataSource, MMDBFetcherDelegate, UITextViewDelegate, UIPopoverControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, MMReviewPopOverDelegate>
 
 @property MMMenuItem *touchedItem;
 @property MMMerchant *selectedRestaurant;
@@ -32,6 +36,8 @@
 @property (nonatomic, strong) NSNumber *rating;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *reviewSegment;
+@property (nonatomic, strong) MMReviewPopOverViewController *reviewPopOver;
+
 
 
 

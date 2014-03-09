@@ -91,6 +91,7 @@ MMMenuItemRating * touchedItem;
     [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getModifications:_touchedItem.itemid withUser:userProfile.email];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+    
         [self.collectionView registerNib:[UINib nibWithNibName:@"MenuItemReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
     [self.reviewSegment addTarget:self
                                    action:@selector(changeReviewSort:)
@@ -98,6 +99,11 @@ MMMenuItemRating * touchedItem;
     [self.tableView reloadData];
     [self.collectionView reloadData];
     
+    if([[MMLoginManager sharedLoginManager] isUserLoggedInAsGuest]){
+
+        _eatenThisButton.enabled = NO;
+        _eatenThisButton.backgroundColor = [UIColor lightGrayColor];
+    }
     
 }
 
@@ -140,6 +146,8 @@ MMMenuItemRating * touchedItem;
         [reviewDictionary setObject:allReviews forKey:kAllTopReviews];
         [reviewDictionary setObject:condensedReviews forKey:kCondensedTopReviews];
         [self.collectionView reloadData];
+        [[MMDBFetcher get] eatenThis:userProfile.email withMenuItem:_touchedItem.itemid withMerch:_touchedItem.merchid];
+        [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     }
 
 }
@@ -413,14 +421,11 @@ MMMenuItemRating * touchedItem;
     NSLog(@"touched cell %@ at indexPath %@", cell, indexPath);
     touchedItem = [[MMMenuItemRating alloc ]init];
     touchedItem = itemCell.rating;
-//    touchedItem.merchantName = self.selectedRestaurant.businessname;
-//    touchedItem.merchid = self.selectedRestaurant.mid;
-//    touchedItem.menuid = self.touchedItem.itemid;
    
-    MMReviewPopOverViewController *categoryContent = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
-   // categoryContent.delegate = self;
+    MMReviewPopOverViewController *reviewContent = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
+    reviewContent.delegate = self;
     
-    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewContent];
     [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedItem];
     
     //popover.popoverContentSize = CGSizeMake(350, 216);
@@ -437,6 +442,33 @@ MMMenuItemRating * touchedItem;
                                           animated:YES];
     
    // [self performSegueWithIdentifier:@"showMenuItem" sender:self];
+    
+}
+- (void)didUserEat:(BOOL)exists withResponse:(MMDBFetcherResponse *)response{
+    if (!response.wasSuccessful) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
+    }else if(exists)
+        _eatenThisButton.enabled = NO;
+        
+}
+
+- (void)didSelectDone:(BOOL)done{
+    [MMDBFetcher get].delegate = self;
+    [self.popOverController dismissPopoverAnimated:YES];
+    
+    
+}
+
+- (void)didSelectCancel:(BOOL)cancel{
+    [MMDBFetcher get].delegate = self;
+    [self.popOverController dismissPopoverAnimated:YES];
     
 }
 
@@ -548,16 +580,19 @@ MMMenuItemRating * touchedItem;
         
         return;
     }
-    
+    else if (succesful){
+        _eatenThisButton.enabled = NO;
+        _eatenThisButton.backgroundColor = [UIColor lightBackgroundGray];
+    }
 }
 
 - (IBAction)iveEatenThis:(id)sender{
+     _eatenThisButton.enabled = NO;
+    _eatenThisButton.backgroundColor = [UIColor lightBackgroundGray];
     [[MMDBFetcher get] eatenThis:userProfile.email withMenuItem:_touchedItem.itemid withMerch:_touchedItem.merchid];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-    _eatenThisButton.enabled = NO;
+   
     
 }
-
-
 
 @end

@@ -18,6 +18,8 @@
 #import "MMMerchant.h"
 #import "MMDBFetcherDelegate.h"
 #import "MMRestaurantPopOverDelegate.h"
+#import "MMReviewPopOverDelegate.h"
+#import "MMReviewPopOverViewController.h"
 
 @class MMRestaurantPopOverViewController;
 
@@ -28,7 +30,7 @@
  This view will also allow the user to filter through the menu,
  either by rating, category or name.
 */
-@interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MMDBFetcherDelegate, UISearchBarDelegate, UIPopoverControllerDelegate, MMRestaurantPopOverDelegate>
+@interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MMDBFetcherDelegate, UISearchBarDelegate, UIPopoverControllerDelegate, MMRestaurantPopOverDelegate, MMReviewPopOverDelegate>
 
 
 
@@ -49,7 +51,7 @@
 @property(nonatomic, weak) IBOutlet UILabel * adress;
 @property (nonatomic, strong) UIPopoverController * popOverController;
 @property (nonatomic, strong) MMRestaurantPopOverViewController * restPopOver;
-
+@property (nonatomic, strong) MMReviewPopOverViewController * revPopOver;
 
 - (IBAction)categoryClear:(id)sender;
 - (IBAction)searchClear:(id)sender;

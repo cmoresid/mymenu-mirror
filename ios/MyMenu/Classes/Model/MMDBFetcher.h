@@ -173,17 +173,49 @@
  */
 - (NSString *)getDay:(NSDate *) date;
 
+/**
+ * Helper method that adds all relevant information to the rating object.
+ */
 - (void)getRatingsHelper:(NSMutableURLRequest*) request withTopFlag:(BOOL)topFlag;
 
+/**
+ * Helper method that adds all relevant information to the rating object.
+ */
 - (void)compressedMerchantsHelper:(NSMutableURLRequest*) request;
 
+/**
+ * When a user reports a review they find offensive.
+ */
 - (void)reportReview:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid withReview: (NSNumber*)rid;
 
+/**
+ * When a user likes a menu item review.
+ */
 - (void)likeReview:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid withReview: (NSNumber*)rid;
 
 /**
- *
+ * When a user clicks 'I've Eaten This'.
+ */
+- (void)userEaten:(NSString *)email withItem: (NSNumber*)mid;
+
+/**
+ * Checks if the user has already liked a review.
+ */
+- (void)userLiked:(NSString *)email withReview: (NSNumber*)rid;
+
+/**
+ * Checks if the user has already reported a review.
+ */
+- (void)userReported:(NSString *)email withReview: (NSNumber*)rid;
+
+/**
+ * Checks if the user has already clicked 'I've Eaten this'
  */
 - (void)eatenThis:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid;
+
+/**
+ * Updates a review.
+ */
+- (void)editReview:(MMMenuItemRating *)review;
 
 @end
