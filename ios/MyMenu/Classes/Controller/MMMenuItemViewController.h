@@ -19,11 +19,14 @@
 #import "MMMenuItem.h"
 #import "MMMerchant.h"
 #import "MMDBFetcherDelegate.h"
+#import "MMReviewPopOverDelegate.h"
+
+@class MMReviewPopOverViewController;
 
 /**
  *  The controller that shows the selected menu item a user selects.
  */
-@interface MMMenuItemViewController : UIViewController <UITableViewDataSource, MMDBFetcherDelegate, UITextViewDelegate, UIPopoverControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MMMenuItemViewController : UIViewController <UITableViewDataSource, MMDBFetcherDelegate, UITextViewDelegate, UIPopoverControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, MMReviewPopOverDelegate>
 
 /**
  *  The item that the user touched before
@@ -104,6 +107,8 @@
  *  Current Rating of menu Item
  */
 @property (nonatomic, strong) NSNumber *rating;
+
+@property (nonatomic, strong) MMReviewPopOverViewController *reviewPopOver;
 
 /**
  *  Menu Item View for showing reviews.

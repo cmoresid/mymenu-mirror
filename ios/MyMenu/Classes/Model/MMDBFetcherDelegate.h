@@ -67,4 +67,12 @@
 
 - (void)didAddReviewReport:(BOOL)succesful withResponse:(MMDBFetcherResponse *)response;
 
+- (void)didUserEat:(BOOL)exists withResponse:(MMDBFetcherResponse *)response;
+
+- (void)didUserLike:(BOOL)exists withResponse:(MMDBFetcherResponse *)response;
+
+- (void)didUserReport:(BOOL)exists withResponse:(MMDBFetcherResponse *)response;
+
+- (void)didUpdateRatings:(BOOL)exists withResponse:(MMDBFetcherResponse *)response;
+
 @end
