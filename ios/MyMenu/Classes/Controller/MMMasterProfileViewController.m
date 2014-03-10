@@ -17,11 +17,20 @@
 
 #import "MMMasterProfileViewController.h"
 
+typedef NS_ENUM(NSInteger, MMProfilePageType) {
+    MMAccountPage = 0,
+    MMReviewsPage = 1,
+    MMAboutPage = 2,
+    MMNotificationPage = 3
+};
+
 @interface MMMasterProfileViewController ()
 
 @end
 
 @implementation MMMasterProfileViewController
+
+#pragma mark - View Controller Methods
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,17 +39,6 @@
         // Custom initialization
     }
     return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -55,53 +53,76 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Table View Delegate Methods
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger row = indexPath.row;
+    NSInteger selectedRow = indexPath.row;
     MMBaseNavigationController *masterNavigationController = [self.splitViewController.viewControllers firstObject];
     
-    if (row == 0) {
-        if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"AccountNavigationController"]) {
-            return;
-        }
-        
-        self.accountController = (self.accountController != nil) ? self.accountController :
-            [self.storyboard instantiateViewControllerWithIdentifier:@"AccountNavigationController"];
-        
-        self.currentDetailViewController = self.accountController;
-    }
-    else if (row == 1) {
-        if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"ReviewsNavigationController"]) {
-            return;
-        }
-        
-        self.reviewsController = (self.reviewsController != nil) ? self.reviewsController :
-        [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewsNavigationController"];
-        
-        self.currentDetailViewController = self.reviewsController;
-    }
-    else if (row == 2) {
-        if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"AboutNavigationController"]) {
-            return;
-        }
-        
-        self.aboutController = (self.accountController != nil) ? self.aboutController :
-        [self.storyboard instantiateViewControllerWithIdentifier:@"AboutNavigationController"];
-        
-        self.currentDetailViewController = self.aboutController;
-    }
-    else if (row == 3) {
-        if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"NotificationsNavigationController"]) {
-            return;
-        }
-        
-        self.notificationsController = (self.notificationsController != nil) ? self.notificationsController :
-        [self.storyboard instantiateViewControllerWithIdentifier:@"NotificationsNavigationController"];
-        
-        self.currentDetailViewController = self.notificationsController;
+    switch (selectedRow) {
+        case MMAccountPage:
+            [self configureAccountController];
+            break;
+        case MMReviewsPage:
+            [self configureReviewsController];
+            break;
+        case MMAboutPage:
+            [self configureAboutController];
+            break;
+        case MMNotificationPage:
+            [self configureNotificationsController];
+            break;
+        default:
+            break;
     }
     
     self.splitViewController.viewControllers = [NSArray arrayWithObjects:masterNavigationController, self.currentDetailViewController, nil];
 }
 
+#pragma mark - Configure Child View Controllers Methods
+
+- (void)configureAccountController {
+    if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"AccountNavigationController"]) {
+        return;
+    }
+    
+    self.accountController = (self.accountController != nil) ? self.accountController :
+    [self.storyboard instantiateViewControllerWithIdentifier:@"AccountNavigationController"];
+    
+    self.currentDetailViewController = self.accountController;
+}
+
+- (void)configureReviewsController {
+    if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"ReviewsNavigationController"]) {
+        return;
+    }
+    
+    self.reviewsController = (self.reviewsController != nil) ? self.reviewsController :
+    [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewsNavigationController"];
+    
+    self.currentDetailViewController = self.reviewsController;
+}
+
+- (void)configureAboutController {
+    if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"AboutNavigationController"]) {
+        return;
+    }
+    
+    self.aboutController = (self.accountController != nil) ? self.aboutController :
+    [self.storyboard instantiateViewControllerWithIdentifier:@"AboutNavigationController"];
+    
+    self.currentDetailViewController = self.aboutController;
+}
+
+- (void)configureNotificationsController {
+    if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"NotificationsNavigationController"]) {
+        return;
+    }
+    
+    self.notificationsController = (self.notificationsController != nil) ? self.notificationsController :
+    [self.storyboard instantiateViewControllerWithIdentifier:@"NotificationsNavigationController"];
+    
+    self.currentDetailViewController = self.notificationsController;
+}
 
 @end

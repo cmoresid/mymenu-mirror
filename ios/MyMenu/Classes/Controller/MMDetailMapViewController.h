@@ -31,7 +31,6 @@
  */
 @interface MMDetailMapViewController : UIViewController <UISplitViewControllerDelegate, MMDBFetcherDelegate, RBStoryboardLinkSource>
 
-
 @property(nonatomic, strong) id detailItem;
 @property(nonatomic, weak) IBOutlet UILabel *detailDescriptionLabel;
 

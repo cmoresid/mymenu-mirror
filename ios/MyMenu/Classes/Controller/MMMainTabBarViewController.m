@@ -24,6 +24,8 @@
 
 @implementation MMMainTabBarViewController
 
+#pragma mark - View Controller Methods
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -34,20 +36,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UITabBar appearance] setBarTintColor:[UIColor darkTealColor]];
-
-
-    UIColor *color = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0];
-
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: color} forState:UIControlStateNormal];
+    [self configureTabBarAppearance];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Configure Tab Bar Appearance Methods
+
+- (void)configureTabBarAppearance {
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setBarTintColor:[UIColor darkTealColor]];
+    
+    
+    UIColor *color = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: color} forState:UIControlStateNormal];
+}
+
+#pragma mark - MMDBFetcher Delegate Methods
 
 - (void)didCreateUser:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
     NSLog(@"Did create user.");

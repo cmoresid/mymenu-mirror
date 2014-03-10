@@ -24,6 +24,7 @@
 @interface MMDBFetcher ()
 
 - (void)compressedMerchantsHelper:(NSMutableURLRequest*)request;
+- (BOOL)canPerformCallback:(id)delegate withSelector:(SEL)delegateSelector;
 
 @end
 
@@ -61,6 +62,10 @@ static MMDBFetcher *instance;
     return self;
 }
 
+- (BOOL)canPerformCallback:(id)delegate withSelector:(SEL)delegateSelector {
+    return [delegate conformsToProtocol:@protocol(MMDBFetcherDelegate)] && [delegate respondsToSelector:delegateSelector];
+}
+
 - (void)addUser:(MMUser *)user {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
@@ -80,6 +85,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didCreateUser:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didCreateUser:withResponse");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didCreateUser:true withResponse:dbResponse];
                                 }
@@ -109,6 +119,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didCreateRating:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didCreateRating:withResponse");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didCreateRating:true withResponse:dbResponse];
                                 }
@@ -211,6 +226,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveUser:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveUser:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 
@@ -263,6 +283,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didUpdateUser:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didUpdateUser:withResponse");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didUpdateUser:TRUE withResponse:dbResponse];
                                 }
@@ -289,6 +314,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
                                 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didUpdateRatings:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didUpdateRatings:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didUpdateRatings:TRUE withResponse:dbResponse];
                                 }
@@ -313,6 +343,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [[MMDBFetcherResponse alloc] init];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(doesUserExist:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - doesUserExist:withResponse:");
+                                    return;
+                                }
+                                
                                 if ([data length] > 0 && error == nil) {
                                     dbResponse.wasSuccessful = TRUE;
 
@@ -350,6 +385,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(wasUserVerified:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - wasUserVerified:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     NSArray *rxmlResult = [rootXML children:@"result"];
@@ -371,6 +411,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didAddUserRestrictions:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didAddUserRestrictions:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     [self innerAddUserRestrictions:email :restrictions];
                                 }
@@ -399,6 +444,11 @@ static MMDBFetcher *instance;
                                 completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                     MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                    if (![self canPerformCallback:self.delegate withSelector:@selector(didAddUserRestrictions:withResponse:)]) {
+                                        NSLog(@"Warning: Delegate does not implement optional protocol selector - didAddUserRestrictions:withResponse:");
+                                        return;
+                                    }
+                                    
                                     if (dbResponse.wasSuccessful) {
                                         [self.delegate didAddUserRestrictions:TRUE withResponse:dbResponse];
                                     }
@@ -439,6 +489,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveUserRestrictions:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveUserRestrictions:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 
@@ -472,6 +527,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveAllRestrictions:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveAllRestrictions:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 
@@ -528,6 +588,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveSpecials:forDate:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveSpecials:forDate:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     NSMutableArray *specials = [[NSMutableArray alloc] init];
@@ -571,6 +636,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
                                 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveSpecials:forDate:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveSpecials:forDate:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     NSMutableArray *specials = [[NSMutableArray alloc] init];
@@ -613,6 +683,11 @@ static MMDBFetcher *instance;
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveSpecials:forDate:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveSpecials:forDate:withResponse:");
+                                    return;
+                                }
                                 
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
@@ -722,6 +797,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveMerchant:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveMerchant:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     MMMerchant *merchant = [[MMMerchant alloc] init];
@@ -775,6 +855,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveMenuItems:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveMenuItems:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     NSMutableArray *menuitems = [[NSMutableArray alloc] init];
@@ -821,6 +906,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveMenuItems:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveMenuItems:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 
@@ -865,6 +955,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveModifications:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveModifications:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 
@@ -899,6 +994,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
                                 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveCategories:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveCategories:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     
@@ -925,6 +1025,11 @@ static MMDBFetcher *instance;
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveCompressedMerchants:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveCompressedMerchants:withResponse:");
+                                    return;
+                                }
                                 
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
@@ -960,6 +1065,12 @@ static MMDBFetcher *instance;
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (!([self canPerformCallback:self.delegate withSelector:@selector(didRetrieveRecentItemRatings:withResponse:)] &&
+                                      [self canPerformCallback:self.delegate withSelector:@selector(didRetrieveTopItemRatings:withResponse:)])) {
+                                    
+                                    return;
+                                }
                                 
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
@@ -1017,6 +1128,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
                                 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didAddEatenThis:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didAddEatenThis:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didAddEatenThis:true withResponse:dbResponse];
                                 }
@@ -1044,6 +1160,11 @@ static MMDBFetcher *instance;
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+                                
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didAddReviewReport:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didAddReviewReport:withResponse:");
+                                    return;
+                                }
                                 
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didAddReviewReport:true withResponse:dbResponse];
@@ -1073,6 +1194,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
                                 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didAddReviewLike:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didAddReviewLike:withResponse:");
+                                    return;
+                                }
+                                
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didAddReviewLike:true withResponse:dbResponse];
                                 }
@@ -1097,6 +1223,11 @@ static MMDBFetcher *instance;
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [[MMDBFetcherResponse alloc] init];
+                                
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didUserEat:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didUserEat:withResponse:");
+                                    return;
+                                }
                                 
                                 if ([data length] > 0 && error == nil) {
                                     dbResponse.wasSuccessful = TRUE;
@@ -1135,6 +1266,11 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [[MMDBFetcherResponse alloc] init];
                                 
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didUserLike:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didUserLike:withResponse:");
+                                    return;
+                                }
+                                
                                 if ([data length] > 0 && error == nil) {
                                     dbResponse.wasSuccessful = TRUE;
                                     
@@ -1171,6 +1307,11 @@ static MMDBFetcher *instance;
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [[MMDBFetcherResponse alloc] init];
+                                
+                                if (![self canPerformCallback:self.delegate withSelector:@selector(didUserReport:withResponse:)]) {
+                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didUserReport:withResponse:");
+                                    return;
+                                }
                                 
                                 if ([data length] > 0 && error == nil) {
                                     dbResponse.wasSuccessful = TRUE;

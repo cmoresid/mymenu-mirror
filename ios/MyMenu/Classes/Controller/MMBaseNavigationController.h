@@ -18,7 +18,9 @@
 #import <UIKit/UIKit.h>
 
 /**
- *  Sets up the colors of navigation controllers
+ *  A subclass of UINavigationController which defines
+ *  the appearance of navigation bars that exist within
+ *  a navigation controller.
  */
 @interface MMBaseNavigationController : UINavigationController
 

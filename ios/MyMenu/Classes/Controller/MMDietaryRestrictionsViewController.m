@@ -25,17 +25,15 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "MMLoginManager.h"
 
-#define kCurrentUser @"currentUser"
-
-@interface MMDietaryRestrictionsViewController ()
+@interface MMDietaryRestrictionsViewController () {
+    NSArray *allRestrictions;
+    NSMutableArray *dietaryRestrictionIds;
+    MMUser *user;
+}
 
 @end
 
 @implementation MMDietaryRestrictionsViewController
-
-NSArray *allRestrictions; // all restrictions
-NSMutableArray *dietaryRestrictionIds; // dietary restrictions
-MMUser *user;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -78,10 +76,10 @@ MMUser *user;
 
 - (void)didRetrieveUserRestrictions:(NSArray *)userRestrictions withResponse:(MMDBFetcherResponse *)response {
     if (!response.wasSuccessful) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
-                                                          message:@"Unable to communicate with server."
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Communication Error", nil)
+                                                          message:NSLocalizedString(@"Unable to communicate with server.", nil)
                                                          delegate:nil
-                                                cancelButtonTitle:@"OK"
+                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
         [message show];
 
@@ -98,10 +96,10 @@ MMUser *user;
 
 - (void)didRetrieveAllRestrictions:(NSArray *)restrictions withResponse:(MMDBFetcherResponse *)response {
     if (!response.wasSuccessful) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
-                                                          message:@"Unable to communicate with server."
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Communication Error", nil)
+                                                          message:NSLocalizedString(@"Unable to communicate with server.", nil)
                                                          delegate:nil
-                                                cancelButtonTitle:@"OK"
+                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
         [message show];
 

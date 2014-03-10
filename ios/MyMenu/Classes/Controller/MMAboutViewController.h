@@ -18,13 +18,13 @@
 #import <UIKit/UIKit.h>
 
 /**
- *  The controller loads the about page from the MyMenu Website
+ *  A child controller of the `MMMasterProfileViewController`. Provides
+ *  a web view that displays the About page on the MyMenu website.
  */
 @interface MMAboutViewController : UIViewController <UIWebViewDelegate>
 
-
 /**
- *  Current Web View on the screen
+ *  The web view that displays the About page.
  */
 @property (nonatomic, weak) IBOutlet UIWebView *aboutWebView;
 
