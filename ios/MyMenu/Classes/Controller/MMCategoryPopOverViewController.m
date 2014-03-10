@@ -20,14 +20,14 @@
 #import "MMDBFetcherDelegate.h"
 #import "MBProgressHUD.h"
 
-@interface MMCategoryPopOverViewController ()
+@interface MMCategoryPopOverViewController () {
+    NSString *category;
+    NSArray *allCategories;
+}
 
 @end
 
 @implementation MMCategoryPopOverViewController
-
-NSString * category;
-NSArray * allCategories;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,22 +49,23 @@ NSArray * allCategories;
     
 }
 
-- (void)didRetrieveCategories:(NSArray *)categories withResponse:(MMDBFetcherResponse *)response{
+- (void)didRetrieveCategories:(NSArray *)categories
+                 withResponse:(MMDBFetcherResponse *)response {
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+    
     if (!response.wasSuccessful) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
-                                                          message:@"Unable to communicate with server."
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Communication Error", nil)
+                                                          message:NSLocalizedString(@"Unable to communicate with server.", nil)
                                                          delegate:nil
-                                                cancelButtonTitle:@"OK"
+                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
         [message show];
         
         return;
-    }else{
-        allCategories = categories;
-        
     }
-    
+    else {
+        allCategories = categories;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,8 +73,7 @@ NSArray * allCategories;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (NSInteger)numberOfComponentsInPickerView:
-(UIPickerView *)pickerView {
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
 
@@ -88,17 +88,14 @@ numberOfRowsInComponent:(NSInteger)component {
     return allCategories[row];
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+- (void)pickerView:(UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row
+       inComponent:(NSInteger)component {
     category = allCategories[row];
 }
-    
     
 - (IBAction)doneButton:(id)sender{
     self.returnBlock(category);
 }
-    
-
-
-
 
 @end

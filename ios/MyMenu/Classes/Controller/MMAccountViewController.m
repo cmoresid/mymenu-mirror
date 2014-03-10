@@ -15,6 +15,8 @@
 
 @interface MMAccountViewController ()
 
+- (void)registerForUpdateUserNotifications;
+- (void)unregisterForUpdateUserNotifications;
 - (void)updateUser:(NSNotification*)notification;
 - (void)updateUserError:(NSNotification*)notification;
 - (void)configureValidation;
@@ -26,8 +28,9 @@
 
 @implementation MMAccountViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+#pragma mark - View Controller Methods
+
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -35,25 +38,7 @@
     return self;
 }
 
-- (void)configureValidation {
-    self.passwordValidationManager = [MMValidationManager new];
-    
-    MMRequiredTextFieldValidator *passwordRequiredValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.updatedPasswordField withValidationMessage:@"* New password must be provided."];
-    
-    MMMatchingTextFieldValidator *passwordMatchingValidator = [[MMMatchingTextFieldValidator alloc] initWithFirstTextField:self.updatedPasswordField withSecondTextField:self.confirmPasswordField withValidationMessage:@"* Passwords must match."];
-    
-    [self.passwordValidationManager addValidator:passwordRequiredValidator];
-    [self.passwordValidationManager addValidator:passwordMatchingValidator];
-
-    self.locationValidationManager = [MMValidationManager new];
-    
-    MMRequiredTextFieldValidator *locationValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.defaultLocationField withValidationMessage:@"* Location cannot be empty"];
-    
-    [self.locationValidationManager addValidator:locationValidator];
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     MMUser *loggedInUser = [[MMLoginManager sharedLoginManager] getLoggedInUser];
@@ -67,6 +52,42 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    [self registerForUpdateUserNotifications];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    [self unregisterForUpdateUserNotifications];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Validation
+
+- (void)configureValidation {
+    self.passwordValidationManager = [MMValidationManager new];
+    
+    MMRequiredTextFieldValidator *passwordRequiredValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.updatedPasswordField withValidationMessage:NSLocalizedString(@"* New password must be provided.", nil)];
+    
+    MMMatchingTextFieldValidator *passwordMatchingValidator = [[MMMatchingTextFieldValidator alloc] initWithFirstTextField:self.updatedPasswordField withSecondTextField:self.confirmPasswordField withValidationMessage:NSLocalizedString(@"* Passwords must match.", nil)];
+    
+    [self.passwordValidationManager addValidator:passwordRequiredValidator];
+    [self.passwordValidationManager addValidator:passwordMatchingValidator];
+    
+    self.locationValidationManager = [MMValidationManager new];
+    
+    MMRequiredTextFieldValidator *locationValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.defaultLocationField withValidationMessage:NSLocalizedString(@"* Location cannot be empty.", nil)];
+    
+    [self.locationValidationManager addValidator:locationValidator];
+}
+
+#pragma mark - Register Notification Methods
+
+- (void)registerForUpdateUserNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateUser:)
                                                  name:kUserUpdatedNotification
@@ -78,19 +99,25 @@
                                                object:nil];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void)unregisterForUpdateUserNotifications {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kUserUpdatedNotification
+                                                  object:nil];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kUserUpdateErrorNotification
+                                                  object:nil];
 }
+
+#pragma mark - Update User Notification Callback Methods
 
 - (void)updateUser:(NSNotification*)notification {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                      message:@"Update Successful."
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success", nil)
+                                                      message:NSLocalizedString(@"Update Successful.", nil)
                                                      delegate:nil
-                                            cancelButtonTitle:@"OK"
+                                            cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                             otherButtonTitles:nil];
     [message show];
 }
@@ -98,19 +125,15 @@
 - (void)updateUserError:(NSNotification*)notification {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                      message:@"Unable to update information."
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                      message:NSLocalizedString(@"Unable to update information.", nil)
                                                      delegate:nil
-                                            cancelButtonTitle:@"OK"
+                                            cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                             otherButtonTitles:nil];
     [message show];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - Action Methods
 
 - (IBAction)updatePassword:(id)sender {
     NSArray *validationErrors  = [self.passwordValidationManager getValidationMessagesAsArray];
@@ -118,10 +141,10 @@
     if (validationErrors.count > 0) {
         NSString *validationMessage = [validationErrors componentsJoinedByString:@"\n"];
         
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Validation Error(s)"
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Validation Error(s)", nil)
                                                           message:validationMessage
                                                          delegate:nil
-                                                cancelButtonTitle:@"OK"
+                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
         
         [message show];
@@ -141,10 +164,10 @@
     if (validationErrors.count > 0) {
         NSString *validationMessage = [validationErrors componentsJoinedByString:@"\n"];
         
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Validation Error(s)"
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Validation Error(s)", nil)
                                                           message:validationMessage
                                                          delegate:nil
-                                                cancelButtonTitle:@"OK"
+                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
         
         [message show];

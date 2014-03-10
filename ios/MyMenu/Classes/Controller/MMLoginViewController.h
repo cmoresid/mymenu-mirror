@@ -22,9 +22,9 @@
 @class MMValidationManager;
 
 /**
- Login view controller.
- A view controller that logs in a user.
- User is prompted for their email address (id) and their password.
+ *  Login view controller.
+ *  A view controller that logs in a user.
+ *  User is prompted for their email address (id) and their password.
  */
 @interface MMLoginViewController : UIViewController <UITextFieldDelegate, RBStoryboardLinkSource>
 

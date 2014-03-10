@@ -19,9 +19,7 @@
 #import "MMDBFetcherDelegate.h"
 typedef void (^categoryReturnBlock)(NSString *);
 
-@interface MMCategoryPopOverViewController : UIViewController <UIPopoverControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, MMDBFetcherDelegate>
-
-
+@interface MMCategoryPopOverViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, MMDBFetcherDelegate>
 
 @property (nonatomic, weak) IBOutlet UIPickerView * pickerView;
 @property (nonatomic, copy) categoryReturnBlock returnBlock;

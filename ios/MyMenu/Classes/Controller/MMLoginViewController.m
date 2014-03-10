@@ -28,21 +28,69 @@
 - (void)configureValidation;
 - (void)canUserLogin:(NSNotification*)notification;
 - (void)userLoginError:(NSNotification*)notification;
+- (void)registerForLoginNotifications;
+- (void)unregisterForLoginNotifications;
+- (void)registerForKeyboardNotifications;
+- (void)unregisterForKeyboardNotifications;
 
 @end
 
 @implementation MMLoginViewController
 
+#pragma mark - RBStoryboardLinkSource Delegate Methods
+
 - (BOOL)needsTopLayoutGuide {
     return FALSE;
 }
+
+#pragma mark - View Controller Methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.emailAddress.delegate = self;
     self.password.delegate = self;
+    
+    [self configureValidation];
+}
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    
+    [self registerForKeyboardNotifications];
+    [self registerForLoginNotifications];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    [self unregisterForKeyboardNotifications];
+    [self unregisterForLoginNotifications];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Validation Setup
+
+- (void)configureValidation {
+    self.validationManager = [MMValidationManager new];
+    
+    MMRequiredTextFieldValidator *userNameValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.emailAddress
+                                                                                        withValidationMessage:NSLocalizedString(@"* User name must be provided.", nil)];
+    MMRequiredTextFieldValidator *passwordValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.password
+                                                                                        withValidationMessage:NSLocalizedString(@"* Password must be provided.", nil)];
+    
+    [self.validationManager addValidator:userNameValidator];
+    [self.validationManager addValidator:passwordValidator];
+}
+
+#pragma mark - Register for Notifications
+
+- (void)registerForLoginNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(canUserLogin:)
                                                  name:kUserLoginNotification object:nil];
@@ -50,31 +98,50 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(userLoginError:)
                                                  name:kUserLoginErrorNotification object:nil];
-    
-    [self registerForKeyboardNotifications];
-    [self configureValidation];
 }
 
-- (void)configureValidation {
-    self.validationManager = [MMValidationManager new];
+- (void)unregisterForLoginNotifications {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kUserLoginNotification
+                                                  object:nil];
     
-    MMRequiredTextFieldValidator *userNameValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.emailAddress
-                                                                                        withValidationMessage:@"* User name must be provided."];
-    MMRequiredTextFieldValidator *passwordValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.password withValidationMessage:@"* Password must be provided."];
-    
-    [self.validationManager addValidator:userNameValidator];
-    [self.validationManager addValidator:passwordValidator];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kUserLoginErrorNotification
+                                                  object:nil];
 }
+
+- (void)registerForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)unregisterForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardDidShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+}
+
+#pragma mark - User Login Callback Methods
 
 - (void)canUserLogin:(NSNotification*)notification {
     MMUser *userToLogin = notification.object;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     if (!userToLogin) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Invalid Username or Password!"
-                                                          message:@"Please enter a valid user name and password."
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid Username or Password!", nil)
+                                                          message:NSLocalizedString(@"Please enter a valid user name and password.", nil)
                                                          delegate:nil
-                                                cancelButtonTitle:@"OK"
+                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
         [message show];
         
@@ -87,32 +154,16 @@
 - (void)userLoginError:(NSNotification*)notification {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
-                                                      message:@"Unable to communicate with server."
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Communication Error", nil)
+                                                      message:NSLocalizedString(@"Unable to communicate with server.", nil)
                                                      delegate:nil
-                                            cancelButtonTitle:@"OK"
+                                            cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                             otherButtonTitles:nil];
     [message show];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - Keyboard Notification Callback Methods
 
-// Call this method somewhere in your view controller setup code.
-- (void)registerForKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
-
-}
-
-// Called when the UIKeyboardDidShowNotification is sent.
 - (void)keyboardWasShown:(NSNotification *)aNotification {
     NSDictionary *info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
@@ -134,12 +185,13 @@
     }
 }
 
-// Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification *)aNotification {
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
 }
+
+#pragma mark - Text Field Delegate Methods
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.activeField = textField;
@@ -149,16 +201,18 @@
     self.activeField = nil;
 }
 
+#pragma mark - Action Methods
+
 - (IBAction)login:(id)sender {
     NSArray *validationMessages = [self.validationManager getValidationMessagesAsArray];
     
     if ([validationMessages count] > 0) {
         NSString *validationMessage = [validationMessages componentsJoinedByString:@"\n"];
         
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Unable To Login"
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Unable To Login", nil)
                                                           message:validationMessage
                                                          delegate:nil
-                                                cancelButtonTitle:@"OK"
+                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
         [message show];
         

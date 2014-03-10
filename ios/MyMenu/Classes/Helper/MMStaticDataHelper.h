@@ -15,13 +15,30 @@
 //  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 /**
- *  A subclass of UINavigationController which defines
- *  the appearance of navigation bars that exist within
- *  a navigation controller.
+ *  A helper singleton that retrieves key-value
+ *  pairs from Resources/Data/StaticData.plist. Place
+ *  any sort of static data, such as URLs that are
+ *  non-region related.
  */
-@interface MMBaseNavigationController : UINavigationController
+@interface MMStaticDataHelper : NSObject
+
+/**
+ *  Retrieves the singleton instance for
+ *  this class.
+ *
+ *  @return The singleton instance.
+ */
++ (MMStaticDataHelper*)sharedDataHelper;
+
+/**
+ *  Retrieves the URL for the About page on
+ *  mymenuapp.ca.
+ *
+ *  @return The URL of the About page.
+ */
+- (NSString*)getAboutURL;
 
 @end
