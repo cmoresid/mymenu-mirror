@@ -19,19 +19,19 @@
 
 @implementation UIStoryboard (UIStoryboard_MyMenu)
 
-+ (UIStoryboard*)mainStoryBoard {
++ (UIStoryboard *)mainStoryBoard {
     return [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 }
 
-+ (UIStoryboard*)specialsStoryboard {
++ (UIStoryboard *)specialsStoryboard {
     return [UIStoryboard storyboardWithName:@"Specials" bundle:nil];
 }
 
-+ (UIStoryboard*)menuStoryboard {
++ (UIStoryboard *)menuStoryboard {
     return [UIStoryboard storyboardWithName:@"Menu" bundle:nil];
 }
 
-+ (UIStoryboard*)profileStoryboard {
++ (UIStoryboard *)profileStoryboard {
     return [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
 }
 

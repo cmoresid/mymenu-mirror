@@ -26,27 +26,27 @@
 /**
  *  First Name View
  */
-@property(nonatomic,weak) IBOutlet UITextField *givenNameField;
+@property(nonatomic, weak) IBOutlet UITextField *givenNameField;
 
 /**
  *  Last Name View
  */
-@property(nonatomic,weak) IBOutlet UITextField *surnameField;
+@property(nonatomic, weak) IBOutlet UITextField *surnameField;
 
 /**
  *  New Password View
  */
-@property(nonatomic,weak) IBOutlet UITextField *updatedPasswordField;
+@property(nonatomic, weak) IBOutlet UITextField *updatedPasswordField;
 
 /**
  *  Confirm New Password View
  */
-@property(nonatomic,weak) IBOutlet UITextField *confirmPasswordField;
+@property(nonatomic, weak) IBOutlet UITextField *confirmPasswordField;
 
 /**
  *  Default Location View
  */
-@property(nonatomic,weak) IBOutlet UITextField *defaultLocationField;
+@property(nonatomic, weak) IBOutlet UITextField *defaultLocationField;
 
 
 /**

@@ -32,8 +32,7 @@ typedef NS_ENUM(NSInteger, MMProfilePageType) {
 
 #pragma mark - View Controller Methods
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -43,12 +42,11 @@ typedef NS_ENUM(NSInteger, MMProfilePageType) {
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     self.currentDetailViewController = [self.splitViewController.viewControllers lastObject];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -58,7 +56,7 @@ typedef NS_ENUM(NSInteger, MMProfilePageType) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger selectedRow = indexPath.row;
     MMBaseNavigationController *masterNavigationController = [self.splitViewController.viewControllers firstObject];
-    
+
     switch (selectedRow) {
         case MMAccountPage:
             [self configureAccountController];
@@ -75,7 +73,7 @@ typedef NS_ENUM(NSInteger, MMProfilePageType) {
         default:
             break;
     }
-    
+
     self.splitViewController.viewControllers = [NSArray arrayWithObjects:masterNavigationController, self.currentDetailViewController, nil];
 }
 
@@ -85,10 +83,10 @@ typedef NS_ENUM(NSInteger, MMProfilePageType) {
     if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"AccountNavigationController"]) {
         return;
     }
-    
+
     self.accountController = (self.accountController != nil) ? self.accountController :
-    [self.storyboard instantiateViewControllerWithIdentifier:@"AccountNavigationController"];
-    
+            [self.storyboard instantiateViewControllerWithIdentifier:@"AccountNavigationController"];
+
     self.currentDetailViewController = self.accountController;
 }
 
@@ -96,10 +94,10 @@ typedef NS_ENUM(NSInteger, MMProfilePageType) {
     if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"ReviewsNavigationController"]) {
         return;
     }
-    
+
     self.reviewsController = (self.reviewsController != nil) ? self.reviewsController :
-    [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewsNavigationController"];
-    
+            [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewsNavigationController"];
+
     self.currentDetailViewController = self.reviewsController;
 }
 
@@ -107,10 +105,10 @@ typedef NS_ENUM(NSInteger, MMProfilePageType) {
     if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"AboutNavigationController"]) {
         return;
     }
-    
+
     self.aboutController = (self.accountController != nil) ? self.aboutController :
-    [self.storyboard instantiateViewControllerWithIdentifier:@"AboutNavigationController"];
-    
+            [self.storyboard instantiateViewControllerWithIdentifier:@"AboutNavigationController"];
+
     self.currentDetailViewController = self.aboutController;
 }
 
@@ -118,10 +116,10 @@ typedef NS_ENUM(NSInteger, MMProfilePageType) {
     if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"NotificationsNavigationController"]) {
         return;
     }
-    
+
     self.notificationsController = (self.notificationsController != nil) ? self.notificationsController :
-    [self.storyboard instantiateViewControllerWithIdentifier:@"NotificationsNavigationController"];
-    
+            [self.storyboard instantiateViewControllerWithIdentifier:@"NotificationsNavigationController"];
+
     self.currentDetailViewController = self.notificationsController;
 }
 

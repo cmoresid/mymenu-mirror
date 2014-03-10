@@ -33,7 +33,7 @@
 
 - (void)didRetrieveSpecials:(NSArray *)specials withResponse:(MMDBFetcherResponse *)response  __deprecated;
 
-- (void)didRetrieveSpecials:(NSArray *)specials forDate:(NSDate *) date withResponse:(MMDBFetcherResponse *)response;
+- (void)didRetrieveSpecials:(NSArray *)specials forDate:(NSDate *)date withResponse:(MMDBFetcherResponse *)response;
 
 - (void)didAddUserRestrictions:(BOOL)successful withResponse:(MMDBFetcherResponse *)response;
 

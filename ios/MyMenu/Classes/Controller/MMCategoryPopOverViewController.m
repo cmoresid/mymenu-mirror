@@ -29,8 +29,7 @@
 
 @implementation MMCategoryPopOverViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -38,21 +37,20 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
     allCategories = [[NSArray alloc] init];
     [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getCategories];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-    
+
 }
 
 - (void)didRetrieveCategories:(NSArray *)categories
                  withResponse:(MMDBFetcherResponse *)response {
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
-    
+
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Communication Error", nil)
                                                           message:NSLocalizedString(@"Unable to communicate with server.", nil)
@@ -60,7 +58,7 @@
                                                 cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
     else {
@@ -68,11 +66,11 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
@@ -93,8 +91,8 @@ numberOfRowsInComponent:(NSInteger)component {
        inComponent:(NSInteger)component {
     category = allCategories[row];
 }
-    
-- (IBAction)doneButton:(id)sender{
+
+- (IBAction)doneButton:(id)sender {
     self.returnBlock(category);
 }
 

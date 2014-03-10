@@ -19,7 +19,7 @@
 #import "MMRestaurantPopOverDelegate.h"
 
 
-@interface MMRestaurantPopOverViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
+@interface MMRestaurantPopOverViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property(strong) NSArray *categories;
 @property(nonatomic, weak) IBOutlet UIPickerView *categoryPicker;

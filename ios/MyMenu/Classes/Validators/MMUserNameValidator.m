@@ -20,7 +20,7 @@
 
 NSString *const kAvailableUserNameNotification = @"kAvailableUserNameNotification";
 
-@interface MMUserNameValidator() {
+@interface MMUserNameValidator () {
     MMDBFetcher *_dbFetcher;
 }
 
@@ -30,13 +30,13 @@ NSString *const kAvailableUserNameNotification = @"kAvailableUserNameNotificatio
 
 - (id)initWithUserNameTextField:(UITextField *)textField {
     self = [super init];
-    
+
     if (self) {
         self.userNameTextField = textField;
         _dbFetcher = [[MMDBFetcher alloc] init];
         _dbFetcher.delegate = self;
     }
-    
+
     return self;
 }
 

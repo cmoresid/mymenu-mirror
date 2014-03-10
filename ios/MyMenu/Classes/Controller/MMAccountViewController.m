@@ -16,9 +16,13 @@
 @interface MMAccountViewController ()
 
 - (void)registerForUpdateUserNotifications;
+
 - (void)unregisterForUpdateUserNotifications;
-- (void)updateUser:(NSNotification*)notification;
-- (void)updateUserError:(NSNotification*)notification;
+
+- (void)updateUser:(NSNotification *)notification;
+
+- (void)updateUserError:(NSNotification *)notification;
+
 - (void)configureValidation;
 
 @property(nonatomic, strong) MMValidationManager *passwordValidationManager;
@@ -42,22 +46,22 @@
     [super viewDidLoad];
 
     MMUser *loggedInUser = [[MMLoginManager sharedLoginManager] getLoggedInUser];
-    
+
     self.givenNameField.text = loggedInUser.firstName;
     self.surnameField.text = loggedInUser.lastName;
-    
+
     [self configureValidation];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     [self registerForUpdateUserNotifications];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    
+
     [self unregisterForUpdateUserNotifications];
 }
 
@@ -70,18 +74,18 @@
 
 - (void)configureValidation {
     self.passwordValidationManager = [MMValidationManager new];
-    
+
     MMRequiredTextFieldValidator *passwordRequiredValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.updatedPasswordField withValidationMessage:NSLocalizedString(@"* New password must be provided.", nil)];
-    
+
     MMMatchingTextFieldValidator *passwordMatchingValidator = [[MMMatchingTextFieldValidator alloc] initWithFirstTextField:self.updatedPasswordField withSecondTextField:self.confirmPasswordField withValidationMessage:NSLocalizedString(@"* Passwords must match.", nil)];
-    
+
     [self.passwordValidationManager addValidator:passwordRequiredValidator];
     [self.passwordValidationManager addValidator:passwordMatchingValidator];
-    
+
     self.locationValidationManager = [MMValidationManager new];
-    
+
     MMRequiredTextFieldValidator *locationValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.defaultLocationField withValidationMessage:NSLocalizedString(@"* Location cannot be empty.", nil)];
-    
+
     [self.locationValidationManager addValidator:locationValidator];
 }
 
@@ -92,7 +96,7 @@
                                              selector:@selector(updateUser:)
                                                  name:kUserUpdatedNotification
                                                object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateUserError:)
                                                  name:kUserUpdateErrorNotification
@@ -103,7 +107,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kUserUpdatedNotification
                                                   object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kUserUpdateErrorNotification
                                                   object:nil];
@@ -111,9 +115,9 @@
 
 #pragma mark - Update User Notification Callback Methods
 
-- (void)updateUser:(NSNotification*)notification {
+- (void)updateUser:(NSNotification *)notification {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    
+
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success", nil)
                                                       message:NSLocalizedString(@"Update Successful.", nil)
                                                      delegate:nil
@@ -122,9 +126,9 @@
     [message show];
 }
 
-- (void)updateUserError:(NSNotification*)notification {
+- (void)updateUserError:(NSNotification *)notification {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    
+
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
                                                       message:NSLocalizedString(@"Unable to update information.", nil)
                                                      delegate:nil
@@ -136,51 +140,51 @@
 #pragma mark - Action Methods
 
 - (IBAction)updatePassword:(id)sender {
-    NSArray *validationErrors  = [self.passwordValidationManager getValidationMessagesAsArray];
-    
+    NSArray *validationErrors = [self.passwordValidationManager getValidationMessagesAsArray];
+
     if (validationErrors.count > 0) {
         NSString *validationMessage = [validationErrors componentsJoinedByString:@"\n"];
-        
+
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Validation Error(s)", nil)
                                                           message:validationMessage
                                                          delegate:nil
                                                 cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
-        
+
         [message show];
         return;
     }
-    
+
     MMUser *userToUpdate = [[MMLoginManager sharedLoginManager] getLoggedInUser];
     userToUpdate.password = self.confirmPasswordField.text;
-    
+
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[MMLoginManager sharedLoginManager] beginUpdateUser:userToUpdate];
 }
 
 - (IBAction)updateDefaultLocation:(id)sender {
-    NSArray *validationErrors  = [self.locationValidationManager getValidationMessagesAsArray];
-    
+    NSArray *validationErrors = [self.locationValidationManager getValidationMessagesAsArray];
+
     if (validationErrors.count > 0) {
         NSString *validationMessage = [validationErrors componentsJoinedByString:@"\n"];
-        
+
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Validation Error(s)", nil)
                                                           message:validationMessage
                                                          delegate:nil
                                                 cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
-        
+
         [message show];
         return;
     }
-    
+
     MMUser *userToUpdate = [[MMLoginManager sharedLoginManager] getLoggedInUser];
     userToUpdate.city = self.defaultLocationField.text;
 
     [self.updatedPasswordField resignFirstResponder];
     [self.confirmPasswordField resignFirstResponder];
     [self.tableView resignFirstResponder];
-    
+
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[MMLoginManager sharedLoginManager] beginUpdateUser:userToUpdate];
 }

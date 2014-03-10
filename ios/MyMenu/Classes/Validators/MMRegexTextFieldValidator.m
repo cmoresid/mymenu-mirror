@@ -19,13 +19,13 @@
 
 @implementation MMRegexTextFieldValidator
 
-- (id)initWithTextField:(UITextField*)textField withRegexString:(NSString*)regex withValidationMessage:(NSString*)errorMessage {
+- (id)initWithTextField:(UITextField *)textField withRegexString:(NSString *)regex withValidationMessage:(NSString *)errorMessage {
     self = [super initWithTextField:textField withValidationMessage:errorMessage];
-    
+
     if (self) {
         self.regex = regex;
     }
-    
+
     return self;
 }
 

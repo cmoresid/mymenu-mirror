@@ -37,7 +37,7 @@
  * @return A list of `NSString` objects that represent the
  *         validation error messages.
  */
-- (NSArray*)getValidationMessagesAsArray;
+- (NSArray *)getValidationMessagesAsArray;
 
 /**
  * Iterates through each of the validation objects and calls its
@@ -47,13 +47,13 @@
  *
  * @return A string representing the error messages.
  */
-- (NSString*)getValidationMessagesAsString;
+- (NSString *)getValidationMessagesAsString;
 
 /**
  * Adds a validator object to the current validation manager.
  *
  * @param validator A validator object to be added to the validation manager.
  */
-- (void)addValidator:(id<MMValidatorProtocol>)validator;
+- (void)addValidator:(id <MMValidatorProtocol>)validator;
 
 @end

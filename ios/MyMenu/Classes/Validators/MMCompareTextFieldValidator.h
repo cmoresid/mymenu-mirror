@@ -27,18 +27,18 @@
 /**
  * The first text field to be compared.
  */
-@property (nonatomic, weak) UITextField *textField1;
+@property(nonatomic, weak) UITextField *textField1;
 
 /**
  * The second text field to be compared.
  */
-@property (nonatomic, weak) UITextField *textField2;
+@property(nonatomic, weak) UITextField *textField2;
 
 /**
  * The validation message that will be shown if the
  * validation fails.
  */
-@property (nonatomic, strong) NSString *errorMessage;
+@property(nonatomic, strong) NSString *errorMessage;
 
 /**
  * Initializes a comparator validator with the text fields that are to
@@ -51,6 +51,6 @@
  *
  * @return The comparator validator.
  */
-- (id)initWithFirstTextField:(UITextField*)textField1 withSecondTextField:(UITextField*)textField2 withValidationMessage:(NSString*)errorMessage;
+- (id)initWithFirstTextField:(UITextField *)textField1 withSecondTextField:(UITextField *)textField2 withValidationMessage:(NSString *)errorMessage;
 
 @end

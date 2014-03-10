@@ -33,7 +33,7 @@
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"category"
                                                            ascending:YES
                                                             selector:@selector(caseInsensitiveCompare:)];
-    
+
     return [self sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
 }
 
@@ -41,7 +41,7 @@
     return [self sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSNumber *first = ((MMMerchant *) obj1).rating;
         NSNumber *second = ((MMMerchant *) obj2).rating;
-        
+
         return [first compare:second] == NSOrderedAscending;
     }];
 }

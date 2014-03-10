@@ -31,7 +31,7 @@
     NSMutableArray *_objects;
 }
 
-- (void)updatedOrderByFilter:(UISegmentedControl*)control;
+- (void)updatedOrderByFilter:(UISegmentedControl *)control;
 
 @end
 
@@ -60,18 +60,18 @@
 
     // Successful retrieved restaurant list.
 
-    if (_searchflag == TRUE){
+    if (_searchflag == TRUE) {
         _filteredrestaurants = compressedMerchants;
         [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList object:_filteredrestaurants];
         _searchflag = FALSE;
-            [((UITableView *) self.searchDisplayController.searchResultsTableView) reloadData];
+        [((UITableView *) self.searchDisplayController.searchResultsTableView) reloadData];
     }
-    else{
-    _restaurants = compressedMerchants;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList
-                                                           object:_restaurants];
+    else {
+        _restaurants = compressedMerchants;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList
+                                                            object:_restaurants];
     }
-    
+
     [self.tableView reloadData];
 }
 
@@ -82,24 +82,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveUserLocation:)
                                                  name:kRetrievedUserLocation
                                                object:nil];
-    
+
     _searchflag = false;
 
     self.detailViewController = (MMDetailMapViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+
     [self.orderbySegmentControl addTarget:self
                                    action:@selector(updatedOrderByFilter:)
                          forControlEvents:UIControlEventValueChanged];
 }
 
-- (void)updatedOrderByFilter:(UISegmentedControl*)control {
+- (void)updatedOrderByFilter:(UISegmentedControl *)control {
     switch ([control selectedSegmentIndex]) {
         case 0:
             _restaurants = [_restaurants sortMerchantByDistance];
@@ -150,14 +150,14 @@
 
 // Return the amount of restaurants.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
+
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return [_filteredrestaurants count];
     } else {
-        
+
         return [_restaurants count];
     }
-    
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -168,14 +168,14 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
 
-    
+
     MMMerchant *restaurant;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         restaurant = [_filteredrestaurants objectAtIndex:indexPath.row];
     } else {
         restaurant = [_restaurants objectAtIndex:indexPath.row];
     }
-    
+
 
     cell.ratingBg.backgroundColor = [UIColor lightBackgroundGray];
     cell.ratingBg.layer.cornerRadius = 5;
@@ -253,28 +253,28 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"restaurantSegue"]) {
         UINavigationController *controller = segue.destinationViewController;
-        
+
         RBStoryboardLink *storyboardLink = [controller.viewControllers firstObject];
-        MMRestaurantViewController *restaurantViewController = (MMRestaurantViewController*)storyboardLink.scene;
-        
+        MMRestaurantViewController *restaurantViewController = (MMRestaurantViewController *) storyboardLink.scene;
+
         restaurantViewController.currentMerchant = _selectedRestaurant;
     }
 }
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+
     _searchflag = TRUE;
-    if ([searchBar.text length] != 0){
+    if ([searchBar.text length] != 0) {
         self.dbFetcher = [[MMDBFetcher alloc] init];
         self.dbFetcher.delegate = self;
         [self.dbFetcher getCompressedMerchantsByName:_location withName:searchBar.text];
     }
-    
+
 }
 
 /* When the user clicks 'cancel' */
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
-    
+
     [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList
                                                         object:_restaurants];
 

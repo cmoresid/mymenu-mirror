@@ -101,7 +101,7 @@
 /**
  * Get all merchants with name = merchname. Only return a subset of the fields to minify data.
  */
-- (void)getCompressedMerchantsByName:(CLLocation*) usrloc withName: (NSString*) merchname;
+- (void)getCompressedMerchantsByName:(CLLocation *)usrloc withName:(NSString *)merchname;
 
 /**
  * Get all merchants with category cuisine. Only return a subset of the fields to minify data.
@@ -171,47 +171,47 @@
 /**
  * Get today as a string, e.g. 'tuesday'
  */
-- (NSString *)getDay:(NSDate *) date;
+- (NSString *)getDay:(NSDate *)date;
 
 /**
  * Helper method that adds all relevant information to the rating object.
  */
-- (void)getRatingsHelper:(NSMutableURLRequest*) request withTopFlag:(BOOL)topFlag;
+- (void)getRatingsHelper:(NSMutableURLRequest *)request withTopFlag:(BOOL)topFlag;
 
 /**
  * Helper method that adds all relevant information to the rating object.
  */
-- (void)compressedMerchantsHelper:(NSMutableURLRequest*) request;
+- (void)compressedMerchantsHelper:(NSMutableURLRequest *)request;
 
 /**
  * When a user reports a review they find offensive.
  */
-- (void)reportReview:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid withReview: (NSNumber*)rid;
+- (void)reportReview:(NSString *)email withMenuItem:(NSNumber *)menuid withMerch:(NSNumber *)merchid withReview:(NSNumber *)rid;
 
 /**
  * When a user likes a menu item review.
  */
-- (void)likeReview:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid withReview: (NSNumber*)rid;
+- (void)likeReview:(NSString *)email withMenuItem:(NSNumber *)menuid withMerch:(NSNumber *)merchid withReview:(NSNumber *)rid;
 
 /**
  * When a user clicks 'I've Eaten This'.
  */
-- (void)userEaten:(NSString *)email withItem: (NSNumber*)mid;
+- (void)userEaten:(NSString *)email withItem:(NSNumber *)mid;
 
 /**
  * Checks if the user has already liked a review.
  */
-- (void)userLiked:(NSString *)email withReview: (NSNumber*)rid;
+- (void)userLiked:(NSString *)email withReview:(NSNumber *)rid;
 
 /**
  * Checks if the user has already reported a review.
  */
-- (void)userReported:(NSString *)email withReview: (NSNumber*)rid;
+- (void)userReported:(NSString *)email withReview:(NSNumber *)rid;
 
 /**
  * Checks if the user has already clicked 'I've Eaten this'
  */
-- (void)eatenThis:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid;
+- (void)eatenThis:(NSString *)email withMenuItem:(NSNumber *)menuid withMerch:(NSNumber *)merchid;
 
 /**
  * Updates a review.

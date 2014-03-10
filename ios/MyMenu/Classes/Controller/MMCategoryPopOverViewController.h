@@ -17,13 +17,14 @@
 
 #import <UIKit/UIKit.h>
 #import "MMDBFetcherDelegate.h"
+
 typedef void (^categoryReturnBlock)(NSString *);
 
 @interface MMCategoryPopOverViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, MMDBFetcherDelegate>
 
-@property (nonatomic, weak) IBOutlet UIPickerView * pickerView;
-@property (nonatomic, copy) categoryReturnBlock returnBlock;
+@property(nonatomic, weak) IBOutlet UIPickerView *pickerView;
+@property(nonatomic, copy) categoryReturnBlock returnBlock;
 
--(IBAction)doneButton:(id)sender;
+- (IBAction)doneButton:(id)sender;
 
 @end

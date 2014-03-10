@@ -19,7 +19,7 @@
 
 @implementation MMMatchingTextFieldValidator
 
-- (id)initWithFirstTextField:(UITextField*)textField1 withSecondTextField:(UITextField*)textField2 withValidationMessage:(NSString*)errorMessage {
+- (id)initWithFirstTextField:(UITextField *)textField1 withSecondTextField:(UITextField *)textField2 withValidationMessage:(NSString *)errorMessage {
     self = [super initWithFirstTextField:textField1 withSecondTextField:textField2 withValidationMessage:errorMessage];
 
     return self;

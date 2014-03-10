@@ -30,7 +30,7 @@
  *  inclusive, where `1.0` indicates a value of 10 and a value of `0.1` indicates a value of 1.
  *  Values less than `0.1` and greater than `1.0` are bounded to those respective values.
  */
-@property(nonatomic, assign)   CGFloat  wheelPercentage;
+@property(nonatomic, assign) CGFloat wheelPercentage;
 
 /**
  *  An integer representation of the current wheel percentage. Automatically updated
@@ -41,11 +41,11 @@
 /**
  *  The color of the fill color.
  */
-@property(nonatomic, strong)   UIColor  *wheelFillColor;
+@property(nonatomic, strong) UIColor *wheelFillColor;
 
 /**
  *  The background color of the wheel.
  */
-@property(nonatomic, strong)   UIColor  *wheelBackgroundColor;
+@property(nonatomic, strong) UIColor *wheelBackgroundColor;
 
 @end

@@ -26,11 +26,17 @@
 @property(nonatomic, strong) MMValidationManager *validationManager;
 
 - (void)configureValidation;
-- (void)canUserLogin:(NSNotification*)notification;
-- (void)userLoginError:(NSNotification*)notification;
+
+- (void)canUserLogin:(NSNotification *)notification;
+
+- (void)userLoginError:(NSNotification *)notification;
+
 - (void)registerForLoginNotifications;
+
 - (void)unregisterForLoginNotifications;
+
 - (void)registerForKeyboardNotifications;
+
 - (void)unregisterForKeyboardNotifications;
 
 @end
@@ -50,21 +56,21 @@
 
     self.emailAddress.delegate = self;
     self.password.delegate = self;
-    
+
     [self configureValidation];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    
-    
+
+
     [self registerForKeyboardNotifications];
     [self registerForLoginNotifications];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    
+
     [self unregisterForKeyboardNotifications];
     [self unregisterForLoginNotifications];
 }
@@ -78,12 +84,12 @@
 
 - (void)configureValidation {
     self.validationManager = [MMValidationManager new];
-    
+
     MMRequiredTextFieldValidator *userNameValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.emailAddress
                                                                                         withValidationMessage:NSLocalizedString(@"* User name must be provided.", nil)];
     MMRequiredTextFieldValidator *passwordValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.password
                                                                                         withValidationMessage:NSLocalizedString(@"* Password must be provided.", nil)];
-    
+
     [self.validationManager addValidator:userNameValidator];
     [self.validationManager addValidator:passwordValidator];
 }
@@ -94,7 +100,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(canUserLogin:)
                                                  name:kUserLoginNotification object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(userLoginError:)
                                                  name:kUserLoginErrorNotification object:nil];
@@ -104,7 +110,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kUserLoginNotification
                                                   object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kUserLoginErrorNotification
                                                   object:nil];
@@ -114,18 +120,18 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
-    
+
 }
 
 - (void)unregisterForKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardDidShowNotification
                                                   object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
@@ -133,10 +139,10 @@
 
 #pragma mark - User Login Callback Methods
 
-- (void)canUserLogin:(NSNotification*)notification {
+- (void)canUserLogin:(NSNotification *)notification {
     MMUser *userToLogin = notification.object;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
+
     if (!userToLogin) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid Username or Password!", nil)
                                                           message:NSLocalizedString(@"Please enter a valid user name and password.", nil)
@@ -144,16 +150,16 @@
                                                 cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
-    
+
     [self performSegueWithIdentifier:@"loginAndMainScreen" sender:self];
 }
 
-- (void)userLoginError:(NSNotification*)notification {
+- (void)userLoginError:(NSNotification *)notification {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
+
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Communication Error", nil)
                                                       message:NSLocalizedString(@"Unable to communicate with server.", nil)
                                                      delegate:nil
@@ -205,17 +211,17 @@
 
 - (IBAction)login:(id)sender {
     NSArray *validationMessages = [self.validationManager getValidationMessagesAsArray];
-    
+
     if ([validationMessages count] > 0) {
         NSString *validationMessage = [validationMessages componentsJoinedByString:@"\n"];
-        
+
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Unable To Login", nil)
                                                           message:validationMessage
                                                          delegate:nil
                                                 cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
 
@@ -231,7 +237,7 @@
 
 - (IBAction)loginAsGuest:(id)sender {
     [[MMLoginManager sharedLoginManager] loginAsGuest];
-    
+
     [self performSegueWithIdentifier:@"loginAndMainScreen" sender:self];
 }
 

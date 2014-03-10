@@ -20,7 +20,7 @@
 
 const CGFloat kReferenceAngle = -90.0;
 
-@interface MMRatingView()
+@interface MMRatingView ()
 
 - (CGFloat)degreesToRadians:(CGFloat)radians;
 
@@ -43,74 +43,74 @@ const CGFloat kReferenceAngle = -90.0;
 - (void)setWheelPercentage:(CGFloat)wheelPercentage {
     // Bounded between 0.1 and 1.0
     _wheelPercentage = fmaxf(0.1f, fminf(1.0f, wheelPercentage));
-    
+
     // Update the integer representation of the wheel percentage
-    _rating = [NSNumber numberWithInteger:((NSInteger)round(_wheelPercentage * 10))];
-    
+    _rating = [NSNumber numberWithInteger:((NSInteger) round(_wheelPercentage * 10))];
+
     [self setNeedsDisplay];
 }
 
 - (void)setWheelFillColor:(UIColor *)wheelFillColor {
     _wheelFillColor = wheelFillColor;
-    
+
     [self setNeedsDisplay];
 }
 
 - (void)setWheelBackgroundColor:(UIColor *)wheelBackgroundColor {
     _wheelBackgroundColor = wheelBackgroundColor;
-    
+
     [self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect {
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
     // Fill in the background color for the wheel.
-	if (_wheelBackgroundColor) {
-		[_wheelBackgroundColor set];
-		CGContextFillEllipseInRect(context, rect);
-	}
-    
-	CGPoint center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
-	CGFloat radius = center.y;
-	CGFloat angle = [self degreesToRadians:(360.0f * self.wheelPercentage) + kReferenceAngle];
-    
+    if (_wheelBackgroundColor) {
+        [_wheelBackgroundColor set];
+        CGContextFillEllipseInRect(context, rect);
+    }
+
+    CGPoint center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
+    CGFloat radius = center.y;
+    CGFloat angle = [self degreesToRadians:(360.0f * self.wheelPercentage) + kReferenceAngle];
+
     // Create the points for the bezier curve
-	CGPoint points[3] = {
-		CGPointMake(center.x, 0.0f),
-		center,
-		CGPointMake(center.x + radius * cosf(angle), center.y + radius * sinf(angle))
-	};
-    
-    
-	if (self.wheelFillColor) {
-		[self.wheelFillColor set];
-		if (self.wheelPercentage > 0.0f) {
+    CGPoint points[3] = {
+            CGPointMake(center.x, 0.0f),
+            center,
+            CGPointMake(center.x + radius * cosf(angle), center.y + radius * sinf(angle))
+    };
+
+
+    if (self.wheelFillColor) {
+        [self.wheelFillColor set];
+        if (self.wheelPercentage > 0.0f) {
             // Create the bezier curve that represents the filled in
             // portion of the wheels
-			CGContextAddLines(context, points, sizeof(points) / sizeof(points[0]));
-			CGContextAddArc(context, center.x, center.y, radius, [self degreesToRadians:kReferenceAngle], angle, false);
-			CGContextDrawPath(context, kCGPathEOFill);
-		}
-	}
-    
+            CGContextAddLines(context, points, sizeof(points) / sizeof(points[0]));
+            CGContextAddArc(context, center.x, center.y, radius, [self degreesToRadians:kReferenceAngle], angle, false);
+            CGContextDrawPath(context, kCGPathEOFill);
+        }
+    }
+
     // Create 'doughnut' appearence
     CGRect doughnut = CGRectMake(center.x - 75.0f, center.y - 75.0f, 150.0f, 150.0f);
     CGContextSetRGBFillColor(context, 1.0f, 1.0f, 1.0f, 1.0f);
     CGContextFillEllipseInRect(context, doughnut);
-    
+
     // Draw text value
-    UIFont* font = [UIFont fontWithName:@"Arial" size:110];
-    UIColor* textColor = [UIColor grayColor];
-    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    UIFont *font = [UIFont fontWithName:@"Arial" size:110];
+    UIColor *textColor = [UIColor grayColor];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.alignment = NSTextAlignmentCenter;
-    
-    NSDictionary* stringAttrs = @{ NSFontAttributeName : font, NSForegroundColorAttributeName : textColor, NSParagraphStyleAttributeName: paragraphStyle  };
-    
+
+    NSDictionary *stringAttrs = @{NSFontAttributeName : font, NSForegroundColorAttributeName : textColor, NSParagraphStyleAttributeName : paragraphStyle};
+
     CGRect textRect;
     textRect.size = CGSizeMake(125.0f, 110.0f);
     textRect.origin = CGPointMake(CGRectGetMidX(doughnut) - textRect.size.width / 2.0f, CGRectGetMidY(doughnut) - textRect.size.height / 2.0);
-    
+
     NSString *ratingTextValue = [NSString stringWithFormat:@"%@", self.rating];
     [ratingTextValue drawInRect:textRect withAttributes:stringAttrs];
 }

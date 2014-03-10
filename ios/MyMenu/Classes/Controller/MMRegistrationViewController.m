@@ -40,21 +40,21 @@
 
 - (void)configureFormValidation {
     MMRequiredTextFieldValidator *firstNameValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.firstNameField withValidationMessage:@"* First name is required."];
-    
+
     MMRequiredTextFieldValidator *lastNameValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.lastNameField withValidationMessage:@"* Last name is required."];
-    
+
     MMRegexTextFieldValidator *emailValidator = [[MMRegexTextFieldValidator alloc] initWithTextField:self.emailField withRegexString:@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$" withValidationMessage:@"* Must be a valid email address."];
-    
+
     MMRequiredTextFieldValidator *cityValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.cityField withValidationMessage:@"* City is required."];
-    
+
     MMRequiredTextFieldValidator *provinceValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.provinceField withValidationMessage:@"* Province is required."];
-    
+
     MMRequiredTextFieldValidator *genderValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.genderField withValidationMessage:@"* Gender is required."];
-    
+
     MMRequiredTextFieldValidator *passwordValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.passwordField withValidationMessage:@"* Password must be provided."];
-    
+
     MMMatchingTextFieldValidator *passwordMatchingValidator = [[MMMatchingTextFieldValidator alloc] initWithFirstTextField:self.passwordField withSecondTextField:self.confirmPasswordField withValidationMessage:@"* Passwords must match."];
-    
+
     [self.validationManager addValidator:firstNameValidator];
     [self.validationManager addValidator:lastNameValidator];
     [self.validationManager addValidator:emailValidator];
@@ -63,7 +63,7 @@
     [self.validationManager addValidator:genderValidator];
     [self.validationManager addValidator:passwordValidator];
     [self.validationManager addValidator:passwordMatchingValidator];
-    
+
     // User name validation requires a difference approach since
     // the validation is asynchronous.
     self.userNameValidator = [[MMUserNameValidator alloc] initWithUserNameTextField:self.emailField];
@@ -72,12 +72,12 @@
                                                  name:kAvailableUserNameNotification object:nil];
 }
 
-- (void)userNameValidate:(NSNotification*)notificaton {
+- (void)userNameValidate:(NSNotification *)notificaton {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
+
     NSNumber *result = notificaton.object;
     BOOL userExists = result.boolValue;
-    
+
     if (userExists) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
                                                           message:@"User Name/Email is already in use."
@@ -85,16 +85,16 @@
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
-    
+
     [self performSegueWithIdentifier:@"regToDietRest" sender:self];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // Allow view controller to act as
     // delegate for the following text fields.
     self.cityField.delegate = self;
@@ -109,11 +109,11 @@
     // for view to scroll to text field
     [self registerForKeyboardNotifications];
     [self.emailField becomeFirstResponder];
-    
+
     self.validationManager = [[MMValidationManager alloc] init];
     [self configureFormValidation];
 }
-   
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -312,20 +312,20 @@
 
 - (IBAction)next:(id)sender {
     NSArray *validationMessages = [self.validationManager getValidationMessagesAsArray];
-    
+
     if ([validationMessages count] > 0) {
         NSString *validationMessage = [validationMessages componentsJoinedByString:@"\n"];
-        
+
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Validation Error(s)"
                                                           message:validationMessage
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
-    
+
     // Check if user name exists on server, segue will
     // be performed in the userNameValidate: in this
     // controller.

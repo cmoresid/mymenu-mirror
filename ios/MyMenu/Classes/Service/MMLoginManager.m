@@ -25,7 +25,7 @@ NSString *const kGuestLogin = @"kGuestLogin";
 NSString *const kUserUpdatedNotification = @"kUserUpdatedNotification";
 NSString *const kUserUpdateErrorNotification = @"kUserUpdateErrorNotification";
 
-@interface MMLoginManager() {
+@interface MMLoginManager () {
     MMDBFetcher *_dbFetcher;
     NSString *_userToLogin;
     MMUser *_userToUpdate;
@@ -41,12 +41,12 @@ static MMLoginManager *instance;
 
 - (id)init {
     self = [super init];
-    
+
     if (self) {
         _dbFetcher = [[MMDBFetcher alloc] init];
         _dbFetcher.delegate = self;
     }
-    
+
     return self;
 }
 
@@ -56,7 +56,7 @@ static MMLoginManager *instance;
             instance = [[self alloc] init];
         }
     }
-    
+
     return instance;
 }
 
@@ -66,9 +66,9 @@ static MMLoginManager *instance;
     MMUser *userToLogin = [[MMUser alloc] init];
     userToLogin.email = userName;
     userToLogin.password = password;
-    
+
     _userToLogin = userName;
-    
+
     [_dbFetcher userVerified:userToLogin];
 }
 
@@ -83,7 +83,7 @@ static MMLoginManager *instance;
 - (void)loginAsGuest {
     MMUser *user = [MMUser new];
     user.email = kGuestLogin;
-    
+
     // Store user object now
     NSUserDefaults *userPreferances = [NSUserDefaults standardUserDefaults];
     NSData *encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
@@ -94,21 +94,21 @@ static MMLoginManager *instance;
     return ([[self getLoggedInUser].email isEqualToString:kGuestLogin]);
 }
 
-- (MMUser*)getLoggedInUser {
+- (MMUser *)getLoggedInUser {
     NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
     NSData *currentUserData = [perfs objectForKey:kCurrentUser];
-    MMUser *currentUser = (MMUser *)[NSKeyedUnarchiver unarchiveObjectWithData:currentUserData];
-    
+    MMUser *currentUser = (MMUser *) [NSKeyedUnarchiver unarchiveObjectWithData:currentUserData];
+
     return currentUser;
 }
 
 - (void)beginUpdateUser:(MMUser *)userToUpdate {
     _userToUpdate = userToUpdate;
-    
+
     [_dbFetcher editUser:userToUpdate];
 }
 
-- (void)saveUserProfileToDevice:(MMUser*)user {
+- (void)saveUserProfileToDevice:(MMUser *)user {
     NSUserDefaults *userPreferances = [NSUserDefaults standardUserDefaults];
     NSData *encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
     [userPreferances setObject:encodedUser forKey:kCurrentUser];
@@ -122,7 +122,7 @@ static MMLoginManager *instance;
                                                             object:nil];
         return;
     }
-    
+
     if (resultCode > 0) {
         [_dbFetcher getUser:_userToLogin];
     }
@@ -136,12 +136,12 @@ static MMLoginManager *instance;
     if (!response.wasSuccessful) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kUserLoginErrorNotification object:nil];
     }
-    
+
     // Store user object now
     NSUserDefaults *userPreferances = [NSUserDefaults standardUserDefaults];
     NSData *encodedUser = [NSKeyedArchiver archivedDataWithRootObject:user];
     [userPreferances setObject:encodedUser forKey:kCurrentUser];
-    
+
     [[NSNotificationCenter defaultCenter] postNotificationName:kUserLoginNotification
                                                         object:user];
 }
@@ -152,13 +152,13 @@ static MMLoginManager *instance;
                                                             object:nil];
         return;
     }
-    
+
     if (successful) {
         // Save updated user.
         NSUserDefaults *userPreferances = [NSUserDefaults standardUserDefaults];
         NSData *encodedUser = [NSKeyedArchiver archivedDataWithRootObject:_userToUpdate];
         [userPreferances setObject:encodedUser forKey:kCurrentUser];
-        
+
         [[NSNotificationCenter defaultCenter] postNotificationName:kUserUpdatedNotification
                                                             object:nil];
     }

@@ -24,32 +24,30 @@
 
 @implementation MMSpecialsWeekController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-		//[self setSelectedWeek:0];
+        //[self setSelectedWeek:0];
         // Custom initialization
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	
-	CGRect frame = self.tableView.frame;
-	CGSize size = [self contentSizeForViewInPopover];
-	[self.tableView setFrame:CGRectMake(frame.origin.x, frame.origin.y, size.width, size.height)];
+
+    CGRect frame = self.tableView.frame;
+    CGSize size = [self contentSizeForViewInPopover];
+    [self.tableView setFrame:CGRectMake(frame.origin.x, frame.origin.y, size.width, size.height)];
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
- 
+
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	
+
 }
-- (void)didReceiveMemoryWarning
-{
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -59,58 +57,55 @@
     CGFloat width = 200.0;
     CGRect rect = [self.tableView rectForSection:[self.tableView numberOfSections] - 1];
     CGFloat height = CGRectGetMaxY(rect);
-    return (CGSize){width, height};
+    return (CGSize) {width, height};
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	return [self weeks].count;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self weeks].count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-	
-	// When loading make sure we know which one should be checkmarked or not
-	if(indexPath.item == self.selectedWeek) {
-		cell.accessoryType = UITableViewCellAccessoryCheckmark;
-	}
-	
-	// Set the Proper Text
-	NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:@"EE MMM dd"];
-	
-	// Get the Date for that section
-	NSString *title = [formatter stringFromDate:[self.weeks objectAtIndex:indexPath.item]];
-	[cell setTintColor:[UIColor tealColor]];
+
+    // When loading make sure we know which one should be checkmarked or not
+    if (indexPath.item == self.selectedWeek) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+
+    // Set the Proper Text
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"EE MMM dd"];
+
+    // Get the Date for that section
+    NSString *title = [formatter stringFromDate:[self.weeks objectAtIndex:indexPath.item]];
+    [cell setTintColor:[UIColor tealColor]];
     [cell.textLabel setText:title];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[tableView deselectRowAtIndexPath:indexPath animated:NO];
-	
-	// If user Selects the item, uncheck it or check it and update the Data model
-	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	
-	NSIndexPath * oldPath = [NSIndexPath indexPathForItem:self.selectedWeek inSection:0];
-	UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldPath];
-							 
-	if (cell.accessoryType == UITableViewCellAccessoryNone) {
-		oldCell.accessoryType = UITableViewCellAccessoryNone;
-		self.selectedWeek = indexPath.item;
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
+    // If user Selects the item, uncheck it or check it and update the Data model
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+
+    NSIndexPath *oldPath = [NSIndexPath indexPathForItem:self.selectedWeek inSection:0];
+    UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldPath];
+
+    if (cell.accessoryType == UITableViewCellAccessoryNone) {
+        oldCell.accessoryType = UITableViewCellAccessoryNone;
+        self.selectedWeek = indexPath.item;
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         // Reflect selection in data model
-		
-		[self.specialsCollectionController loadWeek:[self.weeks objectAtIndex:indexPath.item]];
+
+        [self.specialsCollectionController loadWeek:[self.weeks objectAtIndex:indexPath.item]];
     }
 }
 
