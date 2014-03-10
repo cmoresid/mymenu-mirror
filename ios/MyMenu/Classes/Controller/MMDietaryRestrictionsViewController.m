@@ -58,12 +58,6 @@
     [MMDBFetcher get].delegate = self;
 }
 
-//will be used in the future.....
-//TODO: use this method.
--(void)didAddUserRestrictions:(BOOL)successful withResponse:(MMDBFetcherResponse *)response{
-    
-}
-//loads the view with the dietary restrictions already chosen by the user.
 - (void)viewDidLoad {
     [super viewDidLoad];
     user = [[MMUser alloc]init];

@@ -36,17 +36,14 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 
 #pragma mark - View Controller Methods
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
     [self registerForUserLocationNotifications];
-    
     [self configureView];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    
+- (void)dealloc {
     [self unregisterForUserLocationNotifications];
 }
 
