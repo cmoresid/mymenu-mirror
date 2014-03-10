@@ -476,7 +476,7 @@ NSMutableArray * categories;
 
 -(IBAction)categoryPicker:(id)sender{
 
-    MMRestaurantPopOverViewController *categoryContent = [[UIStoryboard restaurantStoryboard] instantiateViewControllerWithIdentifier:@"MenuItemCategoryPopoverViewController"];
+    MMRestaurantPopOverViewController *categoryContent = [[UIStoryboard menuStoryboard] instantiateViewControllerWithIdentifier:@"MenuItemCategoryPopoverViewController"];
     categoryContent.delegate = self;
     
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];

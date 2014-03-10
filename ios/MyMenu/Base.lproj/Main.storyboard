@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="E4e-Ge-d3g">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -578,13 +578,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </scrollView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Registration" id="mFb-qx-bvj">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="p4o-u9-aWH">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="p4o-u9-aWH">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="DH1-C1-Sj4" kind="unwind" unwindAction="unwindToLoginScreen:" id="Qc7-in-G3d"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Next" style="plain" id="Jr1-OJ-AH8">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="Jr1-OJ-AH8">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="next:" destination="fuX-Ai-MYU" id="vWM-5p-Kwd"/>
@@ -1000,8 +1000,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eH9-mO-zrD">
-                                <rect key="frame" x="0.0" y="44" width="703" height="724"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eH9-mO-zrD">
+                                <rect key="frame" x="0.0" y="44" width="701" height="674"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="2nE-TQ-7Yp" id="vii-zq-hrN"/>
@@ -1010,10 +1010,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="eH9-mO-zrD" secondAttribute="trailing" id="Szd-4h-EHP"/>
-                            <constraint firstAttribute="bottom" secondItem="eH9-mO-zrD" secondAttribute="bottom" id="UWe-ZH-Wuv"/>
-                            <constraint firstItem="eH9-mO-zrD" firstAttribute="leading" secondItem="2nE-TQ-7Yp" secondAttribute="leading" id="Whc-C2-bgk"/>
-                            <constraint firstItem="eH9-mO-zrD" firstAttribute="top" secondItem="Ul5-Kc-toB" secondAttribute="bottom" id="lCu-Px-QR6"/>
+                            <constraint firstItem="eH9-mO-zrD" firstAttribute="leading" secondItem="2nE-TQ-7Yp" secondAttribute="leading" id="Mrm-xH-8kd"/>
+                            <constraint firstItem="eH9-mO-zrD" firstAttribute="top" secondItem="Ul5-Kc-toB" secondAttribute="bottom" id="TyY-0d-sAL"/>
+                            <constraint firstAttribute="trailing" secondItem="eH9-mO-zrD" secondAttribute="trailing" constant="2" id="lBh-3z-peN"/>
+                            <constraint firstItem="5Bm-bF-mb3" firstAttribute="top" secondItem="eH9-mO-zrD" secondAttribute="bottom" constant="1" id="w5L-O3-LXA"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -1044,7 +1044,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ljw-kG-1B6"/>
+        <segue reference="Y45-lI-OMR"/>
         <segue reference="62S-hN-Lz1"/>
     </inferredMetricsTieBreakers>
 </document>

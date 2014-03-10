@@ -45,18 +45,87 @@ extern NSString *const kUserUpdatedNotification;
 extern NSString *const kUserUpdateErrorNotification;
 
 /**
- *  <#Description#>
+ *  A singleton class that is used to manage the user's
+ *  login state. This class provides methods to log a 
+ *  user in, log a user out, login as guest, and retrieve
+ *  the current logged in user.
  */
 @interface MMLoginManager : NSObject <MMDBFetcherDelegate>
 
+/**
+ *  Retrieve the singleton for the `MMLoginManager`.
+ *
+ *  @return Retrieve the singleton.
+ */
 + (id)sharedLoginManager;
-- (void)beginLoginWithUserName:(NSString*)userName withPassword:(NSString*)password;
+
+/**
+ *  Begin an asynchronous call to log a user in. First,
+ *  it checks to see if the user name exists on the server,
+ *  then it verifies the user's password.
+ *
+ *  @param userName The user name to login.
+ *  @param password The user's password.
+ */
+- (void)beginLoginWithUserName:(NSString*)userName
+                  withPassword:(NSString*)password;
+
+/**
+ *  Serializes the specifid user's profile to 
+ *  the device.
+ *
+ *  @param user The `MMUser` profile to save to
+ *              the device.
+ */
 - (void)saveUserProfileToDevice:(MMUser*)user;
+
+/**
+ *  Removes the current user profile from the
+ *  device, which has the effect of logging the
+ *  user out.
+ */
 - (void)logoutUser;
+
+/**
+ *  Checks to see if the user is logged in.
+ *
+ *  @return Returns whether or not a user is
+ *          logged in.
+ */
 - (BOOL)isUserLoggedIn;
+
+/**
+ *  Logs a user in as a guest. All this does is
+ *  create a `MMUser` object with it's email property
+ *  set to "kGuest".
+ */
 - (void)loginAsGuest;
+
+/**
+ *  Checks to see if a user is logged in as
+ *  guest.
+ *
+ *  @return Returns whether or not a user is
+ *          logged in as a guest.
+ */
 - (BOOL)isUserLoggedInAsGuest;
+
+/**
+ *  Returns the user profile of the user that
+ *  is currently logged in.
+ *
+ *  @return An `MMUser` object that represents
+ *          the user that is currently logged
+ *          in.
+ */
 - (MMUser*)getLoggedInUser;
+
+/**
+ *  Starts an asynchronous to update a user's
+ *  profile.
+ *
+ *  @param userToUpdate The user profile to update.
+ */
 - (void)beginUpdateUser:(MMUser*)userToUpdate;
 
 @end

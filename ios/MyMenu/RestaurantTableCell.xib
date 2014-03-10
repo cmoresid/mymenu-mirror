@@ -63,9 +63,9 @@
                 <outlet property="addressLabel" destination="4Js-4v-wFm" id="GlH-AA-3SC"/>
                 <outlet property="categoryLabel" destination="DRE-lt-2mo" id="CcH-sS-UIm"/>
                 <outlet property="distanceLabel" destination="aim-EL-itj" id="XVk-m2-1ui"/>
-                <outlet property="nameLabel" destination="LyL-p2-C7p" id="tJc-9s-bnM"/>
                 <outlet property="ratingBg" destination="lXw-Cu-fKv" id="tfj-Eg-7n0"/>
                 <outlet property="ratinglabel" destination="OQc-q2-YGO" id="Fy4-Sh-y0o"/>
+                <outlet property="restaurantNameLabel" destination="LyL-p2-C7p" id="n2w-Re-3jM"/>
                 <outlet property="thumbnailImageView" destination="KtH-hU-ueu" id="2tt-6R-Ijc"/>
             </connections>
         </tableViewCell>

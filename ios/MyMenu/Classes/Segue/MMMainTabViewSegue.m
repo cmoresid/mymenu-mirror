@@ -23,7 +23,10 @@
     UIViewController *sourceViewController = self.sourceViewController;
     UIViewController *destinationViewController = self.destinationViewController;
 
-    [sourceViewController presentViewController:destinationViewController animated:NO completion:NULL];
+    // Just present the view controller; no fancy animations
+    [sourceViewController presentViewController:destinationViewController
+                                       animated:NO
+                                     completion:NULL];
 }
 
 @end

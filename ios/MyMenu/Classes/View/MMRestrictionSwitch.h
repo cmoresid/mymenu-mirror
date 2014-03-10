@@ -17,7 +17,18 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  A custom switch that is used in the
+ *  dietary restrictions page. It allows
+ *  the view controller to determine the
+ *  which dietary restriction was selected.
+ */
 @interface MMRestrictionSwitch : UISwitch
+
+/**
+ *  The ID number of the restriction that
+ *  this switch is associated with.
+ */
 @property(nonatomic) NSNumber *restId;
 
 @end

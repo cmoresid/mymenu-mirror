@@ -12,14 +12,12 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation {
     static NSString *AnnotationViewID = @"annotationViewID";
-    static NSString *UserAnnotationViewID = @"userAnnotationViewID";
 
     NSString *annotationId;
     NSString *imageName;
 
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
-        annotationId = UserAnnotationViewID;
-        imageName = @"CurrentLocation.png";
+        return nil;
     }
     else {
         annotationId = AnnotationViewID;

@@ -17,10 +17,43 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  A category for `UIStoryboard` that provides
+ *  helper methods to retrieve the various storyboards
+ *  used by the application.
+ */
 @interface UIStoryboard (UIStoryboard_MyMenu)
 
+/**
+ *  Retrieves a reference to the main storyboard
+ *  used in the application. (Main.storyboard)
+ *
+ *  @return The main storyboard.
+ */
 + (UIStoryboard*)mainStoryBoard;
+
+/**
+ *  Retrieves a reference to the specials storyboard
+ *  used in the application. (Specials.storyboard)
+ *
+ *  @return The specials storyboard.
+ */
 + (UIStoryboard*)specialsStoryboard;
-+ (UIStoryboard*)restaurantStoryboard;
+
+/**
+ *  Retrieves a reference to the menu storyboard
+ *  used in the application. (Menu.storyboard)
+ *
+ *  @return The menu storyboard.
+ */
++ (UIStoryboard*)menuStoryboard;
+
+/**
+ *  Retrieves a reference to the profile storyboard
+ *  used in the application. (Profile.storyboard)
+ *
+ *  @return The profile storyboard.
+ */
++ (UIStoryboard*)profileStoryboard;
 
 @end

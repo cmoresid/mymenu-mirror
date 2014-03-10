@@ -18,6 +18,14 @@
 #import <Foundation/Foundation.h>
 #import "MMNetworkClientProtocol.h"
 
+/**
+ *  A service layer that allows calls to the network
+ *  in order to retrieve information from the server.
+ *  This allows you to swap out the mechanism used to
+ *  retrieve information from a server. Currently, a
+ *  `NSURLConnection` is used to retrieve information
+ *  from a server.
+ */
 @interface MMNetworkRequestProxy : NSObject <MMNetworkClientProtocol>
 
 @end

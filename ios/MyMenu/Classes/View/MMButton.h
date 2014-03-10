@@ -17,7 +17,12 @@
 
 #import <UIKit/UIKit.h>
 
-// Rounded button for consistency with other components
+/**
+ *  Provides a rounded corner
+ *  appearance for a button. Only
+ *  is noticable if a background color is
+ *  set on a button.
+ */
 @interface MMButton : UIButton
 
 @end

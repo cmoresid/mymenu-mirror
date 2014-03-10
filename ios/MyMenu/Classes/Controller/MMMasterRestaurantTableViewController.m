@@ -179,7 +179,7 @@
 
     cell.ratingBg.backgroundColor = [UIColor lightBackgroundGray];
     cell.ratingBg.layer.cornerRadius = 5;
-    cell.nameLabel.text = restaurant.businessname;
+    cell.restaurantNameLabel.text = restaurant.businessname;
     cell.categoryLabel.text = restaurant.category;
 
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
