@@ -28,15 +28,16 @@
       android:layout_height="match_parent"
       android:scaleType="centerCrop"/>
 
-  <CheckBox
-      android:id="@+id/toggle"
+  <TextView
+      android:id="@+id/label"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="48dp"
       android:layout_gravity="bottom"
-      android:textAppearance="?android:textAppearanceSmall"
-      android:textColor="@color/alice_blue"
-      android:paddingLeft="4dp"
-      android:paddingRight="4dp"
+      android:gravity="bottom"
+      android:padding="6dp"
+      android:singleLine="true"
+      android:ellipsize="end"
+      android:textColor="#fff"
       android:background="@drawable/gradient_overlay"/>
 
 </FrameLayout>

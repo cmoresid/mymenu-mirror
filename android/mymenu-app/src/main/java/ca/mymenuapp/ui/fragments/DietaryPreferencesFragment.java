@@ -18,6 +18,8 @@
 package ca.mymenuapp.ui.fragments;
 
 import android.content.Context;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,11 +27,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ca.mymenuapp.MyMenuApi;
@@ -55,8 +57,11 @@ import retrofit.client.Response;
 /**
  * A {@link ca.mymenuapp.ui.fragments.BaseFragment} that displays dietary preferences and allows
  * them to be toggled on and off.
+ * Preferences are toggled by clicking on the item.
+ * A grey tile indicates that te user is allergic.
  */
-public class DietaryPreferencesFragment extends BaseFragment {
+public class DietaryPreferencesFragment extends BaseFragment
+    implements AdapterView.OnItemClickListener {
 
   @Inject MyMenuApi myMenuApi;
   @Inject Picasso picasso;
@@ -66,10 +71,15 @@ public class DietaryPreferencesFragment extends BaseFragment {
   @InjectView(R.id.grid) GridView grid;
 
   BaseAdapter gridAdapter;
+  ColorMatrixColorFilter greyScaleFilter;
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
+
+    ColorMatrix matrix = new ColorMatrix();
+    matrix.setSaturation(0); //0 means grayscale
+    greyScaleFilter = new ColorMatrixColorFilter(matrix);
   }
 
   @Override
@@ -106,9 +116,7 @@ public class DietaryPreferencesFragment extends BaseFragment {
         new Callback<DietaryRestrictionResponse>() {
           @Override
           public void success(DietaryRestrictionResponse response, Response raw) {
-            root.setDisplayedChildId(R.id.grid);
-            gridAdapter = new DietaryRestrictionsAdapter(activityContext, response.restrictionList);
-            grid.setAdapter(gridAdapter);
+            initGrid(response.restrictionList);
           }
 
           @Override public void failure(RetrofitError error) {
@@ -116,6 +124,26 @@ public class DietaryPreferencesFragment extends BaseFragment {
           }
         }
     );
+  }
+
+  private void initGrid(List<DietaryRestriction> restrictionList) {
+    root.setDisplayedChildId(R.id.grid);
+    gridAdapter = new DietaryRestrictionsAdapter(activityContext, restrictionList);
+    grid.setAdapter(gridAdapter);
+    grid.setOnItemClickListener(this);
+  }
+
+  @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    if (user.get().restrictions == null) {
+      Ln.d("user restrictions not yet ready");
+      return;
+    }
+    if (!user.get().restrictions.contains(id)) {
+      user.get().restrictions.add(id);
+    } else if (user.get().restrictions.contains(id)) {
+      user.get().restrictions.remove(id);
+    }
+    gridAdapter.notifyDataSetInvalidated();
   }
 
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -135,6 +163,7 @@ public class DietaryPreferencesFragment extends BaseFragment {
             new Callback<Response>() {
               @Override public void success(Response response, Response response2) {
                 // Once deleted, insert all of their restrictions back in.
+                // todo: do this in one query?
                 for (Long id : user.get().restrictions) {
                   myMenuApi.putUserRestriction(user.get().email, id, new Callback<Response>() {
                     @Override public void success(Response response, Response response2) {
@@ -160,8 +189,7 @@ public class DietaryPreferencesFragment extends BaseFragment {
     }
   }
 
-  class DietaryRestrictionsAdapter extends BindableAdapter<DietaryRestriction>
-      implements CompoundButton.OnCheckedChangeListener {
+  class DietaryRestrictionsAdapter extends BindableAdapter<DietaryRestriction> {
     private final List<DietaryRestriction> dietaryRestrictions;
 
     public DietaryRestrictionsAdapter(Context context,
@@ -179,11 +207,11 @@ public class DietaryPreferencesFragment extends BaseFragment {
     }
 
     @Override public long getItemId(int position) {
-      return position;
+      return position + 1;
     }
 
     @Override public View newView(LayoutInflater inflater, int position, ViewGroup container) {
-      View view = inflater.inflate(R.layout.adapter_dietary_restrictions, container, false);
+      View view = inflater.inflate(R.layout.adapter_dietary_preferences, container, false);
       ViewHolder holder = new ViewHolder(view);
       view.setTag(holder);
       return view;
@@ -196,41 +224,20 @@ public class DietaryPreferencesFragment extends BaseFragment {
           .fit()
           .centerCrop()
           .into(holder.picture);
-      holder.checkBox.setText(item.userLabel);
-      holder.checkBox.setOnCheckedChangeListener(this);
-      holder.checkBox.setTag(item.id);
+      holder.label.setText(item.userLabel);
 
       if (!CollectionUtils.isNullOrEmpty(user.get().restrictions)) {
-        if (user.get().restrictions.contains(Long.valueOf(position + 1))) {
-          holder.checkBox.setChecked(true);
+        if (user.get().restrictions.contains(getItemId(position))) {
+          holder.picture.setColorFilter(greyScaleFilter);
         } else {
-          holder.checkBox.setChecked(false);
+          holder.picture.setColorFilter(null);
         }
       }
-    }
-
-    @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-      long id = (long) buttonView.getTag();
-      if (user.get().restrictions == null) {
-        Ln.d("user restrictions not yet ready");
-        buttonView.toggle();
-        return;
-      }
-      if (isChecked) {
-        if (!user.get().restrictions.contains(id)) {
-          user.get().restrictions.add(id);
-        }
-      } else {
-        if (user.get().restrictions.contains(id)) {
-          user.get().restrictions.remove(id);
-        }
-      }
-      user.save();
     }
 
     class ViewHolder {
       @InjectView(R.id.picture) ImageView picture;
-      @InjectView(R.id.toggle) CheckBox checkBox;
+      @InjectView(R.id.label) TextView label;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);
