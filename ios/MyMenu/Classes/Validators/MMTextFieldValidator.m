@@ -21,12 +21,12 @@
 
 - (id)initWithTextField:(UITextField *)textField withValidationMessage:(NSString *)errorMessage {
     self = [super init];
-    
+
     if (self) {
         self.textField = textField;
         self.errorMessage = errorMessage;
     }
-    
+
     return self;
 }
 
@@ -37,7 +37,7 @@
                                  userInfo:nil];
 }
 
-- (NSString*)getErrorMessage {
+- (NSString *)getErrorMessage {
     return self.errorMessage;
 }
 

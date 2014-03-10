@@ -25,8 +25,7 @@
 
 @implementation MMRestaurantPopOverViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -34,10 +33,9 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
     self.categoryPicker.delegate = self;
     self.categoryPicker.dataSource = self;
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -48,24 +46,24 @@
     self.popoverValue = nil;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void) didReceiveCategories:(NSNotification *)notification{
+
+- (void)didReceiveCategories:(NSNotification *)notification {
     self.categories = notification.object;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:
-(UIPickerView *)pickerView {
+        (UIPickerView *)pickerView {
     return 1;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView
 numberOfRowsInComponent:(NSInteger)component {
 
-        return _categories.count;
+    return _categories.count;
 
 }
 
@@ -75,9 +73,9 @@ numberOfRowsInComponent:(NSInteger)component {
     return _categories[row];
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-        self.popoverValue = [[MMPopoverDataPair alloc] initWithDataType:CategoryValue
-                                                      withSelectedValue:self.categories[row]];
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.popoverValue = [[MMPopoverDataPair alloc] initWithDataType:CategoryValue
+                                                  withSelectedValue:self.categories[row]];
 }
 
 - (IBAction)selectChoice:(id)sender {

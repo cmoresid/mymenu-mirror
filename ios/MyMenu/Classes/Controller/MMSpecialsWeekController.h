@@ -26,7 +26,7 @@
 /**
  *  Weeks from date
  */
-@property(nonatomic,readwrite) NSArray * weeks;
+@property(nonatomic, readwrite) NSArray *weeks;
 
 /**
  *   The selected week
@@ -36,7 +36,7 @@
 /**
  *  The controller we are in (Always MMSpecialsCollectionViewController)
  */
-@property(nonatomic,readwrite) MMSpecialsCollectionViewController * specialsCollectionController;
+@property(nonatomic, readwrite) MMSpecialsCollectionViewController *specialsCollectionController;
 
 /**
  *  Required height for the tableview

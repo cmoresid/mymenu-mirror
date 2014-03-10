@@ -34,7 +34,7 @@ extern NSString *const kAvailableUserNameNotification;
 /**
  * A text field that contains the user name to be validated.
  */
-@property (nonatomic, weak) UITextField* userNameTextField;
+@property(nonatomic, weak) UITextField *userNameTextField;
 
 /**
  * A constructor that accepts a text field which contains
@@ -42,7 +42,7 @@ extern NSString *const kAvailableUserNameNotification;
  *
  * @param textField The text field that will contain the user name to be validated.
  */
-- (id)initWithUserNameTextField:(UITextField*)textField;
+- (id)initWithUserNameTextField:(UITextField *)textField;
 
 /**
  * Begins an asynchronous request to validate the user name

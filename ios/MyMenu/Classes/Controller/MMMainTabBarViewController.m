@@ -49,10 +49,10 @@
 - (void)configureTabBarAppearance {
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setBarTintColor:[UIColor darkTealColor]];
-    
-    
+
+
     UIColor *color = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: color} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : color} forState:UIControlStateNormal];
 }
 
 #pragma mark - MMDBFetcher Delegate Methods

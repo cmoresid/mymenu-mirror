@@ -25,76 +25,76 @@
 /**
  *  Displays the specials
  */
-@interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate,UIToolbarDelegate,UIPopoverControllerDelegate,UISearchBarDelegate, RBStoryboardLinkSource>
+@interface MMSpecialsCollectionViewController : UICollectionViewController <MMDBFetcherDelegate, UIToolbarDelegate, UIPopoverControllerDelegate, UISearchBarDelegate, RBStoryboardLinkSource>
 
 /**
  *  The types we can show (Food, Dessert, Drinks specials)
  */
-@property(atomic) NSMutableArray * showTypes;
+@property(atomic) NSMutableArray *showTypes;
 
 /**
  *  Date the user has selected to show a week of
  */
-@property(atomic) NSDate * selectedDate;
+@property(atomic) NSDate *selectedDate;
 
 /**
  *  Headers for the collection view (Dates)
  */
-@property(atomic) NSMutableArray * dateKeys;
+@property(atomic) NSMutableArray *dateKeys;
 
 /**
  *  All specials by key an date
  */
-@property(atomic) NSMutableDictionary * specials;
+@property(atomic) NSMutableDictionary *specials;
 
 /**
  *  todays date.
  */
-@property(nonatomic,readwrite) NSDate * currentDate;
+@property(nonatomic, readwrite) NSDate *currentDate;
 
 
 /**
  *  The types popover view controller, done programmically
  */
-@property (nonatomic, strong) UIPopoverController *typesPopoverController;
+@property(nonatomic, strong) UIPopoverController *typesPopoverController;
 
 /**
  *  The week popover view controller, done programmically
  */
-@property (nonatomic, strong) UIPopoverController *weekPopoverController;
+@property(nonatomic, strong) UIPopoverController *weekPopoverController;
 
 /**
  *  The view controller that is presented within the types
  *  popover.
  */
-@property (nonatomic, strong) MMSpecialsTypeController *typesController;
+@property(nonatomic, strong) MMSpecialsTypeController *typesController;
 
 /**
  *  The view controller that is presented within the week
  *  popover.
  */
-@property (nonatomic, strong) MMSpecialsWeekController *weekController;
+@property(nonatomic, strong) MMSpecialsWeekController *weekController;
 
 /**
  * Adds a Special type to show, and reloads the view as Needed.
  */
--(void)addShowType:(NSString *)type;
+- (void)addShowType:(NSString *)type;
 
 /**
  * Removes a Special type to show, and reloads the view as Needed.
  */
--(void)removeShowType:(NSString *)type;
+- (void)removeShowType:(NSString *)type;
 
 /**
  * Checks if a Type is "Currently" being displayed.
  */
--(bool)containsShowType:(NSString *)type;
+- (bool)containsShowType:(NSString *)type;
 
 /**
  *  load the a week from the data into the collection view
  *
  *  @param date NSDate to display from
  */
--(void)loadWeek:(NSDate *)date;
+- (void)loadWeek:(NSDate *)date;
 
 @end

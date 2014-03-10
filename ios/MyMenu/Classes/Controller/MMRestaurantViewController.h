@@ -41,23 +41,23 @@
 /**
  *  The UILabel for the mechant name
  */
-@property(nonatomic, weak) IBOutlet UILabel * merchantNameLabel; // restaurant name
+@property(nonatomic, weak) IBOutlet UILabel *merchantNameLabel; // restaurant name
 /**
  *  The UILabel for the merchant phone number
  */
-@property(nonatomic, weak) IBOutlet UILabel * merchantPhoneNumberLabel; // restaurant phone number
+@property(nonatomic, weak) IBOutlet UILabel *merchantPhoneNumberLabel; // restaurant phone number
 /**
  *  The UILabel for the merchant rating
  */
-@property(nonatomic, weak) IBOutlet UILabel * merchantRatingLabel; // restaurant rating
+@property(nonatomic, weak) IBOutlet UILabel *merchantRatingLabel; // restaurant rating
 /**
  *  The UITextView for the merchant description
  */
-@property(nonatomic, weak) IBOutlet UITextView * merchantDescriptionTextView; // restaurant description
+@property(nonatomic, weak) IBOutlet UITextView *merchantDescriptionTextView; // restaurant description
 /**
  *  The UIImageView for the merchant image
  */
-@property(nonatomic, weak) IBOutlet UIImageView * merchantImageView; // restaurant image
+@property(nonatomic, weak) IBOutlet UIImageView *merchantImageView; // restaurant image
 
 /**
  *  The UIView for the merchant rating
@@ -67,12 +67,12 @@
 /**
  *  The UISearchBar for searching menu items
  */
-@property(nonatomic, weak) IBOutlet UISearchBar * searchBar; // field for search by name
+@property(nonatomic, weak) IBOutlet UISearchBar *searchBar; // field for search by name
 
 /**
  *  The UIButton to filter by category
  */
-@property(nonatomic, weak) IBOutlet UIButton * categoryButton; // filter by category buttton
+@property(nonatomic, weak) IBOutlet UIButton *categoryButton; // filter by category buttton
 
 /**
  *  UICollectionView that displays the menu items
@@ -97,23 +97,23 @@
 /**
  *  Merchant Hours Label
  */
-@property(nonatomic, weak) IBOutlet UILabel * merchantHoursLabel;
+@property(nonatomic, weak) IBOutlet UILabel *merchantHoursLabel;
 
 /**
  *  Merchant Address Label
  */
-@property(nonatomic, weak) IBOutlet UILabel * merchantAddressLabel;
+@property(nonatomic, weak) IBOutlet UILabel *merchantAddressLabel;
 
 /**
  *  Popover View Controller
  */
-@property (nonatomic, strong) UIPopoverController * popOverController;
+@property(nonatomic, strong) UIPopoverController *popOverController;
 
 /**
  *  View Controller that gets displayed inside of a popover.
  */
-@property (nonatomic, strong) MMRestaurantPopOverViewController * restPopOver;
-@property (nonatomic, strong) MMReviewPopOverViewController * revPopOver;
+@property(nonatomic, strong) MMRestaurantPopOverViewController *restPopOver;
+@property(nonatomic, strong) MMReviewPopOverViewController *revPopOver;
 
 /**
  *  Clear category filter button

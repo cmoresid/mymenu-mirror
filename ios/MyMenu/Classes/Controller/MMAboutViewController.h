@@ -26,6 +26,6 @@
 /**
  *  The web view that displays the About page.
  */
-@property (nonatomic, weak) IBOutlet UIWebView *aboutWebView;
+@property(nonatomic, weak) IBOutlet UIWebView *aboutWebView;
 
 @end

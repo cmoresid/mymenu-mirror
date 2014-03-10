@@ -23,7 +23,8 @@
 
 @interface MMDBFetcher ()
 
-- (void)compressedMerchantsHelper:(NSMutableURLRequest*)request;
+- (void)compressedMerchantsHelper:(NSMutableURLRequest *)request;
+
 - (BOOL)canPerformCallback:(id)delegate withSelector:(SEL)delegateSelector;
 
 @end
@@ -89,7 +90,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didCreateUser:withResponse");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didCreateUser:true withResponse:dbResponse];
                                 }
@@ -104,10 +105,10 @@ static MMDBFetcher *instance;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
-    NSString * dateString = @"yyyy-MM-dd HH:mm:ss";
-    NSDateFormatter * format = [[NSDateFormatter alloc] init];
+    NSString *dateString = @"yyyy-MM-dd HH:mm:ss";
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:dateString];
-    
+
     NSString *queryFormat = @"query=insert into ratings (useremail, menuid, merchid, rating, ratingdescription, ratingdate) values('%@', %@, %@, %@, '%@', sysdate())";
     NSString *query = [NSString stringWithFormat:queryFormat, rating.useremail, rating.menuid, rating.merchid, rating.rating, rating.review];
 
@@ -123,7 +124,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didCreateRating:withResponse");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didCreateRating:true withResponse:dbResponse];
                                 }
@@ -138,14 +139,14 @@ static MMDBFetcher *instance;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
-    
+
     NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, r.id, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, merchid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     [self getRatingsHelper:request withTopFlag:NO];
-    
+
 }
 
 - (void)getItemRatingsMerchantTop:(NSNumber *)merchid {
@@ -153,14 +154,14 @@ static MMDBFetcher *instance;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
-    
+
     NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, r.id, m.name, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY r.likecount DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, merchid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     [self getRatingsHelper:request withTopFlag:YES];
-    
+
 }
 
 - (void)getItemRatings:(NSNumber *)itemid {
@@ -168,7 +169,7 @@ static MMDBFetcher *instance;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
-    
+
     NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, u.firstname, u.lastname, r.id, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE m.id=%@ AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, itemid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
@@ -183,14 +184,14 @@ static MMDBFetcher *instance;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
-    
+
     NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, r.id, m.name, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM menu m, users u, ratings r, merchusers mu WHERE r.menuid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY r.likecount DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, itemid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    
-   [self getRatingsHelper:request withTopFlag:YES];
-    
+
+    [self getRatingsHelper:request withTopFlag:YES];
+
 }
 
 - (MMDBFetcherResponse *)createResponseWith:(NSData *)data withError:(NSError *)error {
@@ -230,7 +231,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveUser:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 
@@ -287,7 +288,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didUpdateUser:withResponse");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didUpdateUser:TRUE withResponse:dbResponse];
                                 }
@@ -302,23 +303,23 @@ static MMDBFetcher *instance;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
-    
+
     NSString *queryFormat = @"query=UPDATE ratings SET rating='%@',ratingdescription='%@',ratingdate=sysdate() WHERE id=%@";
     NSString *query = [NSString stringWithFormat:queryFormat, review.rating, review.review, review.id];
-    
-    
+
+
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-                                
+
                                 if (![self canPerformCallback:self.delegate withSelector:@selector(didUpdateRatings:withResponse:)]) {
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didUpdateRatings:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didUpdateRatings:TRUE withResponse:dbResponse];
                                 }
@@ -347,7 +348,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - doesUserExist:withResponse:");
                                     return;
                                 }
-                                
+
                                 if ([data length] > 0 && error == nil) {
                                     dbResponse.wasSuccessful = TRUE;
 
@@ -389,7 +390,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - wasUserVerified:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     NSArray *rxmlResult = [rootXML children:@"result"];
@@ -415,7 +416,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didAddUserRestrictions:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     [self innerAddUserRestrictions:email :restrictions];
                                 }
@@ -448,7 +449,7 @@ static MMDBFetcher *instance;
                                         NSLog(@"Warning: Delegate does not implement optional protocol selector - didAddUserRestrictions:withResponse:");
                                         return;
                                     }
-                                    
+
                                     if (dbResponse.wasSuccessful) {
                                         [self.delegate didAddUserRestrictions:TRUE withResponse:dbResponse];
                                     }
@@ -493,7 +494,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveUserRestrictions:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 
@@ -531,7 +532,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveAllRestrictions:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 
@@ -558,7 +559,7 @@ static MMDBFetcher *instance;
 /**
  * Get today as a string, e.g. 'tuesday'
  */
-- (NSString *)getDay:(NSDate *) date{
+- (NSString *)getDay:(NSDate *)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE"];
     return [[dateFormatter stringFromDate:date] lowercaseString];
@@ -566,7 +567,7 @@ static MMDBFetcher *instance;
 
 
 - (void)getDrinkSpecialsForDate:(NSDate *)date {
-	NSString * weekday = [self getDay:date];
+    NSString *weekday = [self getDay:date];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
@@ -575,12 +576,11 @@ static MMDBFetcher *instance;
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"YYYY-MM-dd"];
     NSString *dateString = [format stringFromDate:date];
-    
+
     NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (datediff(specials.startdate, '%@')<= 0 AND datediff('%@', specials.enddate)<=0) AND specials.categoryid=2";
     NSString *query = [NSString stringWithFormat:queryFormat, weekday, dateString, dateString];
-    
 
-    
+
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
@@ -592,7 +592,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveSpecials:forDate:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     NSMutableArray *specials = [[NSMutableArray alloc] init];
@@ -604,11 +604,11 @@ static MMDBFetcher *instance;
                                         special.name = [e child:@"name"].text;
                                         special.desc = [e child:@"description"].text;
                                         special.picture = [e child:@"picture"].text;
-										special.categoryid = [NSNumber numberWithInt:2];
+                                        special.categoryid = [NSNumber numberWithInt:2];
                                         [specials addObject:special];
                                     }];
 
-                                    [self.delegate didRetrieveSpecials:specials forDate:date  withResponse:dbResponse];
+                                    [self.delegate didRetrieveSpecials:specials forDate:date withResponse:dbResponse];
                                 }
                                 else {
                                     [self.delegate didRetrieveSpecials:nil forDate:nil withResponse:dbResponse];
@@ -617,34 +617,34 @@ static MMDBFetcher *instance;
 }
 
 - (void)getFoodSpecialsForDate:(NSDate *)date {
-	NSString * weekday = [self getDay:date];
+    NSString *weekday = [self getDay:date];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/specials/custom.php"]];
-    
+
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"YYYY-MM-dd"];
     NSString *dateString = [format stringFromDate:date];
-    
+
     NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (datediff(specials.startdate, '%@')<= 0 AND datediff('%@', specials.enddate)<=0) AND specials.categoryid=1";
     NSString *query = [NSString stringWithFormat:queryFormat, weekday, dateString, dateString];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-                                
+
                                 if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveSpecials:forDate:withResponse:)]) {
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveSpecials:forDate:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     NSMutableArray *specials = [[NSMutableArray alloc] init];
-                                    
+
                                     [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
                                         MMSpecial *special = [[MMSpecial alloc] init];
                                         special.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
@@ -652,10 +652,10 @@ static MMDBFetcher *instance;
                                         special.name = [e child:@"name"].text;
                                         special.desc = [e child:@"description"].text;
                                         special.picture = [e child:@"picture"].text;
-										special.categoryid = [NSNumber numberWithInt:1];
+                                        special.categoryid = [NSNumber numberWithInt:1];
                                         [specials addObject:special];
                                     }];
-                                    
+
                                     [self.delegate didRetrieveSpecials:specials forDate:date withResponse:dbResponse];
                                 }
                                 else {
@@ -665,34 +665,34 @@ static MMDBFetcher *instance;
 }
 
 - (void)getDessertSpecialsForDate:(NSDate *)date {
-	NSString * weekday = [self getDay:date];
+    NSString *weekday = [self getDay:date];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/specials/custom.php"]];
-    
+
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"YYYY-MM-dd"];
     NSString *dateString = [format stringFromDate:date];
-    
+
     NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (datediff(specials.startdate, '%@')<= 0 AND datediff('%@', specials.enddate)<=0) AND specials.categoryid=3";
     NSString *query = [NSString stringWithFormat:queryFormat, weekday, dateString, dateString];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-                                
+
                                 if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveSpecials:forDate:withResponse:)]) {
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveSpecials:forDate:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     NSMutableArray *specials = [[NSMutableArray alloc] init];
-                                    
+
                                     [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
                                         MMSpecial *special = [[MMSpecial alloc] init];
                                         special.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
@@ -700,11 +700,11 @@ static MMDBFetcher *instance;
                                         special.name = [e child:@"name"].text;
                                         special.desc = [e child:@"description"].text;
                                         special.picture = [e child:@"picture"].text;
-										special.categoryid = [NSNumber numberWithInt:3];
-										special.fetchDate = date;
+                                        special.categoryid = [NSNumber numberWithInt:3];
+                                        special.fetchDate = date;
                                         [specials addObject:special];
                                     }];
-                                    
+
                                     [self.delegate didRetrieveSpecials:specials forDate:date withResponse:dbResponse];
                                 }
                                 else {
@@ -732,9 +732,9 @@ static MMDBFetcher *instance;
 
     [request setValue:[NSString stringWithFormat:@"%d", [encodedQuery length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[encodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    [self compressedMerchantsHelper: request];
-    
+
+    [self compressedMerchantsHelper:request];
+
 }
 
 - (void)getCompressedMerchantsByName:(CLLocation *)usrloc withName:(NSString *)merchname {
@@ -744,7 +744,7 @@ static MMDBFetcher *instance;
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
 
     CLLocationCoordinate2D coords = usrloc.coordinate;
-    
+
     NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE UPPER(business_name) LIKE UPPER('%%%@%%') ORDER BY distance ASC LIMIT 25";
 
     NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], merchname];
@@ -764,21 +764,21 @@ static MMDBFetcher *instance;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
-    
+
     CLLocationCoordinate2D coords = usrloc.coordinate;
-    
-    
+
+
     NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE category = '%@' ORDER BY distance ASC LIMIT 50";
-    
+
     NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], cuisine];
-    
+
     NSString *encodedQuery = [query stringByAddingPercentEscapesUsingEncoding:
-                              NSUTF8StringEncoding];
-    
-    
+            NSUTF8StringEncoding];
+
+
     [request setValue:[NSString stringWithFormat:@"%d", [encodedQuery length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[encodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     [self compressedMerchantsHelper:request];
 }
 
@@ -801,7 +801,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveMerchant:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     MMMerchant *merchant = [[MMMerchant alloc] init];
@@ -859,7 +859,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveMenuItems:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     NSMutableArray *menuitems = [[NSMutableArray alloc] init];
@@ -910,7 +910,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveMenuItems:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 
@@ -959,7 +959,7 @@ static MMDBFetcher *instance;
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveModifications:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 
@@ -969,9 +969,9 @@ static MMDBFetcher *instance;
                                         modification = [e child:@"modification"].text;
                                         [modifications addObject:modification];
                                     }];
-                                    
-                                    NSArray * modificationArray = [modifications copy];
-                                    [self.delegate didRetrieveModifications:modificationArray  withResponse:dbResponse];
+
+                                    NSArray *modificationArray = [modifications copy];
+                                    [self.delegate didRetrieveModifications:modificationArray withResponse:dbResponse];
                                 }
                                 else {
                                     [self.delegate didRetrieveModifications:nil withResponse:dbResponse];
@@ -984,24 +984,24 @@ static MMDBFetcher *instance;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchcategories/custom.php"]];
-    
+
     NSString *query = @"query=SELECT name FROM merchcategories";
-   
+
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-                                
+
                                 if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveCategories:withResponse:)]) {
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveCategories:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-                                    
+
                                     NSMutableArray *categories = [[NSMutableArray alloc] init];
                                     [categories addObject:@"All Categories"];
                                     [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
@@ -1009,32 +1009,32 @@ static MMDBFetcher *instance;
                                         category = [e child:@"name"].text;
                                         [categories addObject:category];
                                     }];
-                                    
-                                    NSArray * categoryArray = [categories copy];
+
+                                    NSArray *categoryArray = [categories copy];
                                     [self.delegate didRetrieveCategories:categoryArray withResponse:dbResponse];
                                 }
                                 else {
                                     [self.delegate didRetrieveCategories:nil withResponse:dbResponse];
                                 }
                             }];
-    
+
 }
 
-- (void)compressedMerchantsHelper:(NSMutableURLRequest*) request{
-    
+- (void)compressedMerchantsHelper:(NSMutableURLRequest *)request {
+
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-                                
+
                                 if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveCompressedMerchants:withResponse:)]) {
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveCompressedMerchants:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     NSMutableArray *merchants = [[NSMutableArray alloc] init];
-                                    
+
                                     [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
                                         MMMerchant *merchant = [[MMMerchant alloc] init];
                                         merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
@@ -1048,10 +1048,10 @@ static MMDBFetcher *instance;
                                         merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
                                         merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
                                         merchant.distfromuser = [NSNumber numberWithDouble:[e child:@"distance"].textAsDouble];
-                                        
+
                                         [merchants addObject:merchant];
                                     }];
-                                    
+
                                     [self.delegate didRetrieveCompressedMerchants:merchants withResponse:dbResponse];
                                 }
                                 else {
@@ -1060,34 +1060,34 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getRatingsHelper:(NSMutableURLRequest*) request withTopFlag:(BOOL)topFlag {
+- (void)getRatingsHelper:(NSMutableURLRequest *)request withTopFlag:(BOOL)topFlag {
 
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                MMDBFetcherResponse* dbResponse = [self createResponseWith:data withError:error];
-                                
+                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
+
                                 if (!([self canPerformCallback:self.delegate withSelector:@selector(didRetrieveRecentItemRatings:withResponse:)] &&
-                                      [self canPerformCallback:self.delegate withSelector:@selector(didRetrieveTopItemRatings:withResponse:)])) {
-                                    
+                                        [self canPerformCallback:self.delegate withSelector:@selector(didRetrieveTopItemRatings:withResponse:)])) {
+
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-                                    
+
                                     NSMutableArray *ratings = [[NSMutableArray alloc] init];
                                     NSDateFormatter *dateform = [[NSDateFormatter alloc] init];
                                     [dateform setDateFormat:@"yyyy-MM--d H:m:s"];
-                                    
+
                                     [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
                                         MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
                                         rating.id = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
-                                        rating.useremail = [e child: @"useremail"].text;
+                                        rating.useremail = [e child:@"useremail"].text;
                                         rating.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
                                         rating.menuid = [NSNumber numberWithInt:[e child:@"menuid"].textAsInt];
                                         rating.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
-                                        rating.date = [dateform dateFromString:[e child: @"ratingdate"].text];
-                                        rating.review = [e child: @"ratingdescription"].text;
+                                        rating.date = [dateform dateFromString:[e child:@"ratingdate"].text];
+                                        rating.review = [e child:@"ratingdescription"].text;
                                         rating.menuitemname = [e child:@"name"].text;
                                         rating.firstname = [e child:@"firstname"].text;
                                         rating.lastname = [e child:@"lastname"].text;
@@ -1096,7 +1096,7 @@ static MMDBFetcher *instance;
                                         rating.itemImage = [e child:@"picture"].text;
                                         [ratings addObject:rating];
                                     }];
-                                    
+
                                     if (topFlag == YES)
                                         [self.delegate didRetrieveTopItemRatings:ratings withResponse:dbResponse];
                                     else
@@ -1111,28 +1111,28 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)eatenThis:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid {
+- (void)eatenThis:(NSString *)email withMenuItem:(NSNumber *)menuid withMerch:(NSNumber *)merchid {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
-    
+
     NSString *queryFormat = @"query=insert into eatenthis (useremail, menuid, merchid, adddate) values('%@', %@, %@, sysdate())";
     NSString *query = [NSString stringWithFormat:queryFormat, email, menuid, merchid];
-    
-    
+
+
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-                                
+
                                 if (![self canPerformCallback:self.delegate withSelector:@selector(didAddEatenThis:withResponse:)]) {
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didAddEatenThis:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didAddEatenThis:true withResponse:dbResponse];
                                 }
@@ -1140,65 +1140,65 @@ static MMDBFetcher *instance;
                                     [self.delegate didAddEatenThis:false withResponse:dbResponse];
                                 }
                             }];
-    
+
 
 }
 
-- (void)reportReview:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid withReview:(NSNumber*)rid {
+- (void)reportReview:(NSString *)email withMenuItem:(NSNumber *)menuid withMerch:(NSNumber *)merchid withReview:(NSNumber *)rid {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
-    
+
     NSString *queryFormat = @"query=insert into ratingreport (useremail, ratingid, merchid, menuid, adddate) values('%@', %@, %@, %@, sysdate())";
     NSString *query = [NSString stringWithFormat:queryFormat, email, rid, merchid, menuid];
-    
-    
+
+
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-                                
+
                                 if (![self canPerformCallback:self.delegate withSelector:@selector(didAddReviewReport:withResponse:)]) {
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didAddReviewReport:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didAddReviewReport:true withResponse:dbResponse];
                                 }
                                 else {
-                                     [self.delegate didAddReviewReport:false withResponse:dbResponse];
+                                    [self.delegate didAddReviewReport:false withResponse:dbResponse];
                                 }
                             }];
-    
+
 }
 
 
-- (void)likeReview:(NSString*)email withMenuItem:(NSNumber*)menuid withMerch:(NSNumber*)merchid withReview:(NSNumber*)rid {
+- (void)likeReview:(NSString *)email withMenuItem:(NSNumber *)menuid withMerch:(NSNumber *)merchid withReview:(NSNumber *)rid {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
-    
+
     NSString *queryFormat = @"query=insert into ratinglikes (useremail, ratingid, merchid, menuid, adddate) values('%@', %@, %@, %@, sysdate())";
     NSString *query = [NSString stringWithFormat:queryFormat, email, rid, merchid, menuid];
-    
-    
+
+
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-                                
+
                                 if (![self canPerformCallback:self.delegate withSelector:@selector(didAddReviewLike:withResponse:)]) {
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didAddReviewLike:withResponse:");
                                     return;
                                 }
-                                
+
                                 if (dbResponse.wasSuccessful) {
                                     [self.delegate didAddReviewLike:true withResponse:dbResponse];
                                 }
@@ -1206,129 +1206,129 @@ static MMDBFetcher *instance;
                                     [self.delegate didAddReviewLike:false withResponse:dbResponse];
                                 }
                             }];
-    
+
 }
 
-- (void)userEaten:(NSString *)email withItem: (NSNumber*)mid {
+- (void)userEaten:(NSString *)email withItem:(NSNumber *)mid {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
-    
+
     NSString *queryFormat = @"query=SELECT id FROM eatenthis WHERE useremail='%@' AND menuid = %@";
     NSString *query = [NSString stringWithFormat:queryFormat, email, mid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [[MMDBFetcherResponse alloc] init];
-                                
+
                                 if (![self canPerformCallback:self.delegate withSelector:@selector(didUserEat:withResponse:)]) {
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didUserEat:withResponse:");
                                     return;
                                 }
-                                
+
                                 if ([data length] > 0 && error == nil) {
                                     dbResponse.wasSuccessful = TRUE;
-                                    
+
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     NSArray *rxmlResult = [rootXML children:@"result"];
-                                    
+
                                     BOOL userEaten = (rxmlResult.count > 0);
-                                    
+
                                     [self.delegate didUserEat:userEaten withResponse:dbResponse];
                                 }
                                 else {
                                     dbResponse.wasSuccessful = FALSE;
-                                    
+
                                     if (error != nil) {
                                         [dbResponse.messages addObject:@"error"];
-                                        
+
                                         [self.delegate didUserEat:FALSE withResponse:dbResponse];
                                     }
                                 }
                             }];
 }
 
-- (void)userLiked:(NSString *)email withReview: (NSNumber*)rid {
+- (void)userLiked:(NSString *)email withReview:(NSNumber *)rid {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
-    
+
     NSString *queryFormat = @"query=SELECT id FROM ratinglikes WHERE useremail='%@' AND ratingid = %@";
     NSString *query = [NSString stringWithFormat:queryFormat, email, rid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [[MMDBFetcherResponse alloc] init];
-                                
+
                                 if (![self canPerformCallback:self.delegate withSelector:@selector(didUserLike:withResponse:)]) {
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didUserLike:withResponse:");
                                     return;
                                 }
-                                
+
                                 if ([data length] > 0 && error == nil) {
                                     dbResponse.wasSuccessful = TRUE;
-                                    
+
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     NSArray *rxmlResult = [rootXML children:@"result"];
-                                    
+
                                     BOOL userLiked = (rxmlResult.count > 0);
-                                    
+
                                     [self.delegate didUserLike:userLiked withResponse:dbResponse];
                                 }
                                 else {
                                     dbResponse.wasSuccessful = FALSE;
-                                    
+
                                     if (error != nil) {
                                         [dbResponse.messages addObject:@"error"];
-                                        
+
                                         [self.delegate didUserLike:FALSE withResponse:dbResponse];
                                     }
                                 }
                             }];
 }
 
-- (void)userReported:(NSString *)email withReview: (NSNumber*)rid {
+- (void)userReported:(NSString *)email withReview:(NSNumber *)rid {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
-    
+
     NSString *queryFormat = @"query=SELECT id FROM ratingreport WHERE useremail='%@' AND ratingid = %@";
     NSString *query = [NSString stringWithFormat:queryFormat, email, rid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-    
+
     [self.networkClient performNetworkRequest:request
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [[MMDBFetcherResponse alloc] init];
-                                
+
                                 if (![self canPerformCallback:self.delegate withSelector:@selector(didUserReport:withResponse:)]) {
                                     NSLog(@"Warning: Delegate does not implement optional protocol selector - didUserReport:withResponse:");
                                     return;
                                 }
-                                
+
                                 if ([data length] > 0 && error == nil) {
                                     dbResponse.wasSuccessful = TRUE;
-                                    
+
                                     RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
                                     NSArray *rxmlResult = [rootXML children:@"result"];
-                                    
+
                                     BOOL userReport = (rxmlResult.count > 0);
-                                    
+
                                     [self.delegate didUserReport:userReport withResponse:dbResponse];
                                 }
                                 else {
                                     dbResponse.wasSuccessful = FALSE;
-                                    
+
                                     if (error != nil) {
                                         [dbResponse.messages addObject:@"error"];
-                                        
+
                                         [self.delegate didUserReport:FALSE withResponse:dbResponse];
                                     }
                                 }

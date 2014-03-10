@@ -30,7 +30,7 @@
  *
  *  @return The main storyboard.
  */
-+ (UIStoryboard*)mainStoryBoard;
++ (UIStoryboard *)mainStoryBoard;
 
 /**
  *  Retrieves a reference to the specials storyboard
@@ -38,7 +38,7 @@
  *
  *  @return The specials storyboard.
  */
-+ (UIStoryboard*)specialsStoryboard;
++ (UIStoryboard *)specialsStoryboard;
 
 /**
  *  Retrieves a reference to the menu storyboard
@@ -46,7 +46,7 @@
  *
  *  @return The menu storyboard.
  */
-+ (UIStoryboard*)menuStoryboard;
++ (UIStoryboard *)menuStoryboard;
 
 /**
  *  Retrieves a reference to the profile storyboard
@@ -54,6 +54,6 @@
  *
  *  @return The profile storyboard.
  */
-+ (UIStoryboard*)profileStoryboard;
++ (UIStoryboard *)profileStoryboard;
 
 @end

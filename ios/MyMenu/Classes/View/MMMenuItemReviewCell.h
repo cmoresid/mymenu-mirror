@@ -30,7 +30,7 @@
  *  The menu item rating model object that this
  *  cell represents.
  */
-@property MMMenuItemRating * rating;
+@property MMMenuItemRating *rating;
 
 /**
  *  The label that represents the name of the

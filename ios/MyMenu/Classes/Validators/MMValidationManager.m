@@ -18,7 +18,7 @@
 #import "MMValidationManager.h"
 #import "MMValidator.h"
 
-@interface MMValidationManager()
+@interface MMValidationManager ()
 
 @property NSMutableArray *validationMessages;
 @property NSMutableArray *validationObjects;
@@ -29,31 +29,31 @@
 
 - (id)init {
     self = [super init];
-    
+
     if (self) {
         self.validationObjects = [NSMutableArray new];
     }
-    
+
     return self;
 }
 
-- (NSArray*)getValidationMessagesAsArray {
+- (NSArray *)getValidationMessagesAsArray {
     self.validationMessages = [NSMutableArray new];
-    
-    for (id<MMValidatorProtocol> validator in self.validationObjects) {
+
+    for (id <MMValidatorProtocol> validator in self.validationObjects) {
         if (![validator isValid]) {
             [self.validationMessages addObject:[validator getErrorMessage]];
         }
     }
-    
+
     return [self.validationMessages copy];
 }
 
-- (NSString*)getValidationMessagesAsString {
+- (NSString *)getValidationMessagesAsString {
     return [[self getValidationMessagesAsArray] componentsJoinedByString:@"\n"];
 }
 
-- (void)addValidator:(id<MMValidatorProtocol>)validator {
+- (void)addValidator:(id <MMValidatorProtocol>)validator {
     [self.validationObjects addObject:validator];
 }
 

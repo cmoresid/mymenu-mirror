@@ -27,11 +27,11 @@
 /**
  *  The types of specials
  */
-@property(nonatomic,readwrite) NSArray * specialItems;
+@property(nonatomic, readwrite) NSArray *specialItems;
 
 /**
  *  The controller we are in (Always MMSpecialsCollectionViewController)
  */
-@property(nonatomic,readwrite) MMSpecialsCollectionViewController * specialsCollectionController;
+@property(nonatomic, readwrite) MMSpecialsCollectionViewController *specialsCollectionController;
 
 @end

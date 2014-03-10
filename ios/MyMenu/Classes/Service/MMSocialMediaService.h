@@ -61,7 +61,7 @@ extern NSString *const SLServiceTypeTwitter;
  *  of `UIViewController` to use the resulting
  *  `SLComposeViewController`.
  */
-+ (SLComposeViewController*)shareMenuItem:(MMMenuItem*)menuItem
-                              withService:(NSString*)serviceType;
++ (SLComposeViewController *)shareMenuItem:(MMMenuItem *)menuItem
+                               withService:(NSString *)serviceType;
 
 @end

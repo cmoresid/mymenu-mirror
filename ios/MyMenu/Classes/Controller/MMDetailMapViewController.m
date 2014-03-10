@@ -38,7 +38,7 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self registerForUserLocationNotifications];
     [self configureView];
 }
@@ -59,7 +59,7 @@ NSString *const kDidUpdateList = @"DidUpdateList";
                                              selector:@selector(didReceiveUserLocation:)
                                                  name:kRetrievedUserLocation
                                                object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didUpdateList:)
                                                  name:kDidUpdateList
@@ -70,7 +70,7 @@ NSString *const kDidUpdateList = @"DidUpdateList";
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kRetrievedUserLocation
                                                   object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kDidUpdateList
                                                   object:nil];
@@ -100,53 +100,53 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 
 - (void)didUpdateList:(NSNotification *)notification {
     NSMutableArray *annots = [_mapView.annotations mutableCopy];
-    
-    for(int i = 0;i<[annots count];i++){
-        if([[annots objectAtIndex:i] isKindOfClass: [MKUserLocation class]])
-                [annots removeObjectAtIndex:i];
+
+    for (int i = 0; i < [annots count]; i++) {
+        if ([[annots objectAtIndex:i] isKindOfClass:[MKUserLocation class]])
+            [annots removeObjectAtIndex:i];
     }
-    
+
     [_mapView removeAnnotations:[annots copy]];
-    
+
     [self pinRestaurants:notification.object];
 
 }
 
 - (void)didReceiveUserLocation:(NSNotification *)notification {
     _location = notification.object;
-    
+
     MKCoordinateSpan span;
     span.latitudeDelta = .25;
     span.longitudeDelta = .25;
-    
+
     MKCoordinateRegion region;
     region.center = _location.coordinate;
     region.span = span;
-    
+
     [self.mapView setCenterCoordinate:_location.coordinate animated:YES];
     [self.mapView setRegion:region animated:YES];
-    
+
     self.mapDelegate = [[MMRestaurantMapDelegate alloc] init];
     self.mapView.delegate = self.mapDelegate;
 }
 
 #pragma mark - Configure Map View Methods
 
-- (void)pinRestaurants:(NSArray*)restaurants {
-    
-    if([restaurants count] == 1) {
+- (void)pinRestaurants:(NSArray *)restaurants {
+
+    if ([restaurants count] == 1) {
         [self configureMapForOneRestaurant:restaurants];
     }
     else {
         [self configureMapForManyRestaurants];
     }
-    
+
     for (int i = 0; i < restaurants.count; i++) {
         [self addPinForRestaurantToMap:[restaurants objectAtIndex:i]];
     }
 }
 
-- (void)addPinForRestaurantToMap:(MMMerchant*)restaurant {
+- (void)addPinForRestaurantToMap:(MMMerchant *)restaurant {
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     CLLocationCoordinate2D start;
     start.latitude = [restaurant.lat doubleValue];
@@ -154,7 +154,7 @@ NSString *const kDidUpdateList = @"DidUpdateList";
     [annotation setCoordinate:start];
     [annotation setTitle:restaurant.businessname];
     [annotation setSubtitle:restaurant.desc];
-    
+
     [self.mapView addAnnotation:annotation];
 }
 
@@ -162,11 +162,11 @@ NSString *const kDidUpdateList = @"DidUpdateList";
     MKCoordinateSpan span;
     span.latitudeDelta = .25;
     span.longitudeDelta = .25;
-    
+
     MKCoordinateRegion region;
     region.center = _location.coordinate;
     region.span = span;
-    
+
     [self.mapView setCenterCoordinate:_location.coordinate animated:YES];
     [self.mapView setRegion:region animated:YES];
 }
@@ -175,16 +175,16 @@ NSString *const kDidUpdateList = @"DidUpdateList";
     MKCoordinateSpan span;
     span.latitudeDelta = .25;
     span.longitudeDelta = .25;
-    
+
     MMMerchant *merch = [restaurants objectAtIndex:0];
-    
+
     MKCoordinateRegion region;
     CLLocationCoordinate2D start;
     start.latitude = [merch.lat doubleValue];
     start.longitude = [merch.longa doubleValue];
     region.center = start;
     region.span = span;
-    
+
     [self.mapView setRegion:region animated:YES];
 }
 
@@ -208,7 +208,7 @@ NSString *const kDidUpdateList = @"DidUpdateList";
                                                 cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
 }
@@ -221,7 +221,7 @@ NSString *const kDidUpdateList = @"DidUpdateList";
                                                 cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                 otherButtonTitles:nil];
         [message show];
-        
+
         return;
     }
 }

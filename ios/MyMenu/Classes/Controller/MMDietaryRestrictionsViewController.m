@@ -47,20 +47,20 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     if ([[MMLoginManager sharedLoginManager] isUserLoggedInAsGuest]) {
         [[MMLoginManager sharedLoginManager] logoutUser];
         [self performSegueWithIdentifier:@"userMustLogin" sender:self];
     }
 }
 
--(void)viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated {
     [MMDBFetcher get].delegate = self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    user = [[MMUser alloc]init];
+    user = [[MMUser alloc] init];
     // Load all restrictions.
     [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getAllRestrictions];
@@ -107,7 +107,7 @@
 
     dietaryRestrictionIds = [[NSMutableArray alloc] init];
     user = [[MMLoginManager sharedLoginManager] getLoggedInUser];
-    
+
     if (user.email != nil) {
         [[MMDBFetcher get] getUserRestrictions:user.email];
     }
@@ -182,14 +182,14 @@
         MMDBFetcher *fetcher = [MMDBFetcher get];
         // Allow destination controller to be delegate now
         fetcher.delegate = [segue destinationViewController];
-        if (user.email == nil){
+        if (user.email == nil) {
             [fetcher addUser:self.userProfile];
 
             NSArray *finalRestrictions = [dietaryRestrictionIds copy];
             [fetcher addUserRestrictions:self.userProfile.email :finalRestrictions];
-            
+
             [[MMLoginManager sharedLoginManager] saveUserProfileToDevice:self.userProfile];
-        } else  {
+        } else {
             NSArray *finalRestrictions = [dietaryRestrictionIds copy];
             [fetcher addUserRestrictions:user.email :finalRestrictions];
         }

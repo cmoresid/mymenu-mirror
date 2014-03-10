@@ -35,6 +35,7 @@
  *                 selected.
  */
 - (void)didSelectDone:(BOOL)done;
+
 - (void)didSelectCancel:(BOOL)cancel;
 
 @end

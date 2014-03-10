@@ -37,7 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
     self.aboutWebView.delegate = self;
     [self.aboutWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[MMStaticDataHelper sharedDataHelper] getAboutURL]]]];
 }

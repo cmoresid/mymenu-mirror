@@ -34,6 +34,6 @@
  * Retrieves any error message that is contained within the
  * validator object.
  */
-- (NSString*)getErrorMessage;
+- (NSString *)getErrorMessage;
 
 @end

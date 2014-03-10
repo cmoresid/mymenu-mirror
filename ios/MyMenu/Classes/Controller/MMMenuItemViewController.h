@@ -41,37 +41,37 @@
 /**
  *  Popover view controller
  */
-@property (nonatomic, strong) UIPopoverController * popOverController;
+@property(nonatomic, strong) UIPopoverController *popOverController;
 
 /**
  *  The label for the item name
  */
-@property(nonatomic, weak) IBOutlet UILabel * itemName;
+@property(nonatomic, weak) IBOutlet UILabel *itemName;
 
 /**
  *  The input review textview for a user submitted review.
  */
-@property(nonatomic, weak) IBOutlet UITextView * userReviewField;
+@property(nonatomic, weak) IBOutlet UITextView *userReviewField;
 
 /**
  *  Current Selected Text View
  */
-@property(nonatomic, weak) IBOutlet UITextView * activeField;
+@property(nonatomic, weak) IBOutlet UITextView *activeField;
 
 /**
  *  The Items Rating Label
  */
-@property(nonatomic, weak) IBOutlet UILabel * itemRating;
+@property(nonatomic, weak) IBOutlet UILabel *itemRating;
 
 /**
  *  The menu items description
  */
-@property(nonatomic, weak) IBOutlet UITextView * itemDescription;
+@property(nonatomic, weak) IBOutlet UITextView *itemDescription;
 
 /**
  *  The menu items description
  */
-@property(nonatomic, weak) IBOutlet UIImageView * itemImage;
+@property(nonatomic, weak) IBOutlet UIImageView *itemImage;
 
 /**
  *  The menu items rating
@@ -81,44 +81,44 @@
 /**
  *  The tablview that holds the avaliable Restrictions for the menu item
  */
-@property(nonatomic, weak) IBOutlet UITableView * menuModificationsTableView;
+@property(nonatomic, weak) IBOutlet UITableView *menuModificationsTableView;
 
 /**
  *  Rate button
  */
-@property (nonatomic, weak) IBOutlet UIButton * ratingButton;
+@property(nonatomic, weak) IBOutlet UIButton *ratingButton;
 
 /**
  *  I've eaten this button
  */
-@property (nonatomic, weak) IBOutlet UIButton * eatenThisButton;
+@property(nonatomic, weak) IBOutlet UIButton *eatenThisButton;
 
 /**
  *  Scrollview for the Entire view (Mostly for moving textfield up for keyboard)
  */
-@property (nonatomic, weak) IBOutlet UIScrollView * scrollView;
+@property(nonatomic, weak) IBOutlet UIScrollView *scrollView;
 
 /**
  *  The Current Navigation Bar
  */
-@property (nonatomic, weak) IBOutlet UINavigationBar * navigationBar;
+@property(nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
 
 /**
  *  Current Rating of menu Item
  */
-@property (nonatomic, strong) NSNumber *rating;
+@property(nonatomic, strong) NSNumber *rating;
 
-@property (nonatomic, strong) MMReviewPopOverViewController *reviewPopOver;
+@property(nonatomic, strong) MMReviewPopOverViewController *reviewPopOver;
 
 /**
  *  Menu Item View for showing reviews.
  */
-@property (nonatomic, weak) IBOutlet UICollectionView *ratingsCollectionView;
+@property(nonatomic, weak) IBOutlet UICollectionView *ratingsCollectionView;
 
 /**
  *  Switch the ratings view to show top rated first or most recent
  */
-@property (nonatomic, weak) IBOutlet UISegmentedControl *reviewSegment;
+@property(nonatomic, weak) IBOutlet UISegmentedControl *reviewSegment;
 
 /**
  *  Share the menu item via facebook

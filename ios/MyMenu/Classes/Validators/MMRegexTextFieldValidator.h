@@ -28,7 +28,7 @@
  * A string represention of a regular expression that
  * is to be used to validate the contents of a text field.
  */
-@property (nonatomic, strong) NSString *regex;
+@property(nonatomic, strong) NSString *regex;
 
 /**
  * A constructor that accepts a text field to validate, a regular expression string,
@@ -39,6 +39,6 @@
  * @param errorMessage The validation message to be shown if text field contents are invalid.
  *
  */
-- (id)initWithTextField:(UITextField*)textField withRegexString:(NSString*)regex withValidationMessage:(NSString*)errorMessage;
+- (id)initWithTextField:(UITextField *)textField withRegexString:(NSString *)regex withValidationMessage:(NSString *)errorMessage;
 
 @end

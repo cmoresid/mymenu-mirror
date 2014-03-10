@@ -67,8 +67,8 @@ extern NSString *const kUserUpdateErrorNotification;
  *  @param userName The user name to login.
  *  @param password The user's password.
  */
-- (void)beginLoginWithUserName:(NSString*)userName
-                  withPassword:(NSString*)password;
+- (void)beginLoginWithUserName:(NSString *)userName
+                  withPassword:(NSString *)password;
 
 /**
  *  Serializes the specifid user's profile to 
@@ -77,7 +77,7 @@ extern NSString *const kUserUpdateErrorNotification;
  *  @param user The `MMUser` profile to save to
  *              the device.
  */
-- (void)saveUserProfileToDevice:(MMUser*)user;
+- (void)saveUserProfileToDevice:(MMUser *)user;
 
 /**
  *  Removes the current user profile from the
@@ -118,7 +118,7 @@ extern NSString *const kUserUpdateErrorNotification;
  *          the user that is currently logged
  *          in.
  */
-- (MMUser*)getLoggedInUser;
+- (MMUser *)getLoggedInUser;
 
 /**
  *  Starts an asynchronous to update a user's
@@ -126,6 +126,6 @@ extern NSString *const kUserUpdateErrorNotification;
  *
  *  @param userToUpdate The user profile to update.
  */
-- (void)beginUpdateUser:(MMUser*)userToUpdate;
+- (void)beginUpdateUser:(MMUser *)userToUpdate;
 
 @end

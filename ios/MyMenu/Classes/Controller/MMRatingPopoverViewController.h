@@ -21,7 +21,7 @@
 @class MMMenuItem;
 @class MMMerchant;
 
-typedef void (^RatingsReturnBlock)(NSNumber*);
+typedef void (^RatingsReturnBlock)(NSNumber *);
 
 /**
  *  The rating popover which shows the circle rating.
@@ -31,47 +31,47 @@ typedef void (^RatingsReturnBlock)(NSNumber*);
 /**
  *  The Rating view
  */
-@property (nonatomic, weak) IBOutlet MMRatingView *ratingView;
+@property(nonatomic, weak) IBOutlet MMRatingView *ratingView;
 
 /**
  *  The current rating
  */
-@property (nonatomic, assign) CGFloat currentRating;
+@property(nonatomic, assign) CGFloat currentRating;
 
 /**
  *  Label to show restaurnt who the menu item belongs to
  */
-@property (nonatomic, weak) IBOutlet UILabel *merchantName;
+@property(nonatomic, weak) IBOutlet UILabel *merchantName;
 
 /**
  *  The Menu item which is being rated
  */
-@property (nonatomic, weak) IBOutlet UILabel *menuItemName;
+@property(nonatomic, weak) IBOutlet UILabel *menuItemName;
 
 /**
  *  A picture of the menu item view
  */
-@property (nonatomic, weak) IBOutlet UIImageView *menuItemImage;
+@property(nonatomic, weak) IBOutlet UIImageView *menuItemImage;
 
 /**
  *  The current menu item
  */
-@property (nonatomic, strong) MMMenuItem *menuItem;
+@property(nonatomic, strong) MMMenuItem *menuItem;
 
 /**
  *  The Current menu item merchant
  */
-@property (nonatomic, strong) MMMerchant *menuItemMerchant;
+@property(nonatomic, strong) MMMerchant *menuItemMerchant;
 
 /**
  *  The rating the user selected.
  */
-@property (nonatomic, copy) RatingsReturnBlock selectedRating;
+@property(nonatomic, copy) RatingsReturnBlock selectedRating;
 
 /**
  *  Close the rating box, and return nothing.
  */
-@property (nonatomic, copy) RatingsReturnBlock cancelRating;
+@property(nonatomic, copy) RatingsReturnBlock cancelRating;
 
 
 /**

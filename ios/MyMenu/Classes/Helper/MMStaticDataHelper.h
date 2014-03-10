@@ -31,7 +31,7 @@
  *
  *  @return The singleton instance.
  */
-+ (MMStaticDataHelper*)sharedDataHelper;
++ (MMStaticDataHelper *)sharedDataHelper;
 
 /**
  *  Retrieves the URL for the About page on
@@ -39,6 +39,6 @@
  *
  *  @return The URL of the About page.
  */
-- (NSString*)getAboutURL;
+- (NSString *)getAboutURL;
 
 @end

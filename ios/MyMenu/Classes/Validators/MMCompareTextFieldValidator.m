@@ -21,13 +21,13 @@
 
 - (id)initWithFirstTextField:(UITextField *)textField1 withSecondTextField:(UITextField *)textField2 withValidationMessage:(NSString *)errorMessage {
     self = [super init];
-    
+
     if (self) {
         self.textField1 = textField1;
         self.textField2 = textField2;
         self.errorMessage = errorMessage;
     }
-    
+
     return self;
 }
 
@@ -38,7 +38,7 @@
                                  userInfo:nil];
 }
 
-- (NSString*)getErrorMessage {
+- (NSString *)getErrorMessage {
     return self.errorMessage;
 }
 

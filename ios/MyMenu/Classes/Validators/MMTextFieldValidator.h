@@ -27,12 +27,12 @@
 /**
  * The text field to be validated.
  */
-@property (nonatomic, weak) UITextField *textField;
+@property(nonatomic, weak) UITextField *textField;
 
 /**
  * The validation message to be shown if validation fails.
  */
-@property (nonatomic, strong) NSString *errorMessage;
+@property(nonatomic, strong) NSString *errorMessage;
 
 /**
  * A constructor that initializes a validator object with a text field and a validation
@@ -41,6 +41,6 @@
  * @param textField The text field to be validated.
  * @param errorMessage The validation message to be shown if validation fails.
  */
-- (id)initWithTextField:(UITextField*)textField withValidationMessage:(NSString*)errorMessage;
+- (id)initWithTextField:(UITextField *)textField withValidationMessage:(NSString *)errorMessage;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "MMStaticDataHelper.h"
 
-@interface MMStaticDataHelper() {
+@interface MMStaticDataHelper () {
     NSDictionary *_data;
 }
 
@@ -22,28 +22,28 @@ static MMStaticDataHelper *instance;
 
 - (id)init {
     self = [super init];
-    
+
     if (self) {
         NSString *plistCatPath = [[NSBundle mainBundle] pathForResource:@"StaticData"
                                                                  ofType:@"plist"];
-        
+
         _data = [[NSDictionary alloc] initWithContentsOfFile:plistCatPath];
     }
-    
+
     return self;
 }
 
-+ (MMStaticDataHelper*)sharedDataHelper {
++ (MMStaticDataHelper *)sharedDataHelper {
     @synchronized (self) {
         if (instance == nil) {
             instance = [[self alloc] init];
         }
     }
-    
+
     return instance;
 }
 
-- (NSString*)getAboutURL {
+- (NSString *)getAboutURL {
     return [_data objectForKey:@"AboutURL"];
 }
 
