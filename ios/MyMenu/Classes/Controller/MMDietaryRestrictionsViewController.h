@@ -24,11 +24,11 @@
 /**
  *  Current User
  */
-@property MMUser *userProfile; //current user.
+@property MMUser *userProfile;
 
 /**
  *  The collection view on the restrictions page.
  */
-@property(nonatomic, weak) IBOutlet UICollectionView *collectionView; //collection view reference
+@property(nonatomic, weak) IBOutlet UICollectionView *restrictionsCollectionView; //collection view reference
 
 @end

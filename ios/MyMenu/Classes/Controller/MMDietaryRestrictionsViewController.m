@@ -26,14 +26,16 @@
 #import "MMLoginManager.h"
 
 @interface MMDietaryRestrictionsViewController () {
-    NSArray *allRestrictions;
-    NSMutableArray *dietaryRestrictionIds;
+    NSArray *allAvailableDietaryRestrictions;
+    NSMutableArray *usersDietaryRestrictionIDs;
     MMUser *user;
 }
 
 @end
 
 @implementation MMDietaryRestrictionsViewController
+
+#pragma mark - View Controller Methods
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -60,13 +62,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    user = [[MMUser alloc] init];
-    // Load all restrictions.
-    [MMDBFetcher get].delegate = self;
+    
     [[MMDBFetcher get] getAllRestrictions];
-
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - MMDBFetcher Delegate Methods
 
 - (void)didRetrieveUserRestrictions:(NSArray *)userRestrictions withResponse:(MMDBFetcherResponse *)response {
     if (!response.wasSuccessful) {
@@ -81,11 +87,11 @@
     }
 
     for (int i = 0; i < userRestrictions.count; i++) {
-        [dietaryRestrictionIds addObject:((MMRestriction *) userRestrictions[i]).id];
+        [usersDietaryRestrictionIDs addObject:((MMRestriction *) userRestrictions[i]).id];
     }
 
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
-    [self.collectionView reloadData];
+    [self.restrictionsCollectionView reloadData];
 }
 
 - (void)didRetrieveAllRestrictions:(NSArray *)restrictions withResponse:(MMDBFetcherResponse *)response {
@@ -100,48 +106,38 @@
         return;
     }
 
-    allRestrictions = restrictions;
+    allAvailableDietaryRestrictions = restrictions;
 
-    // TODO: Remove this in a little bit
-    //[self loadAllImages];
-
-    dietaryRestrictionIds = [[NSMutableArray alloc] init];
+    usersDietaryRestrictionIDs = [[NSMutableArray alloc] init];
     user = [[MMLoginManager sharedLoginManager] getLoggedInUser];
 
-    if (user.email != nil) {
+    if (user != nil) {
         [[MMDBFetcher get] getUserRestrictions:user.email];
     }
     else {
         [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
-        [self.collectionView reloadData];
+        [self.restrictionsCollectionView reloadData];
     }
 }
 
-//Called everytime a switch is turned off or on in this screen.
-//It either adds or deletes a restriction from the array.
+#pragma mark - Switch Flicked Notification Callback
 
 - (void)switchFlicked:(id)sender {
     MMRestrictionSwitch *restriction = ((MMRestrictionSwitch *) sender);
 
     if (restriction.on) {
-        if (![dietaryRestrictionIds containsObject:restriction.restId])
-            [dietaryRestrictionIds addObject:restriction.restId];
-    } else
-        [dietaryRestrictionIds removeObject:restriction.restId];
-
-
+        if (![usersDietaryRestrictionIDs containsObject:restriction.restId])
+            [usersDietaryRestrictionIDs addObject:restriction.restId];
+    }
+    else {
+        [usersDietaryRestrictionIDs removeObject:restriction.restId];
+    }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark -
-#pragma mark Collection View
+#pragma mark - Collection View Delegate Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return allRestrictions.count;
+    return allAvailableDietaryRestrictions.count;
 }
 
 //fills the collection view with all of the dietary restrictions available flagging the necessary
@@ -158,10 +154,11 @@
 
     [cell.contentView setBackgroundColor:[UIColor secondaryBlueBar]];
 
-    MMRestriction *restriction = [allRestrictions objectAtIndex:indexPath.row];
+    MMRestriction *restriction = [allAvailableDietaryRestrictions objectAtIndex:indexPath.row];
 
     UIImageView *recipeImageView = (UIImageView *) [cell viewWithTag:100];
-    [recipeImageView setImageWithURL:[NSURL URLWithString:[restriction image]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+    [recipeImageView setImageWithURL:[NSURL URLWithString:[restriction image]]
+                    placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
 
     // Set the Restriction Title
     UITextView *textView = (UITextView *) [cell viewWithTag:101];
@@ -169,29 +166,27 @@
 
     MMRestrictionSwitch *restSwitch = (MMRestrictionSwitch *) [cell viewWithTag:102];
     restSwitch.restId = restriction.id;
-    restSwitch.on = ([dietaryRestrictionIds containsObject:restriction.id]);
+    restSwitch.on = ([usersDietaryRestrictionIDs containsObject:restriction.id]);
 
     return cell;
 }
 
-//adds to the database and saves the users information in the shared preferences
-//only called when the "Done button is pusheda
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Make sure your segue name in storyboard is the same as this line
     if ([[segue identifier] isEqualToString:@"goToMainView"]) {
         MMDBFetcher *fetcher = [MMDBFetcher get];
         // Allow destination controller to be delegate now
         fetcher.delegate = [segue destinationViewController];
-        if (user.email == nil) {
+        if (user == nil) {
             [fetcher addUser:self.userProfile];
 
-            NSArray *finalRestrictions = [dietaryRestrictionIds copy];
-            [fetcher addUserRestrictions:self.userProfile.email :finalRestrictions];
+            NSArray *finalRestrictions = [usersDietaryRestrictionIDs copy];
+            [fetcher addUserRestrictions:self.userProfile.email withRestrictionIDs:finalRestrictions];
 
             [[MMLoginManager sharedLoginManager] saveUserProfileToDevice:self.userProfile];
         } else {
-            NSArray *finalRestrictions = [dietaryRestrictionIds copy];
-            [fetcher addUserRestrictions:user.email :finalRestrictions];
+            NSArray *finalRestrictions = [usersDietaryRestrictionIDs copy];
+            [fetcher addUserRestrictions:user.email withRestrictionIDs:finalRestrictions];
         }
     }
 }

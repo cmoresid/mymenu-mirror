@@ -405,7 +405,7 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)addUserRestrictions:(NSString *)email :(NSArray *)restrictions {
+- (void)addUserRestrictions:(NSString *)email withRestrictionIDs:(NSArray *)restrictions {
     NSMutableURLRequest *removeRestrictionsRequest = [self removeUserRestrictions:email];
 
     [self.networkClient performNetworkRequest:removeRestrictionsRequest
@@ -418,7 +418,7 @@ static MMDBFetcher *instance;
                                 }
 
                                 if (dbResponse.wasSuccessful) {
-                                    [self innerAddUserRestrictions:email :restrictions];
+                                    [self innerAddUserRestrictions:email withRestrictionIDs:restrictions];
                                 }
                                 else {
                                     [dbResponse.messages addObject:@"Unable to remove existing restrictions."];
@@ -428,7 +428,7 @@ static MMDBFetcher *instance;
 }
 
 
-- (void)innerAddUserRestrictions:(NSString *)email :(NSArray *)restrictions {
+- (void)innerAddUserRestrictions:(NSString *)email withRestrictionIDs:(NSArray *)restrictions {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
