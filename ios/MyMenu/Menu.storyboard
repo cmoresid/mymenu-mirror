@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="sDb-0H-8Q4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="sDb-0H-8Q4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -602,6 +602,22 @@
             </objects>
             <point key="canvasLocation" x="6013" y="1118"/>
         </scene>
+        <!--Base Navigation Controller-->
+        <scene sceneID="6iG-fS-oSo">
+            <objects>
+                <navigationController storyboardIdentifier="popOverNavigation" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="Agh-8r-0gf" customClass="MMBaseNavigationController" sceneMemberID="viewController">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QbU-dM-u3W">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="V60-FA-GYn" kind="relationship" relationship="rootViewController" id="4sC-SF-wcj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="87b-9G-Dyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6155" y="2050"/>
+        </scene>
         <!--Rating Popover View Controller-->
         <scene sceneID="K8a-Oe-SZk">
             <objects>
@@ -683,12 +699,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <navigationItem key="navigationItem" id="fDY-89-vP7"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="cancelButton" destination="yhs-pH-uOa" id="ZJo-2x-RA6"/>
+                        <outlet property="doneButton" destination="70K-Yy-VMf" id="F3f-K4-AI4"/>
                         <outlet property="menuItemImage" destination="dlC-8S-Xxx" id="Wc2-JS-pSC"/>
                         <outlet property="menuItemName" destination="tVw-Uv-nRK" id="MvM-1L-ftG"/>
                         <outlet property="merchantName" destination="JVA-Av-XT9" id="aAK-aM-KXC"/>
@@ -933,6 +952,7 @@
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <navigationItem key="navigationItem" id="2jG-E2-0do"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -951,7 +971,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lya-Xj-Pbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7455" y="1667"/>
+            <point key="canvasLocation" x="7943" y="1715"/>
         </scene>
         <!--Menu Item Pop Over View Controller-->
         <scene sceneID="JO5-Rx-ohS">

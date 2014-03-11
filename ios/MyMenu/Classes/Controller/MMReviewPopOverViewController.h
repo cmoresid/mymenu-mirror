@@ -21,6 +21,7 @@
 #import "MMRatingPopoverViewController.h"
 #import "MMMerchant.h"
 #import "MMDBFetcherDelegate.h"
+#import "MMBaseNavigationController.h"
 
 
 @interface MMReviewPopOverViewController : UIViewController <UIPopoverControllerDelegate, MMDBFetcherDelegate>
@@ -36,13 +37,14 @@
 @property(nonatomic, weak) IBOutlet UILabel *likecount;
 @property(nonatomic, weak) IBOutlet UIView *labelBack;
 @property(nonatomic, weak) IBOutlet UILabel *ratingLabel;
+@property(nonatomic, strong) MMBaseNavigationController *popOverNavigation;
 @property(nonatomic, strong) MMMenuItem *menuItem;
 @property(nonatomic, strong) MMMerchant *selectedRestaurant;
 @property(nonatomic, strong) id <MMReviewPopOverDelegate> delegate;
 @property(nonatomic, strong) MMRatingPopoverViewController *reviewPopOver;
 
 @property(nonatomic, strong) UIPopoverController *popOverController;
-
+@property(nonatomic, strong) UIPopoverController *oldPopOverController;
 
 - (IBAction)submitReview:(id)sender;
 

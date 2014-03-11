@@ -26,6 +26,7 @@
 #import "MMRatingPopoverViewController.h"
 
 
+
 #define kReview @"kReview"
 
 
@@ -63,7 +64,9 @@ NSInteger ratingValue;
     _ratingLabel = (UILabel *) [self.view viewWithTag:100];
     _labelBack = (UIView *) [self.view viewWithTag:101];
 }
-
+- (void)viewDidAppear:(BOOL)animated {
+    self.oldPopOverController.popoverContentSize = CGSizeMake(500, 400);
+}
 
 - (void)didReceiveReview:(NSNotification *)notification {
 
@@ -232,8 +235,9 @@ NSInteger ratingValue;
     if (CGRectContainsPoint([_ratingLabel frame], [touch locationInView:_labelBack]) && _ratingLabel.userInteractionEnabled) {
         // Make sure keyboard is hidden before you show popup.
         [self.desc resignFirstResponder];
-
+        
         MMRatingPopoverViewController *ratingPop = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuItemRatingPopover"];
+        
         self.menuItem = [[MMMenuItem alloc] init];
         self.menuItem.itemid = review.menuid;
         self.menuItem.name = review.menuitemname;
@@ -244,6 +248,7 @@ NSInteger ratingValue;
 
         ratingPop.menuItem = self.menuItem;
         ratingPop.menuItemMerchant = self.selectedRestaurant;
+        ratingPop.oldView = self.view;
 
         // Check if a rating has been previously selected. If one has
         // been, pre-select that value in the ratings wheel in the
@@ -263,27 +268,32 @@ NSInteger ratingValue;
             self.ratingLabel.text = rate;
 
             ratingValue = [rating integerValue];
+            [self.navigationController setNavigationBarHidden:YES];
             [self.popOverController dismissPopoverAnimated:YES];
         };
 
         ratingPop.cancelRating = ^(NSNumber *rating) {
             [self.popOverController dismissPopoverAnimated:YES];
         };
+        
+        [self.navigationController setNavigationBarHidden:NO];
+        [self.navigationController pushViewController:ratingPop animated:YES];
 
-        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:ratingPop];
-
-        popover.popoverContentSize = CGSizeMake(500, 500);
-        popover.delegate = self;
-
-        self.popOverController = popover;
-
-        [self.popOverController presentPopoverFromRect:self.ratingLabel.frame
-                                                inView:self.ratingLabel.superview
-                              permittedArrowDirections:UIPopoverArrowDirectionAny
-                                              animated:YES];
+//        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:ratingNav];
+//
+//        popover.popoverContentSize = CGSizeMake(500, 500);
+//        popover.delegate = self;
+//        
+//        self.popOverController = popover;
+//        
+//        [self.popOverController presentPopoverFromRect:self.ratingLabel.frame
+//                                                inView:self.ratingLabel.superview
+//                              permittedArrowDirections:UIPopoverArrowDirectionAny
+//                                              animated:YES];
 
     }
 }
+
 
 - (void)didAddReviewLike:(BOOL)succesful withResponse:(MMDBFetcherResponse *)response {
 

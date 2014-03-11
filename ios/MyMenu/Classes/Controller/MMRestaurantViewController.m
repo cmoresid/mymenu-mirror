@@ -323,17 +323,22 @@ NSMutableArray *categories;
         touchedReview = [[MMMenuItemRating alloc] init];
         touchedReview = itemCell.rating;
 
-        MMReviewPopOverViewController *reviewPop = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
+        //MMReviewPopOverViewController *reviewPop = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
+        
+        MMBaseNavigationController *reviewNavPop = [self.storyboard instantiateViewControllerWithIdentifier:@"popOverNavigation"];
+        
+        MMReviewPopOverViewController *reviewPop = [reviewNavPop.viewControllers firstObject];
         reviewPop.delegate = self;
 
         reviewPop.selectedRestaurant = _currentMerchant;
+        
 
-        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewPop];
+        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewNavPop];
         [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedReview];
 
         //popover.popoverContentSize = CGSizeMake(350, 216);
         popover.delegate = self;
-
+        reviewPop.oldPopOverController = popover;
         self.popOverController = popover;
 
         // Make sure keyboard is hidden before you show popup.
