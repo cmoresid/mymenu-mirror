@@ -180,3 +180,9 @@ DerivedData
 
 # docs
 website/docs
+
+# behat
+tests/bin/
+tests/vendor/
+tests/composer.lock
+tests/composer.phar

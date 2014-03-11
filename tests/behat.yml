@@ -1,0 +1,40 @@
+default:
+  context:
+    class:  'FeatureContext'
+  extensions:
+    Behat\MinkExtension\Extension:
+      javascript_session:  'selenium2'
+      default_session: 'selenium2'
+      selenium2:
+
+iPad_Local:
+  context:
+    class:  'FeatureContext'
+  extensions:
+    Behat\MinkExtension\Extension:
+     selenium2:
+        browser: iPad
+        wd_host: http://127.0.0.1:4723
+        capabilities: {  "platform": "Mac 10.8", "version": "6"}
+
+iPad_Remote:
+  context:
+    class:  'FeatureContext'
+  extensions:
+    Behat\MinkExtension\Extension:
+     selenium2:
+        browser: iPad
+        wd_host: http://cmoresid:5ac88e8e-4d93-421a-b2a2-25c04c65a574@ondemand.saucelabs.com:80/wd/hub
+        capabilities: {  "platform": "Mac OX 10.9", "version": "7"}
+
+Android:
+  filters:
+     tags: '@android'
+  context:
+    class:  'FeatureContext'
+  extensions:
+    Behat\MinkExtension\Extension:
+     selenium2:
+        browser: android
+        wd_host: SAUCE-USERNAME:SAUCE-ACCESS-KEY@ondemand.saucelabs.com/wd/hub
+        capabilities: {  "platform": "linux", "version": "4"}
