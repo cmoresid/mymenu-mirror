@@ -4,14 +4,7 @@ Feature: SauceLabs Documentation
 	I need see resource
 
 @javascript
-Scenario: Access feaures
-Given I am on "/"
-When I follow "Features"
-And I saw page loaded
-Then I should be on "/features"
-And I should see "Check out our features."
-
-@javascript @android
-Scenario: Access feauresss
-Given I am on "/features"
-Then I should see "Check out our features."
+Scenario: Login Screen
+Given I am on the login screen
+When I click on "Email Address"
+Then The keyboard should appear
