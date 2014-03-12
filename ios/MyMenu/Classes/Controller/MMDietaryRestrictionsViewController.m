@@ -65,6 +65,27 @@
     
     [[MMDBFetcher get] getAllRestrictions];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+    self.restrictionsCollectionView.delegate = self;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"goToMainView"]) {
+        MMDBFetcher *fetcher = [MMDBFetcher get];
+        // Allow destination controller to be delegate now
+        fetcher.delegate = [segue destinationViewController];
+        if (![[MMLoginManager sharedLoginManager] isUserLoggedIn]) {
+            [fetcher addUser:self.userProfile];
+            
+            NSArray *finalRestrictions = [usersDietaryRestrictionIDs copy];
+            [fetcher addUserRestrictions:self.userProfile.email withRestrictionIDs:finalRestrictions];
+            
+            [[MMLoginManager sharedLoginManager] saveUserProfileToDevice:self.userProfile];
+        } else {
+            NSArray *finalRestrictions = [usersDietaryRestrictionIDs copy];
+            [fetcher addUserRestrictions:user.email withRestrictionIDs:finalRestrictions];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -120,20 +141,6 @@
     }
 }
 
-#pragma mark - Switch Flicked Notification Callback
-
-- (void)switchFlicked:(id)sender {
-    MMRestrictionSwitch *restriction = ((MMRestrictionSwitch *) sender);
-
-    if (restriction.on) {
-        if (![usersDietaryRestrictionIDs containsObject:restriction.restId])
-            [usersDietaryRestrictionIDs addObject:restriction.restId];
-    }
-    else {
-        [usersDietaryRestrictionIDs removeObject:restriction.restId];
-    }
-}
-
 #pragma mark - Collection View Delegate Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -146,48 +153,44 @@
     static NSString *identifier = @"Cell";
 
     MMDietaryRestrictionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    [cell.onSwitch addTarget:self action:@selector(switchFlicked:) forControlEvents:UIControlEventValueChanged];
-
-    // Rounded Corners
-    cell.contentView.layer.cornerRadius = 20;
-    cell.contentView.layer.masksToBounds = YES;
-
-    [cell.contentView setBackgroundColor:[UIColor secondaryBlueBar]];
-
+    
     MMRestriction *restriction = [allAvailableDietaryRestrictions objectAtIndex:indexPath.row];
 
-    UIImageView *recipeImageView = (UIImageView *) [cell viewWithTag:100];
-    [recipeImageView setImageWithURL:[NSURL URLWithString:[restriction image]]
-                    placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
-
-    // Set the Restriction Title
-    UITextView *textView = (UITextView *) [cell viewWithTag:101];
-    textView.text = restriction.name;
-
-    MMRestrictionSwitch *restSwitch = (MMRestrictionSwitch *) [cell viewWithTag:102];
-    restSwitch.restId = restriction.id;
-    restSwitch.on = ([usersDietaryRestrictionIDs containsObject:restriction.id]);
+    // Rounded Corners
+    cell.contentView.layer.cornerRadius = 10;
+    cell.contentView.layer.masksToBounds = YES;
+    cell.contentView.backgroundColor = [UIColor secondaryBlueBar];
+    cell.restrictionName.text = restriction.name;
+    
+    [cell.restrictionImageView setImageWithURL:[NSURL URLWithString:[restriction image]]
+                    placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]
+                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                        cell.restrictionImageWithoutMask = image;
+                        cell.correspondingRestrictionId = restriction.id;
+                        
+                        cell.isSelected = [usersDietaryRestrictionIDs containsObject:restriction.id];
+                    }];
 
     return cell;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Make sure your segue name in storyboard is the same as this line
-    if ([[segue identifier] isEqualToString:@"goToMainView"]) {
-        MMDBFetcher *fetcher = [MMDBFetcher get];
-        // Allow destination controller to be delegate now
-        fetcher.delegate = [segue destinationViewController];
-        if (user == nil) {
-            [fetcher addUser:self.userProfile];
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    MMDietaryRestrictionCell *cell = (MMDietaryRestrictionCell *) [collectionView cellForItemAtIndexPath:indexPath];
+    
+    cell.isSelected = !cell.isSelected;
+    
+    [self updateUsersDietaryRestrictionsForCell:cell];
+}
 
-            NSArray *finalRestrictions = [usersDietaryRestrictionIDs copy];
-            [fetcher addUserRestrictions:self.userProfile.email withRestrictionIDs:finalRestrictions];
+#pragma mark - Helper Methods
 
-            [[MMLoginManager sharedLoginManager] saveUserProfileToDevice:self.userProfile];
-        } else {
-            NSArray *finalRestrictions = [usersDietaryRestrictionIDs copy];
-            [fetcher addUserRestrictions:user.email withRestrictionIDs:finalRestrictions];
-        }
+- (void)updateUsersDietaryRestrictionsForCell:(MMDietaryRestrictionCell *)cell {
+    if (cell.isSelected) {
+        if (![usersDietaryRestrictionIDs containsObject:cell.correspondingRestrictionId])
+            [usersDietaryRestrictionIDs addObject:cell.correspondingRestrictionId];
+    }
+    else {
+        [usersDietaryRestrictionIDs removeObject:cell.correspondingRestrictionId];
     }
 }
 

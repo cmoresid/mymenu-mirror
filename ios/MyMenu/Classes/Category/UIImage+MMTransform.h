@@ -16,19 +16,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MMUser.h"
-#import "MMDBFetcherDelegate.h"
-
-@interface MMDietaryRestrictionsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MMDBFetcherDelegate>
 
 /**
- *  Current User
+ *  Adds custom image transformations that are needed
+ *  for our application. Mainly a grey scale transformation
+ *  and adding a mask to an existing image.
  */
-@property MMUser *userProfile;
+@interface UIImage (MMTransform)
 
 /**
- *  The collection view on the restrictions page.
+ *  Applies a greyscale filter to the specified
+ *  image.
+ *
+ *  @param image The image to apply the filter to.
+ *
+ *  @return A new image that has the grey filter applied
  */
-@property(nonatomic, weak) IBOutlet UICollectionView *restrictionsCollectionView; //collection view reference
++ (UIImage *)addRestrictionMask:(UIImage *)image;
 
 @end
