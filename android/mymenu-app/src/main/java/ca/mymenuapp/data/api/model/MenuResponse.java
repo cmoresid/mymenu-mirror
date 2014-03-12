@@ -22,13 +22,12 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root(name = "results")
-public class UserRestrictionResponse {
-  @ElementList(name = "result", required = false, inline = true) public List<UserRestrictionLink>
-      links;
+public class MenuResponse {
+  @ElementList(name = "result", required = false, inline = true) public List<MenuItem> menuItems;
 
   @Override public String toString() {
-    return "UserRestrictionResponse{" +
-        "links=" + links +
+    return "MenuResponse{" +
+        "menuItems=" + menuItems +
         '}';
   }
 }

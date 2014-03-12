@@ -21,14 +21,14 @@ import java.util.List;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-@Root(name = "results")
-public class UserRestrictionResponse {
-  @ElementList(name = "result", required = false, inline = true) public List<UserRestrictionLink>
-      links;
+@Root(name = "result")
+public class MenuCategoryResponse {
+  @ElementList(name = "result", required = false, inline = true) public List<MenuCategory>
+      categories;
 
   @Override public String toString() {
-    return "UserRestrictionResponse{" +
-        "links=" + links +
+    return "MenuCategoryResponse{" +
+        "categories=" + categories +
         '}';
   }
 }
