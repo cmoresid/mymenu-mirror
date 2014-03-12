@@ -27,23 +27,22 @@
       android:name=".MyMenuApp"
       android:allowBackup="true"
       android:icon="@drawable/ic_launcher"
-      android:label="@string/app_name"
+      android:label="@string/launcher_name"
       android:theme="@style/AppTheme">
     <activity
         android:name=".ui.activities.MainActivity"
-        android:label="@string/app_name">
+        android:label="@string/application_name">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
-
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
     <activity
         android:name=".ui.activities.LoginActivity"
-        android:label="@string/app_name"/>
+        android:label="@string/application_name"/>
     <activity
         android:name=".ui.activities.SignUpActivity"
-        android:label="@string/app_name"/>
+        android:label="@string/application_name"/>
   </application>
 
 </manifest>

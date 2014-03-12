@@ -36,6 +36,7 @@ import dagger.Module;
 import dagger.Provides;
 import java.io.File;
 import java.io.IOException;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 /**
@@ -47,6 +48,8 @@ import javax.inject.Singleton;
     complete = false,
     library = true)
 public final class DataModule {
+
+  public static final String USER_PREFERENCE = "user_preference";
 
   static final int DISK_CACHE_SIZE = 50 * 1024 * 1024; // 50MB
 
@@ -89,10 +92,8 @@ public final class DataModule {
         .build();
   }
 
-  @Provides @Singleton @ForUser
+  @Provides @Singleton @Named(USER_PREFERENCE)
   ObjectPreference<User> providesUser(SharedPreferences preferences, Gson gson) {
-    ObjectPreference<User> userPreference =
-        new ObjectPreference<>(preferences, gson, User.class, "user");
-    return userPreference;
+    return new ObjectPreference<>(preferences, gson, User.class, USER_PREFERENCE);
   }
 }

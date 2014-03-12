@@ -24,10 +24,10 @@ import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import retrofit.Callback;
 import retrofit.client.Response;
 import retrofit.http.Field;
 import retrofit.http.Path;
+import rx.Observable;
 
 /**
  * Mocks {@link ca.mymenuapp.MyMenuApi}.
@@ -41,42 +41,39 @@ final class MockMyMenuApi implements MyMenuApi {
     this.serverDatabase = serverDatabase;
   }
 
-  @Override public void getMenu(@Path("id") long id, Callback<Menu> cb) {
-
+  @Override public Observable<Menu> getMenu(@Path("id") long id) {
+    return null;
   }
 
-  @Override public void getAllDietaryRestrictions(@Field("query") String query,
-      Callback<DietaryRestrictionResponse> cb) {
-
+  @Override public Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(
+      @Field("query") String query) {
+    return null;
   }
 
-  @Override public void getUser(@Field("query") String query, Callback<UserResponse> cb) {
-
-  }
-
-  @Override public void getRestrictionsForUser(@Field("query") String query,
-      Callback<UserRestrictionResponse> cb) {
-
+  @Override public Observable<UserResponse> getUser(@Field("query") String query) {
+    return null;
   }
 
   @Override
-  public void createUser(@Field("email") String email, @Field("firstname") String firstname,
-      @Field("lastname") String lastname, @Field("password") String password,
-      @Field("city") String city, @Field("locality") String locality,
-      @Field("country") String country, @Field("gender") char gender,
-      @Field("birthday") int birthday, @Field("birthmonth") int birthmonth,
-      @Field("birthyear") int birthyear, Callback<Response> cb) {
-
+  public Observable<UserRestrictionResponse> getRestrictionsForUser(@Field("query") String query) {
+    return null;
   }
 
-  @Override
-  public void deleteUserRestrictions(@Field("email") String email, Callback<Response> cb) {
-
+  @Override public Observable<Response> createUser(@Field("email") String email,
+      @Field("firstname") String firstname, @Field("lastname") String lastname,
+      @Field("password") String password, @Field("city") String city,
+      @Field("locality") String locality, @Field("country") String country,
+      @Field("gender") char gender, @Field("birthday") int birthday,
+      @Field("birthmonth") int birthmonth, @Field("birthyear") int birthyear) {
+    return null;
   }
 
-  @Override
-  public void putUserRestriction(@Field("email") String email, @Field("restrictid") long restrictId,
-      Callback<Response> cb) {
+  @Override public Observable<Response> deleteUserRestrictions(@Field("query") String query) {
+    return null;
+  }
 
+  @Override public Observable<Response> putUserRestriction(@Field("email") String email,
+      @Field("restrictid") long restrictId) {
+    return null;
   }
 }

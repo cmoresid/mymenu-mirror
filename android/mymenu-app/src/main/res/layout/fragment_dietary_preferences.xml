@@ -23,13 +23,11 @@
     android:layout_height="match_parent"
     tools:context="ca.mymenuapp.ui.fragments.DietaryPreferencesFragment">
 
-
   <ProgressBar
       android:id="@+id/progress"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="center"/>
-
 
   <GridView
       android:id="@+id/grid"
@@ -43,6 +41,6 @@
       android:scrollbars="none"
       android:horizontalSpacing="1dp"
       android:verticalSpacing="1dp"
-      />
+      android:layout_marginRight="-1px"/>
 
 </ca.mymenuapp.ui.widgets.BetterViewAnimator>

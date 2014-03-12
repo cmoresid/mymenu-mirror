@@ -21,13 +21,13 @@ import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.Menu;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
-import retrofit.Callback;
 import retrofit.client.Response;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Path;
+import rx.Observable;
 
 /** RESTful interface to talk to the MyMenu backend. */
 public interface MyMenuApi {
@@ -36,30 +36,29 @@ public interface MyMenuApi {
   String GET_USER_RESTRICTIONS = "SELECT * FROM restrictionuserlink where email='%s'";
   String DELETE_USER_RESTRICTIONS = "DELETE from restrictionuserlink WHERE email='%s'";
 
-  @GET("/rest/menu/{id}") void getMenu(@Path("id") long id, Callback<Menu> cb);
+  @GET("/rest/menu/{id}") Observable<Menu> getMenu(@Path("id") long id);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
-  void getAllDietaryRestrictions(@Field("query") String query,
-      Callback<DietaryRestrictionResponse> cb);
+  Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
-  void getUser(@Field("query") String query, Callback<UserResponse> cb);
+  Observable<UserResponse> getUser(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
-  void getRestrictionsForUser(@Field("query") String query, Callback<UserRestrictionResponse> cb);
+  Observable<UserRestrictionResponse> getRestrictionsForUser(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/put.php")
-  void createUser(@Field("email") String email, @Field("firstname") String firstname,
-      @Field("lastname") String lastname, @Field("password") String password,
-      @Field("city") String city, @Field("locality") String locality,
-      @Field("country") String country, @Field("gender") char gender,
-      @Field("birthday") int birthday, @Field("birthmonth") int birthmonth,
-      @Field("birthyear") int birthyear, Callback<Response> cb);
+  Observable<Response> createUser(@Field("email") String email,
+      @Field("firstname") String firstname, @Field("lastname") String lastname,
+      @Field("password") String password, @Field("city") String city,
+      @Field("locality") String locality, @Field("country") String country,
+      @Field("gender") char gender, @Field("birthday") int birthday,
+      @Field("birthmonth") int birthmonth, @Field("birthyear") int birthyear);
 
   @FormUrlEncoded @POST("/php/restrictionuserlink/custom.php")
-  void deleteUserRestrictions(@Field("query") String query, Callback<Response> cb);
+  Observable<Response> deleteUserRestrictions(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/restrictionuserlink/put.php")
-  void putUserRestriction(@Field("email") String email, @Field("restrictid") long restrictId,
-      Callback<Response> cb);
+  Observable<Response> putUserRestriction(@Field("email") String email,
+      @Field("restrictid") long restrictId);
 }

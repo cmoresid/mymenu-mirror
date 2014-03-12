@@ -34,52 +34,45 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.R;
-import ca.mymenuapp.data.ForUser;
+import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.DietaryRestriction;
-import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.User;
-import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import ca.mymenuapp.data.prefs.ObjectPreference;
+import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.misc.BindableAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
 import ca.mymenuapp.util.CollectionUtils;
 import com.f2prateek.ln.Ln;
 import com.squareup.picasso.Picasso;
-import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
-import retrofit.Callback;
-import retrofit.RetrofitError;
+import javax.inject.Named;
 import retrofit.client.Response;
+
+import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
 /**
  * A {@link ca.mymenuapp.ui.fragments.BaseFragment} that displays dietary preferences and allows
  * them to be toggled on and off.
  * Preferences are toggled by clicking on the item.
- * A grey tile indicates that te user is allergic.
+ * A grey tile indicates that te userPreference is allergic.
  */
 public class DietaryPreferencesFragment extends BaseFragment
     implements AdapterView.OnItemClickListener {
 
-  @Inject MyMenuApi myMenuApi;
+  @Inject MyMenuDatabase myMenuDatabase;
   @Inject Picasso picasso;
-  @Inject @ForUser ObjectPreference<User> user;
+  @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
 
   @InjectView(R.id.root) BetterViewAnimator root;
   @InjectView(R.id.grid) GridView grid;
 
   BaseAdapter gridAdapter;
-  ColorMatrixColorFilter greyScaleFilter;
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
-
-    ColorMatrix matrix = new ColorMatrix();
-    matrix.setSaturation(0); //0 means grayscale
-    greyScaleFilter = new ColorMatrixColorFilter(matrix);
   }
 
   @Override
@@ -88,42 +81,32 @@ public class DietaryPreferencesFragment extends BaseFragment
     return inflater.inflate(R.layout.fragment_dietary_preferences, container, false);
   }
 
-  @Override public void onResume() {
-    super.onResume();
-    myMenuApi.getRestrictionsForUser(
-        String.format(MyMenuApi.GET_USER_RESTRICTIONS, user.get().email),
-        new Callback<UserRestrictionResponse>() {
-          @Override
-          public void success(UserRestrictionResponse response, Response raw) {
-            user.get().restrictions = new ArrayList<>();
-            if (response.links != null) {
-              for (UserRestrictionResponse.UserRestrictionLink link : response.links) {
-                user.get().restrictions.add(link.restrictId);
-              }
-              user.save();
-              if (gridAdapter != null) {
-                gridAdapter.notifyDataSetInvalidated();
-              }
-            }
-          }
+  @Override public void onStart() {
+    super.onStart();
+    updateRestrictions();
+    updateUserPreferences();
+  }
 
-          @Override public void failure(RetrofitError error) {
-            Ln.e(error.getCause());
-          }
-        }
+  private void updateRestrictions() {
+    myMenuDatabase.getAllRestrictions(new EndlessObserver<List<DietaryRestriction>>() {
+                                        @Override public void onNext(
+                                            List<DietaryRestriction> dietaryRestrictions) {
+                                          initGrid(dietaryRestrictions);
+                                        }
+                                      }
     );
-    myMenuApi.getAllDietaryRestrictions(MyMenuApi.GET_ALL_RESTRICTIONS_QUERY,
-        new Callback<DietaryRestrictionResponse>() {
-          @Override
-          public void success(DietaryRestrictionResponse response, Response raw) {
-            initGrid(response.restrictionList);
-          }
+  }
 
-          @Override public void failure(RetrofitError error) {
-            Ln.e(error.getCause());
-          }
+  private void updateUserPreferences() {
+    myMenuDatabase.getUserRestrictions(userPreference.get(), new EndlessObserver<List<Long>>() {
+      @Override public void onNext(List<Long> dietaryRestrictionIds) {
+        userPreference.get().restrictions = dietaryRestrictionIds;
+        userPreference.save();
+        if (gridAdapter != null) {
+          gridAdapter.notifyDataSetInvalidated();
         }
-    );
+      }
+    });
   }
 
   private void initGrid(List<DietaryRestriction> restrictionList) {
@@ -134,14 +117,14 @@ public class DietaryPreferencesFragment extends BaseFragment
   }
 
   @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    if (user.get().restrictions == null) {
-      Ln.d("user restrictions not yet ready");
+    if (userPreference.get().restrictions == null) {
+      Ln.d("userPreference restrictions not yet ready");
       return;
     }
-    if (!user.get().restrictions.contains(id)) {
-      user.get().restrictions.add(id);
-    } else if (user.get().restrictions.contains(id)) {
-      user.get().restrictions.remove(id);
+    if (!userPreference.get().restrictions.contains(id)) {
+      userPreference.get().restrictions.add(id);
+    } else if (userPreference.get().restrictions.contains(id)) {
+      userPreference.get().restrictions.remove(id);
     }
     gridAdapter.notifyDataSetInvalidated();
   }
@@ -155,31 +138,21 @@ public class DietaryPreferencesFragment extends BaseFragment
     switch (item.getItemId()) {
       case R.id.save:
         // save this locally
-        user.save();
+        userPreference.save();
         getActivity().setProgressBarIndeterminateVisibility(true);
-        // delete all of user's existing restrictions
-        myMenuApi.deleteUserRestrictions(
-            String.format(MyMenuApi.DELETE_USER_RESTRICTIONS, user.get().email),
-            new Callback<Response>() {
-              @Override public void success(Response response, Response response2) {
-                // Once deleted, insert all of their restrictions back in.
-                // todo: do this in one query?
-                for (Long id : user.get().restrictions) {
-                  myMenuApi.putUserRestriction(user.get().email, id, new Callback<Response>() {
-                    @Override public void success(Response response, Response response2) {
-                      getActivity().setProgressBarIndeterminateVisibility(false);
+        // delete all of userPreference's existing restrictions
+        myMenuDatabase.deleteUserRestrictions(userPreference.get(),
+            new EndlessObserver<Response>() {
+              @Override public void onNext(Response response) {
+                Ln.d("Deleted preferences.");
+                myMenuDatabase.updateUserRestrictions(userPreference.get(),
+                    new EndlessObserver<List<Response>>() {
+                      @Override public void onNext(List<Response> response) {
+                        getActivity().setProgressBarIndeterminateVisibility(false);
+                        Ln.d("Updated %d preferences.", response.size());
+                      }
                     }
-
-                    @Override public void failure(RetrofitError error) {
-                      getActivity().setProgressBarIndeterminateVisibility(false);
-                      Ln.e(error.getCause());
-                    }
-                  });
-                }
-              }
-
-              @Override public void failure(RetrofitError error) {
-                Ln.e(error.getCause());
+                );
               }
             }
         );
@@ -191,11 +164,16 @@ public class DietaryPreferencesFragment extends BaseFragment
 
   class DietaryRestrictionsAdapter extends BindableAdapter<DietaryRestriction> {
     private final List<DietaryRestriction> dietaryRestrictions;
+    private final ColorMatrixColorFilter greyScaleFilter;
 
     public DietaryRestrictionsAdapter(Context context,
         List<DietaryRestriction> dietaryRestrictions) {
       super(context);
       this.dietaryRestrictions = dietaryRestrictions;
+
+      ColorMatrix matrix = new ColorMatrix();
+      matrix.setSaturation(0); //0 means grayscale
+      greyScaleFilter = new ColorMatrixColorFilter(matrix);
     }
 
     @Override public int getCount() {
@@ -226,8 +204,8 @@ public class DietaryPreferencesFragment extends BaseFragment
           .into(holder.picture);
       holder.label.setText(item.userLabel);
 
-      if (!CollectionUtils.isNullOrEmpty(user.get().restrictions)) {
-        if (user.get().restrictions.contains(getItemId(position))) {
+      if (!CollectionUtils.isNullOrEmpty(userPreference.get().restrictions)) {
+        if (userPreference.get().restrictions.contains(getItemId(position))) {
           holder.picture.setColorFilter(greyScaleFilter);
         } else {
           holder.picture.setColorFilter(null);

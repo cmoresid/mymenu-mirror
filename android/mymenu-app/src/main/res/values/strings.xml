@@ -17,8 +17,6 @@
   -->
 
 <resources>
-  <string name="app_name">MyMenu</string>
-
   <!-- Main Activity -->
   <string name="logout">Logout</string>
 

@@ -24,6 +24,7 @@ import org.simpleframework.xml.Root;
 @Root(name = "results")
 public class DietaryRestrictionResponse {
   @ElementList(name = "result", inline = true) public List<DietaryRestriction> restrictionList;
+  @ElementList(required = false) public long timestamp;
 
   @Override public String toString() {
     return "DietaryRestrictionResponse{" +
