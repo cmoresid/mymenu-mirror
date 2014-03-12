@@ -163,6 +163,8 @@ NSInteger ratingValue;
         [[MMDBFetcher get] editReview:review];
         [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     }
+    [self.delegate didSelectCancel:YES];
+    
 }
 
 - (void)didUpdateRatings:(BOOL)exists withResponse:(MMDBFetcherResponse *)response {
@@ -268,6 +270,8 @@ NSInteger ratingValue;
             self.ratingLabel.text = rate;
 
             ratingValue = [rating integerValue];
+            self.edit.enabled = NO;
+            [self.desc becomeFirstResponder];
             [self.navigationController setNavigationBarHidden:YES];
             [self.popOverController dismissPopoverAnimated:YES];
         };
@@ -278,19 +282,6 @@ NSInteger ratingValue;
         
         [self.navigationController setNavigationBarHidden:NO];
         [self.navigationController pushViewController:ratingPop animated:YES];
-
-//        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:ratingNav];
-//
-//        popover.popoverContentSize = CGSizeMake(500, 500);
-//        popover.delegate = self;
-//        
-//        self.popOverController = popover;
-//        
-//        [self.popOverController presentPopoverFromRect:self.ratingLabel.frame
-//                                                inView:self.ratingLabel.superview
-//                              permittedArrowDirections:UIPopoverArrowDirectionAny
-//                                              animated:YES];
-
     }
 }
 
@@ -317,6 +308,7 @@ NSInteger ratingValue;
 
         return;
     }
+    [self.navigationController setNavigationBarHidden:YES];
 
 }
 

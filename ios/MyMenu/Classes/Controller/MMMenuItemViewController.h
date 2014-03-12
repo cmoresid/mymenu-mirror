@@ -37,6 +37,10 @@
  *  The current mechant of the menu item
  */
 @property MMMerchant *currentMerchant;
+/**
+ *
+ */
+@property BOOL reviewViewFlag;
 
 /**
  *  Popover view controller

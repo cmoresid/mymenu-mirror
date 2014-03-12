@@ -106,8 +106,13 @@ MMMenuItemRating *touchedItem;
     [self.ratingsCollectionView reloadData];
 
     if ([[MMLoginManager sharedLoginManager] isUserLoggedInAsGuest]) {
-        _eatenThisButton.enabled = NO;
-        _eatenThisButton.backgroundColor = [UIColor lightGrayColor];
+        _eatenThisButton.hidden = YES;
+    }else{
+        _eatenThisButton.hidden = NO;
+        _eatenThisButton.enabled = YES;
+        _eatenThisButton.backgroundColor = [UIColor lightTealColor];
+        [[MMDBFetcher get] userEaten:userProfile.email withItem:_currentMenuItem.itemid];
+        [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     }
 
 }
@@ -148,9 +153,10 @@ MMMenuItemRating *touchedItem;
         }
         [reviewDictionary setObject:allReviews forKey:kAllTopReviews];
         [reviewDictionary setObject:condensedReviews forKey:kCondensedTopReviews];
+        if (self.reviewViewFlag) {
+            condensedReviews = [reviewDictionary objectForKey:kAllTopReviews];
+        }
         [self.ratingsCollectionView reloadData];
-        [[MMDBFetcher get] eatenThis:userProfile.email withMenuItem:_currentMenuItem.itemid withMerch:_currentMenuItem.merchid];
-        [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     }
 
 }
@@ -190,6 +196,9 @@ MMMenuItemRating *touchedItem;
         }
         [reviewDictionary setObject:allReviews forKey:kAllRecentReviews];
         [reviewDictionary setObject:condensedReviews forKey:kCondensedRecentReviews];
+        if (self.reviewViewFlag) {
+            condensedReviews = [reviewDictionary objectForKey:kAllRecentReviews];
+        }
         [self.ratingsCollectionView reloadData];
     }
 
@@ -212,10 +221,10 @@ MMMenuItemRating *touchedItem;
         } else {
             [mods addObject:@"There are not any modifications available for this dish."];
         }
+        [[MMDBFetcher get] getItemRatingsTop:_currentMenuItem.itemid];
+        [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
         [self.menuModificationsTableView reloadData];
     }
-    [[MMDBFetcher get] getItemRatingsTop:_currentMenuItem.itemid];
-    [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
 }
 
 
@@ -423,34 +432,45 @@ MMMenuItemRating *touchedItem;
     // If you need to use the touched cell, you can retrieve it like so
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     MMMenuItemReviewCell *itemCell = (MMMenuItemReviewCell *) cell;
-    NSLog(@"touched cell %@ at indexPath %@", cell, indexPath);
     touchedItem = [[MMMenuItemRating alloc] init];
     touchedItem = itemCell.rating;
-
-    MMReviewPopOverViewController *reviewContent = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
-    reviewContent.delegate = self;
-
-    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewContent];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedItem];
-
-    //popover.popoverContentSize = CGSizeMake(350, 216);
-    popover.delegate = self;
-
-    self.popOverController = popover;
-
-    // Make sure keyboard is hidden before you show popup.
-    [self.userReviewField resignFirstResponder];
-
-    [self.popOverController presentPopoverFromRect:cell.frame
-                                            inView:cell.superview
-                          permittedArrowDirections:UIPopoverArrowDirectionAny
-                                          animated:YES];
-
-    // [self performSegueWithIdentifier:@"showMenuItem" sender:self];
-
+    if (touchedItem.id == [NSNumber numberWithInt:-1]){
+        self.reviewViewFlag = YES;
+        [self changeReviewSort:self.reviewSegment];
+    }else{
+        MMBaseNavigationController *reviewNavPop = [self.storyboard instantiateViewControllerWithIdentifier:@"popOverNavigation"];
+        
+        MMReviewPopOverViewController *reviewPop = [reviewNavPop.viewControllers firstObject];
+        reviewPop.delegate = self;
+        
+        reviewPop.selectedRestaurant = _currentMerchant;
+        reviewPop.reviewSize = self.reviewViewFlag;
+        
+        
+        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewNavPop];
+        
+        popover.delegate = self;
+        reviewPop.oldPopOverController = popover;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedItem];
+        
+        popover.delegate = self;
+        
+        self.popOverController = popover;
+        
+        // Make sure keyboard is hidden before you show popup.
+        [self.userReviewField resignFirstResponder];
+        
+        [self.popOverController presentPopoverFromRect:cell.frame
+                                                inView:cell.superview
+                              permittedArrowDirections:UIPopoverArrowDirectionAny
+                                              animated:YES];
+    }
+    
 }
 
 - (void)didUserEat:(BOOL)exists withResponse:(MMDBFetcherResponse *)response {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
                                                           message:@"Unable to communicate with server."
@@ -460,8 +480,13 @@ MMMenuItemRating *touchedItem;
         [message show];
 
         return;
-    } else if (exists)
+    } else if (exists){
         _eatenThisButton.enabled = NO;
+        _eatenThisButton.backgroundColor = [UIColor lightGrayColor];
+    }else{
+        _eatenThisButton.enabled = YES;
+        _eatenThisButton.backgroundColor = [UIColor lightTealColor];
+    }
 
 }
 
@@ -472,7 +497,7 @@ MMMenuItemRating *touchedItem;
 
 }
 
-- (void)didSelectCancel:(BOOL)cancel {
+- (void)didSelectCancel:(BOOL)cancel  {
     [MMDBFetcher get].delegate = self;
     [self.popOverController dismissPopoverAnimated:YES];
 
@@ -530,11 +555,16 @@ MMMenuItemRating *touchedItem;
     switch ([control selectedSegmentIndex]) {
         case 0:
             reviews = [reviewDictionary objectForKey:kCondensedTopReviews];
+            
             if (reviews == nil) {
                 [[MMDBFetcher get] getItemRatingsTop:_currentMenuItem.itemid];
                 [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
             } else
-                condensedReviews = reviews;
+                if (self.reviewViewFlag) {
+                    condensedReviews = [reviewDictionary objectForKey:kAllTopReviews];
+                }else{
+                    condensedReviews = reviews;
+                }
 
             break;
         case 1:
@@ -543,7 +573,11 @@ MMMenuItemRating *touchedItem;
                 [[MMDBFetcher get] getItemRatings:_currentMenuItem.itemid];
                 [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
             } else
-                condensedReviews = reviews;
+                if (self.reviewViewFlag) {
+                    condensedReviews = [reviewDictionary objectForKey:kAllTopReviews];
+                }else{
+                    condensedReviews = reviews;
+                }
             break;
         default:
             break;
@@ -589,6 +623,15 @@ MMMenuItemRating *touchedItem;
     else if (succesful) {
         _eatenThisButton.enabled = NO;
         _eatenThisButton.backgroundColor = [UIColor lightBackgroundGray];
+    }else{
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+                                                          message:@"Unable to communicate with server."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        
+        return;
     }
 }
 

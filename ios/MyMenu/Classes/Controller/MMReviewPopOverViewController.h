@@ -40,6 +40,7 @@
 @property(nonatomic, strong) MMBaseNavigationController *popOverNavigation;
 @property(nonatomic, strong) MMMenuItem *menuItem;
 @property(nonatomic, strong) MMMerchant *selectedRestaurant;
+@property(nonatomic) BOOL reviewSize;
 @property(nonatomic, strong) id <MMReviewPopOverDelegate> delegate;
 @property(nonatomic, strong) MMRatingPopoverViewController *reviewPopOver;
 
