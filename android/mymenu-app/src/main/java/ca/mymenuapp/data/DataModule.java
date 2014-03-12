@@ -23,7 +23,6 @@ import android.net.Uri;
 import ca.mymenuapp.BuildConfig;
 import ca.mymenuapp.dagger.scopes.ForApplication;
 import ca.mymenuapp.data.api.ApiModule;
-import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import com.f2prateek.ln.Ln;
@@ -50,7 +49,6 @@ import javax.inject.Singleton;
     library = true)
 public final class DataModule {
 
-  public static final String DIETARY_PREFERENCES = "dietary_preferences";
   public static final String USER_PREFERENCE = "user_preference";
 
   static final int DISK_CACHE_SIZE = 50 * 1024 * 1024; // 50MB
@@ -92,13 +90,6 @@ public final class DataModule {
           }
         })
         .build();
-  }
-
-  @Provides @Singleton @Named(DIETARY_PREFERENCES)
-  ObjectPreference<DietaryRestrictionResponse> providesDietaryRestrictions(
-      SharedPreferences preferences, Gson gson) {
-    return new ObjectPreference<>(preferences, gson, DietaryRestrictionResponse.class,
-        DIETARY_PREFERENCES);
   }
 
   @Provides @Singleton @Named(USER_PREFERENCE)

@@ -31,10 +31,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.R;
+import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
+import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.DatePickerFragment;
 import ca.mymenuapp.ui.misc.EnumAdapter;
 import com.f2prateek.ln.Ln;
@@ -42,8 +43,6 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import javax.inject.Inject;
 import javax.inject.Named;
-import retrofit.Callback;
-import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
@@ -53,7 +52,7 @@ import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
  */
 public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener {
 
-  @Inject MyMenuApi myMenuApi;
+  @Inject MyMenuDatabase myMenuDatabase;
   @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
 
   User user = new User();
@@ -129,24 +128,17 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
       user.gender = ((Gender) genderSpinner.getSelectedItem()).value;
 
       setProgressBarIndeterminateVisibility(true);
-      myMenuApi.createUser(user.email, user.firstName, user.lastName, user.password, user.city,
-          user.locality, user.country, user.gender, user.birthday, user.birthmonth, user.birthyear,
-          new Callback<Response>() {
-            @Override public void success(Response response, Response response2) {
-              setProgressBarIndeterminateVisibility(false);
-              userPreference.set(user);
-              Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-              intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-              startActivity(intent);
-              finish();
-            }
 
-            @Override public void failure(RetrofitError error) {
-              setProgressBarIndeterminateVisibility(false);
-              Ln.e(error.getCause());
-            }
-          }
-      );
+      myMenuDatabase.createUser(user, new EndlessObserver<Response>() {
+        @Override public void onNext(Response response) {
+          setProgressBarIndeterminateVisibility(false);
+          userPreference.set(user);
+          Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+          intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+          startActivity(intent);
+          finish();
+        }
+      });
     }
   }
 

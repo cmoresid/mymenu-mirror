@@ -34,27 +34,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.R;
+import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.DietaryRestriction;
-import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.User;
-import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import ca.mymenuapp.data.prefs.ObjectPreference;
+import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.misc.BindableAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
 import ca.mymenuapp.util.CollectionUtils;
 import com.f2prateek.ln.Ln;
 import com.squareup.picasso.Picasso;
-import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
-import retrofit.Callback;
-import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-import static ca.mymenuapp.data.DataModule.DIETARY_PREFERENCES;
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
 /**
@@ -66,14 +61,9 @@ import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 public class DietaryPreferencesFragment extends BaseFragment
     implements AdapterView.OnItemClickListener {
 
-  private static final long STALE_TIMESTAMP = System.currentTimeMillis() - (1000 * 86400 * 7);
-  // one week
-
-  @Inject MyMenuApi myMenuApi;
+  @Inject MyMenuDatabase myMenuDatabase;
   @Inject Picasso picasso;
   @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
-  @Inject @Named(DIETARY_PREFERENCES) ObjectPreference<DietaryRestrictionResponse>
-      cachedRestrictionsPreference;
 
   @InjectView(R.id.root) BetterViewAnimator root;
   @InjectView(R.id.grid) GridView grid;
@@ -93,57 +83,30 @@ public class DietaryPreferencesFragment extends BaseFragment
 
   @Override public void onStart() {
     super.onStart();
-    if (cachedRestrictionsPreference.get() != null) {
-      initGrid(cachedRestrictionsPreference.get().restrictionList);
-      if (cachedRestrictionsPreference.get().timestamp < STALE_TIMESTAMP) {
-        updateRestrictionsCache();
-      }
-    } else {
-      updateRestrictionsCache();
-    }
+    updateRestrictions();
     updateUserPreferences();
   }
 
-  private void updateRestrictionsCache() {
-    myMenuApi.getAllDietaryRestrictions(MyMenuApi.GET_ALL_RESTRICTIONS_QUERY,
-        new Callback<DietaryRestrictionResponse>() {
-          @Override
-          public void success(DietaryRestrictionResponse response, Response raw) {
-            response.timestamp = System.currentTimeMillis();
-            cachedRestrictionsPreference.set(response);
-            initGrid(response.restrictionList);
-          }
-
-          @Override public void failure(RetrofitError error) {
-            Ln.e(error.getCause());
-          }
-        }
+  private void updateRestrictions() {
+    myMenuDatabase.getAllRestrictions(new EndlessObserver<List<DietaryRestriction>>() {
+                                        @Override public void onNext(
+                                            List<DietaryRestriction> dietaryRestrictions) {
+                                          initGrid(dietaryRestrictions);
+                                        }
+                                      }
     );
   }
 
   private void updateUserPreferences() {
-    myMenuApi.getRestrictionsForUser(
-        String.format(MyMenuApi.GET_USER_RESTRICTIONS, userPreference.get().email),
-        new Callback<UserRestrictionResponse>() {
-          @Override
-          public void success(UserRestrictionResponse response, Response raw) {
-            userPreference.get().restrictions = new ArrayList<>();
-            if (response.links != null) {
-              for (UserRestrictionResponse.UserRestrictionLink link : response.links) {
-                userPreference.get().restrictions.add(link.restrictId);
-              }
-              userPreference.save();
-              if (gridAdapter != null) {
-                gridAdapter.notifyDataSetInvalidated();
-              }
-            }
-          }
-
-          @Override public void failure(RetrofitError error) {
-            Ln.e(error.getCause());
-          }
+    myMenuDatabase.getUserRestrictions(userPreference.get(), new EndlessObserver<List<Long>>() {
+      @Override public void onNext(List<Long> dietaryRestrictionIds) {
+        userPreference.get().restrictions = dietaryRestrictionIds;
+        userPreference.save();
+        if (gridAdapter != null) {
+          gridAdapter.notifyDataSetInvalidated();
         }
-    );
+      }
+    });
   }
 
   private void initGrid(List<DietaryRestriction> restrictionList) {
@@ -178,30 +141,18 @@ public class DietaryPreferencesFragment extends BaseFragment
         userPreference.save();
         getActivity().setProgressBarIndeterminateVisibility(true);
         // delete all of userPreference's existing restrictions
-        myMenuApi.deleteUserRestrictions(
-            String.format(MyMenuApi.DELETE_USER_RESTRICTIONS, userPreference.get().email),
-            new Callback<Response>() {
-              @Override public void success(Response response, Response response2) {
-                // Once deleted, insert all of their restrictions back in.
-                // todo: do this in one query?
-                for (Long id : userPreference.get().restrictions) {
-                  myMenuApi.putUserRestriction(userPreference.get().email, id,
-                      new Callback<Response>() {
-                        @Override public void success(Response response, Response response2) {
-                          getActivity().setProgressBarIndeterminateVisibility(false);
-                        }
-
-                        @Override public void failure(RetrofitError error) {
-                          getActivity().setProgressBarIndeterminateVisibility(false);
-                          Ln.e(error.getCause());
-                        }
+        myMenuDatabase.deleteUserRestrictions(userPreference.get(),
+            new EndlessObserver<Response>() {
+              @Override public void onNext(Response response) {
+                Ln.d("Deleted preferences.");
+                myMenuDatabase.updateUserRestrictions(userPreference.get(),
+                    new EndlessObserver<List<Response>>() {
+                      @Override public void onNext(List<Response> response) {
+                        getActivity().setProgressBarIndeterminateVisibility(false);
+                        Ln.d("Updated %d preferences.", response.size());
                       }
-                  );
-                }
-              }
-
-              @Override public void failure(RetrofitError error) {
-                Ln.e(error.getCause());
+                    }
+                );
               }
             }
         );

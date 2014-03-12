@@ -22,20 +22,16 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.widget.EditText;
-import android.widget.Toast;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.R;
+import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.User;
-import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.prefs.ObjectPreference;
+import ca.mymenuapp.data.rx.EndlessObserver;
 import com.f2prateek.ln.Ln;
 import javax.inject.Inject;
 import javax.inject.Named;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
@@ -44,7 +40,7 @@ import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
  * TODO: facebook login
  */
 public class LoginActivity extends BaseActivity {
-  @Inject MyMenuApi myMenuApi;
+  @Inject MyMenuDatabase myMenuDatabase;
   @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
   @InjectView(R.id.email) EditText emailText;
   @InjectView(R.id.password) EditText passwordText;
@@ -88,25 +84,18 @@ public class LoginActivity extends BaseActivity {
 
     if (!hasError) {
       setProgressBarIndeterminateVisibility(true);
-      myMenuApi.getUser(
-          String.format(MyMenuApi.GET_USER_QUERY, emailText.getText(), passwordText.getText()),
-          new Callback<UserResponse>() {
-            @Override public void success(UserResponse userResponse, Response response) {
-              setProgressBarIndeterminateVisibility(false);
-              userPreference.set(userResponse.userList.get(0));
-              Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-              intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-              startActivity(intent);
-              finish();
-            }
-
-            @Override public void failure(RetrofitError error) {
-              setProgressBarIndeterminateVisibility(false);
-              Ln.e(error.getCause());
-              Toast.makeText(LoginActivity.this, R.string.login_fail, Toast.LENGTH_LONG).show();
-            }
-          }
-      );
+      final String email = emailText.getText().toString();
+      final String password = passwordText.getText().toString();
+      myMenuDatabase.getUser(email, password, new EndlessObserver<User>() {
+        @Override public void onNext(User user) {
+          setProgressBarIndeterminateVisibility(false);
+          userPreference.set(user);
+          Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+          intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+          startActivity(intent);
+          finish();
+        }
+      });
     }
   }
 }
