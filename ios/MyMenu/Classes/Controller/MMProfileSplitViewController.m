@@ -24,9 +24,7 @@
 
 @implementation MMProfileSplitViewController
 
-- (BOOL)needsTopLayoutGuide {
-    return NO;
-}
+#pragma mark - View Controller Methods
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -43,21 +41,15 @@
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    UINavigationController *navController;
-    for (id controller in self.viewControllers) {
-        if ([controller isKindOfClass:[UINavigationController class]]) {
-            navController = (UINavigationController *) controller;
-            navController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-        }
-    }
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - RBStoryboardSourceLink Delegate Methods
+
+- (BOOL)needsTopLayoutGuide {
+    return NO;
 }
 
 @end

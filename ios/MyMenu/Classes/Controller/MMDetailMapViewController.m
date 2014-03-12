@@ -133,7 +133,6 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 #pragma mark - Configure Map View Methods
 
 - (void)pinRestaurants:(NSArray *)restaurants {
-
     if ([restaurants count] == 1) {
         [self configureMapForOneRestaurant:restaurants];
     }

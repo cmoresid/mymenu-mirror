@@ -768,7 +768,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="collectionView" destination="yE2-Pu-TNk" id="DcT-xR-fNX"/>
+                        <outlet property="restrictionsCollectionView" destination="yE2-Pu-TNk" id="yjN-rR-O6y"/>
                         <segue destination="E4e-Ge-d3g" kind="modal" identifier="userMustLogin" modalTransitionStyle="flipHorizontal" id="DGi-PD-grz"/>
                     </connections>
                 </viewController>
@@ -1043,7 +1043,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Y45-lI-OMR"/>
         <segue reference="SHi-7D-H4s"/>
+        <segue reference="ljw-kG-1B6"/>
     </inferredMetricsTieBreakers>
 </document>

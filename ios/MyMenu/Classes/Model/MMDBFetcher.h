@@ -85,7 +85,7 @@
 /**
 * Add all given restrictions for the given user.
 */
-- (void)addUserRestrictions:(NSString *)email :(NSArray *)restrictions;
+- (void)addUserRestrictions:(NSString *)email withRestrictionIDs:(NSArray *)restrictions;
 
 /**
  * Add a rating/review for a menu item.
