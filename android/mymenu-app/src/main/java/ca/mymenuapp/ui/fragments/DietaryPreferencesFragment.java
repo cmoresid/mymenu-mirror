@@ -79,15 +79,10 @@ public class DietaryPreferencesFragment extends BaseFragment
   @InjectView(R.id.grid) GridView grid;
 
   BaseAdapter gridAdapter;
-  ColorMatrixColorFilter greyScaleFilter;
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
-
-    ColorMatrix matrix = new ColorMatrix();
-    matrix.setSaturation(0); //0 means grayscale
-    greyScaleFilter = new ColorMatrixColorFilter(matrix);
   }
 
   @Override
@@ -96,8 +91,8 @@ public class DietaryPreferencesFragment extends BaseFragment
     return inflater.inflate(R.layout.fragment_dietary_preferences, container, false);
   }
 
-  @Override public void onResume() {
-    super.onResume();
+  @Override public void onStart() {
+    super.onStart();
     if (cachedRestrictionsPreference.get() != null) {
       initGrid(cachedRestrictionsPreference.get().restrictionList);
       if (cachedRestrictionsPreference.get().timestamp < STALE_TIMESTAMP) {
@@ -218,11 +213,16 @@ public class DietaryPreferencesFragment extends BaseFragment
 
   class DietaryRestrictionsAdapter extends BindableAdapter<DietaryRestriction> {
     private final List<DietaryRestriction> dietaryRestrictions;
+    private final ColorMatrixColorFilter greyScaleFilter;
 
     public DietaryRestrictionsAdapter(Context context,
         List<DietaryRestriction> dietaryRestrictions) {
       super(context);
       this.dietaryRestrictions = dietaryRestrictions;
+
+      ColorMatrix matrix = new ColorMatrix();
+      matrix.setSaturation(0); //0 means grayscale
+      greyScaleFilter = new ColorMatrixColorFilter(matrix);
     }
 
     @Override public int getCount() {
