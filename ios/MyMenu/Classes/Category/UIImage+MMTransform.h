@@ -34,6 +34,14 @@
  */
 + (UIImage *)addRestrictionMask:(UIImage *)image;
 
+/**
+ *  Resizes an image to the specified dimensions.
+ *
+ *  @param image   The image to be resized.
+ *  @param newSize The new dimensions of the image.
+ *
+ *  @return The image with the new dimensions.
+ */
 + (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 
 @end
