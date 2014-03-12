@@ -27,23 +27,25 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.R;
-import ca.mymenuapp.data.ForUser;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import com.f2prateek.ln.Ln;
 import javax.inject.Inject;
+import javax.inject.Named;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
+
 /**
- * Activity that prompts a user to login with their credentials.
+ * Activity that prompts a userPreference to login with their credentials.
  * TODO: facebook login
  */
 public class LoginActivity extends BaseActivity {
   @Inject MyMenuApi myMenuApi;
-  @Inject @ForUser ObjectPreference<User> user;
+  @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
   @InjectView(R.id.email) EditText emailText;
   @InjectView(R.id.password) EditText passwordText;
 
@@ -91,7 +93,7 @@ public class LoginActivity extends BaseActivity {
           new Callback<UserResponse>() {
             @Override public void success(UserResponse userResponse, Response response) {
               setProgressBarIndeterminateVisibility(false);
-              user.set(userResponse.userList.get(0));
+              userPreference.set(userResponse.userList.get(0));
               Intent intent = new Intent(LoginActivity.this, MainActivity.class);
               intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
               startActivity(intent);

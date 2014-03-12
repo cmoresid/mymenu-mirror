@@ -33,7 +33,6 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.R;
-import ca.mymenuapp.data.ForUser;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.ui.fragments.DatePickerFragment;
@@ -42,17 +41,20 @@ import com.f2prateek.ln.Ln;
 import java.text.DateFormat;
 import java.util.Calendar;
 import javax.inject.Inject;
+import javax.inject.Named;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
+
 /**
- * Activity that prompts a user to sign up.
+ * Activity that prompts a userPreference to sign up.
  */
 public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener {
 
   @Inject MyMenuApi myMenuApi;
-  @Inject @ForUser ObjectPreference<User> userPreference;
+  @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
 
   User user = new User();
   Calendar birthDate;
@@ -119,7 +121,7 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
       user.password = passwordText.getText().toString();
       user.city = ((City) citySpinner.getSelectedItem()).value;
       user.locality = ((State) localitySpinner.getSelectedItem()).value;
-      user.country = "can"; // todo, show user
+      user.country = "can"; // todo, show userPreference
 
       user.birthday = birthDate.get(Calendar.DAY_OF_MONTH);
       user.birthmonth = birthDate.get(Calendar.MONTH);
@@ -224,7 +226,7 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
     }
   }
 
-  // Interface for enums that need to be displayed to the user
+  // Interface for enums that need to be displayed to the userPreference
   interface LocalizedEnum {
     int getStringResourceId();
   }

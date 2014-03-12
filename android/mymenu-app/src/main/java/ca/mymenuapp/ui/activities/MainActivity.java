@@ -25,7 +25,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
-import ca.mymenuapp.data.ForUser;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
@@ -33,11 +32,14 @@ import ca.mymenuapp.ui.fragments.PlaceholderFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import ca.mymenuapp.util.Bundler;
 import javax.inject.Inject;
+import javax.inject.Named;
 
-/** The top level activity that is shown first to the user. */
+import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
+
+/** The top level activity that is shown first to the userPreference. */
 public class MainActivity extends BaseActivity {
 
-  @Inject @ForUser ObjectPreference<User> user;
+  @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
   @InjectView(R.id.pager) ViewPager viewPager;
 
   private SwipeableActionBarTabsAdapter tabsAdapter;
@@ -73,7 +75,7 @@ public class MainActivity extends BaseActivity {
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.logout:
-        user.delete();
+        userPreference.delete();
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
