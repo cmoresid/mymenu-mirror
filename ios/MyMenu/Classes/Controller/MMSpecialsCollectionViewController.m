@@ -125,7 +125,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     UIBarButtonItem *buttonFilter = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filter:)];
     UIBarButtonItem *buttonWeek = [[UIBarButtonItem alloc] initWithTitle:@"Week" style:UIBarButtonItemStylePlain target:self action:@selector(week:)];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-
+	
+	
     // Search Bar Creation
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [searchBar setPlaceholder:@"Search..."];
@@ -133,13 +134,23 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     [searchBar setDelegate:self];
     // Put it in a button
     UIBarButtonItem *searchBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
+	
+	
+	self.labelView = [[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, 150.0f, 21.0f)];
+	[self.labelView setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
+	[self.labelView setBackgroundColor:[UIColor clearColor]];
+	[self.labelView setTextColor:[UIColor whiteColor]];
+	[self.labelView setText:@"Title"];
+	[self.labelView setTextAlignment:NSTextAlignmentCenter];
+	
+	UIBarButtonItem *dateLabel = [[UIBarButtonItem alloc] initWithCustomView:self.labelView];
 
     // Adjust for right margin
     UIBarButtonItem *negativeSeperator = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSeperator.width = -18;
 
     //add buttons to the toolbar
-    [toolbar setItems:[NSArray arrayWithObjects:buttonFilter, buttonWeek, flexibleSpace, searchBarButtonItem, negativeSeperator, nil]];
+    [toolbar setItems:[NSArray arrayWithObjects:buttonFilter, buttonWeek, flexibleSpace, dateLabel, flexibleSpace, searchBarButtonItem, negativeSeperator, nil]];
     [toolbar setFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.width, [[UIScreen mainScreen] bounds].size.height, 44)];
 
     //add toolbar to the main view
@@ -209,6 +220,13 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	
 	
 	NSDate * date = self.selectedDate;
+	
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"EE MMM dd"];
+	
+    // Get the Date for that section
+    NSString *title = [formatter stringFromDate:date];
+	[self.labelView setText:title];
 	
 	if([date isEqualToDate:self.currentDate])  {
 		return;

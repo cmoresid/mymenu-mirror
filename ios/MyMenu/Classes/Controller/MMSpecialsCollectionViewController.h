@@ -37,6 +37,10 @@
  */
 @property(atomic) NSDate *selectedDate;
 
+/**
+ *  Date the user has selected to show a week of
+ */
+@property(nonatomic) UILabel *labelView;
 
 /**
  *  All specials by key an date
