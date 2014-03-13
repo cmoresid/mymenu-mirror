@@ -376,17 +376,26 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 }
 
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"Cell";
 
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-
+	UIView * innerView = [cell viewWithTag:22];
     // Rounded Corners
-    cell.contentView.backgroundColor = [UIColor tealColor];
-    cell.contentView.layer.cornerRadius = 5;
-    cell.contentView.layer.masksToBounds = YES;
-
+    innerView.layer.cornerRadius = 5;
+    innerView.layer.masksToBounds = YES;
+	innerView.layer.borderColor = [UIColor whiteColor].CGColor;
+	innerView.layer.borderWidth = 2;
+	
+	// Add Shadow
+	cell.layer.masksToBounds = NO;
+	cell.layer.shadowOffset = CGSizeZero;
+	cell.layer.shadowColor = [UIColor blackColor].CGColor;
+	cell.layer.shadowOpacity = 0.4f;
+	cell.layer.shadowRadius = 5.0f;
+	cell.layer.shadowOffset = CGSizeZero;
+	cell.layer.shadowPath = [UIBezierPath bezierPathWithRect:cell.bounds].CGPath;
+	
     // Get the Special
     MMSpecial *special = [[self.specials objectForKey:[self.dateKeys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.item];
 
