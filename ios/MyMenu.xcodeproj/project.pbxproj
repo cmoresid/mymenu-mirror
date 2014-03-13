@@ -36,7 +36,6 @@
 		83893EB518919AD400D36670 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83893EB318919AD400D36670 /* InfoPlist.strings */; };
 		83893EB718919AD400D36670 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83893EB618919AD400D36670 /* main.m */; };
 		83893EBE18919AD400D36670 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83893EBC18919AD400D36670 /* Main.storyboard */; };
-		83893EC618919AD400D36670 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83893EC518919AD400D36670 /* Images.xcassets */; };
 		83893ECD18919AD400D36670 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893ECC18919AD400D36670 /* XCTest.framework */; };
 		83893ECE18919AD400D36670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAA18919AD400D36670 /* Foundation.framework */; };
 		83893ECF18919AD400D36670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAE18919AD400D36670 /* UIKit.framework */; };
@@ -47,6 +46,9 @@
 		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
 		B03D7C8A18CCFD8200F7F5CE /* StaticData.plist in Resources */ = {isa = PBXBuildFile; fileRef = B03D7C8918CCFD8200F7F5CE /* StaticData.plist */; };
 		B03D7C8E18CCFE2000F7F5CE /* MMStaticDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B03D7C8D18CCFE2000F7F5CE /* MMStaticDataHelper.m */; };
+		B048559218CFA8E8003BC8A9 /* UIImage+MMTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = B048559118CFA8E8003BC8A9 /* UIImage+MMTransform.m */; };
+		B048559318CFC57D003BC8A9 /* restricted.png in Resources */ = {isa = PBXBuildFile; fileRef = B048558E18CF9F89003BC8A9 /* restricted.png */; };
+		B048559418CFC57D003BC8A9 /* restricted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B048558F18CF9F89003BC8A9 /* restricted@2x.png */; };
 		B0627E2D18A2CB3700EAA045 /* 125-food.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2918A2CB3700EAA045 /* 125-food.png */; };
 		B0627E2E18A2CB3700EAA045 /* 172-pricetag.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */; };
 		B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2B18A2CB3700EAA045 /* 184-warning.png */; };
@@ -175,6 +177,10 @@
 		B03D7C8918CCFD8200F7F5CE /* StaticData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StaticData.plist; sourceTree = "<group>"; };
 		B03D7C8C18CCFE2000F7F5CE /* MMStaticDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMStaticDataHelper.h; path = Helper/MMStaticDataHelper.h; sourceTree = "<group>"; };
 		B03D7C8D18CCFE2000F7F5CE /* MMStaticDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMStaticDataHelper.m; path = Helper/MMStaticDataHelper.m; sourceTree = "<group>"; };
+		B048558E18CF9F89003BC8A9 /* restricted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restricted.png; sourceTree = "<group>"; };
+		B048558F18CF9F89003BC8A9 /* restricted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "restricted@2x.png"; sourceTree = "<group>"; };
+		B048559018CFA8E8003BC8A9 /* UIImage+MMTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MMTransform.h"; sourceTree = "<group>"; };
+		B048559118CFA8E8003BC8A9 /* UIImage+MMTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MMTransform.m"; sourceTree = "<group>"; };
 		B0627E2818A2CB3700EAA045 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
 		B0627E2918A2CB3700EAA045 /* 125-food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "125-food.png"; sourceTree = "<group>"; };
 		B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "172-pricetag.png"; sourceTree = "<group>"; };
@@ -353,6 +359,8 @@
 		8333C3EC1894B5680028FFBE /* image_pack */ = {
 			isa = PBXGroup;
 			children = (
+				B048558E18CF9F89003BC8A9 /* restricted.png */,
+				B048558F18CF9F89003BC8A9 /* restricted@2x.png */,
 				1744F9BD18C524FD009CCC95 /* upvote.png */,
 				1744F9BE18C524FD009CCC95 /* upvote@2x.png */,
 				B0DF9BD118AC43C800BB42FA /* FacebookIcon.png */,
@@ -544,6 +552,8 @@
 				B0A98FEA18CA43E900AC4CBB /* UIColor+MyMenuColors.m */,
 				B0E7616618CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.h */,
 				B0E7616718CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.m */,
+				B048559018CFA8E8003BC8A9 /* UIImage+MMTransform.h */,
+				B048559118CFA8E8003BC8A9 /* UIImage+MMTransform.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -817,6 +827,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B048559318CFC57D003BC8A9 /* restricted.png in Resources */,
+				B048559418CFC57D003BC8A9 /* restricted@2x.png in Resources */,
 				B0B8288D18C904C600FAACAF /* 19-gear.png in Resources */,
 				B0627E2D18A2CB3700EAA045 /* 125-food.png in Resources */,
 				1722200318C279380022FE8B /* MenuItemReviewCell.xib in Resources */,
@@ -832,8 +844,6 @@
 				B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */,
 				174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */,
 				17F9F80F18AC356F006B7DD0 /* twittershare.jpg in Resources */,
-				83893EC618919AD400D36670 /* Images.xcassets in Resources */,
-				83893EC618919AD400D36670 /* Images.xcassets in Resources */,
 				B0E7616C18CA8D2700D1ABF7 /* Menu.storyboard in Resources */,
 				17F9F80D18AC3565006B7DD0 /* facebookshare.jpg in Resources */,
 				B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */,
@@ -920,6 +930,7 @@
 				B0A9909018CA43E900AC4CBB /* MMUser.m in Sources */,
 				B0A9908718CA43E900AC4CBB /* MMDBFetcherResponse.m in Sources */,
 				B0A9908B18CA43E900AC4CBB /* MMMerchant.m in Sources */,
+				B048559218CFA8E8003BC8A9 /* UIImage+MMTransform.m in Sources */,
 				B0A9909518CA43E900AC4CBB /* MMSocialMediaService.m in Sources */,
 				B0A9908C18CA43E900AC4CBB /* MMPopoverDataPair.m in Sources */,
 				B0A9909C18CA43E900AC4CBB /* MMValidationManager.m in Sources */,
