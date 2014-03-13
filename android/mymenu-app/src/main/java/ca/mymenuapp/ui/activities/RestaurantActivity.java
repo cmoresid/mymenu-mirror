@@ -210,13 +210,6 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
   }
 
   /**
-   * Get the Action Bar Icon View.
-   */
-  private ImageView getActionBarIconView() {
-    return ButterKnife.findById(this, android.R.id.home);
-  }
-
-  /**
    * Get the height of the action bar.
    */
   public int getActionBarHeight() {
