@@ -20,17 +20,11 @@ package ca.mymenuapp;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import ca.mymenuapp.data.api.model.User;
-import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.ui.activities.LoginActivity;
 import com.f2prateek.ln.DebugLn;
 import com.f2prateek.ln.Ln;
 import dagger.ObjectGraph;
 import hugo.weaving.DebugLog;
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
 /**
  * Custom {@link android.app.Application} instance.
