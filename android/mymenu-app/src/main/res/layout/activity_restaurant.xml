@@ -9,7 +9,10 @@
   <FrameLayout
       android:id="@+id/restaurant_header"
       android:layout_width="match_parent"
+      android:background="@android:color/white"
       android:layout_height="@dimen/restaurant_header_height">
+
+    <!-- Background set white for transparent headers, otherwise list will bleed through. -->
 
     <ca.mymenuapp.ui.widgets.KenBurnsView
         android:id="@+id/restaurant_header_image"

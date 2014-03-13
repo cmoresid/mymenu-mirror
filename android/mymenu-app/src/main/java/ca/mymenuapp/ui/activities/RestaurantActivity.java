@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.ImageView;
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
@@ -83,6 +82,9 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
   private AlphaForegroundColorSpan alphaForegroundColorSpan;
   private SpannableString spannableString;
   private TypedValue typedValue = new TypedValue();
+  // Keep a reference to the listView that was last scrolled so we can
+  // synchronize the different pages.
+  private AbsListView lastScrolledListView;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -243,6 +245,12 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
 
   @Override public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
       int totalItemCount) {
+    if (lastScrolledListView == null) {
+      lastScrolledListView = view;
+    } else if (view != lastScrolledListView) {
+      lastScrolledListView = view;
+      return;
+    }
     int scrollY = getScrollY(view);
     restaurantHeader.setTranslationY(Math.max(-scrollY, minHeaderTranslation));
     float ratio = clamp(restaurantHeader.getTranslationY() / minHeaderTranslation, 0.0f, 1.0f);

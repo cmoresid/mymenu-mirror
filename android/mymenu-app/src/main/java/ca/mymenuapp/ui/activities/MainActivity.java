@@ -36,7 +36,7 @@ import javax.inject.Named;
 
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
-/** The top level activity that is shown first to the userPreference. */
+/** The top level activity that is shown first to the user. */
 public class MainActivity extends BaseActivity {
 
   @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;

@@ -37,10 +37,7 @@ public class MenuCategoryFragment extends BaseFragment {
     MenuCategoryFragment fragment = new MenuCategoryFragment();
     Bundle args = new Bundle();
     ArrayList<MenuItem> menuItemArrayList = new ArrayList<>(menuItems);
-    // todo, only for testing view fx
-    menuItemArrayList.addAll(menuItems);
-    menuItemArrayList.addAll(menuItems);
-    Collections.shuffle(menuItemArrayList);
+    Collections.shuffle(menuItemArrayList); // todo, evaluate usefullness?
     args.putParcelableArrayList(ARGS_ITEMS, menuItemArrayList);
     fragment.setArguments(args);
     return fragment;

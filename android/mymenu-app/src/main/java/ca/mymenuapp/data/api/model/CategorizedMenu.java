@@ -18,6 +18,8 @@ public class CategorizedMenu {
   private final Long[] keySet; // indexes the order
   private final Map<Long, MenuCategory> categories;
 
+  private long lastCategory = 0;
+
   /**
    * Categories must be sorted by the order we want to display them in.
    */
@@ -67,8 +69,21 @@ public class CategorizedMenu {
     return menu.get(keySet[position]);
   }
 
+  /**
+   * Pick a random menu item.
+   * Two sequential calls are guaranteed to return unique items.
+   * todo: currently requires at least two categories to work!
+   */
   public MenuItem getRandomMenuItem() {
-    long category = keySet[random.nextInt(keySet.length)];
+    long category;
+    if (keySet.length > 1) {
+      while ((category = keySet[random.nextInt(keySet.length)]) == lastCategory) {
+        // wait until we find a unique category
+      }
+    } else {
+      category = keySet[0];
+    }
+    lastCategory = category;
     List<MenuItem> menuItems = menu.get(category);
     return menuItems.get(random.nextInt(menuItems.size()));
   }
