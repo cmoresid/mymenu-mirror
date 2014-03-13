@@ -32,22 +32,23 @@
     calendarView.rowCellClass = [TSQTACalendarRowCell class];
     calendarView.firstDate = [NSDate dateWithTimeIntervalSinceNow:0];
     calendarView.lastDate = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * 365 * 5];
-    calendarView.backgroundColor = [UIColor whiteColor];
+    calendarView.backgroundColor = [UIColor clearColor];
     calendarView.pagingEnabled = YES;
 	calendarView.delegate = self;
 	calendarView.selectedDate = self.selectedDate;
     CGFloat onePixel = 1.0f / [UIScreen mainScreen].scale;
     calendarView.contentInset = UIEdgeInsetsMake(0.0f, onePixel, 0.0f, onePixel);
     self.view = calendarView;
-	[self.view setNeedsDisplay];
 
 	
 }
 
-- (void)viewDidLayoutSubviews;
+- (void)viewDidLayoutSubviews
 {
-	// Set the calendar view to show today date on start
-	//[(TSQCalendarView *)self.view scrollToDate:[NSDate date] animated:NO];
+	// Set the calendar view to show today date on star
+	
+
+	//[(TSQCalendarView *)self.view scrollToDate:self.selectedDate animated:NO];
 }
 
 - (void)setCalendar:(NSCalendar *)calendar;

@@ -95,7 +95,6 @@
 		B0A9907F18CA43E900AC4CBB /* MMReviewPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9901118CA43E900AC4CBB /* MMReviewPopOverViewController.m */; };
 		B0A9908118CA43E900AC4CBB /* MMSpecialsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9901518CA43E900AC4CBB /* MMSpecialsCollectionViewController.m */; };
 		B0A9908218CA43E900AC4CBB /* MMSpecialsTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9901718CA43E900AC4CBB /* MMSpecialsTypeController.m */; };
-		B0A9908318CA43E900AC4CBB /* MMSpecialsWeekController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9901918CA43E900AC4CBB /* MMSpecialsWeekController.m */; };
 		B0A9908418CA43E900AC4CBB /* MMSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9901B18CA43E900AC4CBB /* MMSplitViewController.m */; };
 		B0A9908518CA43E900AC4CBB /* MMRestaurantMapDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9901F18CA43E900AC4CBB /* MMRestaurantMapDelegate.m */; };
 		B0A9908618CA43E900AC4CBB /* MMDBFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9902418CA43E900AC4CBB /* MMDBFetcher.m */; };
@@ -272,8 +271,6 @@
 		B0A9901518CA43E900AC4CBB /* MMSpecialsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialsCollectionViewController.m; sourceTree = "<group>"; };
 		B0A9901618CA43E900AC4CBB /* MMSpecialsTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialsTypeController.h; sourceTree = "<group>"; };
 		B0A9901718CA43E900AC4CBB /* MMSpecialsTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialsTypeController.m; sourceTree = "<group>"; };
-		B0A9901818CA43E900AC4CBB /* MMSpecialsWeekController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialsWeekController.h; sourceTree = "<group>"; };
-		B0A9901918CA43E900AC4CBB /* MMSpecialsWeekController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialsWeekController.m; sourceTree = "<group>"; };
 		B0A9901A18CA43E900AC4CBB /* MMSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSplitViewController.h; sourceTree = "<group>"; };
 		B0A9901B18CA43E900AC4CBB /* MMSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSplitViewController.m; sourceTree = "<group>"; };
 		B0A9901D18CA43E900AC4CBB /* MMRegistrationPopoverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRegistrationPopoverDelegate.h; sourceTree = "<group>"; };
@@ -660,12 +657,10 @@
 				B0A9901518CA43E900AC4CBB /* MMSpecialsCollectionViewController.m */,
 				B0A9901618CA43E900AC4CBB /* MMSpecialsTypeController.h */,
 				B0A9901718CA43E900AC4CBB /* MMSpecialsTypeController.m */,
-				B0A9901818CA43E900AC4CBB /* MMSpecialsWeekController.h */,
 				83CC9EC318D24F2A00E0B48A /* MMSpecialsCalendarViewController.h */,
 				83CC9EC418D24F2A00E0B48A /* MMSpecialsCalendarViewController.m */,
 				83CC9EC618D24FA300E0B48A /* TSQTACalendarRowCell.h */,
 				83CC9EC718D24FA300E0B48A /* TSQTACalendarRowCell.m */,
-				B0A9901918CA43E900AC4CBB /* MMSpecialsWeekController.m */,
 				B0A9901A18CA43E900AC4CBB /* MMSplitViewController.h */,
 				B0A9901B18CA43E900AC4CBB /* MMSplitViewController.m */,
 			);
@@ -1011,7 +1006,6 @@
 				83CC9EC818D24FA300E0B48A /* TSQTACalendarRowCell.m in Sources */,
 				B0A9908C18CA43E900AC4CBB /* MMPopoverDataPair.m in Sources */,
 				B0A9909C18CA43E900AC4CBB /* MMValidationManager.m in Sources */,
-				B0A9908318CA43E900AC4CBB /* MMSpecialsWeekController.m in Sources */,
 				B0A9908818CA43E900AC4CBB /* MMMenuItem.m in Sources */,
 				B0A9908218CA43E900AC4CBB /* MMSpecialsTypeController.m in Sources */,
 				B0A9908118CA43E900AC4CBB /* MMSpecialsCollectionViewController.m in Sources */,

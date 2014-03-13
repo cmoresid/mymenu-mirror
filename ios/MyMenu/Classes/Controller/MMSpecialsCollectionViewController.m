@@ -326,7 +326,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     }
 
     // Check that the query returned something
-    if (webSpecials.count > 0) {
+    if (webSpecials.count > 0 && [date isEqualToDate:self.currentDate]) {
             [self.specials addObjectsFromArray:[webSpecials mutableCopy]];
         /*
         NSUInteger index = [self indexOfDate:date];

@@ -38,8 +38,7 @@
 /** The currently-selected date on the calendar.
  
  Set this property to any `NSDate`; `TSQCalendarView` will only look at the month, day, and year.
- You can read and write this property; the delegate method `calendarView:didSelectDate:` will be called
- when a new date is selected from the UI but *not* when this method is called manually.
+ You can read and write this property; the delegate method `calendarView:didSelectDate:` will be called both when a new date is selected from the UI and when this method is called manually.
  */
 @property (nonatomic, strong) NSDate *selectedDate;
 
@@ -97,6 +96,13 @@
  The class should be a subclass of `TSQCalendarRowCell` or at least implement all of its methods.
  */
 @property (nonatomic, strong) Class rowCellClass;
+
+/** Scrolls the receiver until the specified date month is completely visible.
+
+ @param date A date that identifies the month that will be visible.
+ @param animated YES if you want to animate the change in position, NO if it should be immediate.
+ */
+- (void)scrollToDate:(NSDate *)date animated:(BOOL)animated;
 
 @end
 

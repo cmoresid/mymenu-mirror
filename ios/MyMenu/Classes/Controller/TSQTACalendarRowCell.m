@@ -18,7 +18,7 @@
     rect.size.height -= (self.bottomRow ? 2.0f : 1.0f) * self.columnSpacing;
     [super layoutViewsForColumnAtIndex:index inRect:rect];
 }
-
+/*
 - (UIImage *)todayBackgroundImage;
 {
     return [[UIImage imageNamed:@"CalendarTodaysDate.png"] stretchableImageWithLeftCapWidth:4 topCapHeight:4];
@@ -38,5 +38,5 @@
 {
     return [UIImage imageNamed:[NSString stringWithFormat:@"CalendarRow%@.png", self.bottomRow ? @"Bottom" : @""]];
 }
-
+*/
 @end
