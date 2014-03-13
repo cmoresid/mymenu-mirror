@@ -111,6 +111,7 @@ dependencies {
   }
 
   compile 'com.greenhalolabs:emailautocompletetextview:1.2.0'
+  compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 
   debugCompile 'com.squareup.retrofit:retrofit-mock:1.4.1'
   debugCompile 'com.jakewharton.madge:madge:1.1.1'

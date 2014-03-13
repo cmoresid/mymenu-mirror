@@ -1,12 +1,19 @@
 package ca.mymenuapp.data;
 
 import ca.mymenuapp.MyMenuApi;
+import ca.mymenuapp.data.api.model.CategorizedMenu;
 import ca.mymenuapp.data.api.model.DietaryRestriction;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
-import ca.mymenuapp.data.api.model.Menu;
+import ca.mymenuapp.data.api.model.MenuCategory;
+import ca.mymenuapp.data.api.model.MenuItem;
+import ca.mymenuapp.data.api.model.MenuResponse;
+import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.api.model.UserResponse;
+import ca.mymenuapp.data.api.model.UserRestrictionLink;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
+import com.f2prateek.ln.Ln;
+import java.util.Collections;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -16,6 +23,7 @@ import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
+import rx.observables.BlockingObservable;
 import rx.schedulers.Schedulers;
 
 @Singleton
@@ -28,32 +36,21 @@ public class MyMenuDatabase {
   }
 
   public Subscription getUser(final String email, final String password, Observer<User> observer) {
-    return myMenuApi.getUser(String.format(MyMenuApi.GET_USER_QUERY, email, password))
-        .map(new Func1<UserResponse, List<User>>() {
-          @Override public List<User> call(UserResponse userResponse) {
-            return userResponse.userList;
-          }
-        })
-        .map(new Func1<List<User>, User>() {
-          @Override public User call(List<User> users) {
-            return users.get(0);
-          }
-        })
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(observer);
+    final String query = String.format(MyMenuApi.GET_USER_QUERY, email, password);
+    return myMenuApi.getUser(query).map(new Func1<UserResponse, List<User>>() {
+      @Override public List<User> call(UserResponse userResponse) {
+        return userResponse.userList;
+      }
+    }).map(new Func1<List<User>, User>() {
+      @Override public User call(List<User> users) {
+        return users.get(0);
+      }
+    }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
   }
 
   public Subscription createUser(final User user, Observer<Response> observer) {
     return myMenuApi.createUser(user.email, user.firstName, user.lastName, user.password, user.city,
         user.locality, user.country, user.gender, user.birthday, user.birthmonth, user.birthyear)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(observer);
-  }
-
-  public Subscription getMenu(final int id, Observer<Menu> observer) {
-    return myMenuApi.getMenu(id)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
@@ -73,27 +70,30 @@ public class MyMenuDatabase {
   }
 
   public Subscription getUserRestrictions(final User user, Observer<List<Long>> observer) {
-    return myMenuApi.getRestrictionsForUser(
-        String.format(MyMenuApi.GET_USER_RESTRICTIONS, user.email))
-        .map(
-            new Func1<UserRestrictionResponse, List<UserRestrictionResponse.UserRestrictionLink>>() {
-              @Override public List<UserRestrictionResponse.UserRestrictionLink> call(
-                  UserRestrictionResponse userRestrictionResponse) {
-                return userRestrictionResponse.links;
-              }
-            }
+    final String query = String.format(MyMenuApi.GET_USER_RESTRICTIONS, user.email);
+    return myMenuApi.getRestrictionsForUser(query)
+        .map(new Func1<UserRestrictionResponse, List<UserRestrictionLink>>() {
+               @Override public List<UserRestrictionLink> call(
+                   UserRestrictionResponse userRestrictionResponse) {
+                 // restrictions may be null if user is not allergic to anything
+                 if (userRestrictionResponse.links == null) {
+                   return Collections.emptyList();
+                 } else {
+                   return userRestrictionResponse.links;
+                 }
+               }
+             }
         )
-        .flatMap(
-            new Func1<List<UserRestrictionResponse.UserRestrictionLink>, Observable<UserRestrictionResponse.UserRestrictionLink>>() {
-              @Override public Observable<UserRestrictionResponse.UserRestrictionLink> call(
-                  List<UserRestrictionResponse.UserRestrictionLink> userRestrictionLinks) {
-                return Observable.from(userRestrictionLinks);
-              }
-            }
+        .flatMap(new Func1<List<UserRestrictionLink>, Observable<UserRestrictionLink>>() {
+                   @Override public Observable<UserRestrictionLink> call(
+                       List<UserRestrictionLink> userRestrictionLinks) {
+                     return Observable.from(userRestrictionLinks);
+                   }
+                 }
         )
-        .map(new Func1<UserRestrictionResponse.UserRestrictionLink, Long>() {
+        .map(new Func1<UserRestrictionLink, Long>() {
           @Override
-          public Long call(UserRestrictionResponse.UserRestrictionLink userRestrictionLink) {
+          public Long call(UserRestrictionLink userRestrictionLink) {
             return userRestrictionLink.restrictId;
           }
         })
@@ -104,9 +104,8 @@ public class MyMenuDatabase {
   }
 
   public Subscription deleteUserRestrictions(final User user, Observer<Response> observer) {
-    // todo : notify observer!
-    return myMenuApi.deleteUserRestrictions(
-        String.format(MyMenuApi.DELETE_USER_RESTRICTIONS, user.email))
+    final String query = String.format(MyMenuApi.DELETE_USER_RESTRICTIONS, user.email);
+    return myMenuApi.deleteUserRestrictions(query)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
@@ -120,6 +119,40 @@ public class MyMenuDatabase {
           }
         })
         .toList()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
+
+  public Subscription getRestaurant(final long id, Observer<Restaurant> observer) {
+    return myMenuApi.getRestaurant(id)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
+
+  /**
+   * Use restaurantId so we don't have to wait for full restaurant response.
+   */
+  public Subscription getMenu(final User user, final long restaurantId,
+      Observer<CategorizedMenu> observer) {
+    final String query = String.format(MyMenuApi.GET_RESTAURANT_MENU, restaurantId);
+    Ln.d(query);
+    return myMenuApi.getMenu(query) //
+        .map(new Func1<MenuResponse, List<MenuItem>>() {
+          @Override public List<MenuItem> call(MenuResponse menuResponse) {
+            Ln.d(menuResponse);
+            return menuResponse.menuItems;
+          }
+        })
+        .map(new Func1<List<MenuItem>, CategorizedMenu>() {
+          @Override public CategorizedMenu call(List<MenuItem> menuItems) {
+            List<MenuCategory> categories =
+                BlockingObservable.from(myMenuApi.getMenuCategories(MyMenuApi.GET_MENU_CATEGORIES))
+                    .first().categories;
+            return CategorizedMenu.parse(menuItems, categories);
+          }
+        })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);

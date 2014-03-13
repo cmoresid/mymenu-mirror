@@ -23,13 +23,13 @@
     android:orientation="vertical">
 
   <ca.mymenuapp.ui.widgets.SquaredImageView
-      android:id="@+id/restriction_picture"
+      android:id="@+id/menu_item_picture"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:scaleType="centerCrop"/>
 
   <TextView
-      android:id="@+id/restriction_label"
+      android:id="@+id/menu_item_label"
       android:layout_width="match_parent"
       android:layout_height="48dp"
       android:layout_gravity="bottom"
