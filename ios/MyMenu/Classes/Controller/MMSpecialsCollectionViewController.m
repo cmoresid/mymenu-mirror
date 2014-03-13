@@ -21,7 +21,7 @@
 #import "MMDBFetcher.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "MMSpecialsTypeController.h"
-#import "MMSpecialsWeekController.h"
+#import "MMSpecialsCalendarViewController.h"
 #import "UIColor+MyMenuColors.h"
 #import "UIStoryboard+UIStoryboard_MyMenu.h"
 
@@ -74,16 +74,21 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     [self setShowTypes:[NSMutableArray arrayWithObjects:@"Food", @"Drinks", @"Dessert", nil]];
 
     // Create Array For Holding Specials and the Date Index (Headers)
-    [self setSpecials:[[NSMutableDictionary alloc] init]];
-    [self setDateKeys:[[NSMutableArray alloc] init]];
+    [self setSpecials:[[NSMutableArray alloc] init]];
 
+	// Date at Midnight
+	NSDate *date = [NSDate date];
+	NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+	NSUInteger preservedComponents = (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit);
+	date = [calendar dateFromComponents:[calendar components:preservedComponents fromDate:date]];
+	
     // Initialize to the current Day
-    [self setCurrentDate:[NSDate date]];
+    [self setSelectedDate:date];
 
     // Delegate our self to the db fetcher.
     [MMDBFetcher get].delegate = self;
 
-    [self loadWeek:[self currentDate]];
+    [self loadSelectedDate];
     [self.navigationController setNavigationBarHidden:YES];
 }
 #pragma mark -
@@ -173,17 +178,15 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     }
     else {
         UIStoryboard *storyboard = [UIStoryboard specialsStoryboard];
-        self.weekController = [storyboard instantiateViewControllerWithIdentifier:@"SpecialsWeek"];
+        self.weekController = [storyboard instantiateViewControllerWithIdentifier:@"SpecialsCalendar"];
 
-        // Setup the view
-        NSMutableArray *weeks = [[NSMutableArray alloc] init];
-        for (int i = 0; i < 10; i++) {
-            [weeks addObject:[self getCurrentDatePlusDays:i * 7]];
-        }
+		//TODO: SET THIS UP WITH CALENDAR
 
-        [self.weekController setWeeks:weeks];
-        [self.weekController setSelectedWeek:[weeks indexOfObject:self.selectedDate]];
+        //[self.weekController setWeeks:weeks];
+        //[self.weekController setSelectedWeek:[weeks indexOfObject:self.selectedDate]];
         [self.weekController setSpecialsCollectionController:self];
+		
+		[self.weekController setSelectedDate:[self selectedDate]];
         self.weekPopoverController = [[UIPopoverController alloc] initWithContentViewController:self.weekController];
 
         // Show the view using us as delegate
@@ -192,25 +195,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     }
 }
 
-#pragma mark -
-#pragma mark Helper Functions
-
-/**
- * Loads 7 days from the date specified
- */
-- (void)loadWeek:(NSDate *)date {
-    // Loads 7 days from the Date Specified
-    [self setSelectedDate:date];
-
-    // Remove all specials first.
-    [[self dateKeys] removeAllObjects];
-    [[self specials] removeAllObjects];
-    [self.collectionView reloadData];
-    for (int i = 0; i < 7; i++) {
-        [self loadDate:[self getDate:date PlusDays:i]];
-    }
-
-}
 
 #pragma mark -
 #pragma mark Date Functions
@@ -220,13 +204,19 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 /**
 * Request specials for a given day. Uses the specialsType defined in the showTypes Array.
 */
-- (void)loadDate:(NSDate *)date {
+- (void)loadSelectedDate {
 
-    // Remove All Objects for the current Date if it exsits
-    [self.dateKeys removeObjectIdenticalTo:date];
-    if ([self.specials objectForKey:date] != nil) {
-        [[self.specials objectForKey:date] removeAllObjects];
-    }
+	
+	
+	NSDate * date = self.selectedDate;
+	
+	if([date isEqualToDate:self.currentDate])  {
+		return;
+	}
+	
+	self.currentDate = date;
+	[self.specials removeAllObjects];
+
     // Refresh the View
     [self.collectionView reloadData];
 
@@ -248,6 +238,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     if (self.showTypes.count == 0)
         [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
 
+	
+	
     // TODO: display message no options selected?
 }
 
@@ -274,6 +266,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     // Safety check if no type is selected, we need to close the loading
     if (self.showTypes.count == 0)
         [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+	
+	
 
     // TODO: display message no options selected?
 }
@@ -316,14 +310,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
     // Check that the query returned something
     if (webSpecials.count > 0) {
-        if ([self.specials objectForKey:date] != nil) {
-            NSMutableArray *array = [self.specials objectForKey:date];
-            [array addObjectsFromArray:webSpecials];
-            [self.specials setObject:array forKey:date];
-        } else {
-            [[self dateKeys] addObject:date];
-            [self.specials setObject:[webSpecials mutableCopy] forKey:date];
-        }
+            [self.specials addObjectsFromArray:[webSpecials mutableCopy]];
         /*
         NSUInteger index = [self indexOfDate:date];
         if(index != NSNotFound) {
@@ -336,8 +323,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
          */
     }
 
-    // Sort keys
-    [self.dateKeys sortUsingSelector:@selector(compare:)];
     // Reload the View
     [[self collectionView] reloadData];
 }
@@ -345,36 +330,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 #pragma mark -
 #pragma mark Collection View
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-
-    return [[self.specials objectForKey:[[self dateKeys] objectAtIndex:section]] count];
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-
-    // Get the HeaderView
-    static NSString *headerIdentifier = @"header";
-    UICollectionReusableView *reusableview = nil;
-    if (kind == UICollectionElementKindSectionHeader) {
-        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerIdentifier forIndexPath:indexPath];
-
-        // Format for Header Date
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"EEEE MMMM dd"];
-
-        // Get the Date for that section
-        NSString *title = [formatter stringFromDate:[self.dateKeys objectAtIndex:indexPath.section]];
-
-        // Get View and set
-        UITextView *textView = (UITextView *) [headerView viewWithTag:99];
-        textView.text = title;
-
-        // Return the setupview
-        reusableview = headerView;
-    }
-    return reusableview;
-
-}
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"Cell";
@@ -397,7 +352,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	cell.layer.shadowPath = [UIBezierPath bezierPathWithRect:cell.bounds].CGPath;
 	
     // Get the Special
-    MMSpecial *special = [[self.specials objectForKey:[self.dateKeys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.item];
+    MMSpecial *special = [self.specials objectAtIndex:indexPath.item];
 
     // Load the Image in
     UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
@@ -420,8 +375,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     NSLog(@"touched cell %@ at indexPath %@", cell, indexPath);
 }
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return [self.dateKeys count];
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+	return self.specials.count;
 }
 
 #pragma mark - 
@@ -433,34 +388,26 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 - (void)removeShowType:(NSString *)type {
     [[self showTypes] removeObject:type];
     NSUInteger categoryId = [types indexOfObject:type];
-
-    int currentDateIndex = 0;
-
-    // We don't need to reload since we are removing things...
-    for (NSDate *date in self.dateKeys) {
-
-        // Section
-        NSMutableArray *currentDateIndexArray = [self.specials objectForKey:date];
-
-        // Set of Items needing to be removed
-        NSMutableIndexSet *set = [[NSMutableIndexSet alloc] init];
-        int i = 0;
-
-        // Check all the specials for this date if they are of the same type.
-        for (MMSpecial *special in currentDateIndexArray) {
-            if (([[special categoryid] unsignedIntegerValue] - 1) == categoryId) {
-                [set addIndex:i];
-            }
-            i++;
-        }
-
+	
+	// Section
+	NSMutableArray *currentDateIndexArray = self.specials;
+	
+	// Set of Items needing to be removed
+	NSMutableIndexSet *set = [[NSMutableIndexSet alloc] init];
+	int i = 0;
+	
+	// Check all the specials for this date if they are of the same type.
+	for (MMSpecial *special in currentDateIndexArray) {
+		if (([[special categoryid] unsignedIntegerValue] - 1) == categoryId) {
+			[set addIndex:i];
+		}
+		i++;
+		
         // Remove all of the same type
         [currentDateIndexArray removeObjectsAtIndexes:set];
         [set removeAllIndexes];
-
-        currentDateIndex++;
     }
-
+	
     // Refresh the view
     [self.collectionView reloadData];
 }
@@ -477,9 +424,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
         [[self showTypes] addObject:type];
 
         // Reload all the dates for the type added, since it will be removed at this time.
-        for (NSDate *date in self.dateKeys) {
-            [self loadDate:date forType:type];
-        }
+		[self loadDate:self.selectedDate forType:type];
+		
         // Refresh View
         [self.collectionView reloadData];
     }
@@ -509,16 +455,16 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
         [popover setSpecialItems:types];
         [popover setSpecialsCollectionController:self];
 
-    } else if ([popover isKindOfClass:[MMSpecialsWeekController class]]) {
+    } else if ([popover isKindOfClass:[MMSpecialsCalendarViewController class]]) {
 
-        popover = (MMSpecialsWeekController *) popover;
-        NSMutableArray *weeks = [[NSMutableArray alloc] init];
+        popover = (MMSpecialsCalendarViewController *) popover;
+       /* NSMutableArray *weeks = [[NSMutableArray alloc] init];
         for (int i = 0; i < 10; i++) {
             [weeks addObject:[self getCurrentDatePlusDays:i * 7]];
         }
         [popover setWeeks:weeks];
         [popover setSelectedWeek:[weeks indexOfObject:self.selectedDate]];
-        [popover setSpecialsCollectionController:self];
+        [popover setSpecialsCollectionController:self];*/
     }
 }
 

@@ -41,6 +41,21 @@
 		83893ECF18919AD400D36670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAE18919AD400D36670 /* UIKit.framework */; };
 		83893ED718919AD400D36670 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83893ED518919AD400D36670 /* InfoPlist.strings */; };
 		83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A61ED018922E4E00269357 /* MapKit.framework */; };
+		83CC9EC518D24F2A00E0B48A /* MMSpecialsCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CC9EC418D24F2A00E0B48A /* MMSpecialsCalendarViewController.m */; };
+		83CC9EC818D24FA300E0B48A /* TSQTACalendarRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CC9EC718D24FA300E0B48A /* TSQTACalendarRowCell.m */; };
+		83CC9ED718D253FB00E0B48A /* CalendarPreviousMonth.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ECA18D253FB00E0B48A /* CalendarPreviousMonth.png */; };
+		83CC9ED818D253FB00E0B48A /* CalendarPreviousMonth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ECB18D253FB00E0B48A /* CalendarPreviousMonth@2x.png */; };
+		83CC9ED918D253FB00E0B48A /* CalendarRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ECC18D253FB00E0B48A /* CalendarRow.png */; };
+		83CC9EDA18D253FB00E0B48A /* CalendarRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ECD18D253FB00E0B48A /* CalendarRow@2x.png */; };
+		83CC9EDB18D253FB00E0B48A /* CalendarRowBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ECE18D253FB00E0B48A /* CalendarRowBottom.png */; };
+		83CC9EDC18D253FB00E0B48A /* CalendarRowBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ECF18D253FB00E0B48A /* CalendarRowBottom@2x.png */; };
+		83CC9EDD18D253FB00E0B48A /* CalendarSelectedDate.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ED018D253FB00E0B48A /* CalendarSelectedDate.png */; };
+		83CC9EDE18D253FB00E0B48A /* CalendarSelectedDate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ED118D253FB00E0B48A /* CalendarSelectedDate@2x.png */; };
+		83CC9EDF18D253FB00E0B48A /* CalendarTodaysDate.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ED218D253FB00E0B48A /* CalendarTodaysDate.png */; };
+		83CC9EE018D253FB00E0B48A /* CalendarTodaysDate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ED318D253FB00E0B48A /* CalendarTodaysDate@2x.png */; };
+		83CC9EE118D253FB00E0B48A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ED418D253FB00E0B48A /* Default-568h@2x.png */; };
+		83CC9EE218D253FB00E0B48A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ED518D253FB00E0B48A /* Default.png */; };
+		83CC9EE318D253FB00E0B48A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ED618D253FB00E0B48A /* Default@2x.png */; };
 		B025696118CBC92100264A3B /* MMMainTabViewSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B025696018CBC92100264A3B /* MMMainTabViewSegue.m */; };
 		B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */; };
 		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
@@ -165,6 +180,23 @@
 		83893ED618919AD400D36670 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83A61ED018922E4E00269357 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		83B88AE518BBFD55002BAF20 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		83CC9EC318D24F2A00E0B48A /* MMSpecialsCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialsCalendarViewController.h; sourceTree = "<group>"; };
+		83CC9EC418D24F2A00E0B48A /* MMSpecialsCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialsCalendarViewController.m; sourceTree = "<group>"; };
+		83CC9EC618D24FA300E0B48A /* TSQTACalendarRowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSQTACalendarRowCell.h; sourceTree = "<group>"; };
+		83CC9EC718D24FA300E0B48A /* TSQTACalendarRowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSQTACalendarRowCell.m; sourceTree = "<group>"; };
+		83CC9ECA18D253FB00E0B48A /* CalendarPreviousMonth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalendarPreviousMonth.png; sourceTree = "<group>"; };
+		83CC9ECB18D253FB00E0B48A /* CalendarPreviousMonth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CalendarPreviousMonth@2x.png"; sourceTree = "<group>"; };
+		83CC9ECC18D253FB00E0B48A /* CalendarRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalendarRow.png; sourceTree = "<group>"; };
+		83CC9ECD18D253FB00E0B48A /* CalendarRow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CalendarRow@2x.png"; sourceTree = "<group>"; };
+		83CC9ECE18D253FB00E0B48A /* CalendarRowBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalendarRowBottom.png; sourceTree = "<group>"; };
+		83CC9ECF18D253FB00E0B48A /* CalendarRowBottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CalendarRowBottom@2x.png"; sourceTree = "<group>"; };
+		83CC9ED018D253FB00E0B48A /* CalendarSelectedDate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalendarSelectedDate.png; sourceTree = "<group>"; };
+		83CC9ED118D253FB00E0B48A /* CalendarSelectedDate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CalendarSelectedDate@2x.png"; sourceTree = "<group>"; };
+		83CC9ED218D253FB00E0B48A /* CalendarTodaysDate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalendarTodaysDate.png; sourceTree = "<group>"; };
+		83CC9ED318D253FB00E0B48A /* CalendarTodaysDate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CalendarTodaysDate@2x.png"; sourceTree = "<group>"; };
+		83CC9ED418D253FB00E0B48A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		83CC9ED518D253FB00E0B48A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		83CC9ED618D253FB00E0B48A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8FD0A88C83664DE885E9A628 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B1CFF7F18A46CF600E9F778 /* libPods-NSString-UrlEncode.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-NSString-UrlEncode.a"; path = "Pods/build/Debug-iphoneos/libPods-NSString-UrlEncode.a"; sourceTree = "<group>"; };
 		9B4029DA18CBA7E5007619E1 /* MMReviewPopOverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMReviewPopOverDelegate.h; sourceTree = "<group>"; };
@@ -314,7 +346,7 @@
 		B0A9906918CA43E900AC4CBB /* RestaurantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantCell.m; sourceTree = "<group>"; };
 		B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentLocation.png; sourceTree = "<group>"; };
 		B0B0C4DD18A8245600BA47CB /* LocationMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocationMarker.png; sourceTree = "<group>"; };
-		B0B344E918D246700023924D /* libPods-TimesSquare.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libPods-TimesSquare.a"; path = "Pods/build/Debug-iphoneos/libPods-TimesSquare.a"; sourceTree = "<group>"; };
+		B0B344E918D246700023924D /* libPods-TimesSquare.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TimesSquare.a"; path = "Pods/build/Debug-iphoneos/libPods-TimesSquare.a"; sourceTree = "<group>"; };
 		B0DE3FF018CAA68800190F2F /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		B0DF9BD118AC43C800BB42FA /* FacebookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FacebookIcon.png; sourceTree = "<group>"; };
 		B0DF9BD218AC43C800BB42FA /* TwitterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwitterIcon.png; sourceTree = "<group>"; };
@@ -474,6 +506,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		83CC9EC918D253ED00E0B48A /* calendar */ = {
+			isa = PBXGroup;
+			children = (
+				83CC9ECA18D253FB00E0B48A /* CalendarPreviousMonth.png */,
+				83CC9ECB18D253FB00E0B48A /* CalendarPreviousMonth@2x.png */,
+				83CC9ECC18D253FB00E0B48A /* CalendarRow.png */,
+				83CC9ECD18D253FB00E0B48A /* CalendarRow@2x.png */,
+				83CC9ECE18D253FB00E0B48A /* CalendarRowBottom.png */,
+				83CC9ECF18D253FB00E0B48A /* CalendarRowBottom@2x.png */,
+				83CC9ED018D253FB00E0B48A /* CalendarSelectedDate.png */,
+				83CC9ED118D253FB00E0B48A /* CalendarSelectedDate@2x.png */,
+				83CC9ED218D253FB00E0B48A /* CalendarTodaysDate.png */,
+				83CC9ED318D253FB00E0B48A /* CalendarTodaysDate@2x.png */,
+				83CC9ED418D253FB00E0B48A /* Default-568h@2x.png */,
+				83CC9ED518D253FB00E0B48A /* Default.png */,
+				83CC9ED618D253FB00E0B48A /* Default@2x.png */,
+			);
+			name = calendar;
+			sourceTree = "<group>";
+		};
 		B03D7C8818CCFD5E00F7F5CE /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,6 +567,7 @@
 		B0A98FCC18CA426800AC4CBB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				83CC9EC918D253ED00E0B48A /* calendar */,
 				83893EC518919AD400D36670 /* Images.xcassets */,
 				8333C3EC1894B5680028FFBE /* image_pack */,
 			);
@@ -608,6 +661,10 @@
 				B0A9901618CA43E900AC4CBB /* MMSpecialsTypeController.h */,
 				B0A9901718CA43E900AC4CBB /* MMSpecialsTypeController.m */,
 				B0A9901818CA43E900AC4CBB /* MMSpecialsWeekController.h */,
+				83CC9EC318D24F2A00E0B48A /* MMSpecialsCalendarViewController.h */,
+				83CC9EC418D24F2A00E0B48A /* MMSpecialsCalendarViewController.m */,
+				83CC9EC618D24FA300E0B48A /* TSQTACalendarRowCell.h */,
+				83CC9EC718D24FA300E0B48A /* TSQTACalendarRowCell.m */,
 				B0A9901918CA43E900AC4CBB /* MMSpecialsWeekController.m */,
 				B0A9901A18CA43E900AC4CBB /* MMSplitViewController.h */,
 				B0A9901B18CA43E900AC4CBB /* MMSplitViewController.m */,
@@ -833,29 +890,42 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83CC9ED918D253FB00E0B48A /* CalendarRow.png in Resources */,
 				B048559318CFC57D003BC8A9 /* restricted.png in Resources */,
+				83CC9EDF18D253FB00E0B48A /* CalendarTodaysDate.png in Resources */,
+				83CC9EE118D253FB00E0B48A /* Default-568h@2x.png in Resources */,
 				B048559418CFC57D003BC8A9 /* restricted@2x.png in Resources */,
+				83CC9EDB18D253FB00E0B48A /* CalendarRowBottom.png in Resources */,
 				B0B8288D18C904C600FAACAF /* 19-gear.png in Resources */,
+				83CC9EDE18D253FB00E0B48A /* CalendarSelectedDate@2x.png in Resources */,
 				B0627E2D18A2CB3700EAA045 /* 125-food.png in Resources */,
 				1722200318C279380022FE8B /* MenuItemReviewCell.xib in Resources */,
 				B0DF9BD418AC43C800BB42FA /* TwitterIcon.png in Resources */,
+				83CC9EE218D253FB00E0B48A /* Default.png in Resources */,
 				1731DFAE18A6CFB2008BE05B /* MenuItemCell.xib in Resources */,
 				1744F9C018C524FD009CCC95 /* upvote@2x.png in Resources */,
 				B0DE3FF118CAA68800190F2F /* Profile.storyboard in Resources */,
 				B0627E2E18A2CB3700EAA045 /* 172-pricetag.png in Resources */,
+				83CC9ED818D253FB00E0B48A /* CalendarPreviousMonth@2x.png in Resources */,
 				833C8C83189D9B85007CB562 /* logo.png in Resources */,
 				B0DF9BD318AC43C800BB42FA /* FacebookIcon.png in Resources */,
+				83CC9EDD18D253FB00E0B48A /* CalendarSelectedDate.png in Resources */,
 				B03D7C8A18CCFD8200F7F5CE /* StaticData.plist in Resources */,
 				B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */,
 				B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */,
 				174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */,
 				17F9F80F18AC356F006B7DD0 /* twittershare.jpg in Resources */,
 				B0E7616C18CA8D2700D1ABF7 /* Menu.storyboard in Resources */,
+				83CC9ED718D253FB00E0B48A /* CalendarPreviousMonth.png in Resources */,
 				17F9F80D18AC3565006B7DD0 /* facebookshare.jpg in Resources */,
+				83CC9EE018D253FB00E0B48A /* CalendarTodaysDate@2x.png in Resources */,
 				B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */,
+				83CC9EE318D253FB00E0B48A /* Default@2x.png in Resources */,
 				1731DFAC18A59B0F008BE05B /* 06-magnify.png in Resources */,
 				83893EB518919AD400D36670 /* InfoPlist.strings in Resources */,
+				83CC9EDA18D253FB00E0B48A /* CalendarRow@2x.png in Resources */,
 				1744F9BF18C524FD009CCC95 /* upvote.png in Resources */,
+				83CC9EDC18D253FB00E0B48A /* CalendarRowBottom@2x.png in Resources */,
 				B0E7616518CA7EB900D1ABF7 /* Specials.storyboard in Resources */,
 				83893EBE18919AD400D36670 /* Main.storyboard in Resources */,
 				B0B0C4DF18A8245600BA47CB /* LocationMarker.png in Resources */,
@@ -938,6 +1008,7 @@
 				B0A9908B18CA43E900AC4CBB /* MMMerchant.m in Sources */,
 				B048559218CFA8E8003BC8A9 /* UIImage+MMTransform.m in Sources */,
 				B0A9909518CA43E900AC4CBB /* MMSocialMediaService.m in Sources */,
+				83CC9EC818D24FA300E0B48A /* TSQTACalendarRowCell.m in Sources */,
 				B0A9908C18CA43E900AC4CBB /* MMPopoverDataPair.m in Sources */,
 				B0A9909C18CA43E900AC4CBB /* MMValidationManager.m in Sources */,
 				B0A9908318CA43E900AC4CBB /* MMSpecialsWeekController.m in Sources */,
@@ -949,6 +1020,7 @@
 				B0A9908E18CA43E900AC4CBB /* MMSpecial.m in Sources */,
 				B0A9908518CA43E900AC4CBB /* MMRestaurantMapDelegate.m in Sources */,
 				B0A9907918CA43E900AC4CBB /* MMProfileSplitViewController.m in Sources */,
+				83CC9EC518D24F2A00E0B48A /* MMSpecialsCalendarViewController.m in Sources */,
 				B0A9906B18CA43E900AC4CBB /* NSArray+MerchantSort.m in Sources */,
 				B0A9907A18CA43E900AC4CBB /* MMRatingPopoverViewController.m in Sources */,
 				B0A9906D18CA43E900AC4CBB /* MMAboutViewController.m in Sources */,

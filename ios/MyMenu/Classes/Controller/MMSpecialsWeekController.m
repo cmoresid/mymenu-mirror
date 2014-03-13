@@ -105,7 +105,7 @@
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         // Reflect selection in data model
 
-        [self.specialsCollectionController loadWeek:[self.weeks objectAtIndex:indexPath.item]];
+        [self.specialsCollectionController loadDay:[self.weeks objectAtIndex:indexPath.item]];
     }
 }
 

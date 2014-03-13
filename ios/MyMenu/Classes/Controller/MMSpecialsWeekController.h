@@ -39,10 +39,17 @@
 @property(nonatomic, readwrite) MMSpecialsCollectionViewController *specialsCollectionController;
 
 /**
+ *  Used for Displaying the Calendar
+ */
+@property (nonatomic, strong) NSCalendar *calendar;
+
+
+/**
  *  Required height for the tableview
  *
  *  @return CGSize use in View.
  */
 - (CGSize)contentSizeForViewInPopover;
+
 
 @end
