@@ -25,14 +25,18 @@
 @interface MMDietaryRestrictionCell : UICollectionViewCell
 
 /**
- * A `UISwitch` that represents whether or not the
- * dietary restriction is selected.
- */
-@property(nonatomic, weak) IBOutlet UISwitch *onSwitch;
-
-/**
  * The label that describes the restriction.
  */
-@property(nonatomic, weak) IBOutlet UILabel *restName;
+@property(nonatomic, weak) IBOutlet UILabel *restrictionName;
+
+@property(nonatomic, weak) IBOutlet UIImageView *restrictionImageView;
+
+@property(nonatomic, strong) NSNumber *correspondingRestrictionId;
+
+@property(nonatomic) BOOL isSelected;
+
+@property(nonatomic, strong) UIImage *restrictionImageWithMask;
+
+@property(nonatomic, strong) UIImage *restrictionImageWithoutMask;
 
 @end

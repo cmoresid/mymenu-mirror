@@ -16,6 +16,13 @@
 //
 
 #import "MMDietaryRestrictionCell.h"
+#import "UIImage+MMTransform.h"
+
+@interface MMDietaryRestrictionCell ()
+
+- (void)configureImageWithMask;
+
+@end
 
 @implementation MMDietaryRestrictionCell
 
@@ -24,16 +31,29 @@
     if (self) {
         // Initialization code
     }
+    
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+- (void)setIsSelected:(BOOL)isSelected {
+    if (isSelected) {
+        [self configureImageWithMask];
+        
+        self.restrictionImageView.image = self.restrictionImageWithMask;
+    }
+    else {
+        self.restrictionImageView.image = self.restrictionImageWithoutMask;
+    }
+    
+    _isSelected = isSelected;
 }
-*/
+
+- (void)configureImageWithMask {
+    if (self.restrictionImageWithMask) {
+        return;
+    }
+    
+    self.restrictionImageWithMask = [UIImage addRestrictionMask:self.restrictionImageWithoutMask];
+}
 
 @end
