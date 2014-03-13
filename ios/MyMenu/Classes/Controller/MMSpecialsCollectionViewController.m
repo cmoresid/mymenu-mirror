@@ -216,18 +216,17 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 * Request specials for a given day. Uses the specialsType defined in the showTypes Array.
 */
 - (void)loadSelectedDate {
-
-	
 	
 	NSDate * date = self.selectedDate;
 	
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"EE MMM dd"];
 	
-    // Get the Date for that section
+   // Display the Date in the toolbar
     NSString *title = [formatter stringFromDate:date];
 	[self.labelView setText:title];
 	
+	// If we are displaying the page already don't reload.
 	if([date isEqualToDate:self.currentDate])  {
 		return;
 	}
@@ -420,11 +419,10 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 			[set addIndex:i];
 		}
 		i++;
-		
-        // Remove all of the same type
-        [currentDateIndexArray removeObjectsAtIndexes:set];
-        [set removeAllIndexes];
     }
+	
+	// Remove all of the same type
+	[currentDateIndexArray removeObjectsAtIndexes:set];
 	
     // Refresh the view
     [self.collectionView reloadData];

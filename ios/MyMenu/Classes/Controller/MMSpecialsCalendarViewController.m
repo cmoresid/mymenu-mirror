@@ -39,7 +39,7 @@
     CGFloat onePixel = 1.0f / [UIScreen mainScreen].scale;
     calendarView.contentInset = UIEdgeInsetsMake(0.0f, onePixel, 0.0f, onePixel);
     self.view = calendarView;
-	
+	[self.view setNeedsDisplay];
 
 	
 }
@@ -53,9 +53,6 @@
 - (void)setCalendar:(NSCalendar *)calendar;
 {
     _calendar = calendar;
-    
-    //self.navigationItem.title = calendar.calendarIdentifier;
-    //self.tabBarItem.title = calendar.calendarIdentifier;
 }
 
 - (void)scroll;
