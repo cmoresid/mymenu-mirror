@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		12D2EDB8343A44C081D735C2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD0A88C83664DE885E9A628 /* libPods.a */; };
 		1722200318C279380022FE8B /* MenuItemReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1722200218C279380022FE8B /* MenuItemReviewCell.xib */; };
 		1731DFAC18A59B0F008BE05B /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 1731DFAB18A59B0F008BE05B /* 06-magnify.png */; };
 		1731DFAE18A6CFB2008BE05B /* MenuItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1731DFAD18A6CFB2008BE05B /* MenuItemCell.xib */; };
@@ -41,6 +42,7 @@
 		83893ECF18919AD400D36670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAE18919AD400D36670 /* UIKit.framework */; };
 		83893ED718919AD400D36670 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83893ED518919AD400D36670 /* InfoPlist.strings */; };
 		83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A61ED018922E4E00269357 /* MapKit.framework */; };
+		AEADA929DD5845C4845B7F54 /* libPods-MyMenuTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB34AE19C6264F9E92FBF1CE /* libPods-MyMenuTests.a */; };
 		B025696118CBC92100264A3B /* MMMainTabViewSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B025696018CBC92100264A3B /* MMMainTabViewSegue.m */; };
 		B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */; };
 		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
@@ -52,10 +54,8 @@
 		B0627E2D18A2CB3700EAA045 /* 125-food.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2918A2CB3700EAA045 /* 125-food.png */; };
 		B0627E2E18A2CB3700EAA045 /* 172-pricetag.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */; };
 		B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2B18A2CB3700EAA045 /* 184-warning.png */; };
-		B065BEAD18A40F8700EEA46B /* libPods-SDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B065BEAC18A40F8700EEA46B /* libPods-SDWebImage.a */; };
 		B068A13418A738F4005E8036 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B068A13318A738F4005E8036 /* Social.framework */; };
 		B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = B06B61A7189F4AD300A51A81 /* restriction_placeholder.png */; };
-		B09C25EA18A38E3E00E05289 /* libPods-RaptureXML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09C25E918A38E3E00E05289 /* libPods-RaptureXML.a */; };
 		B09C25EC18A38EE000E05289 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09C25EB18A38EE000E05289 /* libPods.a */; };
 		B0A9906A18CA43E900AC4CBB /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FE518CA43E900AC4CBB /* MMAppDelegate.m */; };
 		B0A9906B18CA43E900AC4CBB /* NSArray+MerchantSort.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FE818CA43E900AC4CBB /* NSArray+MerchantSort.m */; };
@@ -115,17 +115,14 @@
 		B0A990A418CA43E900AC4CBB /* RestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9906918CA43E900AC4CBB /* RestaurantCell.m */; };
 		B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */; };
 		B0B0C4DF18A8245600BA47CB /* LocationMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DD18A8245600BA47CB /* LocationMarker.png */; };
-		B0B344EA18D246700023924D /* libPods-TimesSquare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B344E918D246700023924D /* libPods-TimesSquare.a */; };
 		B0B8288D18C904C600FAACAF /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2818A2CB3700EAA045 /* 19-gear.png */; };
 		B0DE3FF118CAA68800190F2F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0DE3FF018CAA68800190F2F /* Profile.storyboard */; };
 		B0DF9BD318AC43C800BB42FA /* FacebookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0DF9BD118AC43C800BB42FA /* FacebookIcon.png */; };
 		B0DF9BD418AC43C800BB42FA /* TwitterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0DF9BD218AC43C800BB42FA /* TwitterIcon.png */; };
-		B0E7616218CA7C5900D1ABF7 /* libPods-RBStoryboardLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E7616118CA7C5900D1ABF7 /* libPods-RBStoryboardLink.a */; };
 		B0E7616518CA7EB900D1ABF7 /* Specials.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E7616418CA7EB900D1ABF7 /* Specials.storyboard */; };
 		B0E7616818CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E7616718CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.m */; };
 		B0E7616C18CA8D2700D1ABF7 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E7616B18CA8D2700D1ABF7 /* Menu.storyboard */; };
 		B0EB0C8418A397A200CAAF44 /* MMMockNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EB0C8318A397A200CAAF44 /* MMMockNetworkClient.m */; };
-		B0EB0C8718A40E2E00CAAF44 /* libPods-MBProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0EB0C8618A40E2E00CAAF44 /* libPods-MBProgressHUD.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +145,7 @@
 		17F9F80C18AC3565006B7DD0 /* facebookshare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = facebookshare.jpg; sourceTree = "<group>"; };
 		17F9F80E18AC356F006B7DD0 /* twittershare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = twittershare.jpg; sourceTree = "<group>"; };
 		5C67526E59F84C8AAF4F8411 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		68625818F04245E796C47BC4 /* Pods-MyMenuTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMenuTests.xcconfig"; path = "Pods/Pods-MyMenuTests.xcconfig"; sourceTree = "<group>"; };
 		833C8C82189D9B85007CB562 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		83893EA718919AD400D36670 /* MyMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83893EAA18919AD400D36670 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -314,7 +312,7 @@
 		B0A9906918CA43E900AC4CBB /* RestaurantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantCell.m; sourceTree = "<group>"; };
 		B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentLocation.png; sourceTree = "<group>"; };
 		B0B0C4DD18A8245600BA47CB /* LocationMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocationMarker.png; sourceTree = "<group>"; };
-		B0B344E918D246700023924D /* libPods-TimesSquare.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libPods-TimesSquare.a"; path = "Pods/build/Debug-iphoneos/libPods-TimesSquare.a"; sourceTree = "<group>"; };
+		B0B344E918D246700023924D /* libPods-TimesSquare.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TimesSquare.a"; path = "Pods/build/Debug-iphoneos/libPods-TimesSquare.a"; sourceTree = "<group>"; };
 		B0DE3FF018CAA68800190F2F /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		B0DF9BD118AC43C800BB42FA /* FacebookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FacebookIcon.png; sourceTree = "<group>"; };
 		B0DF9BD218AC43C800BB42FA /* TwitterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwitterIcon.png; sourceTree = "<group>"; };
@@ -326,6 +324,7 @@
 		B0EB0C8218A397A200CAAF44 /* MMMockNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMockNetworkClient.h; sourceTree = "<group>"; };
 		B0EB0C8318A397A200CAAF44 /* MMMockNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMockNetworkClient.m; sourceTree = "<group>"; };
 		B0EB0C8618A40E2E00CAAF44 /* libPods-MBProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-MBProgressHUD.a"; path = "Pods/build/Debug-iphoneos/libPods-MBProgressHUD.a"; sourceTree = "<group>"; };
+		FB34AE19C6264F9E92FBF1CE /* libPods-MyMenuTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyMenuTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,16 +332,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0B344EA18D246700023924D /* libPods-TimesSquare.a in Frameworks */,
-				B0E7616218CA7C5900D1ABF7 /* libPods-RBStoryboardLink.a in Frameworks */,
-				B065BEAD18A40F8700EEA46B /* libPods-SDWebImage.a in Frameworks */,
-				B0EB0C8718A40E2E00CAAF44 /* libPods-MBProgressHUD.a in Frameworks */,
-				B09C25EA18A38E3E00E05289 /* libPods-RaptureXML.a in Frameworks */,
 				B068A13418A738F4005E8036 /* Social.framework in Frameworks */,
 				83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */,
 				83893EAD18919AD400D36670 /* CoreGraphics.framework in Frameworks */,
 				83893EAF18919AD400D36670 /* UIKit.framework in Frameworks */,
 				83893EAB18919AD400D36670 /* Foundation.framework in Frameworks */,
+				12D2EDB8343A44C081D735C2 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +349,7 @@
 				83893ECD18919AD400D36670 /* XCTest.framework in Frameworks */,
 				83893ECF18919AD400D36670 /* UIKit.framework in Frameworks */,
 				83893ECE18919AD400D36670 /* Foundation.framework in Frameworks */,
+				AEADA929DD5845C4845B7F54 /* libPods-MyMenuTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +389,7 @@
 				83893EA918919AD400D36670 /* Frameworks */,
 				83893EA818919AD400D36670 /* Products */,
 				5C67526E59F84C8AAF4F8411 /* Pods.xcconfig */,
+				68625818F04245E796C47BC4 /* Pods-MyMenuTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -427,6 +424,7 @@
 				83893EAE18919AD400D36670 /* UIKit.framework */,
 				83893ECC18919AD400D36670 /* XCTest.framework */,
 				8FD0A88C83664DE885E9A628 /* libPods.a */,
+				FB34AE19C6264F9E92FBF1CE /* libPods-MyMenuTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -779,9 +777,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83893EDF18919AD400D36670 /* Build configuration list for PBXNativeTarget "MyMenuTests" */;
 			buildPhases = (
+				145D45B41CFD49F6B74A4043 /* Check Pods Manifest.lock */,
 				83893EC718919AD400D36670 /* Sources */,
 				83893EC818919AD400D36670 /* Frameworks */,
 				83893EC918919AD400D36670 /* Resources */,
+				4A114366BB854F5487F031C3 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -873,6 +873,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		145D45B41CFD49F6B74A4043 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4A114366BB854F5487F031C3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-MyMenuTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B023EEB118A9BF8100A3DBF8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1163,7 +1193,7 @@
 		};
 		83893EE018919AD400D36670 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C67526E59F84C8AAF4F8411 /* Pods.xcconfig */;
+			baseConfigurationReference = 68625818F04245E796C47BC4 /* Pods-MyMenuTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
@@ -1188,7 +1218,7 @@
 		};
 		83893EE118919AD400D36670 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C67526E59F84C8AAF4F8411 /* Pods.xcconfig */;
+			baseConfigurationReference = 68625818F04245E796C47BC4 /* Pods-MyMenuTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
