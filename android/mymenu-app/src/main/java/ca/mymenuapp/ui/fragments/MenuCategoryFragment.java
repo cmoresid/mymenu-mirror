@@ -15,6 +15,7 @@ import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.MenuItem;
 import ca.mymenuapp.ui.misc.BindableAdapter;
+import ca.mymenuapp.ui.widgets.HeaderGridView;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import javax.inject.Inject;
 public class MenuCategoryFragment extends BaseFragment {
   public static final String ARGS_ITEMS = "items";
   @InjectExtra(ARGS_ITEMS) ArrayList<MenuItem> items;
-  @InjectView(R.id.menu_list) ListView listView;
+  @InjectView(R.id.menu_grid) HeaderGridView gridView;
   private AbsListView.OnScrollListener scrollListener;
 
   @Inject Picasso picasso;
@@ -56,11 +57,11 @@ public class MenuCategoryFragment extends BaseFragment {
   @Override public void onStart() {
     super.onStart();
     View placeholder = LayoutInflater.from(activityContext)
-        .inflate(R.layout.restaurant_header_placeholder, listView, false);
-    listView.addHeaderView(placeholder);
-    listView.setTag(placeholder);
-    listView.setAdapter(new MenuItemAdapter(activityContext, items));
-    listView.setOnScrollListener(scrollListener);
+        .inflate(R.layout.restaurant_header_placeholder, gridView, false);
+    gridView.addHeaderView(placeholder);
+    gridView.setTag(placeholder);
+    gridView.setAdapter(new MenuItemAdapter(activityContext, items));
+    gridView.setOnScrollListener(scrollListener);
   }
 
   class MenuItemAdapter extends BindableAdapter<MenuItem> {
@@ -93,14 +94,12 @@ public class MenuCategoryFragment extends BaseFragment {
     @Override public void bindView(MenuItem item, int position, View view) {
       ViewHolder holder = (ViewHolder) view.getTag();
       holder.label.setText(item.name);
-      holder.description.setText(item.description);
       picasso.load(item.picture).fit().centerCrop().into(holder.picture);
     }
 
     class ViewHolder {
       @InjectView(R.id.menu_item_picture) ImageView picture;
       @InjectView(R.id.menu_item_label) TextView label;
-      @InjectView(R.id.menu_item_description) TextView description;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);

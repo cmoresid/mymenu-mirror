@@ -17,9 +17,7 @@
   ~ along with this program.  If not, see [http://www.gnu.org/licenses/].
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:padding="48dp"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -33,19 +31,13 @@
   <TextView
       android:id="@+id/menu_item_label"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dip"
-      android:layout_marginBottom="8dip"
-      android:textAppearance="?android:attr/textAppearanceListItem"
-      tools:text="Chicken Fajitas"
-      />
+      android:layout_height="48dp"
+      android:layout_gravity="bottom"
+      android:gravity="bottom"
+      android:padding="6dp"
+      android:singleLine="true"
+      android:ellipsize="end"
+      android:textColor="#fff"
+      android:background="@drawable/gradient_overlay"/>
 
-  <TextView
-      android:id="@+id/menu_item_description"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:textAppearance="?android:attr/textAppearanceSmall"
-      tools:text="Twist on the classic Chicken Fajitas. Served with salsa and sour cream."
-      />
-
-</LinearLayout>
+</FrameLayout>
