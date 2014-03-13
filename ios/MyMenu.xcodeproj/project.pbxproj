@@ -115,6 +115,7 @@
 		B0A990A418CA43E900AC4CBB /* RestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9906918CA43E900AC4CBB /* RestaurantCell.m */; };
 		B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */; };
 		B0B0C4DF18A8245600BA47CB /* LocationMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DD18A8245600BA47CB /* LocationMarker.png */; };
+		B0B344EA18D246700023924D /* libPods-TimesSquare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B344E918D246700023924D /* libPods-TimesSquare.a */; };
 		B0B8288D18C904C600FAACAF /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2818A2CB3700EAA045 /* 19-gear.png */; };
 		B0DE3FF118CAA68800190F2F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0DE3FF018CAA68800190F2F /* Profile.storyboard */; };
 		B0DF9BD318AC43C800BB42FA /* FacebookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0DF9BD118AC43C800BB42FA /* FacebookIcon.png */; };
@@ -174,6 +175,7 @@
 		B027167618A3527D0027BF4E /* MMMockDBFetcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMockDBFetcherDelegate.h; sourceTree = "<group>"; };
 		B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMockDBFetcherDelegate.m; sourceTree = "<group>"; };
 		B027167918A3574B0027BF4E /* MMDBFetcherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcherTests.m; sourceTree = "<group>"; };
+		B031A68F18D2449B000BF353 /* libPods-ABCalendarPicker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ABCalendarPicker.a"; path = "Pods/build/Debug-iphoneos/libPods-ABCalendarPicker.a"; sourceTree = "<group>"; };
 		B03D7C8918CCFD8200F7F5CE /* StaticData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StaticData.plist; sourceTree = "<group>"; };
 		B03D7C8C18CCFE2000F7F5CE /* MMStaticDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMStaticDataHelper.h; path = Helper/MMStaticDataHelper.h; sourceTree = "<group>"; };
 		B03D7C8D18CCFE2000F7F5CE /* MMStaticDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMStaticDataHelper.m; path = Helper/MMStaticDataHelper.m; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 		B0A9906918CA43E900AC4CBB /* RestaurantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantCell.m; sourceTree = "<group>"; };
 		B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentLocation.png; sourceTree = "<group>"; };
 		B0B0C4DD18A8245600BA47CB /* LocationMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocationMarker.png; sourceTree = "<group>"; };
+		B0B344E918D246700023924D /* libPods-TimesSquare.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libPods-TimesSquare.a"; path = "Pods/build/Debug-iphoneos/libPods-TimesSquare.a"; sourceTree = "<group>"; };
 		B0DE3FF018CAA68800190F2F /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		B0DF9BD118AC43C800BB42FA /* FacebookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FacebookIcon.png; sourceTree = "<group>"; };
 		B0DF9BD218AC43C800BB42FA /* TwitterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwitterIcon.png; sourceTree = "<group>"; };
@@ -330,6 +333,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0B344EA18D246700023924D /* libPods-TimesSquare.a in Frameworks */,
 				B0E7616218CA7C5900D1ABF7 /* libPods-RBStoryboardLink.a in Frameworks */,
 				B065BEAD18A40F8700EEA46B /* libPods-SDWebImage.a in Frameworks */,
 				B0EB0C8718A40E2E00CAAF44 /* libPods-MBProgressHUD.a in Frameworks */,
@@ -404,6 +408,8 @@
 		83893EA918919AD400D36670 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B0B344E918D246700023924D /* libPods-TimesSquare.a */,
+				B031A68F18D2449B000BF353 /* libPods-ABCalendarPicker.a */,
 				B0E7616118CA7C5900D1ABF7 /* libPods-RBStoryboardLink.a */,
 				B068A13318A738F4005E8036 /* Social.framework */,
 				9B1CFF7F18A46CF600E9F778 /* libPods-NSString-UrlEncode.a */,

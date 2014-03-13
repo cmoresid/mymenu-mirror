@@ -6,6 +6,7 @@ PODS:
   - SDWebImage (3.5.2):
     - SDWebImage/Core
   - SDWebImage/Core (3.5.2)
+  - TimesSquare (1.0.1)
 
 DEPENDENCIES:
   - MBProgressHUD (~> 0.8)
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - RaptureXML (~> 1.0.1)
   - RBStoryboardLink (~> 0.0.8)
   - SDWebImage (~> 3.5.2)
+  - TimesSquare (~> 1.0.1)
 
 SPEC CHECKSUMS:
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
@@ -20,5 +22,6 @@ SPEC CHECKSUMS:
   RaptureXML: ef017fda62eb95c60300108366d1f0cd0c28cbd4
   RBStoryboardLink: 1bcff9be9fa9de9d66ea10518a327be1af729d03
   SDWebImage: fe7ce01ae4e0a884d168f59c9dd82d35baf8429e
+  TimesSquare: e36079b68c7495c06657af19c5853fe49dc8afa3
 
 COCOAPODS: 0.29.0
