@@ -170,7 +170,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
 
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, u.firstname, u.lastname, r.id, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE m.id=%@ AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, u.firstname, u.lastname, r.id, mu.business_name, m.picture, m.id as menuid, mu.id as merchid, r.likecount FROM ratings r, menu m, users u, merchusers mu WHERE m.id=%@ AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, itemid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
