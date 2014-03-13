@@ -14,8 +14,13 @@ import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionLink;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
+import ca.mymenuapp.data.rx.EndObserver;
+import ca.mymenuapp.data.rx.RequestCache;
+import com.f2prateek.ln.Ln;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import retrofit.client.Response;
@@ -26,14 +31,22 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.observables.BlockingObservable;
 import rx.schedulers.Schedulers;
+import rx.subjects.PublishSubject;
 
-@Singleton
 public class MyMenuDatabase {
 
   private final MyMenuApi myMenuApi;
 
-  @Inject public MyMenuDatabase(MyMenuApi myMenuApi) {
+  private RequestCache<List<DietaryRestriction>> dietaryRestrictionsRequest = RequestCache.create();
+  // Cache of menus
+  private final Map<Long, PublishSubject<CategorizedMenu>> menuRequests;
+  private final Map<Long, CategorizedMenu> menuCache;
+
+  public MyMenuDatabase(MyMenuApi myMenuApi) {
     this.myMenuApi = myMenuApi;
+    Ln.d("creating");
+    menuCache = new LinkedHashMap<>();
+    menuRequests = new LinkedHashMap<>();
   }
 
   public Subscription getUser(final String email, final String password, Observer<User> observer) {
@@ -58,16 +71,28 @@ public class MyMenuDatabase {
   }
 
   public Subscription getAllRestrictions(Observer<List<DietaryRestriction>> observer) {
-    return myMenuApi.getAllDietaryRestrictions(MyMenuApi.GET_ALL_RESTRICTIONS_QUERY)
+    dietaryRestrictionsRequest.cacheCheck(observer);
+    Subscription subscription = dietaryRestrictionsRequest.requestCheck(observer);
+    if (subscription != null) {
+      return subscription;
+    }
+
+    PublishSubject<List<DietaryRestriction>> subject =
+        dietaryRestrictionsRequest.startRequest(observer);
+
+    myMenuApi.getAllDietaryRestrictions(MyMenuApi.GET_ALL_RESTRICTIONS_QUERY)
         .map(new Func1<DietaryRestrictionResponse, List<DietaryRestriction>>() {
           @Override public List<DietaryRestriction> call(
               DietaryRestrictionResponse dietaryRestrictionResponse) {
             return dietaryRestrictionResponse.restrictionList;
           }
         })
+        .cache()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(observer);
+        .subscribe(subject);
+
+    return subscription;
   }
 
   public Subscription getUserRestrictions(final User user, Observer<List<Long>> observer) {
@@ -137,8 +162,40 @@ public class MyMenuDatabase {
    */
   public Subscription getMenu(final User user, final long restaurantId,
       Observer<CategorizedMenu> observer) {
+    Ln.d(menuCache.size());
+    CategorizedMenu menu = menuCache.get(restaurantId);
+    if (menu != null) {
+      Ln.d("cached");
+      // We have a cached value. Emit it immediately.
+      observer.onNext(menu);
+    }
+    PublishSubject<CategorizedMenu> menuRequest = menuRequests.get(restaurantId);
+    if (menuRequest != null) {
+      Ln.d("join");
+      // There's an in-flight network request for this section already. Join it.
+      return menuRequest.subscribe(observer);
+    }
+
+    Ln.d("fire");
+
+    menuRequest = PublishSubject.create();
+    menuRequests.put(restaurantId, menuRequest);
+
+    Subscription subscription = menuRequest.subscribe(observer);
+
+    menuRequest.subscribe(new EndObserver<CategorizedMenu>() {
+      @Override public void onEnd() {
+        menuRequests.remove(restaurantId);
+      }
+
+      @Override public void onNext(CategorizedMenu categorizedMenu) {
+        menuCache.put(restaurantId, categorizedMenu);
+        Ln.d(menuCache.size());
+      }
+    });
+
     final String query = String.format(MyMenuApi.GET_RESTAURANT_MENU, restaurantId);
-    return myMenuApi.getMenu(query) //
+    myMenuApi.getMenu(query) //
         .map(new Func1<MenuResponse, List<MenuItem>>() {
           @Override public List<MenuItem> call(MenuResponse menuResponse) {
             return menuResponse.menuItems;
@@ -154,7 +211,9 @@ public class MyMenuDatabase {
         })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(observer);
+        .subscribe(menuRequest);
+
+    return subscription;
   }
 
   public Subscription getRestaurantReviews(final long restaurantId,
