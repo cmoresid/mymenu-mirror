@@ -270,7 +270,11 @@ NSMutableArray *categories;
         labelBack.backgroundColor = [UIColor lightBackgroundGray];
         labelBack.layer.cornerRadius = 5;
         textPrice.text = [NSString stringWithFormat:@"$%@", [formatterCost stringFromNumber:menitem.cost]];
-        textRating.text = [formatter stringFromNumber:menitem.rating];
+        NSString * rate = [formatter stringFromNumber:menitem.rating];
+        if ([rate isEqualToString:@".0"]){
+         rate = @"N/A";
+        }
+        textRating.text = rate;
         textTitle.text = menitem.name;
         textDesc.text = menitem.desc;
         cell.menuItem = menitem;
