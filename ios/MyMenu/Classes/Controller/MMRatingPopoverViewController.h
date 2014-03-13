@@ -52,6 +52,15 @@ typedef void (^RatingsReturnBlock)(NSNumber *);
  *  A picture of the menu item view
  */
 @property(nonatomic, weak) IBOutlet UIImageView *menuItemImage;
+/**
+ *  reference to the cancel button
+ */
+@property(nonatomic, weak) IBOutlet UIButton *cancelButton;
+
+/**
+ *  reference to the done button
+ */
+@property(nonatomic, weak) IBOutlet UIButton *doneButton;
 
 /**
  *  The current menu item
@@ -62,6 +71,10 @@ typedef void (^RatingsReturnBlock)(NSNumber *);
  *  The Current menu item merchant
  */
 @property(nonatomic, strong) MMMerchant *menuItemMerchant;
+/**
+ *
+ */
+@property(nonatomic, strong) UIView *oldView;
 
 /**
  *  The rating the user selected.
@@ -94,5 +107,10 @@ typedef void (^RatingsReturnBlock)(NSNumber *);
  *  @param touchLocation CGPoint
  */
 - (void)moveRatingWheelWithTouch:(CGPoint)touchLocation;
+
+/**
+ * Called when the back button on the navigation bar is pressed
+ */
+-(IBAction)backButtonPressed:(id)sender;
 
 @end
