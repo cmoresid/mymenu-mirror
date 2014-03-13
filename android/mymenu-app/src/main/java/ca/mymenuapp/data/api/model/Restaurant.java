@@ -2,8 +2,7 @@ package ca.mymenuapp.data.api.model;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
-@Root(name = "row")
+@Root(name = "result")
 public class Restaurant {
   @Element(name = "id") public long id;
   @Element(name = "email") public String email;
@@ -26,10 +25,10 @@ public class Restaurant {
   @Element(name = "twitter") public String twitter;
   @Element(name = "website") public String website;
   @Element(name = "rating") public double rating;
-  @Element(name = "ratingcount") public long ratingCount;
-  @Element(name = "categoryid") public long categoryId;
-  @Element(name = "pricelow") public long priceLow;
-  @Element(name = "pricehigh") public long priceHigh;
+  @Element(name = "ratingcount") public String ratingCount;
+  @Element(name = "categoryid") public String categoryId;
+  @Element(name = "pricelow") public String priceLow;
+  @Element(name = "pricehigh") public String priceHigh;
   @Element(name = "opentime") public String openTime;
   @Element(name = "closetime") public String closeTime;
 
