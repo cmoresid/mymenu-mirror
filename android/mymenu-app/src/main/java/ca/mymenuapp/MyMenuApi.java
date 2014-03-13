@@ -19,6 +19,7 @@ package ca.mymenuapp;
 
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.MenuCategoryResponse;
+import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.UserResponse;
@@ -39,6 +40,7 @@ public interface MyMenuApi {
   String DELETE_USER_RESTRICTIONS = "DELETE from restrictionuserlink WHERE email='%s'";
   String GET_RESTAURANT_MENU = "SELECT * from menu where merchid = %d";
   String GET_MENU_CATEGORIES = "SELECT * from menucategories";
+  String GET_RESTAURANT_REVIEWS = "SELECT * from ratings where merchid = %d";
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(@Field("query") String query);
@@ -71,4 +73,7 @@ public interface MyMenuApi {
 
   @FormUrlEncoded @POST("/php/menu/custom.php")
   Observable<MenuCategoryResponse> getMenuCategories(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/menu/custom.php")
+  Observable<MenuItemReviewResponse> getReviewsForRestaurant(@Field("query") String query);
 }

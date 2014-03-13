@@ -6,13 +6,14 @@ import ca.mymenuapp.data.api.model.DietaryRestriction;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.MenuCategory;
 import ca.mymenuapp.data.api.model.MenuItem;
+import ca.mymenuapp.data.api.model.MenuItemReview;
+import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionLink;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
-import com.f2prateek.ln.Ln;
 import java.util.Collections;
 import java.util.List;
 import javax.inject.Inject;
@@ -137,11 +138,9 @@ public class MyMenuDatabase {
   public Subscription getMenu(final User user, final long restaurantId,
       Observer<CategorizedMenu> observer) {
     final String query = String.format(MyMenuApi.GET_RESTAURANT_MENU, restaurantId);
-    Ln.d(query);
     return myMenuApi.getMenu(query) //
         .map(new Func1<MenuResponse, List<MenuItem>>() {
           @Override public List<MenuItem> call(MenuResponse menuResponse) {
-            Ln.d(menuResponse);
             return menuResponse.menuItems;
           }
         })
@@ -151,6 +150,20 @@ public class MyMenuDatabase {
                 BlockingObservable.from(myMenuApi.getMenuCategories(MyMenuApi.GET_MENU_CATEGORIES))
                     .first().categories;
             return CategorizedMenu.parse(menuItems, categories);
+          }
+        })
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
+
+  public Subscription getRestaurantReviews(final long restaurantId,
+      Observer<List<MenuItemReview>> observer) {
+    final String query = String.format(MyMenuApi.GET_RESTAURANT_REVIEWS, restaurantId);
+    return myMenuApi.getReviewsForRestaurant(query) //
+        .map(new Func1<MenuItemReviewResponse, List<MenuItemReview>>() {
+          @Override public List<MenuItemReview> call(MenuItemReviewResponse response) {
+            return response.reviews;
           }
         })
         .subscribeOn(Schedulers.io())

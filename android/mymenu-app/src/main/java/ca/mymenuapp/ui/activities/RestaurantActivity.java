@@ -26,6 +26,7 @@ import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.MenuCategoryFragment;
+import ca.mymenuapp.ui.fragments.RestaurantsReviewFragment;
 import ca.mymenuapp.ui.misc.AlphaForegroundColorSpan;
 import ca.mymenuapp.ui.widgets.KenBurnsView;
 import com.astuetz.PagerSlidingTabStrip;
@@ -273,15 +274,23 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
     }
 
     @Override public int getCount() {
-      return menu.getCategoryCount();
+      return menu.getCategoryCount() + 1;
     }
 
     @Override public Fragment getItem(int position) {
-      return MenuCategoryFragment.newInstance(menu.getMenuItemsByCategory(position));
+      if (position < menu.getCategoryCount()) {
+        return MenuCategoryFragment.newInstance(menu.getMenuItemsByCategory(position));
+      } else {
+        return RestaurantsReviewFragment.newInstance(restaurantId);
+      }
     }
 
     @Override public CharSequence getPageTitle(int position) {
-      return menu.getCategoryTitle(position);
+      if (position < menu.getCategoryCount()) {
+        return menu.getCategoryTitle(position);
+      } else {
+        return getString(R.string.reviews);
+      }
     }
   }
 }

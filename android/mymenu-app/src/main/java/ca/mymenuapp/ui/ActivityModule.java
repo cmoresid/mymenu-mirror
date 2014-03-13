@@ -29,6 +29,7 @@ import ca.mymenuapp.ui.fragments.BaseFragment;
 import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.MenuCategoryFragment;
 import ca.mymenuapp.ui.fragments.PlaceholderFragment;
+import ca.mymenuapp.ui.fragments.RestaurantsReviewFragment;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -40,7 +41,7 @@ import javax.inject.Singleton;
         RestaurantActivity.class,
         // Fragments
         BaseFragment.class, PlaceholderFragment.class, DietaryPreferencesFragment.class,
-        MenuCategoryFragment.class
+        MenuCategoryFragment.class, RestaurantsReviewFragment.class
     },
     complete = false,
     addsTo = MyMenuModule.class)

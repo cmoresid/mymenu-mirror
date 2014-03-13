@@ -47,5 +47,6 @@
 
   <!-- Dietary Preferences Fragment -->
   <string name="save">Save</string>
+  <string name="reviews">Reviews</string>
 
 </resources>

@@ -20,6 +20,7 @@ package ca.mymenuapp.data.api;
 import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.MenuCategoryResponse;
+import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.UserResponse;
@@ -85,6 +86,11 @@ final class MockMyMenuApi implements MyMenuApi {
 
   @Override
   public Observable<MenuCategoryResponse> getMenuCategories(@Field("query") String query) {
+    return null;
+  }
+
+  @Override
+  public Observable<MenuItemReviewResponse> getReviewsForRestaurant(@Field("query") String query) {
     return null;
   }
 }
