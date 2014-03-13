@@ -436,6 +436,13 @@ MMMenuItemRating *touchedItem;
     touchedItem = itemCell.rating;
     if (touchedItem.id == [NSNumber numberWithInt:-1]){
         self.reviewViewFlag = YES;
+        [UIView animateWithDuration:0.5f animations:^(void) {
+            CGRect newFrame = CGRectMake(self.reviewView.frame.origin.x, self.reviewView.frame.origin.y - 275, self.reviewView.frame.size.width, self.reviewView.frame.size.height + 500);
+            self.reviewView.frame = newFrame;
+            
+            CGRect newFrameCollectionView = CGRectMake(collectionView.frame.origin.x, collectionView.frame.origin.y, collectionView.frame.size.width, collectionView.frame.size.height + 500);
+            collectionView.frame = newFrameCollectionView;
+        }];
         [self changeReviewSort:self.reviewSegment];
     }else{
         MMBaseNavigationController *reviewNavPop = [self.storyboard instantiateViewControllerWithIdentifier:@"popOverNavigation"];
