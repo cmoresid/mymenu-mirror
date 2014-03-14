@@ -41,6 +41,7 @@
 
 @interface MMRestaurantViewController () {
     BOOL _searching;
+    CGPoint _originalViewFrameOrigin;
 }
 
 @property(nonatomic, strong) HMSegmentedControl *categorySegmentControl;
@@ -115,21 +116,27 @@ NSMutableArray *categories;
 }
 
 - (void)moveViewUp:(NSNotification *)notification {
-    if (_searching) return;
-    
     CGRect oldFrame = self.view.frame;
     CGRect newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - 275, oldFrame.size.width, oldFrame.size.height);
-    
     
     [UIView animateWithDuration:0.3 animations:^{
         [self.view setFrame:newFrame];
     }];
-    
-    _searching = YES;
 }
 
 - (void)moveViewDown:(NSNotification *)notification {
-    if (!_searching) return;
+    UISearchBar *newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0f, 44.0f)];
+    newSearchBar.placeholder = NSLocalizedString(@"Search for Menu Item", nil);
+    
+    [self.menuItemsCollectionView addSubview:newSearchBar];
+    
+    MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
+    
+    layout.viewHeight = 44.0f;
+    [layout setSectionInset:UIEdgeInsetsMake(44, 0, 0, 0)];
+    
+    newSearchBar.delegate = self;
+    self.searchBar = newSearchBar;
     
     CGRect oldFrame = self.view.frame;
     CGRect newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275, oldFrame.size.width, oldFrame.size.height);
@@ -138,27 +145,29 @@ NSMutableArray *categories;
     [UIView animateWithDuration:0.3 animations:^{
         [self.view setFrame:newFrame];
     }];
-    
-    _searching = NO;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _originalViewFrameOrigin = self.view.frame.origin;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveViewUp:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveViewDown:) name:UIKeyboardWillHideNotification object:nil];
     
-    _searching = NO;
     [self.view.subviews setValue:@YES forKeyPath:@"hidden"];
     
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(10.0, 0.0, 1004.0f, 44.0f)];
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0f, 44.0f)];
     searchBar.placeholder = NSLocalizedString(@"Search for Menu Item", nil);
+    searchBar.translucent = FALSE;
     
     [self.menuItemsCollectionView setAlwaysBounceVertical:YES];
     
     [self.menuItemsCollectionView addSubview:searchBar];
     searchBar.delegate = self;
+    
+    self.searchBar = searchBar;
     
     MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
     
@@ -263,28 +272,36 @@ NSMutableArray *categories;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    _searching = NO;
-    
-    if (menuItems.count == 0) {
-        searchBar.text = @"";
-
-        menuItems = [menuItemDictionary objectForKey:kmenuItems];
-        [self.menuItemsCollectionView reloadData];
-    }
-    
     if (menuItems.count == 1) {
         touchedItem = [menuItems firstObject];
         [self performSegueWithIdentifier:@"showMenuItem" sender:self];
     }
     
-    CGRect oldFrame = self.view.frame;
-    CGRect newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275, oldFrame.size.width, oldFrame.size.height);
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.view setFrame:newFrame];
-    }];
-    
     [searchBar resignFirstResponder];
+    [searchBar removeFromSuperview];
+    
+    menuItems = [menuItemDictionary objectForKey:kmenuItems];
+    [self.menuItemsCollectionView reloadData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    [searchBar removeFromSuperview];
+    
+    menuItems = [menuItemDictionary objectForKey:kmenuItems];
+    [self.menuItemsCollectionView reloadData];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    searchBar.showsCancelButton = YES;
+    
+    [searchBar removeFromSuperview];
+    CGRect oldFrame = self.view.frame;
+    searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, searchBar.frame.size.width, searchBar.frame.size.height);
+    [self.view addSubview:searchBar];
+    [searchBar becomeFirstResponder];
+    
+    self.searchBar = searchBar;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -299,9 +316,8 @@ NSMutableArray *categories;
         }
         menuItems = [searchItems copy];
     }
-
-    [self.menuItemsCollectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-    [searchBar becomeFirstResponder];
+    
+    [self.menuItemsCollectionView reloadData];
 }
 
 
@@ -361,7 +377,7 @@ NSMutableArray *categories;
         return cell;
     } else {
         static NSString *identifier = @"Cell";
-
+        
         MMMenuItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
         cell.userInteractionEnabled = YES;
         if (cell == nil) {
