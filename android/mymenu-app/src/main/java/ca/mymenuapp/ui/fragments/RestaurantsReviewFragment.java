@@ -12,34 +12,31 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
-import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.MenuItemReview;
-import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.misc.BindableAdapter;
 import com.f2prateek.dart.InjectExtra;
-import com.f2prateek.ln.Ln;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 
 /**
  * Fragment to display a list of reviews for a restaurant.
  */
 public class RestaurantsReviewFragment extends BaseFragment {
 
-  public static final String ARGS_RESTAURANT_ID = "restaurant_id";
-  @InjectExtra(ARGS_RESTAURANT_ID) long restaurantId;
+  static final String ARGS_REVIEWS = "reviews";
+  @InjectExtra(ARGS_REVIEWS) ArrayList<MenuItemReview> menuItemReviews;
   @InjectView(R.id.menu_review_list) ListView listView;
-  @Inject MyMenuDatabase myMenuDatabase;
   private AbsListView.OnScrollListener scrollListener;
 
   /**
    * Returns a new instance of this fragment for the given section number.
    */
-  public static RestaurantsReviewFragment newInstance(long restaurantId) {
+  public static RestaurantsReviewFragment newInstance(List<MenuItemReview> reviews) {
     RestaurantsReviewFragment fragment = new RestaurantsReviewFragment();
     Bundle args = new Bundle();
-    args.putLong(ARGS_RESTAURANT_ID, restaurantId);
+    ArrayList<MenuItemReview> arrayList = new ArrayList<>(reviews);
+    args.putParcelableArrayList(ARGS_REVIEWS, arrayList);
     fragment.setArguments(args);
     return fragment;
   }
@@ -56,16 +53,12 @@ public class RestaurantsReviewFragment extends BaseFragment {
 
   @Override public void onStart() {
     super.onStart();
-    myMenuDatabase.getRestaurantReviews(restaurantId, new EndlessObserver<List<MenuItemReview>>() {
-      @Override public void onNext(List<MenuItemReview> menuItemReviews) {
-        View placeholder = LayoutInflater.from(activityContext)
-            .inflate(R.layout.restaurant_header_placeholder, listView, false);
-        listView.addHeaderView(placeholder);
-        listView.setTag(placeholder);
-        listView.setAdapter(new MenuItemAdapter(activityContext, menuItemReviews));
-        listView.setOnScrollListener(scrollListener);
-      }
-    });
+    View placeholder = LayoutInflater.from(activityContext)
+        .inflate(R.layout.restaurant_header_placeholder, listView, false);
+    listView.addHeaderView(placeholder);
+    listView.setTag(placeholder);
+    listView.setAdapter(new MenuItemAdapter(activityContext, menuItemReviews));
+    listView.setOnScrollListener(scrollListener);
   }
 
   class MenuItemAdapter extends BindableAdapter<MenuItemReview> {
