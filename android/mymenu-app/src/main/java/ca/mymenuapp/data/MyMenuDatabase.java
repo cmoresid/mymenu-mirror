@@ -24,10 +24,10 @@ import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
 import rx.observables.BlockingObservable;
 import rx.schedulers.Schedulers;
 import rx.subjects.PublishSubject;
+import rx.util.functions.Func1;
 
 /**
  * Explicitly marked in modules, Dagger seemed to be creating new ones for each activity.

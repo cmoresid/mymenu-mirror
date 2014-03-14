@@ -25,6 +25,7 @@ import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
+import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import retrofit.client.Response;
@@ -50,7 +51,12 @@ final class MockMyMenuApi implements MyMenuApi {
   }
 
   @Override public Observable<UserResponse> getUser(@Field("query") String query) {
-    return null;
+    String email = null;
+    String password = null;
+    UserResponse userResponse = new UserResponse();
+    userResponse.userList = new ArrayList<>();
+    userResponse.userList.add(serverDatabase.getUser(email, password));
+    return Observable.from(userResponse);
   }
 
   @Override

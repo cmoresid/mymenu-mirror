@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.widget.EditText;
+import android.widget.Toast;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import ca.mymenuapp.R;
@@ -29,7 +30,6 @@ import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
-import com.f2prateek.ln.Ln;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -93,11 +93,16 @@ public class LoginActivity extends BaseActivity {
       myMenuDatabase.getUser(email, password, new EndlessObserver<User>() {
         @Override public void onNext(User user) {
           setProgressBarIndeterminateVisibility(false);
-          userPreference.set(user);
-          Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-          intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-          startActivity(intent);
-          finish();
+          if (user != null) {
+            userPreference.set(user);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+          } else {
+            // todo: show error
+            Toast.makeText(LoginActivity.this, R.string.login_fail, Toast.LENGTH_LONG).show();
+          }
         }
       });
     }
