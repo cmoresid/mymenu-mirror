@@ -17,9 +17,14 @@ import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.misc.BindableAdapter;
 import com.f2prateek.dart.InjectExtra;
+import com.f2prateek.ln.Ln;
+import java.text.NumberFormat;
 import java.util.List;
 import javax.inject.Inject;
 
+/**
+ * Fragment to display a list of reviews for a restaurant.
+ */
 public class RestaurantsReviewFragment extends BaseFragment {
 
   public static final String ARGS_RESTAURANT_ID = "restaurant_id";
@@ -84,7 +89,7 @@ public class RestaurantsReviewFragment extends BaseFragment {
     }
 
     @Override public View newView(LayoutInflater inflater, int position, ViewGroup container) {
-      View view = inflater.inflate(android.R.layout.simple_list_item_2, container, false);
+      View view = inflater.inflate(R.layout.adapter_review_menu_item, container, false);
       ViewHolder viewHolder = new ViewHolder(view);
       view.setTag(viewHolder);
       return view;
@@ -92,13 +97,26 @@ public class RestaurantsReviewFragment extends BaseFragment {
 
     @Override public void bindView(MenuItemReview review, int position, View view) {
       ViewHolder holder = (ViewHolder) view.getTag();
-      holder.label.setText(review.description);
-      holder.subLabel.setText(review.userEmail);
+      holder.email.setText(review.userEmail);
+      holder.review.setText(review.description);
+      if (review.rating < 5f) {
+        setLeftDrawable(R.drawable.ic_action_emo_shame, holder.email);
+      } else {
+        setLeftDrawable(R.drawable.ic_action_emo_basic, holder.email);
+      }
+      holder.rating.setText(NumberFormat.getInstance().format(review.rating));
+    }
+
+    void setLeftDrawable(int drawable, TextView target) {
+      target.setCompoundDrawablesWithIntrinsicBounds(drawable, 0, 0, 0);
     }
 
     class ViewHolder {
-      @InjectView(android.R.id.text1) TextView label;
-      @InjectView(android.R.id.text2) TextView subLabel;
+      @InjectView(R.id.email) TextView email;
+      @InjectView(R.id.review) TextView review;
+      @InjectView(R.id.like) View like;
+      @InjectView(R.id.dislike) View dislike;
+      @InjectView(R.id.rating) TextView rating;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/holo_gap_half">
+
+  <TextView
+      android:id="@+id/email"
+      android:layout_width="match_parent"
+      android:layout_height="48dp"
+      android:layout_alignParentLeft="true"
+      android:layout_toLeftOf="@+id/dislike"
+      android:gravity="center_vertical"
+      android:drawableStart="@drawable/ic_action_emo_basic"
+      tools:text="f2prateek@gmail.com"/>
+
+  <ImageView
+      android:id="@+id/dislike"
+      android:layout_width="wrap_content"
+      android:layout_height="48dp"
+      style="?android:buttonBarButtonStyle"
+      android:layout_toLeftOf="@+id/like"
+      android:src="@drawable/ic_action_dontlike"/>
+
+  <ImageView
+      android:id="@+id/like"
+      android:layout_width="wrap_content"
+      android:layout_height="48dp"
+      android:layout_alignParentRight="true"
+      style="?android:buttonBarButtonStyle"
+      android:src="@drawable/ic_action_like"/>
+
+  <TextView
+      android:id="@+id/rating"
+      android:layout_below="@+id/email"
+      android:layout_alignParentLeft="true"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:gravity="center"
+      android:textSize="18sp"
+      android:textColor="@color/storm_dust"
+      android:textStyle="bold"
+      tools:text="4.40"/>
+
+  <TextView
+      android:id="@+id/review"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/email"
+      android:layout_toRightOf="@+id/rating"
+      android:padding="@dimen/holo_gap_half"
+      tools:text="Excellent service. \nCactus club has taken advantage of the recent BBQ duck trend and used this dish to differentiate themselves."/>
+
+</RelativeLayout>
