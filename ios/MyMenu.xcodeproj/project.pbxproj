@@ -130,6 +130,7 @@
 		B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */; };
 		B0B0C4DF18A8245600BA47CB /* LocationMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DD18A8245600BA47CB /* LocationMarker.png */; };
 		B0B8288D18C904C600FAACAF /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2818A2CB3700EAA045 /* 19-gear.png */; };
+		B0D162FB18D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D162FA18D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.m */; };
 		B0DE3FF118CAA68800190F2F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0DE3FF018CAA68800190F2F /* Profile.storyboard */; };
 		B0DF9BD318AC43C800BB42FA /* FacebookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0DF9BD118AC43C800BB42FA /* FacebookIcon.png */; };
 		B0DF9BD418AC43C800BB42FA /* TwitterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0DF9BD218AC43C800BB42FA /* TwitterIcon.png */; };
@@ -342,6 +343,8 @@
 		B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentLocation.png; sourceTree = "<group>"; };
 		B0B0C4DD18A8245600BA47CB /* LocationMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocationMarker.png; sourceTree = "<group>"; };
 		B0B344E918D246700023924D /* libPods-TimesSquare.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TimesSquare.a"; path = "Pods/build/Debug-iphoneos/libPods-TimesSquare.a"; sourceTree = "<group>"; };
+		B0D162F918D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		B0D162FA18D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		B0DE3FF018CAA68800190F2F /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		B0DF9BD118AC43C800BB42FA /* FacebookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FacebookIcon.png; sourceTree = "<group>"; };
 		B0DF9BD218AC43C800BB42FA /* TwitterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwitterIcon.png; sourceTree = "<group>"; };
@@ -778,6 +781,8 @@
 				B0A9905D18CA43E900AC4CBB /* MMDietaryRestrictionCell.m */,
 				B0A9905E18CA43E900AC4CBB /* MMMenuItemCell.h */,
 				B0A9905F18CA43E900AC4CBB /* MMMenuItemCell.m */,
+				B0D162F918D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.h */,
+				B0D162FA18D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.m */,
 				B0A9906018CA43E900AC4CBB /* MMMenuItemReviewCell.h */,
 				B0A9906118CA43E900AC4CBB /* MMMenuItemReviewCell.m */,
 				B0A9906218CA43E900AC4CBB /* MMRatingView.h */,
@@ -1052,6 +1057,7 @@
 				B0A9909E18CA43E900AC4CBB /* MMDietaryRestrictionCell.m in Sources */,
 				B0A9908418CA43E900AC4CBB /* MMSplitViewController.m in Sources */,
 				B0A9909A18CA43E900AC4CBB /* MMTextFieldValidator.m in Sources */,
+				B0D162FB18D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.m in Sources */,
 				B0A9907018CA43E900AC4CBB /* MMCategoryPopOverViewController.m in Sources */,
 				B0A9909218CA43E900AC4CBB /* MMLocationManager.m in Sources */,
 				B0E7616818CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.m in Sources */,

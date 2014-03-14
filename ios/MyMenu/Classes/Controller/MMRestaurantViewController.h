@@ -94,6 +94,8 @@
 
 @property(nonatomic, strong) UISearchBar *searchBar;
 
+@property(nonatomic, weak) IBOutlet UIScrollView *parentScrollView;
+
 /**
  *  View Controller that gets displayed inside of a popover.
  */

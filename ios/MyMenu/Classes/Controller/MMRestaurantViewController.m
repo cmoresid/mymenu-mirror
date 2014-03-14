@@ -27,6 +27,7 @@
 #import "UIStoryboard+UIStoryboard_MyMenu.h"
 #import "MMReviewPopOverViewController.h"
 #import <HMSegmentedControl/HMSegmentedControl.h>
+#import "MMMenuItemCollectionViewFlowLayout.h"
 
 #define kCurrentUser @"currentUser"
 #define kSelectedRestaurant @"kSelectedRestaurant"
@@ -38,7 +39,9 @@
 #define kAllTopReviews @"allTopReviews"
 #define kCategories @"kCategories"
 
-@interface MMRestaurantViewController ()
+@interface MMRestaurantViewController () {
+    BOOL _searching;
+}
 
 @property(nonatomic, strong) HMSegmentedControl *categorySegmentControl;
 @property(nonatomic, weak) IBOutlet UIGestureRecognizer *leftSwipeGestureForCategory;
@@ -111,9 +114,42 @@ NSMutableArray *categories;
 
 }
 
+- (void)moveViewUp:(NSNotification *)notification {
+    if (_searching) return;
+    
+    CGRect oldFrame = self.view.frame;
+    CGRect newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - 275, oldFrame.size.width, oldFrame.size.height);
+    
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view setFrame:newFrame];
+    }];
+    
+    _searching = YES;
+}
+
+- (void)moveViewDown:(NSNotification *)notification {
+    if (!_searching) return;
+    
+    CGRect oldFrame = self.view.frame;
+    CGRect newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275, oldFrame.size.width, oldFrame.size.height);
+    
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view setFrame:newFrame];
+    }];
+    
+    _searching = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveViewUp:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveViewDown:) name:UIKeyboardWillHideNotification object:nil];
+    
+    _searching = NO;
     [self.view.subviews setValue:@YES forKeyPath:@"hidden"];
     
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(10.0, 0.0, 1004.0f, 44.0f)];
@@ -123,13 +159,15 @@ NSMutableArray *categories;
     
     [self.menuItemsCollectionView addSubview:searchBar];
     searchBar.delegate = self;
-    [(UICollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout setSectionInset:UIEdgeInsetsMake(44, 0, 0, 0)];
+    
+    MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
+    
+    layout.viewHeight = 44.0f;
+    [layout setSectionInset:UIEdgeInsetsMake(44, 0, 0, 0)];
     
     menuItemDictionary = [[NSMutableDictionary alloc] init];
     menuItems = [[NSArray alloc] init];
     [self.menuItemsCollectionView setDelegate:self];
-    
-    self.searchDisplayController.searchBar.delegate = self;
     
     categories = [NSMutableArray new];
     [categories addObject:@"All Categories"];
@@ -224,6 +262,31 @@ NSMutableArray *categories;
     return FALSE;
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    _searching = NO;
+    
+    if (menuItems.count == 0) {
+        searchBar.text = @"";
+
+        menuItems = [menuItemDictionary objectForKey:kmenuItems];
+        [self.menuItemsCollectionView reloadData];
+    }
+    
+    if (menuItems.count == 1) {
+        touchedItem = [menuItems firstObject];
+        [self performSegueWithIdentifier:@"showMenuItem" sender:self];
+    }
+    
+    CGRect oldFrame = self.view.frame;
+    CGRect newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275, oldFrame.size.width, oldFrame.size.height);
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view setFrame:newFrame];
+    }];
+    
+    [searchBar resignFirstResponder];
+}
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     NSMutableArray *searchItems = [[NSMutableArray alloc] init];
     menuItems = [menuItemDictionary objectForKey:kmenuItems];
@@ -236,8 +299,8 @@ NSMutableArray *categories;
         }
         menuItems = [searchItems copy];
     }
-    
-    [self.menuItemsCollectionView reloadData];
+
+    [self.menuItemsCollectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
     [searchBar becomeFirstResponder];
 }
 
