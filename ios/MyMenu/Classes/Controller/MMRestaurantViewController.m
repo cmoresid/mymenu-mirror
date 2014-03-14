@@ -27,7 +27,7 @@
 #import "MMRestaurantPopOverViewController.h"
 #import "UIStoryboard+UIStoryboard_MyMenu.h"
 #import "MMReviewPopOverViewController.h"
-
+#import <HMSegmentedControl/HMSegmentedControl.h>
 
 #define kCurrentUser @"currentUser"
 #define kSelectedRestaurant @"kSelectedRestaurant"
@@ -92,14 +92,25 @@ NSMutableArray *categories;
     self.reviewsCollectionView.dataSource = self;
     self.navigationBar.delegate = self;
     self.searchBar.delegate = self;
+    
     categories = [NSMutableArray new];
     [categories addObject:@"All Categories"];
+    
+    HMSegmentedControl *segmentedControl1 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"One", @"Two", @"Three", @"Four", @"Five", @"Six", @"Seven", @"Eight"]];
+    segmentedControl1.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+    segmentedControl1.frame = CGRectMake(0, 40 + 500, 1024, 44);
+    segmentedControl1.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
+    segmentedControl1.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+    segmentedControl1.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    segmentedControl1.scrollEnabled = YES;
+    [segmentedControl1 addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    
     reviewDictionary = [[NSMutableDictionary alloc] init];
     _merchantNameLabel.text = _currentMerchant.businessname;
     _merchantPhoneNumberLabel.text = _currentMerchant.phone;
     [[NSNotificationCenter defaultCenter] postNotificationName:kSelectedRestaurant
                                                         object:_currentMerchant];
-
+    
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
     [formatter setMaximumFractionDigits:1];
@@ -157,6 +168,10 @@ NSMutableArray *categories;
                     forControlEvents:UIControlEventValueChanged];
     [self.reviewsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
     [self.menuItemsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
+}
+
+- (void)segmentedControlChangedValue:(id)sender {
+    
 }
 
 - (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
@@ -304,6 +319,19 @@ NSMutableArray *categories;
                 [categories addObject:[[menu objectAtIndex:i] category]];
             }
         }
+        
+        HMSegmentedControl *segmentedControl1 = [[HMSegmentedControl alloc] initWithSectionTitles:[categories copy]];
+        segmentedControl1.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+        segmentedControl1.frame = CGRectMake(5, 240, 1019, 60);
+        segmentedControl1.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
+        segmentedControl1.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+        segmentedControl1.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+        segmentedControl1.scrollEnabled = YES;
+        segmentedControl1.selectionIndicatorColor = [UIColor tealColor];
+        [segmentedControl1 addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+        
+        [self.view addSubview:segmentedControl1];
+        
         [[MMDBFetcher get] getItemRatingsMerchantTop:_currentMerchant.mid];
         [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
         [self.menuItemsCollectionView reloadData];

@@ -22,6 +22,7 @@
 #import "MMReviewPopOverViewController.h"
 
 @class MMRestaurantPopOverViewController;
+@class HMSegmentedControl;
 
 /** The restaurant view controller.
  This displays a single restaurant in detail.
@@ -73,6 +74,8 @@
  *  The UIButton to filter by category
  */
 @property(nonatomic, weak) IBOutlet UIButton *categoryButton; // filter by category buttton
+
+@property(nonatomic, weak) IBOutlet HMSegmentedControl *categorySegment;
 
 /**
  *  UICollectionView that displays the menu items
