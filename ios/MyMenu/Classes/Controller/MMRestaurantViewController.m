@@ -113,13 +113,23 @@ NSMutableArray *categories;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.view.hidden = true;
+    
+    [self.view.subviews setValue:@YES forKeyPath:@"hidden"];
+    
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(10.0, 0.0, 1004.0f, 44.0f)];
+    searchBar.placeholder = NSLocalizedString(@"Search for Menu Item", nil);
+    
+    [self.menuItemsCollectionView setAlwaysBounceVertical:YES];
+    
+    [self.menuItemsCollectionView addSubview:searchBar];
+    searchBar.delegate = self;
+    [(UICollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout setSectionInset:UIEdgeInsetsMake(44, 0, 0, 0)];
     
     menuItemDictionary = [[NSMutableDictionary alloc] init];
     menuItems = [[NSArray alloc] init];
     [self.menuItemsCollectionView setDelegate:self];
-    self.searchBar.delegate = self;
+    
+    self.searchDisplayController.searchBar.delegate = self;
     
     categories = [NSMutableArray new];
     [categories addObject:@"All Categories"];
@@ -136,22 +146,20 @@ NSMutableArray *categories;
     [formatter setMinimumFractionDigits:1];
     //NSLog(@"%@",[formatter  stringFromNumber:_selectedRestaurant.rating]);
 
-    for (UIView *subView in self.searchBar.subviews) {
-        for (UIView *secondLevelSubview in subView.subviews) {
-            if ([secondLevelSubview isKindOfClass:[UITextField class]]) {
-                UITextField *searchBarTextField = (UITextField *) secondLevelSubview;
-
-                //set font color here
-                searchBarTextField.textColor = [UIColor whiteColor];
-                searchBarTextField.font = [UIFont systemFontOfSize:22.0];
-                searchBarTextField.tintColor = [UIColor whiteColor];
-                searchBarTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search By Name" attributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-                break;
-            }
-        }
-    }
-
-    self.navigationController.toolbar.hidden = TRUE;
+//    for (UIView *subView in self.searchBar.subviews) {
+//        for (UIView *secondLevelSubview in subView.subviews) {
+//            if ([secondLevelSubview isKindOfClass:[UITextField class]]) {
+//                UITextField *searchBarTextField = (UITextField *) secondLevelSubview;
+//
+//                //set font color here
+//                searchBarTextField.textColor = [UIColor whiteColor];
+//                searchBarTextField.font = [UIFont systemFontOfSize:22.0];
+//                searchBarTextField.tintColor = [UIColor whiteColor];
+//                searchBarTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search By Name" attributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+//                break;
+//            }
+//        }
+//    }
 
     [_merchantDescriptionTextView setText:_currentMerchant.desc];
     [_merchantAddressLabel setText:_currentMerchant.address];
@@ -206,7 +214,10 @@ NSMutableArray *categories;
     }
     
     [self.menuItemsCollectionView reloadData];
-
+    
+    if ([menuItems count] > 0) {
+        [self.menuItemsCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    }
 }
 
 - (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
@@ -225,7 +236,9 @@ NSMutableArray *categories;
         }
         menuItems = [searchItems copy];
     }
+    
     [self.menuItemsCollectionView reloadData];
+    [searchBar becomeFirstResponder];
 }
 
 
@@ -340,7 +353,7 @@ NSMutableArray *categories;
 
 - (void)didRetrieveMenuItems:(NSArray *)menu withResponse:(MMDBFetcherResponse *)response {
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
-    self.view.hidden = false;
+    [self.view.subviews setValue:@NO forKeyPath:@"hidden"];
     
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
@@ -352,36 +365,40 @@ NSMutableArray *categories;
 
         return;
     }
-    else {
-        menuItems = menu;
-        [menuItemDictionary setObject:menu forKey:kmenuItems];
-        for (int i = 0; i < menu.count; i++) {
-            if (![categories containsObject:[[menu objectAtIndex:i] category]]) {
-                [categories addObject:[[menu objectAtIndex:i] category]];
-            }
+    
+    menuItems = menu;
+    [menuItemDictionary setObject:menu forKey:kmenuItems];
+    for (int i = 0; i < menu.count; i++) {
+        if (![categories containsObject:[[menu objectAtIndex:i] category]]) {
+            [categories addObject:[[menu objectAtIndex:i] category]];
         }
-        
-        [categories addObject:NSLocalizedString(@"Reviews", nil)];
-        
-        self.categorySegmentControl = [[HMSegmentedControl alloc] initWithSectionTitles:[categories copy]];
-        self.categorySegmentControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
-        self.categorySegmentControl.frame = CGRectMake(10, 215, 1014, 60);
-        self.categorySegmentControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
-        self.categorySegmentControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
-        self.categorySegmentControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-        self.categorySegmentControl.scrollEnabled = YES;
-        self.categorySegmentControl.selectionIndicatorColor = [UIColor tealColor];
-        [self.categorySegmentControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
-        
-        [self.view addSubview:self.categorySegmentControl];
-        
-        [[MMDBFetcher get] getItemRatingsMerchantTop:_currentMerchant.mid];
-        [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-        [self.menuItemsCollectionView reloadData];
     }
+    
+    [categories addObject:NSLocalizedString(@"Reviews", nil)];
+    
+    self.categorySegmentControl = [[HMSegmentedControl alloc] initWithSectionTitles:[categories copy]];
+    self.categorySegmentControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+    self.categorySegmentControl.frame = CGRectMake(10, 215, 1014, 60);
+    self.categorySegmentControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
+    self.categorySegmentControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+    self.categorySegmentControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    self.categorySegmentControl.scrollEnabled = YES;
+    self.categorySegmentControl.selectionIndicatorColor = [UIColor tealColor];
+    [self.categorySegmentControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    
+    [self.view addSubview:self.categorySegmentControl];
+    
+    [[MMDBFetcher get] getItemRatingsMerchantTop:_currentMerchant.mid];
+    [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+    
+    [self.menuItemsCollectionView reloadData];
 
+    [self.menuItemsCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
 }
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
 
 // I implemented didSelectItemAtIndexPath:, but you could use willSelectItemAtIndexPath: depending on what you intend to do. See the docs of these two methods for the differences.
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -412,7 +429,6 @@ NSMutableArray *categories;
         self.popOverController = popover;
 
         // Make sure keyboard is hidden before you show popup.
-        [self.searchBar resignFirstResponder];
 
         [self.popOverController presentPopoverFromRect:cell.frame
                                                 inView:cell.superview
@@ -518,7 +534,6 @@ NSMutableArray *categories;
 - (void)didSelectCancel:(BOOL)cancel {
     [MMDBFetcher get].delegate = self;
     [self.popOverController dismissPopoverAnimated:YES];
-
 }
 
 - (void)changeReviewSort:(UISegmentedControl *)control {
@@ -548,7 +563,7 @@ NSMutableArray *categories;
 }
 
 - (IBAction)searchClear:(id)sender {
-    for (UIView *subView in self.searchBar.subviews) {
+    for (UIView *subView in ((UISearchBar *)sender).subviews) {
         for (UIView *secondLevelSubview in subView.subviews) {
             if ([secondLevelSubview isKindOfClass:[UITextField class]]) {
                 UITextField *searchBarTextField = (UITextField *) secondLevelSubview;

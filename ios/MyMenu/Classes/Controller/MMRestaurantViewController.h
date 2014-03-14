@@ -66,11 +66,6 @@
 @property(nonatomic, weak) IBOutlet UIView *ratingView; // rounded background for restaurant rating
 
 /**
- *  The UISearchBar for searching menu items
- */
-@property(nonatomic, weak) IBOutlet UISearchBar *searchBar; // field for search by name
-
-/**
  *  The UIButton to filter by category
  */
 @property(nonatomic, weak) IBOutlet UIButton *categoryButton; // filter by category buttton
@@ -96,6 +91,8 @@
  *  Popover View Controller
  */
 @property(nonatomic, strong) UIPopoverController *popOverController;
+
+@property(nonatomic, strong) UISearchBar *searchBar;
 
 /**
  *  View Controller that gets displayed inside of a popover.
