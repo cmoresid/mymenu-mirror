@@ -15,17 +15,11 @@
   ~ along with this program.  If not, see [http://www.gnu.org/licenses/].
   -->
 
-<ca.mymenuapp.ui.widgets.HeaderGridView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/menu_grid"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:columnWidth="@dimen/menu_item_grid_width"
-    android:numColumns="auto_fit"
-    android:stretchMode="columnWidth"
-    android:drawSelectorOnTop="true"
-    android:scrollbarStyle="insideOverlay"
-    android:scrollbars="none"
-    android:horizontalSpacing="1dp"
-    android:verticalSpacing="1dp"
-    android:layout_marginRight="-1px"/>
+<resources>
+  <!-- Example customization of dimensions originally defined in res/values/dimens.xml
+       (such as screen margins) for screens with more than 600dp of available width. This
+       would include 7" and 10" devices in portrait. -->
+
+  <dimen name="menu_item_grid_width">256dp</dimen>
+
+</resources>
