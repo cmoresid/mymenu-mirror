@@ -5,11 +5,11 @@ import android.test.suitebuilder.annotation.LargeTest;
 import ca.mymenuapp.R;
 import com.squareup.spoon.Spoon;
 
+import static ca.mymenuapp.Matchers.withError;
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.click;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withId;
-import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withText;
 
 @LargeTest
 public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginActivity> {
@@ -30,7 +30,12 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
   public void testClickLogin() {
     Spoon.screenshot(getActivity(), "initial_state");
     onView(withId(R.id.login)).perform(click());
-    onView(withId(R.id.login)).check(matches(withText("Login")));
+    onView(withId(R.id.email)).check(matches(withError(getString(R.string.required))));
+    onView(withId(R.id.email)).check(matches(withError(getString(R.string.required))));
     Spoon.screenshot(getActivity(), "error");
+  }
+
+  String getString(int resourceId) {
+    return getActivity().getString(resourceId);
   }
 }

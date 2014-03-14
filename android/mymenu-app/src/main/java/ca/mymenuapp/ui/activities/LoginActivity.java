@@ -69,7 +69,6 @@ public class LoginActivity extends BaseActivity {
     boolean hasError = false;
 
     if (TextUtils.isEmpty(emailText.getText())) {
-      Ln.e("Email was blank.");
       emailText.setError(getString(R.string.required));
       hasError = true;
     } else {
@@ -78,11 +77,9 @@ public class LoginActivity extends BaseActivity {
 
     Editable pass = passwordText.getText();
     if (TextUtils.isEmpty(pass)) {
-      Ln.e("Password was blank.");
       passwordText.setError(getString(R.string.required));
       hasError = true;
     } else if (pass.length() < 5) {
-      Ln.e("Password too short.");
       passwordText.setError(getString(R.string.password_length));
       hasError = true;
     } else {
