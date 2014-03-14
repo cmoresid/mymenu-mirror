@@ -71,6 +71,7 @@
 		B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2B18A2CB3700EAA045 /* 184-warning.png */; };
 		B068A13418A738F4005E8036 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B068A13318A738F4005E8036 /* Social.framework */; };
 		B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = B06B61A7189F4AD300A51A81 /* restriction_placeholder.png */; };
+		B0881ABF18D3AD5D003EDDFF /* MMRestaurantViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0881ABE18D3AD5D003EDDFF /* MMRestaurantViewModel.m */; };
 		B09C25EC18A38EE000E05289 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09C25EB18A38EE000E05289 /* libPods.a */; };
 		B0A7675918D2BB6400626F00 /* MMBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A7675818D2BB6400626F00 /* MMBorderedView.m */; };
 		B0A9906A18CA43E900AC4CBB /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FE518CA43E900AC4CBB /* MMAppDelegate.m */; };
@@ -221,6 +222,8 @@
 		B068A13318A738F4005E8036 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B06B61A7189F4AD300A51A81 /* restriction_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restriction_placeholder.png; sourceTree = "<group>"; };
 		B0760F14189ED18D00C40D15 /* libMBProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMBProgressHUD.a; path = MyMenu/lib/libMBProgressHUD.a; sourceTree = "<group>"; };
+		B0881ABD18D3AD5D003EDDFF /* MMRestaurantViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMRestaurantViewModel.h; path = ViewModel/MMRestaurantViewModel.h; sourceTree = "<group>"; };
+		B0881ABE18D3AD5D003EDDFF /* MMRestaurantViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMRestaurantViewModel.m; path = ViewModel/MMRestaurantViewModel.m; sourceTree = "<group>"; };
 		B09C25E718A38DF400E05289 /* libPods-OCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-OCMock.a"; path = "Pods/build/Debug-iphoneos/libPods-OCMock.a"; sourceTree = "<group>"; };
 		B09C25E918A38E3E00E05289 /* libPods-RaptureXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-RaptureXML.a"; path = "Pods/build/Debug-iphoneos/libPods-RaptureXML.a"; sourceTree = "<group>"; };
 		B09C25EB18A38EE000E05289 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
@@ -541,6 +544,15 @@
 			name = Helper;
 			sourceTree = "<group>";
 		};
+		B05E3DFC18D3AB060061BCCD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B0881ABD18D3AD5D003EDDFF /* MMRestaurantViewModel.h */,
+				B0881ABE18D3AD5D003EDDFF /* MMRestaurantViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 		B0A98FCA18CA424300AC4CBB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,6 +599,7 @@
 				B0A9903F18CA43E900AC4CBB /* Service */,
 				B0A9904818CA43E900AC4CBB /* Validators */,
 				B0A9905918CA43E900AC4CBB /* View */,
+				B05E3DFC18D3AB060061BCCD /* ViewModel */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1024,6 +1037,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0A9909918CA43E900AC4CBB /* MMRequiredTextFieldValidator.m in Sources */,
+				B0881ABF18D3AD5D003EDDFF /* MMRestaurantViewModel.m in Sources */,
 				B0A9907618CA43E900AC4CBB /* MMMasterRestaurantTableViewController.m in Sources */,
 				B0A9909318CA43E900AC4CBB /* MMLoginManager.m in Sources */,
 				B0A9909F18CA43E900AC4CBB /* MMMenuItemCell.m in Sources */,

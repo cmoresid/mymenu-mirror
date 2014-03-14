@@ -24,6 +24,7 @@
 #import "MMNetworkClientProtocol.h"
 #import "MMMenuItemRating.h"
 
+@class RACSignal;
 @class CLLocation;
 
 /**
@@ -111,7 +112,7 @@
 /**
 * Get the menu for the restaurant.
 */
-- (void)getMenuWithMerchantId:(NSInteger)merchid withUserEmail:(NSString *)email;
+- (RACSignal *)getMenuWithMerchantId:(NSInteger)merchid withUserEmail:(NSString *)email;
 
 /**
 * Get all restrictions that we support.
