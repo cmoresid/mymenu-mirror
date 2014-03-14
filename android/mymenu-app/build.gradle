@@ -5,12 +5,14 @@ buildscript {
   dependencies {
     classpath 'com.android.tools.build:gradle:0.9.+'
     classpath 'com.jakewharton.hugo:hugo-plugin:1.0.1'
+    classpath 'com.stanfy.spoon:spoon-gradle-plugin:0.9.3'
   }
 }
 
 apply plugin: 'android'
 apply plugin: 'checkstyle'
 apply plugin: 'hugo'
+apply plugin: 'spoon'
 
 def versionMajor = 1
 def versionMinor = 0
@@ -115,6 +117,7 @@ dependencies {
   androidTestCompile('com.jakewharton.espresso:espresso:1.1-r2') {
     exclude group: 'com.squareup.dagger'
   }
+  androidTestCompile 'com.squareup.spoon:spoon-client:1.1.1'
 }
 
 checkstyle {
