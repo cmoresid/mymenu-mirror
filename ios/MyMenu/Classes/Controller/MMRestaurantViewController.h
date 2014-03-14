@@ -21,7 +21,6 @@
 #import "MMReviewPopOverDelegate.h"
 #import "MMReviewPopOverViewController.h"
 
-@class MMRestaurantPopOverViewController;
 @class HMSegmentedControl;
 
 /** The restaurant view controller.
@@ -31,7 +30,8 @@
  This view will also allow the user to filter through the menu,
  either by rating, category or name.
 */
-@interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MMDBFetcherDelegate, UISearchBarDelegate, UIPopoverControllerDelegate, MMRestaurantPopOverDelegate, MMReviewPopOverDelegate>
+@interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MMDBFetcherDelegate, UISearchBarDelegate, UIPopoverControllerDelegate, MMRestaurantPopOverDelegate, MMReviewPopOverDelegate,
+    UIGestureRecognizerDelegate>
 
 
 /**
@@ -83,21 +83,6 @@
 @property(nonatomic, weak) IBOutlet UICollectionView *menuItemsCollectionView; // the menu collection
 
 /**
- *  UINavigationBar at the top of the Screen
- */
-@property(nonatomic, weak) IBOutlet UINavigationBar *navigationBar;//the navigation bar at the top of the screen
-
-/**
- *  The UICollectionView for reviews
- */
-@property(nonatomic, weak) IBOutlet UICollectionView *reviewsCollectionView; //review collection view
-
-/**
- *  The UISegmentedControl for filtering reviews
- */
-@property(nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl; //review segemented control
-
-/**
  *  Merchant Hours Label
  */
 @property(nonatomic, weak) IBOutlet UILabel *merchantHoursLabel;
@@ -115,29 +100,7 @@
 /**
  *  View Controller that gets displayed inside of a popover.
  */
-@property(nonatomic, strong) MMRestaurantPopOverViewController *restPopOver;
 @property(nonatomic, strong) MMReviewPopOverViewController *revPopOver;
-
-/**
- *  Clear category filter button
- *
- *  @param sender UIButton
- */
-- (IBAction)categoryClear:(id)sender;
-
-/**
- *  Clear the search bar button
- *
- *  @param sender UIButton
- */
-- (IBAction)searchClear:(id)sender;
-
-/**
- *  Which category was selected, and filter
- *
- *  @param sender UIPickerView
- */
-- (IBAction)categoryPicker:(id)sender;
 
 /**
  *  Return to main screen button

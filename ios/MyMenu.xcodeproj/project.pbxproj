@@ -42,7 +42,6 @@
 		83893ECF18919AD400D36670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAE18919AD400D36670 /* UIKit.framework */; };
 		83893ED718919AD400D36670 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83893ED518919AD400D36670 /* InfoPlist.strings */; };
 		83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A61ED018922E4E00269357 /* MapKit.framework */; };
-		AEADA929DD5845C4845B7F54 /* libPods-MyMenuTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB34AE19C6264F9E92FBF1CE /* libPods-MyMenuTests.a */; };
 		83CC9EC518D24F2A00E0B48A /* MMSpecialsCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CC9EC418D24F2A00E0B48A /* MMSpecialsCalendarViewController.m */; };
 		83CC9EC818D24FA300E0B48A /* TSQTACalendarRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CC9EC718D24FA300E0B48A /* TSQTACalendarRowCell.m */; };
 		83CC9ED718D253FB00E0B48A /* CalendarPreviousMonth.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ECA18D253FB00E0B48A /* CalendarPreviousMonth.png */; };
@@ -58,6 +57,7 @@
 		83CC9EE118D253FB00E0B48A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ED418D253FB00E0B48A /* Default-568h@2x.png */; };
 		83CC9EE218D253FB00E0B48A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ED518D253FB00E0B48A /* Default.png */; };
 		83CC9EE318D253FB00E0B48A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ED618D253FB00E0B48A /* Default@2x.png */; };
+		AEADA929DD5845C4845B7F54 /* libPods-MyMenuTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB34AE19C6264F9E92FBF1CE /* libPods-MyMenuTests.a */; };
 		B025696118CBC92100264A3B /* MMMainTabViewSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B025696018CBC92100264A3B /* MMMainTabViewSegue.m */; };
 		B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */; };
 		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
@@ -72,6 +72,7 @@
 		B068A13418A738F4005E8036 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B068A13318A738F4005E8036 /* Social.framework */; };
 		B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = B06B61A7189F4AD300A51A81 /* restriction_placeholder.png */; };
 		B09C25EC18A38EE000E05289 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09C25EB18A38EE000E05289 /* libPods.a */; };
+		B0A7675918D2BB6400626F00 /* MMBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A7675818D2BB6400626F00 /* MMBorderedView.m */; };
 		B0A9906A18CA43E900AC4CBB /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FE518CA43E900AC4CBB /* MMAppDelegate.m */; };
 		B0A9906B18CA43E900AC4CBB /* NSArray+MerchantSort.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FE818CA43E900AC4CBB /* NSArray+MerchantSort.m */; };
 		B0A9906C18CA43E900AC4CBB /* UIColor+MyMenuColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FEA18CA43E900AC4CBB /* UIColor+MyMenuColors.m */; };
@@ -90,7 +91,6 @@
 		B0A9907A18CA43E900AC4CBB /* MMRatingPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9900718CA43E900AC4CBB /* MMRatingPopoverViewController.m */; };
 		B0A9907B18CA43E900AC4CBB /* MMRegistrationPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9900918CA43E900AC4CBB /* MMRegistrationPopoverViewController.m */; };
 		B0A9907C18CA43E900AC4CBB /* MMRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9900B18CA43E900AC4CBB /* MMRegistrationViewController.m */; };
-		B0A9907D18CA43E900AC4CBB /* MMRestaurantPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9900D18CA43E900AC4CBB /* MMRestaurantPopOverViewController.m */; };
 		B0A9907E18CA43E900AC4CBB /* MMRestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9900F18CA43E900AC4CBB /* MMRestaurantViewController.m */; };
 		B0A9907F18CA43E900AC4CBB /* MMReviewPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9901118CA43E900AC4CBB /* MMReviewPopOverViewController.m */; };
 		B0A9908118CA43E900AC4CBB /* MMSpecialsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9901518CA43E900AC4CBB /* MMSpecialsCollectionViewController.m */; };
@@ -223,6 +223,8 @@
 		B09C25E718A38DF400E05289 /* libPods-OCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-OCMock.a"; path = "Pods/build/Debug-iphoneos/libPods-OCMock.a"; sourceTree = "<group>"; };
 		B09C25E918A38E3E00E05289 /* libPods-RaptureXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-RaptureXML.a"; path = "Pods/build/Debug-iphoneos/libPods-RaptureXML.a"; sourceTree = "<group>"; };
 		B09C25EB18A38EE000E05289 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		B0A7675718D2BB6400626F00 /* MMBorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBorderedView.h; sourceTree = "<group>"; };
+		B0A7675818D2BB6400626F00 /* MMBorderedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBorderedView.m; sourceTree = "<group>"; };
 		B0A98FE418CA43E900AC4CBB /* MMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
 		B0A98FE518CA43E900AC4CBB /* MMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
 		B0A98FE718CA43E900AC4CBB /* NSArray+MerchantSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MerchantSort.h"; sourceTree = "<group>"; };
@@ -259,8 +261,6 @@
 		B0A9900918CA43E900AC4CBB /* MMRegistrationPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRegistrationPopoverViewController.m; sourceTree = "<group>"; };
 		B0A9900A18CA43E900AC4CBB /* MMRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRegistrationViewController.h; sourceTree = "<group>"; };
 		B0A9900B18CA43E900AC4CBB /* MMRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRegistrationViewController.m; sourceTree = "<group>"; };
-		B0A9900C18CA43E900AC4CBB /* MMRestaurantPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRestaurantPopOverViewController.h; sourceTree = "<group>"; };
-		B0A9900D18CA43E900AC4CBB /* MMRestaurantPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestaurantPopOverViewController.m; sourceTree = "<group>"; };
 		B0A9900E18CA43E900AC4CBB /* MMRestaurantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRestaurantViewController.h; sourceTree = "<group>"; };
 		B0A9900F18CA43E900AC4CBB /* MMRestaurantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestaurantViewController.m; sourceTree = "<group>"; };
 		B0A9901018CA43E900AC4CBB /* MMReviewPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMReviewPopOverViewController.h; sourceTree = "<group>"; };
@@ -645,8 +645,6 @@
 				B0A9900918CA43E900AC4CBB /* MMRegistrationPopoverViewController.m */,
 				B0A9900A18CA43E900AC4CBB /* MMRegistrationViewController.h */,
 				B0A9900B18CA43E900AC4CBB /* MMRegistrationViewController.m */,
-				B0A9900C18CA43E900AC4CBB /* MMRestaurantPopOverViewController.h */,
-				B0A9900D18CA43E900AC4CBB /* MMRestaurantPopOverViewController.m */,
 				B0A9900E18CA43E900AC4CBB /* MMRestaurantViewController.h */,
 				B0A9900F18CA43E900AC4CBB /* MMRestaurantViewController.m */,
 				B0A9901018CA43E900AC4CBB /* MMReviewPopOverViewController.h */,
@@ -772,6 +770,8 @@
 		B0A9905918CA43E900AC4CBB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B0A7675718D2BB6400626F00 /* MMBorderedView.h */,
+				B0A7675818D2BB6400626F00 /* MMBorderedView.m */,
 				B0A9905A18CA43E900AC4CBB /* MMButton.h */,
 				B0A9905B18CA43E900AC4CBB /* MMButton.m */,
 				B0A9905C18CA43E900AC4CBB /* MMDietaryRestrictionCell.h */,
@@ -1054,7 +1054,6 @@
 				B0A9909A18CA43E900AC4CBB /* MMTextFieldValidator.m in Sources */,
 				B0A9907018CA43E900AC4CBB /* MMCategoryPopOverViewController.m in Sources */,
 				B0A9909218CA43E900AC4CBB /* MMLocationManager.m in Sources */,
-				B0A9907D18CA43E900AC4CBB /* MMRestaurantPopOverViewController.m in Sources */,
 				B0E7616818CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.m in Sources */,
 				B0A9907318CA43E900AC4CBB /* MMLoginViewController.m in Sources */,
 				B0A9906E18CA43E900AC4CBB /* MMAccountViewController.m in Sources */,
@@ -1073,6 +1072,7 @@
 				B0A990A318CA43E900AC4CBB /* MMRoundedView.m in Sources */,
 				B03D7C8E18CCFE2000F7F5CE /* MMStaticDataHelper.m in Sources */,
 				B0A9907118CA43E900AC4CBB /* MMDetailMapViewController.m in Sources */,
+				B0A7675918D2BB6400626F00 /* MMBorderedView.m in Sources */,
 				B0A990A018CA43E900AC4CBB /* MMMenuItemReviewCell.m in Sources */,
 				B0A9909818CA43E900AC4CBB /* MMRegexTextFieldValidator.m in Sources */,
 				B0A990A218CA43E900AC4CBB /* MMRestrictionSwitch.m in Sources */,

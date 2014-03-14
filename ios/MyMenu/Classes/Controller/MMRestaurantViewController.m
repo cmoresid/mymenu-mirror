@@ -24,7 +24,6 @@
 #import "MMMenuItemViewController.h"
 #import "MMMenuItemRating.h"
 #import "MMMenuItemReviewCell.h"
-#import "MMRestaurantPopOverViewController.h"
 #import "UIStoryboard+UIStoryboard_MyMenu.h"
 #import "MMReviewPopOverViewController.h"
 #import <HMSegmentedControl/HMSegmentedControl.h>
@@ -40,6 +39,12 @@
 #define kCategories @"kCategories"
 
 @interface MMRestaurantViewController ()
+
+@property(nonatomic, strong) HMSegmentedControl *categorySegmentControl;
+@property(nonatomic, weak) IBOutlet UIGestureRecognizer *leftSwipeGestureForCategory;
+@property(nonatomic, weak) IBOutlet UIGestureRecognizer *rightSwipeGestureForCategory;
+
+- (IBAction)changeCategoryBySwipe:(UISwipeGestureRecognizer *)sender;
 
 @end
 
@@ -64,9 +69,33 @@ NSMutableArray *categories;
     return self;
 }
 
-// Delegate method.
-- (UIBarPosition)positionForBar:(id <UIBarPositioning>)bar {
-    return UIBarPositionTopAttached; //or UIBarPositionTopAttached
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return true;
+}
+
+- (IBAction)changeCategoryBySwipe:(UISwipeGestureRecognizer *)sender {
+    NSInteger currentIndex = self.categorySegmentControl.selectedSegmentIndex;
+    NSInteger firstSegmentIndex = 0;
+    NSInteger lastSegmentIndex = [self.categorySegmentControl.sectionTitles count] - 1;
+    
+    if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
+        if (self.categorySegmentControl.selectedSegmentIndex == firstSegmentIndex) {
+            return;
+        }
+        else {
+            [self.categorySegmentControl setSelectedSegmentIndex:currentIndex-1 animated:YES];
+            [self segmentedControlChangedValue:self.categorySegmentControl];
+        }
+    }
+    else {
+        if (self.categorySegmentControl.selectedSegmentIndex == lastSegmentIndex) {
+            return;
+        }
+        else {
+            [self.categorySegmentControl setSelectedSegmentIndex:currentIndex+1 animated:YES];
+            [self segmentedControlChangedValue:self.categorySegmentControl];
+        }
+    }
 }
 
 - (void)restaurantSelected:(NSNotification *)notification {
@@ -85,25 +114,15 @@ NSMutableArray *categories;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.view.hidden = true;
+    
     menuItemDictionary = [[NSMutableDictionary alloc] init];
     menuItems = [[NSArray alloc] init];
     [self.menuItemsCollectionView setDelegate:self];
-    self.reviewsCollectionView.delegate = self;
-    self.reviewsCollectionView.dataSource = self;
-    self.navigationBar.delegate = self;
     self.searchBar.delegate = self;
     
     categories = [NSMutableArray new];
     [categories addObject:@"All Categories"];
-    
-    HMSegmentedControl *segmentedControl1 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"One", @"Two", @"Three", @"Four", @"Five", @"Six", @"Seven", @"Eight"]];
-    segmentedControl1.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
-    segmentedControl1.frame = CGRectMake(0, 40 + 500, 1024, 44);
-    segmentedControl1.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
-    segmentedControl1.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
-    segmentedControl1.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    segmentedControl1.scrollEnabled = YES;
-    [segmentedControl1 addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     
     reviewDictionary = [[NSMutableDictionary alloc] init];
     _merchantNameLabel.text = _currentMerchant.businessname;
@@ -163,15 +182,31 @@ NSMutableArray *categories;
         menuItems = [menuItemDictionary objectForKey:kmenuItems];
         [self.menuItemsCollectionView reloadData];
     }
-    [self.segmentedControl addTarget:self
-                              action:@selector(changeReviewSort:)
-                    forControlEvents:UIControlEventValueChanged];
-    [self.reviewsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
+
+    //[self.reviewsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
     [self.menuItemsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
 }
 
 - (void)segmentedControlChangedValue:(id)sender {
+    NSMutableArray *searchItems = [[NSMutableArray alloc] init];
+    menuItems = [menuItemDictionary objectForKey:kmenuItems];
     
+    HMSegmentedControl *categoryControl = (HMSegmentedControl *) sender;
+    NSString *correspondingCategory = [categories objectAtIndex:categoryControl.selectedSegmentIndex];
+    
+    
+    if (![correspondingCategory isEqualToString:@"All Categories"]) {
+        for (int i = 0; i < menuItems.count; i++) {
+            MMMenuItem *menuItemName = [menuItems objectAtIndex:i];
+            if ([[menuItemName.category lowercaseString] isEqualToString:[correspondingCategory lowercaseString]]) {
+                [searchItems addObject:menuItemName];
+            }
+        }
+        menuItems = [searchItems copy];
+    }
+    
+    [self.menuItemsCollectionView reloadData];
+
 }
 
 - (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
@@ -305,6 +340,8 @@ NSMutableArray *categories;
 
 - (void)didRetrieveMenuItems:(NSArray *)menu withResponse:(MMDBFetcherResponse *)response {
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
+    self.view.hidden = false;
+    
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
                                                           message:@"Unable to communicate with server."
@@ -324,17 +361,19 @@ NSMutableArray *categories;
             }
         }
         
-        HMSegmentedControl *segmentedControl1 = [[HMSegmentedControl alloc] initWithSectionTitles:[categories copy]];
-        segmentedControl1.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
-        segmentedControl1.frame = CGRectMake(5, 240, 1019, 60);
-        segmentedControl1.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
-        segmentedControl1.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
-        segmentedControl1.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-        segmentedControl1.scrollEnabled = YES;
-        segmentedControl1.selectionIndicatorColor = [UIColor tealColor];
-        [segmentedControl1 addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+        [categories addObject:NSLocalizedString(@"Reviews", nil)];
         
-        [self.view addSubview:segmentedControl1];
+        self.categorySegmentControl = [[HMSegmentedControl alloc] initWithSectionTitles:[categories copy]];
+        self.categorySegmentControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+        self.categorySegmentControl.frame = CGRectMake(10, 215, 1014, 60);
+        self.categorySegmentControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
+        self.categorySegmentControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+        self.categorySegmentControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+        self.categorySegmentControl.scrollEnabled = YES;
+        self.categorySegmentControl.selectionIndicatorColor = [UIColor tealColor];
+        [self.categorySegmentControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+        
+        [self.view addSubview:self.categorySegmentControl];
         
         [[MMDBFetcher get] getItemRatingsMerchantTop:_currentMerchant.mid];
         [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
@@ -425,7 +464,7 @@ NSMutableArray *categories;
         }
         [reviewDictionary setObject:allReviews forKey:kAllTopReviews];
         [reviewDictionary setObject:condensedReviews forKey:kCondensedTopReviews];
-        [self.reviewsCollectionView reloadData];
+        //[self.reviewsCollectionView reloadData];
     }
 
 }
@@ -465,7 +504,7 @@ NSMutableArray *categories;
         }
         [reviewDictionary setObject:allReviews forKey:kAllRecentReviews];
         [reviewDictionary setObject:condensedReviews forKey:kCondensedRecentReviews];
-        [self.reviewsCollectionView reloadData];
+        //[self.reviewsCollectionView reloadData];
     }
 
 }
@@ -505,55 +544,7 @@ NSMutableArray *categories;
         default:
             break;
     }
-    [self.reviewsCollectionView reloadData];
-}
-
-- (IBAction)categoryPicker:(id)sender {
-
-    MMRestaurantPopOverViewController *categoryContent = [[UIStoryboard menuStoryboard] instantiateViewControllerWithIdentifier:@"MenuItemCategoryPopoverViewController"];
-    categoryContent.delegate = self;
-
-    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:categoryContent];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kCategories object:[categories copy]];
-
-    popover.popoverContentSize = CGSizeMake(350, 216);
-    popover.delegate = self;
-
-    self.popOverController = popover;
-
-    // Make sure keyboard is hidden before you show popup.
-    [self.searchBar resignFirstResponder];
-
-    [self.popOverController presentPopoverFromRect:self.categoryButton.frame
-                                            inView:self.categoryButton.superview
-                          permittedArrowDirections:UIPopoverArrowDirectionAny
-                                          animated:YES];
-}
-
-
-- (void)didSelectCategory:(NSString *)category {
-    NSMutableArray *searchItems = [[NSMutableArray alloc] init];
-    menuItems = [menuItemDictionary objectForKey:kmenuItems];
-
-    if (![category isEqualToString:@"All Categories"] && category != nil) {
-        for (int i = 0; i < menuItems.count; i++) {
-            MMMenuItem *menuItemName = [menuItems objectAtIndex:i];
-            if ([[menuItemName.category lowercaseString] isEqualToString:[category lowercaseString]]) {
-                [searchItems addObject:menuItemName];
-            }
-        }
-        menuItems = [searchItems copy];
-    }
-
-    [self.menuItemsCollectionView reloadData];
-
-    [self.popOverController dismissPopoverAnimated:YES];
-
-}
-
-- (IBAction)categoryClear:(id)sender {
-
-
+    //[self.reviewsCollectionView reloadData];
 }
 
 - (IBAction)searchClear:(id)sender {
@@ -576,10 +567,6 @@ NSMutableArray *categories;
         menuItemController.currentMenuItem = touchedItem;
         menuItemController.currentMerchant = _currentMerchant;
     }
-}
-
-- (void)setViews {
-
 }
 
 - (void)didReceiveMemoryWarning {
