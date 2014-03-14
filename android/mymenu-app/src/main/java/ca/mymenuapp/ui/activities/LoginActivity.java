@@ -22,7 +22,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.widget.EditText;
-import android.widget.Toast;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import ca.mymenuapp.R;
@@ -30,6 +29,8 @@ import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -100,8 +101,7 @@ public class LoginActivity extends BaseActivity {
             startActivity(intent);
             finish();
           } else {
-            // todo: show error
-            Toast.makeText(LoginActivity.this, R.string.login_fail, Toast.LENGTH_LONG).show();
+            Crouton.makeText(LoginActivity.this, R.string.login_fail, Style.ALERT).show();
           }
         }
       });

@@ -28,7 +28,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import ca.mymenuapp.R;
@@ -39,6 +38,8 @@ import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.DatePickerFragment;
 import ca.mymenuapp.ui.misc.EnumAdapter;
 import com.f2prateek.ln.Ln;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import java.text.DateFormat;
 import java.util.Calendar;
 import javax.inject.Inject;
@@ -110,7 +111,7 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
 
     if (birthDate == null) {
       hasError = true;
-      Toast.makeText(this, R.string.birthday_required, Toast.LENGTH_LONG).show();
+      Crouton.makeText(this, R.string.birthday_required, Style.ALERT).show();
     }
 
     if (!hasError) {

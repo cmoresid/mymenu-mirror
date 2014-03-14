@@ -107,6 +107,10 @@ dependencies {
     exclude module: 'xpp3'
   }
 
+  compile('de.keyboardsurfer.android.widget:crouton:1.8.3') {
+    exclude group: 'com.google.android', module: 'support-v4'
+  }
+
   compile 'com.greenhalolabs:emailautocompletetextview:1.2.0'
   compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 
