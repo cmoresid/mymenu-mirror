@@ -9,5 +9,6 @@ public abstract class EndlessObserver<T> implements Observer<T> {
 
   @Override public void onError(Throwable throwable) {
     Ln.e(throwable);
+    Ln.e(throwable.getCause());
   }
 }

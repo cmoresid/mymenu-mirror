@@ -47,7 +47,8 @@
     button.titleLabel.font = [UIFont boldSystemFontOfSize:19.f];
     button.titleLabel.shadowOffset = self.shadowOffset;
     button.adjustsImageWhenDisabled = NO;
-    [button setTitleColor:self.textColor forState:UIControlStateNormal];
+	button.backgroundColor = [UIColor colorWithRed:67/255.0 green:199/255.0 blue:174/255.0 alpha:1.0f];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
@@ -75,8 +76,10 @@
         [self configureButton:button];
 
         button.enabled = NO;
-        UIColor *backgroundPattern = [UIColor colorWithPatternImage:[self notThisMonthBackgroundImage]];
+        UIColor *backgroundPattern = [UIColor colorWithRed:57/255.0 green:169/255.0 blue:148/255.0 alpha:1.0f];
         button.backgroundColor = backgroundPattern;
+		[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+		[button setTitleShadowColor:[UIColor clearColor] forState:UIControlStateDisabled];
         button.titleLabel.backgroundColor = backgroundPattern;
     }
     self.notThisMonthButtons = notThisMonthButtons;
@@ -90,9 +93,9 @@
     [self.todayButton addTarget:self action:@selector(todayButtonPressed:) forControlEvents:UIControlEventTouchDown];
     
     [self.todayButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.todayButton setBackgroundImage:[self todayBackgroundImage] forState:UIControlStateNormal];
+	
+    self.todayButton.backgroundColor = [UIColor colorWithRed:91/255.0 green:91/255.0 blue:91/255.0 alpha:1.0f];
     [self.todayButton setTitleShadowColor:[UIColor colorWithWhite:0.0f alpha:0.75f] forState:UIControlStateNormal];
-
     self.todayButton.titleLabel.shadowOffset = CGSizeMake(0.0f, -1.0f / [UIScreen mainScreen].scale);
 }
 
@@ -102,10 +105,13 @@
     [self.contentView addSubview:self.selectedButton];
     [self configureButton:self.selectedButton];
     
+    [self.selectedButton setAccessibilityTraits:UIAccessibilityTraitSelected|self.selectedButton.accessibilityTraits];
+    
     self.selectedButton.enabled = NO;
-    [self.selectedButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.selectedButton setBackgroundImage:[self selectedBackgroundImage] forState:UIControlStateNormal];
-    [self.selectedButton setTitleShadowColor:[UIColor colorWithWhite:0.0f alpha:0.75f] forState:UIControlStateNormal];
+    [self.selectedButton setTitleColor:[UIColor colorWithRed:57/255.0 green:169/255.0 blue:148/255.0 alpha:1.0] forState:UIControlStateNormal];
+	[self.selectedButton setBackgroundColor:[UIColor colorWithRed:236/255.0 green:249/255.0 blue:247/255.0 alpha:1.0f]];
+    //[self.selectedButton setBackgroundImage:[self selectedBackgroundImage] forState:UIControlStateNormal];
+    [self.selectedButton setTitleShadowColor:[UIColor clearColor] forState:UIControlStateNormal];
     
     self.selectedButton.titleLabel.shadowOffset = CGSizeMake(0.0f, -1.0f / [UIScreen mainScreen].scale);
     self.indexOfSelectedButton = -1;
@@ -115,6 +121,13 @@
 {
     _beginningDate = date;
     
+    if (!self.dayButtons) {
+        [self createDayButtons];
+        [self createNotThisMonthButtons];
+        [self createTodayButton];
+        [self createSelectedButton];
+    }
+
     NSDateComponents *offset = [NSDateComponents new];
     offset.day = 1;
 
@@ -189,13 +202,6 @@
 
 - (void)layoutSubviews;
 {
-    if (!self.dayButtons) {
-        [self createDayButtons];
-        [self createNotThisMonthButtons];
-        [self createTodayButton];
-        [self createSelectedButton];
-    }
-    
     if (!self.backgroundView) {
         [self setBottomRow:NO];
     }
@@ -242,7 +248,9 @@
     
     if (newIndexOfSelectedButton >= 0) {
         self.selectedButton.hidden = NO;
-        [self.selectedButton setTitle:[self.dayButtons[newIndexOfSelectedButton] currentTitle] forState:UIControlStateNormal];
+        NSString *newTitle = [self.dayButtons[newIndexOfSelectedButton] currentTitle];
+        [self.selectedButton setTitle:newTitle forState:UIControlStateNormal];
+        [self.selectedButton setTitle:newTitle forState:UIControlStateDisabled];
         [self.selectedButton setAccessibilityLabel:[self.dayButtons[newIndexOfSelectedButton] accessibilityLabel]];
     } else {
         self.selectedButton.hidden = YES;

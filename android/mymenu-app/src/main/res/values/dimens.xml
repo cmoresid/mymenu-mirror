@@ -20,4 +20,8 @@
   <dimen name="activity_horizontal_margin">16dp</dimen>
   <dimen name="activity_vertical_margin">16dp</dimen>
 
+  <!-- Restaurant Activity -->
+  <dimen name="restaurant_header_height">288dp</dimen>
+  <dimen name="restaurant_header_logo_size">96dp</dimen>
+
 </resources>

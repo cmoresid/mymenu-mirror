@@ -285,7 +285,11 @@ NSMutableArray *categories;
         labelBack.backgroundColor = [UIColor lightBackgroundGray];
         labelBack.layer.cornerRadius = 5;
         textPrice.text = [NSString stringWithFormat:@"$%@", [formatterCost stringFromNumber:menitem.cost]];
-        textRating.text = [formatter stringFromNumber:menitem.rating];
+        NSString * rate = [formatter stringFromNumber:menitem.rating];
+        if ([rate isEqualToString:@".0"]){
+         rate = @"N/A";
+        }
+        textRating.text = rate;
         textTitle.text = menitem.name;
         textDesc.text = menitem.desc;
         cell.menuItem = menitem;
@@ -351,17 +355,21 @@ NSMutableArray *categories;
         touchedReview = [[MMMenuItemRating alloc] init];
         touchedReview = itemCell.rating;
 
-        MMReviewPopOverViewController *reviewPop = [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewPopover"];
+        
+        MMBaseNavigationController *reviewNavPop = [self.storyboard instantiateViewControllerWithIdentifier:@"popOverNavigation"];
+        
+        MMReviewPopOverViewController *reviewPop = [reviewNavPop.viewControllers firstObject];
         reviewPop.delegate = self;
 
         reviewPop.selectedRestaurant = _currentMerchant;
+        //reviewPop.reviewSize = self.
+        
 
-        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewPop];
+        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewNavPop];
         [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedReview];
 
-        //popover.popoverContentSize = CGSizeMake(350, 216);
         popover.delegate = self;
-
+        reviewPop.oldPopOverController = popover;
         self.popOverController = popover;
 
         // Make sure keyboard is hidden before you show popup.

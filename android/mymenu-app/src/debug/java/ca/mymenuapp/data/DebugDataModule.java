@@ -131,7 +131,7 @@ public final class DebugDataModule {
 
   @Provides @Singleton @Named(DEBUG_API_ENDPOINT)
   StringPreference provideEndpointPreference(SharedPreferences preferences) {
-    return new StringPreference(preferences, DEBUG_API_ENDPOINT, ApiEndpoints.MOCK_MODE.url);
+    return new StringPreference(preferences, DEBUG_API_ENDPOINT, ApiEndpoints.PRODUCTION.url);
   }
 
   @Provides @Singleton @IsMockMode

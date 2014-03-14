@@ -17,9 +17,13 @@
 
 package ca.mymenuapp.data.api.model;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
+@Root(name = "result")
 public class MenuCategory {
-  public long id;
-  public String name;
+  @Element(name = "id") public long id;
+  @Element(name = "name") public String name;
 
   @Override public String toString() {
     return "MenuCategory{" +

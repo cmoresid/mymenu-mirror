@@ -37,6 +37,7 @@ import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
 /**
  * Activity that prompts a userPreference to login with their credentials.
+ * This will be first view seen by the user, if they are logged in, we open up MainActivity
  * TODO: facebook login
  */
 public class LoginActivity extends BaseActivity {
@@ -49,10 +50,16 @@ public class LoginActivity extends BaseActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     inflateView(R.layout.activity_login);
+
+    if (userPreference.get() != null) {
+      Intent intent = new Intent(this, MainActivity.class);
+      startActivity(intent);
+      finish();
+    }
   }
 
   @OnClick(R.id.sign_up) void onSignUpClicked() {
-    Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+    Intent intent = new Intent(this, SignUpActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     startActivity(intent);
     finish();

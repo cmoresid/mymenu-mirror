@@ -20,7 +20,7 @@
 #import <RBStoryboardLink/RBStoryboardLinkSource.h>
 
 @class MMSpecialsTypeController;
-@class MMSpecialsWeekController;
+@class MMSpecialsCalendarViewController;
 
 /**
  *  Displays the specials
@@ -38,14 +38,14 @@
 @property(atomic) NSDate *selectedDate;
 
 /**
- *  Headers for the collection view (Dates)
+ *  Date the user has selected to show a week of
  */
-@property(atomic) NSMutableArray *dateKeys;
+@property(nonatomic) UILabel *labelView;
 
 /**
  *  All specials by key an date
  */
-@property(atomic) NSMutableDictionary *specials;
+@property(atomic) NSMutableArray *specials;
 
 /**
  *  todays date.
@@ -73,7 +73,7 @@
  *  The view controller that is presented within the week
  *  popover.
  */
-@property(nonatomic, strong) MMSpecialsWeekController *weekController;
+@property(nonatomic, strong) MMSpecialsCalendarViewController *weekController;
 
 /**
  * Adds a Special type to show, and reloads the view as Needed.
@@ -95,6 +95,7 @@
  *
  *  @param date NSDate to display from
  */
-- (void)loadWeek:(NSDate *)date;
+
+- (void)loadSelectedDate;
 
 @end

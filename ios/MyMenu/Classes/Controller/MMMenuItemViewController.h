@@ -37,6 +37,10 @@
  *  The current mechant of the menu item
  */
 @property MMMerchant *currentMerchant;
+/**
+ *
+ */
+@property BOOL reviewViewFlag;
 
 /**
  *  Popover view controller
@@ -62,6 +66,10 @@
  *  The Items Rating Label
  */
 @property(nonatomic, weak) IBOutlet UILabel *itemRating;
+/**
+ *
+ */
+@property (nonatomic, weak) IBOutlet UIView * reviewView;
 
 /**
  *  The menu items description

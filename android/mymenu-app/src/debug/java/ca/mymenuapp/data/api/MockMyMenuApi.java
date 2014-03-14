@@ -19,7 +19,9 @@ package ca.mymenuapp.data.api;
 
 import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
-import ca.mymenuapp.data.api.model.Menu;
+import ca.mymenuapp.data.api.model.MenuCategoryResponse;
+import ca.mymenuapp.data.api.model.MenuResponse;
+import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import javax.inject.Inject;
@@ -39,10 +41,6 @@ final class MockMyMenuApi implements MyMenuApi {
 
   @Inject MockMyMenuApi(ServerDatabase serverDatabase) {
     this.serverDatabase = serverDatabase;
-  }
-
-  @Override public Observable<Menu> getMenu(@Path("id") long id) {
-    return null;
   }
 
   @Override public Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(
@@ -74,6 +72,19 @@ final class MockMyMenuApi implements MyMenuApi {
 
   @Override public Observable<Response> putUserRestriction(@Field("email") String email,
       @Field("restrictid") long restrictId) {
+    return null;
+  }
+
+  @Override public Observable<Restaurant> getRestaurant(@Path("id") long id) {
+    return null;
+  }
+
+  @Override public Observable<MenuResponse> getMenu(@Field("query") String query) {
+    return null;
+  }
+
+  @Override
+  public Observable<MenuCategoryResponse> getMenuCategories(@Field("query") String query) {
     return null;
   }
 }
