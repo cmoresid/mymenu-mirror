@@ -36,6 +36,10 @@ public class MyMenuDatabase {
 
   private final MyMenuApi myMenuApi;
 
+  // cache of userRestrictions
+  private PublishSubject<List<Long>> userRestrictionsRequest;
+  private List<Long> userRestrictionsCache;
+
   // cache of dietaryRestrictions
   private PublishSubject<List<DietaryRestriction>> dietaryRestrictionsRequest;
   private List<DietaryRestriction> dietaryRestrictionsCache;
@@ -120,8 +124,29 @@ public class MyMenuDatabase {
   }
 
   public Subscription getUserRestrictions(final User user, Observer<List<Long>> observer) {
+    if (userRestrictionsCache != null) {
+      // We have a cached value. Emit it immediately.
+      observer.onNext(userRestrictionsCache);
+    }
+    if (userRestrictionsRequest != null) {
+      // There's an in-flight network request for this section already. Join it.
+      return userRestrictionsRequest.subscribe(observer);
+    }
+
+    userRestrictionsRequest = PublishSubject.create();
+    Subscription subscription = userRestrictionsRequest.subscribe(observer);
+    userRestrictionsRequest.subscribe(new EndObserver<List<Long>>() {
+      @Override public void onEnd() {
+        userRestrictionsRequest = null;
+      }
+
+      @Override public void onNext(List<Long> response) {
+        userRestrictionsCache = response;
+      }
+    });
+
     final String query = String.format(MyMenuApi.GET_USER_RESTRICTIONS, user.email);
-    return myMenuApi.getRestrictionsForUser(query)
+    myMenuApi.getRestrictionsForUser(query)
         .map(new Func1<UserRestrictionResponse, List<UserRestrictionLink>>() {
                @Override public List<UserRestrictionLink> call(
                    UserRestrictionResponse userRestrictionResponse) {
@@ -150,7 +175,9 @@ public class MyMenuDatabase {
         .toList()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(observer);
+        .subscribe(userRestrictionsRequest);
+
+    return subscription;
   }
 
   public Subscription deleteUserRestrictions(final User user, Observer<Response> observer) {
