@@ -15,14 +15,10 @@ import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionLink;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import ca.mymenuapp.data.rx.EndObserver;
-import ca.mymenuapp.data.rx.RequestCache;
-import com.f2prateek.ln.Ln;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import retrofit.client.Response;
 import rx.Observable;
 import rx.Observer;
@@ -33,52 +29,80 @@ import rx.observables.BlockingObservable;
 import rx.schedulers.Schedulers;
 import rx.subjects.PublishSubject;
 
+/**
+ * Explicitly marked in modules, Dagger seemed to be creating new ones for each activity.
+ */
 public class MyMenuDatabase {
 
   private final MyMenuApi myMenuApi;
 
-  private RequestCache<List<DietaryRestriction>> dietaryRestrictionsRequest = RequestCache.create();
+  // cache of dietaryRestrictions
+  private PublishSubject<List<DietaryRestriction>> dietaryRestrictionsRequest;
+  private List<DietaryRestriction> dietaryRestrictionsCache;
+
   // Cache of menus
-  private final Map<Long, PublishSubject<CategorizedMenu>> menuRequests;
-  private final Map<Long, CategorizedMenu> menuCache;
+  private final Map<Long, PublishSubject<CategorizedMenu>> menuRequests = new LinkedHashMap<>();
+  private final Map<Long, CategorizedMenu> menuCache = new LinkedHashMap<>();
+
+  // Cache of restaurants
+  private final Map<Long, PublishSubject<Restaurant>> restaurantRequests = new LinkedHashMap<>();
+  private final Map<Long, Restaurant> restaurantCache = new LinkedHashMap<>();
+
+  // Cache of restaurants reviews
+  private final Map<Long, PublishSubject<List<MenuItemReview>>> reviewRequests =
+      new LinkedHashMap<>();
+  private final Map<Long, List<MenuItemReview>> reviewsCache = new LinkedHashMap<>();
 
   public MyMenuDatabase(MyMenuApi myMenuApi) {
     this.myMenuApi = myMenuApi;
-    Ln.d("creating");
-    menuCache = new LinkedHashMap<>();
-    menuRequests = new LinkedHashMap<>();
   }
 
   public Subscription getUser(final String email, final String password, Observer<User> observer) {
     final String query = String.format(MyMenuApi.GET_USER_QUERY, email, password);
-    return myMenuApi.getUser(query).map(new Func1<UserResponse, List<User>>() {
-      @Override public List<User> call(UserResponse userResponse) {
-        return userResponse.userList;
-      }
-    }).map(new Func1<List<User>, User>() {
-      @Override public User call(List<User> users) {
-        return users.get(0);
-      }
-    }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    return myMenuApi //
+        .getUser(query).map(new Func1<UserResponse, List<User>>() {
+          @Override public List<User> call(UserResponse userResponse) {
+            return userResponse.userList;
+          }
+        }) //
+        .map(new Func1<List<User>, User>() {
+          @Override public User call(List<User> users) {
+            return users.get(0);
+          }
+        }) //
+        .subscribeOn(Schedulers.io()) //
+        .observeOn(AndroidSchedulers.mainThread()) //
+        .subscribe(observer);
   }
 
   public Subscription createUser(final User user, Observer<Response> observer) {
     return myMenuApi.createUser(user.email, user.firstName, user.lastName, user.password, user.city,
-        user.locality, user.country, user.gender, user.birthday, user.birthmonth, user.birthyear)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(observer);
+        user.locality, user.country, user.gender, user.birthday, user.birthmonth,
+        user.birthyear).subscribeOn(Schedulers.io()) //
+        .observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
   }
 
   public Subscription getAllRestrictions(Observer<List<DietaryRestriction>> observer) {
-    dietaryRestrictionsRequest.cacheCheck(observer);
-    Subscription subscription = dietaryRestrictionsRequest.requestCheck(observer);
-    if (subscription != null) {
-      return subscription;
+    if (dietaryRestrictionsCache != null) {
+      // We have a cached value. Emit it immediately.
+      observer.onNext(dietaryRestrictionsCache);
+    }
+    if (dietaryRestrictionsRequest != null) {
+      // There's an in-flight network request for this section already. Join it.
+      return dietaryRestrictionsRequest.subscribe(observer);
     }
 
-    PublishSubject<List<DietaryRestriction>> subject =
-        dietaryRestrictionsRequest.startRequest(observer);
+    dietaryRestrictionsRequest = PublishSubject.create();
+    Subscription subscription = dietaryRestrictionsRequest.subscribe(observer);
+    dietaryRestrictionsRequest.subscribe(new EndObserver<List<DietaryRestriction>>() {
+      @Override public void onEnd() {
+        dietaryRestrictionsRequest = null;
+      }
+
+      @Override public void onNext(List<DietaryRestriction> response) {
+        dietaryRestrictionsCache = response;
+      }
+    });
 
     myMenuApi.getAllDietaryRestrictions(MyMenuApi.GET_ALL_RESTRICTIONS_QUERY)
         .map(new Func1<DietaryRestrictionResponse, List<DietaryRestriction>>() {
@@ -90,7 +114,7 @@ public class MyMenuDatabase {
         .cache()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(subject);
+        .subscribe(dietaryRestrictionsRequest);
 
     return subscription;
   }
@@ -150,11 +174,39 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
-  public Subscription getRestaurant(final long id, Observer<Restaurant> observer) {
-    return myMenuApi.getRestaurant(id)
+  public Subscription getRestaurant(final long restaurantId, Observer<Restaurant> observer) {
+    Restaurant restaurant = restaurantCache.get(restaurantId);
+    if (restaurant != null) {
+      // We have a cached value. Emit it immediately.
+      observer.onNext(restaurant);
+    }
+    PublishSubject<Restaurant> restaurantRequest = restaurantRequests.get(restaurantId);
+    if (restaurantRequest != null) {
+      // There's an in-flight network request for this section already. Join it.
+      return restaurantRequest.subscribe(observer);
+    }
+
+    restaurantRequest = PublishSubject.create();
+    restaurantRequests.put(restaurantId, restaurantRequest);
+
+    Subscription subscription = restaurantRequest.subscribe(observer);
+
+    restaurantRequest.subscribe(new EndObserver<Restaurant>() {
+      @Override public void onEnd() {
+        restaurantRequests.remove(restaurantId);
+      }
+
+      @Override public void onNext(Restaurant restaurant) {
+        restaurantCache.put(restaurantId, restaurant);
+      }
+    });
+
+    myMenuApi.getRestaurant(restaurantId)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(observer);
+        .subscribe(restaurantRequest);
+
+    return subscription;
   }
 
   /**
@@ -162,21 +214,16 @@ public class MyMenuDatabase {
    */
   public Subscription getMenu(final User user, final long restaurantId,
       Observer<CategorizedMenu> observer) {
-    Ln.d(menuCache.size());
     CategorizedMenu menu = menuCache.get(restaurantId);
     if (menu != null) {
-      Ln.d("cached");
       // We have a cached value. Emit it immediately.
       observer.onNext(menu);
     }
     PublishSubject<CategorizedMenu> menuRequest = menuRequests.get(restaurantId);
     if (menuRequest != null) {
-      Ln.d("join");
       // There's an in-flight network request for this section already. Join it.
       return menuRequest.subscribe(observer);
     }
-
-    Ln.d("fire");
 
     menuRequest = PublishSubject.create();
     menuRequests.put(restaurantId, menuRequest);
@@ -190,7 +237,6 @@ public class MyMenuDatabase {
 
       @Override public void onNext(CategorizedMenu categorizedMenu) {
         menuCache.put(restaurantId, categorizedMenu);
-        Ln.d(menuCache.size());
       }
     });
 
@@ -218,8 +264,34 @@ public class MyMenuDatabase {
 
   public Subscription getRestaurantReviews(final long restaurantId,
       Observer<List<MenuItemReview>> observer) {
+    List<MenuItemReview> reviews = reviewsCache.get(restaurantId);
+    if (reviews != null) {
+      // We have a cached value. Emit it immediately.
+      observer.onNext(reviews);
+    }
+    PublishSubject<List<MenuItemReview>> reviewRequest = reviewRequests.get(restaurantId);
+    if (reviewRequest != null) {
+      // There's an in-flight network request for this section already. Join it.
+      return reviewRequest.subscribe(observer);
+    }
+
+    reviewRequest = PublishSubject.create();
+    reviewRequests.put(restaurantId, reviewRequest);
+
+    Subscription subscription = reviewRequest.subscribe(observer);
+
+    reviewRequest.subscribe(new EndObserver<List<MenuItemReview>>() {
+      @Override public void onEnd() {
+        menuRequests.remove(restaurantId);
+      }
+
+      @Override public void onNext(List<MenuItemReview> reviews) {
+        reviewsCache.put(restaurantId, reviews);
+      }
+    });
+
     final String query = String.format(MyMenuApi.GET_RESTAURANT_REVIEWS, restaurantId);
-    return myMenuApi.getReviewsForRestaurant(query) //
+    myMenuApi.getReviewsForRestaurant(query) //
         .map(new Func1<MenuItemReviewResponse, List<MenuItemReview>>() {
           @Override public List<MenuItemReview> call(MenuItemReviewResponse response) {
             return response.reviews;
@@ -227,6 +299,8 @@ public class MyMenuDatabase {
         })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(observer);
+        .subscribe(reviewRequest);
+
+    return subscription;
   }
 }
