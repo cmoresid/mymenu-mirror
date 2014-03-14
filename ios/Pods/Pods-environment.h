@@ -42,3 +42,9 @@
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 5
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 2
 
+// TimesSquare
+#define COCOAPODS_POD_AVAILABLE_TimesSquare
+#define COCOAPODS_VERSION_MAJOR_TimesSquare 1
+#define COCOAPODS_VERSION_MINOR_TimesSquare 0
+#define COCOAPODS_VERSION_PATCH_TimesSquare 1
+
