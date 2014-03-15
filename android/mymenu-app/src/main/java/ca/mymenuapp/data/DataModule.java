@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import ca.mymenuapp.BuildConfig;
+import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.dagger.scopes.ForApplication;
 import ca.mymenuapp.data.api.ApiModule;
 import ca.mymenuapp.data.api.model.User;
@@ -95,5 +96,9 @@ public final class DataModule {
   @Provides @Singleton @Named(USER_PREFERENCE)
   ObjectPreference<User> providesUser(SharedPreferences preferences, Gson gson) {
     return new ObjectPreference<>(preferences, gson, User.class, USER_PREFERENCE);
+  }
+
+  @Provides @Singleton MyMenuDatabase provideMyMenuDatabase(MyMenuApi myMenuApi) {
+    return new MyMenuDatabase(myMenuApi);
   }
 }

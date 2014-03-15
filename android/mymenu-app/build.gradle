@@ -5,12 +5,14 @@ buildscript {
   dependencies {
     classpath 'com.android.tools.build:gradle:0.9.+'
     classpath 'com.jakewharton.hugo:hugo-plugin:1.0.1'
+    classpath 'com.stanfy.spoon:spoon-gradle-plugin:0.9.3'
   }
 }
 
 apply plugin: 'android'
 apply plugin: 'checkstyle'
 apply plugin: 'hugo'
+apply plugin: 'spoon'
 
 def versionMajor = 1
 def versionMinor = 0
@@ -27,6 +29,7 @@ android {
 
   packagingOptions {
     exclude 'META-INF/services/javax.annotation.processing.Processor'
+    exclude 'LICENSE.txt'
   }
 
   lintOptions {
@@ -60,12 +63,6 @@ android {
       runProguard false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
     }
-    beta.initWith(buildTypes.release)
-    beta {
-      versionNameSuffix '-beta'
-      debuggable true
-    }
-    sourceSets.beta.setRoot('src/release') // same as release!
   }
 
   defaultConfig {
@@ -75,19 +72,19 @@ android {
     versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
     versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
+    testInstrumentationRunner "ca.mymenuapp.MyMenuAppInstrumentationTestRunner"
+
     buildConfigField "String", "GIT_SHA", "\"${gitSha}\""
     buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
   }
 }
 
 dependencies {
-  compile fileTree(dir: 'libs', include: '*.jar')
-
   compile 'com.android.support:support-v13:19.0.+'
   compile 'com.android.support:support-v4:19.0.+'
 
-  provided 'com.squareup.dagger:dagger-compiler:1.2.0'
-  compile 'com.squareup.dagger:dagger:1.2.0'
+  provided 'com.squareup.dagger:dagger-compiler:1.2.1'
+  compile 'com.squareup.dagger:dagger:1.2.1'
 
   compile 'com.jakewharton:butterknife:4.0.1'
   compile 'com.f2prateek.dart:dart:1.0.0'
@@ -99,8 +96,8 @@ dependencies {
   compile 'com.squareup.picasso:picasso:2.2.0'
   compile 'com.squareup.okhttp:okhttp:1.3.0'
 
-  compile 'com.netflix.rxjava:rxjava-core:0.17.0-RC6'
-  compile 'com.netflix.rxjava:rxjava-android:0.17.0-RC6'
+  compile 'com.netflix.rxjava:rxjava-core:0.16.1'
+  compile 'com.netflix.rxjava:rxjava-android:0.16.1'
 
   compile 'com.squareup.retrofit:retrofit:1.4.1'
   compile('com.squareup.retrofit:converter-simplexml:1.4.1') {
@@ -110,12 +107,22 @@ dependencies {
     exclude module: 'xpp3'
   }
 
+  compile('de.keyboardsurfer.android.widget:crouton:1.8.3') {
+    exclude group: 'com.google.android', module: 'support-v4'
+  }
+
   compile 'com.greenhalolabs:emailautocompletetextview:1.2.0'
   compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 
   debugCompile 'com.squareup.retrofit:retrofit-mock:1.4.1'
   debugCompile 'com.jakewharton.madge:madge:1.1.1'
   debugCompile 'com.jakewharton.scalpel:scalpel:1.1.1'
+
+  androidTestCompile('com.jakewharton.espresso:espresso:1.1-r2') {
+    exclude group: 'com.squareup.dagger'
+  }
+  androidTestCompile 'com.squareup:fest-android:1.0.7'
+  androidTestCompile 'com.squareup.spoon:spoon-client:1.1.1'
 }
 
 checkstyle {

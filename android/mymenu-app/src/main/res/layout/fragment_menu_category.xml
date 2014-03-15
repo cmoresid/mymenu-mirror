@@ -20,7 +20,7 @@
     android:id="@+id/menu_grid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnWidth="256dp"
+    android:columnWidth="@dimen/menu_item_grid_width"
     android:numColumns="auto_fit"
     android:stretchMode="columnWidth"
     android:drawSelectorOnTop="true"

@@ -18,9 +18,6 @@
 package ca.mymenuapp.ui;
 
 import android.content.Context;
-
-import javax.inject.Singleton;
-
 import ca.mymenuapp.MyMenuModule;
 import ca.mymenuapp.dagger.scopes.ForActivity;
 import ca.mymenuapp.ui.activities.BaseActivity;
@@ -34,8 +31,10 @@ import ca.mymenuapp.ui.fragments.MenuCategoryFragment;
 import ca.mymenuapp.ui.fragments.PlaceholderFragment;
 import ca.mymenuapp.ui.fragments.RestaurantListFragment;
 import ca.mymenuapp.ui.fragments.RestaurantTwoPaneFragment;
+import ca.mymenuapp.ui.fragments.RestaurantsReviewFragment;
 import dagger.Module;
 import dagger.Provides;
+import javax.inject.Singleton;
 
 @Module(
     injects = {
@@ -44,7 +43,8 @@ import dagger.Provides;
         RestaurantActivity.class,
         // Fragments
         BaseFragment.class, PlaceholderFragment.class, DietaryPreferencesFragment.class,
-        MenuCategoryFragment.class, RestaurantListFragment.class, RestaurantTwoPaneFragment.class
+        MenuCategoryFragment.class, RestaurantsReviewFragment.class, RestaurantListFragment.class,
+        RestaurantTwoPaneFragment.class
     },
     complete = false,
     addsTo = MyMenuModule.class)

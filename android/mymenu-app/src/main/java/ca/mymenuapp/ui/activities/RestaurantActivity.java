@@ -21,16 +21,19 @@ import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.CategorizedMenu;
+import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.MenuCategoryFragment;
+import ca.mymenuapp.ui.fragments.RestaurantsReviewFragment;
 import ca.mymenuapp.ui.misc.AlphaForegroundColorSpan;
 import ca.mymenuapp.ui.widgets.KenBurnsView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
+import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -86,6 +89,8 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
   // synchronize the different pages.
   private AbsListView lastScrolledListView;
 
+  private List<MenuItemReview> reviewList;
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -109,6 +114,11 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
           }
         }
     );
+    myMenuDatabase.getRestaurantReviews(restaurantId, new EndlessObserver<List<MenuItemReview>>() {
+      @Override public void onNext(List<MenuItemReview> reviews) {
+        reviewList = reviews;
+      }
+    });
 
     tabStrip.setTextColorResource(android.R.color.white);
     init();
@@ -273,15 +283,24 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
     }
 
     @Override public int getCount() {
-      return menu.getCategoryCount();
+      return menu.getCategoryCount() + 1;
     }
 
     @Override public Fragment getItem(int position) {
-      return MenuCategoryFragment.newInstance(menu.getMenuItemsByCategory(position));
+      if (position < menu.getCategoryCount()) {
+        return MenuCategoryFragment.newInstance(menu.getMenuItemsByCategory(position));
+      } else {
+        // todo, what if reviewList is not yet initialized
+        return RestaurantsReviewFragment.newInstance(reviewList);
+      }
     }
 
     @Override public CharSequence getPageTitle(int position) {
-      return menu.getCategoryTitle(position);
+      if (position < menu.getCategoryCount()) {
+        return menu.getCategoryTitle(position);
+      } else {
+        return getString(R.string.reviews);
+      }
     }
   }
 }
