@@ -20,8 +20,8 @@ public class Matchers {
         }
 
         CharSequence error = ((EditText) view).getError();
-        return error == null && expectedError == null || error != null && expectedError.equals(
-            error.toString());
+        return (error == null && expectedError == null) || (error != null && error.toString()
+            .equals(expectedError));
       }
 
       @Override

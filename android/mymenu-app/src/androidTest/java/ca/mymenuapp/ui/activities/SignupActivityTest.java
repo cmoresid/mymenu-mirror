@@ -1,7 +1,5 @@
 package ca.mymenuapp.ui.activities;
 
-import android.app.Instrumentation;
-import android.content.IntentFilter;
 import android.test.suitebuilder.annotation.LargeTest;
 import ca.mymenuapp.R;
 import com.squareup.spoon.Spoon;
@@ -13,33 +11,34 @@ import static com.google.android.apps.common.testing.ui.espresso.action.ViewActi
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.typeText;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withId;
-import static org.fest.assertions.api.ANDROID.assertThat;
 
 @LargeTest
-public class LoginActivityTest extends BaseActivityTest<LoginActivity> {
+public class SignUpActivityTest extends BaseActivityTest<SignUpActivity> {
 
-  public LoginActivityTest() {
-    super(LoginActivity.class);
+  public SignUpActivityTest() {
+    super(SignUpActivity.class);
   }
 
-  public void testEmptyEmailAndPassword() {
+  public void testEmptyFields() {
     Spoon.screenshot(activity, "initial_state");
 
-    onView(withId(R.id.login)).perform(click());
+    onView(withId(R.id.sign_up)).perform(click());
 
     onView(withId(R.id.email)).check(matches(withError(getString(R.string.required))));
     onView(withId(R.id.password)).check(matches(withError(getString(R.string.required))));
+    onView(withId(R.id.given_name)).check(matches(withError(getString(R.string.required))));
+    onView(withId(R.id.surname)).check(matches(withError(getString(R.string.required))));
     Spoon.screenshot(activity, "error");
   }
 
   public void testEmptyPassword() {
     Spoon.screenshot(activity, "initial_state");
 
-    // use one that is not on the device, otherwise espresso clicks the selection and not login
+    // use one that is not on the device, otherwise espresso clicks the selection
     onView(withId(R.id.email)).perform(typeText("test@gmail.com"), closeSoftKeyboard());
     Spoon.screenshot(activity, "entered_input");
 
-    onView(withId(R.id.login)).perform(click());
+    onView(withId(R.id.sign_up)).perform(click());
 
     onView(withId(R.id.email)).check(matches(withError(null)));
     onView(withId(R.id.password)).check(matches(withError(getString(R.string.required))));
@@ -51,12 +50,15 @@ public class LoginActivityTest extends BaseActivityTest<LoginActivity> {
 
     onView(withId(R.id.email)).perform(typeText("inValidEmail"), closeSoftKeyboard());
     onView(withId(R.id.password)).perform(typeText("someValidPassword"), closeSoftKeyboard());
+    onView(withId(R.id.confirm_password)).perform(typeText("someValidPassword"),
+        closeSoftKeyboard());
     Spoon.screenshot(activity, "entered_input");
 
-    onView(withId(R.id.login)).perform(click());
+    onView(withId(R.id.sign_up)).perform(click());
 
     onView(withId(R.id.email)).check(matches(withError(getString(R.string.invalid))));
     onView(withId(R.id.password)).check(matches(withError(null)));
+    onView(withId(R.id.confirm_password)).check(matches(withError(null)));
     Spoon.screenshot(activity, "error");
   }
 
@@ -64,31 +66,47 @@ public class LoginActivityTest extends BaseActivityTest<LoginActivity> {
     Spoon.screenshot(activity, "initial_state");
 
     onView(withId(R.id.password)).perform(typeText("aValidPassword"), closeSoftKeyboard());
+    onView(withId(R.id.confirm_password)).perform(typeText("aValidPassword"),
+        closeSoftKeyboard());
     Spoon.screenshot(activity, "entered_input");
 
-    onView(withId(R.id.login)).perform(click());
+    onView(withId(R.id.sign_up)).perform(click());
 
     onView(withId(R.id.email)).check(matches(withError(getString(R.string.required))));
     onView(withId(R.id.password)).check(matches(withError(null)));
+    onView(withId(R.id.confirm_password)).check(matches(withError(null)));
     Spoon.screenshot(activity, "error");
   }
 
-  public void testValidLogin() {
-    IntentFilter filter = new IntentFilter();
-    Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(filter, null, false);
+  public void testShortPassword() {
     Spoon.screenshot(activity, "initial_state");
 
-    onView(withId(R.id.email)).perform(typeText("spiderman@avengers.com"));
-    onView(withId(R.id.password)).perform(typeText("spiderman"), closeSoftKeyboard());
+    onView(withId(R.id.email)).perform(typeText("test@gmail.com"), closeSoftKeyboard());
+    onView(withId(R.id.password)).perform(typeText("abs"), closeSoftKeyboard());
+    onView(withId(R.id.confirm_password)).perform(typeText("abs"), closeSoftKeyboard());
     Spoon.screenshot(activity, "entered_input");
-    onView(withId(R.id.login)).perform(click());
 
-    // Verify new activity was shown.
-    getInstrumentation().waitForMonitor(monitor);
-    assertThat(monitor).hasHits(1);
-    Spoon.screenshot(getActivity(), "next_activity_shown");
+    onView(withId(R.id.sign_up)).perform(click());
 
-    // clear the user that may have been set
-    activity.userPreference.set(null);
+    onView(withId(R.id.email)).check(matches(withError(null)));
+    onView(withId(R.id.password)).check(matches(withError(getString(R.string.password_length))));
+    Spoon.screenshot(activity, "error");
+  }
+
+  public void testPasswordsDoNotMatch() {
+    Spoon.screenshot(activity, "initial_state");
+
+    onView(withId(R.id.email)).perform(typeText("test@gmail.com"), closeSoftKeyboard());
+    onView(withId(R.id.password)).perform(typeText("aValidPassword"), closeSoftKeyboard());
+    onView(withId(R.id.confirm_password)).perform(typeText("aValidButNotSamePassword"),
+        closeSoftKeyboard());
+    Spoon.screenshot(activity, "entered_input");
+
+    onView(withId(R.id.sign_up)).perform(click());
+
+    onView(withId(R.id.email)).check(matches(withError(null)));
+    onView(withId(R.id.password)).check(matches(withError(null)));
+    onView(withId(R.id.confirm_password)).check(matches(withError(getString(R.string.passwords_do_not_match))));
+    Spoon.screenshot(activity, "error");
   }
 }
