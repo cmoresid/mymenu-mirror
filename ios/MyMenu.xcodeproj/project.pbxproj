@@ -72,6 +72,7 @@
 		B068A13418A738F4005E8036 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B068A13318A738F4005E8036 /* Social.framework */; };
 		B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = B06B61A7189F4AD300A51A81 /* restriction_placeholder.png */; };
 		B0881ABF18D3AD5D003EDDFF /* MMRestaurantViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0881ABE18D3AD5D003EDDFF /* MMRestaurantViewModel.m */; };
+		B0881AC218D3C7F3003EDDFF /* MMMenuService.m in Sources */ = {isa = PBXBuildFile; fileRef = B0881AC118D3C7F3003EDDFF /* MMMenuService.m */; };
 		B09C25EC18A38EE000E05289 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09C25EB18A38EE000E05289 /* libPods.a */; };
 		B0A7675918D2BB6400626F00 /* MMBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A7675818D2BB6400626F00 /* MMBorderedView.m */; };
 		B0A9906A18CA43E900AC4CBB /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FE518CA43E900AC4CBB /* MMAppDelegate.m */; };
@@ -224,6 +225,8 @@
 		B0760F14189ED18D00C40D15 /* libMBProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMBProgressHUD.a; path = MyMenu/lib/libMBProgressHUD.a; sourceTree = "<group>"; };
 		B0881ABD18D3AD5D003EDDFF /* MMRestaurantViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMRestaurantViewModel.h; path = ViewModel/MMRestaurantViewModel.h; sourceTree = "<group>"; };
 		B0881ABE18D3AD5D003EDDFF /* MMRestaurantViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMRestaurantViewModel.m; path = ViewModel/MMRestaurantViewModel.m; sourceTree = "<group>"; };
+		B0881AC018D3C7F3003EDDFF /* MMMenuService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuService.h; sourceTree = "<group>"; };
+		B0881AC118D3C7F3003EDDFF /* MMMenuService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuService.m; sourceTree = "<group>"; };
 		B09C25E718A38DF400E05289 /* libPods-OCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-OCMock.a"; path = "Pods/build/Debug-iphoneos/libPods-OCMock.a"; sourceTree = "<group>"; };
 		B09C25E918A38E3E00E05289 /* libPods-RaptureXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-RaptureXML.a"; path = "Pods/build/Debug-iphoneos/libPods-RaptureXML.a"; sourceTree = "<group>"; };
 		B09C25EB18A38EE000E05289 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
@@ -752,6 +755,8 @@
 				B0A9904118CA43E900AC4CBB /* MMLocationManager.m */,
 				B0A9904218CA43E900AC4CBB /* MMLoginManager.h */,
 				B0A9904318CA43E900AC4CBB /* MMLoginManager.m */,
+				B0881AC018D3C7F3003EDDFF /* MMMenuService.h */,
+				B0881AC118D3C7F3003EDDFF /* MMMenuService.m */,
 				B0A9904418CA43E900AC4CBB /* MMNetworkClientProxy.h */,
 				B0A9904518CA43E900AC4CBB /* MMNetworkClientProxy.m */,
 				B0A9904618CA43E900AC4CBB /* MMSocialMediaService.h */,
@@ -1076,6 +1081,7 @@
 				B0A9909218CA43E900AC4CBB /* MMLocationManager.m in Sources */,
 				B0E7616818CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.m in Sources */,
 				B0A9907318CA43E900AC4CBB /* MMLoginViewController.m in Sources */,
+				B0881AC218D3C7F3003EDDFF /* MMMenuService.m in Sources */,
 				B0A9906E18CA43E900AC4CBB /* MMAccountViewController.m in Sources */,
 				B0A9906A18CA43E900AC4CBB /* MMAppDelegate.m in Sources */,
 				B0A9906C18CA43E900AC4CBB /* UIColor+MyMenuColors.m in Sources */,

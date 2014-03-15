@@ -21,6 +21,7 @@
 #import "MMReviewPopOverDelegate.h"
 #import "MMReviewPopOverViewController.h"
 
+@class MMRestaurantViewModel;
 @class HMSegmentedControl;
 
 /** The restaurant view controller.
@@ -38,6 +39,8 @@
  *  The current selected merchant.
  */
 @property MMMerchant *currentMerchant;
+
+@property MMRestaurantViewModel *viewModel;
 
 /**
  *  The UILabel for the mechant name
@@ -64,13 +67,6 @@
  *  The UIView for the merchant rating
  */
 @property(nonatomic, weak) IBOutlet UIView *ratingView; // rounded background for restaurant rating
-
-/**
- *  The UIButton to filter by category
- */
-@property(nonatomic, weak) IBOutlet UIButton *categoryButton; // filter by category buttton
-
-@property(nonatomic, weak) IBOutlet HMSegmentedControl *categorySegment;
 
 /**
  *  UICollectionView that displays the menu items

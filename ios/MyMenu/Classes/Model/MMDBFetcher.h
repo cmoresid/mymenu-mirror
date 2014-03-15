@@ -114,6 +114,8 @@
 */
 - (RACSignal *)getMenuWithMerchantId:(NSInteger)merchid withUserEmail:(NSString *)email;
 
+- (RACSignal *)getRestrictedMenu:(NSInteger)merchid withUserEmail:(NSString *)email;
+
 /**
 * Get all restrictions that we support.
 */

@@ -22,6 +22,7 @@
 #import "MMMenuItem.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <AFNetworking/AFNetworking.h>
+#import <RACEXTScope.h>
 
 @interface MMDBFetcher ()
 
@@ -845,7 +846,10 @@ static MMDBFetcher *instance;
 }
 
 - (RACSignal *)getMenuWithMerchantId:(NSInteger)merchid withUserEmail:(NSString *)email; {
+    @weakify(self);
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self);
+        
         NSString *sqlFormat = @"SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.name AS category FROM menu m, menucategories mc WHERE m.id not IN(SELECT Distinct rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id";
         
         NSString *sqlQuery = [NSString stringWithFormat:sqlFormat, email, merchid];
@@ -885,57 +889,51 @@ static MMDBFetcher *instance;
     }];
 }
 
-- (RACSignal *)getRestrictedMenu:(NSInteger)merchid withUserEmail:(NSString *)email withAllowedMenuItems:(NSMutableArray *)allowedItems {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/menu/custom.php"]];
-
-    /* Get restricted */
-
-    NSString *queryFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.name AS category FROM menu m, menucategories mc WHERE m.id IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id";
-
-    NSString *query = [NSString stringWithFormat:queryFormat, email, merchid];
-
-    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self.networkClient performNetworkRequest:request
-                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-
-                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveMenuItems:withResponse:)]) {
-                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveMenuItems:withResponse:");
-                                    return;
-                                }
-
-                                if (dbResponse.wasSuccessful) {
-                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-
-                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-                                        MMMenuItem *item = [[MMMenuItem alloc] init];
-                                        item.itemid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
-                                        item.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
-                                        item.name = [e child:@"name"].text;
-                                        item.cost = [NSNumber numberWithDouble:[e child:@"cost"].textAsDouble];
-                                        item.picture = [e child:@"picture"].text;
-                                        item.desc = [e child:@"description"].text;
-                                        item.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
-                                        item.category = [e child:@"category"].text;
-                                        item.restrictionflag = TRUE;
-
-                                        [allowedItems addObject:item];
-                                    }];
-
-                                    [self.delegate didRetrieveMenuItems:[allowedItems copy] withResponse:dbResponse];
-                                }
-                                else {
-                                    [self.delegate didRetrieveMenuItems:nil withResponse:dbResponse];
-                                }
-                            }];
-    return nil;
+- (RACSignal *)getRestrictedMenu:(NSInteger)merchid withUserEmail:(NSString *)email {
+    @weakify(self);
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self);
+        
+        NSString *sqlFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.name AS category FROM menu m, menucategories mc WHERE m.id IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id";
+        
+        NSString *sqlQuery = [NSString stringWithFormat:sqlFormat, email, merchid];
+        NSDictionary *queryParameters = @{@"query": sqlQuery};
+        
+        AFHTTPRequestOperation *operation = [self.networkManager POST:@"http://mymenuapp.ca/php/menu/custom.php" parameters:queryParameters
+            success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                RXMLElement *rootXML = [RXMLElement elementFromXMLData:responseObject];
+                
+                NSMutableArray *restrictedMenuItems = [NSMutableArray new];
+                
+                [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                    MMMenuItem *item = [[MMMenuItem alloc] init];
+                    item.itemid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
+                    item.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
+                    item.name = [e child:@"name"].text;
+                    item.cost = [NSNumber numberWithDouble:[e child:@"cost"].textAsDouble];
+                    item.picture = [e child:@"picture"].text;
+                    item.desc = [e child:@"description"].text;
+                    item.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
+                    item.category = [e child:@"category"].text;
+                    item.restrictionflag = TRUE;
+                    
+                    [restrictedMenuItems addObject:item];
+                }];
+                
+                [subscriber sendNext:restrictedMenuItems];
+                [subscriber sendCompleted];
+            }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [subscriber sendError:error];
+            }
+        ];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [operation cancel];
+        }];
+    }];
 }
-
 
 - (void)getModifications:(NSNumber *)menuid withUser:(NSString *)email {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];

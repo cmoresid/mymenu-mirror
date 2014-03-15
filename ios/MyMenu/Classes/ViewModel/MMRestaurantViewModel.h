@@ -16,12 +16,16 @@ extern const NSInteger MMReviewDataSource;
 @interface MMRestaurantViewModel : RVMViewModel
 
 @property(nonatomic, strong) MMMerchant *merchantInformation;
-@property(nonatomic) NSInteger currentDataSourceType;
 @property(nonatomic) NSInteger selectedTabIndex;
 
 - (RACSignal *)getTabCategories;
+- (RACSignal *)getAllMenuItems;
+
+- (RACSignal *)formatRatingForRawRating:(NSNumber *)rating;
+- (RACSignal *)formatBusinessHoursForOpenTime:(NSString *)openTime withCloseTime:(NSString *)closeTime;
 
 - (NSInteger)numberOfItemsInCurrentDataSource;
-- (id)getItemFromCurrentDataSourceForIndex:(NSInteger)index;
+- (id)getItemFromCurrentDataSourceForIndexPath:(NSIndexPath *)indexPath;
+- (void)searchForItemWithValue:(NSString *)value;
 
 @end
