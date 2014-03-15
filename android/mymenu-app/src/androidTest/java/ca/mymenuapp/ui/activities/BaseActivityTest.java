@@ -41,7 +41,7 @@ public abstract class BaseActivityTest<T extends Activity>
   /**
    * Type in an {@link android.widget.EditText} that may be in a scrollview.
    */
-  void performScrollingType(int id, String text) {
+  static void performScrollingType(int id, String text) {
     onView(withId(id)).perform(scrollTo(), typeText(text), closeSoftKeyboard());
   }
 }
