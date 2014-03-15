@@ -28,7 +28,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import ca.mymenuapp.R;
@@ -38,7 +37,10 @@ import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.DatePickerFragment;
 import ca.mymenuapp.ui.misc.EnumAdapter;
+import ca.mymenuapp.util.Strings;
 import com.f2prateek.ln.Ln;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import java.text.DateFormat;
 import java.util.Calendar;
 import javax.inject.Inject;
@@ -72,9 +74,9 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
     super.onCreate(savedInstanceState);
     inflateView(R.layout.activity_sign_up);
 
-    citySpinner.setAdapter(new EnumAdapter<>(this, City.class));
-    localitySpinner.setAdapter(new EnumAdapter<>(this, State.class));
-    genderSpinner.setAdapter(new EnumAdapter<>(this, Gender.class));
+    citySpinner.setAdapter(new LocalizedEnumAdapter<>(this, City.class));
+    localitySpinner.setAdapter(new LocalizedEnumAdapter<>(this, State.class));
+    genderSpinner.setAdapter(new LocalizedEnumAdapter<>(this, Gender.class));
   }
 
   @OnClick(R.id.birthdate) public void onDateClicked() {
@@ -94,6 +96,16 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
     boolean hasError = false;
 
     hasError |= isEmpty(emailText);
+
+    if (!hasError) {
+      if (!Strings.isEmail(emailText.getText().toString())) {
+        hasError = false;
+        emailText.setError(getString(R.string.invalid));
+      } else {
+        emailText.setError(null);
+      }
+    }
+
     hasError |= validatePassword(passwordText);
     hasError |= validatePassword(confirmPasswordText);
 
@@ -105,12 +117,22 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
       confirmPasswordText.setError(null);
     }
 
+    if (validatePassword(passwordText) && validatePassword(confirmPasswordText)) {
+      if (passwordText.getText().toString().compareTo(confirmPasswordText.getText().toString())
+          != 0) {
+        hasError = true;
+        confirmPasswordText.setError(getString(R.string.passwords_do_not_match));
+      } else {
+        confirmPasswordText.setError(null);
+      }
+    }
+
     hasError |= isEmpty(givenNameText);
     hasError |= isEmpty(surnameText);
 
     if (birthDate == null) {
       hasError = true;
-      Toast.makeText(this, R.string.birthday_required, Toast.LENGTH_LONG).show();
+      Crouton.makeText(this, R.string.birthday_required, Style.ALERT).show();
     }
 
     if (!hasError) {
@@ -142,17 +164,17 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
     }
   }
 
-  boolean validatePassword(EditText editText) {
+  boolean validatePassword(EditText passwordText) {
     boolean hasError = false;
-    hasError |= isEmpty(editText);
-    Editable pass = editText.getText();
+    hasError |= isEmpty(passwordText);
     if (!hasError) {
+      Editable pass = passwordText.getText();
       if (pass.length() < 5) {
         Ln.e("Password too short.");
-        editText.setError(getString(R.string.password_length));
+        passwordText.setError(getString(R.string.password_length));
         hasError = true;
       } else {
-        editText.setError(null);
+        passwordText.setError(null);
       }
     }
     return hasError;
@@ -226,9 +248,9 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
   /**
    * An {@link ca.mymenuapp.ui.misc.EnumAdapter} that can display localized strings.
    */
-  class DisplayEnumAdapter<T extends LocalizedEnum> extends EnumAdapter {
+  class LocalizedEnumAdapter<T extends LocalizedEnum> extends EnumAdapter {
 
-    DisplayEnumAdapter(Context context, Class<T> enumType) {
+    LocalizedEnumAdapter(Context context, Class<T> enumType) {
       super(context, enumType);
     }
 

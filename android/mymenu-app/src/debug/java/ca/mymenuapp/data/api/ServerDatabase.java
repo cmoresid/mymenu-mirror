@@ -18,9 +18,11 @@
 package ca.mymenuapp.data.api;
 
 import ca.mymenuapp.data.api.model.MenuItem;
-import ca.mymenuapp.data.api.model.MockMenuLoader;
+import ca.mymenuapp.data.api.model.MockDataLoader;
+import ca.mymenuapp.data.api.model.User;
 import com.f2prateek.ln.Ln;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -37,26 +39,41 @@ public final class ServerDatabase {
     return NEXT_ID.getAndIncrement();
   }
 
+  Map<String, User> userMap;
+
   public static String nextStringId() {
     return Long.toHexString(nextId());
   }
 
-  private final MockMenuLoader mockMenuLoader;
+  private final MockDataLoader mockDataLoader;
 
   private boolean initialized;
 
-  @Inject public ServerDatabase(MockMenuLoader mockMenuLoader) {
-    this.mockMenuLoader = mockMenuLoader;
+  @Inject public ServerDatabase(MockDataLoader mockDataLoader) {
+    this.mockDataLoader = mockDataLoader;
   }
 
   private synchronized void initializeMockData() {
     if (initialized) return;
+
     initialized = true;
     Ln.d("Initializing mock data...");
+
+    userMap = mockDataLoader.newUsers();
   }
 
   public List<MenuItem> getMenuItem() {
     initializeMockData();
     return null;
+  }
+
+  public User getUser(String email, String password) {
+    initializeMockData();
+    User user = userMap.get(email);
+    if (user != null && user.password.compareTo(password) == 0) {
+      return user;
+    } else {
+      return null;
+    }
   }
 }

@@ -40,6 +40,79 @@ public class User {
   // List of restrictions for this user
   @Element(required = false) public List<Long> restrictions;
 
+  static class Builder {
+    final User user;
+
+    Builder(long id) {
+      user = new User();
+      user.id = id;
+    }
+
+    Builder email(String email) {
+      user.email = email;
+      return this;
+    }
+
+    Builder firstName(String firstName) {
+      user.firstName = firstName;
+      return this;
+    }
+
+    Builder lastName(String lastName) {
+      user.lastName = lastName;
+      return this;
+    }
+
+    Builder password(String password) {
+      user.password = password;
+      return this;
+    }
+
+    Builder city(String city) {
+      user.city = city;
+      return this;
+    }
+
+    Builder locality(String locality) {
+      user.locality = locality;
+      return this;
+    }
+
+    Builder country(String country) {
+      user.country = country;
+      return this;
+    }
+
+    Builder gender(char gender) {
+      user.gender = gender;
+      return this;
+    }
+
+    Builder birthday(int birthday) {
+      user.birthday = birthday;
+      return this;
+    }
+
+    Builder birthmonth(int birthmonth) {
+      user.birthmonth = birthmonth;
+      return this;
+    }
+
+    Builder birthyear(int birthyear) {
+      user.birthyear = birthyear;
+      return this;
+    }
+
+    Builder facebookid(String facebookid) {
+      user.facebookid = facebookid;
+      return this;
+    }
+
+    User get() {
+      return user;
+    }
+  }
+
   @Override public String toString() {
     return "User{" +
         "id=" + id +

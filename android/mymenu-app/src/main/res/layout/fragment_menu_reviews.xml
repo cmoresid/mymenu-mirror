@@ -15,17 +15,8 @@
   ~ along with this program.  If not, see [http://www.gnu.org/licenses/].
   -->
 
-<ca.mymenuapp.ui.widgets.HeaderGridView
+<ListView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/menu_grid"
+    android:id="@+id/menu_review_list"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:columnWidth="@dimen/menu_item_grid_width"
-    android:numColumns="auto_fit"
-    android:stretchMode="columnWidth"
-    android:drawSelectorOnTop="true"
-    android:scrollbarStyle="insideOverlay"
-    android:scrollbars="none"
-    android:horizontalSpacing="1dp"
-    android:verticalSpacing="1dp"
-    android:layout_marginRight="-1px"/>
+    android:layout_height="match_parent"/>
