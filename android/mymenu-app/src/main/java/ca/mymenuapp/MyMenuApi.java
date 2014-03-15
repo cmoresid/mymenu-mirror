@@ -21,6 +21,7 @@ import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.MenuCategoryResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
+import ca.mymenuapp.data.api.model.RestaurantResponse;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import retrofit.client.Response;
@@ -39,8 +40,10 @@ public interface MyMenuApi {
   String DELETE_USER_RESTRICTIONS = "DELETE from restrictionuserlink WHERE email='%s'";
   String GET_RESTAURANT_MENU = "SELECT * from menu where merchid = %d";
   String GET_MENU_CATEGORIES = "SELECT * from menucategories";
+  String GET_ALL_RESTAURANTS = "SELECT * FROM merchusers";
 
-  @FormUrlEncoded @POST("/php/users/custom.php")
+
+    @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
@@ -48,6 +51,9 @@ public interface MyMenuApi {
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<UserRestrictionResponse> getRestrictionsForUser(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<RestaurantResponse> getAllRestaurants(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/put.php")
   Observable<Response> createUser(@Field("email") String email,
