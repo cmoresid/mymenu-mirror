@@ -8,6 +8,7 @@ import static ca.mymenuapp.Matchers.withError;
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.click;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.closeSoftKeyboard;
+import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.scrollTo;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.typeText;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withId;
@@ -22,7 +23,7 @@ public class SignUpActivityTest extends BaseActivityTest<SignUpActivity> {
   public void testEmptyFields() {
     Spoon.screenshot(activity, "initial_state");
 
-    onView(withId(R.id.sign_up)).perform(click());
+    onView(withId(R.id.sign_up)).perform(scrollTo(), click());
 
     onView(withId(R.id.email)).check(matches(withError(getString(R.string.required))));
     onView(withId(R.id.password)).check(matches(withError(getString(R.string.required))));
@@ -35,10 +36,10 @@ public class SignUpActivityTest extends BaseActivityTest<SignUpActivity> {
     Spoon.screenshot(activity, "initial_state");
 
     // use one that is not on the device, otherwise espresso clicks the selection
-    onView(withId(R.id.email)).perform(typeText("test@gmail.com"), closeSoftKeyboard());
-    Spoon.screenshot(activity, "entered_input");
+    performScrollingType(R.id.email, "test@gmail.com");
+    Spoon.screenshot(activity, "entered_email");
 
-    onView(withId(R.id.sign_up)).perform(click());
+    onView(withId(R.id.sign_up)).perform(scrollTo(), click());
 
     onView(withId(R.id.email)).check(matches(withError(null)));
     onView(withId(R.id.password)).check(matches(withError(getString(R.string.required))));
@@ -48,13 +49,14 @@ public class SignUpActivityTest extends BaseActivityTest<SignUpActivity> {
   public void testInvalidEmail() {
     Spoon.screenshot(activity, "initial_state");
 
-    onView(withId(R.id.email)).perform(typeText("inValidEmail"), closeSoftKeyboard());
-    onView(withId(R.id.password)).perform(typeText("someValidPassword"), closeSoftKeyboard());
-    onView(withId(R.id.confirm_password)).perform(typeText("someValidPassword"),
-        closeSoftKeyboard());
-    Spoon.screenshot(activity, "entered_input");
+    performScrollingType(R.id.email, "inValidEmail");
+    Spoon.screenshot(activity, "entered_email");
+    performScrollingType(R.id.password, "someValidPassword");
+    Spoon.screenshot(activity, "entered_password");
+    performScrollingType(R.id.confirm_password, "someValidPassword");
+    Spoon.screenshot(activity, "confirmed_password");
 
-    onView(withId(R.id.sign_up)).perform(click());
+    onView(withId(R.id.sign_up)).perform(scrollTo(), click());
 
     onView(withId(R.id.email)).check(matches(withError(getString(R.string.invalid))));
     onView(withId(R.id.password)).check(matches(withError(null)));
@@ -65,12 +67,12 @@ public class SignUpActivityTest extends BaseActivityTest<SignUpActivity> {
   public void testEmptyEmail() {
     Spoon.screenshot(activity, "initial_state");
 
-    onView(withId(R.id.password)).perform(typeText("aValidPassword"), closeSoftKeyboard());
-    onView(withId(R.id.confirm_password)).perform(typeText("aValidPassword"),
-        closeSoftKeyboard());
-    Spoon.screenshot(activity, "entered_input");
+    performScrollingType(R.id.password, "aValidPassword");
+    Spoon.screenshot(activity, "entered_password");
+    performScrollingType(R.id.confirm_password, "aValidPassword");
+    Spoon.screenshot(activity, "confirmed_password");
 
-    onView(withId(R.id.sign_up)).perform(click());
+    onView(withId(R.id.sign_up)).perform(scrollTo(), click());
 
     onView(withId(R.id.email)).check(matches(withError(getString(R.string.required))));
     onView(withId(R.id.password)).check(matches(withError(null)));
@@ -81,12 +83,14 @@ public class SignUpActivityTest extends BaseActivityTest<SignUpActivity> {
   public void testShortPassword() {
     Spoon.screenshot(activity, "initial_state");
 
-    onView(withId(R.id.email)).perform(typeText("test@gmail.com"), closeSoftKeyboard());
-    onView(withId(R.id.password)).perform(typeText("abs"), closeSoftKeyboard());
-    onView(withId(R.id.confirm_password)).perform(typeText("abs"), closeSoftKeyboard());
-    Spoon.screenshot(activity, "entered_input");
+    performScrollingType(R.id.email, "test@gmail.com");
+    Spoon.screenshot(activity, "entered_email");
+    performScrollingType(R.id.password, "abs");
+    Spoon.screenshot(activity, "entered_password");
+    performScrollingType(R.id.confirm_password, "abs");
+    Spoon.screenshot(activity, "confirmed_password");
 
-    onView(withId(R.id.sign_up)).perform(click());
+    onView(withId(R.id.sign_up)).perform(scrollTo(), click());
 
     onView(withId(R.id.email)).check(matches(withError(null)));
     onView(withId(R.id.password)).check(matches(withError(getString(R.string.password_length))));
@@ -96,17 +100,19 @@ public class SignUpActivityTest extends BaseActivityTest<SignUpActivity> {
   public void testPasswordsDoNotMatch() {
     Spoon.screenshot(activity, "initial_state");
 
-    onView(withId(R.id.email)).perform(typeText("test@gmail.com"), closeSoftKeyboard());
-    onView(withId(R.id.password)).perform(typeText("aValidPassword"), closeSoftKeyboard());
-    onView(withId(R.id.confirm_password)).perform(typeText("aValidButNotSamePassword"),
-        closeSoftKeyboard());
-    Spoon.screenshot(activity, "entered_input");
+    performScrollingType(R.id.email, "test@gmail.com");
+    Spoon.screenshot(activity, "entered_email");
+    performScrollingType(R.id.password, "aValidPassword");
+    Spoon.screenshot(activity, "entered_password");
+    performScrollingType(R.id.confirm_password, "aValidButNotSamePassword");
+    Spoon.screenshot(activity, "confirmed_password");
 
-    onView(withId(R.id.sign_up)).perform(click());
+    onView(withId(R.id.sign_up)).perform(scrollTo(), click());
 
     onView(withId(R.id.email)).check(matches(withError(null)));
     onView(withId(R.id.password)).check(matches(withError(null)));
-    onView(withId(R.id.confirm_password)).check(matches(withError(getString(R.string.passwords_do_not_match))));
+    onView(withId(R.id.confirm_password)).check(
+        matches(withError(getString(R.string.passwords_do_not_match))));
     Spoon.screenshot(activity, "error");
   }
 }

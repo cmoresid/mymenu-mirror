@@ -10,6 +10,7 @@ import static ca.mymenuapp.Matchers.withError;
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.click;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.closeSoftKeyboard;
+import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.scrollTo;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.typeText;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withId;
@@ -25,7 +26,7 @@ public class LoginActivityTest extends BaseActivityTest<LoginActivity> {
   public void testEmptyEmailAndPassword() {
     Spoon.screenshot(activity, "initial_state");
 
-    onView(withId(R.id.login)).perform(click());
+    onView(withId(R.id.login)).perform(scrollTo(), click());
 
     onView(withId(R.id.email)).check(matches(withError(getString(R.string.required))));
     onView(withId(R.id.password)).check(matches(withError(getString(R.string.required))));
@@ -36,10 +37,10 @@ public class LoginActivityTest extends BaseActivityTest<LoginActivity> {
     Spoon.screenshot(activity, "initial_state");
 
     // use one that is not on the device, otherwise espresso clicks the selection and not login
-    onView(withId(R.id.email)).perform(typeText("test@gmail.com"), closeSoftKeyboard());
+    onView(withId(R.id.email)).perform(scrollTo(), typeText("test@gmail.com"), closeSoftKeyboard());
     Spoon.screenshot(activity, "entered_input");
 
-    onView(withId(R.id.login)).perform(click());
+    onView(withId(R.id.login)).perform(scrollTo(), click());
 
     onView(withId(R.id.email)).check(matches(withError(null)));
     onView(withId(R.id.password)).check(matches(withError(getString(R.string.required))));
@@ -49,11 +50,12 @@ public class LoginActivityTest extends BaseActivityTest<LoginActivity> {
   public void testInvalidEmail() {
     Spoon.screenshot(activity, "initial_state");
 
-    onView(withId(R.id.email)).perform(typeText("inValidEmail"), closeSoftKeyboard());
-    onView(withId(R.id.password)).perform(typeText("someValidPassword"), closeSoftKeyboard());
+    onView(withId(R.id.email)).perform(scrollTo(), typeText("inValidEmail"), closeSoftKeyboard());
+    onView(withId(R.id.password)).perform(scrollTo(), typeText("someValidPassword"),
+        closeSoftKeyboard());
     Spoon.screenshot(activity, "entered_input");
 
-    onView(withId(R.id.login)).perform(click());
+    onView(withId(R.id.login)).perform(scrollTo(), click());
 
     onView(withId(R.id.email)).check(matches(withError(getString(R.string.invalid))));
     onView(withId(R.id.password)).check(matches(withError(null)));
@@ -63,10 +65,11 @@ public class LoginActivityTest extends BaseActivityTest<LoginActivity> {
   public void testEmptyEmail() {
     Spoon.screenshot(activity, "initial_state");
 
-    onView(withId(R.id.password)).perform(typeText("aValidPassword"), closeSoftKeyboard());
+    onView(withId(R.id.password)).perform(scrollTo(), typeText("aValidPassword"),
+        closeSoftKeyboard());
     Spoon.screenshot(activity, "entered_input");
 
-    onView(withId(R.id.login)).perform(click());
+    onView(withId(R.id.login)).perform(scrollTo(), click());
 
     onView(withId(R.id.email)).check(matches(withError(getString(R.string.required))));
     onView(withId(R.id.password)).check(matches(withError(null)));
@@ -78,10 +81,10 @@ public class LoginActivityTest extends BaseActivityTest<LoginActivity> {
     Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(filter, null, false);
     Spoon.screenshot(activity, "initial_state");
 
-    onView(withId(R.id.email)).perform(typeText("spiderman@avengers.com"));
-    onView(withId(R.id.password)).perform(typeText("spiderman"), closeSoftKeyboard());
+    onView(withId(R.id.email)).perform(scrollTo(), typeText("spiderman@avengers.com"));
+    onView(withId(R.id.password)).perform(scrollTo(), typeText("spiderman"), closeSoftKeyboard());
     Spoon.screenshot(activity, "entered_input");
-    onView(withId(R.id.login)).perform(click());
+    onView(withId(R.id.login)).perform(scrollTo(), click());
 
     // Verify new activity was shown.
     getInstrumentation().waitForMonitor(monitor);
