@@ -17,15 +17,17 @@
 
 package ca.mymenuapp.data.api;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.MenuCategoryResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
+import ca.mymenuapp.data.api.model.RestaurantResponse;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import retrofit.client.Response;
 import retrofit.http.Field;
 import retrofit.http.Path;
@@ -57,7 +59,12 @@ final class MockMyMenuApi implements MyMenuApi {
     return null;
   }
 
-  @Override public Observable<Response> createUser(@Field("email") String email,
+    @Override
+    public Observable<RestaurantResponse> getAllRestaurants(@Field("query") String query) {
+        return null;
+    }
+
+    @Override public Observable<Response> createUser(@Field("email") String email,
       @Field("firstname") String firstname, @Field("lastname") String lastname,
       @Field("password") String password, @Field("city") String city,
       @Field("locality") String locality, @Field("country") String country,
