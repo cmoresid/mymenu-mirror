@@ -18,10 +18,9 @@
 package ca.mymenuapp.data.api;
 
 import ca.mymenuapp.data.api.model.MenuItem;
-import ca.mymenuapp.data.api.model.MockMenuLoader;
+import ca.mymenuapp.data.api.model.MockDataLoader;
 import ca.mymenuapp.data.api.model.User;
 import com.f2prateek.ln.Ln;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
@@ -46,12 +45,12 @@ public final class ServerDatabase {
     return Long.toHexString(nextId());
   }
 
-  private final MockMenuLoader mockMenuLoader;
+  private final MockDataLoader mockDataLoader;
 
   private boolean initialized;
 
-  @Inject public ServerDatabase(MockMenuLoader mockMenuLoader) {
-    this.mockMenuLoader = mockMenuLoader;
+  @Inject public ServerDatabase(MockDataLoader mockDataLoader) {
+    this.mockDataLoader = mockDataLoader;
   }
 
   private synchronized void initializeMockData() {
@@ -60,7 +59,7 @@ public final class ServerDatabase {
     initialized = true;
     Ln.d("Initializing mock data...");
 
-    userMap = new LinkedHashMap<>();
+    userMap = mockDataLoader.newUsers();
   }
 
   public List<MenuItem> getMenuItem() {

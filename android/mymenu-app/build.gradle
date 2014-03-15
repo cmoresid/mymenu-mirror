@@ -72,7 +72,7 @@ android {
     versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
     versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
-    testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
+    testInstrumentationRunner "ca.mymenuapp.MyMenuAppInstrumentationTestRunner"
 
     buildConfigField "String", "GIT_SHA", "\"${gitSha}\""
     buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
@@ -121,6 +121,7 @@ dependencies {
   androidTestCompile('com.jakewharton.espresso:espresso:1.1-r2') {
     exclude group: 'com.squareup.dagger'
   }
+  androidTestCompile 'com.squareup:fest-android:1.0.7'
   androidTestCompile 'com.squareup.spoon:spoon-client:1.1.1'
 }
 

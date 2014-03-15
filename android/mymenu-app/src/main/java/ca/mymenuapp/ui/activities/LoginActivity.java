@@ -29,6 +29,8 @@ import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
+import ca.mymenuapp.util.Strings;
+import com.f2prateek.ln.Ln;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 import javax.inject.Inject;
@@ -70,7 +72,12 @@ public class LoginActivity extends BaseActivity {
     boolean hasError = false;
 
     if (TextUtils.isEmpty(emailText.getText())) {
+      Ln.e("Email field was empty");
       emailText.setError(getString(R.string.required));
+      hasError = true;
+    } else if (!Strings.isEmail(emailText.getText().toString())) {
+      Ln.e("Email did not contain an email");
+      emailText.setError(getString(R.string.invalid));
       hasError = true;
     } else {
       emailText.setError(null);
@@ -78,9 +85,11 @@ public class LoginActivity extends BaseActivity {
 
     Editable pass = passwordText.getText();
     if (TextUtils.isEmpty(pass)) {
+      Ln.e("Password field was empty");
       passwordText.setError(getString(R.string.required));
       hasError = true;
     } else if (pass.length() < 5) {
+      Ln.e("Password field too short");
       passwordText.setError(getString(R.string.password_length));
       hasError = true;
     } else {

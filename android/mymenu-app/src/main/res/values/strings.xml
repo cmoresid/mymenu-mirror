@@ -28,6 +28,7 @@
   <string name="required">Required</string>
   <string name="password_length">Password too short</string>
   <string name="login_fail">Could not login. Please Check your credentials.</string>
+  <string name="invalid">Invalid</string>
 
   <!-- Sign Up Activity -->
   <string name="confirm_password">Confirm Password</string>

@@ -25,6 +25,7 @@ import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
+import com.f2prateek.ln.Ln;
 import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -51,8 +52,18 @@ final class MockMyMenuApi implements MyMenuApi {
   }
 
   @Override public Observable<UserResponse> getUser(@Field("query") String query) {
-    String email = null;
-    String password = null;
+    String emailToken = "email='";
+    int emailStartIndex = query.indexOf(emailToken) + emailToken.length();
+    int emailEndIndex = query.indexOf("'", emailStartIndex);
+
+    String passwordToken = "password='";
+    int passwordStartIndex = query.indexOf(passwordToken) + passwordToken.length();
+    int passwordEndIndex = query.indexOf("'", passwordStartIndex);
+
+    String email = query.substring(emailStartIndex, emailEndIndex);
+    String password = query.substring(passwordStartIndex, passwordEndIndex);
+    Ln.d("Looking up user with email %s and password %s", email, password);
+
     UserResponse userResponse = new UserResponse();
     userResponse.userList = new ArrayList<>();
     userResponse.userList.add(serverDatabase.getUser(email, password));

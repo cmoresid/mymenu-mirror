@@ -19,9 +19,9 @@ public class Matchers {
           return false;
         }
 
-        String error = ((EditText) view).getError().toString();
-
-        return expectedError.equals(error);
+        CharSequence error = ((EditText) view).getError();
+        return error == null && expectedError == null || error != null && expectedError.equals(
+            error.toString());
       }
 
       @Override

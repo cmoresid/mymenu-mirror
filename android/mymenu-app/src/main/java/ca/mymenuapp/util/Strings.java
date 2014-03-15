@@ -17,6 +17,11 @@
 
 package ca.mymenuapp.util;
 
+import android.text.TextUtils;
+import android.util.Patterns;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * String utilities.
  */
@@ -37,5 +42,18 @@ public final class Strings {
   /** Truncate the string at the given index. */
   public static String truncateAt(String string, int length) {
     return string.length() > length ? string.substring(0, length) : string;
+  }
+
+  /**
+   * Returns true if the given string is an email.
+   */
+  public  static boolean isEmail(String string) {
+    if (TextUtils.isEmpty(string)) {
+      return false;
+    }
+
+    final Pattern emailPattern = Patterns.EMAIL_ADDRESS;
+    final Matcher matcher = emailPattern.matcher(string);
+    return matcher.matches();
   }
 }
