@@ -47,7 +47,7 @@ public final class Strings {
   /**
    * Returns true if the given string is an email.
    */
-  public  static boolean isEmail(String string) {
+  public static boolean isEmail(String string) {
     if (TextUtils.isEmpty(string)) {
       return false;
     }

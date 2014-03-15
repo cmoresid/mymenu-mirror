@@ -24,10 +24,6 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.User;
@@ -38,6 +34,8 @@ import ca.mymenuapp.ui.fragments.RestaurantListFragment;
 import ca.mymenuapp.ui.fragments.RestaurantTwoPaneFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import ca.mymenuapp.util.Bundler;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
@@ -69,15 +67,14 @@ public class MainActivity extends BaseActivity {
 
 
       /* Need to check size here */
-    if ((getResources().getConfiguration().screenLayout &
-            Configuration.SCREENLAYOUT_SIZE_MASK) ==
-            Configuration.SCREENLAYOUT_SIZE_LARGE) {
-        tabsAdapter.addTab(actionBar.newTab().setText("Restaurants"), RestaurantTwoPaneFragment.class,
-                null);
+    if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
+        == Configuration.SCREENLAYOUT_SIZE_LARGE) {
+      tabsAdapter.addTab(actionBar.newTab().setText("Restaurants"), RestaurantTwoPaneFragment.class,
+          null);
         /*Large device, should have restaurant list and map view on one page."*/
     } else {
-        tabsAdapter.addTab(actionBar.newTab().setText("Restaurants"), RestaurantListFragment.class,
-                null);
+      tabsAdapter.addTab(actionBar.newTab().setText("Restaurants"), RestaurantListFragment.class,
+          null);
     }
 
     actionBar.setSelectedNavigationItem(tab);

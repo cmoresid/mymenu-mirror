@@ -2,6 +2,7 @@ package ca.mymenuapp.data.api.model;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+
 @Root(name = "result")
 public class Restaurant {
   @Element(name = "id") public long id;
