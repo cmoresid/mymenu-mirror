@@ -98,8 +98,9 @@ MMMenuItemRating *touchedReview;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showMenuItem"]) {
         MMMenuItemViewController *menuItemController = [segue destinationViewController];
+        
         menuItemController.currentMenuItem = touchedItem;
-        menuItemController.currentMerchant = _currentMerchant;
+        menuItemController.currentMerchant = self.currentMerchant;
     }
 }
 
@@ -200,10 +201,10 @@ MMMenuItemRating *touchedReview;
     
     [RACObserve(self.viewModel, selectedTabIndex) subscribeNext:^(NSNumber *tabIndex) {
         if ([tabIndex isEqualToNumber:self.viewModel.reviewTabIndex]) {
-            [self hideSearchBar];
+            [self configureCollectionViewForReviews];
         }
         else {
-            [self showSearchBar];
+            [self configureCollectionViewForMenuItems];
         }
 
         [self.menuItemsCollectionView reloadData];
@@ -215,10 +216,10 @@ MMMenuItemRating *touchedReview;
 
     [self.viewModel.controllerShouldShowProgressIndicator subscribeNext:^(NSNumber *show) {
         if ([show isEqualToNumber:@YES]) {
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            [MBProgressHUD showHUDAddedTo:self.menuItemsCollectionView animated:YES];
         }
         else if ([show isEqualToNumber:@NO]) {
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.menuItemsCollectionView animated:YES];
         }
     }];
 }
@@ -302,79 +303,6 @@ MMMenuItemRating *touchedReview;
     [self.menuItemsCollectionView reloadData];
 }
 
-#pragma mark - Collection View Delegate Methods
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (self.viewModel.dataSourceType == MMReviewsDataSource) {
-        return [self configureReviewCell:indexPath collectionView:collectionView];
-    } else {
-        return [self configureMenuItemCell:indexPath collectionView:collectionView];
-    }
-}
-
-- (MMMenuItemCell *)retrieveMenuItemCellForItemPath:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
-    static NSString *identifier = @"Cell";
-    
-    MMMenuItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    
-    cell.userInteractionEnabled = YES;
-    
-    if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"MenuItemCell" owner:self options:NULL] objectAtIndex:0];
-    }
-    
-    return cell;
-}
-
-- (UICollectionViewCell *)configureMenuItemCell:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
-    
-    MMMenuItem *menuItem = [self.viewModel getItemFromCurrentDataSourceForIndexPath:indexPath];
-    MMMenuItemCell *cell = [self retrieveMenuItemCellForItemPath:indexPath collectionView:collectionView];
-    
-    cell.contentView.backgroundColor = [UIColor whiteColor];
-    cell.contentView.layer.cornerRadius = 5;
-    cell.contentView.layer.masksToBounds = YES;
-    
-    UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
-    [imageView setImageWithURL:[NSURL URLWithString:menuItem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
-    // Set the text
-    UILabel *textTitle = (UILabel *) [cell viewWithTag:101];
-    textTitle.numberOfLines = 2;
-    //[textTitle sizeToFit];
-    UILabel *textDesc = (UILabel *) [cell viewWithTag:102];
-    UILabel *textPrice = (UILabel *) [cell viewWithTag:103];
-    UILabel *textRating = (UILabel *) [cell viewWithTag:104];
-    UILabel *textMod = (UILabel *) [cell viewWithTag:105];
-    UIView *labelBack = (UIView *) [cell viewWithTag:106];
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatter setMaximumFractionDigits:1];
-    [formatter setMinimumFractionDigits:1];
-    NSNumberFormatter *formatterCost = [[NSNumberFormatter alloc] init];
-    [formatterCost setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatterCost setMaximumFractionDigits:3];
-    [formatterCost setMinimumFractionDigits:2];
-    labelBack.backgroundColor = [UIColor lightBackgroundGray];
-    labelBack.layer.cornerRadius = 5;
-    textPrice.text = [NSString stringWithFormat:@"$%@", [formatterCost stringFromNumber:menuItem.cost]];
-    NSString * rate = [formatter stringFromNumber:menuItem.rating];
-    if ([rate isEqualToString:@".0"]){
-        rate = @"N/A";
-    }
-    textRating.text = rate;
-    textTitle.text = menuItem.name;
-    textDesc.text = menuItem.desc;
-    cell.menuItem = menuItem;
-    if (menuItem.restrictionflag == FALSE) {
-        textMod.text = @"";
-    }
-    else {
-        textMod.text = @"!";
-    }
-    return cell;
-}
-
 #pragma mark - Configure Category Segment Control Methods
 
 - (void)configureCategorySegmentControlWithCategories:(NSArray *)categories {
@@ -412,6 +340,16 @@ MMMenuItemRating *touchedReview;
     }];
 }
 
+#pragma mark - Collection View Delegate Methods
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.viewModel.dataSourceType == MMReviewsDataSource) {
+        return [self configureReviewCell:indexPath collectionView:collectionView];
+    } else {
+        return [self configureMenuItemCell:indexPath collectionView:collectionView];
+    }
+}
+
 #pragma mark - Collection View Data Source Methods
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -423,52 +361,11 @@ MMMenuItemRating *touchedReview;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (self.viewModel.dataSourceType == MMReviewsDataSource) {
         [self selectItemInReviewCollection:indexPath collectionView:collectionView];
     } else {
         [self selectItemInMenuItemCollection:indexPath collectionView:collectionView];
     }
-}
-
-- (void)selectItemInReviewCollection:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    MMMenuItemReviewCell *itemCell = (MMMenuItemReviewCell *) cell;
-    
-    touchedReview = [[MMMenuItemRating alloc] init];
-    touchedReview = itemCell.rating;
-    
-    MMBaseNavigationController *reviewNavPop = [self.storyboard instantiateViewControllerWithIdentifier:@"popOverNavigation"];
-    
-    MMReviewPopOverViewController *reviewPop = [reviewNavPop.viewControllers firstObject];
-    reviewPop.delegate = self;
-    
-    reviewPop.selectedRestaurant = _currentMerchant;
-    //reviewPop.reviewSize = self.
-    
-    
-    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewNavPop];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedReview];
-    
-    popover.delegate = self;
-    reviewPop.oldPopOverController = popover;
-    self.popOverController = popover;
-    
-    // Make sure keyboard is hidden before you show popup.
-    
-    [self.popOverController presentPopoverFromRect:cell.frame
-                                            inView:cell.superview
-                          permittedArrowDirections:UIPopoverArrowDirectionAny
-                                          animated:YES];
-}
-
-- (void)selectItemInMenuItemCollection:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    MMMenuItemCell *itemCell = (MMMenuItemCell *) cell;
-    touchedItem = [[MMMenuItem alloc] init];
-    touchedItem = itemCell.menuItem;
-    
-    [self performSegueWithIdentifier:@"showMenuItem" sender:self];
 }
 
 #pragma mark - Stuff to remove/update
@@ -499,7 +396,7 @@ MMMenuItemRating *touchedReview;
     //[self.reviewsCollectionView reloadData];
 }
 
-#pragma mark - Private Methods
+#pragma mark - Private Helper Methods
 
 - (void)hideAllViewsBeforeDataLoads {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -549,18 +446,14 @@ MMMenuItemRating *touchedReview;
     }];
 }
 
-- (void)hideSearchBar {
+- (void)configureCollectionViewForReviews {
     self.searchBar.hidden = YES;
     
-    MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
-    [layout setSectionInset:UIEdgeInsetsZero];
 }
 
-- (void)showSearchBar {
+- (void)configureCollectionViewForMenuItems {
     self.searchBar.hidden = NO;
     
-    MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
-    [layout setSectionInset:UIEdgeInsetsMake(44.0, 0, 0, 0)];
 }
 
 - (MMMenuItemReviewCell *)retrieveReviewCellForIndexPath:(NSIndexPath *)indexPath fromCollectionView:(UICollectionView *)collectionView {
@@ -603,7 +496,6 @@ MMMenuItemRating *touchedReview;
 }
 
 - (void)handleSwipeRight {
-    
     if (self.categorySegmentControl.selectedSegmentIndex == self.viewModel.reviewTabIndex.integerValue) {
         return;
     }
@@ -611,6 +503,88 @@ MMMenuItemRating *touchedReview;
         [self.categorySegmentControl setSelectedSegmentIndex:self.categorySegmentControl.selectedSegmentIndex+1 animated:YES];
         self.viewModel.selectedTabIndex = self.categorySegmentControl.selectedSegmentIndex + 1;
     }
+}
+
+- (NSString *)formatNumberAsPrice:(NSNumber *)price {
+    NSNumberFormatter *formatterCost = [[NSNumberFormatter alloc] init];
+    [formatterCost setRoundingMode:NSNumberFormatterRoundHalfUp];
+    [formatterCost setMaximumFractionDigits:3];
+    [formatterCost setMinimumFractionDigits:2];
+    
+    return [NSString stringWithFormat:@"$%@", [formatterCost stringFromNumber:price]];
+}
+
+- (MMMenuItemCell *)retrieveMenuItemCellForItemPath:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
+    static NSString *identifier = @"Cell";
+    
+    MMMenuItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
+    cell.userInteractionEnabled = YES;
+    
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"MenuItemCell" owner:self options:NULL] objectAtIndex:0];
+    }
+    
+    return cell;
+}
+
+- (UICollectionViewCell *)configureMenuItemCell:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
+    MMMenuItem *menuItem = [self.viewModel getItemFromCurrentDataSourceForIndexPath:indexPath];
+    MMMenuItemCell *cell = [self retrieveMenuItemCellForItemPath:indexPath collectionView:collectionView];
+    
+    cell.contentView.backgroundColor = [UIColor whiteColor];
+    cell.contentView.layer.cornerRadius = 5;
+    cell.contentView.layer.masksToBounds = YES;
+    cell.titleLabel.numberOfLines = 2;
+    cell.ratingBg.backgroundColor = [UIColor lightBackgroundGray];
+    cell.ratingBg.layer.cornerRadius = 5;
+    
+    [cell.menuImageView setImageWithURL:[NSURL URLWithString:menuItem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+    cell.titleLabel.text = menuItem.name;
+    cell.priceLabel.text = [self formatNumberAsPrice:menuItem.cost];
+    cell.ratinglabel.text = [[self.viewModel formatRatingForRawRating:menuItem.rating] first];
+    cell.descriptionLabel.text = menuItem.desc;
+    cell.restrictionLabel.text = (menuItem.restrictionflag) ? @"!" : @"";
+    
+    return cell;
+}
+
+- (void)selectItemInReviewCollection:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    MMMenuItemReviewCell *itemCell = (MMMenuItemReviewCell *) cell;
+    
+    touchedReview = [[MMMenuItemRating alloc] init];
+    touchedReview = itemCell.rating;
+    
+    MMBaseNavigationController *reviewNavPop = [self.storyboard instantiateViewControllerWithIdentifier:@"popOverNavigation"];
+    
+    MMReviewPopOverViewController *reviewPop = [reviewNavPop.viewControllers firstObject];
+    reviewPop.delegate = self;
+    
+    reviewPop.selectedRestaurant = _currentMerchant;
+    //reviewPop.reviewSize = self.
+    
+    
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewNavPop];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedReview];
+    
+    popover.delegate = self;
+    reviewPop.oldPopOverController = popover;
+    self.popOverController = popover;
+    
+    // Make sure keyboard is hidden before you show popup.
+    
+    [self.popOverController presentPopoverFromRect:cell.frame
+                                            inView:cell.superview
+                          permittedArrowDirections:UIPopoverArrowDirectionAny
+                                          animated:YES];
+}
+
+- (void)selectItemInMenuItemCollection:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
+    
+    touchedItem = [self.viewModel getItemFromCurrentDataSourceForIndexPath:indexPath];
+    
+    [self performSegueWithIdentifier:@"showMenuItem" sender:self];
 }
 
 @end
