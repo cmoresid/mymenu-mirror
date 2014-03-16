@@ -114,8 +114,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
  * Sets up the custom toolbar with all buttons, search bar and adds it to the view.
  */
 - (void)setupToolbar {
-    // Adjust for Toolbar and bottom bar.
-    [self.collectionView setContentInset:UIEdgeInsetsMake(64, 0, 64, 0)];
+    // Adjust for Toolbar and bottom bar
+    [self.collectionView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
 
     //create toolbar and set origin and dimensions
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
@@ -142,7 +142,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	[self.labelView setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
 	[self.labelView setBackgroundColor:[UIColor clearColor]];
 	[self.labelView setTextColor:[UIColor whiteColor]];
-	[self.labelView setText:@"Title"];
+	//[self.labelView setText:@"Title"];
 	[self.labelView setTextAlignment:NSTextAlignmentCenter];
 	
 	UIBarButtonItem *dateLabel = [[UIBarButtonItem alloc] initWithCustomView:self.labelView];
