@@ -59,7 +59,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
+	// Delegate our self to the db fetcher.
+    [MMDBFetcher get].delegate = self;
     self.navigationController.toolbar.hidden = TRUE;
 }
 
