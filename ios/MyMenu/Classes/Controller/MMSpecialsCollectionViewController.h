@@ -40,12 +40,17 @@
 /**
  *  Date the user has selected to show a week of
  */
+@property(atomic) NSMutableArray * dateIndex;
+
+/**
+ *  Date the user has selected to show a week of
+ */
 @property(nonatomic) UILabel *labelView;
 
 /**
  *  All specials by key an date
  */
-@property(atomic) NSMutableArray *specials;
+@property(atomic) NSMutableDictionary *specials;
 
 /**
  *  todays date.

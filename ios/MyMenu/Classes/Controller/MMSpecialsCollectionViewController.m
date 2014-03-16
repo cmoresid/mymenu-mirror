@@ -74,7 +74,9 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     [self setShowTypes:[NSMutableArray arrayWithObjects:@"Food", @"Drinks", @"Dessert", nil]];
 
     // Create Array For Holding Specials and the Date Index (Headers)
-    [self setSpecials:[[NSMutableArray alloc] init]];
+    [self setSpecials:[[NSMutableDictionary alloc]init]];
+	
+	[self setDateIndex:[[NSMutableArray alloc] init]];
 
 	// Date at Midnight
 	NSDate *date = [NSDate date];
@@ -136,7 +138,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     UIBarButtonItem *searchBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
 	
 	
-	self.labelView = [[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, 150.0f, 21.0f)];
+	self.labelView = [[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, 300.0f, 21.0f)];
 	[self.labelView setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
 	[self.labelView setBackgroundColor:[UIColor clearColor]];
 	[self.labelView setTextColor:[UIColor whiteColor]];
@@ -222,43 +224,71 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"EE MMM dd"];
 	
-   // Display the Date in the toolbar
-    NSString *title = [formatter stringFromDate:date];
+	// Get the Nearest Sunday, load from there on.
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [gregorian components:NSWeekdayCalendarUnit fromDate:date];
+    NSInteger weekday = [comps weekday];
+	NSDate *lastSunday = [date dateByAddingTimeInterval:-3600*24*(weekday-1)];
+	
+	// Display the Date in the toolbar
+    NSMutableString *title = [[formatter stringFromDate:lastSunday] mutableCopy];
+	[title appendFormat:@" - %@",[formatter stringFromDate:[self getDate:lastSunday PlusDays:6]]];
 	[self.labelView setText:title];
 	
 	// If we are displaying the page already don't reload.
-	if([date isEqualToDate:self.currentDate])  {
+	if([self.dateIndex containsObject:self.selectedDate])  {
 		return;
 	}
 	
-	self.currentDate = date;
-	[self.specials removeAllObjects];
-
+	[self.dateIndex removeAllObjects];
+	
+	for(int i = 0; i < 7; i++) {
+		[self.dateIndex addObject: [self getDate:lastSunday PlusDays:i]];
+	}
+	
     // Refresh the View
     [self.collectionView reloadData];
+	
+	for(NSDate * date in self.dateIndex) {
+		
+		if([self.specials objectForKey:date] != nil) {
+			[[self.specials objectForKey:date] removeAllObjects];
+		}
+		
+		[self loadDay:date];
+	}
+	
+    // TODO: display message no options selected?
+}
 
-    // Show Loading
+/**
+ * Request specials for a given day, with a Given Type
+ */
+- (void)loadDay:(NSDate *)date {
+	
+    // Show Indicator
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-
-
-    // Check each Type if we are returned that type
+	
+    // Check for which type we need, and if it is the showTypes array.
     if ([self.showTypes containsObject:@"Food"])
         [[MMDBFetcher get] getFoodSpecialsForDate:date];
-
+	
     if ([self.showTypes containsObject:@"Drinks"])
         [[MMDBFetcher get] getDrinkSpecialsForDate:date];
-
+	
     if ([self.showTypes containsObject:@"Dessert"])
         [[MMDBFetcher get] getDessertSpecialsForDate:date];
-
-    // Hide the Indicator if for some reason the user selects nothing to be shown.
+	
+	
+    // Safety check if no type is selected, we need to close the loading
     if (self.showTypes.count == 0)
         [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
-
+	
 	
 	
     // TODO: display message no options selected?
 }
+
 
 /**
  * Request specials for a given day, with a Given Type
@@ -269,7 +299,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
 
     // Check for which type we need, and if it is the showTypes array.
-
     if ([self.showTypes containsObject:@"Food"] && [type isEqualToString:@"Food"])
         [[MMDBFetcher get] getFoodSpecialsForDate:date];
 
@@ -326,26 +355,30 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     }
 
     // Check that the query returned something
-    if (webSpecials.count > 0 && [date isEqualToDate:self.currentDate]) {
-            [self.specials addObjectsFromArray:[webSpecials mutableCopy]];
-        /*
-        NSUInteger index = [self indexOfDate:date];
-        if(index != NSNotFound) {
+	//TODO: Check if date is within the selected date range...
+    if (webSpecials.count > 0 && [self.dateIndex containsObject:date]) {
+		//[self.specials addObjectsFromArray:[webSpecials mutableCopy]];
+        
+       // NSUInteger index = [self.dateIndex indexOfObject:date];
+        if([self.specials objectForKey:date] != nil) {
             // Add to a previous section
-            [[self.specials objectAtIndex:index] addObjectsFromArray:webSpecials];
+            [[self.specials objectForKey:date] addObjectsFromArray:webSpecials];
         } else {
             // If we do not have content for the current date create a new "section"
-            [self.dateIndex addObject:date];
-            [self.specials addObject:webSpecials];
-         */
-    }
-
+            [self.specials setObject:[webSpecials mutableCopy] forKey:date];
+		}
+	}
+	
     // Reload the View
     [[self collectionView] reloadData];
 }
 
 #pragma mark -
 #pragma mark Collection View
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+	return self.dateIndex.count;
+}
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -369,7 +402,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	cell.layer.shadowPath = [UIBezierPath bezierPathWithRect:cell.bounds].CGPath;
 	
     // Get the Special
-    MMSpecial *special = [self.specials objectAtIndex:indexPath.item];
+    MMSpecial *special = [[self.specials objectForKey:[self.dateIndex objectAtIndex:indexPath.section]] objectAtIndex:indexPath.item];
 
     // Load the Image in
     UIImageView *imageView = (UIImageView *) [cell viewWithTag:100];
@@ -385,6 +418,34 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     return cell;
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+	
+	// Get the HeaderView
+	static NSString *headerIdentifier = @"header";
+	UICollectionReusableView *reusableview = nil;
+    if (kind == UICollectionElementKindSectionHeader) {
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerIdentifier forIndexPath:indexPath];
+        
+		// Format for Header Date
+		NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+		[formatter setDateFormat:@"EEEE MMMM dd"];
+		
+		// Get the Date for that section
+		NSString *title = [formatter stringFromDate:[self.dateIndex objectAtIndex:indexPath.section]];
+		
+		// Get View and set
+		UITextView * textView = (UITextView *) [headerView viewWithTag:99];
+		textView.text = title;
+		
+		// Return the setupview
+		reusableview = headerView;
+    }
+	return reusableview;
+	
+}
+
+
 // I implemented didSelectItemAtIndexPath:, but you could use willSelectItemAtIndexPath: depending on what you intend to do. See the docs of these two methods for the differences.
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // If you need to use the touched cell, you can retrieve it like so
@@ -393,7 +454,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return self.specials.count;
+	NSArray * sectionArray = [self.specials objectForKey:[self.dateIndex objectAtIndex:section]];
+	return sectionArray.count;
 }
 
 #pragma mark - 
@@ -406,24 +468,27 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     [[self showTypes] removeObject:type];
     NSUInteger categoryId = [types indexOfObject:type];
 	
-	// Section
-	NSMutableArray *currentDateIndexArray = self.specials;
-	
-	// Set of Items needing to be removed
-	NSMutableIndexSet *set = [[NSMutableIndexSet alloc] init];
-	int i = 0;
-	
-	// Check all the specials for this date if they are of the same type.
-	for (MMSpecial *special in currentDateIndexArray) {
-		if (([[special categoryid] unsignedIntegerValue] - 1) == categoryId) {
-			[set addIndex:i];
+	for(NSDate * date in self.dateIndex) {
+		// Section
+		NSMutableArray *currentDateIndexArray = [self.specials objectForKey:date];
+		
+		// Set of Items needing to be removed
+		NSMutableIndexSet *set = [[NSMutableIndexSet alloc] init];
+		int i = 0;
+		
+		// Check all the specials for this date if they are of the same type.
+		for (MMSpecial *special in currentDateIndexArray) {
+			if (([[special categoryid] unsignedIntegerValue] - 1) == categoryId) {
+				[set addIndex:i];
+			}
+			i++;
 		}
-		i++;
-    }
-	
-	// Remove all of the same type
-	[currentDateIndexArray removeObjectsAtIndexes:set];
-	
+		
+		// Remove all of the same type
+		[currentDateIndexArray removeObjectsAtIndexes:set];
+		[set removeAllIndexes];
+		
+	}
     // Refresh the view
     [self.collectionView reloadData];
 }
