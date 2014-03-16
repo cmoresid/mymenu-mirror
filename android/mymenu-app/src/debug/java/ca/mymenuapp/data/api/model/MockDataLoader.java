@@ -56,6 +56,15 @@ public final class MockDataLoader {
     return item;
   }
 
+  public Map<Long, Restaurant> newRestaurants() {
+    Map<Long, Restaurant> restaurantMap = new LinkedHashMap<>();
+    AtomicLong nextId = new AtomicLong();
+
+    restaurantMap.put(nextId.get(), new Restaurant.Builder(nextId.getAndIncrement()).get());
+
+    return restaurantMap;
+  }
+
   public Map<String, User> newUsers() {
     Map<String, User> userMap = new LinkedHashMap<>();
 
