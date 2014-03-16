@@ -146,7 +146,7 @@ const NSInteger MMReviewsDataSource = 1;
     
     RACSequence *filteredResults = [self.dataSource.rac_sequence
         filter:^BOOL(MMMenuItem *menuItem) {
-            return [[menuItem.name lowercaseString] rangeOfString:valueToSearchFor].location != NSNotFound;
+            return [menuItem.name rangeOfString:valueToSearchFor options:NSCaseInsensitiveSearch].location != NSNotFound;
     }];
     
     self.dataSource = filteredResults.array;

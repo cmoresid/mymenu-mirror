@@ -235,9 +235,14 @@ MMMenuItemRating *touchedReview;
         deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(NSNumber *show) {
             if ([show isEqualToNumber:@YES]) {
+                // Don't allow user to switch tabs while data
+                // is loading.
+                self.categorySegmentControl.enabled = FALSE;
                 [MBProgressHUD showHUDAddedTo:self.menuItemsCollectionView animated:YES];
             }
             else if ([show isEqualToNumber:@NO]) {
+                // Enable user to switch tabs again.
+                self.categorySegmentControl.enabled = TRUE;
                 [MBProgressHUD hideAllHUDsForView:self.menuItemsCollectionView animated:YES];
             }
     }];
