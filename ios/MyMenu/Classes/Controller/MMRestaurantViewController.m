@@ -208,6 +208,10 @@ MMMenuItemRating *touchedReview;
     
     self.merchantHoursLabel.text = [MMPresentationFormatter formatBusinessHoursForOpenTime:self.viewModel.merchantInformation.opentime withCloseTime:self.viewModel.merchantInformation.closetime];
     
+    // Ignore the first signal since don't care about the
+    // initial binding to the selectedTabIndex; only the
+    // signals afterwards when the user actually changes
+    // the tab.
     [[[RACObserve(self.viewModel, selectedTabIndex) skip:1]
         deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(NSNumber *tabIndex) {
@@ -537,7 +541,6 @@ MMMenuItemRating *touchedReview;
     MMBaseNavigationController *reviewNavPop = [self.storyboard instantiateViewControllerWithIdentifier:@"popOverNavigation"];
     
     MMReviewPopOverViewController *reviewPop = [reviewNavPop.viewControllers firstObject];
-    
     reviewPop.selectedRestaurant = _currentMerchant;
     reviewPop.menuItemReview = selectedReview;
     
@@ -548,13 +551,10 @@ MMMenuItemRating *touchedReview;
     };
     
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewNavPop];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:selectedReview];
-    
     popover.delegate = self;
+    
     reviewPop.oldPopOverController = popover;
     self.popOverController = popover;
-    
-    // Make sure keyboard is hidden before you show popup.
     
     [self.popOverController presentPopoverFromRect:cell.frame
                                             inView:cell.superview
