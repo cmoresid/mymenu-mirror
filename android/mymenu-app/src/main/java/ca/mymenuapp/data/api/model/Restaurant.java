@@ -127,6 +127,8 @@ public class Restaurant implements Parcelable {
       restaurant = new Restaurant();
       restaurant.id = id;
       // canned data
+      // firstName
+      // lastName
       restaurant.businessNumber = "780-318-1058";
     }
 
