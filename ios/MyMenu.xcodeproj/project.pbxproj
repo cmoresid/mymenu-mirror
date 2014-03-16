@@ -200,7 +200,6 @@
 		83CC9ED618D253FB00E0B48A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8FD0A88C83664DE885E9A628 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B1CFF7F18A46CF600E9F778 /* libPods-NSString-UrlEncode.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-NSString-UrlEncode.a"; path = "Pods/build/Debug-iphoneos/libPods-NSString-UrlEncode.a"; sourceTree = "<group>"; };
-		9B4029DA18CBA7E5007619E1 /* MMReviewPopOverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMReviewPopOverDelegate.h; sourceTree = "<group>"; };
 		9BBD913F189478CF006DDBCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9BBD9141189478DB006DDBCE /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B025696018CBC92100264A3B /* MMMainTabViewSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMainTabViewSegue.m; sourceTree = "<group>"; };
@@ -690,7 +689,6 @@
 				B0A9902018CA43E900AC4CBB /* MMRestaurantPopOverDelegate.h */,
 				B0A9901E18CA43E900AC4CBB /* MMRestaurantMapDelegate.h */,
 				B0A9901F18CA43E900AC4CBB /* MMRestaurantMapDelegate.m */,
-				9B4029DA18CBA7E5007619E1 /* MMReviewPopOverDelegate.h */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";

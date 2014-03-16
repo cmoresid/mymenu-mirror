@@ -448,11 +448,15 @@ MMMenuItemRating *touchedItem;
         MMBaseNavigationController *reviewNavPop = [self.storyboard instantiateViewControllerWithIdentifier:@"popOverNavigation"];
         
         MMReviewPopOverViewController *reviewPop = [reviewNavPop.viewControllers firstObject];
-        reviewPop.delegate = self;
         
+        reviewPop.callback = ^(BOOL done) {
+            [MMDBFetcher get].delegate = self;
+            [self.popOverController dismissPopoverAnimated:YES];
+        };
+        
+        reviewPop.menuItemReview = touchedItem;
         reviewPop.selectedRestaurant = _currentMerchant;
         reviewPop.reviewSize = self.reviewViewFlag;
-        
         
         UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewNavPop];
         
@@ -494,19 +498,6 @@ MMMenuItemRating *touchedItem;
         _eatenThisButton.enabled = YES;
         _eatenThisButton.backgroundColor = [UIColor lightTealColor];
     }
-
-}
-
-- (void)didSelectDone:(BOOL)done {
-    [MMDBFetcher get].delegate = self;
-    [self.popOverController dismissPopoverAnimated:YES];
-
-
-}
-
-- (void)didSelectCancel:(BOOL)cancel  {
-    [MMDBFetcher get].delegate = self;
-    [self.popOverController dismissPopoverAnimated:YES];
 
 }
 

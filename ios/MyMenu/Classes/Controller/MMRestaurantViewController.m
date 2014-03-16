@@ -230,6 +230,8 @@ MMMenuItemRating *touchedReview;
      subscribeNext:^(NSArray *categories) {
          @strongify(self);
          
+         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+         [self.view.subviews setValue:@NO forKeyPath:@"hidden"];
          [self configureCategorySegmentControlWithCategories:categories];
      }
      error:^(NSError *error) {
@@ -242,10 +244,6 @@ MMMenuItemRating *touchedReview;
                                                  cancelButtonTitle:@"OK"
                                                  otherButtonTitles:nil];
          [message show];
-     }
-     completed:^{
-         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-         [self.view.subviews setValue:@NO forKeyPath:@"hidden"];
      }];
 }
 
@@ -551,22 +549,24 @@ MMMenuItemRating *touchedReview;
 
 - (void)selectItemInReviewCollection:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    MMMenuItemReviewCell *itemCell = (MMMenuItemReviewCell *) cell;
-    
-    touchedReview = [[MMMenuItemRating alloc] init];
-    touchedReview = itemCell.rating;
+
+    MMMenuItemRating *selectedReview = [self.viewModel getItemFromCurrentDataSourceForIndexPath:indexPath];
     
     MMBaseNavigationController *reviewNavPop = [self.storyboard instantiateViewControllerWithIdentifier:@"popOverNavigation"];
     
     MMReviewPopOverViewController *reviewPop = [reviewNavPop.viewControllers firstObject];
-    reviewPop.delegate = self;
     
     reviewPop.selectedRestaurant = _currentMerchant;
-    //reviewPop.reviewSize = self.
+    reviewPop.menuItemReview = selectedReview;
     
+    @weakify(self)
+    reviewPop.callback = ^(BOOL done) {
+        @strongify(self)
+        [self.popOverController dismissPopoverAnimated:YES];
+    };
     
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewNavPop];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedReview];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:selectedReview];
     
     popover.delegate = self;
     reviewPop.oldPopOverController = popover;
