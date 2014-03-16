@@ -38,6 +38,7 @@ public class MenuItemActivity extends BaseActivity {
   @InjectView(R.id.menu_item_image_header) ImageView header;
   @InjectView(R.id.menu_item_description) TextView description;
   @InjectView(R.id.menu_item_reviews) ListView reviewListView;
+  @InjectView(R.id.menu_item_reviews_summary) TextView reviewSummary;
 
   @InjectView(R.id.sliding_layout) SlidingUpPanelLayout slidingLayout;
 
@@ -76,6 +77,7 @@ public class MenuItemActivity extends BaseActivity {
     getActionBar().setDisplayHomeAsUpEnabled(true);
 
     slidingLayout.setAnchorPoint(0.2f);
+    slidingLayout.setDragView(reviewSummary);
 
     initFancyScroll();
   }
