@@ -46,6 +46,7 @@
 @property(nonatomic, weak) IBOutlet UIGestureRecognizer *leftSwipeGestureForCategory;
 @property(nonatomic, weak) IBOutlet UIGestureRecognizer *rightSwipeGestureForCategory;
 @property(nonatomic, getter = isSearching) BOOL searching;
+@property(nonatomic, strong) NSString *currentValueInSearchBar;
 
 - (IBAction)changeCategoryBySwipe:(UISwipeGestureRecognizer *)sender;
 
@@ -64,6 +65,7 @@ MMMenuItemRating *touchedReview;
     if (self) {
         self.viewModel = [[MMRestaurantViewModel alloc] init];
         self.searching = NO;
+        self.currentValueInSearchBar = @"";
     }
     
     return self;
@@ -169,6 +171,11 @@ MMMenuItemRating *touchedReview;
     UISearchBar *newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0f, 44.0f)];
     newSearchBar.placeholder = NSLocalizedString(@"Search for Menu Item", nil);
     
+    if (![self.currentValueInSearchBar isEqualToString:@""]) {
+        newSearchBar.text = self.currentValueInSearchBar;
+        self.currentValueInSearchBar = @"";
+    }
+    
     [self.menuItemsCollectionView addSubview:newSearchBar];
     
     MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
@@ -215,6 +222,8 @@ MMMenuItemRating *touchedReview;
     [[[RACObserve(self.viewModel, selectedTabIndex) skip:1]
         deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(NSNumber *tabIndex) {
+            self.searchBar.text = @"";
+            
             if ([tabIndex isEqualToNumber:self.viewModel.reviewTabIndex]) {
                 [self configureCollectionViewForReviews];
             }
@@ -294,11 +303,12 @@ MMMenuItemRating *touchedReview;
         touchedItem = [self.viewModel getItemFromCurrentDataSourceForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         [self performSegueWithIdentifier:@"showMenuItem" sender:self];
     }
+
+    self.currentValueInSearchBar = searchBar.text;
     
     [searchBar resignFirstResponder];
     [searchBar removeFromSuperview];
-    
-    [self.viewModel searchForItemWithValue:@""];
+
     [self.menuItemsCollectionView reloadData];
 }
 
