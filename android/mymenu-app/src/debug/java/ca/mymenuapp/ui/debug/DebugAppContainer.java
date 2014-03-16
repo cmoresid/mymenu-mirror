@@ -50,7 +50,6 @@ import ca.mymenuapp.data.prefs.IntPreference;
 import ca.mymenuapp.data.prefs.StringPreference;
 import ca.mymenuapp.ui.AppContainer;
 import ca.mymenuapp.ui.activities.LoginActivity;
-import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.ui.misc.EnumAdapter;
 import ca.mymenuapp.util.Strings;
 import com.f2prateek.ln.Ln;
@@ -208,7 +207,7 @@ public class DebugAppContainer implements AppContainer {
   }
 
   private static String getSizeString(long bytes) {
-    String[] units = new String[] { "B", "KB", "MB", "GB" };
+    String[] units = new String[] {"B", "KB", "MB", "GB"};
     int unit = 0;
     while (bytes >= 1024) {
       bytes /= 1024;

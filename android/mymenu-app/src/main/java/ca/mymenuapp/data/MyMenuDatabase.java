@@ -1,7 +1,6 @@
 package ca.mymenuapp.data;
 
 import ca.mymenuapp.MyMenuApi;
-import ca.mymenuapp.data.api.model.RestaurantMenu;
 import ca.mymenuapp.data.api.model.DietaryRestriction;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.MenuCategory;
@@ -9,6 +8,7 @@ import ca.mymenuapp.data.api.model.MenuItem;
 import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
+import ca.mymenuapp.data.api.model.RestaurantMenu;
 import ca.mymenuapp.data.api.model.RestaurantResponse;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.api.model.UserResponse;
@@ -183,15 +183,14 @@ public class MyMenuDatabase {
           @Override
           public RestaurantMenu call(List<MenuItem> menuItems) {
             Restaurant restaurant =
-                BlockingObservable.from(myMenuApi.getRestaurant(restaurantId))
-                    .first();
+                BlockingObservable.from(myMenuApi.getRestaurant(restaurantId)).first();
             List<MenuCategory> categories =
                 BlockingObservable.from(myMenuApi.getMenuCategories(MyMenuApi.GET_MENU_CATEGORIES))
                     .first().categories;
             List<MenuItemReview> reviews = BlockingObservable.from(
                 myMenuApi.getReviewsForRestaurant(
-                    String.format(MyMenuApi.GET_RESTAURANT_REVIEWS, restaurantId)))
-                .first().reviews;
+                    String.format(MyMenuApi.GET_RESTAURANT_REVIEWS, restaurantId))
+            ).first().reviews;
             return RestaurantMenu.generate(restaurant, menuItems, categories, reviews);
           }
         })
