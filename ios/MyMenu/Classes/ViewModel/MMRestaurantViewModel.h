@@ -8,8 +8,8 @@
 
 #import "RVMViewModel.h"
 
-extern const NSInteger MMOrderByTopRated;
 extern const NSInteger MMOrderByRecent;
+extern const NSInteger MMOrderByTopRated;
 extern const NSInteger MMMenuItemDataSource;
 extern const NSInteger MMReviewsDataSource;
 

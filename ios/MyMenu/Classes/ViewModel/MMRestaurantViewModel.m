@@ -14,8 +14,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
-const NSInteger MMOrderByTopRated = 0;
-const NSInteger MMOrderByRecent = 1;
+const NSInteger MMOrderByRecent = 0;
+const NSInteger MMOrderByTopRated = 1;
 const NSInteger MMMenuItemDataSource = 0;
 const NSInteger MMReviewsDataSource = 1;
 
@@ -80,6 +80,28 @@ const NSInteger MMReviewsDataSource = 1;
                 [self getRatingsForMerchant];
             }
          ];
+        
+        [RACObserve(self, reviewOrder) subscribeNext:^(NSNumber *reviewOrderBy) {
+            @strongify(self);
+            if (!self.allMenuItemReviews) return;
+            
+            if (reviewOrderBy.intValue == MMOrderByRecent) {
+                NSSortDescriptor *sortDescriptor;
+                sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date"
+                                                             ascending:NO];
+                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                self.dataSource = [self.allMenuItemReviews sortedArrayUsingDescriptors:sortDescriptors];
+                [self.controllerShouldReloadDataSource sendNext:@YES];
+            }
+            else {
+                NSSortDescriptor *sortDescriptor;
+                sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rating"
+                                                             ascending:NO];
+                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                self.dataSource = [self.allMenuItemReviews sortedArrayUsingDescriptors:sortDescriptors];
+                [self.controllerShouldReloadDataSource sendNext:@YES];
+            }
+        }];
     }
     
     return self;
