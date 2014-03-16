@@ -142,6 +142,7 @@ android.applicationVariants.all { variant ->
   checkstyle.exclude('**/R.java')
   checkstyle.exclude('**/*\$\$*.java') // Dagger, ButterKnife, Dart
   checkstyle.exclude('**/ForegroundImageView.java') // space need after opening parenthesis?
+  checkstyle.exclude('**/SlidingUpPanelLayout.java') // space need after opening parenthesis?
   project.tasks.getByName("check").dependsOn checkstyle
 
   // JavaDoc

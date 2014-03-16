@@ -1,10 +1,12 @@
 package ca.mymenuapp.data.api.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 @Root(name = "result")
-public class Restaurant {
+public class Restaurant implements Parcelable {
   @Element(name = "id") public long id;
   @Element(name = "email") public String email;
   @Element(name = "password") public String password;
@@ -32,6 +34,90 @@ public class Restaurant {
   @Element(name = "pricehigh") public String priceHigh;
   @Element(name = "opentime") public String openTime;
   @Element(name = "closetime") public String closeTime;
+
+  public Restaurant() {
+    // default constructor
+  }
+
+  protected Restaurant(Parcel in) {
+    id = in.readLong();
+    email = in.readString();
+    password = in.readString();
+    firstName = in.readString();
+    lastName = in.readString();
+    phone = in.readString();
+    businessName = in.readString();
+    businessNumber = in.readString();
+    businessDescription = in.readString();
+    businessPicture = in.readString();
+    address = in.readString();
+    city = in.readString();
+    locality = in.readString();
+    postalCode = in.readString();
+    country = in.readString();
+    lat = in.readDouble();
+    lng = in.readDouble();
+    facebook = in.readString();
+    twitter = in.readString();
+    website = in.readString();
+    rating = in.readDouble();
+    ratingCount = in.readString();
+    categoryId = in.readString();
+    priceLow = in.readString();
+    priceHigh = in.readString();
+    openTime = in.readString();
+    closeTime = in.readString();
+  }
+
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeLong(id);
+    dest.writeString(email);
+    dest.writeString(password);
+    dest.writeString(firstName);
+    dest.writeString(lastName);
+    dest.writeString(phone);
+    dest.writeString(businessName);
+    dest.writeString(businessNumber);
+    dest.writeString(businessDescription);
+    dest.writeString(businessPicture);
+    dest.writeString(address);
+    dest.writeString(city);
+    dest.writeString(locality);
+    dest.writeString(postalCode);
+    dest.writeString(country);
+    dest.writeDouble(lat);
+    dest.writeDouble(lng);
+    dest.writeString(facebook);
+    dest.writeString(twitter);
+    dest.writeString(website);
+    dest.writeDouble(rating);
+    dest.writeString(ratingCount);
+    dest.writeString(categoryId);
+    dest.writeString(priceLow);
+    dest.writeString(priceHigh);
+    dest.writeString(openTime);
+    dest.writeString(closeTime);
+  }
+
+  @SuppressWarnings("unused")
+  public static final Parcelable.Creator<Restaurant> CREATOR =
+      new Parcelable.Creator<Restaurant>() {
+        @Override
+        public Restaurant createFromParcel(Parcel in) {
+          return new Restaurant(in);
+        }
+
+        @Override
+        public Restaurant[] newArray(int size) {
+          return new Restaurant[size];
+        }
+      };
 
   @Override public String toString() {
     return "Restaurant{" +

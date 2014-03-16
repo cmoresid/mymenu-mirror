@@ -49,6 +49,10 @@
         android:theme="@style/AppTheme.Transparent"
         android:parentActivityName=".ui.activities.MainActivity"
         android:label="@string/application_name"/>
+    <activity
+        android:name=".ui.activities.MenuItemActivity"
+        android:theme="@style/AppTheme.Transparent"
+        android:label="@string/application_name"/>
   </application>
 
 </manifest>

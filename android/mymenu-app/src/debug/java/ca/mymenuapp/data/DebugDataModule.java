@@ -22,9 +22,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import ca.mymenuapp.dagger.scopes.ForApplication;
 import ca.mymenuapp.data.api.DebugApiModule;
+import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.BooleanPreference;
 import ca.mymenuapp.data.prefs.IntPreference;
+import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.prefs.StringPreference;
+import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
@@ -195,5 +198,12 @@ public final class DebugDataModule {
       builder.downloader(new OkHttpDownloader(client));
     }
     return builder.build();
+  }
+
+  @Provides @Singleton @Named(DataModule.USER_PREFERENCE)
+  ObjectPreference<User> providesUser(SharedPreferences preferences, Gson gson,
+      @IsMockMode boolean isMockMode) {
+    return new ObjectPreference<>(preferences, gson, User.class,
+        DataModule.USER_PREFERENCE + ".mock");
   }
 }

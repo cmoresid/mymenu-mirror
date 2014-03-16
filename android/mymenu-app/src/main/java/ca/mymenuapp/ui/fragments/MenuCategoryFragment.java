@@ -2,17 +2,24 @@ package ca.mymenuapp.ui.fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.MenuItem;
+import ca.mymenuapp.data.api.model.MenuItemReview;
+import ca.mymenuapp.data.api.model.Restaurant;
+import ca.mymenuapp.ui.activities.MenuItemActivity;
 import ca.mymenuapp.ui.misc.BindableAdapter;
 import ca.mymenuapp.ui.widgets.HeaderGridView;
 import com.f2prateek.dart.InjectExtra;
@@ -22,23 +29,34 @@ import java.util.Collections;
 import java.util.List;
 import javax.inject.Inject;
 
-public class MenuCategoryFragment extends BaseFragment {
-  public static final String ARGS_ITEMS = "items";
+public class MenuCategoryFragment extends BaseFragment implements AdapterView.OnItemClickListener {
+  private static final String ARGS_ITEMS = "items";
+  private static final String ARGS_RESTAURANT = "restaurant";
+  private static final String ARGS_REVIEWS = "reviews";
+
+  @InjectExtra(ARGS_RESTAURANT) Restaurant restaurant;
   @InjectExtra(ARGS_ITEMS) ArrayList<MenuItem> items;
+  @InjectExtra(ARGS_REVIEWS) ArrayList<MenuItemReview> reviews;
+
   @InjectView(R.id.menu_grid) HeaderGridView gridView;
-  private AbsListView.OnScrollListener scrollListener;
+
+  AbsListView.OnScrollListener scrollListener;
+  BaseAdapter gridAdapter;
 
   @Inject Picasso picasso;
 
   /**
    * Returns a new instance of this fragment for the given section number.
    */
-  public static MenuCategoryFragment newInstance(List<MenuItem> menuItems) {
+  public static MenuCategoryFragment newInstance(List<MenuItem> menuItems, Restaurant restaurant,
+      List<MenuItemReview> reviews) {
     MenuCategoryFragment fragment = new MenuCategoryFragment();
     Bundle args = new Bundle();
     ArrayList<MenuItem> menuItemArrayList = new ArrayList<>(menuItems);
     Collections.shuffle(menuItemArrayList); // todo, evaluate usefullness?
     args.putParcelableArrayList(ARGS_ITEMS, menuItemArrayList);
+    args.putParcelable(ARGS_RESTAURANT, restaurant);
+    args.putParcelableArrayList(ARGS_REVIEWS, new ArrayList<Parcelable>(reviews));
     fragment.setArguments(args);
     return fragment;
   }
@@ -48,19 +66,30 @@ public class MenuCategoryFragment extends BaseFragment {
     return inflater.inflate(R.layout.fragment_menu_category, container, false);
   }
 
-  @Override public void onAttach(Activity activity) {
-    super.onAttach(activity);
-    scrollListener = (AbsListView.OnScrollListener) activity;
-  }
-
   @Override public void onStart() {
     super.onStart();
     View placeholder = LayoutInflater.from(activityContext)
         .inflate(R.layout.restaurant_header_placeholder, gridView, false);
     gridView.addHeaderView(placeholder);
     gridView.setTag(placeholder);
-    gridView.setAdapter(new MenuItemAdapter(activityContext, items));
+    gridAdapter = new MenuItemAdapter(activityContext, items);
+    gridView.setAdapter(gridAdapter);
     gridView.setOnScrollListener(scrollListener);
+    gridView.setOnItemClickListener(this);
+  }
+
+  @Override public void onAttach(Activity activity) {
+    super.onAttach(activity);
+    scrollListener = (AbsListView.OnScrollListener) activity;
+  }
+
+  @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    MenuItem menuItem = (MenuItem) gridAdapter.getItem(position);
+    Intent intent = new Intent(activityContext, MenuItemActivity.class);
+    intent.putExtra(MenuItemActivity.ARGS_MENU_ITEM, menuItem);
+    intent.putExtra(MenuItemActivity.ARGS_RESTAURANT, restaurant);
+    intent.putExtra(MenuItemActivity.ARGS_REVIEWS, reviews);
+    startActivity(intent);
   }
 
   class MenuItemAdapter extends BindableAdapter<MenuItem> {

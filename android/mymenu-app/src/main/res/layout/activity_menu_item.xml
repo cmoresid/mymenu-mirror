@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ca.mymenuapp.ui.widgets.SlidingUpPanelLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sliding_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:collapsedHeight="128dp"
+    android:gravity="bottom">
+
+  <ca.mymenuapp.ui.widgets.NotifyingScrollView
+      android:id="@+id/scroll_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+      <FrameLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/action_bar_gradient"/>
+
+        <ca.mymenuapp.ui.widgets.AspectRatioImageView
+            android:id="@+id/menu_item_image_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:aspectRatioEnabled="true"
+            app:dominantMeasurement="width"
+            app:aspectRatio="0.67"
+            android:scaleType="centerCrop"/>
+
+      </FrameLayout>
+
+      <TextView
+          android:id="@+id/menu_item_description"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
+      <FrameLayout android:layout_width="match_parent"
+          android:layout_height="1200dp">
+      </FrameLayout>
+
+    </LinearLayout>
+
+  </ca.mymenuapp.ui.widgets.NotifyingScrollView>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:gravity="center|top"
+        android:background="@color/turqoise"
+        android:text="The Awesome Sliding Up Panel"
+        android:textSize="16sp"/>
+
+    <ListView
+        android:id="@+id/menu_item_reviews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+  </LinearLayout>
+
+</ca.mymenuapp.ui.widgets.SlidingUpPanelLayout>

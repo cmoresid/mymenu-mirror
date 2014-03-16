@@ -61,11 +61,11 @@ public class RestaurantListFragment extends BaseFragment
   private void getRestaurantList() {
     /* Change this to get all restaurants and then initialize the list. */
     myMenuDatabase.getAllRestaurants(new EndlessObserver<List<Restaurant>>() {
-          @Override
-          public void onNext(List<Restaurant> restaurants) {
-            initList(restaurants);
-          }
-        }
+                                       @Override
+                                       public void onNext(List<Restaurant> restaurants) {
+                                         initList(restaurants);
+                                       }
+                                     }
     );
   }
 

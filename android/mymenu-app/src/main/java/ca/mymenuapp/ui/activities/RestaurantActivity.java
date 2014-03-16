@@ -20,20 +20,18 @@ import android.widget.ImageView;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
-import ca.mymenuapp.data.api.model.CategorizedMenu;
-import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.data.api.model.Restaurant;
+import ca.mymenuapp.data.api.model.RestaurantMenu;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.MenuCategoryFragment;
-import ca.mymenuapp.ui.fragments.RestaurantsReviewFragment;
+import ca.mymenuapp.ui.fragments.ReviewsFragment;
 import ca.mymenuapp.ui.misc.AlphaForegroundColorSpan;
 import ca.mymenuapp.ui.widgets.KenBurnsView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
-import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -49,7 +47,6 @@ import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
  * todo : handle landscape
  */
 public class RestaurantActivity extends BaseActivity implements AbsListView.OnScrollListener {
-
   public static final String ARGS_RESTAURANT_ID = "restaurant_id";
 
   @InjectExtra(ARGS_RESTAURANT_ID) long restaurantId;
@@ -89,8 +86,6 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
   // synchronize the different pages.
   private AbsListView lastScrolledListView;
 
-  private List<MenuItemReview> reviewList;
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -98,15 +93,14 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
 
     getActionBar().setDisplayHomeAsUpEnabled(true);
 
-    myMenuDatabase.getRestaurant(restaurantId, new EndlessObserver<Restaurant>() {
-      @Override public void onNext(Restaurant restaurant) {
-        spannableString = new SpannableString(restaurant.businessName);
-        picasso.load(restaurant.businessPicture).fit().centerCrop().into(restaurantHeaderLogo);
-      }
-    });
-    myMenuDatabase.getMenu(userPreference.get(), restaurantId,
-        new EndlessObserver<CategorizedMenu>() {
-          @Override public void onNext(CategorizedMenu menu) {
+    myMenuDatabase.getRestaurantAndMenu(userPreference.get(), restaurantId,
+        new EndlessObserver<RestaurantMenu>() {
+          @Override public void onNext(RestaurantMenu menu) {
+            spannableString = new SpannableString(menu.getRestaurant().businessName);
+            picasso.load(menu.getRestaurant().businessPicture)
+                .fit()
+                .centerCrop()
+                .into(restaurantHeaderLogo);
             restaurantHeaderBackground.loadImages(picasso, menu.getRandomMenuItem().picture,
                 menu.getRandomMenuItem().picture);
             pager.setAdapter(new MenuCategoryAdapter(getFragmentManager(), menu));
@@ -114,9 +108,10 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
           }
         }
     );
-    myMenuDatabase.getRestaurantReviews(restaurantId, new EndlessObserver<List<MenuItemReview>>() {
-      @Override public void onNext(List<MenuItemReview> reviews) {
-        reviewList = reviews;
+
+    myMenuDatabase.getRestaurant(restaurantId, new EndlessObserver<Restaurant>() {
+      @Override public void onNext(final Restaurant restaurant) {
+
       }
     });
 
@@ -275,9 +270,9 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
    * Each page contains a list of menu items for that particular category.
    */
   class MenuCategoryAdapter extends FragmentPagerAdapter {
-    private final CategorizedMenu menu;
+    private final RestaurantMenu menu;
 
-    MenuCategoryAdapter(FragmentManager fm, CategorizedMenu menu) {
+    MenuCategoryAdapter(FragmentManager fm, RestaurantMenu menu) {
       super(fm);
       this.menu = menu;
     }
@@ -288,10 +283,10 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
 
     @Override public Fragment getItem(int position) {
       if (position < menu.getCategoryCount()) {
-        return MenuCategoryFragment.newInstance(menu.getMenuItemsByCategory(position));
+        return MenuCategoryFragment.newInstance(menu.getMenuItemsByCategory(position),
+            menu.getRestaurant(), menu.getReviews());
       } else {
-        // todo, what if reviewList is not yet initialized
-        return RestaurantsReviewFragment.newInstance(reviewList);
+        return ReviewsFragment.newInstance(menu.getReviews());
       }
     }
 

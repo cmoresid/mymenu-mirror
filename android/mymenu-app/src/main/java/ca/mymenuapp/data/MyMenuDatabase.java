@@ -1,13 +1,12 @@
 package ca.mymenuapp.data;
 
 import ca.mymenuapp.MyMenuApi;
-import ca.mymenuapp.data.api.model.CategorizedMenu;
+import ca.mymenuapp.data.api.model.RestaurantMenu;
 import ca.mymenuapp.data.api.model.DietaryRestriction;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.MenuCategory;
 import ca.mymenuapp.data.api.model.MenuItem;
 import ca.mymenuapp.data.api.model.MenuItemReview;
-import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.RestaurantResponse;
@@ -17,9 +16,7 @@ import ca.mymenuapp.data.api.model.UserRestrictionLink;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import ca.mymenuapp.data.rx.EndObserver;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import retrofit.client.Response;
 import rx.Observable;
 import rx.Observer;
@@ -31,33 +28,16 @@ import rx.subjects.PublishSubject;
 import rx.util.functions.Func1;
 
 /**
- * Explicitly marked as a depdency in modules, Dagger seemed to be creating new ones for each
+ * Explicitly marked as a dependency in modules, Dagger seemed to be creating new ones for each
  * activity.
  */
 public class MyMenuDatabase {
 
   private final MyMenuApi myMenuApi;
 
-  // cache of userRestrictions
-  private PublishSubject<List<Long>> userRestrictionsRequest;
-  private List<Long> userRestrictionsCache;
-
   // cache of dietaryRestrictions
   private PublishSubject<List<DietaryRestriction>> dietaryRestrictionsRequest;
   private List<DietaryRestriction> dietaryRestrictionsCache;
-
-  // Cache of menus
-  private final Map<Long, PublishSubject<CategorizedMenu>> menuRequests = new LinkedHashMap<>();
-  private final Map<Long, CategorizedMenu> menuCache = new LinkedHashMap<>();
-
-  // Cache of restaurants
-  private final Map<Long, PublishSubject<Restaurant>> restaurantRequests = new LinkedHashMap<>();
-  private final Map<Long, Restaurant> restaurantCache = new LinkedHashMap<>();
-
-  // Cache of restaurants reviews
-  private final Map<Long, PublishSubject<List<MenuItemReview>>> reviewRequests =
-      new LinkedHashMap<>();
-  private final Map<Long, List<MenuItemReview>> reviewsCache = new LinkedHashMap<>();
 
   public MyMenuDatabase(MyMenuApi myMenuApi) {
     this.myMenuApi = myMenuApi;
@@ -121,48 +101,6 @@ public class MyMenuDatabase {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(dietaryRestrictionsRequest);
-
-    return subscription;
-  }
-
-  public Subscription getRestaurantReviews(final long restaurantId,
-      Observer<List<MenuItemReview>> observer) {
-    List<MenuItemReview> reviews = reviewsCache.get(restaurantId);
-    if (reviews != null) {
-      // We have a cached value. Emit it immediately.
-      observer.onNext(reviews);
-    }
-    PublishSubject<List<MenuItemReview>> reviewRequest = reviewRequests.get(restaurantId);
-    if (reviewRequest != null) {
-      // There's an in-flight network request for this section already. Join it.
-      return reviewRequest.subscribe(observer);
-    }
-
-    reviewRequest = PublishSubject.create();
-    reviewRequests.put(restaurantId, reviewRequest);
-
-    Subscription subscription = reviewRequest.subscribe(observer);
-
-    reviewRequest.subscribe(new EndObserver<List<MenuItemReview>>() {
-      @Override public void onEnd() {
-        menuRequests.remove(restaurantId);
-      }
-
-      @Override public void onNext(List<MenuItemReview> reviews) {
-        reviewsCache.put(restaurantId, reviews);
-      }
-    });
-
-    final String query = String.format(MyMenuApi.GET_RESTAURANT_REVIEWS, restaurantId);
-    myMenuApi.getReviewsForRestaurant(query) //
-        .map(new Func1<MenuItemReviewResponse, List<MenuItemReview>>() {
-          @Override public List<MenuItemReview> call(MenuItemReviewResponse response) {
-            return response.reviews;
-          }
-        })
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(reviewRequest);
 
     return subscription;
   }
@@ -232,26 +170,29 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
-  /**
-   * Use restaurantId so we don't have to wait for full restaurant response.
-   */
-  public Subscription getMenu(final User user, final long restaurantId,
-      Observer<CategorizedMenu> observer) {
-    final String query = String.format(MyMenuApi.GET_RESTAURANT_MENU, restaurantId);
-    return myMenuApi.getMenu(query) //
+  public Subscription getRestaurantAndMenu(final User user, final long restaurantId,
+      Observer<RestaurantMenu> observer) {
+    return myMenuApi.getMenu(String.format(MyMenuApi.GET_RESTAURANT_MENU, restaurantId)) //
         .map(new Func1<MenuResponse, List<MenuItem>>() {
           @Override
           public List<MenuItem> call(MenuResponse menuResponse) {
             return menuResponse.menuItems;
           }
         })
-        .map(new Func1<List<MenuItem>, CategorizedMenu>() {
+        .map(new Func1<List<MenuItem>, RestaurantMenu>() {
           @Override
-          public CategorizedMenu call(List<MenuItem> menuItems) {
+          public RestaurantMenu call(List<MenuItem> menuItems) {
+            Restaurant restaurant =
+                BlockingObservable.from(myMenuApi.getRestaurant(restaurantId))
+                    .first();
             List<MenuCategory> categories =
                 BlockingObservable.from(myMenuApi.getMenuCategories(MyMenuApi.GET_MENU_CATEGORIES))
                     .first().categories;
-            return CategorizedMenu.parse(menuItems, categories);
+            List<MenuItemReview> reviews = BlockingObservable.from(
+                myMenuApi.getReviewsForRestaurant(
+                    String.format(MyMenuApi.GET_RESTAURANT_REVIEWS, restaurantId)))
+                .first().reviews;
+            return RestaurantMenu.generate(restaurant, menuItems, categories, reviews);
           }
         })
         .subscribeOn(Schedulers.io())
