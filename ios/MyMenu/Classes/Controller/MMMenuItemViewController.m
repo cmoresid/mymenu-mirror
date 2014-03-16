@@ -30,6 +30,7 @@
 #import "MMLoginManager.h"
 #import "MMMenuItemReviewCell.h"
 #import "MMReviewPopOverViewController.h"
+#import "MMPresentationFormatter.h"
 
 #define kCondensedTopReviews @"condensedTopReviews"
 #define kCondensedRecentReviews @"condensedRecentReviews"
@@ -86,11 +87,7 @@ MMMenuItemRating *touchedItem;
     [_itemDescription setTextColor:[UIColor blackColor]];
     [_itemDescription setFont:[UIFont systemFontOfSize:19.0]];
     _itemImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_currentMenuItem.picture]]];
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatter setMaximumFractionDigits:1];
-    [formatter setMinimumFractionDigits:1];
-    _itemRating.text = [formatter stringFromNumber:_currentMenuItem.rating];
+    _itemRating.text = [MMPresentationFormatter formatRatingForRawRating:_currentMenuItem.rating];
     _itemRatingView.backgroundColor = [UIColor lightBackgroundGray];
     _itemRatingView.layer.cornerRadius = 17.5;
     self.menuModificationsTableView.dataSource = self;
@@ -448,18 +445,20 @@ MMMenuItemRating *touchedItem;
         MMBaseNavigationController *reviewNavPop = [self.storyboard instantiateViewControllerWithIdentifier:@"popOverNavigation"];
         
         MMReviewPopOverViewController *reviewPop = [reviewNavPop.viewControllers firstObject];
-        reviewPop.delegate = self;
         
+        reviewPop.callback = ^(BOOL done) {
+            [MMDBFetcher get].delegate = self;
+            [self.popOverController dismissPopoverAnimated:YES];
+        };
+        
+        reviewPop.menuItemReview = touchedItem;
         reviewPop.selectedRestaurant = _currentMerchant;
         reviewPop.reviewSize = self.reviewViewFlag;
-        
         
         UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:reviewNavPop];
         
         popover.delegate = self;
         reviewPop.oldPopOverController = popover;
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedItem];
         
         popover.delegate = self;
         
@@ -494,19 +493,6 @@ MMMenuItemRating *touchedItem;
         _eatenThisButton.enabled = YES;
         _eatenThisButton.backgroundColor = [UIColor lightTealColor];
     }
-
-}
-
-- (void)didSelectDone:(BOOL)done {
-    [MMDBFetcher get].delegate = self;
-    [self.popOverController dismissPopoverAnimated:YES];
-
-
-}
-
-- (void)didSelectCancel:(BOOL)cancel  {
-    [MMDBFetcher get].delegate = self;
-    [self.popOverController dismissPopoverAnimated:YES];
 
 }
 

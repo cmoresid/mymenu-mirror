@@ -108,9 +108,4 @@ typedef void (^RatingsReturnBlock)(NSNumber *);
  */
 - (void)moveRatingWheelWithTouch:(CGPoint)touchLocation;
 
-/**
- * Called when the back button on the navigation bar is pressed
- */
--(IBAction)backButtonPressed:(id)sender;
-
 @end
