@@ -581,7 +581,6 @@ MMMenuItemRating *touchedReview;
 }
 
 - (void)selectItemInMenuItemCollection:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
-    
     touchedItem = [self.viewModel getItemFromCurrentDataSourceForIndexPath:indexPath];
     
     [self performSegueWithIdentifier:@"showMenuItem" sender:self];

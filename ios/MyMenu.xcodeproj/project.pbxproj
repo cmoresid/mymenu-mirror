@@ -74,6 +74,7 @@
 		B0881ABF18D3AD5D003EDDFF /* MMRestaurantViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0881ABE18D3AD5D003EDDFF /* MMRestaurantViewModel.m */; };
 		B0881AC218D3C7F3003EDDFF /* MMMenuService.m in Sources */ = {isa = PBXBuildFile; fileRef = B0881AC118D3C7F3003EDDFF /* MMMenuService.m */; };
 		B09C25EC18A38EE000E05289 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09C25EB18A38EE000E05289 /* libPods.a */; };
+		B09CCF9818D5358A0036F90F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83893EC518919AD400D36670 /* Images.xcassets */; };
 		B0A7675918D2BB6400626F00 /* MMBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A7675818D2BB6400626F00 /* MMBorderedView.m */; };
 		B0A9906A18CA43E900AC4CBB /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FE518CA43E900AC4CBB /* MMAppDelegate.m */; };
 		B0A9906B18CA43E900AC4CBB /* NSArray+MerchantSort.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FE818CA43E900AC4CBB /* NSArray+MerchantSort.m */; };
@@ -908,6 +909,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B09CCF9818D5358A0036F90F /* Images.xcassets in Resources */,
 				83CC9ED918D253FB00E0B48A /* CalendarRow.png in Resources */,
 				B048559318CFC57D003BC8A9 /* restricted.png in Resources */,
 				83CC9EDF18D253FB00E0B48A /* CalendarTodaysDate.png in Resources */,
