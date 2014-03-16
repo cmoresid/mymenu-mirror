@@ -63,6 +63,7 @@
 		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
 		B03D7C8A18CCFD8200F7F5CE /* StaticData.plist in Resources */ = {isa = PBXBuildFile; fileRef = B03D7C8918CCFD8200F7F5CE /* StaticData.plist */; };
 		B03D7C8E18CCFE2000F7F5CE /* MMStaticDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B03D7C8D18CCFE2000F7F5CE /* MMStaticDataHelper.m */; };
+		B043819818D5702F00780D89 /* MMPresentationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B043819718D5702F00780D89 /* MMPresentationFormatter.m */; };
 		B048559218CFA8E8003BC8A9 /* UIImage+MMTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = B048559118CFA8E8003BC8A9 /* UIImage+MMTransform.m */; };
 		B048559318CFC57D003BC8A9 /* restricted.png in Resources */ = {isa = PBXBuildFile; fileRef = B048558E18CF9F89003BC8A9 /* restricted.png */; };
 		B048559418CFC57D003BC8A9 /* restricted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B048558F18CF9F89003BC8A9 /* restricted@2x.png */; };
@@ -211,6 +212,8 @@
 		B03D7C8918CCFD8200F7F5CE /* StaticData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StaticData.plist; sourceTree = "<group>"; };
 		B03D7C8C18CCFE2000F7F5CE /* MMStaticDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMStaticDataHelper.h; path = Helper/MMStaticDataHelper.h; sourceTree = "<group>"; };
 		B03D7C8D18CCFE2000F7F5CE /* MMStaticDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMStaticDataHelper.m; path = Helper/MMStaticDataHelper.m; sourceTree = "<group>"; };
+		B043819618D5702F00780D89 /* MMPresentationFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPresentationFormatter.h; path = Helper/MMPresentationFormatter.h; sourceTree = "<group>"; };
+		B043819718D5702F00780D89 /* MMPresentationFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPresentationFormatter.m; path = Helper/MMPresentationFormatter.m; sourceTree = "<group>"; };
 		B048558E18CF9F89003BC8A9 /* restricted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restricted.png; sourceTree = "<group>"; };
 		B048558F18CF9F89003BC8A9 /* restricted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "restricted@2x.png"; sourceTree = "<group>"; };
 		B048559018CFA8E8003BC8A9 /* UIImage+MMTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MMTransform.h"; sourceTree = "<group>"; };
@@ -541,6 +544,8 @@
 		B03D7C8B18CCFDDC00F7F5CE /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B043819618D5702F00780D89 /* MMPresentationFormatter.h */,
+				B043819718D5702F00780D89 /* MMPresentationFormatter.m */,
 				B03D7C8C18CCFE2000F7F5CE /* MMStaticDataHelper.h */,
 				B03D7C8D18CCFE2000F7F5CE /* MMStaticDataHelper.m */,
 			);
@@ -1103,6 +1108,7 @@
 				B0A9909818CA43E900AC4CBB /* MMRegexTextFieldValidator.m in Sources */,
 				B0A990A218CA43E900AC4CBB /* MMRestrictionSwitch.m in Sources */,
 				B0A9908918CA43E900AC4CBB /* MMMenuItemFavLink.m in Sources */,
+				B043819818D5702F00780D89 /* MMPresentationFormatter.m in Sources */,
 				B0A9909718CA43E900AC4CBB /* MMMatchingTextFieldValidator.m in Sources */,
 				B0A9907F18CA43E900AC4CBB /* MMReviewPopOverViewController.m in Sources */,
 				B0A9908618CA43E900AC4CBB /* MMDBFetcher.m in Sources */,

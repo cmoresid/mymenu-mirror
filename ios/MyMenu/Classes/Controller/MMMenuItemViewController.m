@@ -30,6 +30,7 @@
 #import "MMLoginManager.h"
 #import "MMMenuItemReviewCell.h"
 #import "MMReviewPopOverViewController.h"
+#import "MMPresentationFormatter.h"
 
 #define kCondensedTopReviews @"condensedTopReviews"
 #define kCondensedRecentReviews @"condensedRecentReviews"
@@ -86,11 +87,7 @@ MMMenuItemRating *touchedItem;
     [_itemDescription setTextColor:[UIColor blackColor]];
     [_itemDescription setFont:[UIFont systemFontOfSize:19.0]];
     _itemImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_currentMenuItem.picture]]];
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatter setMaximumFractionDigits:1];
-    [formatter setMinimumFractionDigits:1];
-    _itemRating.text = [formatter stringFromNumber:_currentMenuItem.rating];
+    _itemRating.text = [MMPresentationFormatter formatRatingForRawRating:_currentMenuItem.rating];
     _itemRatingView.backgroundColor = [UIColor lightBackgroundGray];
     _itemRatingView.layer.cornerRadius = 17.5;
     self.menuModificationsTableView.dataSource = self;

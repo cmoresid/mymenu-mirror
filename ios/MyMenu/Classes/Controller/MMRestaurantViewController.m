@@ -26,6 +26,7 @@
 #import "MMReviewPopOverViewController.h"
 #import "MMMenuItemCollectionViewFlowLayout.h"
 #import "MMRestaurantViewModel.h"
+#import "MMPresentationFormatter.h"
 
 #import <HMSegmentedControl/HMSegmentedControl.h>
 #import <MBProgressHUD/MBProgressHUD.h>
@@ -195,9 +196,9 @@ MMMenuItemRating *touchedReview;
     RACChannelTo(self, merchantAddressLabel.text) =
     RACChannelTo(self.viewModel.merchantInformation, address);
     
-    RAC(self, merchantRatingLabel.text) = [self.viewModel formatRatingForRawRating:self.viewModel.merchantInformation.rating];
+    self.merchantRatingLabel.text = [MMPresentationFormatter formatRatingForRawRating:self.viewModel.merchantInformation.rating];
     
-    RAC(self, merchantHoursLabel.text) = [self.viewModel formatBusinessHoursForOpenTime:self.viewModel.merchantInformation.opentime withCloseTime:self.viewModel.merchantInformation.closetime];
+    self.merchantHoursLabel.text = [MMPresentationFormatter formatBusinessHoursForOpenTime:self.viewModel.merchantInformation.opentime withCloseTime:self.viewModel.merchantInformation.closetime];
     
     [RACObserve(self.viewModel, selectedTabIndex) subscribeNext:^(NSNumber *tabIndex) {
         if ([tabIndex isEqualToNumber:self.viewModel.reviewTabIndex]) {
@@ -366,34 +367,6 @@ MMMenuItemRating *touchedReview;
     }
 }
 
-#pragma mark - Stuff to remove/update
-
-- (void)changeReviewSort:(UISegmentedControl *)control {
-    NSMutableArray *reviews = [[NSMutableArray alloc] init];
-    switch ([control selectedSegmentIndex]) {
-        case 0:
-            //reviews = [reviewDictionary objectForKey:kCondensedTopReviews];
-            if (reviews == nil) {
-                //[[MMDBFetcher get] getItemRatingsMerchantTop:_currentMerchant.mid];
-                [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-            } else
-                //condensedReviews = reviews;
-            
-            break;
-        case 1:
-            //reviews = [reviewDictionary objectForKey:kCondensedRecentReviews];
-            if (reviews == nil) {
-                //[[MMDBFetcher get] getItemRatingsMerchant:_currentMerchant.mid];
-                [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-            } else
-                //condensedReviews = reviews;
-            break;
-        default:
-            break;
-    }
-    //[self.reviewsCollectionView reloadData];
-}
-
 #pragma mark - Private Helper Methods
 
 - (void)hideAllViewsBeforeDataLoads {
@@ -476,7 +449,7 @@ MMMenuItemRating *touchedReview;
     cell.contentView.layer.masksToBounds = YES;
     cell.ratingBg.layer.cornerRadius = 5;
     
-    cell.ratinglabel.text = [[self.viewModel formatRatingForRawRating:menitem.rating] first];
+    cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:menitem.rating];
     cell.upVoteCountLabel.text = [NSString stringWithFormat:@"%@", menitem.likeCount];
     cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", menitem.firstname, menitem.lastname];
     cell.reviewLabel.text = menitem.review;
@@ -502,15 +475,6 @@ MMMenuItemRating *touchedReview;
         [self.categorySegmentControl setSelectedSegmentIndex:self.categorySegmentControl.selectedSegmentIndex+1 animated:YES];
         self.viewModel.selectedTabIndex = self.categorySegmentControl.selectedSegmentIndex;
     }
-}
-
-- (NSString *)formatNumberAsPrice:(NSNumber *)price {
-    NSNumberFormatter *formatterCost = [[NSNumberFormatter alloc] init];
-    [formatterCost setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatterCost setMaximumFractionDigits:3];
-    [formatterCost setMinimumFractionDigits:2];
-    
-    return [NSString stringWithFormat:@"$%@", [formatterCost stringFromNumber:price]];
 }
 
 - (MMMenuItemCell *)retrieveMenuItemCellForItemPath:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
@@ -540,8 +504,8 @@ MMMenuItemRating *touchedReview;
     
     [cell.menuImageView setImageWithURL:[NSURL URLWithString:menuItem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
     cell.titleLabel.text = menuItem.name;
-    cell.priceLabel.text = [self formatNumberAsPrice:menuItem.cost];
-    cell.ratinglabel.text = [[self.viewModel formatRatingForRawRating:menuItem.rating] first];
+    cell.priceLabel.text = [MMPresentationFormatter formatNumberAsPrice:menuItem.cost];
+    cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:menuItem.rating];
     cell.descriptionLabel.text = menuItem.desc;
     cell.restrictionLabel.text = (menuItem.restrictionflag) ? @"!" : @"";
     

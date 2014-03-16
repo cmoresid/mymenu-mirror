@@ -1,9 +1,18 @@
 //
-//  MMRestaurantViewModel.m
-//  MyMenu
+//  Copyright (C) 2014  MyMenu, Inc.
 //
-//  Created by Connor Moreside on 3/14/2014.
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
 //
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
 #import "MMRestaurantViewModel.h"
@@ -52,59 +61,63 @@ const NSInteger MMReviewsDataSource = 1;
         self.controllerShouldReloadDataSource = [RACSubject subject];
         self.controllerShouldShowProgressIndicator = [RACSubject subject];
         
-        @weakify(self);
-        RAC(self, dataSource) = [[RACObserve(self, selectedTabIndex)
-            filter:^BOOL(NSNumber *selectedIndex) {
-                @strongify(self);
-                return ![selectedIndex isEqualToNumber:self.reviewTabIndex];
-            }]
-            map:^NSArray*(NSNumber *selectedTabIndex) {
-                @strongify(self);
-                self.dataSourceType = MMMenuItemDataSource;
-                
-                return [self getMenuItemsForSelectedCategory:selectedTabIndex.integerValue];
-            }];
-        
-        [[RACObserve(self, selectedTabIndex)
-            filter:^BOOL(NSNumber *selectedIndex) {
-                @strongify(self);
-                return [selectedIndex isEqualToNumber:self.reviewTabIndex];
-            }]
-            subscribeNext:^(id x) {
-                @strongify(self);
-                self.dataSourceType = MMReviewsDataSource;
-
-                self.dataSource = @[];
-                [self.controllerShouldReloadDataSource sendNext:@YES];
-                
-                [self getRatingsForMerchant];
-            }
-         ];
-        
-        [RACObserve(self, reviewOrder) subscribeNext:^(NSNumber *reviewOrderBy) {
-            @strongify(self);
-            if (!self.allMenuItemReviews) return;
-            
-            if (reviewOrderBy.intValue == MMOrderByRecent) {
-                NSSortDescriptor *sortDescriptor;
-                sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date"
-                                                             ascending:NO];
-                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-                self.dataSource = [self.allMenuItemReviews sortedArrayUsingDescriptors:sortDescriptors];
-                [self.controllerShouldReloadDataSource sendNext:@YES];
-            }
-            else {
-                NSSortDescriptor *sortDescriptor;
-                sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rating"
-                                                             ascending:NO];
-                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-                self.dataSource = [self.allMenuItemReviews sortedArrayUsingDescriptors:sortDescriptors];
-                [self.controllerShouldReloadDataSource sendNext:@YES];
-            }
-        }];
+        [self configureDataBindings];
     }
     
     return self;
+}
+
+- (void)configureDataBindings {
+    @weakify(self);
+    RAC(self, dataSource) = [[RACObserve(self, selectedTabIndex)
+        filter:^BOOL(NSNumber *selectedIndex) {
+            @strongify(self);
+            return ![selectedIndex isEqualToNumber:self.reviewTabIndex];
+        }]
+        map:^NSArray*(NSNumber *selectedTabIndex) {
+            @strongify(self);
+            self.dataSourceType = MMMenuItemDataSource;
+                                 
+            return [self getMenuItemsForSelectedCategory:selectedTabIndex.integerValue];
+    }];
+    
+    [[RACObserve(self, selectedTabIndex)
+      filter:^BOOL(NSNumber *selectedIndex) {
+          @strongify(self);
+          return [selectedIndex isEqualToNumber:self.reviewTabIndex];
+      }]
+     subscribeNext:^(id x) {
+         @strongify(self);
+         self.dataSourceType = MMReviewsDataSource;
+         
+         self.dataSource = @[];
+         [self.controllerShouldReloadDataSource sendNext:@YES];
+         
+         [self getRatingsForMerchant];
+     }
+     ];
+    
+    [RACObserve(self, reviewOrder) subscribeNext:^(NSNumber *reviewOrderBy) {
+        @strongify(self);
+        if (!self.allMenuItemReviews) return;
+        
+        if (reviewOrderBy.intValue == MMOrderByRecent) {
+            NSSortDescriptor *sortDescriptor;
+            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date"
+                                                         ascending:NO];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            self.dataSource = [self.allMenuItemReviews sortedArrayUsingDescriptors:sortDescriptors];
+            [self.controllerShouldReloadDataSource sendNext:@YES];
+        }
+        else {
+            NSSortDescriptor *sortDescriptor;
+            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rating"
+                                                         ascending:NO];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            self.dataSource = [self.allMenuItemReviews sortedArrayUsingDescriptors:sortDescriptors];
+            [self.controllerShouldReloadDataSource sendNext:@YES];
+        }
+    }];
 }
 
 - (BOOL)areWeRetrievingReviewsFromNetwork {
@@ -157,25 +170,6 @@ const NSInteger MMReviewsDataSource = 1;
         [self.controllerShouldShowProgressIndicator sendNext:@NO];
         [self.controllerShouldReloadDataSource sendNext:@YES];
     }];
-}
-
-- (RACSignal *)formatRatingForRawRating:(NSNumber *)rating {
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatter setMaximumFractionDigits:1];
-    [formatter setMinimumFractionDigits:1];
-    
-    NSString *rate = [formatter stringFromNumber:rating];
-    
-    return [RACSignal return:([rate isEqualToString:@".0"] ? @"N/A" : rate)];
-}
-
-- (RACSignal *)formatBusinessHoursForOpenTime:(NSString *)openTime withCloseTime:(NSString *)closeTime {
-    NSString *formattedOpenTime = [openTime substringToIndex:[openTime length] - 3];
-    NSString *formattedCloseTime = [closeTime substringToIndex:[closeTime length] - 3];
-                          
-    return [RACSignal return:[NSString stringWithFormat:@"%@ - %@", formattedOpenTime, formattedCloseTime]];
-
 }
 
 - (void)searchForItemWithValue:(NSString *)value {
