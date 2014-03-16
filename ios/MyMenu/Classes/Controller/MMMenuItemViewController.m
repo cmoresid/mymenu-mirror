@@ -463,8 +463,6 @@ MMMenuItemRating *touchedItem;
         popover.delegate = self;
         reviewPop.oldPopOverController = popover;
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:kReview object:touchedItem];
-        
         popover.delegate = self;
         
         self.popOverController = popover;

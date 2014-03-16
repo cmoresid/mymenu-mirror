@@ -29,9 +29,8 @@
  This view will also allow the user to filter through the menu,
  either by rating, category or name.
 */
-@interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, MMDBFetcherDelegate, UISearchBarDelegate, UIPopoverControllerDelegate,
+@interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, UIPopoverControllerDelegate,
     UIGestureRecognizerDelegate>
-
 
 /**
  *  The current selected merchant.
@@ -88,7 +87,10 @@
 
 @property(nonatomic, strong) UISearchBar *searchBar;
 
+@property(nonatomic, strong) UISegmentedControl *reviewOrderBySegmentControl;
+
 @property(nonatomic, weak) IBOutlet UIScrollView *parentScrollView;
+
 
 /**
  *  View Controller that gets displayed inside of a popover.

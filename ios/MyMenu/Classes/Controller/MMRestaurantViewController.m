@@ -446,12 +446,13 @@ MMMenuItemRating *touchedReview;
 
 - (void)configureCollectionViewForReviews {
     self.searchBar.hidden = YES;
-    
+    [self configureOrderBySegmentControl];
+    [self showShowOrderBySegmentControl];
 }
 
 - (void)configureCollectionViewForMenuItems {
     self.searchBar.hidden = NO;
-    
+    [self hideOrderBySegmentControl];
 }
 
 - (MMMenuItemReviewCell *)retrieveReviewCellForIndexPath:(NSIndexPath *)indexPath fromCollectionView:(UICollectionView *)collectionView {
@@ -489,7 +490,7 @@ MMMenuItemRating *touchedReview;
     }
     else {
         [self.categorySegmentControl setSelectedSegmentIndex:self.categorySegmentControl.selectedSegmentIndex-1 animated:YES];
-        self.viewModel.selectedTabIndex = self.categorySegmentControl.selectedSegmentIndex - 1;
+        self.viewModel.selectedTabIndex = self.categorySegmentControl.selectedSegmentIndex;
     }
 }
 
@@ -499,7 +500,7 @@ MMMenuItemRating *touchedReview;
     }
     else {
         [self.categorySegmentControl setSelectedSegmentIndex:self.categorySegmentControl.selectedSegmentIndex+1 animated:YES];
-        self.viewModel.selectedTabIndex = self.categorySegmentControl.selectedSegmentIndex + 1;
+        self.viewModel.selectedTabIndex = self.categorySegmentControl.selectedSegmentIndex;
     }
 }
 
@@ -584,6 +585,35 @@ MMMenuItemRating *touchedReview;
     touchedItem = [self.viewModel getItemFromCurrentDataSourceForIndexPath:indexPath];
     
     [self performSegueWithIdentifier:@"showMenuItem" sender:self];
+}
+
+- (void)configureOrderBySegmentControl {
+    if (self.reviewOrderBySegmentControl)
+        return;
+    
+    CGSize segmentControlSize = CGSizeMake(300.0, 40.0);
+    CGRect viewFrame = self.view.frame;
+    CGRect segmentControlFrame = CGRectMake((viewFrame.size.width / 2.0) - segmentControlSize.width / 2.0, 0, segmentControlSize.width, segmentControlSize.height);
+    
+    self.reviewOrderBySegmentControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Top Rated", nil)]];
+
+    self.reviewOrderBySegmentControl.frame = segmentControlFrame;
+    self.reviewOrderBySegmentControl.alpha = 1.0;
+    self.reviewOrderBySegmentControl.backgroundColor = [UIColor whiteColor];
+    self.reviewOrderBySegmentControl.selectedSegmentIndex = MMOrderByRecent;
+    self.reviewOrderBySegmentControl.tintColor = [UIColor tealColor];
+    self.reviewOrderBySegmentControl.opaque = NO;
+    
+    RACChannelTo(self.viewModel, reviewOrder) = [self.reviewOrderBySegmentControl rac_newSelectedSegmentIndexChannelWithNilValue:@-1];
+}
+
+- (void)showShowOrderBySegmentControl {
+    //[self.view insertSubview:self.reviewOrderBySegmentControl aboveSubview:self.menuItemsCollectionView];
+    [self.menuItemsCollectionView addSubview:self.reviewOrderBySegmentControl];
+}
+
+- (void)hideOrderBySegmentControl {
+    [self.reviewOrderBySegmentControl removeFromSuperview];
 }
 
 @end
