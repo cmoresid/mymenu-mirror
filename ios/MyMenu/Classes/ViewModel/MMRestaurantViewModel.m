@@ -14,23 +14,32 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
+const NSInteger MMOrderByTopRated = 0;
+const NSInteger MMOrderByRecent = 1;
+const NSInteger MMMenuItemDataSource = 0;
+const NSInteger MMReviewsDataSource = 1;
+
 @interface MMRestaurantViewModel ()
 
-@property (nonatomic, strong) NSArray *menuItemCategories;
-@property (nonatomic, strong) NSArray *allMenuItems;
-@property (nonatomic, strong) NSArray *allMenuItemReviews;
-@property (nonatomic, strong) NSArray *dataSource;
-@property (nonatomic, strong) RACMulticastConnection *retrieveMenuItemsConnection;
-@property (nonatomic, strong) MMMenuService *menuService;
-@property (nonatomic, readonly, getter = isOnReviewTabIndex) BOOL onReviewTabSegment;
+@property(nonatomic, strong) NSArray *menuItemCategories;
+@property(nonatomic, strong) NSArray *allMenuItems;
+@property(nonatomic, strong) NSArray *allMenuItemReviews;
+@property(nonatomic, strong) NSArray *dataSource;
+@property(nonatomic, strong) RACMulticastConnection *retrieveMenuItemsConnection;
+@property(nonatomic, strong) RACMulticastConnection *retrieveReviewsConnection;
+@property(nonatomic, strong) MMMenuService *menuService;
+@property(nonatomic, readonly, getter = isOnReviewTabIndex) BOOL onReviewTabSegment;
 
 @end
 
 @implementation MMRestaurantViewModel
 
+- (NSNumber *)getReviewTabIndex {
+    return [NSNumber numberWithInteger:self.menuItemCategories.count - 1];
+}
+
 - (BOOL)isOnReviewTabIndex {
-    BOOL result = (self.selectedTabIndex == self.menuItemCategories.count - 1);
-    return result;
+    return [[NSNumber numberWithInteger:self.selectedTabIndex] isEqualToNumber:self.reviewTabIndex];
 }
 
 - (id)init {
@@ -39,33 +48,53 @@
     if (self) {
         self.menuService = [[MMMenuService alloc] init];
         self.retrieveMenuItemsConnection = nil;
+        self.retrieveReviewsConnection = nil;
+        self.controllerShouldReloadDataSource = [RACSubject subject];
+        self.controllerShouldShowProgressIndicator = [RACSubject subject];
         
         @weakify(self);
         RAC(self, dataSource) = [[RACObserve(self, selectedTabIndex)
-            filter:^BOOL(NSNumber *value) {
+            filter:^BOOL(NSNumber *selectedIndex) {
                 @strongify(self);
-            
-                return !self.onReviewTabSegment;
-            }] map:^NSArray*(id value) {
+                return ![selectedIndex isEqualToNumber:self.reviewTabIndex];
+            }]
+            map:^NSArray*(NSNumber *selectedTabIndex) {
                 @strongify(self);
+                self.dataSourceType = MMMenuItemDataSource;
                 
-                return [self getMenuItemsForSelectedCategory:self.selectedTabIndex];
+                return [self getMenuItemsForSelectedCategory:selectedTabIndex.integerValue];
             }];
+        
+        [[RACObserve(self, selectedTabIndex)
+            filter:^BOOL(NSNumber *selectedIndex) {
+                @strongify(self);
+                return [selectedIndex isEqualToNumber:self.reviewTabIndex];
+            }]
+            subscribeNext:^(id x) {
+                @strongify(self);
+                self.dataSourceType = MMReviewsDataSource;
+
+                self.dataSource = @[];
+                [self.controllerShouldReloadDataSource sendNext:@YES];
+                
+                [self getRatingsForMerchant];
+            }
+         ];
     }
     
     return self;
 }
 
-- (NSInteger)numberOfTabCategories {
-    return [_menuItemCategories count];
+- (BOOL)areWeRetrievingReviewsFromNetwork {
+    return self.allMenuItemReviews == nil;
 }
 
 - (RACSignal *)getTabCategories {
-    [self configureMulticastConnection];
+    [self configureMenuItemsConnection];
     [self.retrieveMenuItemsConnection connect];
     
     return [self.retrieveMenuItemsConnection.signal map:^NSArray*(NSMutableArray *menuItems) {
-        NSMutableOrderedSet *orderedSet = [NSMutableOrderedSet orderedSetWithArray:[[menuItems copy]valueForKey:@"category"]];
+        NSMutableOrderedSet *orderedSet = [NSMutableOrderedSet orderedSetWithArray:[menuItems valueForKey:@"category"]];
         [orderedSet insertObject:NSLocalizedString(@"All Categories", nil) atIndex:0];
         [orderedSet insertObject:NSLocalizedString(@"Reviews", nil) atIndex:orderedSet.count];
         
@@ -76,14 +105,35 @@
 }
 
 - (RACSignal *)getAllMenuItems {
-    [self configureMulticastConnection];
+    [self configureMenuItemsConnection];
     [self.retrieveMenuItemsConnection connect];
     
-    @weakify(self);
     return [self.retrieveMenuItemsConnection.signal doNext:^(NSMutableArray *menuItems) {
-        @strongify(self);
         self.allMenuItems = [menuItems copy];
         self.dataSource = self.allMenuItems;
+    }];
+}
+
+- (void)getRatingsForMerchant {
+    if (![self areWeRetrievingReviewsFromNetwork]) {
+        self.dataSource = self.allMenuItemReviews;
+        [self.controllerShouldReloadDataSource sendNext:@YES];
+
+        return;
+    }
+    
+    [self.controllerShouldShowProgressIndicator sendNext:@YES];
+    [self configureReviewsConnection];
+    [self.retrieveReviewsConnection connect];
+    
+    @weakify(self);
+    [self.retrieveReviewsConnection.signal subscribeNext:^(NSMutableArray *reviews) {
+        @strongify(self);
+        self.allMenuItemReviews = [reviews copy];
+        self.dataSource = self.allMenuItemReviews;
+        
+        [self.controllerShouldShowProgressIndicator sendNext:@NO];
+        [self.controllerShouldReloadDataSource sendNext:@YES];
     }];
 }
 
@@ -119,16 +169,25 @@
     }].array;
 }
 
-- (void)configureMulticastConnection {
+- (void)configureMenuItemsConnection {
     if (self.retrieveMenuItemsConnection)
         return;
     
-    NSInteger merchantID = self.merchantInformation.mid.integerValue;
     MMUser *userProfile = [[MMLoginManager sharedLoginManager] getLoggedInUser];
     NSString *userEmail = (userProfile != nil) ? userProfile.email : @"";
     
-    RACSignal *retrieveMenuSignal = [self.menuService retrieveMenuFromMerchant:merchantID forUser:userEmail];
+    RACSignal *retrieveMenuSignal = [self.menuService retrieveMenuFromMerchant:self.merchantInformation.mid forUser:userEmail];
+    
     self.retrieveMenuItemsConnection = [retrieveMenuSignal multicast:[RACReplaySubject subject]];
+}
+
+- (void)configureReviewsConnection {
+    if (self.retrieveReviewsConnection)
+        return;
+    
+    RACSignal *retrieveReviewsSignal = [self.menuService retrieveMenuItemReviewsForMerchant:self.merchantInformation.mid];
+    
+    self.retrieveReviewsConnection = [retrieveReviewsSignal multicast:[RACReplaySubject subject]];
 }
 
 - (NSInteger)numberOfItemsInCurrentDataSource {

@@ -8,18 +8,27 @@
 
 #import "RVMViewModel.h"
 
+extern const NSInteger MMOrderByTopRated;
+extern const NSInteger MMOrderByRecent;
 extern const NSInteger MMMenuItemDataSource;
-extern const NSInteger MMReviewDataSource;
+extern const NSInteger MMReviewsDataSource;
 
 @class MMMerchant;
+@class RACSubject;
 
 @interface MMRestaurantViewModel : RVMViewModel
 
 @property(nonatomic, strong) MMMerchant *merchantInformation;
+@property(nonatomic, strong) RACSubject *controllerShouldShowProgressIndicator;
+@property(nonatomic, strong) RACSubject *controllerShouldReloadDataSource;
 @property(nonatomic) NSInteger selectedTabIndex;
+@property(nonatomic) NSInteger reviewOrder;
+@property(nonatomic) NSInteger dataSourceType;
+@property(nonatomic, readonly, getter = getReviewTabIndex) NSNumber *reviewTabIndex;
 
 - (RACSignal *)getTabCategories;
 - (RACSignal *)getAllMenuItems;
+- (void)getRatingsForMerchant;
 
 - (RACSignal *)formatRatingForRawRating:(NSNumber *)rating;
 - (RACSignal *)formatBusinessHoursForOpenTime:(NSString *)openTime withCloseTime:(NSString *)closeTime;

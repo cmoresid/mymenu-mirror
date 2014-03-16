@@ -112,9 +112,9 @@
 /**
 * Get the menu for the restaurant.
 */
-- (RACSignal *)getMenuWithMerchantId:(NSInteger)merchid withUserEmail:(NSString *)email;
+- (RACSignal *)getMenuWithMerchantId:(NSNumber *)merchid withUserEmail:(NSString *)email;
 
-- (RACSignal *)getRestrictedMenu:(NSInteger)merchid withUserEmail:(NSString *)email;
+- (RACSignal *)getRestrictedMenu:(NSNumber *)merchid withUserEmail:(NSString *)email;
 
 /**
 * Get all restrictions that we support.
@@ -154,17 +154,12 @@
 /**
  * Get all menu item ratings for a specific merchant.
  */
-- (void)getItemRatingsMerchant:(NSNumber *)merchid;
+- (RACSignal *)getItemRatingsMerchant:(NSNumber *)merchid;
 
 /**
  * Get all merchant categories.
  */
 - (void)getCategories;
-
-/**
- * Get all item ratings for a merchant ordered by rating.
- */
-- (void)getItemRatingsMerchantTop:(NSNumber *)merchid;
 
 /**
  * Get all ratings for a specific item ordered by rating.
@@ -175,11 +170,6 @@
  * Get today as a string, e.g. 'tuesday'
  */
 - (NSString *)getDay:(NSDate *)date;
-
-/**
- * Helper method that adds all relevant information to the rating object.
- */
-- (void)getRatingsHelper:(NSMutableURLRequest *)request withTopFlag:(BOOL)topFlag;
 
 /**
  * Helper method that adds all relevant information to the rating object.

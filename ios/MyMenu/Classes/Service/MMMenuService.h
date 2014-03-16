@@ -22,6 +22,7 @@
 
 @interface MMMenuService : NSObject
 
-- (RACSignal *)retrieveMenuFromMerchant:(NSInteger)merchId forUser:(NSString *)userEmail;
+- (RACSignal *)retrieveMenuFromMerchant:(NSNumber *)merchId forUser:(NSString *)userEmail;
+- (RACSignal *)retrieveMenuItemReviewsForMerchant:(NSNumber *)merchId;
 
 @end

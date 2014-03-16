@@ -63,12 +63,6 @@
 @property(nonatomic, weak) IBOutlet UIImageView *likeImageView;
 
 /**
- *  The button that allows one to 'report' a review for
- *  inappropriate content.
- */
-@property(nonatomic, weak) IBOutlet UIButton *reportButton;
-
-/**
  *  The label that contains the number of 'up votes' that
  *  a review has.
  */

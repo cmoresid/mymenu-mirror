@@ -21,15 +21,18 @@
 
 @implementation MMMenuService
 
-- (RACSignal *)retrieveMenuFromMerchant:(NSInteger)merchId forUser:(NSString *)userEmail {
+- (RACSignal *)retrieveMenuFromMerchant:(NSNumber *)merchId forUser:(NSString *)userEmail {
     RACSignal *getNonRestrictedMenuItemsSignal = [[MMDBFetcher get] getMenuWithMerchantId:merchId withUserEmail:userEmail];
-    
     RACSignal *getRestrictedMenuItemsSignal = [[MMDBFetcher get] getRestrictedMenu:merchId withUserEmail:userEmail];
     
     return [RACSignal combineLatest:@[getNonRestrictedMenuItemsSignal, getRestrictedMenuItemsSignal]
                              reduce:^(NSMutableArray *nonRestrictedItems, NSMutableArray *restrictedItems) {
                                  return [nonRestrictedItems arrayByAddingObjectsFromArray:restrictedItems];
                              }];
+}
+
+- (RACSignal *)retrieveMenuItemReviewsForMerchant:(NSNumber *)merchId {
+    return [[MMDBFetcher get] getItemRatingsMerchant:merchId];
 }
 
 @end
