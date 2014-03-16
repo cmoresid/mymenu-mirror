@@ -45,6 +45,7 @@
 @property(nonatomic, strong) HMSegmentedControl *categorySegmentControl;
 @property(nonatomic, weak) IBOutlet UIGestureRecognizer *leftSwipeGestureForCategory;
 @property(nonatomic, weak) IBOutlet UIGestureRecognizer *rightSwipeGestureForCategory;
+@property(nonatomic, getter = isSearching) BOOL searching;
 
 - (IBAction)changeCategoryBySwipe:(UISwipeGestureRecognizer *)sender;
 
@@ -62,6 +63,7 @@ MMMenuItemRating *touchedReview;
     
     if (self) {
         self.viewModel = [[MMRestaurantViewModel alloc] init];
+        self.searching = NO;
     }
     
     return self;
@@ -151,6 +153,8 @@ MMMenuItemRating *touchedReview;
 #pragma mark - Keyboard/Scrolling Methods
 
 - (void)moveViewUp:(NSNotification *)notification {
+    if (!self.searching) return;
+    
     CGRect oldFrame = self.view.frame;
     CGRect newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - 275, oldFrame.size.width, oldFrame.size.height);
     
@@ -160,6 +164,8 @@ MMMenuItemRating *touchedReview;
 }
 
 - (void)moveViewDown:(NSNotification *)notification {
+    if (!self.searching) return;
+    
     UISearchBar *newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0f, 44.0f)];
     newSearchBar.placeholder = NSLocalizedString(@"Search for Menu Item", nil);
     
@@ -179,72 +185,82 @@ MMMenuItemRating *touchedReview;
     [UIView animateWithDuration:0.3 animations:^{
         [self.view setFrame:newFrame];
     }];
+    
+    self.searching = NO;
 }
 
 #pragma mark - RX Event Wire-up Methods
 
 - (void)configureViewModelDatabindings {
     RACChannelTo(self, merchantNameLabel.text) =
-    RACChannelTo(self.viewModel.merchantInformation, businessname);
+        RACChannelTo(self.viewModel.merchantInformation, businessname);
     
     RACChannelTo(self, merchantDescriptionTextView.text) =
-    RACChannelTo(self.viewModel.merchantInformation, desc);
+        RACChannelTo(self.viewModel.merchantInformation, desc);
     
     RACChannelTo(self, merchantPhoneNumberLabel.text) =
-    RACChannelTo(self.viewModel.merchantInformation, phone);
+        RACChannelTo(self.viewModel.merchantInformation, phone);
     
     RACChannelTo(self, merchantAddressLabel.text) =
-    RACChannelTo(self.viewModel.merchantInformation, address);
+        RACChannelTo(self.viewModel.merchantInformation, address);
     
     self.merchantRatingLabel.text = [MMPresentationFormatter formatRatingForRawRating:self.viewModel.merchantInformation.rating];
     
     self.merchantHoursLabel.text = [MMPresentationFormatter formatBusinessHoursForOpenTime:self.viewModel.merchantInformation.opentime withCloseTime:self.viewModel.merchantInformation.closetime];
     
-    [RACObserve(self.viewModel, selectedTabIndex) subscribeNext:^(NSNumber *tabIndex) {
-        if ([tabIndex isEqualToNumber:self.viewModel.reviewTabIndex]) {
-            [self configureCollectionViewForReviews];
-        }
-        else {
-            [self configureCollectionViewForMenuItems];
-        }
+    [[[RACObserve(self.viewModel, selectedTabIndex) skip:1]
+        deliverOn:[RACScheduler mainThreadScheduler]]
+        subscribeNext:^(NSNumber *tabIndex) {
+            if ([tabIndex isEqualToNumber:self.viewModel.reviewTabIndex]) {
+                [self configureCollectionViewForReviews];
+            }
+            else {
+                [self configureCollectionViewForMenuItems];
+            }
 
-        [self.menuItemsCollectionView reloadData];
+            [self.menuItemsCollectionView reloadData];
     }];
     
-    [self.viewModel.controllerShouldReloadDataSource subscribeNext:^(id x) {
-        [self.menuItemsCollectionView reloadData];
+    [[self.viewModel.controllerShouldReloadDataSource
+        deliverOn:[RACScheduler mainThreadScheduler]]
+        subscribeNext:^(id x) {
+            [self.menuItemsCollectionView reloadData];
     }];
 
-    [self.viewModel.controllerShouldShowProgressIndicator subscribeNext:^(NSNumber *show) {
-        if ([show isEqualToNumber:@YES]) {
-            [MBProgressHUD showHUDAddedTo:self.menuItemsCollectionView animated:YES];
-        }
-        else if ([show isEqualToNumber:@NO]) {
-            [MBProgressHUD hideAllHUDsForView:self.menuItemsCollectionView animated:YES];
-        }
+    [[self.viewModel.controllerShouldShowProgressIndicator
+        deliverOn:[RACScheduler mainThreadScheduler]]
+        subscribeNext:^(NSNumber *show) {
+            if ([show isEqualToNumber:@YES]) {
+                [MBProgressHUD showHUDAddedTo:self.menuItemsCollectionView animated:YES];
+            }
+            else if ([show isEqualToNumber:@NO]) {
+                [MBProgressHUD hideAllHUDsForView:self.menuItemsCollectionView animated:YES];
+            }
     }];
 }
 
 - (void)performDataLoadForCategorySegmentedControl {
     @weakify(self);
-    [[[self.viewModel getTabCategories] deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(NSArray *categories) {
-         @strongify(self);
+    [[[self.viewModel getTabCategories]
+        deliverOn:[RACScheduler mainThreadScheduler]]
+        subscribeNext:^(NSArray *categories) {
+            @strongify(self);
          
-         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-         [self.view.subviews setValue:@NO forKeyPath:@"hidden"];
-         [self configureCategorySegmentControlWithCategories:categories];
-     }
-     error:^(NSError *error) {
-         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-         [self.view.subviews setValue:@NO forKeyPath:@"hidden"];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
          
-         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
+            [self.view.subviews setValue:@NO forKeyPath:@"hidden"];
+            [self configureCategorySegmentControlWithCategories:categories];
+        }
+        error:^(NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self.view.subviews setValue:@NO forKeyPath:@"hidden"];
+         
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
                                                            message:@"Unable to communicate with server."
                                                           delegate:nil
                                                  cancelButtonTitle:@"OK"
                                                  otherButtonTitles:nil];
-         [message show];
+            [message show];
      }];
 }
 
@@ -286,6 +302,7 @@ MMMenuItemRating *touchedReview;
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searching = YES;
     searchBar.showsCancelButton = YES;
     
     [searchBar removeFromSuperview];
