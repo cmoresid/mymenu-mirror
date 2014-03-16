@@ -49,6 +49,7 @@ import ca.mymenuapp.data.prefs.BooleanPreference;
 import ca.mymenuapp.data.prefs.IntPreference;
 import ca.mymenuapp.data.prefs.StringPreference;
 import ca.mymenuapp.ui.AppContainer;
+import ca.mymenuapp.ui.activities.LoginActivity;
 import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.ui.misc.EnumAdapter;
 import ca.mymenuapp.util.Strings;
@@ -636,8 +637,7 @@ public class DebugAppContainer implements AppContainer {
   private void setEndpointAndRelaunch(String endpoint) {
     Ln.d("Setting network endpoint to %s", endpoint);
     apiEndpoint.set(endpoint);
-
-    Intent newApp = new Intent(app, MainActivity.class);
+    Intent newApp = new Intent(app, LoginActivity.class);
     newApp.setFlags(FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NEW_TASK);
     app.startActivity(newApp);
     app.buildApplicationGraphAndInject();
