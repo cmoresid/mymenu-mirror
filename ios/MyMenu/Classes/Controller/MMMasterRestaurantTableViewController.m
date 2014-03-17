@@ -182,7 +182,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.selectedMerchantId = ((MMMerchant *)[self.restaurants objectAtIndex:indexPath.row]).mid;
+    if (self.searchflag) {
+        self.selectedMerchantId = ((MMMerchant *)[self.filteredrestaurants objectAtIndex:indexPath.row]).mid;
+    }
+    else {
+        self.selectedMerchantId = ((MMMerchant *)[self.restaurants objectAtIndex:indexPath.row]).mid;
+    }
+    
     [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
 }
 
