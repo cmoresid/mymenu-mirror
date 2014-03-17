@@ -42,11 +42,21 @@
       <TextView
           android:id="@+id/menu_item_description"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"/>
+          android:layout_height="wrap_content"
+          android:paddingRight="@dimen/activity_horizontal_margin"
+          android:paddingLeft="@dimen/activity_horizontal_margin"
+          style="?android:textAppearanceLarge"
+          android:fontFamily="sans-serif-light"/>
 
-      <FrameLayout android:layout_width="match_parent"
-          android:layout_height="1200dp">
-      </FrameLayout>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/modifications"
+          style="?android:attr/listSeparatorTextViewStyle"/>
+
+      <FrameLayout
+          android:layout_width="match_parent"
+          android:layout_height="500dp"/>
 
     </LinearLayout>
 

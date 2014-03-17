@@ -50,4 +50,7 @@
   <string name="save">Save</string>
   <string name="reviews">Reviews</string>
 
+  <!-- Menu Item Activity -->
+  <string name="modifications">modifications</string>
+
 </resources>
