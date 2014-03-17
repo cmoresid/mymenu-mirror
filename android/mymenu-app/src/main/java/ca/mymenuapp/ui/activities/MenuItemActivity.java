@@ -19,7 +19,6 @@ import ca.mymenuapp.ui.adapters.MenuItemReviewAdapter;
 import ca.mymenuapp.ui.widgets.NotifyingScrollView;
 import ca.mymenuapp.ui.widgets.SlidingUpPanelLayout;
 import com.f2prateek.dart.InjectExtra;
-import com.f2prateek.ln.Ln;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import java.util.ArrayList;
@@ -53,8 +52,7 @@ public class MenuItemActivity extends BaseActivity {
         public void onScrollChanged(ScrollView who, int l, int t, int oldl, int oldt) {
           final int headerHeight = header.getHeight() - getActionBar().getHeight();
           final float ratio = (float) Math.min(Math.max(t, 0), headerHeight) / headerHeight;
-          final int newAlpha = (int) (ratio * 255);
-          actionBarBackgroundDrawable.setAlpha(newAlpha);
+          updateActionBarBackgroundDrawable(ratio);
         }
       };
   private Target actionBarTarget = new Target() {
@@ -83,14 +81,13 @@ public class MenuItemActivity extends BaseActivity {
     slidingLayout.setDragView(reviewSummary);
     slidingLayout.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
       @Override public void onPanelSlide(View panel, float slideOffset) {
+        updateActionBarBackgroundDrawable(1 - slideOffset);
       }
 
       @Override public void onPanelCollapsed(View panel) {
       }
 
       @Override public void onPanelExpanded(View panel) {
-        // set a full alpha value when the panel is expanded so the title and actions show through
-        actionBarBackgroundDrawable.setAlpha(255);
       }
 
       @Override public void onPanelAnchored(View panel) {
@@ -111,6 +108,15 @@ public class MenuItemActivity extends BaseActivity {
 
     ((NotifyingScrollView) findViewById(R.id.scroll_view)).setOnScrollChangedListener(
         mOnScrollChangedListener);
+  }
+
+  /**
+   * Update tha actionBar's background drawable.
+   * The ratio is a value between 0 and 1, where 0 means fully transparent and 1 is fully opaque.
+   */
+  void updateActionBarBackgroundDrawable(final float ratio) {
+    final int newAlpha = (int) (ratio * 255);
+    actionBarBackgroundDrawable.setAlpha(newAlpha);
   }
 
   private void bindView() {
