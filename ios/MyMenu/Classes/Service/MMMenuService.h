@@ -20,9 +20,32 @@
 @class MMDBFetcher;
 @class RACSignal;
 
+/**
+ *  Provides an additional layer over top
+ *  of `MMDBFetcher`. This class functions
+ *  as the the 'Service Layer'.
+ */
 @interface MMMenuService : NSObject
 
+/**
+ *  Retrieves a customized menu from the specified merchant
+ *  for a given user.
+ *
+ *  @param merchId   The merchant ID.
+ *  @param userEmail The user's email.
+ *
+ *  @return An `NSMutableArray` of `MMMenuItem` objects.
+ */
 - (RACSignal *)retrieveMenuFromMerchant:(NSNumber *)merchId forUser:(NSString *)userEmail;
+
+/**
+ *  Retrieves a list of menu item reviews for a
+ *  given merchant.
+ *
+ *  @param merchId The merchant ID.
+ *
+ *  @return An `NSMutableArray` of `MMMenuRating` objects.
+ */
 - (RACSignal *)retrieveMenuItemReviewsForMerchant:(NSNumber *)merchId;
 
 @end

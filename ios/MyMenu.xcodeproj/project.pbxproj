@@ -291,7 +291,6 @@
 		B0A9901D18CA43E900AC4CBB /* MMRegistrationPopoverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRegistrationPopoverDelegate.h; sourceTree = "<group>"; };
 		B0A9901E18CA43E900AC4CBB /* MMRestaurantMapDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRestaurantMapDelegate.h; sourceTree = "<group>"; };
 		B0A9901F18CA43E900AC4CBB /* MMRestaurantMapDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestaurantMapDelegate.m; sourceTree = "<group>"; };
-		B0A9902018CA43E900AC4CBB /* MMRestaurantPopOverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRestaurantPopOverDelegate.h; sourceTree = "<group>"; };
 		B0A9902318CA43E900AC4CBB /* MMDBFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDBFetcher.h; sourceTree = "<group>"; };
 		B0A9902418CA43E900AC4CBB /* MMDBFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcher.m; sourceTree = "<group>"; };
 		B0A9902518CA43E900AC4CBB /* MMDBFetcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDBFetcherDelegate.h; sourceTree = "<group>"; };
@@ -703,7 +702,6 @@
 				B0B6E64F18D671D200BB0298 /* MMLocationManagerDelegate.h */,
 				B02BDC5418D78D39004D276D /* MMMerchantDataSourceDelegate.h */,
 				B0A9901D18CA43E900AC4CBB /* MMRegistrationPopoverDelegate.h */,
-				B0A9902018CA43E900AC4CBB /* MMRestaurantPopOverDelegate.h */,
 				B0A9901E18CA43E900AC4CBB /* MMRestaurantMapDelegate.h */,
 				B0A9901F18CA43E900AC4CBB /* MMRestaurantMapDelegate.m */,
 			);

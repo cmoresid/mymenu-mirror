@@ -20,8 +20,20 @@
 #import <CoreLocation/CoreLocation.h>
 #import "MMLocationManagerDelegate.h"
 
+/**
+ *  Represents a location manager error.
+ */
 extern NSString *const kMMLocationManagerDelegateErrorDomain;
+
+/**
+ *  Error that occurs when the location manager cannot
+ *  retrieve a user's most recent location.
+ */
 extern const NSInteger ERR_MM_LMD_NO_MOST_RECENT_LOCATION;
+
+/**
+ *  Error that occurs when location services are disabled.
+ */
 extern const NSInteger ERR_MM_LMD_LOCATION_SERVICES_DENIED;
 
 /**
@@ -32,6 +44,12 @@ extern const NSInteger ERR_MM_LMD_LOCATION_SERVICES_DENIED;
  */
 @interface MMLocationManager : NSObject <MMLocationManagerDelegate>
 
+/**
+ *  Retrieves a singleton instance of 
+ *  `MMLocationManager`
+ *
+ *  @return A single instance of `MMLocationManager`.
+ */
 + (instancetype)sharedLocationManager;
 
 @end

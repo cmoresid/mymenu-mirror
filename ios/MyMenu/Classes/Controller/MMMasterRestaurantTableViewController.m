@@ -26,7 +26,6 @@
 #import "NSArray+MerchantSort.h"
 #import "MMRestaurantViewController.h"
 #import <RBStoryboardLink/RBStoryboardLink.h>
-#import "MMAppDelegate.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RACEXTScope.h>
 #import "MMMerchantService.h"
