@@ -33,6 +33,18 @@ const NSInteger ERR_MM_LMD_LOCATION_SERVICES_DENIED = -2;
 
 @implementation MMLocationManager
 
+static MMLocationManager *instance;
+
++ (instancetype)sharedLocationManager {
+    @synchronized (self) {
+        if (instance == nil) {
+            instance = [[self alloc] init];
+        }
+    }
+    
+    return instance;
+}
+
 #pragma mark - Initializers
 
 - (instancetype)init {
@@ -45,7 +57,7 @@ const NSInteger ERR_MM_LMD_LOCATION_SERVICES_DENIED = -2;
 - (instancetype)initWithLocationManager:(CLLocationManager *)locationManager {
     if (self = [super init]) {
         self.locManager = locationManager;
-        [self.locManager setDelegate:self];
+        self.locManager.delegate = self;
         self.locationSubject = [RACReplaySubject subject];
     }
     

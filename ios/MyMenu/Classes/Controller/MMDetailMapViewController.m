@@ -42,11 +42,9 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    MMAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
      @weakify(self);
-    [[[appDelegate.locationManager.getLatestLocation
+    [[[[MMLocationManager sharedLocationManager].getLatestLocation
         deliverOn:[RACScheduler mainThreadScheduler]]
         flattenMap:^RACStream *(CLLocation *location) {
             @strongify(self);

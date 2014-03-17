@@ -62,12 +62,11 @@ static MMMerchantService *instance;
     return [self configureOrGetCachedForSignal:compressedMerchantsSignal withKey:key];
 }
 
+// Don't cache these calls; this is mainly used
+// for searching. Say the user is typing "boston pizza"
+// We don't want to cache results for "b", "bo", "bos", etc...
 - (RACSignal *)getCompressedMerchantsForLocation:(CLLocation *)location withName:(NSString *)merchantName {
-    NSString *desc = [self coordStringFromLocation:location];
-    NSString *key = [NSString stringWithFormat:@"compressed-merchant/%@/%@", merchantName, desc];
-    RACSignal *compressedMerchantsSignal = [[MMDBFetcher get] getCompressedMerchantsByName:location withName:merchantName];
-    
-    return [self configureOrGetCachedForSignal:compressedMerchantsSignal withKey:key];
+    return [[MMDBFetcher get] getCompressedMerchantsByName:location withName:merchantName];
 }
 
 - (RACSignal *)getCompressedMerchantsForLocation:(CLLocation *)location withCuisineType:(NSString *)cuisine {

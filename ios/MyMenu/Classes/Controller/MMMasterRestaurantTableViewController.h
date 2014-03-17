@@ -37,7 +37,7 @@ extern NSString *const kDidUpdateList;
 /**
  *  The Restaurant table shown on the Restaurants tab. (Next to the map)
  */
-@interface MMMasterRestaurantTableViewController : UIViewController <MMDBFetcherDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface MMMasterRestaurantTableViewController : UIViewController <UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
 
 /**
  *  Array of Restaurants
@@ -63,11 +63,6 @@ extern NSString *const kDidUpdateList;
  *  The current DBFetcher
  */
 @property(nonatomic, strong) MMDBFetcher *dbFetcher;
-
-/**
- *  Used for fetching current users location
- */
-@property(nonatomic, strong) MMLocationManager *locationManager;
 
 /**
  *  The current users location, if GPS is on

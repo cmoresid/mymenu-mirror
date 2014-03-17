@@ -756,8 +756,8 @@ static MMDBFetcher *instance;
 
     NSString *sqlQuery = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], merchname];
     
-    NSString *encodedQuery = [sqlQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *queryParameters = @{@"query": encodedQuery};
+    //NSString *encodedQuery = [sqlQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *queryParameters = @{@"query": sqlQuery};
 
     return [self compressedMerchantsHelperWithUrl:url withParameters:queryParameters];
 }

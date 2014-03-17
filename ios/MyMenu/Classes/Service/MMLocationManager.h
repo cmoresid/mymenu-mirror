@@ -32,4 +32,6 @@ extern const NSInteger ERR_MM_LMD_LOCATION_SERVICES_DENIED;
  */
 @interface MMLocationManager : NSObject <MMLocationManagerDelegate>
 
++ (instancetype)sharedLocationManager;
+
 @end
