@@ -16,7 +16,9 @@ import ca.mymenuapp.data.api.model.UserRestrictionLink;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import ca.mymenuapp.data.rx.EndObserver;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import retrofit.client.Response;
 import rx.Observable;
 import rx.Observer;
@@ -38,6 +40,10 @@ public class MyMenuDatabase {
   // cache of dietaryRestrictions
   private PublishSubject<List<DietaryRestriction>> dietaryRestrictionsRequest;
   private List<DietaryRestriction> dietaryRestrictionsCache;
+
+  // Cache of menus
+  private final Map<Long, PublishSubject<RestaurantMenu>> menuRequests = new LinkedHashMap<>();
+  private final Map<Long, RestaurantMenu> menuCache = new LinkedHashMap<>();
 
   public MyMenuDatabase(MyMenuApi myMenuApi) {
     this.myMenuApi = myMenuApi;
@@ -170,9 +176,37 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
+  // todo, when we call this, we will already have the restaurant, so pass that instead of id
   public Subscription getRestaurantAndMenu(final User user, final long restaurantId,
       Observer<RestaurantMenu> observer) {
-    return myMenuApi.getMenu(String.format(MyMenuApi.GET_RESTAURANT_MENU, restaurantId)) //
+    RestaurantMenu menu = menuCache.get(restaurantId);
+    if (menu != null) {
+      // We have a cached value. Emit it immediately.
+      observer.onNext(menu);
+    }
+
+    PublishSubject<RestaurantMenu> menuRequest = menuRequests.get(restaurantId);
+    if (menuRequest != null) {
+      // There's an in-flight network request for this section already. Join it.
+      return menuRequest.subscribe(observer);
+    }
+
+    menuRequest = PublishSubject.create();
+    menuRequests.put(restaurantId, menuRequest);
+
+    Subscription subscription = menuRequest.subscribe(observer);
+
+    menuRequest.subscribe(new EndObserver<RestaurantMenu>() {
+      @Override public void onEnd() {
+        menuRequests.remove(restaurantId);
+      }
+
+      @Override public void onNext(RestaurantMenu menu) {
+        menuCache.put(restaurantId, menu);
+      }
+    });
+
+    myMenuApi.getMenu(String.format(MyMenuApi.GET_RESTAURANT_MENU, restaurantId)) //
         .map(new Func1<MenuResponse, List<MenuItem>>() {
           @Override
           public List<MenuItem> call(MenuResponse menuResponse) {
@@ -196,7 +230,9 @@ public class MyMenuDatabase {
         })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(observer);
+        .subscribe(menuRequest);
+
+    return subscription;
   }
 
   public Subscription getAllRestaurants(Observer<List<Restaurant>> observer) {
