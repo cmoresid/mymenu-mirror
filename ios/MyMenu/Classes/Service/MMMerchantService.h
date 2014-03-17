@@ -16,34 +16,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreLocation/CLLocationManagerDelegate.h>
 
 @class RACSignal;
-@class CLLocationManager;
+@class CLLocation;
 
-/**
- *  Delegate interface that defines a class that
- *  will track a user's location.
- */
-@protocol MMLocationManagerDelegate <CLLocationManagerDelegate>
+@interface MMMerchantService : NSObject
 
-/**
- *  Initializes a new location manager with a given
- *  `CLLocationManager`.
- *
- *  @param locationManager A `CLLocationManager` to track
- *                         user's location.
- *
- *  @return An instance of a class that implements `MMLocationManagerDelegate`.
- */
-- (id)initWithLocationManager:(CLLocationManager *)locationManager;
++ (instancetype)sharedService;
 
-/**
- *  Returns that user's last known location.
- *
- *  @return A `CLLocation` object containing
- *          the user's last known location.
- */
-- (RACSignal *)getLatestLocation;
+- (RACSignal *)getMerchantWithMerchantID:(NSNumber *)merchantId;
+- (RACSignal *)getDefaultCompressedMerchantsForLocation:(CLLocation *)location;
+- (RACSignal *)getCompressedMerchantsForLocation:(CLLocation *)location withName:(NSString *)merchantName;
+- (RACSignal *)getCompressedMerchantsForLocation:(CLLocation *)location withCuisineType:(NSString *)cuisine;
 
 @end

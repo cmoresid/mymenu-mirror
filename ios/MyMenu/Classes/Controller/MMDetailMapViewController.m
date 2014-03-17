@@ -22,6 +22,7 @@
 #import "MMAppDelegate.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RACEXTScope.h>
+#import "MMMerchantService.h"
 
 NSString *const kDidUpdateList = @"DidUpdateList";
 
@@ -45,44 +46,31 @@ NSString *const kDidUpdateList = @"DidUpdateList";
     MMAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
      @weakify(self);
-    [[appDelegate.locationManager.getLatestLocation
+    [[[appDelegate.locationManager.getLatestLocation
         deliverOn:[RACScheduler mainThreadScheduler]]
-        subscribeNext:^(CLLocation *location) {
+        flattenMap:^RACStream *(CLLocation *location) {
             @strongify(self);
+            self.location = location;
             [self didReceiveUserLocation:location];
+            
+            return [[MMMerchantService sharedService] getDefaultCompressedMerchantsForLocation:location];
+        }]
+        subscribeNext:^(NSMutableArray *merchants) {
+            @strongify(self);
+            [self didUpdateList:merchants];
         }
         error:^(NSError *error) {
-            
+            NSLog(@"error");
     }];
     
     // Don't allow the map to track the user's location...
     [self.mapView setUserTrackingMode:MKUserTrackingModeNone animated:NO];
-    [self registerForUserLocationNotifications];
     [self configureView];
-}
-
-- (void)dealloc {
-    [self unregisterForUserLocationNotifications];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Register User Location Notifications
-
-- (void)registerForUserLocationNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didUpdateList:)
-                                                 name:kDidUpdateList
-                                               object:nil];
-}
-
-- (void)unregisterForUserLocationNotifications {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:kDidUpdateList
-                                                  object:nil];
 }
 
 #pragma mark - Manage Detail View (Portrait Mode)
@@ -107,7 +95,7 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 
 #pragma mark - Location Notification Callback Methods
 
-- (void)didUpdateList:(NSNotification *)notification {
+- (void)didUpdateList:(NSMutableArray *)merchants {
     NSMutableArray *annots = [_mapView.annotations mutableCopy];
 
     for (int i = 0; i < [annots count]; i++) {
@@ -116,8 +104,7 @@ NSString *const kDidUpdateList = @"DidUpdateList";
     }
 
     [_mapView removeAnnotations:[annots copy]];
-
-    [self pinRestaurants:notification.object];
+    [self pinRestaurants:[merchants copy]];
 
 }
 
@@ -170,11 +157,11 @@ NSString *const kDidUpdateList = @"DidUpdateList";
     span.longitudeDelta = .25;
 
     MKCoordinateRegion region;
-    region.center = _location.coordinate;
+    region.center = self.location.coordinate;
     region.span = span;
 
-    //[self.mapView setCenterCoordinate:_location.coordinate animated:YES];
-    //[self.mapView setRegion:region animated:YES];
+    [self.mapView setCenterCoordinate:self.location.coordinate animated:YES];
+    [self.mapView setRegion:region animated:YES];
 }
 
 - (void)configureMapForOneRestaurant:(NSArray *)restaurants {

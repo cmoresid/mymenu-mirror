@@ -29,10 +29,13 @@
 #import "MMAppDelegate.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RACEXTScope.h>
+#import "MMMerchantService.h"
 
 @interface MMMasterRestaurantTableViewController () {
     NSMutableArray *_objects;
 }
+
+@property(nonatomic, strong) NSNumber *selectedMerchantId;
 
 - (void)updatedOrderByFilter:(UISegmentedControl *)control;
 
@@ -83,27 +86,21 @@
     [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
 }
 
-- (void)didReceiveUserLocation:(CLLocation *)location {
-    self.dbFetcher = [[MMDBFetcher alloc] init];
-    self.dbFetcher.delegate = self;
-    
-    [self.dbFetcher getCompressedMerchants:location];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     MMAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
     @weakify(self);
-    [[appDelegate.locationManager.getLatestLocation
-      deliverOn:[RACScheduler mainThreadScheduler]]
-      subscribeNext:^(CLLocation *location) {
-          @strongify(self);
-          [self didReceiveUserLocation:location];
-      }
-      error:^(NSError *error) {
-          NSLog(@"Location error in MMMasterRestaurantTableViewController");
+    [[[appDelegate.locationManager.getLatestLocation
+        deliverOn:[RACScheduler mainThreadScheduler]]
+        flattenMap:^RACStream *(CLLocation *location) {
+            return [[MMMerchantService sharedService] getDefaultCompressedMerchantsForLocation:location];
+        }]
+        subscribeNext:^(NSMutableArray *compressedMerchants) {
+            @strongify(self);
+            _restaurants = compressedMerchants;
+            [self.tableView reloadData];
     }];
 
     _searchflag = false;
@@ -252,13 +249,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        [self.dbFetcher getMerchant:[[_filteredrestaurants objectAtIndex:indexPath.row] mid]];
-    } else {
-        [self.dbFetcher getMerchant:[[_restaurants objectAtIndex:indexPath.row] mid]];
-    }
-    [self.dbFetcher getMerchant:[[self.restaurants objectAtIndex:indexPath.row] mid]];
+//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        [self.dbFetcher getMerchant:[[_filteredrestaurants objectAtIndex:indexPath.row] mid]];
+//    } else {
+//        [self.dbFetcher getMerchant:[[_restaurants objectAtIndex:indexPath.row] mid]];
+//    }
+//    [self.dbFetcher getMerchant:[[self.restaurants objectAtIndex:indexPath.row] mid]];
+    self.selectedMerchantId = ((MMMerchant *)[self.restaurants objectAtIndex:indexPath.row]).mid;
+    [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -268,7 +268,7 @@
         RBStoryboardLink *storyboardLink = [controller.viewControllers firstObject];
         MMRestaurantViewController *restaurantViewController = (MMRestaurantViewController *) storyboardLink.scene;
 
-        restaurantViewController.currentMerchant = _selectedRestaurant;
+        restaurantViewController.currentMerchantId = self.selectedMerchantId;
     }
 }
 
