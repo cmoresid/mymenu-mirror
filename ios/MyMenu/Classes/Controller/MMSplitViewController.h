@@ -24,10 +24,5 @@
  */
 @interface MMSplitViewController : UISplitViewController <RBStoryboardLinkSource>
 
-/**
- *  The location manager for the controller
- */
-@property(nonatomic, strong) MMLocationManager *locationManager;
-
 
 @end

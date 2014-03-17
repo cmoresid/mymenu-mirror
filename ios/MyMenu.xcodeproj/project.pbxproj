@@ -212,6 +212,7 @@
 		B027167618A3527D0027BF4E /* MMMockDBFetcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMockDBFetcherDelegate.h; sourceTree = "<group>"; };
 		B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMockDBFetcherDelegate.m; sourceTree = "<group>"; };
 		B027167918A3574B0027BF4E /* MMDBFetcherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcherTests.m; sourceTree = "<group>"; };
+		B02BDC5418D78D39004D276D /* MMMerchantDataSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMMerchantDataSourceDelegate.h; sourceTree = "<group>"; };
 		B031A68F18D2449B000BF353 /* libPods-ABCalendarPicker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ABCalendarPicker.a"; path = "Pods/build/Debug-iphoneos/libPods-ABCalendarPicker.a"; sourceTree = "<group>"; };
 		B03D7C8918CCFD8200F7F5CE /* StaticData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StaticData.plist; sourceTree = "<group>"; };
 		B03D7C8C18CCFE2000F7F5CE /* MMStaticDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMStaticDataHelper.h; path = Helper/MMStaticDataHelper.h; sourceTree = "<group>"; };
@@ -700,6 +701,7 @@
 			isa = PBXGroup;
 			children = (
 				B0B6E64F18D671D200BB0298 /* MMLocationManagerDelegate.h */,
+				B02BDC5418D78D39004D276D /* MMMerchantDataSourceDelegate.h */,
 				B0A9901D18CA43E900AC4CBB /* MMRegistrationPopoverDelegate.h */,
 				B0A9902018CA43E900AC4CBB /* MMRestaurantPopOverDelegate.h */,
 				B0A9901E18CA43E900AC4CBB /* MMRestaurantMapDelegate.h */,

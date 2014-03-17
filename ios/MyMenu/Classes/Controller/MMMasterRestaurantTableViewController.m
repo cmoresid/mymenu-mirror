@@ -31,10 +31,10 @@
 #import <RACEXTScope.h>
 #import "MMMerchantService.h"
 #import "UISearchBar+RAC.h"
+#import "MMSplitViewController.h"
+#import "MMPresentationFormatter.h"
 
-@interface MMMasterRestaurantTableViewController () {
-    NSMutableArray *_objects;
-}
+@interface MMMasterRestaurantTableViewController ()
 
 @property(nonatomic, strong) NSNumber *selectedMerchantId;
 
@@ -65,31 +65,44 @@
         subscribeNext:^(NSMutableArray *compressedMerchants) {
             @strongify(self);
             _restaurants = compressedMerchants;
+            [self.delegate didReceiveMerchants:compressedMerchants];
+            
             [self.tableView reloadData];
     }];
     
-    
-    RAC(self, filteredrestaurants) = [[[[[self.merchantSearchBar rac_textSignal]
+    RAC(self, filteredrestaurants) = [[[[[[self.merchantSearchBar rac_textSignal]
         skip:1]
         throttle:0.6]
+        filter:^BOOL(NSString *searchValue) {
+            BOOL emptyString = [searchValue isEqualToString:@""];
+
+            if (emptyString)
+                [self.delegate didReceiveMerchants:[NSMutableArray new]];
+            
+            return !emptyString;
+        }]
         flattenMap:^RACStream *(NSString *searchValue) {
             return [[MMMerchantService sharedService] getCompressedMerchantsForLocation:self.location withName:searchValue];
         }]
         map:^NSArray*(NSMutableArray *searchResults) {
+            [self.delegate didReceiveMerchants:searchResults];
+            
             return [searchResults copy];
         }];
     
     [RACObserve(self, filteredrestaurants) subscribeNext:^(id x) {
         [self.searchDisplayController.searchResultsTableView reloadData];
     }];
-
+    
+    [[self.orderbySegmentControl rac_newSelectedSegmentIndexChannelWithNilValue:0]
+        subscribeNext:^(id x) {
+            @strongify(self);
+            [self updatedOrderByFilter:self.orderbySegmentControl];
+    }];
+    
     self.detailViewController = (MMDetailMapViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-
-    [self.orderbySegmentControl addTarget:self
-                                   action:@selector(updatedOrderByFilter:)
-                         forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)updatedOrderByFilter:(UISegmentedControl *)control {
@@ -139,7 +152,6 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
 
-
     MMMerchant *restaurant;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         restaurant = [_filteredrestaurants objectAtIndex:indexPath.row];
@@ -147,44 +159,12 @@
         restaurant = [_restaurants objectAtIndex:indexPath.row];
     }
 
-
     cell.ratingBg.backgroundColor = [UIColor lightBackgroundGray];
     cell.ratingBg.layer.cornerRadius = 5;
     cell.restaurantNameLabel.text = restaurant.businessname;
     cell.categoryLabel.text = restaurant.category;
-
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatter setMaximumFractionDigits:1];
-    [formatter setMinimumFractionDigits:1];
-
-    NSString *rate = [formatter stringFromNumber:[[_restaurants objectAtIndex:indexPath.row] rating]];
-    if ([rate isEqualToString:@".0"]) {
-        rate = @"N/A";
-    }
-
-    if ([restaurant.distfromuser compare:[NSNumber numberWithFloat:0.0f]] == NSOrderedAscending) {
-        NSNumberFormatter *oneDecFormat = [[NSNumberFormatter alloc] init];
-        [oneDecFormat setRoundingMode:NSNumberFormatterRoundHalfUp];
-        [oneDecFormat setMaximumFractionDigits:0];
-
-        NSString *stringFormat = @"%@ m";
-        NSNumber *dist = [NSNumber numberWithDouble:restaurant.distfromuser.doubleValue * 1000.0];
-        NSString *formattedValue = [oneDecFormat stringFromNumber:dist];
-
-        cell.distanceLabel.text = [NSString stringWithFormat:stringFormat, formattedValue];
-    } else {
-        NSNumberFormatter *oneDecFormat = [[NSNumberFormatter alloc] init];
-        [oneDecFormat setRoundingMode:NSNumberFormatterRoundHalfUp];
-        [oneDecFormat setMaximumFractionDigits:1];
-
-        NSString *stringFormat = @"%@ km";
-        NSString *formattedValue = [oneDecFormat stringFromNumber:restaurant.distfromuser];
-
-        cell.distanceLabel.text = [NSString stringWithFormat:stringFormat, formattedValue];
-    }
-
-    cell.ratinglabel.text = rate;
+    cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:restaurant.rating];
+    cell.distanceLabel.text = [MMPresentationFormatter formatDistance:restaurant.distfromuser];
     cell.addressLabel.text = restaurant.address;
 
     [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:[restaurant picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
@@ -220,14 +200,20 @@
 
 - (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller {
     self.filteredrestaurants = @[];
+    [self.delegate didReceiveMerchants:[NSMutableArray new]];
+    
+    self.searchflag = YES;
 }
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
+    [self.delegate didReceiveMerchants:[self.restaurants mutableCopy]];
+    
     self.filteredrestaurants = @[];
+    self.searchflag = NO;
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    if ([searchString isEqualToString:@""]) {
+    if ([searchString isEqualToString:@""] && self.searchflag) {
         self.filteredrestaurants = @[];
         return YES;
     }

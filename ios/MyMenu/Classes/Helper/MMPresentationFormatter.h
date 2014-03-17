@@ -22,5 +22,6 @@
 + (NSString *)formatRatingForRawRating:(NSNumber *)rating;
 + (NSString *)formatBusinessHoursForOpenTime:(NSString *)openTime withCloseTime:(NSString *)closeTime;
 + (NSString *)formatNumberAsPrice:(NSNumber *)price;
++ (NSString *)formatDistance:(NSNumber *)distance;
 
 @end

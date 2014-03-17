@@ -18,26 +18,17 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-#import "MMDBFetcherDelegate.h"
 #import "MMDBFetcher.h"
 #import "MMMerchant.h"
 #import "MMLocationManager.h"
+#import "MMMerchantDataSourceDelegate.h"
 
 @class MMDetailMapViewController;
 
 /**
- *  The identifier for the notification that is
- *  sent when a user begins searching for a
- *  a restaurant. When a subscriber receives
- *  this notification, it updates the restaurant
- *  list in the `MMMasterRestaurantTableViewController`
- */
-extern NSString *const kDidUpdateList;
-
-/**
  *  The Restaurant table shown on the Restaurants tab. (Next to the map)
  */
-@interface MMMasterRestaurantTableViewController : UIViewController <UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface MMMasterRestaurantTableViewController : UIViewController <UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
 
 /**
  *  Array of Restaurants
@@ -59,10 +50,8 @@ extern NSString *const kDidUpdateList;
  */
 @property(nonatomic, strong) MMDetailMapViewController *detailViewController;
 
-/**
- *  The current DBFetcher
- */
-@property(nonatomic, strong) MMDBFetcher *dbFetcher;
+
+@property(nonatomic, weak) id<MMMerchantDataSourceDelegate> delegate;
 
 /**
  *  The current users location, if GPS is on

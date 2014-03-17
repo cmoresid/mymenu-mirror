@@ -22,6 +22,7 @@
 #import "MMDBFetcherDelegate.h"
 #import "MMDBFetcher.h"
 #import <RBStoryboardLink/RBStoryboardLinkSource.h>
+#import "MMMerchantDataSourceDelegate.h"
 
 @class MMLocationManager;
 @class MMRestaurantMapDelegate;
@@ -29,7 +30,7 @@
 /**
  *  Map View on the Restaruants tab.
  */
-@interface MMDetailMapViewController : UIViewController <UISplitViewControllerDelegate, MMDBFetcherDelegate, RBStoryboardLinkSource>
+@interface MMDetailMapViewController : UIViewController <UISplitViewControllerDelegate, MMMerchantDataSourceDelegate, RBStoryboardLinkSource>
 
 @property(nonatomic, strong) id detailItem;
 @property(nonatomic, weak) IBOutlet UILabel *detailDescriptionLabel;
