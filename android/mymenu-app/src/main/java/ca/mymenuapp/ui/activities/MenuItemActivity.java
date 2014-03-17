@@ -1,5 +1,6 @@
 package ca.mymenuapp.ui.activities;
 
+import android.animation.ObjectAnimator;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -40,6 +41,7 @@ public class MenuItemActivity extends BaseActivity {
   @InjectView(R.id.menu_item_description) TextView description;
   @InjectView(R.id.menu_item_reviews) ListView reviewListView;
   @InjectView(R.id.menu_item_reviews_summary) TextView reviewSummary;
+  @InjectView(R.id.sliding_pane) View slidingPane;
 
   @InjectView(R.id.sliding_layout) SlidingUpPanelLayout slidingLayout;
 
@@ -85,9 +87,13 @@ public class MenuItemActivity extends BaseActivity {
       }
 
       @Override public void onPanelCollapsed(View panel) {
+        // todo: animate this change
+        slidingPane.setPadding(0, 0, 0, 0);
       }
 
       @Override public void onPanelExpanded(View panel) {
+        // todo: animate this change
+        slidingPane.setPadding(0, getActionBar().getHeight(), 0, 0);
       }
 
       @Override public void onPanelAnchored(View panel) {

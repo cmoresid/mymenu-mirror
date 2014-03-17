@@ -53,6 +53,7 @@
   </ca.mymenuapp.ui.widgets.NotifyingScrollView>
 
   <LinearLayout
+      android:id="@+id/sliding_pane"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:orientation="vertical">
@@ -63,7 +64,7 @@
         android:layout_height="128dp"
         android:gravity="center"
         android:text="The Awesome Sliding Up Panel. Summary and rating wheel go here."
-        android:paddingTop="?android:actionBarSize"
+        android:background="@color/turqoise"
         android:textSize="16sp"/>
 
     <ListView
