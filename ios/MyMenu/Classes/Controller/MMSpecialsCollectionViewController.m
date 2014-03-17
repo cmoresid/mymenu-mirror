@@ -259,6 +259,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 		[self loadDay:date];
 	}
 	
+	NSLog(@"%@",[NSIndexPath indexPathForRow:0 inSection:[self.dateIndex indexOfObject:date]]);
+	
     // TODO: display message no options selected?
 }
 
@@ -368,10 +370,18 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
             // If we do not have content for the current date create a new "section"
             [self.specials setObject:[webSpecials mutableCopy] forKey:date];
 		}
+		
+
 	}
 	
     // Reload the View
     [[self collectionView] reloadData];
+	
+	if([date isEqualToDate:self.selectedDate]) {
+		NSIndexPath *item_idx = [NSIndexPath indexPathForItem:0 inSection:[self.dateIndex indexOfObject:date]];
+		[self.collectionView scrollToItemAtIndexPath:item_idx  atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+	}
+	
 }
 
 #pragma mark -
@@ -506,7 +516,8 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
         [[self showTypes] addObject:type];
 
         // Reload all the dates for the type added, since it will be removed at this time.
-		[self loadDate:self.selectedDate forType:type];
+		for(NSDate * date in self.dateIndex)
+			[self loadDate:date forType:type];
 		
         // Refresh View
         [self.collectionView reloadData];
