@@ -66,6 +66,12 @@ NSString *const kDidUpdateList = @"DidUpdateList";
     [self configureView];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.mapView setShowsUserLocation:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -97,7 +103,7 @@ NSString *const kDidUpdateList = @"DidUpdateList";
     NSMutableArray *annots = [_mapView.annotations mutableCopy];
 
     for (int i = 0; i < [annots count]; i++) {
-        if ([[annots objectAtIndex:i] isKindOfClass:[MKUserLocation class]])
+        if (![[annots objectAtIndex:i] isKindOfClass:[MKUserLocation class]])
             [annots removeObjectAtIndex:i];
     }
 

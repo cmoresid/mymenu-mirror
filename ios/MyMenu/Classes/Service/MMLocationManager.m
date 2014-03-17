@@ -69,7 +69,8 @@ static MMLocationManager *instance;
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     NSLog(@"locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations");
     [manager stopMonitoringSignificantLocationChanges];
-    [self updateLocationSubject];
+    
+    [self.locationSubject sendNext:[locations lastObject]];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {

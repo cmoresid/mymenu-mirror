@@ -22,7 +22,9 @@
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.locationManager = [[MMLocationManager alloc] init];
+    if ([launchOptions objectForKey:UIApplicationLaunchOptionsLocationKey]) {
+        [MMLocationManager sharedLocationManager];
+    }
     
     // Check to see if user is logged in. If they are logged in, go to the
     // main screen; otherwise, stay at the login view.
