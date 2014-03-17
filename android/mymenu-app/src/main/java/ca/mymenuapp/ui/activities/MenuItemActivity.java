@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -18,6 +19,7 @@ import ca.mymenuapp.ui.adapters.MenuItemReviewAdapter;
 import ca.mymenuapp.ui.widgets.NotifyingScrollView;
 import ca.mymenuapp.ui.widgets.SlidingUpPanelLayout;
 import com.f2prateek.dart.InjectExtra;
+import com.f2prateek.ln.Ln;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import java.util.ArrayList;
@@ -76,10 +78,24 @@ public class MenuItemActivity extends BaseActivity {
     inflateView(R.layout.activity_menu_item);
     getActionBar().setDisplayHomeAsUpEnabled(true);
 
-    slidingLayout.setAnchorPoint(0.2f);
-    slidingLayout.setDragView(reviewSummary);
-
     initFancyScroll();
+
+    slidingLayout.setDragView(reviewSummary);
+    slidingLayout.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+      @Override public void onPanelSlide(View panel, float slideOffset) {
+      }
+
+      @Override public void onPanelCollapsed(View panel) {
+      }
+
+      @Override public void onPanelExpanded(View panel) {
+        // set a full alpha value when the panel is expanded so the title and actions show through
+        actionBarBackgroundDrawable.setAlpha(255);
+      }
+
+      @Override public void onPanelAnchored(View panel) {
+      }
+    });
   }
 
   @Override protected void onStart() {
