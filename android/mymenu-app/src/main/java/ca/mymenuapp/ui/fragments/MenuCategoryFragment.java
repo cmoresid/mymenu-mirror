@@ -40,16 +40,16 @@ public class MenuCategoryFragment extends BaseFragment implements AdapterView.On
 
   @InjectView(R.id.menu_grid) HeaderGridView gridView;
 
+  @Inject Picasso picasso;
+
   AbsListView.OnScrollListener scrollListener;
   BaseAdapter gridAdapter;
-
-  @Inject Picasso picasso;
 
   /**
    * Returns a new instance of this fragment for the given section number.
    */
-  public static MenuCategoryFragment newInstance(List<MenuItem> menuItems, Restaurant restaurant,
-      List<MenuItemReview> reviews) {
+  public static MenuCategoryFragment newInstance(final List<MenuItem> menuItems,
+      final Restaurant restaurant, final List<MenuItemReview> reviews) {
     MenuCategoryFragment fragment = new MenuCategoryFragment();
     Bundle args = new Bundle();
     ArrayList<MenuItem> menuItemArrayList = new ArrayList<>(menuItems);
