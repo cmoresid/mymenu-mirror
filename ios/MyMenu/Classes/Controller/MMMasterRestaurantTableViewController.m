@@ -26,6 +26,9 @@
 #import "NSArray+MerchantSort.h"
 #import "MMRestaurantViewController.h"
 #import <RBStoryboardLink/RBStoryboardLink.h>
+#import "MMAppDelegate.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <RACEXTScope.h>
 
 @interface MMMasterRestaurantTableViewController () {
     NSMutableArray *_objects;
@@ -80,13 +83,28 @@
     [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
 }
 
+- (void)didReceiveUserLocation:(CLLocation *)location {
+    self.dbFetcher = [[MMDBFetcher alloc] init];
+    self.dbFetcher.delegate = self;
+    
+    [self.dbFetcher getCompressedMerchants:location];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveUserLocation:)
-                                                 name:kRetrievedUserLocation
-                                               object:nil];
+    MMAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    
+    @weakify(self);
+    [[appDelegate.locationManager.getLatestLocation
+      deliverOn:[RACScheduler mainThreadScheduler]]
+      subscribeNext:^(CLLocation *location) {
+          @strongify(self);
+          [self didReceiveUserLocation:location];
+      }
+      error:^(NSError *error) {
+          NSLog(@"Location error in MMMasterRestaurantTableViewController");
+    }];
 
     _searchflag = false;
 
@@ -119,13 +137,6 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)didReceiveUserLocation:(NSNotification *)notification {
-    _location = notification.object;
-    self.dbFetcher = [[MMDBFetcher alloc] init];
-    self.dbFetcher.delegate = self;
-    [self.dbFetcher getCompressedMerchants:_location];
 }
 
 - (void)didReceiveMemoryWarning {

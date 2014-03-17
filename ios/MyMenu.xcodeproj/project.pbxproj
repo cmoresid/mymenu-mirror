@@ -352,6 +352,7 @@
 		B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentLocation.png; sourceTree = "<group>"; };
 		B0B0C4DD18A8245600BA47CB /* LocationMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocationMarker.png; sourceTree = "<group>"; };
 		B0B344E918D246700023924D /* libPods-TimesSquare.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TimesSquare.a"; path = "Pods/build/Debug-iphoneos/libPods-TimesSquare.a"; sourceTree = "<group>"; };
+		B0B6E64F18D671D200BB0298 /* MMLocationManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMLocationManagerDelegate.h; sourceTree = "<group>"; };
 		B0D162F918D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		B0D162FA18D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		B0DE3FF018CAA68800190F2F /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -690,6 +691,7 @@
 		B0A9901C18CA43E900AC4CBB /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
+				B0B6E64F18D671D200BB0298 /* MMLocationManagerDelegate.h */,
 				B0A9901D18CA43E900AC4CBB /* MMRegistrationPopoverDelegate.h */,
 				B0A9902018CA43E900AC4CBB /* MMRestaurantPopOverDelegate.h */,
 				B0A9901E18CA43E900AC4CBB /* MMRestaurantMapDelegate.h */,

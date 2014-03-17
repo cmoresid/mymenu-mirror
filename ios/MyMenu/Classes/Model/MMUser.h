@@ -37,4 +37,6 @@
 @property(nonatomic) NSString *confirm;
 @property(nonatomic) NSMutableArray *restrictions;
 
+- (NSString *)userAddress;
+
 @end

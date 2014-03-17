@@ -17,10 +17,13 @@
 
 #import "MMAppDelegate.h"
 #import "MMLoginManager.h"
+#import "MMLocationManager.h"
 
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.locationManager = [[MMLocationManager alloc] init];
+    
     // Check to see if user is logged in. If they are logged in, go to the
     // main screen; otherwise, stay at the login view.
     if ([[MMLoginManager sharedLoginManager] isUserLoggedIn]) {

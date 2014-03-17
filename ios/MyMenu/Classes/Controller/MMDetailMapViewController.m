@@ -19,6 +19,9 @@
 #import "MMLocationManager.h"
 #import "MMRestaurantMapDelegate.h"
 #import "MMMasterRestaurantTableViewController.h"
+#import "MMAppDelegate.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <RACEXTScope.h>
 
 NSString *const kDidUpdateList = @"DidUpdateList";
 
@@ -39,6 +42,21 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    MMAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    
+     @weakify(self);
+    [[appDelegate.locationManager.getLatestLocation
+        deliverOn:[RACScheduler mainThreadScheduler]]
+        subscribeNext:^(CLLocation *location) {
+            @strongify(self);
+            [self didReceiveUserLocation:location];
+        }
+        error:^(NSError *error) {
+            
+    }];
+    
+    // Don't allow the map to track the user's location...
+    [self.mapView setUserTrackingMode:MKUserTrackingModeNone animated:NO];
     [self registerForUserLocationNotifications];
     [self configureView];
 }
@@ -56,21 +74,12 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 
 - (void)registerForUserLocationNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveUserLocation:)
-                                                 name:kRetrievedUserLocation
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didUpdateList:)
                                                  name:kDidUpdateList
                                                object:nil];
 }
 
 - (void)unregisterForUserLocationNotifications {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:kRetrievedUserLocation
-                                                  object:nil];
-
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kDidUpdateList
                                                   object:nil];
@@ -112,19 +121,17 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 
 }
 
-- (void)didReceiveUserLocation:(NSNotification *)notification {
-    _location = notification.object;
-
+- (void)didReceiveUserLocation:(CLLocation *)location {
     MKCoordinateSpan span;
     span.latitudeDelta = .25;
     span.longitudeDelta = .25;
 
     MKCoordinateRegion region;
-    region.center = _location.coordinate;
+    region.center = location.coordinate;
     region.span = span;
 
-    [self.mapView setCenterCoordinate:_location.coordinate animated:YES];
-    [self.mapView setRegion:region animated:YES];
+    [self.mapView setCenterCoordinate:location.coordinate animated:YES];
+    [self.mapView setRegion:region animated:NO];
 
     self.mapDelegate = [[MMRestaurantMapDelegate alloc] init];
     self.mapView.delegate = self.mapDelegate;
@@ -166,8 +173,8 @@ NSString *const kDidUpdateList = @"DidUpdateList";
     region.center = _location.coordinate;
     region.span = span;
 
-    [self.mapView setCenterCoordinate:_location.coordinate animated:YES];
-    [self.mapView setRegion:region animated:YES];
+    //[self.mapView setCenterCoordinate:_location.coordinate animated:YES];
+    //[self.mapView setRegion:region animated:YES];
 }
 
 - (void)configureMapForOneRestaurant:(NSArray *)restaurants {

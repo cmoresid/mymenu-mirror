@@ -16,20 +16,33 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "MMLocationManagerDelegate.h"
 
-extern NSString *const kMMLocationManagerDelegateErrorDomain;
-extern const NSInteger ERR_MM_LMD_NO_MOST_RECENT_LOCATION;
-extern const NSInteger ERR_MM_LMD_LOCATION_SERVICES_DENIED;
+@class RACSignal;
 
 /**
- *  An implementation of the `MMLocationManagerDelegate`
- *  protocol. Tracks the user's current location.
- *
- *  @see `MMLocationManagerDelegate`
+ *  Delegate interface that defines a class that
+ *  will track a user's location.
  */
-@interface MMLocationManager : NSObject <MMLocationManagerDelegate>
+@protocol MMLocationManagerDelegate <CLLocationManagerDelegate>
+
+/**
+ *  Initializes a new location manager with a given
+ *  `CLLocationManager`.
+ *
+ *  @param locationManager A `CLLocationManager` to track
+ *                         user's location.
+ *
+ *  @return An instance of a class that implements `MMLocationManagerDelegate`.
+ */
+- (id)initWithLocationManager:(CLLocationManager *)locationManager;
+
+/**
+ *  Returns that user's last known location.
+ *
+ *  @return A `CLLocation` object containing
+ *          the user's last known location.
+ */
+- (RACSignal *)getLatestLocation;
 
 @end
