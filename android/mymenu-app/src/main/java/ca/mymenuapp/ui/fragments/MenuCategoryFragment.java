@@ -83,8 +83,12 @@ public class MenuCategoryFragment extends BaseFragment implements AdapterView.On
     scrollListener = (AbsListView.OnScrollListener) activity;
   }
 
-  @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    MenuItem menuItem = (MenuItem) gridAdapter.getItem(position);
+  @Override
+  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    // headers are added to position!
+    // position is indexed by one but list is by zero
+    int index = position - 1 - ((HeaderGridView) parent).getHeaderViewCount();
+    MenuItem menuItem = items.get(index);
     Intent intent = new Intent(activityContext, MenuItemActivity.class);
     intent.putExtra(MenuItemActivity.ARGS_MENU_ITEM, menuItem);
     intent.putExtra(MenuItemActivity.ARGS_RESTAURANT, restaurant);

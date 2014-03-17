@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
-import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.RestaurantMenu;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
@@ -93,6 +92,13 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
 
     getActionBar().setDisplayHomeAsUpEnabled(true);
 
+    tabStrip.setTextColorResource(android.R.color.white);
+    init();
+    setupActionBar();
+
+    restaurantHeader.bringToFront(); // explicit, list scrolls behind the header
+    restaurantHeaderLogo.bringToFront();
+
     myMenuDatabase.getRestaurantAndMenu(userPreference.get(), restaurantId,
         new EndlessObserver<RestaurantMenu>() {
           @Override public void onNext(RestaurantMenu menu) {
@@ -108,18 +114,6 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
           }
         }
     );
-
-    myMenuDatabase.getRestaurant(restaurantId, new EndlessObserver<Restaurant>() {
-      @Override public void onNext(final Restaurant restaurant) {
-
-      }
-    });
-
-    tabStrip.setTextColorResource(android.R.color.white);
-    init();
-    setupActionBar();
-
-    restaurantHeader.bringToFront(); // explicit, list scrolls behind the header
   }
 
   /**
