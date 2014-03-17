@@ -1,6 +1,5 @@
 package ca.mymenuapp.ui.activities;
 
-import android.animation.ObjectAnimator;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;

@@ -88,7 +88,12 @@ public class MenuCategoryFragment extends BaseFragment implements AdapterView.On
     Intent intent = new Intent(activityContext, MenuItemActivity.class);
     intent.putExtra(MenuItemActivity.ARGS_MENU_ITEM, menuItem);
     intent.putExtra(MenuItemActivity.ARGS_RESTAURANT, restaurant);
-    intent.putExtra(MenuItemActivity.ARGS_REVIEWS, reviews);
+    // todo : optimize in a background thread?
+    ArrayList<MenuItemReview> menuItemReviews = new ArrayList<>();
+    for (MenuItemReview review : reviews) {
+      if (review.menuId == menuItem.id) menuItemReviews.add(review);
+    }
+    intent.putExtra(MenuItemActivity.ARGS_REVIEWS, menuItemReviews);
     startActivity(intent);
   }
 
