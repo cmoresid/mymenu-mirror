@@ -10,11 +10,14 @@ import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.ui.misc.BindableAdapter;
-import java.text.NumberFormat;
+import ca.mymenuapp.ui.widgets.OverflowView;
+import com.f2prateek.ln.Ln;
 import java.util.List;
 
 public class MenuItemReviewAdapter extends BindableAdapter<MenuItemReview> {
+
   final List<MenuItemReview> reviews;
+  MenuItemReview selected;
 
   public MenuItemReviewAdapter(Context context, List<MenuItemReview> reviews) {
     super(context);
@@ -37,10 +40,13 @@ public class MenuItemReviewAdapter extends BindableAdapter<MenuItemReview> {
     View view = inflater.inflate(R.layout.adapter_review_menu_item, container, false);
     ViewHolder viewHolder = new ViewHolder(view);
     view.setTag(viewHolder);
+    viewHolder.overflow.addItem(R.id.like, R.string.like);
+    viewHolder.overflow.addItem(R.id.dislike, R.string.dislike);
+    viewHolder.overflow.addItem(R.id.spam, R.string.spam);
     return view;
   }
 
-  @Override public void bindView(MenuItemReview review, int position, View view) {
+  @Override public void bindView(final MenuItemReview review, int position, View view) {
     ViewHolder holder = (ViewHolder) view.getTag();
     holder.email.setText(review.userEmail);
     holder.review.setText(review.description);
@@ -49,7 +55,19 @@ public class MenuItemReviewAdapter extends BindableAdapter<MenuItemReview> {
     } else {
       setLeftDrawable(R.drawable.ic_action_emo_basic, holder.email);
     }
-    holder.rating.setText(NumberFormat.getInstance().format(review.rating));
+    holder.overflow.setListener(new OverflowView.OverflowActionListener() {
+      @Override public void onPopupShown() {
+
+      }
+
+      @Override public void onPopupDismissed() {
+
+      }
+
+      @Override public void onActionSelected(int action) {
+        Ln.d("selected action %d for item %s", action, review);
+      }
+    });
   }
 
   void setLeftDrawable(int drawable, TextView target) {
@@ -59,12 +77,15 @@ public class MenuItemReviewAdapter extends BindableAdapter<MenuItemReview> {
   class ViewHolder {
     @InjectView(R.id.email) TextView email;
     @InjectView(R.id.review) TextView review;
-    @InjectView(R.id.like) View like;
-    @InjectView(R.id.dislike) View dislike;
+    @InjectView(R.id.overflow) OverflowView overflow;
     @InjectView(R.id.rating) TextView rating;
 
     ViewHolder(View root) {
       ButterKnife.inject(this, root);
     }
+  }
+
+  public interface OnReviewActionClickedListener {
+    void onReviewActionClicked(int action, MenuItemReview itemReview);
   }
 }

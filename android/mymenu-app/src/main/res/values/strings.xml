@@ -52,5 +52,8 @@
 
   <!-- Menu Item Activity -->
   <string name="modifications">modifications</string>
+  <string name="spam">Spam</string>
+  <string name="dislike">Dislike</string>
+  <string name="like">Like</string>
 
 </resources>

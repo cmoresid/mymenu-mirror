@@ -11,26 +11,17 @@
       android:layout_width="match_parent"
       android:layout_height="48dp"
       android:layout_alignParentLeft="true"
-      android:layout_toLeftOf="@+id/dislike"
+      android:layout_toLeftOf="@+id/overflow"
       android:gravity="center_vertical"
       android:drawableStart="@drawable/ic_action_emo_basic"
       tools:text="f2prateek@gmail.com"/>
 
-  <ImageView
-      android:id="@+id/dislike"
+  <ca.mymenuapp.ui.widgets.OverflowView
+      android:id="@+id/overflow"
       android:layout_width="wrap_content"
-      android:layout_height="48dp"
-      style="?android:buttonBarButtonStyle"
-      android:layout_toLeftOf="@+id/like"
-      android:src="@drawable/ic_action_dontlike"/>
-
-  <ImageView
-      android:id="@+id/like"
-      android:layout_width="wrap_content"
-      android:layout_height="48dp"
+      android:layout_height="wrap_content"
       android:layout_alignParentRight="true"
-      style="?android:buttonBarButtonStyle"
-      android:src="@drawable/ic_action_like"/>
+      style="?android:buttonBarButtonStyle"/>
 
   <TextView
       android:id="@+id/rating"
