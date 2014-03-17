@@ -2,13 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:baselineAligned="false"
-    android:divider="?android:attr/dividerHorizontal"
-    android:orientation="horizontal"
-    android:showDividers="middle"
-    tools:context="ca.mymenuapp.ui.RestaurantListActivity">
+    tools:context="ca.mymenuapp.ui.fragments.RestaurantTwoPaneFragment">
 
   <!--
   This layout is a two-pane layout for the Restaurants
@@ -24,15 +18,20 @@
 
   <FrameLayout
       android:id="@+id/restaurant_list_placeholder"
-      android:layout_width="0dp"
-      android:layout_height="match_parent"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
       android:layout_weight="1"/>
 
-  <EditText
-      android:id="@+id/mapplaceholder"
-      android:layout_width="0dp"
+
+  <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/map"
+      android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_weight="4"
-      tools:layout="@android:layout/list_content"/>
+      android:name="ca.mymenuapp.ui.fragments.RestaurantTwoPaneFragment"
+      class="com.google.android.gms.maps.MapFragment"
+      android:layout_weight="2"
+      />
+
+
 
 </LinearLayout>

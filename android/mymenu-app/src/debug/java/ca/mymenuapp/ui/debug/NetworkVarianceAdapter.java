@@ -34,6 +34,10 @@ class NetworkVarianceAdapter extends BindableAdapter<Integer> {
       20, 40, 60
   };
 
+  NetworkVarianceAdapter(Context context) {
+    super(context);
+  }
+
   public static int getPositionForValue(int value) {
     for (int i = 0; i < VALUES.length; i++) {
       if (VALUES[i] == value) {
@@ -41,10 +45,6 @@ class NetworkVarianceAdapter extends BindableAdapter<Integer> {
       }
     }
     return 1; // Default to 40% if something changes.
-  }
-
-  NetworkVarianceAdapter(Context context) {
-    super(context);
   }
 
   @Override public int getCount() {

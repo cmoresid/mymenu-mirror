@@ -25,15 +25,6 @@ import android.view.ViewGroup;
  * recursively monitors an entire tree of views.
  */
 public final class HierarchyTreeChangeListener implements ViewGroup.OnHierarchyChangeListener {
-  /**
-   * Wrap a regular {@link android.view.ViewGroup.OnHierarchyChangeListener hierarchy change
-   * listener} with one
-   * that monitors an entire tree of views.
-   */
-  public static HierarchyTreeChangeListener wrap(ViewGroup.OnHierarchyChangeListener delegate) {
-    return new HierarchyTreeChangeListener(delegate);
-  }
-
   private final ViewGroup.OnHierarchyChangeListener delegate;
 
   private HierarchyTreeChangeListener(ViewGroup.OnHierarchyChangeListener delegate) {
@@ -41,6 +32,15 @@ public final class HierarchyTreeChangeListener implements ViewGroup.OnHierarchyC
       throw new NullPointerException("Delegate must not be null.");
     }
     this.delegate = delegate;
+  }
+
+  /**
+   * Wrap a regular {@link android.view.ViewGroup.OnHierarchyChangeListener hierarchy change
+   * listener} with one
+   * that monitors an entire tree of views.
+   */
+  public static HierarchyTreeChangeListener wrap(ViewGroup.OnHierarchyChangeListener delegate) {
+    return new HierarchyTreeChangeListener(delegate);
   }
 
   @Override public void onChildViewAdded(View parent, View child) {

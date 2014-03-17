@@ -28,12 +28,12 @@ public class AlphaForegroundColorSpan extends ForegroundColorSpan {
     ds.setColor(getAlphaColor());
   }
 
-  public void setAlpha(float alpha) {
-    mAlpha = alpha;
-  }
-
   public float getAlpha() {
     return mAlpha;
+  }
+
+  public void setAlpha(float alpha) {
+    mAlpha = alpha;
   }
 
   private int getAlphaColor() {

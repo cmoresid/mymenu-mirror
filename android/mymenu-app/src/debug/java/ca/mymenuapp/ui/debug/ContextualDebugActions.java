@@ -36,22 +36,12 @@ import java.util.Set;
  * Watches incoming and outgoing views to display context specific actions.
  */
 public class ContextualDebugActions implements ViewGroup.OnHierarchyChangeListener {
-  public interface DebugAction<T extends View> {
-    String name();
-
-    Class<T> viewClass();
-
-    void run(T view);
-  }
-
   private final Map<DebugAction<? extends View>, View> buttonMap;
   private final Map<Class<? extends View>, List<DebugAction<? extends View>>> actionMap;
-
   private final DrawerLayout drawerLayout;
   private final Context drawerContext;
   private final View contextualTitleView;
   private final LinearLayout contextualListView;
-
   public ContextualDebugActions(DebugAppContainer container, Set<DebugAction<?>> debugActions) {
     buttonMap = new LinkedHashMap<DebugAction<? extends View>, View>();
     actionMap = new LinkedHashMap<Class<? extends View>, List<DebugAction<? extends View>>>();
@@ -120,5 +110,13 @@ public class ContextualDebugActions implements ViewGroup.OnHierarchyChangeListen
     int visibility = contextualListView.getChildCount() > 0 ? View.VISIBLE : View.GONE;
     contextualTitleView.setVisibility(visibility);
     contextualListView.setVisibility(visibility);
+  }
+
+  public interface DebugAction<T extends View> {
+    String name();
+
+    Class<T> viewClass();
+
+    void run(T view);
   }
 }

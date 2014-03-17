@@ -32,6 +32,7 @@ import ca.mymenuapp.ui.fragments.PlaceholderFragment;
 import ca.mymenuapp.ui.fragments.RestaurantListFragment;
 import ca.mymenuapp.ui.fragments.RestaurantTwoPaneFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsReviewFragment;
+import com.google.android.gms.maps.MapFragment;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -44,7 +45,7 @@ import javax.inject.Singleton;
         // Fragments
         BaseFragment.class, PlaceholderFragment.class, DietaryPreferencesFragment.class,
         MenuCategoryFragment.class, RestaurantsReviewFragment.class, RestaurantListFragment.class,
-        RestaurantTwoPaneFragment.class
+        RestaurantTwoPaneFragment.class, MapFragment.class
     },
     complete = false,
     addsTo = MyMenuModule.class)

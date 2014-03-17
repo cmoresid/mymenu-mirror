@@ -37,10 +37,6 @@ public enum ApiEndpoints {
     this.url = url;
   }
 
-  @Override public String toString() {
-    return name;
-  }
-
   public static ApiEndpoints from(String endpoint) {
     for (ApiEndpoints value : values()) {
       if (value.url != null && value.url.equals(endpoint)) {
@@ -52,5 +48,9 @@ public enum ApiEndpoints {
 
   public static boolean isMockMode(String endpoint) {
     return from(endpoint) == MOCK_MODE;
+  }
+
+  @Override public String toString() {
+    return name;
   }
 }

@@ -37,27 +37,22 @@ import rx.util.functions.Func1;
 public class MyMenuDatabase {
 
   private final MyMenuApi myMenuApi;
-
-  // cache of userRestrictions
-  private PublishSubject<List<Long>> userRestrictionsRequest;
-  private List<Long> userRestrictionsCache;
-
-  // cache of dietaryRestrictions
-  private PublishSubject<List<DietaryRestriction>> dietaryRestrictionsRequest;
-  private List<DietaryRestriction> dietaryRestrictionsCache;
-
   // Cache of menus
   private final Map<Long, PublishSubject<CategorizedMenu>> menuRequests = new LinkedHashMap<>();
   private final Map<Long, CategorizedMenu> menuCache = new LinkedHashMap<>();
-
   // Cache of restaurants
   private final Map<Long, PublishSubject<Restaurant>> restaurantRequests = new LinkedHashMap<>();
   private final Map<Long, Restaurant> restaurantCache = new LinkedHashMap<>();
-
   // Cache of restaurants reviews
   private final Map<Long, PublishSubject<List<MenuItemReview>>> reviewRequests =
       new LinkedHashMap<>();
   private final Map<Long, List<MenuItemReview>> reviewsCache = new LinkedHashMap<>();
+  // cache of userRestrictions
+  private PublishSubject<List<Long>> userRestrictionsRequest;
+  private List<Long> userRestrictionsCache;
+  // cache of dietaryRestrictions
+  private PublishSubject<List<DietaryRestriction>> dietaryRestrictionsRequest;
+  private List<DietaryRestriction> dietaryRestrictionsCache;
 
   public MyMenuDatabase(MyMenuApi myMenuApi) {
     this.myMenuApi = myMenuApi;

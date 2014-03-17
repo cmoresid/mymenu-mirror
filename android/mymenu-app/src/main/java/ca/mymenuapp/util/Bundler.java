@@ -45,6 +45,16 @@ public class Bundler {
     this.bundle = bundle;
   }
 
+  /**
+   * Initialize a Bundler that is copied form the given bundle. The bundle that is passed will not
+   * be modified.
+   */
+  public static Bundler copyFrom(Bundle bundle) {
+    Bundler bundler = new Bundler();
+    bundler.putAll(bundle);
+    return bundler;
+  }
+
   public Bundler put(String key, boolean value) {
     bundle.putBoolean(key, value);
     return this;
@@ -213,15 +223,5 @@ public class Bundler {
    */
   public Bundle copy() {
     return new Bundle(bundle);
-  }
-
-  /**
-   * Initialize a Bundler that is copied form the given bundle. The bundle that is passed will not
-   * be modified.
-   */
-  public static Bundler copyFrom(Bundle bundle) {
-    Bundler bundler = new Bundler();
-    bundler.putAll(bundle);
-    return bundler;
   }
 }

@@ -45,16 +45,6 @@ public class SwipeableActionBarTabsAdapter extends FragmentPagerAdapter
   private final ViewPager viewPager;
   private final ArrayList<TabInfo> tabs = new ArrayList<TabInfo>();
 
-  static final class TabInfo {
-    private final Class<?> clss;
-    private final Bundle args;
-
-    TabInfo(Class<?> clss, Bundle args) {
-      this.clss = clss;
-      this.args = args;
-    }
-  }
-
   public SwipeableActionBarTabsAdapter(Activity activity, ViewPager pager) {
     super(activity.getFragmentManager());
     context = activity;
@@ -113,6 +103,16 @@ public class SwipeableActionBarTabsAdapter extends FragmentPagerAdapter
 
   @Override
   public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+  }
+
+  static final class TabInfo {
+    private final Class<?> clss;
+    private final Bundle args;
+
+    TabInfo(Class<?> clss, Bundle args) {
+      this.clss = clss;
+      this.args = args;
+    }
   }
 }
 

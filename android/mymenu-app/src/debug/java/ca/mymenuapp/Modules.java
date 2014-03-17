@@ -21,13 +21,13 @@ package ca.mymenuapp;
  * Debug Modules.
  */
 final class Modules {
+  private Modules() {
+    // No instances.
+  }
+
   static Object[] list(MyMenuApp app) {
     return new Object[] {
         new MyMenuModule(app), new DebugMyMenuModule()
     };
-  }
-
-  private Modules() {
-    // No instances.
   }
 }

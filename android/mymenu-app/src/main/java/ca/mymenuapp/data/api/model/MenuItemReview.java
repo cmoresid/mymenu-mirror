@@ -7,6 +7,19 @@ import org.simpleframework.xml.Root;
 
 @Root(name = "result")
 public class MenuItemReview implements Parcelable {
+  @SuppressWarnings("unused")
+  public static final Parcelable.Creator<MenuItemReview> CREATOR =
+      new Parcelable.Creator<MenuItemReview>() {
+        @Override
+        public MenuItemReview createFromParcel(Parcel in) {
+          return new MenuItemReview(in);
+        }
+
+        @Override
+        public MenuItemReview[] newArray(int size) {
+          return new MenuItemReview[size];
+        }
+      };
   @Element(name = "id") public long id;
   @Element(name = "useremail") public String userEmail;
   @Element(name = "menuid") public long menuId;
@@ -48,20 +61,6 @@ public class MenuItemReview implements Parcelable {
     dest.writeString(date);
     dest.writeString(likeCount);
   }
-
-  @SuppressWarnings("unused")
-  public static final Parcelable.Creator<MenuItemReview> CREATOR =
-      new Parcelable.Creator<MenuItemReview>() {
-        @Override
-        public MenuItemReview createFromParcel(Parcel in) {
-          return new MenuItemReview(in);
-        }
-
-        @Override
-        public MenuItemReview[] newArray(int size) {
-          return new MenuItemReview[size];
-        }
-      };
 
   @Override public String toString() {
     return "MenuItemReview{" +

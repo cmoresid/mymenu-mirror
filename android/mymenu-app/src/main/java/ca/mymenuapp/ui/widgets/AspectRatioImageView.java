@@ -9,12 +9,10 @@ import ca.mymenuapp.R;
 public class AspectRatioImageView extends ImageView {
   // NOTE: These must be kept in sync with the AspectRatioImageView attributes in attrs.xml.
   public static final int MEASUREMENT_WIDTH = 0;
+  private static final int DEFAULT_DOMINANT_MEASUREMENT = MEASUREMENT_WIDTH;
   public static final int MEASUREMENT_HEIGHT = 1;
-
   private static final float DEFAULT_ASPECT_RATIO = 1f;
   private static final boolean DEFAULT_ASPECT_RATIO_ENABLED = false;
-  private static final int DEFAULT_DOMINANT_MEASUREMENT = MEASUREMENT_WIDTH;
-
   private float aspectRatio;
   private boolean aspectRatioEnabled;
   private int dominantMeasurement;

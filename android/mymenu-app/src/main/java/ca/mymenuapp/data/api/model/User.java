@@ -40,6 +40,25 @@ public class User {
   // List of restrictions for this user
   @Element(required = false) public List<Long> restrictions;
 
+  @Override public String toString() {
+    return "User{" +
+        "id=" + id +
+        ", email='" + email + '\'' +
+        ", firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", password='" + password + '\'' +
+        ", city='" + city + '\'' +
+        ", locality='" + locality + '\'' +
+        ", country='" + country + '\'' +
+        ", gender=" + gender +
+        ", birthday=" + birthday +
+        ", birthmonth=" + birthmonth +
+        ", birthyear=" + birthyear +
+        ", facebookid='" + facebookid + '\'' +
+        ", restrictions=" + restrictions +
+        '}';
+  }
+
   static class Builder {
     final User user;
 
@@ -111,24 +130,5 @@ public class User {
     User get() {
       return user;
     }
-  }
-
-  @Override public String toString() {
-    return "User{" +
-        "id=" + id +
-        ", email='" + email + '\'' +
-        ", firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", password='" + password + '\'' +
-        ", city='" + city + '\'' +
-        ", locality='" + locality + '\'' +
-        ", country='" + country + '\'' +
-        ", gender=" + gender +
-        ", birthday=" + birthday +
-        ", birthmonth=" + birthmonth +
-        ", birthyear=" + birthyear +
-        ", facebookid='" + facebookid + '\'' +
-        ", restrictions=" + restrictions +
-        '}';
   }
 }

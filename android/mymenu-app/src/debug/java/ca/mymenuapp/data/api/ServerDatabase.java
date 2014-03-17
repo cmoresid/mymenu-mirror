@@ -34,23 +34,20 @@ import javax.inject.Singleton;
 @Singleton
 public final class ServerDatabase {
   private static final AtomicLong NEXT_ID = new AtomicLong();
+  private final MockDataLoader mockDataLoader;
+  Map<String, User> userMap;
+  private boolean initialized;
+
+  @Inject public ServerDatabase(MockDataLoader mockDataLoader) {
+    this.mockDataLoader = mockDataLoader;
+  }
 
   public static long nextId() {
     return NEXT_ID.getAndIncrement();
   }
 
-  Map<String, User> userMap;
-
   public static String nextStringId() {
     return Long.toHexString(nextId());
-  }
-
-  private final MockDataLoader mockDataLoader;
-
-  private boolean initialized;
-
-  @Inject public ServerDatabase(MockDataLoader mockDataLoader) {
-    this.mockDataLoader = mockDataLoader;
   }
 
   private synchronized void initializeMockData() {

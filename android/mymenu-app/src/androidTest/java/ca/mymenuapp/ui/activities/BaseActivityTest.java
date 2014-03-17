@@ -27,6 +27,13 @@ public abstract class BaseActivityTest<T extends Activity>
     super("com.google.android.apps.common.testing.ui.testapp", activityClass);
   }
 
+  /**
+   * Type in an {@link android.widget.EditText} that may be in a scrollview.
+   */
+  static void performScrollingType(int id, String text) {
+    onView(withId(id)).perform(scrollTo(), typeText(text), closeSoftKeyboard());
+  }
+
   @Override
   public void setUp() throws Exception {
     super.setUp();
@@ -36,12 +43,5 @@ public abstract class BaseActivityTest<T extends Activity>
 
   String getString(int resourceId) {
     return activity.getString(resourceId);
-  }
-
-  /**
-   * Type in an {@link android.widget.EditText} that may be in a scrollview.
-   */
-  static void performScrollingType(int id, String text) {
-    onView(withId(id)).perform(scrollTo(), typeText(text), closeSoftKeyboard());
   }
 }

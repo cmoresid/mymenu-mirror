@@ -99,6 +99,8 @@ dependencies {
   compile 'com.netflix.rxjava:rxjava-core:0.16.1'
   compile 'com.netflix.rxjava:rxjava-android:0.16.1'
 
+  compile 'com.google.android.gms:play-services:+'
+
   compile 'com.squareup.retrofit:retrofit:1.4.1'
   compile('com.squareup.retrofit:converter-simplexml:1.4.1') {
     // Inherent Simple XML dependency

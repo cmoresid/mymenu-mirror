@@ -61,11 +61,11 @@ public class RestaurantListFragment extends BaseFragment
   private void getRestaurantList() {
     /* Change this to get all restaurants and then initialize the list. */
     myMenuDatabase.getAllRestaurants(new EndlessObserver<List<Restaurant>>() {
-          @Override
-          public void onNext(List<Restaurant> restaurants) {
-            initList(restaurants);
-          }
-        }
+                                       @Override
+                                       public void onNext(List<Restaurant> restaurants) {
+                                         initList(restaurants);
+                                       }
+                                     }
     );
   }
 
@@ -121,14 +121,16 @@ public class RestaurantListFragment extends BaseFragment
       holder.address.setText(item.address);
       // todo, show text
       holder.cuisine.setText("cuisine = " + item.categoryId);
+      holder.distance.setText("0km");
     }
 
     class ViewHolder {
-      @InjectView(R.id.image) ImageView picture;
-      @InjectView(R.id.name) TextView label;
-      @InjectView(R.id.rating) TextView rating;
-      @InjectView(R.id.cuisine) TextView cuisine;
-      @InjectView(R.id.address) TextView address;
+      @InjectView(R.id.rest_image) ImageView picture;
+      @InjectView(R.id.rest_name) TextView label;
+      @InjectView(R.id.rest_rating) TextView rating;
+      @InjectView(R.id.rest_cuisine) TextView cuisine;
+      @InjectView(R.id.rest_address) TextView address;
+      @InjectView(R.id.rest_distance) TextView distance;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);

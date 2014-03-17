@@ -34,6 +34,10 @@ class NetworkErrorAdapter extends BindableAdapter<Integer> {
       0, 3, 10, 25, 100
   };
 
+  NetworkErrorAdapter(Context context) {
+    super(context);
+  }
+
   public static int getPositionForValue(int value) {
     for (int i = 0; i < VALUES.length; i++) {
       if (VALUES[i] == value) {
@@ -41,10 +45,6 @@ class NetworkErrorAdapter extends BindableAdapter<Integer> {
       }
     }
     return 1; // Default to 3% if something changes.
-  }
-
-  NetworkErrorAdapter(Context context) {
-    super(context);
   }
 
   @Override public int getCount() {

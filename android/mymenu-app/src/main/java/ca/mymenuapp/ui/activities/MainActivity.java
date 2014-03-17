@@ -18,12 +18,14 @@
 package ca.mymenuapp.ui.activities;
 
 import android.app.ActionBar;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.User;
@@ -34,6 +36,8 @@ import ca.mymenuapp.ui.fragments.RestaurantListFragment;
 import ca.mymenuapp.ui.fragments.RestaurantTwoPaneFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import ca.mymenuapp.util.Bundler;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -45,7 +49,10 @@ public class MainActivity extends BaseActivity {
   @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
   @InjectView(R.id.pager) ViewPager viewPager;
 
+
   private SwipeableActionBarTabsAdapter tabsAdapter;
+
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +67,6 @@ public class MainActivity extends BaseActivity {
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
     tabsAdapter = new SwipeableActionBarTabsAdapter(this, viewPager);
-    tabsAdapter.addTab(actionBar.newTab().setText("Restaurant"), PlaceholderFragment.class,
-        new Bundler().put(PlaceholderFragment.ARG_SECTION_NUMBER, 1).get());
-    tabsAdapter.addTab(actionBar.newTab().setText("Preferences"), DietaryPreferencesFragment.class,
-        null);
-
-
       /* Need to check size here */
     if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
         == Configuration.SCREENLAYOUT_SIZE_LARGE) {
@@ -73,12 +74,22 @@ public class MainActivity extends BaseActivity {
           null);
         /*Large device, should have restaurant list and map view on one page."*/
     } else {
-      tabsAdapter.addTab(actionBar.newTab().setText("Restaurants"), RestaurantListFragment.class,
+      tabsAdapter.addTab(actionBar.newTab().setText("Restaurants"), RestaurantTwoPaneFragment.class,
           null);
     }
 
+    tabsAdapter.addTab(actionBar.newTab().setText("Restaurant"), PlaceholderFragment.class,
+        new Bundler().put(PlaceholderFragment.ARG_SECTION_NUMBER, 1).get());
+    tabsAdapter.addTab(actionBar.newTab().setText("Preferences"), DietaryPreferencesFragment.class,
+        null);
+
+
+
+    //initializeMap();
     actionBar.setSelectedNavigationItem(tab);
   }
+
+
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.activity_main, menu);

@@ -34,6 +34,10 @@ class NetworkDelayAdapter extends BindableAdapter<Long> {
       250, 500, 1000, 2000, 3000
   };
 
+  NetworkDelayAdapter(Context context) {
+    super(context);
+  }
+
   public static int getPositionForValue(long value) {
     for (int i = 0; i < VALUES.length; i++) {
       if (VALUES[i] == value) {
@@ -41,10 +45,6 @@ class NetworkDelayAdapter extends BindableAdapter<Long> {
       }
     }
     return 3; // Default to 2000 if something changes.
-  }
-
-  NetworkDelayAdapter(Context context) {
-    super(context);
   }
 
   @Override public int getCount() {

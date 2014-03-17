@@ -26,9 +26,8 @@ public class MenuCategoryFragment extends BaseFragment {
   public static final String ARGS_ITEMS = "items";
   @InjectExtra(ARGS_ITEMS) ArrayList<MenuItem> items;
   @InjectView(R.id.menu_grid) HeaderGridView gridView;
-  private AbsListView.OnScrollListener scrollListener;
-
   @Inject Picasso picasso;
+  private AbsListView.OnScrollListener scrollListener;
 
   /**
    * Returns a new instance of this fragment for the given section number.

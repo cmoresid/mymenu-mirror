@@ -91,6 +91,18 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
 
   private List<MenuItemReview> reviewList;
 
+  /**
+   * Standard math clamp method https://en.wikipedia.org/wiki/Clamping_(graphics)
+   *
+   * @param value value to clamp
+   * @param max maximum to return
+   * @param min minimum to return
+   * @return min if value < min, max if value > max, else value
+   */
+  public static float clamp(float value, float max, float min) {
+    return Math.max(Math.min(value, min), max);
+  }
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -157,18 +169,6 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
           Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       getActionBar().setTitle(spannableString);
     }
-  }
-
-  /**
-   * Standard math clamp method https://en.wikipedia.org/wiki/Clamping_(graphics)
-   *
-   * @param value value to clamp
-   * @param max maximum to return
-   * @param min minimum to return
-   * @return min if value < min, max if value > max, else value
-   */
-  public static float clamp(float value, float max, float min) {
-    return Math.max(Math.min(value, min), max);
   }
 
   /**

@@ -38,26 +38,7 @@ import java.util.ArrayList;
  */
 public class HeaderGridView extends GridView {
   private static final String TAG = "HeaderGridView";
-
-  /**
-   * A class that represents a fixed view in a list, for example a header at the top
-   * or a footer at the bottom.
-   */
-  private static class FixedViewInfo {
-    /** The view to add to the grid */
-    public View view;
-    public ViewGroup viewContainer;
-    /** The data backing the view. This is returned from {@link ListAdapter#getItem(int)}. */
-    public Object data;
-    /** <code>true</code> if the fixed view should be selectable in the grid */
-    public boolean isSelectable;
-  }
-
   private ArrayList<FixedViewInfo> mHeaderViewInfos = new ArrayList<FixedViewInfo>();
-
-  private void initHeaderGridView() {
-    super.setClipChildren(false);
-  }
 
   public HeaderGridView(Context context) {
     super(context);
@@ -72,6 +53,10 @@ public class HeaderGridView extends GridView {
   public HeaderGridView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     initHeaderGridView();
+  }
+
+  private void initHeaderGridView() {
+    super.setClipChildren(false);
   }
 
   @Override
@@ -187,20 +172,18 @@ public class HeaderGridView extends GridView {
     }
   }
 
-  private class FullWidthFixedViewLayout extends FrameLayout {
-    public FullWidthFixedViewLayout(Context context) {
-      super(context);
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-      int targetWidth = HeaderGridView.this.getMeasuredWidth()
-          - HeaderGridView.this.getPaddingLeft()
-          - HeaderGridView.this.getPaddingRight();
-      widthMeasureSpec =
-          MeasureSpec.makeMeasureSpec(targetWidth, MeasureSpec.getMode(widthMeasureSpec));
-      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
+  /**
+   * A class that represents a fixed view in a list, for example a header at the top
+   * or a footer at the bottom.
+   */
+  private static class FixedViewInfo {
+    /** The view to add to the grid */
+    public View view;
+    public ViewGroup viewContainer;
+    /** The data backing the view. This is returned from {@link ListAdapter#getItem(int)}. */
+    public Object data;
+    /** <code>true</code> if the fixed view should be selectable in the grid */
+    public boolean isSelectable;
   }
 
   /**
@@ -217,14 +200,12 @@ public class HeaderGridView extends GridView {
     private final DataSetObservable mDataSetObservable = new DataSetObservable();
 
     private final ListAdapter mAdapter;
-    private int mNumColumns = 1;
-
+    private final boolean mIsFilterable;
     // This ArrayList is assumed to NOT be null.
     ArrayList<FixedViewInfo> mHeaderViewInfos;
 
     boolean mAreAllFixedViewsSelectable;
-
-    private final boolean mIsFilterable;
+    private int mNumColumns = 1;
 
     public HeaderViewGridAdapter(ArrayList<FixedViewInfo> headerViewInfos, ListAdapter adapter) {
       mAdapter = adapter;
@@ -459,6 +440,22 @@ public class HeaderGridView extends GridView {
 
     public void notifyDataSetChanged() {
       mDataSetObservable.notifyChanged();
+    }
+  }
+
+  private class FullWidthFixedViewLayout extends FrameLayout {
+    public FullWidthFixedViewLayout(Context context) {
+      super(context);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+      int targetWidth = HeaderGridView.this.getMeasuredWidth()
+          - HeaderGridView.this.getPaddingLeft()
+          - HeaderGridView.this.getPaddingRight();
+      widthMeasureSpec =
+          MeasureSpec.makeMeasureSpec(targetWidth, MeasureSpec.getMode(widthMeasureSpec));
+      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
   }
 }

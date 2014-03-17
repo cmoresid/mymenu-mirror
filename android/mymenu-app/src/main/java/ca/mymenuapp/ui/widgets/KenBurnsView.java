@@ -15,27 +15,24 @@ import java.util.Random;
 
 public class KenBurnsView extends FrameLayout {
   private final Handler handler;
+  private final Random random = new Random();
   private ImageView[] imageViews;
   private int activeImageIndex = -1;
-
-  private final Random random = new Random();
   private int swapMs = 10000;
   private int fadeInOutMs = 400;
 
   private float maxScaleFactor = 1.5F;
   private float minScaleFactor = 1.2F;
 
-  private Runnable mSwapImageRunnable = new Runnable() {
+  public KenBurnsView(Context context) {
+    this(context, null);
+  }  private Runnable mSwapImageRunnable = new Runnable() {
     @Override
     public void run() {
       swapImage();
       handler.postDelayed(mSwapImageRunnable, swapMs - fadeInOutMs * 2);
     }
   };
-
-  public KenBurnsView(Context context) {
-    this(context, null);
-  }
 
   public KenBurnsView(Context context, AttributeSet attrs) {
     this(context, attrs, 0);
@@ -135,4 +132,6 @@ public class KenBurnsView extends FrameLayout {
       picasso.load(images[i]).fit().centerCrop().into(imageViews[i]);
     }
   }
+
+
 }

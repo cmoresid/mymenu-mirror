@@ -35,6 +35,12 @@ public class MyMenuApp extends Application {
 
   private ObjectGraph applicationGraph;
 
+  public static void promptLogin(Context context) {
+    Intent intent = new Intent(context, LoginActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    context.startActivity(intent);
+  }
+
   @Override public void onCreate() {
     super.onCreate();
 
@@ -52,12 +58,6 @@ public class MyMenuApp extends Application {
   public void buildApplicationGraphAndInject() {
     applicationGraph = ObjectGraph.create(Modules.list(this));
     applicationGraph.inject(this);
-  }
-
-  public static void promptLogin(Context context) {
-    Intent intent = new Intent(context, LoginActivity.class);
-    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    context.startActivity(intent);
   }
 
   public ObjectGraph getApplicationGraph() {

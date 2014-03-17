@@ -24,6 +24,18 @@ import org.simpleframework.xml.Root;
 
 @Root(name = "result")
 public class MenuItem implements Parcelable {
+  @SuppressWarnings("unused")
+  public static final Parcelable.Creator<MenuItem> CREATOR = new Parcelable.Creator<MenuItem>() {
+    @Override
+    public MenuItem createFromParcel(Parcel in) {
+      return new MenuItem(in);
+    }
+
+    @Override
+    public MenuItem[] newArray(int size) {
+      return new MenuItem[size];
+    }
+  };
   @Element(name = "id") public long id;
   @Element(name = "merchid") public long merchantId;
   @Element(name = "name") public String name;
@@ -33,7 +45,6 @@ public class MenuItem implements Parcelable {
   @Element(name = "rating") public float rating;
   @Element(name = "ratingcount") public long ratingCount;
   @Element(name = "categoryid") public long categoryId;
-
   // flag to mark whether this item is edible by the current user
   @Element(required = false) public boolean edible;
 
@@ -72,19 +83,6 @@ public class MenuItem implements Parcelable {
     dest.writeLong(categoryId);
     dest.writeByte((byte) (edible ? 0x01 : 0x00));
   }
-
-  @SuppressWarnings("unused")
-  public static final Parcelable.Creator<MenuItem> CREATOR = new Parcelable.Creator<MenuItem>() {
-    @Override
-    public MenuItem createFromParcel(Parcel in) {
-      return new MenuItem(in);
-    }
-
-    @Override
-    public MenuItem[] newArray(int size) {
-      return new MenuItem[size];
-    }
-  };
 
   @Override public String toString() {
     return "Menu{" +
