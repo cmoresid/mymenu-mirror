@@ -69,23 +69,27 @@
             [self.tableView reloadData];
     }];
     
-    RAC(self, filteredrestaurants) = [[[[[[self.merchantSearchBar rac_textSignal]
-        skip:1]
-        throttle:0.6]
-        filter:^BOOL(NSString *searchValue) {
-            BOOL emptyString = [searchValue isEqualToString:@""];
-
-            if (emptyString)
+    RAC(self, filteredrestaurants) = [[[[[[[[self.merchantSearchBar rac_textSignal]
+        skip:1]       // Skip the initial binding signal
+        throttle:0.6] // Only try to search every 0.6 seconds
+        doNext:^(NSString *searchValue) {
+            // Perform side-effects here
+            if ([searchValue isEqualToString:@""])
                 [self.delegate didReceiveMerchants:[NSMutableArray new]];
-            
-            return !emptyString;
+        }]
+        filter:^BOOL(NSString *searchValue) {
+            // Only perform search if non-empty string
+            return ![searchValue isEqualToString:@""];
         }]
         flattenMap:^RACStream *(NSString *searchValue) {
+            // Retrieve a list of merchants with name of specified search value
             return [[MMMerchantService sharedService] getCompressedMerchantsForLocation:self.location withName:searchValue];
         }]
-        map:^NSArray*(NSMutableArray *searchResults) {
+        doNext:^(NSMutableArray *searchResults) {
             [self.delegate didReceiveMerchants:searchResults];
-            
+        }]
+        map:^NSArray*(NSMutableArray *searchResults) {
+            // Bind search results to filteredrestaurants variable now
             return [searchResults copy];
         }];
     
