@@ -58,6 +58,7 @@
 		83CC9EE218D253FB00E0B48A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ED518D253FB00E0B48A /* Default.png */; };
 		83CC9EE318D253FB00E0B48A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ED618D253FB00E0B48A /* Default@2x.png */; };
 		AEADA929DD5845C4845B7F54 /* libPods-MyMenuTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB34AE19C6264F9E92FBF1CE /* libPods-MyMenuTests.a */; };
+		B01D523E18D6C6DE000DB283 /* UISearchBar+RAC.m in Sources */ = {isa = PBXBuildFile; fileRef = B01D523D18D6C6DE000DB283 /* UISearchBar+RAC.m */; };
 		B025696118CBC92100264A3B /* MMMainTabViewSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B025696018CBC92100264A3B /* MMMainTabViewSegue.m */; };
 		B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */; };
 		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
@@ -67,6 +68,7 @@
 		B048559218CFA8E8003BC8A9 /* UIImage+MMTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = B048559118CFA8E8003BC8A9 /* UIImage+MMTransform.m */; };
 		B048559318CFC57D003BC8A9 /* restricted.png in Resources */ = {isa = PBXBuildFile; fileRef = B048558E18CF9F89003BC8A9 /* restricted.png */; };
 		B048559418CFC57D003BC8A9 /* restricted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B048558F18CF9F89003BC8A9 /* restricted@2x.png */; };
+		B04FC40918D6962700A95A0C /* MMMerchantService.m in Sources */ = {isa = PBXBuildFile; fileRef = B04FC40818D6962700A95A0C /* MMMerchantService.m */; };
 		B0627E2D18A2CB3700EAA045 /* 125-food.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2918A2CB3700EAA045 /* 125-food.png */; };
 		B0627E2E18A2CB3700EAA045 /* 172-pricetag.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */; };
 		B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2B18A2CB3700EAA045 /* 184-warning.png */; };
@@ -203,11 +205,14 @@
 		9B1CFF7F18A46CF600E9F778 /* libPods-NSString-UrlEncode.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-NSString-UrlEncode.a"; path = "Pods/build/Debug-iphoneos/libPods-NSString-UrlEncode.a"; sourceTree = "<group>"; };
 		9BBD913F189478CF006DDBCE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9BBD9141189478DB006DDBCE /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		B01D523C18D6C6DE000DB283 /* UISearchBar+RAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+RAC.h"; sourceTree = "<group>"; };
+		B01D523D18D6C6DE000DB283 /* UISearchBar+RAC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISearchBar+RAC.m"; sourceTree = "<group>"; };
 		B025696018CBC92100264A3B /* MMMainTabViewSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMainTabViewSegue.m; sourceTree = "<group>"; };
 		B025696218CBC92C00264A3B /* MMMainTabViewSegue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMMainTabViewSegue.h; sourceTree = "<group>"; };
 		B027167618A3527D0027BF4E /* MMMockDBFetcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMockDBFetcherDelegate.h; sourceTree = "<group>"; };
 		B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMockDBFetcherDelegate.m; sourceTree = "<group>"; };
 		B027167918A3574B0027BF4E /* MMDBFetcherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcherTests.m; sourceTree = "<group>"; };
+		B02BDC5418D78D39004D276D /* MMMerchantDataSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMMerchantDataSourceDelegate.h; sourceTree = "<group>"; };
 		B031A68F18D2449B000BF353 /* libPods-ABCalendarPicker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ABCalendarPicker.a"; path = "Pods/build/Debug-iphoneos/libPods-ABCalendarPicker.a"; sourceTree = "<group>"; };
 		B03D7C8918CCFD8200F7F5CE /* StaticData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StaticData.plist; sourceTree = "<group>"; };
 		B03D7C8C18CCFE2000F7F5CE /* MMStaticDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMStaticDataHelper.h; path = Helper/MMStaticDataHelper.h; sourceTree = "<group>"; };
@@ -218,6 +223,8 @@
 		B048558F18CF9F89003BC8A9 /* restricted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "restricted@2x.png"; sourceTree = "<group>"; };
 		B048559018CFA8E8003BC8A9 /* UIImage+MMTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MMTransform.h"; sourceTree = "<group>"; };
 		B048559118CFA8E8003BC8A9 /* UIImage+MMTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MMTransform.m"; sourceTree = "<group>"; };
+		B04FC40718D6962700A95A0C /* MMMerchantService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMerchantService.h; sourceTree = "<group>"; };
+		B04FC40818D6962700A95A0C /* MMMerchantService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMerchantService.m; sourceTree = "<group>"; };
 		B0627E2818A2CB3700EAA045 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
 		B0627E2918A2CB3700EAA045 /* 125-food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "125-food.png"; sourceTree = "<group>"; };
 		B0627E2A18A2CB3700EAA045 /* 172-pricetag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "172-pricetag.png"; sourceTree = "<group>"; };
@@ -284,7 +291,6 @@
 		B0A9901D18CA43E900AC4CBB /* MMRegistrationPopoverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRegistrationPopoverDelegate.h; sourceTree = "<group>"; };
 		B0A9901E18CA43E900AC4CBB /* MMRestaurantMapDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRestaurantMapDelegate.h; sourceTree = "<group>"; };
 		B0A9901F18CA43E900AC4CBB /* MMRestaurantMapDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestaurantMapDelegate.m; sourceTree = "<group>"; };
-		B0A9902018CA43E900AC4CBB /* MMRestaurantPopOverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRestaurantPopOverDelegate.h; sourceTree = "<group>"; };
 		B0A9902318CA43E900AC4CBB /* MMDBFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDBFetcher.h; sourceTree = "<group>"; };
 		B0A9902418CA43E900AC4CBB /* MMDBFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcher.m; sourceTree = "<group>"; };
 		B0A9902518CA43E900AC4CBB /* MMDBFetcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDBFetcherDelegate.h; sourceTree = "<group>"; };
@@ -352,6 +358,7 @@
 		B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentLocation.png; sourceTree = "<group>"; };
 		B0B0C4DD18A8245600BA47CB /* LocationMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocationMarker.png; sourceTree = "<group>"; };
 		B0B344E918D246700023924D /* libPods-TimesSquare.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TimesSquare.a"; path = "Pods/build/Debug-iphoneos/libPods-TimesSquare.a"; sourceTree = "<group>"; };
+		B0B6E64F18D671D200BB0298 /* MMLocationManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMLocationManagerDelegate.h; sourceTree = "<group>"; };
 		B0D162F918D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		B0D162FA18D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		B0DE3FF018CAA68800190F2F /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -632,6 +639,8 @@
 				B0E7616718CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.m */,
 				B048559018CFA8E8003BC8A9 /* UIImage+MMTransform.h */,
 				B048559118CFA8E8003BC8A9 /* UIImage+MMTransform.m */,
+				B01D523C18D6C6DE000DB283 /* UISearchBar+RAC.h */,
+				B01D523D18D6C6DE000DB283 /* UISearchBar+RAC.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -690,8 +699,9 @@
 		B0A9901C18CA43E900AC4CBB /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
+				B0B6E64F18D671D200BB0298 /* MMLocationManagerDelegate.h */,
+				B02BDC5418D78D39004D276D /* MMMerchantDataSourceDelegate.h */,
 				B0A9901D18CA43E900AC4CBB /* MMRegistrationPopoverDelegate.h */,
-				B0A9902018CA43E900AC4CBB /* MMRestaurantPopOverDelegate.h */,
 				B0A9901E18CA43E900AC4CBB /* MMRestaurantMapDelegate.h */,
 				B0A9901F18CA43E900AC4CBB /* MMRestaurantMapDelegate.m */,
 			);
@@ -761,6 +771,8 @@
 				B0A9904318CA43E900AC4CBB /* MMLoginManager.m */,
 				B0881AC018D3C7F3003EDDFF /* MMMenuService.h */,
 				B0881AC118D3C7F3003EDDFF /* MMMenuService.m */,
+				B04FC40718D6962700A95A0C /* MMMerchantService.h */,
+				B04FC40818D6962700A95A0C /* MMMerchantService.m */,
 				B0A9904418CA43E900AC4CBB /* MMNetworkClientProxy.h */,
 				B0A9904518CA43E900AC4CBB /* MMNetworkClientProxy.m */,
 				B0A9904618CA43E900AC4CBB /* MMSocialMediaService.h */,
@@ -1053,6 +1065,7 @@
 				B0A9909F18CA43E900AC4CBB /* MMMenuItemCell.m in Sources */,
 				B0A9909B18CA43E900AC4CBB /* MMUserNameValidator.m in Sources */,
 				B0A9907218CA43E900AC4CBB /* MMDietaryRestrictionsViewController.m in Sources */,
+				B04FC40918D6962700A95A0C /* MMMerchantService.m in Sources */,
 				B0A9908D18CA43E900AC4CBB /* MMRestriction.m in Sources */,
 				B0A9907818CA43E900AC4CBB /* MMMenuItemViewController.m in Sources */,
 				B0A990A118CA43E900AC4CBB /* MMRatingView.m in Sources */,
@@ -1067,6 +1080,7 @@
 				B0A9909C18CA43E900AC4CBB /* MMValidationManager.m in Sources */,
 				B0A9908818CA43E900AC4CBB /* MMMenuItem.m in Sources */,
 				B0A9908218CA43E900AC4CBB /* MMSpecialsTypeController.m in Sources */,
+				B01D523E18D6C6DE000DB283 /* UISearchBar+RAC.m in Sources */,
 				B0A9908118CA43E900AC4CBB /* MMSpecialsCollectionViewController.m in Sources */,
 				B0A9908F18CA43E900AC4CBB /* MMSpecialType.m in Sources */,
 				B0A990A418CA43E900AC4CBB /* RestaurantCell.m in Sources */,

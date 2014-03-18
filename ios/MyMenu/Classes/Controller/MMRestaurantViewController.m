@@ -33,6 +33,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "MMMerchantService.h"
 
 #define kReview @"kReview"
 #define kCondensedTopReviews @"condensedTopReviews"
@@ -88,16 +89,23 @@ MMMenuItemRating *touchedReview;
     
     [self hideAllViewsBeforeDataLoads];
     
-    [self configureViewModel];
-    [self configureViewModelDatabindings];
-    
-    [self performDataLoadForCategorySegmentedControl];
-    [self performDataLoadForCollectionView];
-    
-    [self configureSearchBar];
-    [self configureMainCollectionView];
-    
-    [self configureOtherViews];
+    @weakify(self);
+    [[[[MMMerchantService sharedService] getMerchantWithMerchantID:self.currentMerchantId]
+        deliverOn:[RACScheduler mainThreadScheduler]]
+        subscribeNext:^(MMMerchant *currentMerchant) {
+            @strongify(self);
+            self.viewModel.merchantInformation = currentMerchant;
+            
+            [self configureViewModelDatabindings];
+            
+            [self performDataLoadForCategorySegmentedControl];
+            [self performDataLoadForCollectionView];
+            
+            [self configureSearchBar];
+            [self configureMainCollectionView];
+            
+            [self configureOtherViews];
+    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -105,7 +113,7 @@ MMMenuItemRating *touchedReview;
         MMMenuItemViewController *menuItemController = [segue destinationViewController];
         
         menuItemController.currentMenuItem = touchedItem;
-        menuItemController.currentMerchant = self.currentMerchant;
+        menuItemController.currentMerchant = self.viewModel.merchantInformation;
     }
 }
 
@@ -282,10 +290,6 @@ MMMenuItemRating *touchedReview;
      }];
 }
 
-- (void)configureViewModel {
-    self.viewModel.merchantInformation = self.currentMerchant;
-}
-
 #pragma mark - Popover View Controller Methods
 
 - (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
@@ -406,8 +410,8 @@ MMMenuItemRating *touchedReview;
 #pragma mark - Private Helper Methods
 
 - (void)hideAllViewsBeforeDataLoads {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.view.subviews setValue:@YES forKeyPath:@"hidden"];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 - (void)configureSearchBar {
@@ -441,7 +445,7 @@ MMMenuItemRating *touchedReview;
 }
 
 - (void)configureOtherViews {
-    self.merchantImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_currentMerchant.picture]]];
+    self.merchantImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.viewModel.merchantInformation.picture]]];
     self.ratingView.backgroundColor = [UIColor lightBackgroundGray];
     self.ratingView.layer.cornerRadius = 17.5;
 }
@@ -556,7 +560,7 @@ MMMenuItemRating *touchedReview;
     MMBaseNavigationController *reviewNavPop = [self.storyboard instantiateViewControllerWithIdentifier:@"popOverNavigation"];
     
     MMReviewPopOverViewController *reviewPop = [reviewNavPop.viewControllers firstObject];
-    reviewPop.selectedRestaurant = _currentMerchant;
+    reviewPop.selectedRestaurant = self.viewModel.merchantInformation;
     reviewPop.menuItemReview = selectedReview;
     
     @weakify(self)

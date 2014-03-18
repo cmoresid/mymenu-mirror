@@ -28,8 +28,6 @@
 
 @property (nonatomic, strong) AFHTTPRequestOperationManager *networkManager;
 
-- (void)compressedMerchantsHelper:(NSMutableURLRequest *)request;
-
 - (BOOL)canPerformCallback:(id)delegate withSelector:(SEL)delegateSelector;
 
 @end
@@ -738,127 +736,91 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getCompressedMerchants:(CLLocation *)usrloc {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
-
+- (RACSignal *)getCompressedMerchants:(CLLocation *)usrloc {
     CLLocationCoordinate2D coords = usrloc.coordinate;
-
-
-    NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances ORDER BY distance ASC LIMIT 50";
-
-    NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude]];
-
-    NSString *encodedQuery = [query stringByAddingPercentEscapesUsingEncoding:
-            NSUTF8StringEncoding];
-
-
-    [request setValue:[NSString stringWithFormat:@"%d", [encodedQuery length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[encodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self compressedMerchantsHelper:request];
-
+    
+    NSString *url = @"http://mymenuapp.ca/php/merchusers/custom.php";
+    NSString *queryFormat = @"SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances ORDER BY distance ASC LIMIT 50";
+    
+    NSString *sqlQuery = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude]];
+    NSDictionary *queryParameters = @{@"query": sqlQuery};
+    
+    return [self compressedMerchantsHelperWithUrl:url withParameters:queryParameters];
 }
 
-- (void)getCompressedMerchantsByName:(CLLocation *)usrloc withName:(NSString *)merchname {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
-
+- (RACSignal *)getCompressedMerchantsByName:(CLLocation *)usrloc withName:(NSString *)merchname {
     CLLocationCoordinate2D coords = usrloc.coordinate;
 
-    NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE UPPER(business_name) LIKE UPPER('%%%@%%') ORDER BY distance ASC LIMIT 25";
+    NSString *url = @"http://mymenuapp.ca/php/merchusers/custom.php";
+    NSString *queryFormat = @"SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE UPPER(business_name) LIKE UPPER('%%%@%%') ORDER BY distance ASC LIMIT 25";
 
-    NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], merchname];
+    NSString *sqlQuery = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], merchname];
+    
+    //NSString *encodedQuery = [sqlQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *queryParameters = @{@"query": sqlQuery};
 
-    NSString *encodedQuery = [query stringByAddingPercentEscapesUsingEncoding:
-            NSUTF8StringEncoding];
-
-
-    [request setValue:[NSString stringWithFormat:@"%d", [encodedQuery length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[encodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self compressedMerchantsHelper:request];
+    return [self compressedMerchantsHelperWithUrl:url withParameters:queryParameters];
 }
 
-- (void)getCompressedMerchantsByCuisine:(CLLocation *)usrloc withCuisine:(NSString *)cuisine {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
-
+- (RACSignal *)getCompressedMerchantsByCuisine:(CLLocation *)usrloc withCuisine:(NSString *)cuisine {
     CLLocationCoordinate2D coords = usrloc.coordinate;
 
+    NSString *url = @"http://mymenuapp.ca/php/merchusers/custom.php";
+    NSString *queryFormat = @"SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE category = '%@' ORDER BY distance ASC LIMIT 50";
 
-    NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE category = '%@' ORDER BY distance ASC LIMIT 50";
+    NSString *sqlQuery = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], cuisine];
+    
+    NSString *encodedQuery = [sqlQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *queryParameters = @{@"query": encodedQuery};
 
-    NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], cuisine];
-
-    NSString *encodedQuery = [query stringByAddingPercentEscapesUsingEncoding:
-            NSUTF8StringEncoding];
-
-
-    [request setValue:[NSString stringWithFormat:@"%d", [encodedQuery length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[encodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self compressedMerchantsHelper:request];
+    return [self compressedMerchantsHelperWithUrl:url withParameters:queryParameters];
 }
 
-- (void)getMerchant:(NSNumber *)mid {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
-
-    NSString *queryFormat = @"query=SELECT * FROM merchusers WHERE id=%@";
-    NSString *query = [NSString stringWithFormat:queryFormat, mid];
-    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self.networkClient performNetworkRequest:request
-                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-
-                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveMerchant:withResponse:)]) {
-                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveMerchant:withResponse:");
-                                    return;
-                                }
-
-                                if (dbResponse.wasSuccessful) {
-                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-                                    MMMerchant *merchant = [[MMMerchant alloc] init];
-
-                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-                                        merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
-                                        merchant.businessname = [e child:@"business_name"].text;
-                                        merchant.phone = [e child:@"business_number"].text;
-                                        merchant.desc = [e child:@"business_description"].text;
-                                        merchant.address = [e child:@"business_address1"].text;
-                                        merchant.city = [e child:@"business_city"].text;
-                                        merchant.locality = [e child:@"business_locality"].text;
-                                        merchant.postalcode = [e child:@"business_postalcode"].text;
-                                        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
-                                        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
-                                        merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
-                                        merchant.picture = [e child:@"business_picture"].text;
-                                        merchant.facebook = [e child:@"facebook"].text;
-                                        merchant.twitter = [e child:@"twitter"].text;
-                                        merchant.website = [e child:@"website"].text;
-                                        merchant.pricehigh = [NSNumber numberWithFloat:[e child:@"pricehigh"].textAsInt];
-                                        merchant.pricelow = [NSNumber numberWithFloat:[e child:@"pricelow"].textAsInt];
-                                        merchant.opentime = [e child:@"opentime"].text;
-                                        merchant.closetime = [e child:@"closetime"].text;
-                                    }];
-
-                                    [self.delegate didRetrieveMerchant:merchant withResponse:dbResponse];
-                                }
-                                else {
-                                    [self.delegate didRetrieveMerchant:nil withResponse:dbResponse];
-                                }
-                            }];
+- (RACSignal *)getMerchant:(NSNumber *)mid {
+    NSString *url = @"http://mymenuapp.ca/php/merchusers/custom.php";
+    NSString *queryFormat = @"SELECT * FROM merchusers WHERE id=%@";
+    NSString *sqlQuery = [NSString stringWithFormat:queryFormat, mid];
+    NSDictionary *parameters = @{@"query": sqlQuery};
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        AFHTTPRequestOperation *operation = [self.networkManager POST:url parameters:parameters
+            success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                RXMLElement *rootXML = [RXMLElement elementFromXMLData:responseObject];
+                MMMerchant *merchant = [[MMMerchant alloc] init];
+                
+                [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                    merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
+                    merchant.businessname = [e child:@"business_name"].text;
+                    merchant.phone = [e child:@"business_number"].text;
+                    merchant.desc = [e child:@"business_description"].text;
+                    merchant.address = [e child:@"business_address1"].text;
+                    merchant.city = [e child:@"business_city"].text;
+                    merchant.locality = [e child:@"business_locality"].text;
+                    merchant.postalcode = [e child:@"business_postalcode"].text;
+                    merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
+                    merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
+                    merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
+                    merchant.picture = [e child:@"business_picture"].text;
+                    merchant.facebook = [e child:@"facebook"].text;
+                    merchant.twitter = [e child:@"twitter"].text;
+                    merchant.website = [e child:@"website"].text;
+                    merchant.pricehigh = [NSNumber numberWithFloat:[e child:@"pricehigh"].textAsInt];
+                    merchant.pricelow = [NSNumber numberWithFloat:[e child:@"pricelow"].textAsInt];
+                    merchant.opentime = [e child:@"opentime"].text;
+                    merchant.closetime = [e child:@"closetime"].text;
+                }];
+                
+                [subscriber sendNext:merchant];
+                [subscriber sendCompleted];
+            }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [subscriber sendError:error];
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [operation cancel];
+        }];
+    }];
 }
 
 - (RACSignal *)getMenuWithMerchantId:(NSNumber *)merchid withUserEmail:(NSString *)email; {
@@ -1033,44 +995,45 @@ static MMDBFetcher *instance;
 
 }
 
-- (void)compressedMerchantsHelper:(NSMutableURLRequest *)request {
+- (RACSignal *)compressedMerchantsHelperWithUrl:(NSString *)url withParameters:(NSDictionary *)parameters {
+    @weakify(self);
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self);
+       
+        AFHTTPRequestOperation *operation = [self.networkManager POST:url parameters:parameters
+                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:responseObject];
+                    NSMutableArray *merchants = [[NSMutableArray alloc] init];
+                    
+                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                        MMMerchant *merchant = [[MMMerchant alloc] init];
+                        merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
+                        merchant.businessname = [e child:@"business_name"].text;
+                        merchant.category = [e child:@"category"].text;
+                        merchant.address = [e child:@"business_address1"].text;
+                        merchant.desc = [e child:@"business_description"].text;
+                        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
+                        merchant.picture = [e child:@"business_picture"].text;
+                        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
+                        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
+                        merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
+                        merchant.distfromuser = [NSNumber numberWithDouble:[e child:@"distance"].textAsDouble];
+                        
+                        [merchants addObject:merchant];
+                    }];
 
-    [self.networkClient performNetworkRequest:request
-                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-
-                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveCompressedMerchants:withResponse:)]) {
-                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveCompressedMerchants:withResponse:");
-                                    return;
-                                }
-
-                                if (dbResponse.wasSuccessful) {
-                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-                                    NSMutableArray *merchants = [[NSMutableArray alloc] init];
-
-                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-                                        MMMerchant *merchant = [[MMMerchant alloc] init];
-                                        merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
-                                        merchant.businessname = [e child:@"business_name"].text;
-                                        merchant.category = [e child:@"category"].text;
-                                        merchant.address = [e child:@"business_address1"].text;
-                                        merchant.desc = [e child:@"business_description"].text;
-                                        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
-                                        merchant.picture = [e child:@"business_picture"].text;
-                                        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
-                                        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
-                                        merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
-                                        merchant.distfromuser = [NSNumber numberWithDouble:[e child:@"distance"].textAsDouble];
-
-                                        [merchants addObject:merchant];
-                                    }];
-
-                                    [self.delegate didRetrieveCompressedMerchants:merchants withResponse:dbResponse];
-                                }
-                                else {
-                                    [self.delegate didRetrieveCompressedMerchants:nil withResponse:dbResponse];
-                                }
-                            }];
+                    [subscriber sendNext:merchants];
+                    [subscriber sendCompleted];
+                }
+                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [subscriber sendError:error];
+                }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [operation cancel];
+        }];
+    }];
 }
 
 - (void)getRatingsHelper:(NSMutableURLRequest *)request withTopFlag:(BOOL)topFlag {

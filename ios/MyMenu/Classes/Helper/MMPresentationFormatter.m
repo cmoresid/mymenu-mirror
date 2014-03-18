@@ -46,4 +46,31 @@
     return [NSString stringWithFormat:@"$%@", [formatterCost stringFromNumber:price]];
 }
 
++ (NSString *)formatDistance:(NSNumber *)distance {
+    NSString *distanceString;
+    
+    if ([distance compare:[NSNumber numberWithFloat:0.0f]] == NSOrderedAscending) {
+        NSNumberFormatter *oneDecFormat = [[NSNumberFormatter alloc] init];
+        [oneDecFormat setRoundingMode:NSNumberFormatterRoundHalfUp];
+        [oneDecFormat setMaximumFractionDigits:0];
+        
+        NSString *stringFormat = @"%@ m";
+        NSNumber *dist = [NSNumber numberWithDouble:distance.doubleValue * 1000.0];
+        NSString *formattedValue = [oneDecFormat stringFromNumber:dist];
+        
+        distanceString = [NSString stringWithFormat:stringFormat, formattedValue];
+    } else {
+        NSNumberFormatter *oneDecFormat = [[NSNumberFormatter alloc] init];
+        [oneDecFormat setRoundingMode:NSNumberFormatterRoundHalfUp];
+        [oneDecFormat setMaximumFractionDigits:1];
+        
+        NSString *stringFormat = @"%@ km";
+        NSString *formattedValue = [oneDecFormat stringFromNumber:distance];
+        
+        distanceString = [NSString stringWithFormat:stringFormat, formattedValue];
+    }
+    
+    return distanceString;
+}
+
 @end

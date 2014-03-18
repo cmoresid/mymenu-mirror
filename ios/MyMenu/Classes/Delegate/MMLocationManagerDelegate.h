@@ -16,24 +16,34 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MMPopoverDataPair.h"
+#import <CoreLocation/CLLocationManagerDelegate.h>
+
+@class RACSignal;
+@class CLLocationManager;
 
 /**
- * A delegate that is used by `MMRestaurantViewController` and
- * the `MMRestaurantPopOverViewController` so the popover view
- * controller can send values back to the `MMRestaurantViewController`.
+ *  Delegate interface that defines a class that
+ *  will track a user's location.
  */
-@protocol MMRestaurantPopOverDelegate <NSObject>
-
-@optional
+@protocol MMLocationManagerDelegate <CLLocationManagerDelegate>
 
 /**
- * Sends the selected category from the popover
- * controller back to the parent view controller.
+ *  Initializes a new location manager with a given
+ *  `CLLocationManager`.
  *
- * @param category The string value of the category
- *                 selected.
+ *  @param locationManager A `CLLocationManager` to track
+ *                         user's location.
+ *
+ *  @return An instance of a class that implements `MMLocationManagerDelegate`.
  */
-- (void)didSelectCategory:(NSString *)category;
+- (id)initWithLocationManager:(CLLocationManager *)locationManager;
+
+/**
+ *  Returns that user's last known location.
+ *
+ *  @return A `CLLocation` object containing
+ *          the user's last known location.
+ */
+- (RACSignal *)getLatestLocation;
 
 @end

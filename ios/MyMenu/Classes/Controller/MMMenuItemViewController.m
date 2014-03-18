@@ -324,8 +324,8 @@ MMMenuItemRating *touchedItem;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"backToRestPage"]) {
-        MMRestaurantViewController *restaurantController = [segue destinationViewController];
-        restaurantController.currentMerchant = _currentMerchant;
+        //MMRestaurantViewController *restaurantController = [segue destinationViewController];
+        //restaurantController.currentMerchant = _currentMerchant;
 
     }
 }
@@ -544,7 +544,8 @@ MMMenuItemRating *touchedItem;
 }
 
 - (void)changeReviewSort:(UISegmentedControl *)control {
-    NSMutableArray *reviews = [[NSMutableArray alloc] init];
+    NSMutableArray *reviews;
+    
     switch ([control selectedSegmentIndex]) {
         case 0:
             reviews = [reviewDictionary objectForKey:kCondensedTopReviews];

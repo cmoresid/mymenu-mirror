@@ -17,10 +17,61 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  A helper class that can format
+ *  model data into something suitable
+ *  for the UI.
+ */
 @interface MMPresentationFormatter : NSObject
 
+/**
+ *  Takes a rating from an `MMMerchant` or
+ *  `MMMenuItem` and formats the number as
+ *  with 2 significant digits. A rating of
+ *  0 is formatted an 'N/A'
+ *
+ *  @param rating The rating from the model.
+ *
+ *  @return A string formatted representation of
+ *          the rating.
+ */
 + (NSString *)formatRatingForRawRating:(NSNumber *)rating;
+
+/**
+ *  Formats a merchant's business hours in
+ *  an appropriate format.
+ *
+ *  @param openTime  The open-time of a merchant.
+ *  @param closeTime The close-time of a merchant.
+ *
+ *  @return A UI appropriate string that represents
+ *          a merchant's business hours.
+ */
 + (NSString *)formatBusinessHoursForOpenTime:(NSString *)openTime withCloseTime:(NSString *)closeTime;
+
+/**
+ *  Provides a UI appropriate formatting
+ *  for a model's price.
+ *
+ *  @param price A price.
+ *
+ *  @return A UI appropriate string that represents
+ *          a model's price.
+ */
 + (NSString *)formatNumberAsPrice:(NSNumber *)price;
+
+/**
+ *  Returns a string which represens a distance 
+ *  in a UI appropriate format. If a distance
+ *  is under 1.0 km, the distance is formatted
+ *  in metres; if greater that or equal to 1.0 km,
+ *  the distance is formatted in kilometers.
+ *
+ *  @param distance A distance
+ *
+ *  @return A UI formatted representation of
+ *          a distance.
+ */
++ (NSString *)formatDistance:(NSNumber *)distance;
 
 @end

@@ -36,12 +36,12 @@
 /**
  *  The current selected merchant.
  */
-@property MMMerchant *currentMerchant;
+@property(nonatomic, strong) NSNumber *currentMerchantId;
 
 /**
  *  The view model for the controller.
  */
-@property MMRestaurantViewModel *viewModel;
+@property(nonatomic, strong) MMRestaurantViewModel *viewModel;
 
 /**
  *  The UILabel for the mechant name

@@ -17,35 +17,22 @@
 
 #import <Foundation/Foundation.h>
 
-@class MMDBFetcher;
-@class RACSignal;
+/**
+ *  A delegate interface that is utilized by
+ *  `MMMasterRestaurantTableViewController` and
+ *  `MMDetailMapViewController`. The former notifies
+ *  it's delegate (the latter) when it has received an
+ *  updated list of merchants from the network.
+ */
+@protocol MMMerchantDataSourceDelegate <NSObject>
 
 /**
- *  Provides an additional layer over top
- *  of `MMDBFetcher`. This class functions
- *  as the the 'Service Layer'.
+ *  Delegate method that is called when the
+ *  `MMMasterRestaurantTableViewController` receives
+ *  an updated list of merchants.
+ *
+ *  @param merchants The updated list of merchants.
  */
-@interface MMMenuService : NSObject
-
-/**
- *  Retrieves a customized menu from the specified merchant
- *  for a given user.
- *
- *  @param merchId   The merchant ID.
- *  @param userEmail The user's email.
- *
- *  @return An `NSMutableArray` of `MMMenuItem` objects.
- */
-- (RACSignal *)retrieveMenuFromMerchant:(NSNumber *)merchId forUser:(NSString *)userEmail;
-
-/**
- *  Retrieves a list of menu item reviews for a
- *  given merchant.
- *
- *  @param merchId The merchant ID.
- *
- *  @return An `NSMutableArray` of `MMMenuRating` objects.
- */
-- (RACSignal *)retrieveMenuItemReviewsForMerchant:(NSNumber *)merchId;
+- (void)didReceiveMerchants:(NSMutableArray *)merchants;
 
 @end

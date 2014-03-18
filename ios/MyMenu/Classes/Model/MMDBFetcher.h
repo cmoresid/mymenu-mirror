@@ -97,17 +97,17 @@
 * Get all merchants. Only return a subset of the fields to minify data.
 */
 
-- (void)getCompressedMerchants:(CLLocation *)usrloc;
+- (RACSignal *)getCompressedMerchants:(CLLocation *)usrloc;
 
 /**
  * Get all merchants with name = merchname. Only return a subset of the fields to minify data.
  */
-- (void)getCompressedMerchantsByName:(CLLocation *)usrloc withName:(NSString *)merchname;
+- (RACSignal *)getCompressedMerchantsByName:(CLLocation *)usrloc withName:(NSString *)merchname;
 
 /**
  * Get all merchants with category cuisine. Only return a subset of the fields to minify data.
  */
-- (void)getCompressedMerchantsByCuisine:(CLLocation *)usrloc withCuisine:(NSString *)cuisine;
+- (RACSignal *)getCompressedMerchantsByCuisine:(CLLocation *)usrloc withCuisine:(NSString *)cuisine;
 
 /**
 * Get the menu for the restaurant.
@@ -129,7 +129,7 @@
 /**
 * Get all information about the merchant (restaurant) with the given id.
 */
-- (void)getMerchant:(NSNumber *)merchid;
+- (RACSignal *)getMerchant:(NSNumber *)merchid;
 
 /**
 * Edit the given user's information on the server.
@@ -170,11 +170,6 @@
  * Get today as a string, e.g. 'tuesday'
  */
 - (NSString *)getDay:(NSDate *)date;
-
-/**
- * Helper method that adds all relevant information to the rating object.
- */
-- (void)compressedMerchantsHelper:(NSMutableURLRequest *)request;
 
 /**
  * When a user reports a review they find offensive.
