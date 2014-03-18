@@ -154,7 +154,9 @@
 /**
  * Get all menu item ratings for a specific merchant.
  */
-- (RACSignal *)getItemRatingsMerchant:(NSNumber *)merchid;
+- (RACSignal *)getItemRatingsMerchantRecent:(NSNumber *)merchid;
+
+- (RACSignal *)getItemRatingsMerchantTop:(NSNumber *)merchid;
 
 /**
  * Get all merchant categories.
