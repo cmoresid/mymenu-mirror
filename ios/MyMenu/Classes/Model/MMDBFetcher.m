@@ -186,6 +186,51 @@ static MMDBFetcher *instance;
         }];
     }];
 }
+- (RACSignal *)getItemRatingsMerchantTop:(NSNumber *)merchid {
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        NSString *sqlQueryFormat = @"SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, r.id, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY r.likecount DESC";
+        NSString *sqlQuery = [NSString stringWithFormat:sqlQueryFormat, merchid];
+        NSDictionary *parameters = @{@"query": sqlQuery};
+        
+        AFHTTPRequestOperation *operation = [self.networkManager POST:@"http://mymenuapp.ca/php/ratings/custom.php" parameters:parameters
+                                                              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                                  RXMLElement *rootXML = [RXMLElement elementFromXMLData:responseObject];
+                                                                  
+                                                                  NSMutableArray *ratings = [[NSMutableArray alloc] init];
+                                                                  NSDateFormatter *dateform = [[NSDateFormatter alloc] init];
+                                                                  [dateform setDateFormat:@"yyyy-MM--d H:m:s"];
+                                                                  
+                                                                  [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                                                      MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
+                                                                      rating.id = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
+                                                                      rating.useremail = [e child:@"useremail"].text;
+                                                                      rating.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
+                                                                      rating.menuid = [NSNumber numberWithInt:[e child:@"menuid"].textAsInt];
+                                                                      rating.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
+                                                                      rating.date = [dateform dateFromString:[e child:@"ratingdate"].text];
+                                                                      rating.review = [e child:@"ratingdescription"].text;
+                                                                      rating.menuitemname = [e child:@"name"].text;
+                                                                      rating.firstname = [e child:@"firstname"].text;
+                                                                      rating.lastname = [e child:@"lastname"].text;
+                                                                      rating.likeCount = [NSNumber numberWithInt:[e child:@"likecount"].textAsInt];
+                                                                      rating.merchantName = [e child:@"business_name"].text;
+                                                                      rating.itemImage = [e child:@"picture"].text;
+                                                                      [ratings addObject:rating];
+                                                                  }];
+                                                                  
+                                                                  [subscriber sendNext:ratings];
+                                                                  [subscriber sendCompleted];
+                                                              }
+                                                              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                                  [subscriber sendError:error];
+                                                              }
+                                             ];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [operation cancel];
+        }];
+    }];
+}
 
 - (void)getItemRatings:(NSNumber *)itemid {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -201,6 +246,8 @@ static MMDBFetcher *instance;
     [self getRatingsHelper:request withTopFlag:NO];
 
 }
+
+
 
 - (void)getItemRatingsTop:(NSNumber *)itemid {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
