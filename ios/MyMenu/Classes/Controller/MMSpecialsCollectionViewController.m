@@ -101,6 +101,30 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     NSLog(@"Search Clicked");
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+	
+	NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+	
+	if(searchText.length == 0) {
+		[self setSpecials:[self.specialsSaved mutableCopy]];
+	} else {
+		[self.specialsSaved enumerateKeysAndObjectsUsingBlock:^(id key, NSArray * array, BOOL *stop) {
+			for(MMSpecial * spec in array)
+				if([spec.name rangeOfString:searchText options:NSCaseInsensitiveSearch].location != NSNotFound ||
+				   [spec.desc rangeOfString:searchText options:NSCaseInsensitiveSearch].location != NSNotFound) {
+					if([dict objectForKey:key] != nil) {
+						// Add to a previous section
+						[[dict objectForKey:key] addObject:spec];
+					} else {
+						// If we do not have content for the current date create a new "section"
+						[dict setObject:[NSMutableArray arrayWithObject:spec] forKey:key];
+					}
+				}
+		}];
+		[self setSpecials:dict];
+	}
+	[[self collectionView] reloadData];
+}
 
 
 #pragma mark -
@@ -370,17 +394,12 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
             // If we do not have content for the current date create a new "section"
             [self.specials setObject:[webSpecials mutableCopy] forKey:date];
 		}
-		
-
 	}
+	
+	[self setSpecialsSaved:[self.specials copy]];
 	
     // Reload the View
     [[self collectionView] reloadData];
-	
-	if([date isEqualToDate:self.selectedDate]) {
-		NSIndexPath *item_idx = [NSIndexPath indexPathForItem:0 inSection:[self.dateIndex indexOfObject:date]];
-		[self.collectionView scrollToItemAtIndexPath:item_idx  atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
-	}
 	
 }
 

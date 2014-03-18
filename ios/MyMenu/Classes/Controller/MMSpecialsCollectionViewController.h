@@ -53,6 +53,11 @@
 @property(atomic) NSMutableDictionary *specials;
 
 /**
+ *  All specials by key an date
+ */
+@property(atomic) NSDictionary *specialsSaved;
+
+/**
  *  todays date.
  */
 @property(nonatomic, readwrite) NSDate *currentDate;

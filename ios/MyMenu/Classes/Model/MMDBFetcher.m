@@ -577,10 +577,12 @@ static MMDBFetcher *instance;
     [format setDateFormat:@"YYYY-MM-dd"];
     NSString *dateString = [format stringFromDate:date];
 
-    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (datediff(specials.startdate, '%@')<= 0 AND datediff('%@', specials.enddate)<=0) AND specials.categoryid=2";
+    NSString *queryFormat = @"query=SELECT DISTINCT specials.id, specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE (specials.weekday = '%@' OR (datediff(specials.startdate, '%@')<= 0 AND datediff('%@', specials.enddate)<=0)) AND specials.categoryid=2";
     NSString *query = [NSString stringWithFormat:queryFormat, weekday, dateString, dateString];
 
-
+	
+	
+	
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
@@ -627,7 +629,7 @@ static MMDBFetcher *instance;
     [format setDateFormat:@"YYYY-MM-dd"];
     NSString *dateString = [format stringFromDate:date];
 
-    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (datediff(specials.startdate, '%@')<= 0 AND datediff('%@', specials.enddate)<=0) AND specials.categoryid=1";
+    NSString *queryFormat = @"query=SELECT DISTINCT specials.id, specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE (specials.weekday = '%@' OR (datediff(specials.startdate, '%@')<= 0 AND datediff('%@', specials.enddate)<=0)) AND specials.categoryid=1";
     NSString *query = [NSString stringWithFormat:queryFormat, weekday, dateString, dateString];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -675,9 +677,10 @@ static MMDBFetcher *instance;
     [format setDateFormat:@"YYYY-MM-dd"];
     NSString *dateString = [format stringFromDate:date];
 
-    NSString *queryFormat = @"query=SELECT specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE specials.weekday = '%@' OR (datediff(specials.startdate, '%@')<= 0 AND datediff('%@', specials.enddate)<=0) AND specials.categoryid=3";
+    NSString *queryFormat = @"query=SELECT DISTINCT specials.id, specials.merchid, merchusers.business_name AS business, specials.name, specials.description, specials.picture, specials.occurType FROM specials INNER JOIN merchusers ON specials.merchid=merchusers.id WHERE (specials.weekday = '%@' OR (datediff(specials.startdate, '%@')<= 0 AND datediff('%@', specials.enddate)<=0)) AND specials.categoryid=3";
     NSString *query = [NSString stringWithFormat:queryFormat, weekday, dateString, dateString];
-    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
+    NSLog(@"%@",query);
+	[request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
 
     [self.networkClient performNetworkRequest:request
