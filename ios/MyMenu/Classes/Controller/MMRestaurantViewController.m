@@ -47,6 +47,7 @@
 @property(nonatomic, weak) IBOutlet UIGestureRecognizer *leftSwipeGestureForCategory;
 @property(nonatomic, weak) IBOutlet UIGestureRecognizer *rightSwipeGestureForCategory;
 @property(nonatomic, getter = isSearching) BOOL searching;
+@property(nonatomic) BOOL showingReviewPopover;
 @property(nonatomic, strong) NSString *currentValueInSearchBar;
 
 - (IBAction)changeCategoryBySwipe:(UISwipeGestureRecognizer *)sender;
@@ -66,6 +67,7 @@ MMMenuItemRating *touchedReview;
     if (self) {
         self.viewModel = [[MMRestaurantViewModel alloc] init];
         self.searching = NO;
+        self.showingReviewPopover = NO;
         self.currentValueInSearchBar = @"";
     }
     
@@ -174,6 +176,11 @@ MMMenuItemRating *touchedReview;
 }
 
 - (void)moveViewDown:(NSNotification *)notification {
+    if (self.showingReviewPopover) {
+        self.showingReviewPopover = NO;
+        return;
+    }
+    
     UISearchBar *newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0f, 44.0f)];
     newSearchBar.placeholder = NSLocalizedString(@"Search for Menu Item", nil);
     
@@ -198,8 +205,6 @@ MMMenuItemRating *touchedReview;
     [UIView animateWithDuration:0.3 animations:^{
         [self.view setFrame:newFrame];
     }];
-    
-    //self.searching = NO;
 }
 
 #pragma mark - RX Event Wire-up Methods
@@ -582,6 +587,7 @@ MMMenuItemRating *touchedReview;
     reviewPop.oldPopOverController = popover;
     self.popOverController = popover;
     
+    self.showingReviewPopover = YES;
     [self.popOverController presentPopoverFromRect:cell.frame
                                             inView:cell.superview
                           permittedArrowDirections:UIPopoverArrowDirectionAny
