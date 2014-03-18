@@ -19,7 +19,6 @@
 
 @implementation MMUser
 
-
 - (id)init {
     self = [super init];
     return self;
@@ -27,6 +26,7 @@
 
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
+    
     if (self != nil) {
         self.firstName = [decoder decodeObjectForKey:@"firstName"];
         self.lastName = [decoder decodeObjectForKey:@"lastName"];
@@ -35,6 +35,7 @@
         self.locality = [decoder decodeObjectForKey:@"locality"];
         self.country = [decoder decodeObjectForKey:@"country"];
     }
+    
     return self;
 }
 
@@ -45,8 +46,10 @@
     [aCoder encodeObject:self.city forKey:@"city"];
     [aCoder encodeObject:self.locality forKey:@"locality"];
     [aCoder encodeObject:self.country forKey:@"country"];
-
 }
 
+- (NSString *)userAddress {
+    return [NSString stringWithFormat:@"%@, %@, %@", self.city, self.locality, @"Canada"];
+}
 
 @end

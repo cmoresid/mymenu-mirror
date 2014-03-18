@@ -18,7 +18,11 @@
 package ca.mymenuapp;
 
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
-import ca.mymenuapp.data.api.model.Menu;
+import ca.mymenuapp.data.api.model.MenuCategoryResponse;
+import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
+import ca.mymenuapp.data.api.model.MenuResponse;
+import ca.mymenuapp.data.api.model.Restaurant;
+import ca.mymenuapp.data.api.model.RestaurantResponse;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import retrofit.client.Response;
@@ -35,8 +39,10 @@ public interface MyMenuApi {
   String GET_USER_QUERY = "SELECT * FROM users WHERE email='%s' AND password='%s'";
   String GET_USER_RESTRICTIONS = "SELECT * FROM restrictionuserlink where email='%s'";
   String DELETE_USER_RESTRICTIONS = "DELETE from restrictionuserlink WHERE email='%s'";
-
-  @GET("/rest/menu/{id}") Observable<Menu> getMenu(@Path("id") long id);
+  String GET_RESTAURANT_MENU = "SELECT * from menu where merchid = %d";
+  String GET_MENU_CATEGORIES = "SELECT * from menucategories";
+  String GET_ALL_RESTAURANTS = "SELECT * FROM merchusers";
+  String GET_RESTAURANT_REVIEWS = "SELECT * from ratings where merchid = %d";
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(@Field("query") String query);
@@ -46,6 +52,9 @@ public interface MyMenuApi {
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<UserRestrictionResponse> getRestrictionsForUser(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<RestaurantResponse> getAllRestaurants(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/put.php")
   Observable<Response> createUser(@Field("email") String email,
@@ -61,4 +70,15 @@ public interface MyMenuApi {
   @FormUrlEncoded @POST("/php/restrictionuserlink/put.php")
   Observable<Response> putUserRestriction(@Field("email") String email,
       @Field("restrictid") long restrictId);
+
+  @GET("/rest/merchusers/{id}.xml") Observable<Restaurant> getRestaurant(@Path("id") long id);
+
+  @FormUrlEncoded @POST("/php/menu/custom.php")
+  Observable<MenuResponse> getMenu(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/menu/custom.php")
+  Observable<MenuCategoryResponse> getMenuCategories(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/menu/custom.php")
+  Observable<MenuItemReviewResponse> getReviewsForRestaurant(@Field("query") String query);
 }

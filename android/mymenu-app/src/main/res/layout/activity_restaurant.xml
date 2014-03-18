@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <FrameLayout
+      android:id="@+id/restaurant_header"
+      android:layout_width="match_parent"
+      android:background="@android:color/white"
+      android:layout_height="@dimen/restaurant_header_height">
+
+    <!-- Background set white for transparent headers, otherwise list will bleed through. -->
+
+    <ca.mymenuapp.ui.widgets.KenBurnsView
+        android:id="@+id/restaurant_header_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/restaurant_header_logo"
+        android:layout_width="@dimen/restaurant_header_logo_size"
+        android:layout_height="@dimen/restaurant_header_logo_size"
+        android:layout_gravity="center"/>
+
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/restaurant_category_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:layout_gravity="bottom"
+        app:pstsIndicatorColor="@color/shamrock"
+        app:pstsDividerColor="@color/silver"
+        android:background="@drawable/gradient_overlay"/>
+
+  </FrameLayout>
+
+  <android.support.v4.view.ViewPager
+      android:id="@+id/restaurant_menu_pager"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+  </android.support.v4.view.ViewPager>
+
+</FrameLayout>

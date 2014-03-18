@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ca.mymenuapp.ui.widgets.BetterViewAnimator
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ca.mymenuapp.ui.fragment_restaurant_list">
+
+  <ProgressBar
+      android:id="@+id/progress_bar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"/>
+
+  <ListView
+      android:id="@+id/restaurant_list"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:numColumns="auto_fit"
+      android:stretchMode="columnWidth"
+      android:drawSelectorOnTop="true"
+      android:scrollbarStyle="insideOverlay"
+      android:scrollbars="none"
+      android:horizontalSpacing="1dp"
+      android:verticalSpacing="1dp"
+      android:layout_marginRight="-1px"/>
+
+</ca.mymenuapp.ui.widgets.BetterViewAnimator>

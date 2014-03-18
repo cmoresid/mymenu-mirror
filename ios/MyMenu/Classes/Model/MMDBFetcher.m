@@ -20,10 +20,13 @@
 #import "MMNetworkClientProxy.h"
 #import <MapKit/MapKit.h>
 #import "MMMenuItem.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <AFNetworking/AFNetworking.h>
+#import <RACEXTScope.h>
 
 @interface MMDBFetcher ()
 
-- (void)compressedMerchantsHelper:(NSMutableURLRequest *)request;
+@property (nonatomic, strong) AFHTTPRequestOperationManager *networkManager;
 
 - (BOOL)canPerformCallback:(id)delegate withSelector:(SEL)delegateSelector;
 
@@ -58,6 +61,10 @@ static MMDBFetcher *instance;
 
     if (self) {
         self.networkClient = client;
+        
+        self.networkManager = [AFHTTPRequestOperationManager manager];
+        self.networkManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        self.networkManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     }
 
     return self;
@@ -134,34 +141,95 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getItemRatingsMerchant:(NSNumber *)merchid {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
+- (RACSignal *)getItemRatingsMerchantRecent:(NSNumber *)merchid {
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        NSString *sqlQueryFormat = @"SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, r.id, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
+        NSString *sqlQuery = [NSString stringWithFormat:sqlQueryFormat, merchid];
+        NSDictionary *parameters = @{@"query": sqlQuery};
+        
+        AFHTTPRequestOperation *operation = [self.networkManager POST:@"http://mymenuapp.ca/php/ratings/custom.php" parameters:parameters
+            success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                RXMLElement *rootXML = [RXMLElement elementFromXMLData:responseObject];
+                
+                NSMutableArray *ratings = [[NSMutableArray alloc] init];
+                NSDateFormatter *dateform = [[NSDateFormatter alloc] init];
+                [dateform setDateFormat:@"yyyy-MM--d H:m:s"];
+                
+                [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                    MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
+                    rating.id = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
+                    rating.useremail = [e child:@"useremail"].text;
+                    rating.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
+                    rating.menuid = [NSNumber numberWithInt:[e child:@"menuid"].textAsInt];
+                    rating.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
+                    rating.date = [dateform dateFromString:[e child:@"ratingdate"].text];
+                    rating.review = [e child:@"ratingdescription"].text;
+                    rating.menuitemname = [e child:@"name"].text;
+                    rating.firstname = [e child:@"firstname"].text;
+                    rating.lastname = [e child:@"lastname"].text;
+                    rating.likeCount = [NSNumber numberWithInt:[e child:@"likecount"].textAsInt];
+                    rating.merchantName = [e child:@"business_name"].text;
+                    rating.itemImage = [e child:@"picture"].text;
+                    [ratings addObject:rating];
+                }];
 
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, r.id, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
-    NSString *query = [NSString stringWithFormat:queryFormat, merchid];
-    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self getRatingsHelper:request withTopFlag:NO];
-
+                [subscriber sendNext:ratings];
+                [subscriber sendCompleted];
+            }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [subscriber sendError:error];
+            }
+        ];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [operation cancel];
+        }];
+    }];
 }
-
-- (void)getItemRatingsMerchantTop:(NSNumber *)merchid {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
-
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, r.id, m.name, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY r.likecount DESC";
-    NSString *query = [NSString stringWithFormat:queryFormat, merchid];
-    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self getRatingsHelper:request withTopFlag:YES];
-
+- (RACSignal *)getItemRatingsMerchantTop:(NSNumber *)merchid {
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        NSString *sqlQueryFormat = @"SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, r.id, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY r.likecount DESC";
+        NSString *sqlQuery = [NSString stringWithFormat:sqlQueryFormat, merchid];
+        NSDictionary *parameters = @{@"query": sqlQuery};
+        
+        AFHTTPRequestOperation *operation = [self.networkManager POST:@"http://mymenuapp.ca/php/ratings/custom.php" parameters:parameters
+                                                              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                                  RXMLElement *rootXML = [RXMLElement elementFromXMLData:responseObject];
+                                                                  
+                                                                  NSMutableArray *ratings = [[NSMutableArray alloc] init];
+                                                                  NSDateFormatter *dateform = [[NSDateFormatter alloc] init];
+                                                                  [dateform setDateFormat:@"yyyy-MM--d H:m:s"];
+                                                                  
+                                                                  [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                                                                      MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
+                                                                      rating.id = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
+                                                                      rating.useremail = [e child:@"useremail"].text;
+                                                                      rating.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
+                                                                      rating.menuid = [NSNumber numberWithInt:[e child:@"menuid"].textAsInt];
+                                                                      rating.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
+                                                                      rating.date = [dateform dateFromString:[e child:@"ratingdate"].text];
+                                                                      rating.review = [e child:@"ratingdescription"].text;
+                                                                      rating.menuitemname = [e child:@"name"].text;
+                                                                      rating.firstname = [e child:@"firstname"].text;
+                                                                      rating.lastname = [e child:@"lastname"].text;
+                                                                      rating.likeCount = [NSNumber numberWithInt:[e child:@"likecount"].textAsInt];
+                                                                      rating.merchantName = [e child:@"business_name"].text;
+                                                                      rating.itemImage = [e child:@"picture"].text;
+                                                                      [ratings addObject:rating];
+                                                                  }];
+                                                                  
+                                                                  [subscriber sendNext:ratings];
+                                                                  [subscriber sendCompleted];
+                                                              }
+                                                              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                                  [subscriber sendError:error];
+                                                              }
+                                             ];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [operation cancel];
+        }];
+    }];
 }
 
 - (void)getItemRatings:(NSNumber *)itemid {
@@ -170,7 +238,7 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/ratings/custom.php"]];
 
-    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, u.firstname, u.lastname, r.id, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE m.id=%@ AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
+    NSString *queryFormat = @"query=SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, u.firstname, u.lastname, r.id, mu.business_name, m.picture, m.id as menuid, mu.id as merchid, r.likecount FROM ratings r, menu m, users u, merchusers mu WHERE m.id=%@ AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
     NSString *query = [NSString stringWithFormat:queryFormat, itemid];
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
     [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
@@ -178,6 +246,8 @@ static MMDBFetcher *instance;
     [self getRatingsHelper:request withTopFlag:NO];
 
 }
+
+
 
 - (void)getItemRatingsTop:(NSNumber *)itemid {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -716,230 +786,182 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (void)getCompressedMerchants:(CLLocation *)usrloc {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
+- (RACSignal *)getCompressedMerchants:(CLLocation *)usrloc {
+    CLLocationCoordinate2D coords = usrloc.coordinate;
+    
+    NSString *url = @"http://mymenuapp.ca/php/merchusers/custom.php";
+    NSString *queryFormat = @"SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances ORDER BY distance ASC LIMIT 50";
+    
+    NSString *sqlQuery = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude]];
+    NSDictionary *queryParameters = @{@"query": sqlQuery};
+    
+    return [self compressedMerchantsHelperWithUrl:url withParameters:queryParameters];
+}
 
+- (RACSignal *)getCompressedMerchantsByName:(CLLocation *)usrloc withName:(NSString *)merchname {
     CLLocationCoordinate2D coords = usrloc.coordinate;
 
+    NSString *url = @"http://mymenuapp.ca/php/merchusers/custom.php";
+    NSString *queryFormat = @"SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE UPPER(business_name) LIKE UPPER('%%%@%%') ORDER BY distance ASC LIMIT 25";
 
-    NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances ORDER BY distance ASC LIMIT 50";
+    NSString *sqlQuery = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], merchname];
+    
+    //NSString *encodedQuery = [sqlQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *queryParameters = @{@"query": sqlQuery};
 
-    NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude]];
-
-    NSString *encodedQuery = [query stringByAddingPercentEscapesUsingEncoding:
-            NSUTF8StringEncoding];
-
-
-    [request setValue:[NSString stringWithFormat:@"%d", [encodedQuery length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[encodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self compressedMerchantsHelper:request];
-
+    return [self compressedMerchantsHelperWithUrl:url withParameters:queryParameters];
 }
 
-- (void)getCompressedMerchantsByName:(CLLocation *)usrloc withName:(NSString *)merchname {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
-
+- (RACSignal *)getCompressedMerchantsByCuisine:(CLLocation *)usrloc withCuisine:(NSString *)cuisine {
     CLLocationCoordinate2D coords = usrloc.coordinate;
 
-    NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE UPPER(business_name) LIKE UPPER('%%%@%%') ORDER BY distance ASC LIMIT 25";
+    NSString *url = @"http://mymenuapp.ca/php/merchusers/custom.php";
+    NSString *queryFormat = @"SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE category = '%@' ORDER BY distance ASC LIMIT 50";
 
-    NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], merchname];
+    NSString *sqlQuery = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], cuisine];
+    
+    NSString *encodedQuery = [sqlQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *queryParameters = @{@"query": encodedQuery};
 
-    NSString *encodedQuery = [query stringByAddingPercentEscapesUsingEncoding:
-            NSUTF8StringEncoding];
-
-
-    [request setValue:[NSString stringWithFormat:@"%d", [encodedQuery length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[encodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self compressedMerchantsHelper:request];
+    return [self compressedMerchantsHelperWithUrl:url withParameters:queryParameters];
 }
 
-- (void)getCompressedMerchantsByCuisine:(CLLocation *)usrloc withCuisine:(NSString *)cuisine {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
-
-    CLLocationCoordinate2D coords = usrloc.coordinate;
-
-
-    NSString *queryFormat = @"query=SELECT id, business_name, category, business_number, business_address1, rating, business_picture, business_description, distance, lat, longa FROM(SELECT id, business_name, category, business_number, business_address1, rating, business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, m.business_number, m.business_address1, m.rating, m.business_picture, m.business_description, m.lat, m.longa, POW(m.longa - %@, 2) AS longadiff, POW(m.lat - %@, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances WHERE category = '%@' ORDER BY distance ASC LIMIT 50";
-
-    NSString *query = [NSString stringWithFormat:queryFormat, [NSNumber numberWithDouble:coords.longitude], [NSNumber numberWithDouble:coords.latitude], cuisine];
-
-    NSString *encodedQuery = [query stringByAddingPercentEscapesUsingEncoding:
-            NSUTF8StringEncoding];
-
-
-    [request setValue:[NSString stringWithFormat:@"%d", [encodedQuery length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[encodedQuery dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self compressedMerchantsHelper:request];
+- (RACSignal *)getMerchant:(NSNumber *)mid {
+    NSString *url = @"http://mymenuapp.ca/php/merchusers/custom.php";
+    NSString *queryFormat = @"SELECT * FROM merchusers WHERE id=%@";
+    NSString *sqlQuery = [NSString stringWithFormat:queryFormat, mid];
+    NSDictionary *parameters = @{@"query": sqlQuery};
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        AFHTTPRequestOperation *operation = [self.networkManager POST:url parameters:parameters
+            success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                RXMLElement *rootXML = [RXMLElement elementFromXMLData:responseObject];
+                MMMerchant *merchant = [[MMMerchant alloc] init];
+                
+                [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                    merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
+                    merchant.businessname = [e child:@"business_name"].text;
+                    merchant.phone = [e child:@"business_number"].text;
+                    merchant.desc = [e child:@"business_description"].text;
+                    merchant.address = [e child:@"business_address1"].text;
+                    merchant.city = [e child:@"business_city"].text;
+                    merchant.locality = [e child:@"business_locality"].text;
+                    merchant.postalcode = [e child:@"business_postalcode"].text;
+                    merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
+                    merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
+                    merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
+                    merchant.picture = [e child:@"business_picture"].text;
+                    merchant.facebook = [e child:@"facebook"].text;
+                    merchant.twitter = [e child:@"twitter"].text;
+                    merchant.website = [e child:@"website"].text;
+                    merchant.pricehigh = [NSNumber numberWithFloat:[e child:@"pricehigh"].textAsInt];
+                    merchant.pricelow = [NSNumber numberWithFloat:[e child:@"pricelow"].textAsInt];
+                    merchant.opentime = [e child:@"opentime"].text;
+                    merchant.closetime = [e child:@"closetime"].text;
+                }];
+                
+                [subscriber sendNext:merchant];
+                [subscriber sendCompleted];
+            }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [subscriber sendError:error];
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [operation cancel];
+        }];
+    }];
 }
 
-- (void)getMerchant:(NSNumber *)mid {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/merchusers/custom.php"]];
-
-    NSString *queryFormat = @"query=SELECT * FROM merchusers WHERE id=%@";
-    NSString *query = [NSString stringWithFormat:queryFormat, mid];
-    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self.networkClient performNetworkRequest:request
-                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-
-                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveMerchant:withResponse:)]) {
-                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveMerchant:withResponse:");
-                                    return;
-                                }
-
-                                if (dbResponse.wasSuccessful) {
-                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-                                    MMMerchant *merchant = [[MMMerchant alloc] init];
-
-                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-                                        merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
-                                        merchant.businessname = [e child:@"business_name"].text;
-                                        merchant.phone = [e child:@"business_number"].text;
-                                        merchant.desc = [e child:@"business_description"].text;
-                                        merchant.address = [e child:@"business_address1"].text;
-                                        merchant.city = [e child:@"business_city"].text;
-                                        merchant.locality = [e child:@"business_locality"].text;
-                                        merchant.postalcode = [e child:@"business_postalcode"].text;
-                                        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
-                                        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
-                                        merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
-                                        merchant.picture = [e child:@"business_picture"].text;
-                                        merchant.facebook = [e child:@"facebook"].text;
-                                        merchant.twitter = [e child:@"twitter"].text;
-                                        merchant.website = [e child:@"website"].text;
-                                        merchant.pricehigh = [NSNumber numberWithFloat:[e child:@"pricehigh"].textAsInt];
-                                        merchant.pricelow = [NSNumber numberWithFloat:[e child:@"pricelow"].textAsInt];
-                                        merchant.opentime = [e child:@"opentime"].text;
-                                        merchant.closetime = [e child:@"closetime"].text;
-                                    }];
-
-                                    [self.delegate didRetrieveMerchant:merchant withResponse:dbResponse];
-                                }
-                                else {
-                                    [self.delegate didRetrieveMerchant:nil withResponse:dbResponse];
-                                }
-                            }];
+- (RACSignal *)getMenuWithMerchantId:(NSNumber *)merchid withUserEmail:(NSString *)email; {
+    @weakify(self);
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self);
+        
+        NSString *sqlFormat = @"SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.name AS category FROM menu m, menucategories mc WHERE m.id not IN(SELECT Distinct rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id";
+        
+        NSString *sqlQuery = [NSString stringWithFormat:sqlFormat, email, merchid.intValue];
+        NSDictionary *queryParameters = @{@"query": sqlQuery};
+        
+        AFHTTPRequestOperation *operation = [self.networkManager POST:@"http://mymenuapp.ca/php/menu/custom.php" parameters:queryParameters
+            success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                RXMLElement *rootXML = [RXMLElement elementFromXMLData:responseObject];
+                NSMutableArray *menuitems = [[NSMutableArray alloc] init];
+                
+                [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                    MMMenuItem *item = [[MMMenuItem alloc] init];
+                    item.itemid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
+                    item.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
+                    item.name = [e child:@"name"].text;
+                    item.cost = [NSNumber numberWithDouble:[e child:@"cost"].textAsDouble];
+                    item.picture = [e child:@"picture"].text;
+                    item.desc = [e child:@"description"].text;
+                    item.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
+                    item.category = [e child:@"category"].text;
+                    item.restrictionflag = FALSE;
+                    
+                    [menuitems addObject:item];
+                }];
+                
+                [subscriber sendNext:menuitems];
+                [subscriber sendCompleted];
+            }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [subscriber sendError:error];
+            }
+        ];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [operation cancel];
+        }];
+    }];
 }
 
-- (void)getMenuWithMerchantId:(NSInteger)merchid withUserEmail:(NSString *)email; {
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/menu/custom.php"]];
-
-    NSString *queryFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.name AS category FROM menu m, menucategories mc WHERE m.id not IN(SELECT Distinct rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id";
-
-
-    NSString *query = [NSString stringWithFormat:queryFormat, email, merchid];
-
-    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self.networkClient performNetworkRequest:request
-                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-
-                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveMenuItems:withResponse:)]) {
-                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveMenuItems:withResponse:");
-                                    return;
-                                }
-
-                                if (dbResponse.wasSuccessful) {
-                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-                                    NSMutableArray *menuitems = [[NSMutableArray alloc] init];
-
-                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-                                        MMMenuItem *item = [[MMMenuItem alloc] init];
-                                        item.itemid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
-                                        item.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
-                                        item.name = [e child:@"name"].text;
-                                        item.cost = [NSNumber numberWithDouble:[e child:@"cost"].textAsDouble];
-                                        item.picture = [e child:@"picture"].text;
-                                        item.desc = [e child:@"description"].text;
-                                        item.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
-                                        item.category = [e child:@"category"].text;
-                                        item.restrictionflag = FALSE;
-
-                                        [menuitems addObject:item];
-                                    }];
-
-                                    [self getRestrictedMenu:merchid withUserEmail:email withAllowedMenuItems:menuitems];
-                                }
-                                else {
-                                    [self.delegate didRetrieveMenuItems:nil withResponse:dbResponse];
-                                }
-                            }];
+- (RACSignal *)getRestrictedMenu:(NSNumber *)merchid withUserEmail:(NSString *)email {
+    @weakify(self);
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self);
+        
+        NSString *sqlFormat = @"SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.name AS category FROM menu m, menucategories mc WHERE m.id IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id";
+        
+        NSString *sqlQuery = [NSString stringWithFormat:sqlFormat, email, merchid.intValue];
+        NSDictionary *queryParameters = @{@"query": sqlQuery};
+        
+        AFHTTPRequestOperation *operation = [self.networkManager POST:@"http://mymenuapp.ca/php/menu/custom.php" parameters:queryParameters
+            success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                RXMLElement *rootXML = [RXMLElement elementFromXMLData:responseObject];
+                
+                NSMutableArray *restrictedMenuItems = [NSMutableArray new];
+                
+                [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                    MMMenuItem *item = [[MMMenuItem alloc] init];
+                    item.itemid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
+                    item.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
+                    item.name = [e child:@"name"].text;
+                    item.cost = [NSNumber numberWithDouble:[e child:@"cost"].textAsDouble];
+                    item.picture = [e child:@"picture"].text;
+                    item.desc = [e child:@"description"].text;
+                    item.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
+                    item.category = [e child:@"category"].text;
+                    item.restrictionflag = TRUE;
+                    
+                    [restrictedMenuItems addObject:item];
+                }];
+                
+                [subscriber sendNext:restrictedMenuItems];
+                [subscriber sendCompleted];
+            }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [subscriber sendError:error];
+            }
+        ];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [operation cancel];
+        }];
+    }];
 }
-
-- (void)getRestrictedMenu:(NSInteger)merchid withUserEmail:(NSString *)email withAllowedMenuItems:(NSMutableArray *)allowedItems {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/menu/custom.php"]];
-
-    /* Get restricted */
-
-    NSString *queryFormat = @"query=SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, m.rating, m.rating, mc.name AS category FROM menu m, menucategories mc WHERE m.id IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%@')) AND m.merchid = %d AND m.categoryid = mc.id";
-
-    NSString *query = [NSString stringWithFormat:queryFormat, email, merchid];
-
-    [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[query dataUsingEncoding:NSUTF8StringEncoding]];
-
-    [self.networkClient performNetworkRequest:request
-                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-
-                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveMenuItems:withResponse:)]) {
-                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveMenuItems:withResponse:");
-                                    return;
-                                }
-
-                                if (dbResponse.wasSuccessful) {
-                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-
-                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-                                        MMMenuItem *item = [[MMMenuItem alloc] init];
-                                        item.itemid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
-                                        item.merchid = [NSNumber numberWithInt:[e child:@"merchid"].textAsInt];
-                                        item.name = [e child:@"name"].text;
-                                        item.cost = [NSNumber numberWithDouble:[e child:@"cost"].textAsDouble];
-                                        item.picture = [e child:@"picture"].text;
-                                        item.desc = [e child:@"description"].text;
-                                        item.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
-                                        item.category = [e child:@"category"].text;
-                                        item.restrictionflag = TRUE;
-
-                                        [allowedItems addObject:item];
-                                    }];
-
-                                    [self.delegate didRetrieveMenuItems:[allowedItems copy] withResponse:dbResponse];
-                                }
-                                else {
-                                    [self.delegate didRetrieveMenuItems:nil withResponse:dbResponse];
-                                }
-                            }];
-}
-
 
 - (void)getModifications:(NSNumber *)menuid withUser:(NSString *)email {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -1023,44 +1045,45 @@ static MMDBFetcher *instance;
 
 }
 
-- (void)compressedMerchantsHelper:(NSMutableURLRequest *)request {
+- (RACSignal *)compressedMerchantsHelperWithUrl:(NSString *)url withParameters:(NSDictionary *)parameters {
+    @weakify(self);
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self);
+       
+        AFHTTPRequestOperation *operation = [self.networkManager POST:url parameters:parameters
+                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:responseObject];
+                    NSMutableArray *merchants = [[NSMutableArray alloc] init];
+                    
+                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
+                        MMMerchant *merchant = [[MMMerchant alloc] init];
+                        merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
+                        merchant.businessname = [e child:@"business_name"].text;
+                        merchant.category = [e child:@"category"].text;
+                        merchant.address = [e child:@"business_address1"].text;
+                        merchant.desc = [e child:@"business_description"].text;
+                        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
+                        merchant.picture = [e child:@"business_picture"].text;
+                        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
+                        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
+                        merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
+                        merchant.distfromuser = [NSNumber numberWithDouble:[e child:@"distance"].textAsDouble];
+                        
+                        [merchants addObject:merchant];
+                    }];
 
-    [self.networkClient performNetworkRequest:request
-                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
-
-                                if (![self canPerformCallback:self.delegate withSelector:@selector(didRetrieveCompressedMerchants:withResponse:)]) {
-                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didRetrieveCompressedMerchants:withResponse:");
-                                    return;
-                                }
-
-                                if (dbResponse.wasSuccessful) {
-                                    RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
-                                    NSMutableArray *merchants = [[NSMutableArray alloc] init];
-
-                                    [rootXML iterate:@"result" usingBlock:^(RXMLElement *e) {
-                                        MMMerchant *merchant = [[MMMerchant alloc] init];
-                                        merchant.mid = [NSNumber numberWithInt:[e child:@"id"].textAsInt];
-                                        merchant.businessname = [e child:@"business_name"].text;
-                                        merchant.category = [e child:@"category"].text;
-                                        merchant.address = [e child:@"business_address1"].text;
-                                        merchant.desc = [e child:@"business_description"].text;
-                                        merchant.rating = [NSNumber numberWithInt:[e child:@"rating"].textAsInt];
-                                        merchant.picture = [e child:@"business_picture"].text;
-                                        merchant.lat = [NSNumber numberWithDouble:[e child:@"lat"].textAsDouble];
-                                        merchant.longa = [NSNumber numberWithDouble:[e child:@"longa"].textAsDouble];
-                                        merchant.rating = [NSNumber numberWithDouble:[e child:@"rating"].textAsDouble];
-                                        merchant.distfromuser = [NSNumber numberWithDouble:[e child:@"distance"].textAsDouble];
-
-                                        [merchants addObject:merchant];
-                                    }];
-
-                                    [self.delegate didRetrieveCompressedMerchants:merchants withResponse:dbResponse];
-                                }
-                                else {
-                                    [self.delegate didRetrieveCompressedMerchants:nil withResponse:dbResponse];
-                                }
-                            }];
+                    [subscriber sendNext:merchants];
+                    [subscriber sendCompleted];
+                }
+                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [subscriber sendError:error];
+                }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [operation cancel];
+        }];
+    }];
 }
 
 - (void)getRatingsHelper:(NSMutableURLRequest *)request withTopFlag:(BOOL)topFlag {

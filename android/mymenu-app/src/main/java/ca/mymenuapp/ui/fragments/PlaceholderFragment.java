@@ -17,6 +17,7 @@
 
 package ca.mymenuapp.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,10 +25,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
-import ca.mymenuapp.data.api.model.Menu;
+import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.rx.EndlessObserver;
+import ca.mymenuapp.ui.activities.RestaurantActivity;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
 import javax.inject.Inject;
@@ -69,12 +72,18 @@ public class PlaceholderFragment extends BaseFragment {
 
   @Override public void onResume() {
     super.onResume();
-    myMenuDatabase.getMenu(sectionNumber, new EndlessObserver<Menu>() {
-      @Override public void onNext(Menu menu) {
-        label.setText(String.valueOf(menu));
-        picasso.load(menu.picture).into(picture);
+    myMenuDatabase.getRestaurant(sectionNumber, new EndlessObserver<Restaurant>() {
+      @Override public void onNext(Restaurant restaurant) {
+        label.setText(String.valueOf(restaurant));
+        picasso.load(restaurant.businessPicture).into(picture);
       }
     });
     label.setText(String.valueOf(sectionNumber));
+  }
+
+  @OnClick(R.id.menu_picture) public void onClickPicture() {
+    Intent intent = new Intent(activityContext, RestaurantActivity.class);
+    intent.putExtra(RestaurantActivity.ARGS_RESTAURANT_ID, (long) sectionNumber);
+    startActivity(intent);
   }
 }

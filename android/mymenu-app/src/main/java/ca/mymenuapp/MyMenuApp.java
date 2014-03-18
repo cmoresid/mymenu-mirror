@@ -18,18 +18,13 @@
 package ca.mymenuapp;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
-import ca.mymenuapp.data.api.model.User;
-import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.ui.activities.LoginActivity;
 import com.f2prateek.ln.DebugLn;
 import com.f2prateek.ln.Ln;
 import dagger.ObjectGraph;
 import hugo.weaving.DebugLog;
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
 /**
  * Custom {@link android.app.Application} instance.
@@ -38,7 +33,6 @@ import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
  */
 public class MyMenuApp extends Application {
 
-  @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
   private ObjectGraph applicationGraph;
 
   @Override public void onCreate() {
@@ -58,11 +52,12 @@ public class MyMenuApp extends Application {
   public void buildApplicationGraphAndInject() {
     applicationGraph = ObjectGraph.create(Modules.list(this));
     applicationGraph.inject(this);
-    if (userPreference.get() == null) {
-      Intent intent = new Intent(this, LoginActivity.class);
-      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      startActivity(intent);
-    }
+  }
+
+  public static void promptLogin(Context context) {
+    Intent intent = new Intent(context, LoginActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    context.startActivity(intent);
   }
 
   public ObjectGraph getApplicationGraph() {

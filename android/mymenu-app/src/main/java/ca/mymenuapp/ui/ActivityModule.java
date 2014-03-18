@@ -23,10 +23,15 @@ import ca.mymenuapp.dagger.scopes.ForActivity;
 import ca.mymenuapp.ui.activities.BaseActivity;
 import ca.mymenuapp.ui.activities.LoginActivity;
 import ca.mymenuapp.ui.activities.MainActivity;
+import ca.mymenuapp.ui.activities.RestaurantActivity;
 import ca.mymenuapp.ui.activities.SignUpActivity;
 import ca.mymenuapp.ui.fragments.BaseFragment;
 import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
+import ca.mymenuapp.ui.fragments.MenuCategoryFragment;
 import ca.mymenuapp.ui.fragments.PlaceholderFragment;
+import ca.mymenuapp.ui.fragments.RestaurantListFragment;
+import ca.mymenuapp.ui.fragments.RestaurantTwoPaneFragment;
+import ca.mymenuapp.ui.fragments.RestaurantsReviewFragment;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -35,8 +40,11 @@ import javax.inject.Singleton;
     injects = {
         // Activities
         BaseActivity.class, MainActivity.class, LoginActivity.class, SignUpActivity.class,
+        RestaurantActivity.class,
         // Fragments
-        BaseFragment.class, PlaceholderFragment.class, DietaryPreferencesFragment.class
+        BaseFragment.class, PlaceholderFragment.class, DietaryPreferencesFragment.class,
+        MenuCategoryFragment.class, RestaurantsReviewFragment.class, RestaurantListFragment.class,
+        RestaurantTwoPaneFragment.class
     },
     complete = false,
     addsTo = MyMenuModule.class)

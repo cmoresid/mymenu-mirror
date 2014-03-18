@@ -24,6 +24,7 @@
 #import "MMNetworkClientProtocol.h"
 #import "MMMenuItemRating.h"
 
+@class RACSignal;
 @class CLLocation;
 
 /**
@@ -96,22 +97,24 @@
 * Get all merchants. Only return a subset of the fields to minify data.
 */
 
-- (void)getCompressedMerchants:(CLLocation *)usrloc;
+- (RACSignal *)getCompressedMerchants:(CLLocation *)usrloc;
 
 /**
  * Get all merchants with name = merchname. Only return a subset of the fields to minify data.
  */
-- (void)getCompressedMerchantsByName:(CLLocation *)usrloc withName:(NSString *)merchname;
+- (RACSignal *)getCompressedMerchantsByName:(CLLocation *)usrloc withName:(NSString *)merchname;
 
 /**
  * Get all merchants with category cuisine. Only return a subset of the fields to minify data.
  */
-- (void)getCompressedMerchantsByCuisine:(CLLocation *)usrloc withCuisine:(NSString *)cuisine;
+- (RACSignal *)getCompressedMerchantsByCuisine:(CLLocation *)usrloc withCuisine:(NSString *)cuisine;
 
 /**
 * Get the menu for the restaurant.
 */
-- (void)getMenuWithMerchantId:(NSInteger)merchid withUserEmail:(NSString *)email;
+- (RACSignal *)getMenuWithMerchantId:(NSNumber *)merchid withUserEmail:(NSString *)email;
+
+- (RACSignal *)getRestrictedMenu:(NSNumber *)merchid withUserEmail:(NSString *)email;
 
 /**
 * Get all restrictions that we support.
@@ -126,7 +129,7 @@
 /**
 * Get all information about the merchant (restaurant) with the given id.
 */
-- (void)getMerchant:(NSNumber *)merchid;
+- (RACSignal *)getMerchant:(NSNumber *)merchid;
 
 /**
 * Edit the given user's information on the server.
@@ -151,17 +154,14 @@
 /**
  * Get all menu item ratings for a specific merchant.
  */
-- (void)getItemRatingsMerchant:(NSNumber *)merchid;
+- (RACSignal *)getItemRatingsMerchantRecent:(NSNumber *)merchid;
+
+- (RACSignal *)getItemRatingsMerchantTop:(NSNumber *)merchid;
 
 /**
  * Get all merchant categories.
  */
 - (void)getCategories;
-
-/**
- * Get all item ratings for a merchant ordered by rating.
- */
-- (void)getItemRatingsMerchantTop:(NSNumber *)merchid;
 
 /**
  * Get all ratings for a specific item ordered by rating.
@@ -172,16 +172,6 @@
  * Get today as a string, e.g. 'tuesday'
  */
 - (NSString *)getDay:(NSDate *)date;
-
-/**
- * Helper method that adds all relevant information to the rating object.
- */
-- (void)getRatingsHelper:(NSMutableURLRequest *)request withTopFlag:(BOOL)topFlag;
-
-/**
- * Helper method that adds all relevant information to the rating object.
- */
-- (void)compressedMerchantsHelper:(NSMutableURLRequest *)request;
 
 /**
  * When a user reports a review they find offensive.
