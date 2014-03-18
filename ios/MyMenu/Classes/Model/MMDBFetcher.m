@@ -141,7 +141,7 @@ static MMDBFetcher *instance;
                             }];
 }
 
-- (RACSignal *)getItemRatingsMerchant:(NSNumber *)merchid {
+- (RACSignal *)getItemRatingsMerchantRecent:(NSNumber *)merchid {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSString *sqlQueryFormat = @"SELECT r.useremail, r.rating, r.ratingdate, r.ratingdescription, m.name, r.id, u.firstname, u.lastname, r.likecount, mu.business_name, m.picture, m.id as menuid, mu.id as merchid FROM ratings r, menu m, users u, merchusers mu WHERE r.merchid=%@ AND m.merchid = r.merchid AND m.id = r.menuid AND u.email = r.useremail AND mu.id = m.merchid ORDER BY ratingdate DESC";
         NSString *sqlQuery = [NSString stringWithFormat:sqlQueryFormat, merchid];

@@ -174,8 +174,6 @@ MMMenuItemRating *touchedReview;
 }
 
 - (void)moveViewDown:(NSNotification *)notification {
-    if (!self.searching) return;
-    
     UISearchBar *newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0f, 44.0f)];
     newSearchBar.placeholder = NSLocalizedString(@"Search for Menu Item", nil);
     
@@ -201,7 +199,7 @@ MMMenuItemRating *touchedReview;
         [self.view setFrame:newFrame];
     }];
     
-    self.searching = NO;
+    //self.searching = NO;
 }
 
 #pragma mark - RX Event Wire-up Methods
@@ -303,6 +301,8 @@ MMMenuItemRating *touchedReview;
 #pragma mark - Search Bar Delegate Methods
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.searching = NO;
+    
     if ([self.viewModel numberOfItemsInCurrentDataSource] == 1) {
         touchedItem = [self.viewModel getItemFromCurrentDataSourceForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         [self performSegueWithIdentifier:@"showMenuItem" sender:self];
@@ -317,10 +317,13 @@ MMMenuItemRating *touchedReview;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searching = NO;
+    
     [searchBar resignFirstResponder];
     [searchBar removeFromSuperview];
     
     [self.viewModel searchForItemWithValue:@""];
+    
     [self.menuItemsCollectionView reloadData];
 }
 
@@ -340,6 +343,10 @@ MMMenuItemRating *touchedReview;
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [self.viewModel searchForItemWithValue:searchText];
     [self.menuItemsCollectionView reloadData];
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
+    return !self.searching;
 }
 
 #pragma mark - Configure Category Segment Control Methods

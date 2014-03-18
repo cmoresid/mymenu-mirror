@@ -32,10 +32,10 @@ const NSInteger MMReviewsDataSource = 1;
 
 @property(nonatomic, strong) NSArray *menuItemCategories;
 @property(nonatomic, strong) NSArray *allMenuItems;
-@property(nonatomic, strong) NSArray *allMenuItemReviews;
 @property(nonatomic, strong) NSArray *dataSource;
 @property(nonatomic, strong) RACMulticastConnection *retrieveMenuItemsConnection;
-@property(nonatomic, strong) RACMulticastConnection *retrieveReviewsConnection;
+@property(nonatomic, strong) RACMulticastConnection *retrieveRecentReviewsConnection;
+@property(nonatomic, strong) RACMulticastConnection *retrieveTopRatedReviewsConnection;
 @property(nonatomic, strong) MMMenuService *menuService;
 @property(nonatomic, readonly, getter = isOnReviewTabIndex) BOOL onReviewTabSegment;
 
@@ -51,7 +51,7 @@ const NSInteger MMReviewsDataSource = 1;
     if (self) {
         self.menuService = [[MMMenuService alloc] init];
         self.retrieveMenuItemsConnection = nil;
-        self.retrieveReviewsConnection = nil;
+        self.retrieveRecentReviewsConnection = nil;
         self.controllerShouldReloadDataSource = [RACSubject subject];
         self.controllerShouldShowProgressIndicator = [RACSubject subject];
         
@@ -70,7 +70,7 @@ const NSInteger MMReviewsDataSource = 1;
             [self getDataSourceForSelectedIndex:selectedIndex];
     }];
     
-    [RACObserve(self, reviewOrder)
+    [[RACObserve(self, reviewOrder) skip:1]
         subscribeNext:^(NSNumber *reviewOrderBy) {
             @strongify(self);
             [self orderReviewsByCriteria:reviewOrderBy.integerValue];
@@ -116,22 +116,38 @@ const NSInteger MMReviewsDataSource = 1;
     }];
 }
 
-- (void)getRatingsForMerchant {
+- (void)getRecentRatingsForMerchant {
     [self.controllerShouldShowProgressIndicator sendNext:@YES];
     
-    [self configureReviewsConnection];
-    [self.retrieveReviewsConnection connect];
+    [self configureRecentReviewsConnection];
+    [self.retrieveRecentReviewsConnection connect];
     
     @weakify(self);
-    [self.retrieveReviewsConnection.signal
+    [self.retrieveRecentReviewsConnection.signal
         subscribeNext:^(NSMutableArray *reviews) {
             @strongify(self);
-            self.allMenuItemReviews = [reviews copy];
-            self.dataSource = self.allMenuItemReviews;
+            self.dataSource = [reviews copy];
         
             [self.controllerShouldShowProgressIndicator sendNext:@NO];
             [self.controllerShouldReloadDataSource sendNext:@YES];
     }];
+}
+
+- (void)getTopRatingsForMerchant {
+    [self.controllerShouldShowProgressIndicator sendNext:@YES];
+    
+    [self configureTopRatedReviewsConnection];
+    [self.retrieveTopRatedReviewsConnection connect];
+    
+    @weakify(self);
+    [self.retrieveTopRatedReviewsConnection.signal
+     subscribeNext:^(NSMutableArray *reviews) {
+         @strongify(self);
+         self.dataSource = [reviews copy];
+         
+         [self.controllerShouldShowProgressIndicator sendNext:@NO];
+         [self.controllerShouldReloadDataSource sendNext:@YES];
+     }];
 }
 
 #pragma mark - Search Methods
@@ -144,6 +160,7 @@ const NSInteger MMReviewsDataSource = 1;
         return;
     }
     
+    self.dataSource = [self getMenuItemsForSelectedCategory:self.selectedTabIndex];
     RACSequence *filteredResults = [self.dataSource.rac_sequence
         filter:^BOOL(MMMenuItem *menuItem) {
             return [menuItem.name rangeOfString:valueToSearchFor options:NSCaseInsensitiveSearch].location != NSNotFound;
@@ -176,13 +193,22 @@ const NSInteger MMReviewsDataSource = 1;
     self.retrieveMenuItemsConnection = [retrieveMenuSignal multicast:[RACReplaySubject subject]];
 }
 
-- (void)configureReviewsConnection {
-    if (self.retrieveReviewsConnection)
+- (void)configureRecentReviewsConnection {
+    if (self.retrieveRecentReviewsConnection)
         return;
     
-    RACSignal *retrieveReviewsSignal = [self.menuService retrieveMenuItemReviewsForMerchant:self.merchantInformation.mid];
+    RACSignal *retrieveReviewsSignal = [self.menuService retrieveRecentMenuItemReviewsForMerchant:self.merchantInformation.mid];
     
-    self.retrieveReviewsConnection = [retrieveReviewsSignal multicast:[RACReplaySubject subject]];
+    self.retrieveRecentReviewsConnection = [retrieveReviewsSignal multicast:[RACReplaySubject subject]];
+}
+
+- (void)configureTopRatedReviewsConnection {
+    if (self.retrieveTopRatedReviewsConnection)
+        return;
+    
+    RACSignal *retrieveReviewsSignal = [self.menuService retrieveTopMenuItemReviewsForMerchant:self.merchantInformation.mid];
+    
+    self.retrieveTopRatedReviewsConnection = [retrieveReviewsSignal multicast:[RACReplaySubject subject]];
 }
 
 #pragma mark - Helper Methods
@@ -198,10 +224,6 @@ const NSInteger MMReviewsDataSource = 1;
     return menuItemSequence.array;
 }
 
-- (BOOL)areWeRetrievingReviewsFromNetwork {
-    return self.allMenuItemReviews == nil;
-}
-
 - (void)getDataSourceForSelectedIndex:(NSNumber *)selectedIndex {
     if ([selectedIndex isEqualToNumber:self.reviewTabIndex]) {
         self.dataSourceType = MMReviewsDataSource;
@@ -209,7 +231,7 @@ const NSInteger MMReviewsDataSource = 1;
         self.dataSource = @[];
         [self.controllerShouldReloadDataSource sendNext:@YES];
         
-        [self getRatingsForMerchant];
+        [self getRecentRatingsForMerchant];
     }
     else {
         self.dataSourceType = MMMenuItemDataSource;
@@ -219,20 +241,10 @@ const NSInteger MMReviewsDataSource = 1;
 
 - (void)orderReviewsByCriteria:(NSInteger)criteria {
     if (criteria == MMOrderByRecent) {
-        NSSortDescriptor *sortDescriptor;
-        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date"
-                                                     ascending:NO];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-        self.dataSource = [self.allMenuItemReviews sortedArrayUsingDescriptors:sortDescriptors];
-        [self.controllerShouldReloadDataSource sendNext:@YES];
+        [self getRecentRatingsForMerchant];
     }
     else {
-        NSSortDescriptor *sortDescriptor;
-        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rating"
-                                                     ascending:NO];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-        self.dataSource = [self.allMenuItemReviews sortedArrayUsingDescriptors:sortDescriptors];
-        [self.controllerShouldReloadDataSource sendNext:@YES];
+        [self getTopRatingsForMerchant];
     }
 }
 

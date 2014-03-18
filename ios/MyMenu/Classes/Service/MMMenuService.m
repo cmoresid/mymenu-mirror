@@ -25,14 +25,20 @@
     RACSignal *getNonRestrictedMenuItemsSignal = [[MMDBFetcher get] getMenuWithMerchantId:merchId withUserEmail:userEmail];
     RACSignal *getRestrictedMenuItemsSignal = [[MMDBFetcher get] getRestrictedMenu:merchId withUserEmail:userEmail];
     
-    return [RACSignal combineLatest:@[getNonRestrictedMenuItemsSignal, getRestrictedMenuItemsSignal]
-                             reduce:^(NSMutableArray *nonRestrictedItems, NSMutableArray *restrictedItems) {
-                                 return [nonRestrictedItems arrayByAddingObjectsFromArray:restrictedItems];
-                             }];
+    return [RACSignal
+        combineLatest:@[getNonRestrictedMenuItemsSignal, getRestrictedMenuItemsSignal]
+        reduce:^(NSMutableArray *nonRestrictedItems, NSMutableArray *restrictedItems) {
+            return [nonRestrictedItems arrayByAddingObjectsFromArray:restrictedItems];
+    }];
 }
 
-- (RACSignal *)retrieveMenuItemReviewsForMerchant:(NSNumber *)merchId {
-    return [[MMDBFetcher get] getItemRatingsMerchant:merchId];
+- (RACSignal *)retrieveRecentMenuItemReviewsForMerchant:(NSNumber *)merchId {
+    return [[MMDBFetcher get] getItemRatingsMerchantRecent:merchId];
 }
+
+- (RACSignal *)retrieveTopMenuItemReviewsForMerchant:(NSNumber *)merchId {
+    return [[MMDBFetcher get] getItemRatingsMerchantTop:merchId];
+}
+
 
 @end

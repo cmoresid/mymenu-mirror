@@ -46,6 +46,10 @@
  *
  *  @return An `NSMutableArray` of `MMMenuRating` objects.
  */
-- (RACSignal *)retrieveMenuItemReviewsForMerchant:(NSNumber *)merchId;
+- (RACSignal *)retrieveRecentMenuItemReviewsForMerchant:(NSNumber *)merchId;
+
+
+- (RACSignal *)retrieveTopMenuItemReviewsForMerchant:(NSNumber *)merchId;
+
 
 @end
