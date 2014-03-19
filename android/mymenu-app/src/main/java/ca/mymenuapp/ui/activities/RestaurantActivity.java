@@ -107,14 +107,10 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
     super.onCreate(savedInstanceState);
     inflateView(R.layout.activity_restaurant);
 
-    getActionBar().setDisplayHomeAsUpEnabled(true);
-
     tabStrip.setTextColorResource(android.R.color.white);
-    init();
-    setupActionBar();
 
-    restaurantHeader.bringToFront(); // explicit, list scrolls behind the header
-    restaurantHeaderLogo.bringToFront();
+    init();
+    setupFancyScroll();
 
     myMenuDatabase.getRestaurantAndMenu(userPreference.get(), restaurantId,
         new EndlessObserver<RestaurantMenu>() {
@@ -148,8 +144,11 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
   /**
    * Setup the action bar for effects.
    */
-  private void setupActionBar() {
+  private void setupFancyScroll() {
+    getActionBar().setDisplayHomeAsUpEnabled(true);
     getActionBar().setIcon(R.drawable.ic_transparent);
+    restaurantHeader.bringToFront(); // explicit, list scrolls behind the header
+    restaurantHeaderLogo.bringToFront();
   }
 
   /**
