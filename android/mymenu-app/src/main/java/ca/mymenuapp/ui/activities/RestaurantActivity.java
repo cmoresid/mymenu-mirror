@@ -41,7 +41,7 @@ import ca.mymenuapp.data.api.model.RestaurantMenu;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
-import ca.mymenuapp.ui.fragments.MenuCategoryFragment;
+import ca.mymenuapp.ui.fragments.MenuItemsGridFragment;
 import ca.mymenuapp.ui.fragments.ReviewsFragment;
 import ca.mymenuapp.ui.misc.AlphaForegroundColorSpan;
 import ca.mymenuapp.ui.widgets.KenBurnsView;
@@ -294,7 +294,7 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
 
     @Override public Fragment getItem(int position) {
       if (position < menu.getCategoryCount()) {
-        return MenuCategoryFragment.newInstance(menu.getMenuItemsByCategory(position),
+        return MenuItemsGridFragment.newInstance(menu.getMenuItemsByCategory(position),
             menu.getRestaurant(), menu.getReviews());
       } else {
         return ReviewsFragment.newInstance(menu.getReviews());

@@ -46,7 +46,14 @@ import java.util.Collections;
 import java.util.List;
 import javax.inject.Inject;
 
-public class MenuCategoryFragment extends BaseFragment implements AdapterView.OnItemClickListener {
+/**
+ * A fragment that displays a grid of menu items.
+ * Parent activity must implement {@link android.widget.AdapterView.OnItemClickListener}
+ * for fancy scrolling effects.
+ * THe menu items can be arbitrary, and the user can sort them.
+ * This is typically used to display a categorized page of the menu, or specials.
+ */
+public class MenuItemsGridFragment extends BaseFragment implements AdapterView.OnItemClickListener {
   private static final String ARGS_ITEMS = "items";
   private static final String ARGS_RESTAURANT = "restaurant";
   private static final String ARGS_REVIEWS = "reviews";
@@ -65,9 +72,9 @@ public class MenuCategoryFragment extends BaseFragment implements AdapterView.On
   /**
    * Returns a new instance of this fragment for the given section number.
    */
-  public static MenuCategoryFragment newInstance(final List<MenuItem> menuItems,
+  public static MenuItemsGridFragment newInstance(final List<MenuItem> menuItems,
       final Restaurant restaurant, final List<MenuItemReview> reviews) {
-    MenuCategoryFragment fragment = new MenuCategoryFragment();
+    MenuItemsGridFragment fragment = new MenuItemsGridFragment();
     Bundle args = new Bundle();
     ArrayList<MenuItem> menuItemArrayList = new ArrayList<>(menuItems);
     Collections.shuffle(menuItemArrayList); // todo, evaluate usefullness?
@@ -80,7 +87,7 @@ public class MenuCategoryFragment extends BaseFragment implements AdapterView.On
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_menu_category, container, false);
+    return inflater.inflate(R.layout.fragment_menu_items_grid, container, false);
   }
 
   @Override public void onStart() {
