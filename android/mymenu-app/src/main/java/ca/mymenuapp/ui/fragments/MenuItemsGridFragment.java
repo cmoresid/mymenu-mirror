@@ -89,6 +89,11 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
     return fragment;
   }
 
+  @Override public void onAttach(Activity activity) {
+    super.onAttach(activity);
+    scrollListener = (AbsListView.OnScrollListener) activity;
+  }
+
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
@@ -96,24 +101,20 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_menu_items_grid, container, false);
-  }
-
-  @Override public void onStart() {
-    super.onStart();
-    View placeholder = LayoutInflater.from(activityContext)
-        .inflate(R.layout.restaurant_header_placeholder, gridView, false);
+    View root = inflater.inflate(R.layout.fragment_menu_items_grid, container, false);
+    HeaderGridView gridView = ButterKnife.findById(root, R.id.menu_grid);
+    View placeholder = inflater.inflate(R.layout.restaurant_header_placeholder, gridView, false);
     gridView.addHeaderView(placeholder);
     gridView.setTag(placeholder);
+    return root;
+  }
+
+  @Override public void onActivityCreated(Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
     gridAdapter = new MenuItemAdapter(activityContext, items);
     gridView.setAdapter(gridAdapter);
     gridView.setOnScrollListener(scrollListener);
     gridView.setOnItemClickListener(this);
-  }
-
-  @Override public void onAttach(Activity activity) {
-    super.onAttach(activity);
-    scrollListener = (AbsListView.OnScrollListener) activity;
   }
 
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

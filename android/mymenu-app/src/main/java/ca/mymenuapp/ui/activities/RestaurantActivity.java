@@ -98,9 +98,6 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
   private AlphaForegroundColorSpan alphaForegroundColorSpan;
   private SpannableString spannableString;
   private TypedValue typedValue = new TypedValue();
-  // Keep a reference to the listView that was last scrolled so we can
-  // synchronize the different pages.
-  private AbsListView lastScrolledListView;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -149,6 +146,66 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
     getActionBar().setIcon(R.drawable.ic_transparent);
     restaurantHeader.bringToFront(); // explicit, list scrolls behind the header
     restaurantHeaderLogo.bringToFront();
+  }
+
+  /**
+   * Get the height of the action bar.
+   */
+  public int getActionBarHeight() {
+    if (actionBarHeight != 0) {
+      return actionBarHeight;
+    }
+    getTheme().resolveAttribute(android.R.attr.actionBarSize, typedValue, true);
+    actionBarHeight =
+        TypedValue.complexToDimensionPixelSize(typedValue.data, getResources().getDisplayMetrics());
+    return actionBarHeight;
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        Intent upIntent = NavUtils.getParentActivityIntent(this);
+        if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
+          TaskStackBuilder.create(this).addNextIntentWithParentStack(upIntent).startActivities();
+        } else {
+          NavUtils.navigateUpTo(this, upIntent);
+        }
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+  }
+
+  @Override public void onScrollStateChanged(AbsListView view, int scrollState) {
+    // ignore
+  }
+
+  @Override public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+      int totalItemCount) {
+    int scrollY = getScrollY(view);
+    restaurantHeader.setTranslationY(Math.max(-scrollY, minHeaderTranslation));
+    float ratio = clamp(restaurantHeader.getTranslationY() / minHeaderTranslation, 0.0f, 1.0f);
+    interpolate(restaurantHeaderLogo, actionBarIconView,
+        smoothInterpolator.getInterpolation(ratio));
+    float alpha = clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F);
+    setTitleAlpha(alpha);
+  }
+
+  public int getScrollY(AbsListView listView) {
+    View c = listView.getChildAt(0);
+    if (c == null) {
+      return 0;
+    }
+
+    int firstVisiblePosition = listView.getFirstVisiblePosition();
+    int top = c.getTop();
+
+    int headerHeight = 0;
+    if (firstVisiblePosition >= 1) {
+      headerHeight = ((View) listView.getTag()).getHeight();
+    }
+
+    return -top + firstVisiblePosition * c.getHeight() + headerHeight;
   }
 
   /**
@@ -207,72 +264,6 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
   private RectF getOnScreenRect(RectF rect, View view) {
     rect.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
     return rect;
-  }
-
-  public int getScrollY(AbsListView listView) {
-    View c = listView.getChildAt(0);
-    if (c == null) {
-      return 0;
-    }
-
-    int firstVisiblePosition = listView.getFirstVisiblePosition();
-    int top = c.getTop();
-
-    int headerHeight = 0;
-    if (firstVisiblePosition >= 1) {
-      headerHeight = ((View) listView.getTag()).getHeight();
-    }
-
-    return -top + firstVisiblePosition * c.getHeight() + headerHeight;
-  }
-
-  /**
-   * Get the height of the action bar.
-   */
-  public int getActionBarHeight() {
-    if (actionBarHeight != 0) {
-      return actionBarHeight;
-    }
-    getTheme().resolveAttribute(android.R.attr.actionBarSize, typedValue, true);
-    actionBarHeight =
-        TypedValue.complexToDimensionPixelSize(typedValue.data, getResources().getDisplayMetrics());
-    return actionBarHeight;
-  }
-
-  @Override public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        Intent upIntent = NavUtils.getParentActivityIntent(this);
-        if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
-          TaskStackBuilder.create(this).addNextIntentWithParentStack(upIntent).startActivities();
-        } else {
-          NavUtils.navigateUpTo(this, upIntent);
-        }
-        return true;
-      default:
-        return super.onOptionsItemSelected(item);
-    }
-  }
-
-  @Override public void onScrollStateChanged(AbsListView view, int scrollState) {
-    // ignore
-  }
-
-  @Override public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
-      int totalItemCount) {
-    if (lastScrolledListView == null) {
-      lastScrolledListView = view;
-    } else if (view != lastScrolledListView) {
-      lastScrolledListView = view;
-      return;
-    }
-    int scrollY = getScrollY(view);
-    restaurantHeader.setTranslationY(Math.max(-scrollY, minHeaderTranslation));
-    float ratio = clamp(restaurantHeader.getTranslationY() / minHeaderTranslation, 0.0f, 1.0f);
-    interpolate(restaurantHeaderLogo, actionBarIconView,
-        smoothInterpolator.getInterpolation(ratio));
-    float alpha = clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F);
-    setTitleAlpha(alpha);
   }
 
   /**
