@@ -33,7 +33,7 @@ import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.rx.EndlessObserver;
-import ca.mymenuapp.ui.misc.BindableAdapter;
+import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
 import com.squareup.picasso.Picasso;
 import java.util.List;
@@ -93,27 +93,15 @@ public class RestaurantListFragment extends BaseFragment
     listView.setOnItemClickListener(this);
   }
 
-  class RestaurantListAdapter extends BindableAdapter<Restaurant> {
-    private final List<Restaurant> restaurants;
+  class RestaurantListAdapter extends BindableListAdapter<Restaurant> {
 
     public RestaurantListAdapter(Context context, List<Restaurant> restaurants) {
-      super(context);
-      this.restaurants = restaurants;
-    }
-
-    @Override
-    public int getCount() {
-      return restaurants.size();
-    }
-
-    @Override
-    public Restaurant getItem(int position) {
-      return restaurants.get(position);
+      super(context, restaurants);
     }
 
     @Override
     public long getItemId(int position) {
-      return position + 1;
+      return getItem(position).id;
     }
 
     @Override

@@ -37,7 +37,7 @@ import ca.mymenuapp.data.api.model.MenuItem;
 import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.ui.activities.MenuItemActivity;
-import ca.mymenuapp.ui.misc.BindableAdapter;
+import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.HeaderGridView;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
@@ -118,20 +118,10 @@ public class MenuCategoryFragment extends BaseFragment implements AdapterView.On
     startActivity(intent);
   }
 
-  class MenuItemAdapter extends BindableAdapter<MenuItem> {
-    final List<MenuItem> menuItems;
+  class MenuItemAdapter extends BindableListAdapter<MenuItem> {
 
     public MenuItemAdapter(Context context, List<MenuItem> menuItems) {
-      super(context);
-      this.menuItems = menuItems;
-    }
-
-    @Override public int getCount() {
-      return menuItems.size();
-    }
-
-    @Override public MenuItem getItem(int position) {
-      return menuItems.get(position);
+      super(context, menuItems);
     }
 
     @Override public long getItemId(int position) {

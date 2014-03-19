@@ -31,12 +31,12 @@ import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.ui.adapters.MenuItemReviewAdapter;
+import ca.mymenuapp.ui.misc.BindableListAdapter;
 import com.f2prateek.dart.InjectExtra;
 import com.f2prateek.ln.Ln;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -49,6 +49,7 @@ public class ReviewsFragment extends BaseFragment {
   @InjectExtra(ARGS_REVIEWS) ArrayList<MenuItemReview> menuItemReviews;
   @InjectView(R.id.menu_review_list) ListView listView;
   private AbsListView.OnScrollListener scrollListener;
+  private BindableListAdapter<MenuItemReview> adapter;
 
   /**
    * Returns a new instance of this fragment for the given section number.
@@ -81,9 +82,10 @@ public class ReviewsFragment extends BaseFragment {
     super.onStart();
     View placeholder = LayoutInflater.from(activityContext)
         .inflate(R.layout.restaurant_header_placeholder, listView, false);
+    adapter = new MenuItemReviewAdapter(activityContext, menuItemReviews);
     listView.addHeaderView(placeholder);
     listView.setTag(placeholder);
-    listView.setAdapter(new MenuItemReviewAdapter(activityContext, menuItemReviews));
+    listView.setAdapter(adapter);
     listView.setOnScrollListener(scrollListener);
   }
 
@@ -94,34 +96,38 @@ public class ReviewsFragment extends BaseFragment {
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
+      // all the comparators sort in descending order
       case R.id.sort_date:
-        sortListView(new Comparator<MenuItemReview>() {
+        adapter.sort(new Comparator<MenuItemReview>() {
+          // sort reviews by date, newest going first
           SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
           @Override public int compare(MenuItemReview lhs, MenuItemReview rhs) {
             try {
-              return formatter.parse(lhs.date).compareTo(formatter.parse(rhs.date));
+              return formatter.parse(rhs.date).compareTo(formatter.parse(lhs.date));
             } catch (ParseException e) {
               Ln.e(e);
-              e.printStackTrace();
               return 0;
             }
           }
         });
         break;
       case R.id.sort_rating:
-        sortListView(new Comparator<MenuItemReview>() {
+        adapter.sort(new Comparator<MenuItemReview>() {
+          // sort reviews by rating, highest going first
           @Override public int compare(MenuItemReview lhs, MenuItemReview rhs) {
-            return Float.compare(lhs.rating, rhs.rating);
+            return Float.compare(rhs.rating, lhs.rating);
           }
         });
         break;
       case R.id.sort_like_count:
-        sortListView(new Comparator<MenuItemReview>() {
+        adapter.sort(new Comparator<MenuItemReview>() {
           @Override public int compare(MenuItemReview l, MenuItemReview r) {
+            // sort reviews by like count, highest going first
             int lhs = Integer.parseInt(l.getLikeCount());
             int rhs = Integer.parseInt(r.getLikeCount());
-            // Copied from {@link Integer#compare(int, int)} - original only API 17+
-            return lhs < rhs ? -1 : (lhs == rhs ? 0 : 1);
+            // Copied from {@link Integer#compare(int, int)} - original is only API 17+
+            return rhs < lhs ? -1 : (rhs == lhs ? 0 : 1);
           }
         });
         break;
@@ -129,11 +135,5 @@ public class ReviewsFragment extends BaseFragment {
         return super.onOptionsItemSelected(item);
     }
     return true;
-  }
-
-  private void sortListView(Comparator<MenuItemReview> comparator) {
-    Collections.sort(menuItemReviews, comparator);
-    Collections.reverse(menuItemReviews);
-    listView.setAdapter(new MenuItemReviewAdapter(activityContext, menuItemReviews));
   }
 }

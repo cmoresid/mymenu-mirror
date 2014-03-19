@@ -26,27 +26,17 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.MenuItemReview;
-import ca.mymenuapp.ui.misc.BindableAdapter;
+import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.OverflowView;
 import com.f2prateek.ln.Ln;
 import java.util.List;
 
-public class MenuItemReviewAdapter extends BindableAdapter<MenuItemReview> {
+public class MenuItemReviewAdapter extends BindableListAdapter<MenuItemReview> {
 
-  final List<MenuItemReview> reviews;
   MenuItemReview selected;
 
   public MenuItemReviewAdapter(Context context, List<MenuItemReview> reviews) {
-    super(context);
-    this.reviews = reviews;
-  }
-
-  @Override public int getCount() {
-    return reviews.size();
-  }
-
-  @Override public MenuItemReview getItem(int position) {
-    return reviews.get(position);
+    super(context, reviews);
   }
 
   @Override public long getItemId(int position) {
