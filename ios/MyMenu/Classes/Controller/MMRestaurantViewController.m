@@ -47,7 +47,6 @@
 @property(nonatomic, weak) IBOutlet UIGestureRecognizer *leftSwipeGestureForCategory;
 @property(nonatomic, weak) IBOutlet UIGestureRecognizer *rightSwipeGestureForCategory;
 @property(nonatomic, getter = isSearching) BOOL searching;
-@property(nonatomic) BOOL showingReviewPopover;
 @property(nonatomic, strong) NSString *currentValueInSearchBar;
 
 - (IBAction)changeCategoryBySwipe:(UISwipeGestureRecognizer *)sender;
@@ -67,7 +66,6 @@ MMMenuItemRating *touchedReview;
     if (self) {
         self.viewModel = [[MMRestaurantViewModel alloc] init];
         self.searching = NO;
-        self.showingReviewPopover = NO;
         self.currentValueInSearchBar = @"";
     }
     
@@ -176,8 +174,7 @@ MMMenuItemRating *touchedReview;
 }
 
 - (void)moveViewDown:(NSNotification *)notification {
-    if (self.showingReviewPopover) {
-        self.showingReviewPopover = NO;
+    if (![self isViewPushedUp:self.view.frame]) {
         return;
     }
     
@@ -587,7 +584,6 @@ MMMenuItemRating *touchedReview;
     reviewPop.oldPopOverController = popover;
     self.popOverController = popover;
     
-    self.showingReviewPopover = YES;
     [self.popOverController presentPopoverFromRect:cell.frame
                                             inView:cell.superview
                           permittedArrowDirections:UIPopoverArrowDirectionAny
@@ -627,6 +623,10 @@ MMMenuItemRating *touchedReview;
 
 - (void)hideOrderBySegmentControl {
     [self.reviewOrderBySegmentControl removeFromSuperview];
+}
+
+- (BOOL)isViewPushedUp:(CGRect)frame {
+    return (frame.origin.y < 0);
 }
 
 @end
