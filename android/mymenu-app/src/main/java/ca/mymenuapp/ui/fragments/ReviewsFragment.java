@@ -97,7 +97,6 @@ public class ReviewsFragment extends BaseFragment {
       case R.id.sort_date:
         sortListView(new Comparator<MenuItemReview>() {
           SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
           @Override public int compare(MenuItemReview lhs, MenuItemReview rhs) {
             try {
               return formatter.parse(lhs.date).compareTo(formatter.parse(rhs.date));
@@ -126,8 +125,10 @@ public class ReviewsFragment extends BaseFragment {
           }
         });
         break;
+      default:
+        return super.onOptionsItemSelected(item);
     }
-    return super.onOptionsItemSelected(item);
+    return true;
   }
 
   private void sortListView(Comparator<MenuItemReview> comparator) {
