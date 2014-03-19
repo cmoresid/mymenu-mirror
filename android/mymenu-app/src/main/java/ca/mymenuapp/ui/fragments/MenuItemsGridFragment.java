@@ -23,12 +23,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -43,6 +45,7 @@ import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -67,7 +70,8 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
   @Inject Picasso picasso;
 
   AbsListView.OnScrollListener scrollListener;
-  BaseAdapter gridAdapter;
+  BindableListAdapter<MenuItem> gridAdapter;
+  ShareActionProvider shareActionProvider;
 
   /**
    * Returns a new instance of this fragment for the given section number.
@@ -83,6 +87,11 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
     args.putParcelableArrayList(ARGS_REVIEWS, new ArrayList<Parcelable>(reviews));
     fragment.setArguments(args);
     return fragment;
+  }
+
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,6 +114,42 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
   @Override public void onAttach(Activity activity) {
     super.onAttach(activity);
     scrollListener = (AbsListView.OnScrollListener) activity;
+  }
+
+  @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    super.onCreateOptionsMenu(menu, inflater);
+    inflater.inflate(R.menu.fragment_menu_item_grid, menu);
+
+    android.view.MenuItem item = menu.findItem(R.id.restaurant_share);
+    shareActionProvider = (ShareActionProvider) item.getActionProvider();
+    setShareIntent();
+  }
+
+  private void setShareIntent() {
+    Intent shareIntent = new Intent();
+    shareIntent.setAction(Intent.ACTION_SEND);
+    // todo check if this item has a picture
+    shareIntent.putExtra(Intent.EXTRA_TEXT,
+        getString(R.string.share_restaurant, restaurant.businessName, restaurant.businessPicture));
+    shareIntent.setType("text/plain");
+    shareActionProvider.setShareIntent(shareIntent);
+  }
+
+  @Override public boolean onOptionsItemSelected(android.view.MenuItem item) {
+    switch (item.getItemId()) {
+      // all the comparators sort in descending order
+      case R.id.sort_rating:
+        gridAdapter.sort(new Comparator<MenuItem>() {
+          // sort reviews by rating, highest going first
+          @Override public int compare(MenuItem lhs, MenuItem rhs) {
+            return Float.compare(rhs.rating, lhs.rating);
+          }
+        });
+        break;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+    return true;
   }
 
   @Override

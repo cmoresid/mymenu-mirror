@@ -50,6 +50,9 @@
   <string name="save">Save</string>
   <string name="reviews">Reviews</string>
 
+  <!-- Menu Items Grid Fragment -->
+  <string name="share_restaurant">Check out %1$s! - %2$s</string>
+
   <!-- Menu Item Activity -->
   <string name="modifications">Modifications</string>
   <string name="spam">Spam</string>
