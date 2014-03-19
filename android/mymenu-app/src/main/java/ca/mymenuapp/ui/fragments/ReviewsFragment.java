@@ -20,6 +20,9 @@ package ca.mymenuapp.ui.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -29,7 +32,12 @@ import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.ui.adapters.MenuItemReviewAdapter;
 import com.f2prateek.dart.InjectExtra;
+import com.f2prateek.ln.Ln;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -54,6 +62,11 @@ public class ReviewsFragment extends BaseFragment {
     return fragment;
   }
 
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
+
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fragment_menu_reviews, container, false);
@@ -61,7 +74,6 @@ public class ReviewsFragment extends BaseFragment {
 
   @Override public void onAttach(Activity activity) {
     super.onAttach(activity);
-
     scrollListener = (AbsListView.OnScrollListener) activity;
   }
 
@@ -73,5 +85,54 @@ public class ReviewsFragment extends BaseFragment {
     listView.setTag(placeholder);
     listView.setAdapter(new MenuItemReviewAdapter(activityContext, menuItemReviews));
     listView.setOnScrollListener(scrollListener);
+  }
+
+  @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    super.onCreateOptionsMenu(menu, inflater);
+    inflater.inflate(R.menu.fragment_reviews, menu);
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.sort_date:
+        sortListView(new Comparator<MenuItemReview>() {
+          SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+          @Override public int compare(MenuItemReview lhs, MenuItemReview rhs) {
+            try {
+              return formatter.parse(lhs.date).compareTo(formatter.parse(rhs.date));
+            } catch (ParseException e) {
+              Ln.e(e);
+              e.printStackTrace();
+              return 0;
+            }
+          }
+        });
+        break;
+      case R.id.sort_rating:
+        sortListView(new Comparator<MenuItemReview>() {
+          @Override public int compare(MenuItemReview lhs, MenuItemReview rhs) {
+            return Float.compare(lhs.rating, rhs.rating);
+          }
+        });
+        break;
+      case R.id.sort_like_count:
+        sortListView(new Comparator<MenuItemReview>() {
+          @Override public int compare(MenuItemReview l, MenuItemReview r) {
+            int lhs = Integer.parseInt(l.getLikeCount());
+            int rhs = Integer.parseInt(r.getLikeCount());
+            // Copied from {@link Integer#compare(int, int)} - original only API 17+
+            return lhs < rhs ? -1 : (lhs == rhs ? 0 : 1);
+          }
+        });
+        break;
+    }
+    return super.onOptionsItemSelected(item);
+  }
+
+  private void sortListView(Comparator<MenuItemReview> comparator) {
+    Collections.sort(menuItemReviews, comparator);
+    Collections.reverse(menuItemReviews);
+    listView.setAdapter(new MenuItemReviewAdapter(activityContext, menuItemReviews));
   }
 }

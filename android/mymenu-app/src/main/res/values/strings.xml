@@ -58,4 +58,10 @@
   <string name="share">Share</string>
   <string name="share_menu_item">%1$s at %2$s - %3$s</string>
 
+  <!-- Reviews Fragment -->
+  <string name="date">Date</string>
+  <string name="rating">Rating</string>
+  <string name="like_count">Like Count</string>
+  <string name="sort">Sort</string>
+
 </resources>
