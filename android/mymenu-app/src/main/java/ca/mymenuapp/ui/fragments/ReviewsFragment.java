@@ -17,7 +17,6 @@
 
 package ca.mymenuapp.ui.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -93,15 +92,14 @@ public class ReviewsFragment extends BaseFragment
     if (shouldHaveHeader) {
       View header = inflater.inflate(R.layout.restaurant_header_placeholder, root, false);
       root.addHeaderView(header);
-      root.setTag(header);
     }
     return root;
   }
 
-  @Override public void onAttach(Activity activity) {
-    super.onAttach(activity);
+  @Override public void onActivityCreated(Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
     if (shouldHaveHeader) {
-      scrollListener = (AbsListView.OnScrollListener) activity;
+      scrollListener = (AbsListView.OnScrollListener) getActivity();
       listView.setOnScrollListener(scrollListener);
     }
   }

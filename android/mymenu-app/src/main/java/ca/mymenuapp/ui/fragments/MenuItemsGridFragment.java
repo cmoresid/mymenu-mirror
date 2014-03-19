@@ -105,7 +105,6 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
     HeaderGridView gridView = ButterKnife.findById(root, R.id.menu_grid);
     View placeholder = inflater.inflate(R.layout.restaurant_header_placeholder, gridView, false);
     gridView.addHeaderView(placeholder);
-    gridView.setTag(placeholder);
     return root;
   }
 

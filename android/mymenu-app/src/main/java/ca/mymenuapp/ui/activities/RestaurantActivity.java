@@ -202,7 +202,7 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
 
     int headerHeight = 0;
     if (firstVisiblePosition >= 1) {
-      headerHeight = ((View) listView.getTag()).getHeight();
+      headerHeight = listView.getChildAt(0).getHeight();
     }
 
     return -top + firstVisiblePosition * c.getHeight() + headerHeight;
