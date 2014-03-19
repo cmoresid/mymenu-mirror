@@ -48,7 +48,7 @@ public class MenuItemActivity extends BaseActivity {
 
   private Drawable actionBarBackgroundDrawable;
 
-  private NotifyingScrollView.OnScrollChangedListener mOnScrollChangedListener =
+  private NotifyingScrollView.OnScrollChangedListener onScrollChangedListener =
       new NotifyingScrollView.OnScrollChangedListener() {
         public void onScrollChanged(ScrollView who, int l, int t, int oldl, int oldt) {
           final int headerHeight = header.getHeight() - getActionBar().getHeight();
@@ -56,6 +56,9 @@ public class MenuItemActivity extends BaseActivity {
           updateActionBarBackgroundDrawable(ratio);
         }
       };
+  /**
+   * A custom {@link com.squareup.picasso.Target} for updating the action bar icon.
+   */
   private Target actionBarTarget = new Target() {
     @Override public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
       getActionBar().setIcon(new BitmapDrawable(getResources(), bitmap));
@@ -77,8 +80,14 @@ public class MenuItemActivity extends BaseActivity {
     inflateView(R.layout.activity_menu_item);
     getActionBar().setDisplayHomeAsUpEnabled(true);
 
-    initFancyScroll();
+    // fancy scrolling
+    actionBarBackgroundDrawable = new ColorDrawable(getResources().getColor(R.color.turqoise));
+    actionBarBackgroundDrawable.setAlpha(0);
+    getActionBar().setBackgroundDrawable(actionBarBackgroundDrawable);
+    ((NotifyingScrollView) findViewById(R.id.scroll_view)).setOnScrollChangedListener(
+        onScrollChangedListener);
 
+    // setup the sliding layout
     slidingLayout.setDragView(reviewSummary);
     slidingLayout.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
       @Override public void onPanelSlide(View panel, float slideOffset) {
@@ -98,21 +107,8 @@ public class MenuItemActivity extends BaseActivity {
       @Override public void onPanelAnchored(View panel) {
       }
     });
-  }
 
-  @Override protected void onStart() {
-    super.onStart();
     bindView();
-  }
-
-  private void initFancyScroll() {
-    actionBarBackgroundDrawable = new ColorDrawable(getResources().getColor(R.color.turqoise));
-    actionBarBackgroundDrawable.setAlpha(0);
-
-    getActionBar().setBackgroundDrawable(actionBarBackgroundDrawable);
-
-    ((NotifyingScrollView) findViewById(R.id.scroll_view)).setOnScrollChangedListener(
-        mOnScrollChangedListener);
   }
 
   /**
@@ -124,6 +120,9 @@ public class MenuItemActivity extends BaseActivity {
     actionBarBackgroundDrawable.setAlpha(newAlpha);
   }
 
+  /**
+   * Update view with our menu item data.
+   */
   private void bindView() {
     picasso.load(restaurant.businessPicture).into(actionBarTarget);
     picasso.load(menuItem.picture).fit().centerCrop().into(header);
