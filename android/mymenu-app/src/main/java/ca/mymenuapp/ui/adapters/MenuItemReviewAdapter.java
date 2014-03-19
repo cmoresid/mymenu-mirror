@@ -58,9 +58,9 @@ public class MenuItemReviewAdapter extends BindableListAdapter<MenuItemReview> {
     holder.email.setText(review.userEmail);
     holder.review.setText(review.description);
     if (review.rating < 5f) {
-      setLeftDrawable(R.drawable.ic_action_emo_shame, holder.email);
+      setLeftDrawable(R.drawable.ic_emo_shame, holder.email);
     } else {
-      setLeftDrawable(R.drawable.ic_action_emo_basic, holder.email);
+      setLeftDrawable(R.drawable.ic_emo_basic, holder.email);
     }
     holder.overflow.setListener(new OverflowView.OverflowActionListener() {
       @Override public void onPopupShown() {

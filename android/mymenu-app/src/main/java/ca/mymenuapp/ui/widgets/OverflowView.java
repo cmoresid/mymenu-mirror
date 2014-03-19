@@ -97,7 +97,7 @@ public class OverflowView extends ImageView {
     if (!isInEditMode()) {
       setWillNotDraw(true);
     }
-    if (getDrawable() == null) setImageResource(R.drawable.ic_overflow);
+    if (getDrawable() == null) setImageResource(R.drawable.ic_menu_overflow);
     setOnClickListener(new OnClickListener() {
       @Override public void onClick(View v) {
         PopupMenu popupMenu = new PopupMenu(context, OverflowView.this);

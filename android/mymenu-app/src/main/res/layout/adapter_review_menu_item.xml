@@ -30,7 +30,7 @@
       android:layout_alignParentLeft="true"
       android:layout_toLeftOf="@+id/overflow"
       android:gravity="center_vertical"
-      android:drawableStart="@drawable/ic_action_emo_basic"
+      android:drawableStart="@drawable/ic_emo_basic"
       tools:text="f2prateek@gmail.com"/>
 
   <ca.mymenuapp.ui.widgets.OverflowView
