@@ -118,7 +118,7 @@ public final class DebugDataModule {
           return null;
         }
       };
-      context.init(null, new TrustManager[] {permissive}, null);
+      context.init(null, new TrustManager[] { permissive }, null);
       return context.getSocketFactory();
     } catch (Exception e) {
       throw new AssertionError(e);

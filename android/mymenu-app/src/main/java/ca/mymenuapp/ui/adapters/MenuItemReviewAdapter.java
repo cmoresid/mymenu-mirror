@@ -28,15 +28,16 @@ import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.OverflowView;
-import com.f2prateek.ln.Ln;
 import java.util.List;
 
 public class MenuItemReviewAdapter extends BindableListAdapter<MenuItemReview> {
 
-  MenuItemReview selected;
+  private final OnReviewActionClickedListener onReviewActionClickedListener;
 
-  public MenuItemReviewAdapter(Context context, List<MenuItemReview> reviews) {
+  public MenuItemReviewAdapter(Context context, List<MenuItemReview> reviews,
+      OnReviewActionClickedListener onReviewActionClickedListener) {
     super(context, reviews);
+    this.onReviewActionClickedListener = onReviewActionClickedListener;
   }
 
   @Override public long getItemId(int position) {
@@ -72,7 +73,7 @@ public class MenuItemReviewAdapter extends BindableListAdapter<MenuItemReview> {
       }
 
       @Override public void onActionSelected(int action) {
-        Ln.d("selected action %d for item %s", action, review);
+        onReviewActionClickedListener.onReviewActionClicked(action, review);
       }
     });
   }
@@ -92,7 +93,8 @@ public class MenuItemReviewAdapter extends BindableListAdapter<MenuItemReview> {
     }
   }
 
+  // tiny abstraction so parent doesn't have to look up the review
   public interface OnReviewActionClickedListener {
-    void onReviewActionClicked(int action, MenuItemReview itemReview);
+    void onReviewActionClicked(int action, MenuItemReview review);
   }
 }

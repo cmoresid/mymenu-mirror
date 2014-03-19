@@ -43,6 +43,11 @@ public interface MyMenuApi {
   String GET_MENU_CATEGORIES = "SELECT * from menucategories";
   String GET_ALL_RESTAURANTS = "SELECT * FROM merchusers";
   String GET_RESTAURANT_REVIEWS = "SELECT * from ratings where merchid = %d";
+  String POST_LIKE_REVIEW =
+      "insert into ratinglikes (useremail, ratingid, merchid, menuid, adddate)"
+          + " values('%s', %d, %d, %d, sysdate())";
+  String POST_DISLIKE_REVIEW = "SELECT * from ratings where merchid = %d";
+  String POST_SPAM_REVIEW = "SELECT * from ratings where merchid = %d";
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(@Field("query") String query);
@@ -81,4 +86,7 @@ public interface MyMenuApi {
 
   @FormUrlEncoded @POST("/php/menu/custom.php")
   Observable<MenuItemReviewResponse> getReviewsForRestaurant(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<Response> likeReview(@Field("query") String query);
 }

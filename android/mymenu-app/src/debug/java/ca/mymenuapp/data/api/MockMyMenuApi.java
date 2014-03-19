@@ -116,4 +116,8 @@ final class MockMyMenuApi implements MyMenuApi {
   public Observable<MenuItemReviewResponse> getReviewsForRestaurant(@Field("query") String query) {
     return null;
   }
+
+  @Override public Observable<Response> likeReview(@Field("query") String query) {
+    return null;
+  }
 }

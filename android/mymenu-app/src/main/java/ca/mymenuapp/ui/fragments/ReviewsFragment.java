@@ -29,25 +29,39 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
+import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.MenuItemReview;
+import ca.mymenuapp.data.api.model.User;
+import ca.mymenuapp.data.prefs.ObjectPreference;
+import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.adapters.MenuItemReviewAdapter;
 import ca.mymenuapp.ui.misc.BindableListAdapter;
 import com.f2prateek.dart.InjectExtra;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import javax.inject.Inject;
+import javax.inject.Named;
+import retrofit.client.Response;
+
+import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
 /**
  * Fragment to display a list of reviews for a restaurant.
  */
-public class ReviewsFragment extends BaseFragment {
+public class ReviewsFragment extends BaseFragment
+    implements MenuItemReviewAdapter.OnReviewActionClickedListener {
   private static final String ARGS_REVIEWS = "reviews";
   private static final String ARGS_SHOW_HEADER = "header";
+
+  @Inject MyMenuDatabase myMenuDatabase;
+  @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
 
   @InjectExtra(ARGS_REVIEWS) ArrayList<MenuItemReview> menuItemReviews;
   @InjectExtra(ARGS_SHOW_HEADER) boolean shouldHaveHeader;
 
   @InjectView(R.id.menu_review_list) ListView listView;
+
   private AbsListView.OnScrollListener scrollListener;
   private BindableListAdapter<MenuItemReview> adapter;
 
@@ -94,7 +108,7 @@ public class ReviewsFragment extends BaseFragment {
 
   @Override public void onStart() {
     super.onStart();
-    adapter = new MenuItemReviewAdapter(activityContext, menuItemReviews);
+    adapter = new MenuItemReviewAdapter(activityContext, menuItemReviews, this);
     listView.setAdapter(adapter);
   }
 
@@ -137,5 +151,27 @@ public class ReviewsFragment extends BaseFragment {
         return super.onOptionsItemSelected(item);
     }
     return true;
+  }
+
+  @Override public void onReviewActionClicked(int action, MenuItemReview itemReview) {
+    switch (action) {
+      case R.id.like:
+        myMenuDatabase.likeReview(userPreference.get(), itemReview,
+            new EndlessObserver<Response>() {
+              @Override public void onNext(Response args) {
+                // ignore...
+              }
+            }
+        );
+        break;
+      case R.id.dislike:
+        // todo
+        break;
+      case R.id.spam:
+        // todo
+        break;
+      default:
+        throw new RuntimeException("Invalid Action " + action);
+    }
   }
 }

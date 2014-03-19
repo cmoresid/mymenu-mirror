@@ -264,4 +264,13 @@ public class MyMenuDatabase {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
   }
+
+  public Subscription likeReview(User user, MenuItemReview review, Observer<Response> observer) {
+    String query = String.format(MyMenuApi.POST_LIKE_REVIEW, user.email, review.id, review.merchId,
+        review.menuId);
+    return myMenuApi.likeReview(query)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
 }
