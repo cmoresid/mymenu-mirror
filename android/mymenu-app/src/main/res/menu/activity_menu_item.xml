@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ Copyright (C) 2014 MyMenu, Inc.
   ~
@@ -16,19 +17,11 @@
   ~ along with this program.  If not, see [http://www.gnu.org/licenses/].
   -->
 
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <item android:id="@android:id/background"
-      android:drawable="@drawable/progress_bg_mymenu"/>
+  <item android:id="@+id/menu_item_share"
+      android:showAsAction="ifRoom"
+      android:title="@string/share"
+      android:actionProviderClass="android.widget.ShareActionProvider"/>
 
-  <item android:id="@android:id/secondaryProgress">
-    <scale android:scaleWidth="100%"
-        android:drawable="@drawable/progress_secondary_mymenu"/>
-  </item>
-
-  <item android:id="@android:id/progress">
-    <scale android:scaleWidth="100%"
-        android:drawable="@drawable/progress_primary_mymenu"/>
-  </item>
-
-</layer-list>
+</menu>

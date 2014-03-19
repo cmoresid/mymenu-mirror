@@ -1,14 +1,34 @@
+/*
+ * Copyright (C) 2014 MyMenu, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see [http://www.gnu.org/licenses/].
+ */
+
 package ca.mymenuapp.ui.activities;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
@@ -26,6 +46,7 @@ import javax.inject.Inject;
 
 /**
  * An activity to display a single menu item.
+ * It displays the reviews for the menu item, and allows the user to rate the menu item.
  */
 public class MenuItemActivity extends BaseActivity {
   public static final String ARGS_MENU_ITEM = "menu_item";
@@ -47,6 +68,7 @@ public class MenuItemActivity extends BaseActivity {
   @Inject Picasso picasso;
 
   private Drawable actionBarBackgroundDrawable;
+  private ShareActionProvider shareActionProvider;
 
   private NotifyingScrollView.OnScrollChangedListener onScrollChangedListener =
       new NotifyingScrollView.OnScrollChangedListener() {
@@ -111,6 +133,18 @@ public class MenuItemActivity extends BaseActivity {
     bindView();
   }
 
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    super.onCreateOptionsMenu(menu);
+
+    getMenuInflater().inflate(R.menu.activity_menu_item, menu);
+
+    android.view.MenuItem item = menu.findItem(R.id.menu_item_share);
+    shareActionProvider = (ShareActionProvider) item.getActionProvider();
+    setShareIntent();
+
+    return true;
+  }
+
   /**
    * Update tha actionBar's background drawable.
    * The ratio is a value between 0 and 1, where 0 means fully transparent and 1 is fully opaque.
@@ -129,5 +163,17 @@ public class MenuItemActivity extends BaseActivity {
     getActionBar().setTitle(menuItem.name);
     description.setText(menuItem.description);
     reviewListView.setAdapter(new MenuItemReviewAdapter(this, reviews));
+  }
+
+  private void setShareIntent() {
+    Intent shareIntent = new Intent();
+    shareIntent.setAction(Intent.ACTION_SEND);
+    // todo check if this item has a picture
+    shareIntent.putExtra(Intent.EXTRA_TEXT,
+        getString(R.string.share_menu_item, menuItem.name, restaurant.businessName,
+            menuItem.picture)
+    );
+    shareIntent.setType("text/plain");
+    shareActionProvider.setShareIntent(shareIntent);
   }
 }
