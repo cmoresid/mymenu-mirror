@@ -23,13 +23,8 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class RestaurantTwoPaneFragment extends BaseFragment
-    implements GooglePlayServicesClient.ConnectionCallbacks,
-    GooglePlayServicesClient.OnConnectionFailedListener {
+public class RestaurantTwoPaneFragment extends BaseFragment{
 
-  private GoogleMap googleMap;
-  private Location userLoc;
-  private LocationClient locClient;
 
   public static RestaurantTwoPaneFragment newInstance() {
     return new RestaurantTwoPaneFragment();
@@ -38,59 +33,16 @@ public class RestaurantTwoPaneFragment extends BaseFragment
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
-
-    if (ConnectionResult.SUCCESS == resultCode) {
-      locClient = new LocationClient(getActivity(), this, this);
-      locClient.connect();
-
-    } else {
-      Ln.e("Cant connect to GooglePlay");
-    }
-
+    initializeFrames();
     return inflater.inflate(R.layout.fragment_restaurant_twopane, container, false);
   }
 
-  private void initializeMap() {
-    if (googleMap == null) {
-      MapFragment mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-      googleMap = mapFrag.getMap();
-      // check if map is created successfully or not
-      if (googleMap != null) {
-        googleMap.setMyLocationEnabled(true);
-        googleMap.addMarker(
-            new MarkerOptions().position(new LatLng(53.5, -113.4)).title("HardCodedUserLoc"));
-
-      }
-    }
-  }
-
-  @Override public void onConnected(Bundle bundle) {
-    userLoc = locClient.getLastLocation();
-    initializeMap();
-    RestaurantListFragment firstFragment = new RestaurantListFragment(googleMap, userLoc);
+  private void initializeFrames(){
+    RestaurantListFragment firstFragment = new RestaurantListFragment();
     FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
     transaction.add(R.id.restaurant_list_placeholder, firstFragment).commit();
-  }
-
-  @Override public void onDisconnected() {
-
-  }
-
-  @Override public void onConnectionFailed(ConnectionResult connectionResult) {
-    if (connectionResult.hasResolution()) {
-      try {
-        connectionResult.startResolutionForResult(getActivity(), 9000);
-      } catch (IntentSender.SendIntentException e) {
-        e.printStackTrace();
-      }
-    } else {
-      showErrorDialog(connectionResult.getErrorCode());
-    }
-  }
-
-  private void showErrorDialog(int errorCode) {
-    Ln.e("Error Code:" + errorCode);
+    RestaurantMapFragment secondFragment = new RestaurantMapFragment();
+    transaction.add(R.id.restaurant_map_placeholder, secondFragment).commit();
   }
 
   @Override

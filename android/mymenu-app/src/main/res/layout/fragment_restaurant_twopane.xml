@@ -23,15 +23,12 @@
       android:layout_weight="1"/>
 
 
-  <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-      android:id="@+id/map"
+  <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/restaurant_map_placeholder"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:name="ca.mymenuapp.ui.fragments.RestaurantTwoPaneFragment"
-      class="com.google.android.gms.maps.MapFragment"
       android:layout_weight="2"
       />
-
 
 
 </LinearLayout>

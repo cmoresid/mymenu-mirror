@@ -16,10 +16,14 @@ import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
+import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.misc.BindableAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -27,6 +31,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
+import javax.inject.Named;
+
+import static ca.mymenuapp.data.DataModule.USER_LOCATION;
 
 public class RestaurantListFragment extends BaseFragment
     implements AdapterView.OnItemClickListener {
@@ -35,24 +42,17 @@ public class RestaurantListFragment extends BaseFragment
   @InjectView(R.id.root) BetterViewAnimator root;
   @Inject MyMenuDatabase myMenuDatabase;
   @InjectView(R.id.restaurant_list) ListView listView;
+  @Inject @Named(USER_LOCATION) ObjectPreference<Location> userLoc;
 
   BaseAdapter listAdapter;
-  private GoogleMap map;
-  private Location userLoc;
+  private Location uLoc;
+
 
   public static RestaurantListFragment newInstance() {
     return new RestaurantListFragment();
   }
 
-  public RestaurantListFragment() {
-    this.map = null;
-    this.userLoc = null;
-  }
-
-  public RestaurantListFragment(GoogleMap map, Location userLoc) {
-    this.map = map;
-    this.userLoc = userLoc;
-  }
+  public RestaurantListFragment() {}
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,7 +68,9 @@ public class RestaurantListFragment extends BaseFragment
   @Override
   public void onStart() {
     super.onStart();
+    this.uLoc = userLoc.get();
     getRestaurantList();
+
   }
 
   @Override
@@ -79,7 +81,7 @@ public class RestaurantListFragment extends BaseFragment
   private void getRestaurantList() {
     /* Change this to get all restaurants and then initialize the list. */
     if(userLoc != null) {
-      myMenuDatabase.getNearbyRestaurants(Double.toString(userLoc.getLatitude()), Double.toString(userLoc.getLongitude()), new EndlessObserver<List<Restaurant>>() {
+      myMenuDatabase.getNearbyRestaurants(Double.toString(uLoc.getLatitude()), Double.toString(uLoc.getLongitude()), new EndlessObserver<List<Restaurant>>() {
             @Override
             public void onNext(List<Restaurant> restaurants) {
               initList(restaurants);
@@ -141,6 +143,9 @@ public class RestaurantListFragment extends BaseFragment
       holder.address.setText(item.address);
       // todo, show text
       holder.cuisine.setText(item.category);
+
+//      googleMap.addMarker(
+       //   new MarkerOptions().position(new LatLng(item.lat, item.lng)).title(item.businessName));
 
       Double distInt = Double.parseDouble(item.distance);
       String distance = "";

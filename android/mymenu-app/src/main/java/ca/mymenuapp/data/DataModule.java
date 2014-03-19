@@ -19,6 +19,7 @@ package ca.mymenuapp.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.net.Uri;
 import ca.mymenuapp.BuildConfig;
 import ca.mymenuapp.MyMenuApi;
@@ -27,6 +28,7 @@ import ca.mymenuapp.data.api.ApiModule;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import com.f2prateek.ln.Ln;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.HttpResponseCache;
@@ -51,6 +53,7 @@ import javax.inject.Singleton;
 public final class DataModule {
 
   public static final String USER_PREFERENCE = "user_preference";
+  public static final String USER_LOCATION = "user_location";
 
   static final int DISK_CACHE_SIZE = 50 * 1024 * 1024; // 50MB
 
@@ -96,6 +99,11 @@ public final class DataModule {
   @Provides @Singleton @Named(USER_PREFERENCE)
   ObjectPreference<User> providesUser(SharedPreferences preferences, Gson gson) {
     return new ObjectPreference<>(preferences, gson, User.class, USER_PREFERENCE);
+  }
+
+  @Provides @Singleton @Named(USER_LOCATION)
+  ObjectPreference<Location> providesLocation(SharedPreferences preferences, Gson gson) {
+    return new ObjectPreference<>(preferences, gson, Location.class, USER_LOCATION);
   }
 
   @Provides @Singleton MyMenuDatabase provideMyMenuDatabase(MyMenuApi myMenuApi) {
