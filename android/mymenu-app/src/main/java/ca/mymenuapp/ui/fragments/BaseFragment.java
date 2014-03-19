@@ -35,6 +35,9 @@ import javax.inject.Inject;
  * {@link ca.mymenuapp.ui.activities.BaseActivity}, registers itself with the application
  * {@link com.squareup.otto.Bus}, and sets up {@link com.f2prateek.dart.Dart} and
  * {@link butterknife.ButterKnife}.
+ *
+ * Injection isn't done until after {@link #onActivityCreated(android.os.Bundle)}, so don't
+ * call dependencies before then.
  */
 public class BaseFragment extends Fragment {
 

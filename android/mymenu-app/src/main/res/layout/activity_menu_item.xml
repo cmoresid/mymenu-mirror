@@ -97,7 +97,7 @@
         android:background="@color/turqoise"
         android:textSize="16sp"/>
 
-    <ListView
+    <FrameLayout
         android:id="@+id/menu_item_reviews"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

@@ -26,7 +26,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
@@ -35,7 +34,7 @@ import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.MenuItem;
 import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.data.api.model.Restaurant;
-import ca.mymenuapp.ui.adapters.MenuItemReviewAdapter;
+import ca.mymenuapp.ui.fragments.ReviewsFragment;
 import ca.mymenuapp.ui.widgets.NotifyingScrollView;
 import ca.mymenuapp.ui.widgets.SlidingUpPanelLayout;
 import com.f2prateek.dart.InjectExtra;
@@ -59,7 +58,6 @@ public class MenuItemActivity extends BaseActivity {
 
   @InjectView(R.id.menu_item_image_header) ImageView header;
   @InjectView(R.id.menu_item_description) TextView description;
-  @InjectView(R.id.menu_item_reviews) ListView reviewListView;
   @InjectView(R.id.menu_item_reviews_summary) TextView reviewSummary;
   @InjectView(R.id.sliding_pane) View slidingPane;
 
@@ -162,7 +160,9 @@ public class MenuItemActivity extends BaseActivity {
     picasso.load(menuItem.picture).fit().centerCrop().into(header);
     getActionBar().setTitle(menuItem.name);
     description.setText(menuItem.description);
-    reviewListView.setAdapter(new MenuItemReviewAdapter(this, reviews));
+    getFragmentManager().beginTransaction()
+        .add(R.id.menu_item_reviews, ReviewsFragment.newInstance(reviews, false))
+        .commit();
   }
 
   private void setShareIntent() {

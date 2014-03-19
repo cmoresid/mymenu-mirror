@@ -42,20 +42,28 @@ import java.util.List;
  */
 public class ReviewsFragment extends BaseFragment {
   private static final String ARGS_REVIEWS = "reviews";
+  private static final String ARGS_SHOW_HEADER = "header";
 
   @InjectExtra(ARGS_REVIEWS) ArrayList<MenuItemReview> menuItemReviews;
+  @InjectExtra(ARGS_SHOW_HEADER) boolean shouldHaveHeader;
+
   @InjectView(R.id.menu_review_list) ListView listView;
   private AbsListView.OnScrollListener scrollListener;
   private BindableListAdapter<MenuItemReview> adapter;
 
   /**
    * Returns a new instance of this fragment for the given section number.
+   *
+   * @param shouldHaveHeader true if parent activity wants to add a header and be notified for
+   * scrolls
    */
-  public static ReviewsFragment newInstance(List<MenuItemReview> reviews) {
+  public static ReviewsFragment newInstance(List<MenuItemReview> reviews,
+      boolean shouldHaveHeader) {
     ReviewsFragment fragment = new ReviewsFragment();
     Bundle args = new Bundle();
     ArrayList<MenuItemReview> arrayList = new ArrayList<>(reviews);
     args.putParcelableArrayList(ARGS_REVIEWS, arrayList);
+    args.putBoolean(ARGS_SHOW_HEADER, shouldHaveHeader);
     fragment.setArguments(args);
     return fragment;
   }
@@ -67,23 +75,27 @@ public class ReviewsFragment extends BaseFragment {
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_menu_reviews, container, false);
+    ListView root = (ListView) inflater.inflate(R.layout.fragment_menu_reviews, container, false);
+    if (shouldHaveHeader) {
+      View header = inflater.inflate(R.layout.restaurant_header_placeholder, root, false);
+      root.addHeaderView(header);
+      root.setTag(header);
+    }
+    return root;
   }
 
   @Override public void onAttach(Activity activity) {
     super.onAttach(activity);
-    scrollListener = (AbsListView.OnScrollListener) activity;
+    if (shouldHaveHeader) {
+      scrollListener = (AbsListView.OnScrollListener) activity;
+      listView.setOnScrollListener(scrollListener);
+    }
   }
 
   @Override public void onStart() {
     super.onStart();
-    View placeholder = LayoutInflater.from(activityContext)
-        .inflate(R.layout.restaurant_header_placeholder, listView, false);
     adapter = new MenuItemReviewAdapter(activityContext, menuItemReviews);
-    listView.addHeaderView(placeholder);
-    listView.setTag(placeholder);
     listView.setAdapter(adapter);
-    listView.setOnScrollListener(scrollListener);
   }
 
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

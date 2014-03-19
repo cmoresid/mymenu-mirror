@@ -287,7 +287,7 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
         return MenuItemsGridFragment.newInstance(menu.getMenuItemsByCategory(position),
             menu.getRestaurant(), menu.getReviews());
       } else {
-        return ReviewsFragment.newInstance(menu.getReviews());
+        return ReviewsFragment.newInstance(menu.getReviews(), true);
       }
     }
 
