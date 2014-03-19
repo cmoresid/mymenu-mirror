@@ -77,7 +77,7 @@ final class MockMyMenuApi implements MyMenuApi {
   }
 
   @Override
-  public Observable<RestaurantResponse> getAllRestaurants(@Field("query") String query) {
+  public Observable<RestaurantResponse> getNearbyRestaurants(@Field("query") String query) {
     return null;
   }
 

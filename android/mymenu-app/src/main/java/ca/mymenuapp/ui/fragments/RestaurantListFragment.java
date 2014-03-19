@@ -1,6 +1,7 @@
 package ca.mymenuapp.ui.fragments;
 
 import android.content.Context;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,12 @@ import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.misc.BindableAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
+import com.google.android.gms.maps.GoogleMap;
 import com.squareup.picasso.Picasso;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -31,9 +37,21 @@ public class RestaurantListFragment extends BaseFragment
   @InjectView(R.id.restaurant_list) ListView listView;
 
   BaseAdapter listAdapter;
+  private GoogleMap map;
+  private Location userLoc;
 
   public static RestaurantListFragment newInstance() {
     return new RestaurantListFragment();
+  }
+
+  public RestaurantListFragment() {
+    this.map = null;
+    this.userLoc = null;
+  }
+
+  public RestaurantListFragment(GoogleMap map, Location userLoc) {
+    this.map = map;
+    this.userLoc = userLoc;
   }
 
   @Override
@@ -60,13 +78,15 @@ public class RestaurantListFragment extends BaseFragment
 
   private void getRestaurantList() {
     /* Change this to get all restaurants and then initialize the list. */
-    myMenuDatabase.getAllRestaurants(new EndlessObserver<List<Restaurant>>() {
-                                       @Override
-                                       public void onNext(List<Restaurant> restaurants) {
-                                         initList(restaurants);
-                                       }
-                                     }
-    );
+    if(userLoc != null) {
+      myMenuDatabase.getNearbyRestaurants(Double.toString(userLoc.getLatitude()), Double.toString(userLoc.getLongitude()), new EndlessObserver<List<Restaurant>>() {
+            @Override
+            public void onNext(List<Restaurant> restaurants) {
+              initList(restaurants);
+            }
+          }
+      );
+    }
   }
 
   private void initList(List<Restaurant> restaurants) {
@@ -120,8 +140,23 @@ public class RestaurantListFragment extends BaseFragment
       holder.rating.setText(Double.toString(item.rating));
       holder.address.setText(item.address);
       // todo, show text
-      holder.cuisine.setText("cuisine = " + item.categoryId);
-      holder.distance.setText("0km");
+      holder.cuisine.setText(item.category);
+
+      Double distInt = Double.parseDouble(item.distance);
+      String distance = "";
+      NumberFormat nf = DecimalFormat.getInstance();
+      nf.setMaximumFractionDigits(1);
+
+      if (distInt < 1){
+        nf.setMaximumFractionDigits(0);
+        distInt*=1000;
+        distance = nf.format(distInt)+"m";
+      }
+      else{
+        distance = nf.format(distInt)+"km";
+      }
+
+      holder.distance.setText(distance);
     }
 
     class ViewHolder {

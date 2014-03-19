@@ -16,6 +16,7 @@ import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionLink;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import ca.mymenuapp.data.rx.EndObserver;
+import com.f2prateek.ln.Ln;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -233,6 +234,7 @@ public class MyMenuDatabase {
   public Subscription getMenu(final User user, final long restaurantId,
       Observer<CategorizedMenu> observer) {
     final String query = String.format(MyMenuApi.GET_RESTAURANT_MENU, restaurantId);
+
     return myMenuApi.getMenu(query) //
         .map(new Func1<MenuResponse, List<MenuItem>>() {
           @Override
@@ -254,8 +256,11 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
-  public Subscription getAllRestaurants(Observer<List<Restaurant>> observer) {
-    return myMenuApi.getAllRestaurants(MyMenuApi.GET_ALL_RESTAURANTS)
+  public Subscription getNearbyRestaurants(final String lat, final String longa,
+      Observer<List<Restaurant>> observer) {
+    final String query = String.format(MyMenuApi.GET_NEARBY_RESTAURANTS, longa, lat);
+    Ln.e(query);
+    return myMenuApi.getNearbyRestaurants(query)
         .map(new Func1<RestaurantResponse, List<Restaurant>>() {
           @Override
           public List<Restaurant> call(RestaurantResponse restResponse) {

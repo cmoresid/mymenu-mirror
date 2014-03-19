@@ -20,9 +20,12 @@ package ca.mymenuapp.ui.activities;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.res.Configuration;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -36,6 +39,12 @@ import ca.mymenuapp.ui.fragments.RestaurantListFragment;
 import ca.mymenuapp.ui.fragments.RestaurantTwoPaneFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import ca.mymenuapp.util.Bundler;
+import com.f2prateek.ln.Ln;
+import com.f2prateek.ln.LnFacade;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import javax.inject.Inject;
@@ -49,23 +58,19 @@ public class MainActivity extends BaseActivity {
   @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
   @InjectView(R.id.pager) ViewPager viewPager;
 
-
   private SwipeableActionBarTabsAdapter tabsAdapter;
-
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     inflateView(R.layout.activity_main);
-    setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
+    setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab",0) : 0);
   }
 
   /** Setup the tabs two display our fragments. */
   private void setupTabs(int tab) {
     ActionBar actionBar = getActionBar();
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
     tabsAdapter = new SwipeableActionBarTabsAdapter(this, viewPager);
       /* Need to check size here */
     if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
@@ -83,13 +88,8 @@ public class MainActivity extends BaseActivity {
     tabsAdapter.addTab(actionBar.newTab().setText("Preferences"), DietaryPreferencesFragment.class,
         null);
 
-
-
-    //initializeMap();
     actionBar.setSelectedNavigationItem(tab);
   }
-
-
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.activity_main, menu);
