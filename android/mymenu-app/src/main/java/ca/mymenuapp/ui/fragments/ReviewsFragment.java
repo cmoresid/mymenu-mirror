@@ -33,9 +33,6 @@ import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.ui.adapters.MenuItemReviewAdapter;
 import ca.mymenuapp.ui.misc.BindableListAdapter;
 import com.f2prateek.dart.InjectExtra;
-import com.f2prateek.ln.Ln;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -100,15 +97,8 @@ public class ReviewsFragment extends BaseFragment {
       case R.id.sort_date:
         adapter.sort(new Comparator<MenuItemReview>() {
           // sort reviews by date, newest going first
-          SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
           @Override public int compare(MenuItemReview lhs, MenuItemReview rhs) {
-            try {
-              return formatter.parse(rhs.date).compareTo(formatter.parse(lhs.date));
-            } catch (ParseException e) {
-              Ln.e(e);
-              return 0;
-            }
+            return (rhs.getDate()).compareTo(lhs.getDate());
           }
         });
         break;

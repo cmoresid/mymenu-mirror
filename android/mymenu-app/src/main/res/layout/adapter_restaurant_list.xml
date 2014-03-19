@@ -28,7 +28,7 @@
       android:layout_height="fill_parent"
       android:layout_gravity="left"
       android:gravity="left"
-      android:layout_toLeftOf="@+id/restName"
+      android:layout_toLeftOf="@+id/name"
       android:background="@drawable/rounded_rating_background"/>
   <TextView
       android:id="@+id/name"
@@ -36,9 +36,9 @@
       android:layout_height="80dp"
       android:singleLine="true"
       android:textStyle="bold"
-      android:textSize="30dp"
+      android:textSize="30sp"
       android:layout_gravity="center"
-      android:layout_toLeftOf="@+id/restImage"
+      android:layout_toLeftOf="@+id/image"
       android:ellipsize="end"
       />
   <TextView
@@ -47,7 +47,7 @@
       android:layout_height="wrap_content"
       android:singleLine="true"
       android:ellipsize="end"
-      android:layout_below="@+id/restName"
+      android:layout_below="@+id/name"
       />
   <TextView
       android:id="@+id/address"
@@ -55,7 +55,7 @@
       android:layout_height="wrap_content"
       android:singleLine="true"
       android:ellipsize="end"
-      android:layout_below="@+id/restCuisine"
+      android:layout_below="@+id/cuisine"
       />
   <ca.mymenuapp.ui.widgets.SquaredImageView
       android:id="@+id/image"
@@ -63,6 +63,6 @@
       android:layout_height="100dp"
       android:layout_alignParentRight="true"
       android:layout_marginRight="5dp"
-      android:layout_alignBaseline="@id/restName"
+      android:layout_alignBaseline="@id/name"
       android:scaleType="centerCrop"/>
 </RelativeLayout>

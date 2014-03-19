@@ -28,7 +28,7 @@ def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone(
 
 android {
   compileSdkVersion 19
-  buildToolsVersion '19.0.1'
+  buildToolsVersion '19.0.2'
 
   packagingOptions {
     exclude 'META-INF/services/javax.annotation.processing.Processor'
@@ -69,7 +69,7 @@ android {
   }
 
   defaultConfig {
-    minSdkVersion 16
+    minSdkVersion 17
     targetSdkVersion 19
     packageName 'ca.mymenuapp'
     versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild

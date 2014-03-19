@@ -99,6 +99,7 @@ import static retrofit.RestAdapter.LogLevel;
  */
 @Singleton
 public class DebugAppContainer implements AppContainer {
+  @SuppressWarnings("SimpleDateFormat")
   private static final DateFormat DATE_DISPLAY_FORMAT = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
 
   private final OkHttpClient client;

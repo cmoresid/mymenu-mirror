@@ -20,6 +20,9 @@ package ca.mymenuapp.data.api.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -27,6 +30,9 @@ import org.simpleframework.xml.Root;
 public class MenuItemReview implements Parcelable {
   private static final String ZERO = "0";
   private static final String NULL_STRING = "null";
+
+  @SuppressWarnings("SimpleDateFormat")
+  private static final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
   @Element(name = "id") public long id;
   @Element(name = "useremail") public String userEmail;
@@ -54,6 +60,17 @@ public class MenuItemReview implements Parcelable {
       return ZERO;
     } else {
       return likeCount;
+    }
+  }
+
+  /**
+   * Safe way to get Date of this review. Returns current time if date cannot be parsed.
+   */
+  public Date getDate() {
+    try {
+      return formatter.parse(date);
+    } catch (ParseException e) {
+      return new Date();
     }
   }
 
