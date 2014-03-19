@@ -154,10 +154,7 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
 
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    // headers are added to position!
-    // position is indexed by one but list is by zero
-    int index = position - 1 - ((HeaderGridView) parent).getHeaderViewCount();
-    MenuItem menuItem = items.get(index);
+    MenuItem menuItem = (MenuItem) parent.getAdapter().getItem(position);
     Intent intent = new Intent(activityContext, MenuItemActivity.class);
     intent.putExtra(MenuItemActivity.ARGS_MENU_ITEM, menuItem);
     intent.putExtra(MenuItemActivity.ARGS_RESTAURANT, restaurant);
