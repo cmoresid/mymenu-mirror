@@ -114,6 +114,8 @@ dependencies {
     exclude group: 'com.google.android', module: 'support-v4'
   }
 
+  compile 'com.google.android.gms:play-services:+'
+
   compile 'com.greenhalolabs:emailautocompletetextview:1.2.0'
   compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 

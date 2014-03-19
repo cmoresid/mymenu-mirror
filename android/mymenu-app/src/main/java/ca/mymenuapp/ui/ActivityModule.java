@@ -30,8 +30,7 @@ import ca.mymenuapp.ui.fragments.BaseFragment;
 import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.MenuItemsGridFragment;
 import ca.mymenuapp.ui.fragments.PlaceholderFragment;
-import ca.mymenuapp.ui.fragments.RestaurantListFragment;
-import ca.mymenuapp.ui.fragments.RestaurantTwoPaneFragment;
+import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.ReviewsFragment;
 import dagger.Module;
 import dagger.Provides;
@@ -44,8 +43,7 @@ import javax.inject.Singleton;
         RestaurantActivity.class, MenuItemActivity.class,
         // Fragments
         BaseFragment.class, PlaceholderFragment.class, DietaryPreferencesFragment.class,
-        MenuItemsGridFragment.class, ReviewsFragment.class, RestaurantListFragment.class,
-        RestaurantTwoPaneFragment.class
+        MenuItemsGridFragment.class, ReviewsFragment.class, RestaurantGridFragment.class
     },
     complete = false,
     addsTo = MyMenuModule.class)

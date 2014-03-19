@@ -18,14 +18,15 @@
 package ca.mymenuapp.ui.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -33,30 +34,35 @@ import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.rx.EndlessObserver;
+import ca.mymenuapp.ui.activities.RestaurantActivity;
 import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 import javax.inject.Inject;
 
-public class RestaurantListFragment extends BaseFragment
+/**
+ * Fragment to display restaurants in a grid.
+ */
+public class RestaurantGridFragment extends BaseFragment
     implements AdapterView.OnItemClickListener {
 
   @Inject Picasso picasso;
-  @InjectView(R.id.root) BetterViewAnimator root;
   @Inject MyMenuDatabase myMenuDatabase;
-  @InjectView(R.id.restaurant_list) ListView listView;
 
-  BaseAdapter listAdapter;
+  @InjectView(R.id.root) BetterViewAnimator root;
+  @InjectView(R.id.restaurant_grid) GridView gridView;
 
-  public static RestaurantListFragment newInstance() {
-    return new RestaurantListFragment();
+  BaseAdapter adapter;
+
+  public static RestaurantGridFragment newInstance() {
+    return new RestaurantGridFragment();
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_restaurant_list, container, false);
+    return inflater.inflate(R.layout.fragment_restaurant_grid, container, false);
   }
 
   @Override
@@ -71,14 +77,15 @@ public class RestaurantListFragment extends BaseFragment
   }
 
   @Override
-  public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-    /* Need create an intent to go to restaurant page when clicked */
+  public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+    Intent intent = new Intent(activityContext, RestaurantActivity.class);
+    intent.putExtra(RestaurantActivity.ARGS_RESTAURANT_ID, id);
+    startActivity(intent);
   }
 
   private void getRestaurantList() {
-    /* Change this to get all restaurants and then initialize the list. */
-    myMenuDatabase.getAllRestaurants(new EndlessObserver<List<Restaurant>>() {
-                                       @Override
+    myMenuDatabase.getAllRestaurants(new EndlessObserver<List<Restaurant>>() { //
+                                       @Override //
                                        public void onNext(List<Restaurant> restaurants) {
                                          initList(restaurants);
                                        }
@@ -87,14 +94,13 @@ public class RestaurantListFragment extends BaseFragment
   }
 
   private void initList(List<Restaurant> restaurants) {
-    root.setDisplayedChildId(R.id.restaurant_list);
-    listAdapter = new RestaurantListAdapter(activityContext, restaurants);
-    listView.setAdapter(listAdapter);
-    listView.setOnItemClickListener(this);
+    adapter = new RestaurantListAdapter(activityContext, restaurants);
+    gridView.setAdapter(adapter);
+    gridView.setOnItemClickListener(this);
+    root.setDisplayedChildId(R.id.restaurant_grid);
   }
 
   class RestaurantListAdapter extends BindableListAdapter<Restaurant> {
-
     public RestaurantListAdapter(Context context, List<Restaurant> restaurants) {
       super(context, restaurants);
     }
@@ -116,24 +122,17 @@ public class RestaurantListFragment extends BaseFragment
     public void bindView(Restaurant item, int position, View view) {
       ViewHolder holder = (ViewHolder) view.getTag();
 
-      RestaurantListFragment.this.picasso.load(item.businessPicture)
+      RestaurantGridFragment.this.picasso.load(item.businessPicture)
           .placeholder(R.drawable.ic_launcher)
           .fit()
           .centerCrop()
           .into(holder.picture);
-      holder.label.setText(item.businessName);
-      holder.rating.setText(Double.toString(item.rating));
-      holder.address.setText(item.address);
-      // todo, show text
-      holder.cuisine.setText("cuisine = " + item.categoryId);
+      holder.name.setText(item.businessName);
     }
 
     class ViewHolder {
-      @InjectView(R.id.image) ImageView picture;
-      @InjectView(R.id.name) TextView label;
-      @InjectView(R.id.rating) TextView rating;
-      @InjectView(R.id.cuisine) TextView cuisine;
-      @InjectView(R.id.address) TextView address;
+      @InjectView(R.id.restaurant_picture) ImageView picture;
+      @InjectView(R.id.restaurant_name) TextView name;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);
