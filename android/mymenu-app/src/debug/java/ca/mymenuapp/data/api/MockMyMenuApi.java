@@ -19,9 +19,15 @@ package ca.mymenuapp.data.api;
 
 import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
-import ca.mymenuapp.data.api.model.Menu;
+import ca.mymenuapp.data.api.model.MenuCategoryResponse;
+import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
+import ca.mymenuapp.data.api.model.MenuResponse;
+import ca.mymenuapp.data.api.model.Restaurant;
+import ca.mymenuapp.data.api.model.RestaurantResponse;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
+import com.f2prateek.ln.Ln;
+import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import retrofit.client.Response;
@@ -41,21 +47,37 @@ final class MockMyMenuApi implements MyMenuApi {
     this.serverDatabase = serverDatabase;
   }
 
-  @Override public Observable<Menu> getMenu(@Path("id") long id) {
-    return null;
-  }
-
   @Override public Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(
       @Field("query") String query) {
     return null;
   }
 
   @Override public Observable<UserResponse> getUser(@Field("query") String query) {
-    return null;
+    String emailToken = "email='";
+    int emailStartIndex = query.indexOf(emailToken) + emailToken.length();
+    int emailEndIndex = query.indexOf("'", emailStartIndex);
+
+    String passwordToken = "password='";
+    int passwordStartIndex = query.indexOf(passwordToken) + passwordToken.length();
+    int passwordEndIndex = query.indexOf("'", passwordStartIndex);
+
+    String email = query.substring(emailStartIndex, emailEndIndex);
+    String password = query.substring(passwordStartIndex, passwordEndIndex);
+    Ln.d("Looking up user with email %s and password %s", email, password);
+
+    UserResponse userResponse = new UserResponse();
+    userResponse.userList = new ArrayList<>();
+    userResponse.userList.add(serverDatabase.getUser(email, password));
+    return Observable.from(userResponse);
   }
 
   @Override
   public Observable<UserRestrictionResponse> getRestrictionsForUser(@Field("query") String query) {
+    return null;
+  }
+
+  @Override
+  public Observable<RestaurantResponse> getAllRestaurants(@Field("query") String query) {
     return null;
   }
 
@@ -74,6 +96,24 @@ final class MockMyMenuApi implements MyMenuApi {
 
   @Override public Observable<Response> putUserRestriction(@Field("email") String email,
       @Field("restrictid") long restrictId) {
+    return null;
+  }
+
+  @Override public Observable<Restaurant> getRestaurant(@Path("id") long id) {
+    return null;
+  }
+
+  @Override public Observable<MenuResponse> getMenu(@Field("query") String query) {
+    return null;
+  }
+
+  @Override
+  public Observable<MenuCategoryResponse> getMenuCategories(@Field("query") String query) {
+    return null;
+  }
+
+  @Override
+  public Observable<MenuItemReviewResponse> getReviewsForRestaurant(@Field("query") String query) {
     return null;
   }
 }

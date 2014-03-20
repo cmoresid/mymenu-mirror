@@ -17,6 +17,9 @@
 
 #import "MMSplitViewController.h"
 #import "MMLocationManager.h"
+#import "MMMasterRestaurantTableViewController.h"
+#import "MMDetailMapViewController.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface MMSplitViewController ()
 
@@ -26,10 +29,11 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
     if (self) {
-        // Custom initialization
-
+        
     }
+    
     return self;
 }
 
@@ -50,18 +54,14 @@
         }
     }
 
-    // Get the Nav Controller for the Slider
-    UINavigationController *navigationController = [self.viewControllers lastObject];
-    self.delegate = (id) navigationController.topViewController;
-
-    // Do any additional setup after loading the view.
-    self.locationManager = [[MMLocationManager alloc] initWithConfigurationBlock:^(CLLocationManager *locationManager, NSArray *locations) {
-
-        CLLocation *currentLocation = [locations lastObject];
-
-        [[NSNotificationCenter defaultCenter] postNotificationName:kRetrievedUserLocation
-                                                            object:currentLocation];
-    }];
+    UINavigationController *masterNavController = [self.viewControllers firstObject];
+    UINavigationController *detailNavController = [self.viewControllers lastObject];
+    
+    MMMasterRestaurantTableViewController *master = (MMMasterRestaurantTableViewController *)masterNavController.topViewController;
+    MMDetailMapViewController *detail = (MMDetailMapViewController *) detailNavController.topViewController;
+    
+    master.delegate = detail;
+    self.delegate = detail;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,11 +69,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self.locationManager startTrackingUserLocation];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [self.locationManager stopTrackingUserLocation];
-}
 @end

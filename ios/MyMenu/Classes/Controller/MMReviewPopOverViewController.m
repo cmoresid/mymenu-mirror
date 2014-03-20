@@ -26,6 +26,7 @@
 #import "MMRatingPopoverViewController.h"
 
 
+
 #define kReview @"kReview"
 
 
@@ -33,7 +34,6 @@
 
 @end
 
-MMMenuItemRating *review;
 MMUser *userprofile;
 NSInteger ratingValue;
 
@@ -50,63 +50,55 @@ NSInteger ratingValue;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    userprofile = [[MMUser alloc] init];
     userprofile = [[MMLoginManager sharedLoginManager] getLoggedInUser];
 
     [MMDBFetcher get].delegate = self;
-    review = [[MMMenuItemRating alloc] init];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveReview:)
-                                                 name:kReview
-                                               object:nil];
     _ratingLabel = (UILabel *) [self.view viewWithTag:100];
     _labelBack = (UIView *) [self.view viewWithTag:101];
-}
-
-
-- (void)didReceiveReview:(NSNotification *)notification {
-
-    review = notification.object;
+    
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
     [formatter setMaximumFractionDigits:1];
     [formatter setMinimumFractionDigits:1];
-
-    NSString *rate = [formatter stringFromNumber:review.rating];
-
-    _desc.text = review.review;
-    _menuItemName.text = review.menuitemname;
-    _restaurantName.text = review.merchantName;
-    _likecount.text = [NSString stringWithFormat:@"%@", review.likeCount];
+    
+    NSString *rate = [formatter stringFromNumber:self.menuItemReview.rating];
+    
+    _desc.text = self.menuItemReview.review;
+    _menuItemName.text = self.menuItemReview.menuitemname;
+    _restaurantName.text = self.menuItemReview.merchantName;
+    _likecount.text = [NSString stringWithFormat:@"%@", self.menuItemReview.likeCount];
     _labelBack.backgroundColor = [UIColor lightBackgroundGray];
     _labelBack.layer.cornerRadius = 5;
     _ratingLabel.text = rate;
     _ratingLabel.userInteractionEnabled = NO;
-
-    if (review.itemImage != nil && ![review.itemImage isEqualToString:@"null"]) {
-        [self.menuItemImage setImageWithURL:[NSURL URLWithString:review.itemImage] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+    
+    if (self.menuItemReview.itemImage != nil && ![self.menuItemReview.itemImage isEqualToString:@"null"]) {
+        [self.menuItemImage setImageWithURL:[NSURL URLWithString:self.menuItemReview.itemImage] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
     }
-    if (![review.useremail isEqualToString:userprofile.email]) {
+    if (![self.menuItemReview.useremail isEqualToString:userprofile.email]) {
         _edit.enabled = NO;
         [_edit setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     }
-
+    
     if ([[MMLoginManager sharedLoginManager] isUserLoggedInAsGuest]) {
-
+        
         _edit.enabled = NO;
         [_edit setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         _report.enabled = NO;
         [_report setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         _like.enabled = NO;
         [_like setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
-
+        
     } else {
-        [[MMDBFetcher get] userLiked:userprofile.email withReview:review.id];
+        [[MMDBFetcher get] userLiked:userprofile.email withReview:self.menuItemReview.id];
         [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     }
-}
 
+}
+- (void)viewDidAppear:(BOOL)animated {
+    self.oldPopOverController.popoverContentSize = CGSizeMake(500, 400);
+}
 
 - (void)didUserLike:(BOOL)exists withResponse:(MMDBFetcherResponse *)response {
 
@@ -125,7 +117,7 @@ NSInteger ratingValue;
         _like.enabled = NO;
         [_like setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     }
-    [[MMDBFetcher get] userReported:userprofile.email withReview:review.id];
+    [[MMDBFetcher get] userReported:userprofile.email withReview:self.menuItemReview.id];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
 
 }
@@ -155,11 +147,13 @@ NSInteger ratingValue;
 
 - (IBAction)submitReview:(id)sender {
     if (_ratingLabel.userInteractionEnabled) {
-        review.review = _desc.text;
-        review.rating = [NSNumber numberWithInteger:[_ratingLabel.text integerValue]];
-        [[MMDBFetcher get] editReview:review];
+        self.menuItemReview.review = _desc.text;
+        self.menuItemReview.rating = [NSNumber numberWithInteger:[_ratingLabel.text integerValue]];
+        [[MMDBFetcher get] editReview:self.menuItemReview];
         [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     }
+    
+    self.callback(YES);
 }
 
 - (void)didUpdateRatings:(BOOL)exists withResponse:(MMDBFetcherResponse *)response {
@@ -175,7 +169,7 @@ NSInteger ratingValue;
         return;
     }
     else if (exists) {
-        [self.delegate didSelectDone:YES];
+        self.callback(YES);
     }
 
     else {
@@ -192,27 +186,23 @@ NSInteger ratingValue;
 }
 
 - (IBAction)cancelReview:(id)sender {
-    [self.delegate didSelectCancel:YES];
-
+    self.callback(NO);
 }
 
 - (IBAction)likeReview:(id)sender {
 
     _like.enabled = NO;
     [_like setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
-    NSInteger likecount = [review.likeCount integerValue];
+    NSInteger likecount = [self.menuItemReview.likeCount integerValue];
     _likecount.text = [NSString stringWithFormat:@"%d", likecount++];
-    [[MMDBFetcher get] likeReview:userprofile.email withMenuItem:review.menuid withMerch:review.merchid withReview:review.id];
+    [[MMDBFetcher get] likeReview:userprofile.email withMenuItem:self.menuItemReview.menuid withMerch:self.menuItemReview.merchid withReview:self.menuItemReview.id];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-
-
 }
 
 - (IBAction)reportReview:(id)sender {
-
     _report.enabled = NO;
     [_report setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
-    [[MMDBFetcher get] reportReview:userprofile.email withMenuItem:review.menuid withMerch:review.merchid withReview:review.id];
+    [[MMDBFetcher get] reportReview:userprofile.email withMenuItem:self.menuItemReview.menuid withMerch:self.menuItemReview.merchid withReview:self.menuItemReview.id];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
 
 }
@@ -232,58 +222,54 @@ NSInteger ratingValue;
     if (CGRectContainsPoint([_ratingLabel frame], [touch locationInView:_labelBack]) && _ratingLabel.userInteractionEnabled) {
         // Make sure keyboard is hidden before you show popup.
         [self.desc resignFirstResponder];
-
+        
         MMRatingPopoverViewController *ratingPop = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuItemRatingPopover"];
+        
         self.menuItem = [[MMMenuItem alloc] init];
-        self.menuItem.itemid = review.menuid;
-        self.menuItem.name = review.menuitemname;
-        self.menuItem.picture = review.itemImage;
+        self.menuItem.itemid = self.menuItemReview.menuid;
+        self.menuItem.name = self.menuItemReview.menuitemname;
+        self.menuItem.picture = self.menuItemReview.itemImage;
         self.selectedRestaurant = [[MMMerchant alloc] init];
-        self.selectedRestaurant.businessname = review.merchantName;
-        self.selectedRestaurant.mid = review.merchid;
+        self.selectedRestaurant.businessname = self.menuItemReview.merchantName;
+        self.selectedRestaurant.mid = self.menuItemReview.merchid;
 
         ratingPop.menuItem = self.menuItem;
         ratingPop.menuItemMerchant = self.selectedRestaurant;
+        ratingPop.oldView = self.view;
 
         // Check if a rating has been previously selected. If one has
         // been, pre-select that value in the ratings wheel in the
         // popover.
-        if (review.rating != nil || [review.rating intValue] > 0) {
-            ratingPop.currentRating = [review.rating floatValue] / 10.0f;
+        if (self.menuItemReview.rating != nil || [self.menuItemReview.rating intValue] > 0) {
+            ratingPop.currentRating = [self.menuItemReview.rating floatValue] / 10.0f;
         }
 
         ratingPop.selectedRating = ^(NSNumber *rating) {
-            review.rating = rating;
+            self.menuItemReview.rating = rating;
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
             [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
             [formatter setMaximumFractionDigits:1];
             [formatter setMinimumFractionDigits:1];
 
-            NSString *rate = [formatter stringFromNumber:review.rating];
+            NSString *rate = [formatter stringFromNumber:self.menuItemReview.rating];
             self.ratingLabel.text = rate;
 
             ratingValue = [rating integerValue];
+            self.edit.enabled = NO;
+            [self.desc becomeFirstResponder];
+            [self.navigationController setNavigationBarHidden:YES];
             [self.popOverController dismissPopoverAnimated:YES];
         };
 
         ratingPop.cancelRating = ^(NSNumber *rating) {
             [self.popOverController dismissPopoverAnimated:YES];
         };
-
-        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:ratingPop];
-
-        popover.popoverContentSize = CGSizeMake(500, 500);
-        popover.delegate = self;
-
-        self.popOverController = popover;
-
-        [self.popOverController presentPopoverFromRect:self.ratingLabel.frame
-                                                inView:self.ratingLabel.superview
-                              permittedArrowDirections:UIPopoverArrowDirectionAny
-                                              animated:YES];
-
+        
+        [self.navigationController setNavigationBarHidden:NO];
+        [self.navigationController pushViewController:ratingPop animated:YES];
     }
 }
+
 
 - (void)didAddReviewLike:(BOOL)succesful withResponse:(MMDBFetcherResponse *)response {
 
@@ -307,6 +293,7 @@ NSInteger ratingValue;
 
         return;
     }
+    [self.navigationController setNavigationBarHidden:YES];
 
 }
 

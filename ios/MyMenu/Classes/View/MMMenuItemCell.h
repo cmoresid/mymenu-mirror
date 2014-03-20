@@ -27,12 +27,6 @@
 @interface MMMenuItemCell : UICollectionViewCell
 
 /**
- *  The menu item model object that this 
- *  cell represents.
- */
-@property(nonatomic) MMMenuItem *menuItem;
-
-/**
  *  The label that displays the name of
  *  the menu item.
  */

@@ -105,7 +105,6 @@
  *
  *  @param date NSDate to display from
  */
-- (void)loadDay:(NSDate *)date;
 
 - (void)loadSelectedDate;
 

@@ -19,8 +19,11 @@
 #import "MMLocationManager.h"
 #import "MMRestaurantMapDelegate.h"
 #import "MMMasterRestaurantTableViewController.h"
-
-NSString *const kDidUpdateList = @"DidUpdateList";
+#import "MMAppDelegate.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <RACEXTScope.h>
+#import "MMMerchantService.h"
+#import "MMSplitViewController.h"
 
 @interface MMDetailMapViewController ()
 
@@ -38,42 +41,43 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self registerForUserLocationNotifications];
+    
+    @weakify(self);
+    [[MMLocationManager sharedLocationManager].getLatestLocation
+        subscribeNext:^(CLLocation *location) {
+            @strongify(self);
+            self.location = location;
+            [self didReceiveUserLocation:location];
+        }
+        error:^(NSError *error) {
+            NSLog(@"MMDetailMapViewController.viewDidLoad - Error retrieving location.");
+    }];
+    
+    [self.mapView setUserTrackingMode:MKUserTrackingModeNone animated:NO];
     [self configureView];
 }
 
-- (void)dealloc {
-    [self unregisterForUserLocationNotifications];
+- (void)didReceiveMerchants:(NSMutableArray *)merchants {
+    NSMutableArray *annots = [_mapView.annotations mutableCopy];
+    
+    RACSequence *annotsSequence = [annots.rac_sequence
+        filter:^BOOL(MKPointAnnotation *annot) {
+            return ![annot isKindOfClass:[MKUserLocation class]];
+    }];
+    
+    [_mapView removeAnnotations:annotsSequence.array];
+    [self pinRestaurants:[merchants copy]];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.mapView setShowsUserLocation:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Register User Location Notifications
-
-- (void)registerForUserLocationNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveUserLocation:)
-                                                 name:kRetrievedUserLocation
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didUpdateList:)
-                                                 name:kDidUpdateList
-                                               object:nil];
-}
-
-- (void)unregisterForUserLocationNotifications {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:kRetrievedUserLocation
-                                                  object:nil];
-
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:kDidUpdateList
-                                                  object:nil];
 }
 
 #pragma mark - Manage Detail View (Portrait Mode)
@@ -98,33 +102,17 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 
 #pragma mark - Location Notification Callback Methods
 
-- (void)didUpdateList:(NSNotification *)notification {
-    NSMutableArray *annots = [_mapView.annotations mutableCopy];
-
-    for (int i = 0; i < [annots count]; i++) {
-        if ([[annots objectAtIndex:i] isKindOfClass:[MKUserLocation class]])
-            [annots removeObjectAtIndex:i];
-    }
-
-    [_mapView removeAnnotations:[annots copy]];
-
-    [self pinRestaurants:notification.object];
-
-}
-
-- (void)didReceiveUserLocation:(NSNotification *)notification {
-    _location = notification.object;
-
+- (void)didReceiveUserLocation:(CLLocation *)location {
     MKCoordinateSpan span;
     span.latitudeDelta = .25;
     span.longitudeDelta = .25;
 
     MKCoordinateRegion region;
-    region.center = _location.coordinate;
+    region.center = location.coordinate;
     region.span = span;
 
-    [self.mapView setCenterCoordinate:_location.coordinate animated:YES];
-    [self.mapView setRegion:region animated:YES];
+    [self.mapView setCenterCoordinate:location.coordinate animated:YES];
+    [self.mapView setRegion:region animated:NO];
 
     self.mapDelegate = [[MMRestaurantMapDelegate alloc] init];
     self.mapView.delegate = self.mapDelegate;
@@ -133,58 +121,20 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 #pragma mark - Configure Map View Methods
 
 - (void)pinRestaurants:(NSArray *)restaurants {
-    if ([restaurants count] == 1) {
-        [self configureMapForOneRestaurant:restaurants];
-    }
-    else {
-        [self configureMapForManyRestaurants];
-    }
-
-    for (int i = 0; i < restaurants.count; i++) {
-        [self addPinForRestaurantToMap:[restaurants objectAtIndex:i]];
-    }
-}
-
-- (void)addPinForRestaurantToMap:(MMMerchant *)restaurant {
-    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-    CLLocationCoordinate2D start;
-    start.latitude = [restaurant.lat doubleValue];
-    start.longitude = [restaurant.longa doubleValue];
-    [annotation setCoordinate:start];
-    [annotation setTitle:restaurant.businessname];
-    [annotation setSubtitle:restaurant.desc];
-
-    [self.mapView addAnnotation:annotation];
-}
-
-- (void)configureMapForManyRestaurants {
-    MKCoordinateSpan span;
-    span.latitudeDelta = .25;
-    span.longitudeDelta = .25;
-
-    MKCoordinateRegion region;
-    region.center = _location.coordinate;
-    region.span = span;
-
-    [self.mapView setCenterCoordinate:_location.coordinate animated:YES];
-    [self.mapView setRegion:region animated:YES];
-}
-
-- (void)configureMapForOneRestaurant:(NSArray *)restaurants {
-    MKCoordinateSpan span;
-    span.latitudeDelta = .25;
-    span.longitudeDelta = .25;
-
-    MMMerchant *merch = [restaurants objectAtIndex:0];
-
-    MKCoordinateRegion region;
-    CLLocationCoordinate2D start;
-    start.latitude = [merch.lat doubleValue];
-    start.longitude = [merch.longa doubleValue];
-    region.center = start;
-    region.span = span;
-
-    [self.mapView setRegion:region animated:YES];
+    RACSequence *mapAnnotations = [restaurants.rac_sequence
+        map:^MKPointAnnotation*(MMMerchant *restaurant) {
+            MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+            CLLocationCoordinate2D start;
+            start.latitude = [restaurant.lat doubleValue];
+            start.longitude = [restaurant.longa doubleValue];
+            [annotation setCoordinate:start];
+            [annotation setTitle:restaurant.businessname];
+            [annotation setSubtitle:restaurant.desc];
+        
+            return annotation;
+    }];
+    
+    [self.mapView showAnnotations:mapAnnotations.array animated:YES];
 }
 
 #pragma mark - RBStoryboardLinkSource Delegate Methods
@@ -195,34 +145,6 @@ NSString *const kDidUpdateList = @"DidUpdateList";
 
 - (BOOL)needsBottomLayoutGuide {
     return FALSE;
-}
-
-#pragma mark - MMDBFetcher Delegate Methods
-
-- (void)didCreateUser:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
-    if (!response.wasSuccessful) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Profile Creation Error", nil)
-                                                          message:NSLocalizedString(@"Unable to create user profile.", nil)
-                                                         delegate:nil
-                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                otherButtonTitles:nil];
-        [message show];
-
-        return;
-    }
-}
-
-- (void)didAddUserRestrictions:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
-    if (!response.wasSuccessful) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Dietary Restriction Error", nil)
-                                                          message:NSLocalizedString(@"Unable to update dietary restrictions.", nil)
-                                                         delegate:nil
-                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                otherButtonTitles:nil];
-        [message show];
-
-        return;
-    }
 }
 
 #pragma mark - Split View Delegate Methods

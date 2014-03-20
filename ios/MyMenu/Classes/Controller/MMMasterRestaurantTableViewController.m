@@ -26,10 +26,16 @@
 #import "NSArray+MerchantSort.h"
 #import "MMRestaurantViewController.h"
 #import <RBStoryboardLink/RBStoryboardLink.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <RACEXTScope.h>
+#import "MMMerchantService.h"
+#import "UISearchBar+RAC.h"
+#import "MMSplitViewController.h"
+#import "MMPresentationFormatter.h"
 
-@interface MMMasterRestaurantTableViewController () {
-    NSMutableArray *_objects;
-}
+@interface MMMasterRestaurantTableViewController ()
+
+@property(nonatomic, strong) NSNumber *selectedMerchantId;
 
 - (void)updatedOrderByFilter:(UISegmentedControl *)control;
 
@@ -46,57 +52,60 @@
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
-- (void)didRetrieveCompressedMerchants:(NSArray *)compressedMerchants withResponse:(MMDBFetcherResponse *)response {
-    if (!response.wasSuccessful) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
-                                                          message:@"Unable to communicate with server."
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [message show];
-
-        return;
-    }
-
-    // Successful retrieved restaurant list.
-
-    if (_searchflag == TRUE) {
-        _filteredrestaurants = compressedMerchants;
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList object:_filteredrestaurants];
-        _searchflag = FALSE;
-        [((UITableView *) self.searchDisplayController.searchResultsTableView) reloadData];
-    }
-    else {
-        _restaurants = compressedMerchants;
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList
-                                                            object:_restaurants];
-    }
-
-    [self.tableView reloadData];
-}
-
-- (void)didRetrieveMerchant:(MMMerchant *)merchant withResponse:(MMDBFetcherResponse *)response {
-    self.selectedRestaurant = merchant;
-    [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveUserLocation:)
-                                                 name:kRetrievedUserLocation
-                                               object:nil];
-
-    _searchflag = false;
-
+    
+    @weakify(self);
+    [[[[MMLocationManager sharedLocationManager].getLatestLocation
+        deliverOn:[RACScheduler mainThreadScheduler]]
+        flattenMap:^RACStream *(CLLocation *location) {
+            return [[MMMerchantService sharedService] getDefaultCompressedMerchantsForLocation:location];
+        }]
+        subscribeNext:^(NSMutableArray *compressedMerchants) {
+            @strongify(self);
+            _restaurants = compressedMerchants;
+            [self.delegate didReceiveMerchants:compressedMerchants];
+            
+            [self.tableView reloadData];
+    }];
+    
+    RAC(self, filteredrestaurants) = [[[[[[[[self.merchantSearchBar rac_textSignal]
+        skip:1]       // Skip the initial binding signal
+        throttle:0.6] // Only try to search every 0.6 seconds
+        doNext:^(NSString *searchValue) {
+            // Perform side-effects here
+            if ([searchValue isEqualToString:@""])
+                [self.delegate didReceiveMerchants:[NSMutableArray new]];
+        }]
+        filter:^BOOL(NSString *searchValue) {
+            // Only perform search if non-empty string
+            return ![searchValue isEqualToString:@""];
+        }]
+        flattenMap:^RACStream *(NSString *searchValue) {
+            // Retrieve a list of merchants with name of specified search value
+            return [[MMMerchantService sharedService] getCompressedMerchantsForLocation:self.location withName:searchValue];
+        }]
+        doNext:^(NSMutableArray *searchResults) {
+            [self.delegate didReceiveMerchants:searchResults];
+        }]
+        map:^NSArray*(NSMutableArray *searchResults) {
+            // Bind search results to filteredrestaurants variable now
+            return [searchResults copy];
+        }];
+    
+    [RACObserve(self, filteredrestaurants) subscribeNext:^(id x) {
+        [self.searchDisplayController.searchResultsTableView reloadData];
+    }];
+    
+    [[self.orderbySegmentControl rac_newSelectedSegmentIndexChannelWithNilValue:0]
+        subscribeNext:^(id x) {
+            @strongify(self);
+            [self updatedOrderByFilter:self.orderbySegmentControl];
+    }];
+    
     self.detailViewController = (MMDetailMapViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-
-    [self.orderbySegmentControl addTarget:self
-                                   action:@selector(updatedOrderByFilter:)
-                         forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)updatedOrderByFilter:(UISegmentedControl *)control {
@@ -117,29 +126,9 @@
     [self.tableView reloadData];
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)didReceiveUserLocation:(NSNotification *)notification {
-    _location = notification.object;
-    self.dbFetcher = [[MMDBFetcher alloc] init];
-    self.dbFetcher.delegate = self;
-    [self.dbFetcher getCompressedMerchants:_location];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)insertNewObject:(id)sender {
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Table View
@@ -150,14 +139,12 @@
 
 // Return the amount of restaurants.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return [_filteredrestaurants count];
-    } else {
-
+    }
+    else {
         return [_restaurants count];
     }
-
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -168,7 +155,6 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantTableCell" owner:self options:NULL] objectAtIndex:0];
     }
 
-
     MMMerchant *restaurant;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         restaurant = [_filteredrestaurants objectAtIndex:indexPath.row];
@@ -176,44 +162,12 @@
         restaurant = [_restaurants objectAtIndex:indexPath.row];
     }
 
-
     cell.ratingBg.backgroundColor = [UIColor lightBackgroundGray];
     cell.ratingBg.layer.cornerRadius = 5;
     cell.restaurantNameLabel.text = restaurant.businessname;
     cell.categoryLabel.text = restaurant.category;
-
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatter setMaximumFractionDigits:1];
-    [formatter setMinimumFractionDigits:1];
-
-    NSString *rate = [formatter stringFromNumber:[[_restaurants objectAtIndex:indexPath.row] rating]];
-    if ([rate isEqualToString:@".0"]) {
-        rate = @"N/A";
-    }
-
-    if ([restaurant.distfromuser compare:[NSNumber numberWithFloat:0.0f]] == NSOrderedAscending) {
-        NSNumberFormatter *oneDecFormat = [[NSNumberFormatter alloc] init];
-        [oneDecFormat setRoundingMode:NSNumberFormatterRoundHalfUp];
-        [oneDecFormat setMaximumFractionDigits:0];
-
-        NSString *stringFormat = @"%@ m";
-        NSNumber *dist = [NSNumber numberWithDouble:restaurant.distfromuser.doubleValue * 1000.0];
-        NSString *formattedValue = [oneDecFormat stringFromNumber:dist];
-
-        cell.distanceLabel.text = [NSString stringWithFormat:stringFormat, formattedValue];
-    } else {
-        NSNumberFormatter *oneDecFormat = [[NSNumberFormatter alloc] init];
-        [oneDecFormat setRoundingMode:NSNumberFormatterRoundHalfUp];
-        [oneDecFormat setMaximumFractionDigits:1];
-
-        NSString *stringFormat = @"%@ km";
-        NSString *formattedValue = [oneDecFormat stringFromNumber:restaurant.distfromuser];
-
-        cell.distanceLabel.text = [NSString stringWithFormat:stringFormat, formattedValue];
-    }
-
-    cell.ratinglabel.text = rate;
+    cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:restaurant.rating];
+    cell.distanceLabel.text = [MMPresentationFormatter formatDistance:restaurant.distfromuser];
     cell.addressLabel.text = restaurant.address;
 
     [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:[restaurant picture]] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
@@ -226,28 +180,20 @@
     return NO;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-}
-
 // Cell size is 80 so its hard coded in.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        [self.dbFetcher getMerchant:[[_filteredrestaurants objectAtIndex:indexPath.row] mid]];
-    } else {
-        [self.dbFetcher getMerchant:[[_restaurants objectAtIndex:indexPath.row] mid]];
+    if (self.searchflag) {
+        self.selectedMerchantId = ((MMMerchant *)[self.filteredrestaurants objectAtIndex:indexPath.row]).mid;
     }
-    [self.dbFetcher getMerchant:[[self.restaurants objectAtIndex:indexPath.row] mid]];
+    else {
+        self.selectedMerchantId = ((MMMerchant *)[self.restaurants objectAtIndex:indexPath.row]).mid;
+    }
+    
+    [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -257,27 +203,31 @@
         RBStoryboardLink *storyboardLink = [controller.viewControllers firstObject];
         MMRestaurantViewController *restaurantViewController = (MMRestaurantViewController *) storyboardLink.scene;
 
-        restaurantViewController.currentMerchant = _selectedRestaurant;
+        restaurantViewController.currentMerchantId = self.selectedMerchantId;
     }
 }
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-
-    _searchflag = TRUE;
-    if ([searchBar.text length] != 0) {
-        self.dbFetcher = [[MMDBFetcher alloc] init];
-        self.dbFetcher.delegate = self;
-        [self.dbFetcher getCompressedMerchantsByName:_location withName:searchBar.text];
-    }
-
+- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller {
+    self.filteredrestaurants = @[];
+    [self.delegate didReceiveMerchants:[NSMutableArray new]];
+    
+    self.searchflag = YES;
 }
 
-/* When the user clicks 'cancel' */
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
+    [self.delegate didReceiveMerchants:[self.restaurants mutableCopy]];
+    
+    self.filteredrestaurants = @[];
+    self.searchflag = NO;
+}
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateList
-                                                        object:_restaurants];
-
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    if ([searchString isEqualToString:@""] && self.searchflag) {
+        self.filteredrestaurants = @[];
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

@@ -38,19 +38,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.ratingView.wheelPercentage =
-            (self.currentRating > 0.0f) ? self.currentRating : 0.1f;
-    self.ratingView.wheelBackgroundColor = [UIColor lightBackgroundGray];
-    self.ratingView.wheelFillColor = [UIColor lightTealColor];
-    self.ratingView.multipleTouchEnabled = FALSE;
-
-    self.menuItemName.text = self.menuItem.name;
-    self.merchantName.text = self.menuItemMerchant.businessname;
-
-    if (self.menuItem.picture != nil && ![self.menuItem.picture isEqualToString:@"null"]) {
-        [self.menuItemImage setImageWithURL:[NSURL URLWithString:self.menuItem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
-    }
+        if (self.navigationController != Nil){
+            self.cancelButton.hidden = YES;
+            self.doneButton.hidden = YES;
+        }else{
+            self.cancelButton.hidden = NO;
+        }
+        self.ratingView.wheelPercentage =
+        (self.currentRating > 0.0f) ? self.currentRating : 0.1f;
+        self.ratingView.wheelBackgroundColor = [UIColor lightBackgroundGray];
+        self.ratingView.wheelFillColor = [UIColor lightTealColor];
+        self.ratingView.multipleTouchEnabled = FALSE;
+        
+        self.menuItemName.text = self.menuItem.name;
+        self.merchantName.text = self.menuItemMerchant.businessname;
+        
+        if (self.menuItem.picture != nil && ![self.menuItem.picture isEqualToString:@"null"]) {
+            [self.menuItemImage setImageWithURL:[NSURL URLWithString:self.menuItem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+        }
+}
+- (void) viewWillDisappear:(BOOL)animated{
+    if (self.navigationController != Nil)
+        self.selectedRating(self.ratingView.rating);
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -109,5 +118,6 @@
 - (void)cancelReview:(id)sender {
     self.cancelRating(nil);
 }
+
 
 @end

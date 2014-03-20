@@ -214,8 +214,8 @@ public class DietaryPreferencesFragment extends BaseFragment
     }
 
     class ViewHolder {
-      @InjectView(R.id.picture) ImageView picture;
-      @InjectView(R.id.label) TextView label;
+      @InjectView(R.id.restriction_picture) ImageView picture;
+      @InjectView(R.id.restriction_label) TextView label;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);
