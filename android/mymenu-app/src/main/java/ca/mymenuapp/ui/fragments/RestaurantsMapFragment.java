@@ -48,8 +48,6 @@ public class RestaurantsMapFragment extends BaseMapFragment {
     map.setIndoorEnabled(true);
     map.getUiSettings().setAllGesturesEnabled(true);
 
-    clusterManager = new ClusterManager<>(activityContext, map);
-
     myMenuDatabase.getAllRestaurants(new EndlessObserver<List<Restaurant>>() {
       @Override public void onNext(List<Restaurant> restaurants) {
         initMap(restaurants);
@@ -70,6 +68,7 @@ public class RestaurantsMapFragment extends BaseMapFragment {
     map.setOnCameraChangeListener(clusterManager);
     map.setOnMarkerClickListener(clusterManager);
 
+    clusterManager = new ClusterManager<>(activityContext, map);
     for (Restaurant restaurant : restaurants) {
       clusterManager.addItem(new RestaurantClusterAdapter(restaurant));
     }
