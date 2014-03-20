@@ -58,6 +58,10 @@ public class MyMenuDatabase {
   private PublishSubject<List<DietaryRestriction>> dietaryRestrictionsRequest;
   private List<DietaryRestriction> dietaryRestrictionsCache;
 
+  // cache of restaurants
+  private PublishSubject<List<Restaurant>> restaurantsRequest;
+  private List<Restaurant> restaurantsCache;
+
   // Cache of menus
   private final Map<Long, PublishSubject<RestaurantMenu>> menuRequests = new LinkedHashMap<>();
   private final Map<Long, RestaurantMenu> menuCache = new LinkedHashMap<>();
@@ -253,7 +257,28 @@ public class MyMenuDatabase {
   }
 
   public Subscription getAllRestaurants(Observer<List<Restaurant>> observer) {
-    return myMenuApi.getAllRestaurants(MyMenuApi.GET_ALL_RESTAURANTS)
+    if (restaurantsCache != null) {
+      // We have a cached value. Emit it immediately.
+      observer.onNext(restaurantsCache);
+    }
+    if (restaurantsRequest != null) {
+      // There's an in-flight network request for this section already. Join it.
+      return restaurantsRequest.subscribe(observer);
+    }
+
+    restaurantsRequest = PublishSubject.create();
+    Subscription subscription = restaurantsRequest.subscribe(observer);
+    restaurantsRequest.subscribe(new EndObserver<List<Restaurant>>() {
+      @Override public void onEnd() {
+        restaurantsRequest = null;
+      }
+
+      @Override public void onNext(List<Restaurant> response) {
+        restaurantsCache = response;
+      }
+    });
+
+    myMenuApi.getAllRestaurants(MyMenuApi.GET_ALL_RESTAURANTS)
         .map(new Func1<RestaurantResponse, List<Restaurant>>() {
           @Override
           public List<Restaurant> call(RestaurantResponse restResponse) {
@@ -262,7 +287,9 @@ public class MyMenuDatabase {
         })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(observer);
+        .subscribe(restaurantsRequest);
+
+    return subscription;
   }
 
   public Subscription likeReview(User user, MenuItemReview review, Observer<Response> observer) {
