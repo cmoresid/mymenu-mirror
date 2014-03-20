@@ -16,15 +16,19 @@
 
 package ca.mymenuapp.ui.fragments;
 
+import android.location.Location;
 import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.rx.EndlessObserver;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
 import java.util.List;
 import javax.inject.Inject;
+import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
+import rx.util.functions.Action1;
 
 public class RestaurantsMapFragment extends BaseMapFragment {
 
@@ -33,13 +37,15 @@ public class RestaurantsMapFragment extends BaseMapFragment {
   private GoogleMap map;
   private ClusterManager<RestaurantClusterAdapter> clusterManager;
 
+  ReactiveLocationProvider locationProvider;
+
   @Override public void onStart() {
     super.onStart();
 
     map = getMap();
+
     map.setMyLocationEnabled(true);
     map.setIndoorEnabled(true);
-    map.getUiSettings().setMyLocationButtonEnabled(true);
     map.getUiSettings().setAllGesturesEnabled(true);
 
     clusterManager = new ClusterManager<>(activityContext, map);
@@ -49,16 +55,29 @@ public class RestaurantsMapFragment extends BaseMapFragment {
         initMap(restaurants);
       }
     });
+
+    locationProvider = new ReactiveLocationProvider(activityContext);
+    locationProvider.getLastKnownLocation().subscribe(new Action1<Location>() {
+      @Override
+      public void call(Location location) {
+        centerMap(location);
+      }
+    });
   }
 
   private void initMap(List<Restaurant> restaurants) {
     // Point the map's listeners at the listeners implemented by the cluster manager.
-    getMap().setOnCameraChangeListener(clusterManager);
-    getMap().setOnMarkerClickListener(clusterManager);
+    map.setOnCameraChangeListener(clusterManager);
+    map.setOnMarkerClickListener(clusterManager);
 
     for (Restaurant restaurant : restaurants) {
       clusterManager.addItem(new RestaurantClusterAdapter(restaurant));
     }
+  }
+
+  private void centerMap(Location location) {
+    LatLng moveTo = new LatLng(location.getLatitude(), location.getLongitude());
+    map.animateCamera(CameraUpdateFactory.newLatLngZoom(moveTo, 10));
   }
 
   class RestaurantClusterAdapter implements ClusterItem {
