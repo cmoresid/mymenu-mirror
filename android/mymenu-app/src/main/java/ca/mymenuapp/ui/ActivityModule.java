@@ -30,7 +30,6 @@ import ca.mymenuapp.ui.fragments.BaseFragment;
 import ca.mymenuapp.ui.fragments.BaseMapFragment;
 import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.MenuItemsGridFragment;
-import ca.mymenuapp.ui.fragments.PlaceholderFragment;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.fragments.ReviewsFragment;
@@ -44,8 +43,8 @@ import javax.inject.Singleton;
         BaseActivity.class, MainActivity.class, LoginActivity.class, SignUpActivity.class,
         RestaurantActivity.class, MenuItemActivity.class,
         // Fragments
-        BaseFragment.class, PlaceholderFragment.class, DietaryPreferencesFragment.class,
-        MenuItemsGridFragment.class, ReviewsFragment.class, RestaurantGridFragment.class,
+        BaseFragment.class, DietaryPreferencesFragment.class, MenuItemsGridFragment.class,
+        ReviewsFragment.class, RestaurantGridFragment.class,
 
         // Map Fragments
         BaseMapFragment.class, RestaurantsMapFragment.class

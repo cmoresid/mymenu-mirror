@@ -28,11 +28,9 @@ import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
-import ca.mymenuapp.ui.fragments.PlaceholderFragment;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
-import ca.mymenuapp.util.Bundler;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -59,13 +57,11 @@ public class MainActivity extends BaseActivity {
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
     tabsAdapter = new SwipeableActionBarTabsAdapter(this, viewPager);
-    tabsAdapter.addTab(actionBar.newTab().setText("Restaurant"), PlaceholderFragment.class,
-        new Bundler().put(PlaceholderFragment.ARG_SECTION_NUMBER, 1).get());
-    tabsAdapter.addTab(actionBar.newTab().setText("Preferences"), DietaryPreferencesFragment.class,
-        null);
     tabsAdapter.addTab(actionBar.newTab().setText("Restaurants"), RestaurantGridFragment.class,
         null);
     tabsAdapter.addTab(actionBar.newTab().setText("Map"), RestaurantsMapFragment.class, null);
+    tabsAdapter.addTab(actionBar.newTab().setText("Preferences"), DietaryPreferencesFragment.class,
+        null);
 
     actionBar.setSelectedNavigationItem(tab);
   }
