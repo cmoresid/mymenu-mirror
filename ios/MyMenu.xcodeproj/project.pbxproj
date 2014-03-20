@@ -28,8 +28,6 @@
 		1744F9BF18C524FD009CCC95 /* upvote.png in Resources */ = {isa = PBXBuildFile; fileRef = 1744F9BD18C524FD009CCC95 /* upvote.png */; };
 		1744F9C018C524FD009CCC95 /* upvote@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1744F9BE18C524FD009CCC95 /* upvote@2x.png */; };
 		174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */; };
-		17F9F80D18AC3565006B7DD0 /* facebookshare.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17F9F80C18AC3565006B7DD0 /* facebookshare.jpg */; };
-		17F9F80F18AC356F006B7DD0 /* twittershare.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17F9F80E18AC356F006B7DD0 /* twittershare.jpg */; };
 		833C8C83189D9B85007CB562 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 833C8C82189D9B85007CB562 /* logo.png */; };
 		83893EAB18919AD400D36670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAA18919AD400D36670 /* Foundation.framework */; };
 		83893EAD18919AD400D36670 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAC18919AD400D36670 /* CoreGraphics.framework */; };
@@ -163,8 +161,6 @@
 		1744F9BD18C524FD009CCC95 /* upvote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upvote.png; sourceTree = "<group>"; };
 		1744F9BE18C524FD009CCC95 /* upvote@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upvote@2x.png"; sourceTree = "<group>"; };
 		174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantTableCell.xib; sourceTree = "<group>"; };
-		17F9F80C18AC3565006B7DD0 /* facebookshare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = facebookshare.jpg; sourceTree = "<group>"; };
-		17F9F80E18AC356F006B7DD0 /* twittershare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = twittershare.jpg; sourceTree = "<group>"; };
 		5C67526E59F84C8AAF4F8411 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		68625818F04245E796C47BC4 /* Pods-MyMenuTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMenuTests.xcconfig"; path = "Pods/Pods-MyMenuTests.xcconfig"; sourceTree = "<group>"; };
 		833C8C82189D9B85007CB562 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
@@ -413,8 +409,6 @@
 				1744F9BE18C524FD009CCC95 /* upvote@2x.png */,
 				B0DF9BD118AC43C800BB42FA /* FacebookIcon.png */,
 				B0DF9BD218AC43C800BB42FA /* TwitterIcon.png */,
-				17F9F80E18AC356F006B7DD0 /* twittershare.jpg */,
-				17F9F80C18AC3565006B7DD0 /* facebookshare.jpg */,
 				1731DFAB18A59B0F008BE05B /* 06-magnify.png */,
 				B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */,
 				B0B0C4DD18A8245600BA47CB /* LocationMarker.png */,
@@ -891,9 +885,12 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MM;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
+					83893EA618919AD400D36670 = {
+						DevelopmentTeam = 6JJW4NJJ4G;
+					};
 					83893ECA18919AD400D36670 = {
 						TestTargetID = 83893EA618919AD400D36670;
 					};
@@ -949,10 +946,8 @@
 				B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */,
 				B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */,
 				174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */,
-				17F9F80F18AC356F006B7DD0 /* twittershare.jpg in Resources */,
 				B0E7616C18CA8D2700D1ABF7 /* Menu.storyboard in Resources */,
 				83CC9ED718D253FB00E0B48A /* CalendarPreviousMonth.png in Resources */,
-				17F9F80D18AC3565006B7DD0 /* facebookshare.jpg in Resources */,
 				83CC9EE018D253FB00E0B48A /* CalendarTodaysDate@2x.png in Resources */,
 				B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */,
 				83CC9EE318D253FB00E0B48A /* Default@2x.png in Resources */,
@@ -1182,7 +1177,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1229,7 +1223,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1269,7 +1262,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5C67526E59F84C8AAF4F8411 /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyMenu/MyMenu-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1280,6 +1276,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1288,7 +1285,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5C67526E59F84C8AAF4F8411 /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyMenu/MyMenu-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1299,6 +1299,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1308,7 +1309,6 @@
 			baseConfigurationReference = 68625818F04245E796C47BC4 /* Pods-MyMenuTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyMenu.app/MyMenu";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1333,7 +1333,6 @@
 			baseConfigurationReference = 68625818F04245E796C47BC4 /* Pods-MyMenuTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyMenu.app/MyMenu";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
