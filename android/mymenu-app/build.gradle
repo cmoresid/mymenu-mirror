@@ -114,7 +114,8 @@ dependencies {
     exclude group: 'com.google.android', module: 'support-v4'
   }
 
-  compile 'com.google.android.gms:play-services:+'
+  compile 'com.google.maps.android:android-maps-utils:0.3'
+  compile 'com.google.android.gms:play-services:4.1.32'
 
   compile 'com.greenhalolabs:emailautocompletetextview:1.2.0'
   compile 'com.astuetz:pagerslidingtabstrip:1.0.1'

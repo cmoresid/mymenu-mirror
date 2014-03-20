@@ -30,8 +30,10 @@ import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.PlaceholderFragment;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
+import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import ca.mymenuapp.util.Bundler;
+import com.google.android.gms.maps.MapFragment;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -64,6 +66,7 @@ public class MainActivity extends BaseActivity {
         null);
     tabsAdapter.addTab(actionBar.newTab().setText("Restaurants"), RestaurantGridFragment.class,
         null);
+    tabsAdapter.addTab(actionBar.newTab().setText("Map"), RestaurantsMapFragment.class, null);
 
     actionBar.setSelectedNavigationItem(tab);
   }
