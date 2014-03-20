@@ -117,6 +117,8 @@
  */
 @property(nonatomic, strong) MMReviewPopOverViewController *revPopOver;
 
+@property(nonatomic) BOOL isShowingLandscape;
+
 /**
  *  Return to main screen button
  *

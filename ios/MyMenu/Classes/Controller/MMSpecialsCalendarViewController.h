@@ -27,6 +27,8 @@
  */
 @property (nonatomic, strong) NSCalendar *calendar;
 
+@property (nonatomic,strong) NSDate * firstDate;
+
 
 /**
  *  Required height for the tableview
