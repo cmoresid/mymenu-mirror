@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <!--
   ~ Copyright (C) 2014 MyMenu, Inc.
   ~
@@ -17,12 +15,20 @@
   ~ along with this program.  If not, see [http://www.gnu.org/licenses/].
   -->
 
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle" android:padding="10dp">
-  <solid android:color="#808080"/>
-  <corners
-      android:bottomRightRadius="15dp"
-      android:bottomLeftRadius="15dp"
-      android:topLeftRadius="15dp"
-      android:topRightRadius="15dp"/>
-</shape>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+  <FrameLayout
+      android:id="@+id/restaurant_map_container"
+      android:layout_width="match_parent"
+      android:layout_weight="1"
+      android:layout_height="0dp"/>
+
+  <FrameLayout
+      android:id="@+id/restaurant_list_container"
+      android:layout_width="match_parent"
+      android:layout_height="360dp"/>
+
+</LinearLayout>

@@ -89,11 +89,10 @@ public class DietaryPreferencesFragment extends BaseFragment
 
   private void updateRestrictions() {
     myMenuDatabase.getAllRestrictions(new EndlessObserver<List<DietaryRestriction>>() {
-                                        @Override public void onNext(
-                                            List<DietaryRestriction> dietaryRestrictions) {
-                                          initGrid(dietaryRestrictions);
-                                        }
-                                      }
+          @Override public void onNext(List<DietaryRestriction> dietaryRestrictions) {
+            initGrid(dietaryRestrictions);
+          }
+        }
     );
   }
 

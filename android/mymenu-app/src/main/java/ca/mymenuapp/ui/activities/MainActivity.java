@@ -18,16 +18,17 @@
 package ca.mymenuapp.ui.activities;
 
 import android.app.ActionBar;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import butterknife.InjectView;
+import butterknife.Optional;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
-import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
@@ -40,31 +41,51 @@ import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 public class MainActivity extends BaseActivity {
 
   @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
-  @InjectView(R.id.pager) ViewPager viewPager;
-
-  private SwipeableActionBarTabsAdapter tabsAdapter;
+  @InjectView(R.id.pager) @Optional ViewPager viewPager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     inflateView(R.layout.activity_main);
-    setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
+
+    if (savedInstanceState == null) {
+      if (viewPager != null) {
+        // we're on a phone
+        setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
+      } else {
+        // we're on a tablet layout
+        setupPanes();
+      }
+    }
   }
 
-  /** Setup the tabs two display our fragments. */
+  /** Setup the tabs to display our fragments. */
   private void setupTabs(int tab) {
     ActionBar actionBar = getActionBar();
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-    tabsAdapter = new SwipeableActionBarTabsAdapter(this, viewPager);
+    SwipeableActionBarTabsAdapter tabsAdapter = new SwipeableActionBarTabsAdapter(this, viewPager);
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.restaurants)),
         RestaurantGridFragment.class, null);
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.map)),
         RestaurantsMapFragment.class, null);
-    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.dietary_preferences)),
-        DietaryPreferencesFragment.class, null);
-
     actionBar.setSelectedNavigationItem(tab);
+  }
+
+  /** Setup the panes to display our fragments. */
+  private void setupPanes() {
+    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+    transaction.add(R.id.restaurant_list_container, new RestaurantGridFragment());
+    transaction.add(R.id.restaurant_map_container, new RestaurantsMapFragment());
+    transaction.commit();
+  }
+
+  @Override
+  protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    if (viewPager != null) {
+      outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
+    }
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,11 +95,15 @@ public class MainActivity extends BaseActivity {
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
+      case R.id.dietary_preferences:
+        Intent dietaryPreferencesIntent = new Intent(this, DietaryPreferencesActivity.class);
+        startActivity(dietaryPreferencesIntent);
+        return true;
       case R.id.logout:
         userPreference.delete();
-        Intent intent = new Intent(this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        loginIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(loginIntent);
         finish();
         return true;
       default:

@@ -19,6 +19,7 @@ package ca.mymenuapp.ui.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,9 +38,13 @@ import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.activities.RestaurantActivity;
 import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
+import com.google.android.gms.location.LocationRequest;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 import javax.inject.Inject;
+import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
+import rx.Subscription;
+import rx.util.functions.Action1;
 
 /**
  * Fragment to display restaurants in a grid.
@@ -49,15 +54,17 @@ public class RestaurantGridFragment extends BaseFragment
 
   @Inject Picasso picasso;
   @Inject MyMenuDatabase myMenuDatabase;
+  @Inject ReactiveLocationProvider locationProvider;
 
   @InjectView(R.id.root) BetterViewAnimator root;
   @InjectView(R.id.restaurant_grid) GridView gridView;
 
   BaseAdapter adapter;
-
-  public static RestaurantGridFragment newInstance() {
-    return new RestaurantGridFragment();
-  }
+  Subscription locationSubscription;
+  LocationRequest request = LocationRequest.create()
+      .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+      .setInterval(1000);
+  Location lastKnownLocation;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,6 +81,18 @@ public class RestaurantGridFragment extends BaseFragment
   public void onStart() {
     super.onStart();
     getRestaurantList();
+    locationSubscription =
+        locationProvider.getUpdatedLocation(request).subscribe(new Action1<Location>() {
+          @Override
+          public void call(Location location) {
+            lastKnownLocation = location;
+          }
+        });
+  }
+
+  @Override public void onStop() {
+    super.onStop();
+    locationSubscription.unsubscribe();
   }
 
   @Override
@@ -85,11 +104,11 @@ public class RestaurantGridFragment extends BaseFragment
 
   private void getRestaurantList() {
     myMenuDatabase.getAllRestaurants(new EndlessObserver<List<Restaurant>>() { //
-                                       @Override //
-                                       public void onNext(List<Restaurant> restaurants) {
-                                         initList(restaurants);
-                                       }
-                                     }
+          @Override //
+          public void onNext(List<Restaurant> restaurants) {
+            initList(restaurants);
+          }
+        }
     );
   }
 
@@ -112,7 +131,7 @@ public class RestaurantGridFragment extends BaseFragment
 
     @Override
     public View newView(LayoutInflater inflater, int position, ViewGroup container) {
-      View view = inflater.inflate(R.layout.adapter_restaurant_list, container, false);
+      View view = inflater.inflate(R.layout.adapter_restaurant_grid, container, false);
       ViewHolder holder = new ViewHolder(view);
       view.setTag(holder);
       return view;
@@ -128,11 +147,13 @@ public class RestaurantGridFragment extends BaseFragment
           .centerCrop()
           .into(holder.picture);
       holder.name.setText(item.businessName);
+      holder.address.setText(item.address);
     }
 
     class ViewHolder {
       @InjectView(R.id.restaurant_picture) ImageView picture;
       @InjectView(R.id.restaurant_name) TextView name;
+      @InjectView(R.id.restaurant_address) TextView address;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);

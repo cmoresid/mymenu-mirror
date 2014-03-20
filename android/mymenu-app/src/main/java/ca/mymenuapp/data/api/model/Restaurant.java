@@ -17,6 +17,7 @@
 
 package ca.mymenuapp.data.api.model;
 
+import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
 import org.simpleframework.xml.Element;
@@ -52,8 +53,19 @@ public class Restaurant implements Parcelable {
   @Element(name = "opentime") public String openTime;
   @Element(name = "closetime") public String closeTime;
 
+  @Element(required = false) Location location;
+
   public Restaurant() {
     // default constructor
+  }
+
+  public Location getLocation() {
+    if (location == null) {
+      location = new Location("");
+      location.setLatitude(lat);
+      location.setLongitude(lng);
+    }
+    return location;
   }
 
   protected Restaurant(Parcel in) {

@@ -26,6 +26,7 @@
 
   <!-- Menu Fragment -->
   <dimen name="grid_item_width">128dp</dimen>
+  <dimen name="grid_item_container_width">258dp</dimen> <!-- Container of the grid -->
 
   <!-- Padding -->
   <dimen name="holo_gap">8dp</dimen>

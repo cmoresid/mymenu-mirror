@@ -23,7 +23,7 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ca.mymenuapp.ui.fragment_restaurant_list">
+    tools:context="ca.mymenuapp.ui.fragments.RestaurantGridFragment">
 
   <ProgressBar
       android:id="@+id/progress_bar"
@@ -41,8 +41,6 @@
       android:drawSelectorOnTop="true"
       android:scrollbarStyle="insideOverlay"
       android:scrollbars="none"
-      android:horizontalSpacing="1dp"
-      android:verticalSpacing="1dp"
       android:layout_marginRight="-1px"/>
 
 </ca.mymenuapp.ui.widgets.BetterViewAnimator>

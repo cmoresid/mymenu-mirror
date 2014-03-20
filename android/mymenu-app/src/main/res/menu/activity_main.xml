@@ -19,6 +19,10 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+  <item android:id="@+id/dietary_preferences"
+      android:title="@string/dietary_preferences"
+      android:showAsAction="ifRoom"/>
+
   <item android:id="@+id/logout"
       android:title="@string/logout"
       android:showAsAction="never"/>

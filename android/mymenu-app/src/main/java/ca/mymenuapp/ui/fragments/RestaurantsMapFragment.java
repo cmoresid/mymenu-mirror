@@ -33,11 +33,10 @@ import rx.util.functions.Action1;
 public class RestaurantsMapFragment extends BaseMapFragment {
 
   @Inject MyMenuDatabase myMenuDatabase;
+  @Inject ReactiveLocationProvider locationProvider;
 
   private GoogleMap map;
   private ClusterManager<RestaurantClusterAdapter> clusterManager;
-
-  ReactiveLocationProvider locationProvider;
 
   @Override public void onStart() {
     super.onStart();
@@ -54,7 +53,6 @@ public class RestaurantsMapFragment extends BaseMapFragment {
       }
     });
 
-    locationProvider = new ReactiveLocationProvider(activityContext);
     locationProvider.getLastKnownLocation().subscribe(new Action1<Location>() {
       @Override
       public void call(Location location) {

@@ -20,4 +20,7 @@
        (such as screen margins) for screens with more than 600dp of available width. This
        would include 7" and 10" devices in portrait. -->
 
+  <dimen name="grid_item_width">160dp</dimen>
+  <dimen name="grid_item_container_width">324dp</dimen> <!-- Container of the grid -->
+
 </resources>
