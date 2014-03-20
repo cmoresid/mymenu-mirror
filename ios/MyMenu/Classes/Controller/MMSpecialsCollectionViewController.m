@@ -59,15 +59,27 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-	
+	[self detectOrientation];
 	//add toolbar to the main view
-	[self.toolbar setItems:self.toolbarItems];
-	[self.toolbar setFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.width, [[UIScreen mainScreen] bounds].size.height, 44)];
-    [self.view addSubview:self.toolbar];
+
+	
+	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:UIDeviceOrientationDidChangeNotification object:nil];
 	
 	// Delegate our self to the db fetcher.
     [MMDBFetcher get].delegate = self;
     self.navigationController.toolbar.hidden = TRUE;
+}
+
+
+-(void) detectOrientation {
+    if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) ||
+        ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
+		[self.toolbar setFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.width, [[UIScreen mainScreen] bounds].size.height, 44)];
+	} else if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait || [[UIDevice currentDevice] orientation] == UIDeviceOrientationPortraitUpsideDown) {
+		[self.toolbar setFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height,[[UIScreen mainScreen] bounds].size.width,44)];
+
+	}
 }
 
 - (void)viewDidLoad {
@@ -161,7 +173,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	
 	
     // Search Bar Creation
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
     [searchBar setPlaceholder:@"Search..."];
     [searchBar setShowsCancelButton:YES animated:YES];
     [searchBar setDelegate:self];
@@ -185,6 +197,9 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     //add buttons to the toolbar
     [self setToolbarItems:[NSArray arrayWithObjects:buttonFilter, buttonWeek, flexibleSpace, dateLabel, flexibleSpace, searchBarButtonItem, negativeSeperator, nil]];
 	[self setToolbar:toolbar];
+	
+	[self.toolbar setItems:self.toolbarItems];
+	[self.view addSubview:self.toolbar];
 	
 }
 
