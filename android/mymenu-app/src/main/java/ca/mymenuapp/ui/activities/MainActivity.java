@@ -33,7 +33,6 @@ import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import ca.mymenuapp.util.Bundler;
-import com.google.android.gms.maps.MapFragment;
 import javax.inject.Inject;
 import javax.inject.Named;
 
