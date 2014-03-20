@@ -39,6 +39,8 @@ import com.google.android.gms.location.LocationRequest;
 import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;
 import hugo.weaving.DebugLog;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -112,6 +114,8 @@ public class RestaurantGridFragment extends BaseFragment
   }
 
   class RestaurantListAdapter extends BindableListAdapter<Restaurant> {
+    NumberFormat nf = DecimalFormat.getInstance();
+
     public RestaurantListAdapter(Context context, List<Restaurant> restaurants) {
       super(context, restaurants);
     }
@@ -138,14 +142,34 @@ public class RestaurantGridFragment extends BaseFragment
           .fit()
           .centerCrop()
           .into(holder.picture);
-      holder.name.setText(item.businessName);
+      holder.label.setText(item.businessName);
+      holder.rating.setText(Double.toString(item.rating));
       holder.address.setText(item.address);
+      // todo, show text
+      holder.cuisine.setText(item.category);
+
+      Double distInt = Double.parseDouble(item.distance);
+      String distance = "";
+      nf.setMaximumFractionDigits(1);
+
+      if (distInt < 1) {
+        nf.setMaximumFractionDigits(0);
+        distInt *= 1000;
+        distance = nf.format(distInt) + "m";
+      } else {
+        distance = nf.format(distInt) + "km";
+      }
+
+      holder.distance.setText(distance);
     }
 
     class ViewHolder {
-      @InjectView(R.id.restaurant_picture) ImageView picture;
-      @InjectView(R.id.restaurant_name) TextView name;
-      @InjectView(R.id.restaurant_address) TextView address;
+      @InjectView(R.id.rest_image) ImageView picture;
+      @InjectView(R.id.rest_name) TextView label;
+      @InjectView(R.id.rest_rating) TextView rating;
+      @InjectView(R.id.rest_cuisine) TextView cuisine;
+      @InjectView(R.id.rest_address) TextView address;
+      @InjectView(R.id.rest_distance) TextView distance;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);

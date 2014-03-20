@@ -22,6 +22,7 @@ import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
@@ -45,9 +46,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
+import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import rx.util.functions.Action1;
 import rx.util.functions.Func1;
 
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
@@ -57,6 +60,7 @@ public class MainActivity extends BaseActivity {
 
   @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
   @Inject MyMenuDatabase myMenuDatabase;
+  @Inject ReactiveLocationProvider locationProvider;
 
   @InjectView(R.id.pager) @Optional ViewPager viewPager;
 
@@ -69,16 +73,22 @@ public class MainActivity extends BaseActivity {
     inflateView(R.layout.activity_main);
 
     if (savedInstanceState == null) {
-      myMenuDatabase.getAllRestaurants(new EndlessObserver<List<Restaurant>>() {
-        @Override public void onNext(List<Restaurant> restaurantList) {
-          restaurants = new ArrayList<>(restaurantList);
-          if (viewPager != null) {
-            // we're on a phone
-            setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
-          } else {
-            // we're on a tablet layout
-            setupPanes();
-          }
+      locationProvider.getLastKnownLocation().subscribe(new Action1<Location>() {
+        @Override
+        public void call(Location location) {
+          myMenuDatabase.getNearbyRestaurants(Double.toString(location.getLatitude()),
+              Double.toString(location.getLongitude()), new EndlessObserver<List<Restaurant>>() {
+            @Override public void onNext(List<Restaurant> restaurantList) {
+              restaurants = new ArrayList<>(restaurantList);
+              if (viewPager != null) {
+                // we're on a phone
+                setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
+              } else {
+                // we're on a tablet layout
+                setupPanes();
+              }
+            }
+          });
         }
       });
     }
