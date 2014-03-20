@@ -49,6 +49,7 @@
   <!-- Dietary Preferences Fragment -->
   <string name="save">Save</string>
   <string name="reviews">Reviews</string>
+  <string name="dietary_preferences">Preferences</string>
 
   <!-- Menu Items Grid Fragment -->
   <string name="share_restaurant">Check out %1$s! - %2$s</string>
@@ -66,5 +67,11 @@
   <string name="rating">Rating</string>
   <string name="like_count">Like Count</string>
   <string name="sort">Sort</string>
+
+  <!-- Restaurant List Fragment -->
+  <string name="restaurants">Restaurants</string>
+
+  <!-- Restaurant Map Fragment -->
+  <string name="map">Map</string>
 
 </resources>

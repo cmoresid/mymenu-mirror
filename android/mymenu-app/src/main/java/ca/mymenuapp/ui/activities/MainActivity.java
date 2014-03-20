@@ -57,11 +57,12 @@ public class MainActivity extends BaseActivity {
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
     tabsAdapter = new SwipeableActionBarTabsAdapter(this, viewPager);
-    tabsAdapter.addTab(actionBar.newTab().setText("Restaurants"), RestaurantGridFragment.class,
-        null);
-    tabsAdapter.addTab(actionBar.newTab().setText("Map"), RestaurantsMapFragment.class, null);
-    tabsAdapter.addTab(actionBar.newTab().setText("Preferences"), DietaryPreferencesFragment.class,
-        null);
+    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.restaurants)),
+        RestaurantGridFragment.class, null);
+    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.map)),
+        RestaurantsMapFragment.class, null);
+    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.dietary_preferences)),
+        DietaryPreferencesFragment.class, null);
 
     actionBar.setSelectedNavigationItem(tab);
   }
