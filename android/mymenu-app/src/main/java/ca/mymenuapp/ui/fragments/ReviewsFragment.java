@@ -138,8 +138,8 @@ public class ReviewsFragment extends BaseFragment
         adapter.sort(new Comparator<MenuItemReview>() {
           @Override public int compare(MenuItemReview l, MenuItemReview r) {
             // sort reviews by like count, highest going first
-            int lhs = Integer.parseInt(l.getLikeCount());
-            int rhs = Integer.parseInt(r.getLikeCount());
+            int lhs = l.getLikeCount();
+            int rhs = r.getLikeCount();
             // Copied from {@link Integer#compare(int, int)} - original is only API 17+
             return rhs < lhs ? -1 : (rhs == lhs ? 0 : 1);
           }

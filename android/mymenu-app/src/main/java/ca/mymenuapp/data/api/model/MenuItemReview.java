@@ -28,7 +28,6 @@ import org.simpleframework.xml.Root;
 
 @Root(name = "result")
 public class MenuItemReview implements Parcelable {
-  private static final String ZERO = "0";
   private static final String NULL_STRING = "null";
 
   @SuppressWarnings("SimpleDateFormat")
@@ -53,13 +52,13 @@ public class MenuItemReview implements Parcelable {
    *
    * @return 0 if likeCount is null or "null", else likeCount
    */
-  public String getLikeCount() {
+  public int getLikeCount() {
     if (TextUtils.isEmpty(likeCount)) {
-      return ZERO;
+      return 0;
     } else if (likeCount.compareTo(NULL_STRING) == 0) {
-      return ZERO;
+      return 0;
     } else {
-      return likeCount;
+      return Integer.parseInt(likeCount);
     }
   }
 
