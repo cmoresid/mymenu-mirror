@@ -20,11 +20,13 @@ package ca.mymenuapp.data.api.model;
 import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.clustering.ClusterItem;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 @Root(name = "result")
-public class Restaurant implements Parcelable {
+public class Restaurant implements Parcelable, ClusterItem {
   @Element(name = "id") public long id;
   @Element(name = "email") public String email;
   @Element(name = "password") public String password;
@@ -147,6 +149,10 @@ public class Restaurant implements Parcelable {
           return new Restaurant[size];
         }
       };
+
+  @Override public LatLng getPosition() {
+    return new LatLng(lat, lng);
+  }
 
   static class Builder {
     final Restaurant restaurant;

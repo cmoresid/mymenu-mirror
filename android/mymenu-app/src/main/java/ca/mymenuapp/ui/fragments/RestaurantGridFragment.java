@@ -62,8 +62,8 @@ public class RestaurantGridFragment extends BaseFragment
   BaseAdapter adapter;
   Subscription locationSubscription;
   LocationRequest request = LocationRequest.create()
-      .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-      .setInterval(1000);
+      .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
+      .setInterval(5000);
   Location lastKnownLocation;
 
   @Override
@@ -104,11 +104,11 @@ public class RestaurantGridFragment extends BaseFragment
 
   private void getRestaurantList() {
     myMenuDatabase.getAllRestaurants(new EndlessObserver<List<Restaurant>>() { //
-          @Override //
-          public void onNext(List<Restaurant> restaurants) {
-            initList(restaurants);
-          }
-        }
+                                       @Override //
+                                       public void onNext(List<Restaurant> restaurants) {
+                                         initList(restaurants);
+                                       }
+                                     }
     );
   }
 
