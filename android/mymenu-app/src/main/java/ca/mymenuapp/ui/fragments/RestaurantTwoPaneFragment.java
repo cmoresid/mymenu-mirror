@@ -40,7 +40,7 @@ public class RestaurantTwoPaneFragment extends BaseFragment{
   private void initializeFrames(){
     RestaurantListFragment firstFragment = new RestaurantListFragment();
     FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-    transaction.add(R.id.restaurant_list_placeholder, firstFragment).commit();
+    transaction.add(R.id.restaurant_list_placeholder, firstFragment);
     RestaurantMapFragment secondFragment = new RestaurantMapFragment();
     transaction.add(R.id.restaurant_map_placeholder, secondFragment).commit();
   }

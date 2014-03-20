@@ -15,13 +15,17 @@ import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.rx.EndlessObserver;
+import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.ui.activities.RestaurantActivity;
 import com.f2prateek.dart.InjectExtra;
+import com.f2prateek.ln.Ln;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.common.eventbus.Subscribe;
 import com.squareup.picasso.Picasso;
+import java.util.List;
 import javax.inject.Inject;
 
 /**
@@ -30,6 +34,8 @@ import javax.inject.Inject;
 public class RestaurantMapFragment extends BaseFragment {
 
   private GoogleMap googleMap;
+  private MapFragment firstFragment;
+  private List<Restaurant> restaurants;
   /**
    * Returns a new instance of this fragment for the map
    */
@@ -41,6 +47,9 @@ public class RestaurantMapFragment extends BaseFragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
+    firstFragment = new MapFragment();
+    FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+    transaction.add(R.id.map, firstFragment).commit();
     return inflater.inflate(R.layout.fragment_restaurant_map, container, false);
   }
 
@@ -51,20 +60,25 @@ public class RestaurantMapFragment extends BaseFragment {
 
   @Override public void onStart() {
     super.onStart();
+
     initializeMap();
   }
 
   private void initializeMap() {
-    MapFragment firstFragment = new MapFragment();
-    FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-    transaction.add(R.id.map, firstFragment).commit();
     if (googleMap == null) {
       googleMap = firstFragment.getMap();
       // check if map is created successfully or not
       if (googleMap != null) {
         googleMap.setMyLocationEnabled(true);
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(53.5, -113.5)).title("test"));
+
       }
+    }
+  }
+
+  @Subscribe public void OnRestaurant(MainActivity.OnRestaurantEvent event){
+    restaurants = event.restaurants;
+    for(Restaurant r : restaurants){
+      googleMap.addMarker(new MarkerOptions().position(new LatLng(r.lat, r.lng)).title(r.businessName));
     }
   }
 }

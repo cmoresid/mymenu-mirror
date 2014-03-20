@@ -18,12 +18,15 @@ import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
+import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.ui.misc.BindableAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
+import com.f2prateek.ln.Ln;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.common.eventbus.Subscribe;
 import com.squareup.picasso.Picasso;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -40,13 +43,11 @@ public class RestaurantListFragment extends BaseFragment
 
   @Inject Picasso picasso;
   @InjectView(R.id.root) BetterViewAnimator root;
-  @Inject MyMenuDatabase myMenuDatabase;
+
   @InjectView(R.id.restaurant_list) ListView listView;
   @Inject @Named(USER_LOCATION) ObjectPreference<Location> userLoc;
 
   BaseAdapter listAdapter;
-  private Location uLoc;
-
 
   public static RestaurantListFragment newInstance() {
     return new RestaurantListFragment();
@@ -68,9 +69,6 @@ public class RestaurantListFragment extends BaseFragment
   @Override
   public void onStart() {
     super.onStart();
-    this.uLoc = userLoc.get();
-    getRestaurantList();
-
   }
 
   @Override
@@ -78,17 +76,11 @@ public class RestaurantListFragment extends BaseFragment
     /* Need create an intent to go to restaurant page when clicked */
   }
 
-  private void getRestaurantList() {
-    /* Change this to get all restaurants and then initialize the list. */
-    if(userLoc != null) {
-      myMenuDatabase.getNearbyRestaurants(Double.toString(uLoc.getLatitude()), Double.toString(uLoc.getLongitude()), new EndlessObserver<List<Restaurant>>() {
-            @Override
-            public void onNext(List<Restaurant> restaurants) {
-              initList(restaurants);
-            }
-          }
-      );
-    }
+
+  @Subscribe public void OnRestaurant(MainActivity.OnRestaurantEvent event){
+    List<Restaurant> restaurants = event.restaurants;
+      initList(restaurants);
+
   }
 
   private void initList(List<Restaurant> restaurants) {
@@ -144,9 +136,6 @@ public class RestaurantListFragment extends BaseFragment
       // todo, show text
       holder.cuisine.setText(item.category);
 
-//      googleMap.addMarker(
-       //   new MarkerOptions().position(new LatLng(item.lat, item.lng)).title(item.businessName));
-
       Double distInt = Double.parseDouble(item.distance);
       String distance = "";
       NumberFormat nf = DecimalFormat.getInstance();
@@ -177,4 +166,5 @@ public class RestaurantListFragment extends BaseFragment
       }
     }
   }
-}
+
+ }

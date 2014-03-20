@@ -28,9 +28,13 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import butterknife.InjectView;
+import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.R;
+import ca.mymenuapp.data.MyMenuDatabase;
+import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
+import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.PlaceholderFragment;
 import ca.mymenuapp.ui.fragments.RestaurantListFragment;
@@ -47,6 +51,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.otto.Produce;
+import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -59,11 +65,11 @@ public class MainActivity extends BaseActivity
     GooglePlayServicesClient.OnConnectionFailedListener {
 
   @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
-  @Inject @Named(USER_LOCATION) ObjectPreference<Location> userLoc;
-
+  @Inject MyMenuDatabase myMenuDatabase;
   @InjectView(R.id.pager) ViewPager viewPager;
 
 
+  Location userLoc;
   private LocationClient locClient;
   private int lastTab;
 
@@ -108,6 +114,8 @@ public class MainActivity extends BaseActivity
     tabsAdapter.addTab(actionBar.newTab().setText("Preferences"), DietaryPreferencesFragment.class,
         null);
 
+    getRestaurantList();
+
     actionBar.setSelectedNavigationItem(tab);
   }
 
@@ -143,8 +151,7 @@ public class MainActivity extends BaseActivity
   }
 
   @Override public void onConnected(Bundle bundle) {
-    userLoc.set(locClient.getLastLocation());
-    userLoc.save();
+    userLoc = locClient.getLastLocation();
     setupTabs(lastTab);
   }
 
@@ -165,6 +172,26 @@ public class MainActivity extends BaseActivity
 
   private void showErrorDialog(int errorCode) {
     Ln.e("Error Code:" + errorCode);
+  }
+
+   public static class OnRestaurantEvent{
+    public List<Restaurant> restaurants;
+     public OnRestaurantEvent(List<Restaurant> restaurants) {
+      this.restaurants = restaurants;
+    }
+  }
+  private void getRestaurantList() {
+    /* Change this to get all restaurants and then initialize the list. */
+    if(userLoc != null) {
+      myMenuDatabase.getNearbyRestaurants(Double.toString(userLoc.getLatitude()), Double.toString(userLoc.getLongitude()), new EndlessObserver<List<Restaurant>>() {
+            @Override
+            public void onNext(List<Restaurant> restaurants) {
+              bus.post(new MainActivity.OnRestaurantEvent(restaurants));
+
+            }
+          }
+      );
+    }
   }
 
 }
