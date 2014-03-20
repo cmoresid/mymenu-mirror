@@ -27,11 +27,13 @@ import android.view.MenuItem;
 import butterknife.InjectView;
 import butterknife.Optional;
 import ca.mymenuapp.R;
+import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
+import com.squareup.otto.Subscribe;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -80,6 +82,12 @@ public class MainActivity extends BaseActivity {
     transaction.commit();
   }
 
+  @Subscribe public void onRestaurantClicked(OnRestaurantClickEvent event) {
+    Intent intent = new Intent(this, RestaurantActivity.class);
+    intent.putExtra(RestaurantActivity.ARGS_RESTAURANT_ID, event.restaurant.id);
+    startActivity(intent);
+  }
+
   @Override
   protected void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
@@ -108,6 +116,14 @@ public class MainActivity extends BaseActivity {
         return true;
       default:
         return super.onOptionsItemSelected(item);
+    }
+  }
+
+  public static class OnRestaurantClickEvent {
+    public final Restaurant restaurant;
+
+    public OnRestaurantClickEvent(Restaurant restaurant) {
+      this.restaurant = restaurant;
     }
   }
 }

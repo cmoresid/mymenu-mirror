@@ -20,6 +20,7 @@ import android.location.Location;
 import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.rx.EndlessObserver;
+import ca.mymenuapp.ui.activities.MainActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -29,7 +30,8 @@ import javax.inject.Inject;
 import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
 import rx.util.functions.Action1;
 
-public class RestaurantsMapFragment extends BaseMapFragment {
+public class RestaurantsMapFragment extends BaseMapFragment
+    implements ClusterManager.OnClusterItemClickListener<Restaurant> {
 
   @Inject MyMenuDatabase myMenuDatabase;
   @Inject ReactiveLocationProvider locationProvider;
@@ -67,10 +69,16 @@ public class RestaurantsMapFragment extends BaseMapFragment {
 
     clusterManager = new ClusterManager<>(activityContext, map);
     clusterManager.addItems(restaurants);
+    clusterManager.setOnClusterItemClickListener(this);
   }
 
   private void centerMap(Location location) {
     LatLng moveTo = new LatLng(location.getLatitude(), location.getLongitude());
     map.animateCamera(CameraUpdateFactory.newLatLngZoom(moveTo, 10));
+  }
+
+  @Override public boolean onClusterItemClick(Restaurant restaurant) {
+    bus.post(new MainActivity.OnRestaurantClickEvent(restaurant));
+    return false;
   }
 }

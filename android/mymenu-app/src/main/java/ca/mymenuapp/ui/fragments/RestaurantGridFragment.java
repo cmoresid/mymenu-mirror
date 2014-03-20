@@ -18,7 +18,6 @@
 package ca.mymenuapp.ui.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -35,7 +34,7 @@ import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.rx.EndlessObserver;
-import ca.mymenuapp.ui.activities.RestaurantActivity;
+import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
 import com.google.android.gms.location.LocationRequest;
@@ -97,9 +96,8 @@ public class RestaurantGridFragment extends BaseFragment
 
   @Override
   public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-    Intent intent = new Intent(activityContext, RestaurantActivity.class);
-    intent.putExtra(RestaurantActivity.ARGS_RESTAURANT_ID, id);
-    startActivity(intent);
+    Restaurant restaurant = (Restaurant) adapterView.getAdapter().getItem(position);
+    bus.post(new MainActivity.OnRestaurantClickEvent(restaurant));
   }
 
   private void getRestaurantList() {
