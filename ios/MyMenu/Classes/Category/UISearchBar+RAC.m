@@ -9,7 +9,7 @@
 
 #import "UISearchBar+RAC.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <objc/objc-runtime.h>
+#import <objc/runtime.h>
 
 @interface UISearchBar()<UISearchBarDelegate>
 
