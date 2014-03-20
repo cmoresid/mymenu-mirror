@@ -109,4 +109,6 @@
 
 - (void)loadSelectedDate;
 
+
+@property(atomic,strong) UIToolbar * toolbar;
 @end

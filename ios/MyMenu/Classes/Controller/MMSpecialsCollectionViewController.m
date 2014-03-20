@@ -59,6 +59,12 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+	
+	//add toolbar to the main view
+	[self.toolbar setItems:self.toolbarItems];
+	[self.toolbar setFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.width, [[UIScreen mainScreen] bounds].size.height, 44)];
+    [self.view addSubview:self.toolbar];
+	
 	// Delegate our self to the db fetcher.
     [MMDBFetcher get].delegate = self;
     self.navigationController.toolbar.hidden = TRUE;
@@ -177,11 +183,9 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     negativeSeperator.width = -18;
 
     //add buttons to the toolbar
-    [toolbar setItems:[NSArray arrayWithObjects:buttonFilter, buttonWeek, flexibleSpace, dateLabel, flexibleSpace, searchBarButtonItem, negativeSeperator, nil]];
-    [toolbar setFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.width, [[UIScreen mainScreen] bounds].size.height, 44)];
-
-    //add toolbar to the main view
-    [self.view addSubview:toolbar];
+    [self setToolbarItems:[NSArray arrayWithObjects:buttonFilter, buttonWeek, flexibleSpace, dateLabel, flexibleSpace, searchBarButtonItem, negativeSeperator, nil]];
+	[self setToolbar:toolbar];
+	
 }
 
 /**
