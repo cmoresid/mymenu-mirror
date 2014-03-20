@@ -25,8 +25,9 @@
   <dimen name="restaurant_header_logo_size">96dp</dimen>
 
   <!-- Menu Fragment -->
-  <dimen name="menu_item_grid_width">128dp</dimen>
+  <dimen name="grid_item_width">128dp</dimen>
 
+  <!-- Padding -->
   <dimen name="holo_gap">8dp</dimen>
   <dimen name="holo_gap_half">4dp</dimen>
 
