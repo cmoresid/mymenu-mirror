@@ -40,7 +40,7 @@ import ca.mymenuapp.data.api.model.DietaryRestriction;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
-import ca.mymenuapp.ui.misc.BindableAdapter;
+import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
 import ca.mymenuapp.util.CollectionUtils;
 import com.f2prateek.ln.Ln;
@@ -89,11 +89,10 @@ public class DietaryPreferencesFragment extends BaseFragment
 
   private void updateRestrictions() {
     myMenuDatabase.getAllRestrictions(new EndlessObserver<List<DietaryRestriction>>() {
-                                        @Override public void onNext(
-                                            List<DietaryRestriction> dietaryRestrictions) {
-                                          initGrid(dietaryRestrictions);
-                                        }
-                                      }
+          @Override public void onNext(List<DietaryRestriction> dietaryRestrictions) {
+            initGrid(dietaryRestrictions);
+          }
+        }
     );
   }
 
@@ -162,30 +161,20 @@ public class DietaryPreferencesFragment extends BaseFragment
     }
   }
 
-  class DietaryRestrictionsAdapter extends BindableAdapter<DietaryRestriction> {
-    private final List<DietaryRestriction> dietaryRestrictions;
+  class DietaryRestrictionsAdapter extends BindableListAdapter<DietaryRestriction> {
     private final ColorMatrixColorFilter greyScaleFilter;
 
     public DietaryRestrictionsAdapter(Context context,
         List<DietaryRestriction> dietaryRestrictions) {
-      super(context);
-      this.dietaryRestrictions = dietaryRestrictions;
+      super(context, dietaryRestrictions);
 
       ColorMatrix matrix = new ColorMatrix();
       matrix.setSaturation(0); //0 means grayscale
       greyScaleFilter = new ColorMatrixColorFilter(matrix);
     }
 
-    @Override public int getCount() {
-      return dietaryRestrictions.size();
-    }
-
-    @Override public DietaryRestriction getItem(int position) {
-      return dietaryRestrictions.get(position);
-    }
-
     @Override public long getItemId(int position) {
-      return position + 1;
+      return getItem(position).id;
     }
 
     @Override public View newView(LayoutInflater inflater, int position, ViewGroup container) {

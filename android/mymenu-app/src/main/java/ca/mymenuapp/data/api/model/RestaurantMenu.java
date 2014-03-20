@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2014 MyMenu, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see [http://www.gnu.org/licenses/].
+ */
+
 package ca.mymenuapp.data.api.model;
 
 import java.util.ArrayList;
@@ -11,9 +28,11 @@ import java.util.Random;
  * A model class that categorizes menu items by categories.
  * We need consistent ordering so we wrap it in this class.
  */
-public class CategorizedMenu {
+public class RestaurantMenu {
 
   private static final Random random = new Random();
+  private final Restaurant restaurant;
+  private final List<MenuItemReview> reviews;
   private final HashMap<Long, List<MenuItem>> menu;
   private final Long[] keySet; // indexes the order
   private final Map<Long, MenuCategory> categories;
@@ -23,14 +42,17 @@ public class CategorizedMenu {
   /**
    * Categories must be sorted by the order we want to display them in.
    */
-  private CategorizedMenu(LinkedHashMap<Long, List<MenuItem>> menu,
-      Map<Long, MenuCategory> categories) {
+  private RestaurantMenu(Restaurant restaurant, List<MenuItemReview> reviews,
+      LinkedHashMap<Long, List<MenuItem>> menu, Map<Long, MenuCategory> categories) {
+    this.restaurant = restaurant;
+    this.reviews = reviews;
     this.menu = menu;
     this.keySet = menu.keySet().toArray(new Long[menu.keySet().size()]);
     this.categories = categories;
   }
 
-  public static CategorizedMenu parse(List<MenuItem> menuItems, List<MenuCategory> menuCategories) {
+  public static RestaurantMenu generate(Restaurant restaurant, List<MenuItem> menuItems,
+      List<MenuCategory> menuCategories, List<MenuItemReview> reviews) {
     LinkedHashMap<Long, List<MenuItem>> menu = new LinkedHashMap<>();
     for (MenuItem menuItem : menuItems) {
       if (!menu.containsKey(menuItem.categoryId)) {
@@ -44,7 +66,7 @@ public class CategorizedMenu {
       categoryMap.put(menuCategory.id, menuCategory);
     }
 
-    return new CategorizedMenu(menu, categoryMap);
+    return new RestaurantMenu(restaurant, reviews, menu, categoryMap);
   }
 
   /**
@@ -59,6 +81,17 @@ public class CategorizedMenu {
    */
   public List<MenuItem> getMenuItemsByCategory(MenuCategory category) {
     return menu.get(category.id);
+  }
+
+  /**
+   * Get restaurant.
+   */
+  public Restaurant getRestaurant() {
+    return restaurant;
+  }
+
+  public List<MenuItemReview> getReviews() {
+    return reviews;
   }
 
   /**
@@ -96,7 +129,7 @@ public class CategorizedMenu {
   }
 
   @Override public String toString() {
-    return "CategorizedMenu{" +
+    return "RestaurantMenu{" +
         "menu=" + menu +
         ", categories=" + categories +
         '}';

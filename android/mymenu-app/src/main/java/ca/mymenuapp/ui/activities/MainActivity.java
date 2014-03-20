@@ -18,24 +18,40 @@
 package ca.mymenuapp.ui.activities;
 
 import android.app.ActionBar;
+import android.app.FragmentTransaction;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SearchView;
 import butterknife.InjectView;
+import butterknife.Optional;
 import ca.mymenuapp.R;
+import ca.mymenuapp.data.MyMenuDatabase;
+import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
-import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
-import ca.mymenuapp.ui.fragments.PlaceholderFragment;
-import ca.mymenuapp.ui.fragments.RestaurantListFragment;
-import ca.mymenuapp.ui.fragments.RestaurantTwoPaneFragment;
+import ca.mymenuapp.data.rx.EndlessObserver;
+import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
+import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
-import ca.mymenuapp.util.Bundler;
+import com.f2prateek.ln.Ln;
+import com.squareup.otto.Produce;
+import com.squareup.otto.Subscribe;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
+import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import rx.util.functions.Action1;
+import rx.util.functions.Func1;
 
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
@@ -43,59 +59,152 @@ import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 public class MainActivity extends BaseActivity {
 
   @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
-  @InjectView(R.id.pager) ViewPager viewPager;
+  @Inject MyMenuDatabase myMenuDatabase;
+  @Inject ReactiveLocationProvider locationProvider;
 
-  private SwipeableActionBarTabsAdapter tabsAdapter;
+  @InjectView(R.id.pager) @Optional ViewPager viewPager;
+
+  ArrayList<Restaurant> restaurants;
 
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     inflateView(R.layout.activity_main);
-    setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
+
+    if (savedInstanceState == null) {
+      locationProvider.getLastKnownLocation().subscribe(new Action1<Location>() {
+        @Override
+        public void call(Location location) {
+          myMenuDatabase.getNearbyRestaurants(Double.toString(location.getLatitude()),
+              Double.toString(location.getLongitude()), new EndlessObserver<List<Restaurant>>() {
+            @Override public void onNext(List<Restaurant> restaurantList) {
+              restaurants = new ArrayList<>(restaurantList);
+              if (viewPager != null) {
+                // we're on a phone
+                setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
+              } else {
+                // we're on a tablet layout
+                setupPanes();
+              }
+            }
+          });
+        }
+      });
+    }
   }
 
-  /** Setup the tabs two display our fragments. */
+  /** Setup the tabs to display our fragments. */
   private void setupTabs(int tab) {
+    ArrayList<Restaurant> arrayList = new ArrayList<>(restaurants);
     ActionBar actionBar = getActionBar();
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-    tabsAdapter = new SwipeableActionBarTabsAdapter(this, viewPager);
-    tabsAdapter.addTab(actionBar.newTab().setText("Restaurant"), PlaceholderFragment.class,
-        new Bundler().put(PlaceholderFragment.ARG_SECTION_NUMBER, 1).get());
-    tabsAdapter.addTab(actionBar.newTab().setText("Preferences"), DietaryPreferencesFragment.class,
-        null);
-
-
-      /* Need to check size here */
-    if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
-        == Configuration.SCREENLAYOUT_SIZE_LARGE) {
-      tabsAdapter.addTab(actionBar.newTab().setText("Restaurants"), RestaurantTwoPaneFragment.class,
-          null);
-        /*Large device, should have restaurant list and map view on one page."*/
-    } else {
-      tabsAdapter.addTab(actionBar.newTab().setText("Restaurants"), RestaurantListFragment.class,
-          null);
-    }
-
+    SwipeableActionBarTabsAdapter tabsAdapter = new SwipeableActionBarTabsAdapter(this, viewPager);
+    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.restaurants)),
+        RestaurantGridFragment.class, null);
+    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.map)),
+        RestaurantsMapFragment.class, null);
     actionBar.setSelectedNavigationItem(tab);
+  }
+
+  /** Setup the panes to display our fragments. */
+  private void setupPanes() {
+    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+    transaction.add(R.id.restaurant_list_container, new RestaurantGridFragment());
+    transaction.add(R.id.restaurant_map_container, new RestaurantsMapFragment());
+    transaction.commit();
+  }
+
+  @Subscribe public void onRestaurantClicked(OnRestaurantClickEvent event) {
+    Intent intent = new Intent(this, RestaurantActivity.class);
+    intent.putExtra(RestaurantActivity.ARGS_RESTAURANT_ID, event.restaurant.id);
+    startActivity(intent);
+  }
+
+  @Override
+  protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    if (viewPager != null) {
+      outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
+    }
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.activity_main, menu);
+
+    // Associate searchable configuration with the SearchView
+    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+    SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
     return true;
+  }
+
+  @Override
+  protected void onNewIntent(Intent intent) {
+    handleIntent(intent);
+  }
+
+  private void handleIntent(Intent intent) {
+    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+      final String query = intent.getStringExtra(SearchManager.QUERY);
+      Ln.d(query);
+      // Filter ones in memory quickly
+      Observable.from(restaurants)
+          .filter(new Func1<Restaurant, Boolean>() {
+            @Override public Boolean call(Restaurant restaurant) {
+              return restaurant.businessName.toLowerCase().contains(query.toLowerCase());
+            }
+          })
+          .toList()
+          .subscribeOn(Schedulers.computation())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(new EndlessObserver<List<Restaurant>>() {
+            @Override public void onNext(List<Restaurant> restaurantList) {
+              bus.post(new OnRestaurantListAvailableEvent(new ArrayList<>(restaurantList)));
+              // filtered ones in memory, now fetch a search from the network and notify any
+              // observers
+              // todo: show a progress bar in the action bar
+            }
+          });
+    }
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
+      case R.id.dietary_preferences:
+        Intent dietaryPreferencesIntent = new Intent(this, DietaryPreferencesActivity.class);
+        startActivity(dietaryPreferencesIntent);
+        return true;
       case R.id.logout:
         userPreference.delete();
-        Intent intent = new Intent(this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        loginIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(loginIntent);
         finish();
         return true;
       default:
         return super.onOptionsItemSelected(item);
     }
+  }
+
+  public static class OnRestaurantClickEvent {
+    public final Restaurant restaurant;
+
+    public OnRestaurantClickEvent(Restaurant restaurant) {
+      this.restaurant = restaurant;
+    }
+  }
+
+  public static class OnRestaurantListAvailableEvent {
+    public final ArrayList<Restaurant> restaurants;
+
+    public OnRestaurantListAvailableEvent(ArrayList<Restaurant> restaurants) {
+      this.restaurants = restaurants;
+    }
+  }
+
+  @Produce public OnRestaurantListAvailableEvent produceRestaurants() {
+    return new OnRestaurantListAvailableEvent(restaurants);
   }
 }

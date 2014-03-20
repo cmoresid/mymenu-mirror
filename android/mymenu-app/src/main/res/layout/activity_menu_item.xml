@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (C) 2014 MyMenu, Inc.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see [http://www.gnu.org/licenses/].
+  -->
+
+<ca.mymenuapp.ui.widgets.SlidingUpPanelLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sliding_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:collapsedHeight="128dp"
+    android:gravity="bottom">
+
+  <ca.mymenuapp.ui.widgets.NotifyingScrollView
+      android:id="@+id/scroll_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+      <FrameLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/action_bar_gradient"/>
+
+        <ca.mymenuapp.ui.widgets.AspectRatioImageView
+            android:id="@+id/menu_item_image_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:aspectRatioEnabled="true"
+            app:dominantMeasurement="width"
+            app:aspectRatio="0.67"
+            android:scaleType="centerCrop"/>
+
+      </FrameLayout>
+
+      <TextView
+          android:id="@+id/menu_item_description"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingTop="@dimen/holo_gap"
+          android:paddingRight="@dimen/activity_horizontal_margin"
+          android:paddingLeft="@dimen/activity_horizontal_margin"
+          style="?android:textAppearanceLarge"
+          android:fontFamily="sans-serif-light"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:paddingTop="@dimen/holo_gap"
+          android:paddingRight="@dimen/activity_horizontal_margin"
+          android:paddingLeft="@dimen/activity_horizontal_margin"
+          android:text="@string/modifications"
+          style="?android:attr/listSeparatorTextViewStyle"/>
+
+      <FrameLayout
+          android:layout_width="match_parent"
+          android:layout_height="500dp"/>
+
+    </LinearLayout>
+
+  </ca.mymenuapp.ui.widgets.NotifyingScrollView>
+
+  <LinearLayout
+      android:id="@+id/sliding_pane"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/menu_item_reviews_summary"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:gravity="center"
+        android:text="The Awesome Sliding Up Panel. Summary and rating wheel go here."
+        android:background="@color/turqoise"
+        android:textSize="16sp"/>
+
+    <FrameLayout
+        android:id="@+id/menu_item_reviews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+  </LinearLayout>
+
+</ca.mymenuapp.ui.widgets.SlidingUpPanelLayout>

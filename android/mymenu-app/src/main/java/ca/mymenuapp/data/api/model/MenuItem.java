@@ -19,11 +19,14 @@ package ca.mymenuapp.data.api.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 @Root(name = "result")
 public class MenuItem implements Parcelable {
+  private static final String NULL_STRING = "null";
+
   @Element(name = "id") public long id;
   @Element(name = "merchid") public long merchantId;
   @Element(name = "name") public String name;
@@ -31,7 +34,8 @@ public class MenuItem implements Parcelable {
   @Element(name = "picture", required = false) public String picture;
   @Element(name = "description") public String description;
   @Element(name = "rating") public float rating;
-  @Element(name = "ratingcount") public long ratingCount;
+  // ratingCount may be null or "null", so keep it as a string!
+  @Element(name = "ratingcount") public String ratingCount;
   @Element(name = "categoryid") public long categoryId;
 
   // flag to mark whether this item is edible by the current user
@@ -39,6 +43,21 @@ public class MenuItem implements Parcelable {
 
   public MenuItem() {
     // default constructor
+  }
+
+  /**
+   * API might return null, or "null", safe way to check for this boundary condition.
+   *
+   * @return 0 if likeCount is null or "null", else likeCount
+   */
+  public long getRatingCount() {
+    if (TextUtils.isEmpty(ratingCount)) {
+      return 0;
+    } else if (ratingCount.compareTo(NULL_STRING) == 0) {
+      return 0;
+    } else {
+      return Long.parseLong(ratingCount);
+    }
   }
 
   protected MenuItem(Parcel in) {
@@ -49,7 +68,7 @@ public class MenuItem implements Parcelable {
     picture = in.readString();
     description = in.readString();
     rating = in.readFloat();
-    ratingCount = in.readLong();
+    ratingCount = in.readString();
     categoryId = in.readLong();
     edible = in.readByte() != 0x00;
   }
@@ -68,7 +87,7 @@ public class MenuItem implements Parcelable {
     dest.writeString(picture);
     dest.writeString(description);
     dest.writeFloat(rating);
-    dest.writeLong(ratingCount);
+    dest.writeString(ratingCount);
     dest.writeLong(categoryId);
     dest.writeByte((byte) (edible ? 0x01 : 0x00));
   }

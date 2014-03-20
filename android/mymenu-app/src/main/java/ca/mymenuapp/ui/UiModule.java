@@ -17,6 +17,8 @@
 
 package ca.mymenuapp.ui;
 
+import android.content.Context;
+import ca.mymenuapp.dagger.scopes.ForApplication;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -31,5 +33,9 @@ public class UiModule {
 
   @Provides @Singleton ActivityHierarchyServer provideActivityHierarchyServer() {
     return ActivityHierarchyServer.NONE;
+  }
+
+  @Provides @Singleton TabletSupportUtil provideTabletSupportUtil(@ForApplication Context context) {
+    return new TabletSupportUtil(context);
   }
 }
