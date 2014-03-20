@@ -19,23 +19,36 @@ package ca.mymenuapp.ui.activities;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SearchView;
 import butterknife.InjectView;
 import butterknife.Optional;
 import ca.mymenuapp.R;
+import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
+import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
+import com.f2prateek.ln.Ln;
+import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import rx.util.functions.Func1;
 
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
@@ -43,27 +56,37 @@ import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 public class MainActivity extends BaseActivity {
 
   @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
+  @Inject MyMenuDatabase myMenuDatabase;
+
   @InjectView(R.id.pager) @Optional ViewPager viewPager;
 
+  ArrayList<Restaurant> restaurants;
+
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     inflateView(R.layout.activity_main);
 
     if (savedInstanceState == null) {
-      if (viewPager != null) {
-        // we're on a phone
-        setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
-      } else {
-        // we're on a tablet layout
-        setupPanes();
-      }
+      myMenuDatabase.getAllRestaurants(new EndlessObserver<List<Restaurant>>() {
+        @Override public void onNext(List<Restaurant> restaurantList) {
+          restaurants = new ArrayList<>(restaurantList);
+          if (viewPager != null) {
+            // we're on a phone
+            setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
+          } else {
+            // we're on a tablet layout
+            setupPanes();
+          }
+        }
+      });
     }
   }
 
   /** Setup the tabs to display our fragments. */
   private void setupTabs(int tab) {
+    ArrayList<Restaurant> arrayList = new ArrayList<>(restaurants);
     ActionBar actionBar = getActionBar();
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     SwipeableActionBarTabsAdapter tabsAdapter = new SwipeableActionBarTabsAdapter(this, viewPager);
@@ -98,7 +121,43 @@ public class MainActivity extends BaseActivity {
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.activity_main, menu);
+
+    // Associate searchable configuration with the SearchView
+    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+    SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
     return true;
+  }
+
+  @Override
+  protected void onNewIntent(Intent intent) {
+    handleIntent(intent);
+  }
+
+  private void handleIntent(Intent intent) {
+    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+      final String query = intent.getStringExtra(SearchManager.QUERY);
+      Ln.d(query);
+      // Filter ones in memory quickly
+      Observable.from(restaurants)
+          .filter(new Func1<Restaurant, Boolean>() {
+            @Override public Boolean call(Restaurant restaurant) {
+              return restaurant.businessName.toLowerCase().contains(query.toLowerCase());
+            }
+          })
+          .toList()
+          .subscribeOn(Schedulers.computation())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(new EndlessObserver<List<Restaurant>>() {
+            @Override public void onNext(List<Restaurant> restaurantList) {
+              bus.post(new OnRestaurantListAvailableEvent(new ArrayList<>(restaurantList)));
+              // filtered ones in memory, now fetch a search from the network and notify any
+              // observers
+              // todo: show a progress bar in the action bar
+            }
+          });
+    }
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
@@ -125,5 +184,17 @@ public class MainActivity extends BaseActivity {
     public OnRestaurantClickEvent(Restaurant restaurant) {
       this.restaurant = restaurant;
     }
+  }
+
+  public static class OnRestaurantListAvailableEvent {
+    public final ArrayList<Restaurant> restaurants;
+
+    public OnRestaurantListAvailableEvent(ArrayList<Restaurant> restaurants) {
+      this.restaurants = restaurants;
+    }
+  }
+
+  @Produce public OnRestaurantListAvailableEvent produceRestaurants() {
+    return new OnRestaurantListAvailableEvent(restaurants);
   }
 }

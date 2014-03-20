@@ -74,4 +74,8 @@
   <!-- Restaurant Map Fragment -->
   <string name="map">Map</string>
 
+  <!-- Main Activity -->
+  <string name="search">Search</string>
+  <string name="restaurant_search_hint">Type in a Restaurant Name</string>
+
 </resources>

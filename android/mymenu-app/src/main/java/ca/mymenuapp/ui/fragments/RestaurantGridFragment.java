@@ -31,14 +31,15 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
-import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
-import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
 import com.google.android.gms.location.LocationRequest;
+import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;
+import hugo.weaving.DebugLog;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
@@ -52,7 +53,6 @@ public class RestaurantGridFragment extends BaseFragment
     implements AdapterView.OnItemClickListener {
 
   @Inject Picasso picasso;
-  @Inject MyMenuDatabase myMenuDatabase;
   @Inject ReactiveLocationProvider locationProvider;
 
   @InjectView(R.id.root) BetterViewAnimator root;
@@ -79,7 +79,6 @@ public class RestaurantGridFragment extends BaseFragment
   @Override
   public void onStart() {
     super.onStart();
-    getRestaurantList();
     locationSubscription =
         locationProvider.getUpdatedLocation(request).subscribe(new Action1<Location>() {
           @Override
@@ -100,17 +99,12 @@ public class RestaurantGridFragment extends BaseFragment
     bus.post(new MainActivity.OnRestaurantClickEvent(restaurant));
   }
 
-  private void getRestaurantList() {
-    myMenuDatabase.getAllRestaurants(new EndlessObserver<List<Restaurant>>() { //
-                                       @Override //
-                                       public void onNext(List<Restaurant> restaurants) {
-                                         initList(restaurants);
-                                       }
-                                     }
-    );
+  @Subscribe @DebugLog
+  public void onRestaurantsAvailableEvent(MainActivity.OnRestaurantListAvailableEvent event) {
+    initGrid(event.restaurants);
   }
 
-  private void initList(List<Restaurant> restaurants) {
+  private void initGrid(ArrayList<Restaurant> restaurants) {
     adapter = new RestaurantListAdapter(activityContext, restaurants);
     gridView.setAdapter(adapter);
     gridView.setOnItemClickListener(this);

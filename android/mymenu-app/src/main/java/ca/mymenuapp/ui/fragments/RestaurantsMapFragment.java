@@ -17,15 +17,15 @@
 package ca.mymenuapp.ui.fragments;
 
 import android.location.Location;
-import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
-import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.activities.MainActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterManager;
-import java.util.List;
+import com.squareup.otto.Subscribe;
+import hugo.weaving.DebugLog;
+import java.util.ArrayList;
 import javax.inject.Inject;
 import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
 import rx.util.functions.Action1;
@@ -33,11 +33,10 @@ import rx.util.functions.Action1;
 public class RestaurantsMapFragment extends BaseMapFragment
     implements ClusterManager.OnClusterItemClickListener<Restaurant> {
 
-  @Inject MyMenuDatabase myMenuDatabase;
   @Inject ReactiveLocationProvider locationProvider;
 
-  private GoogleMap map;
-  private ClusterManager<Restaurant> clusterManager;
+  GoogleMap map;
+  ClusterManager<Restaurant> clusterManager;
 
   @Override public void onStart() {
     super.onStart();
@@ -48,12 +47,6 @@ public class RestaurantsMapFragment extends BaseMapFragment
     map.setIndoorEnabled(true);
     map.getUiSettings().setAllGesturesEnabled(true);
 
-    myMenuDatabase.getAllRestaurants(new EndlessObserver<List<Restaurant>>() {
-      @Override public void onNext(List<Restaurant> restaurants) {
-        initMap(restaurants);
-      }
-    });
-
     locationProvider.getLastKnownLocation().subscribe(new Action1<Location>() {
       @Override
       public void call(Location location) {
@@ -62,7 +55,12 @@ public class RestaurantsMapFragment extends BaseMapFragment
     });
   }
 
-  private void initMap(List<Restaurant> restaurants) {
+  @Subscribe @DebugLog
+  public void onRestaurantsAvailableEvent(MainActivity.OnRestaurantListAvailableEvent event) {
+    initMap(event.restaurants);
+  }
+
+  private void initMap(ArrayList<Restaurant> restaurants) {
     // Point the map's listeners at the listeners implemented by the cluster manager.
     map.setOnCameraChangeListener(clusterManager);
     map.setOnMarkerClickListener(clusterManager);
