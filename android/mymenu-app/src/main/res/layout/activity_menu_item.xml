@@ -74,6 +74,13 @@
           android:paddingLeft="@dimen/activity_horizontal_margin"
           android:text="@string/modifications"
           style="?android:attr/listSeparatorTextViewStyle"/>
+      <TextView android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/menu_item_modifications"
+          android:paddingRight="@dimen/activity_horizontal_margin"
+          android:paddingLeft="@dimen/activity_horizontal_margin"
+          android:text="There are no modifications available for this dish."
+          />
 
       <FrameLayout
           android:layout_width="match_parent"

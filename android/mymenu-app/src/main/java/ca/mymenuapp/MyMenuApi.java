@@ -19,6 +19,7 @@ package ca.mymenuapp;
 
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.MenuCategoryResponse;
+import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
@@ -35,6 +36,8 @@ import rx.Observable;
 
 /** RESTful interface to talk to the MyMenu backend. */
 public interface MyMenuApi {
+  String GET_MODIFICATIONS = "SELECT modification FROM modificationmenulink WHERE menuid = %s "
+      + "AND restrictid IN(SELECT restrictid FROM restrictionuserlink WHERE email = '%s')";
   String GET_ALL_RESTRICTIONS_QUERY = "SELECT * FROM restrictions";
   String GET_USER_QUERY = "SELECT * FROM users WHERE email='%s' AND password='%s'";
   String GET_USER_RESTRICTIONS = "SELECT * FROM restrictionuserlink where email='%s'";
@@ -70,6 +73,9 @@ public interface MyMenuApi {
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<UserResponse> getUser(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<MenuItemModificationResponse> getModifications(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<UserRestrictionResponse> getRestrictionsForUser(@Field("query") String query);
