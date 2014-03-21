@@ -67,24 +67,40 @@ MMMenuItemRating *touchedReview;
         self.viewModel = [[MMRestaurantViewModel alloc] init];
         self.searching = NO;
         self.currentValueInSearchBar = @"";
+		// init orientation.
+		UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+		if (UIDeviceOrientationIsLandscape(deviceOrientation))
+		{
+			self.isShowingLandscape = YES;
+		}
+		else if (UIDeviceOrientationIsPortrait(deviceOrientation))
+		{
+			self.isShowingLandscape = NO;
+		}
+		
     }
     
     return self;
 }
 
 
+-(void) awakeFromNib {
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
 -(void) detectOrientation {
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
 	CGSize segmentControlSize = self.reviewOrderBySegmentControl.frame.size;
-
-	
+	[self.searchBar removeFromSuperview];
+	[self.reviewOrderBySegmentControl removeFromSuperview];
+	//[self.categorySegmentControl removeFromSuperview];
     if (UIDeviceOrientationIsLandscape(deviceOrientation) &&
         !self.isShowingLandscape)
     {
         self.isShowingLandscape = YES;
 		self.searchBar.frame =CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.height, 44.0f);
 		self.reviewOrderBySegmentControl.frame = CGRectMake(([[UIScreen mainScreen] bounds].size.height/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
-		self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.height-20, 60);
+		//self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.height-20, 60);
 	}
     else if (UIDeviceOrientationIsPortrait(deviceOrientation) &&
              self.isShowingLandscape)
@@ -92,18 +108,21 @@ MMMenuItemRating *touchedReview;
         self.isShowingLandscape = NO;
 		self.searchBar.frame =CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 44.0f);
 		self.reviewOrderBySegmentControl.frame = CGRectMake(([[UIScreen mainScreen] bounds].size.width / 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
-		self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.width-20, 60);
+		//self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.width-20, 60);
 	}
+	
+	[self.menuItemsCollectionView addSubview:self.searchBar];
+	
+	if(self.searchBar.isHidden){
+		[self.menuItemsCollectionView addSubview:self.reviewOrderBySegmentControl];
+	}
+
+	//[self.view addSubview:self.categorySegmentControl];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:UIDeviceOrientationDidChangeNotification object:nil];
 	self.merchantNameLabel.adjustsFontSizeToFitWidth = true;
-	[self detectOrientation];
-	//[self configureSearchBar];
-	//[self configureOtherViews];
 	[self registerForKeyboardNotifications];
 }
 
@@ -115,6 +134,7 @@ MMMenuItemRating *touchedReview;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     
     [self hideAllViewsBeforeDataLoads];
     
@@ -134,6 +154,7 @@ MMMenuItemRating *touchedReview;
             [self configureMainCollectionView];
             
             [self configureOtherViews];
+			
     }];
 }
 
@@ -375,7 +396,7 @@ MMMenuItemRating *touchedReview;
 	if(self.isShowingLandscape) {
 		searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, [[UIScreen mainScreen] bounds].size.height, searchBar.frame.size.height);
 	} else {
-		searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 44, [[UIScreen mainScreen] bounds].size.width, searchBar.frame.size.height);
+		searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, [[UIScreen mainScreen] bounds].size.width, searchBar.frame.size.height);
 	}
 	
     [self.view addSubview:searchBar];

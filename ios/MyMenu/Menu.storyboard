@@ -28,12 +28,13 @@
                                 <rect key="frame" x="10" y="10" width="540" height="200"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999966" translatesAutoresizingMaskIntoConstraints="NO" id="OmH-kW-GDf" userLabel="Title_Label">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999966" translatesAutoresizingMaskIntoConstraints="NO" id="OmH-kW-GDf" userLabel="Title_Label">
                                         <rect key="frame" x="112" y="25" width="428" height="56"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" label="Title_Label"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="428" id="222-SH-DEW"/>
+                                            <constraint firstAttribute="height" constant="56" id="XyY-RO-VP9"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,7 +44,7 @@
                                         <rect key="frame" x="10" y="10" width="85" height="85"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zum-ge-zPF" userLabel="Rating_Label">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zum-ge-zPF" userLabel="Rating_Label">
                                                 <rect key="frame" x="5" y="5" width="79" height="75"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="41"/>
@@ -54,11 +55,11 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="85" id="CEJ-2Y-rit"/>
+                                            <constraint firstAttribute="trailing" secondItem="Zum-ge-zPF" secondAttribute="trailing" constant="1" id="IvJ-3X-uzL"/>
                                             <constraint firstAttribute="height" constant="85" id="KGJ-dM-W0d"/>
-                                            <constraint firstItem="Zum-ge-zPF" firstAttribute="centerY" secondItem="Ttc-gP-x6J" secondAttribute="centerY" id="bgm-6K-hDr"/>
-                                            <constraint firstItem="Zum-ge-zPF" firstAttribute="top" secondItem="Ttc-gP-x6J" secondAttribute="top" constant="5" id="kvM-T8-Rq9"/>
-                                            <constraint firstAttribute="centerX" secondItem="Zum-ge-zPF" secondAttribute="centerX" id="lwM-cW-GWZ"/>
-                                            <constraint firstItem="Zum-ge-zPF" firstAttribute="leading" secondItem="Ttc-gP-x6J" secondAttribute="leading" constant="5" id="rI9-O9-kuS"/>
+                                            <constraint firstItem="Zum-ge-zPF" firstAttribute="leading" secondItem="Ttc-gP-x6J" secondAttribute="leading" constant="5" id="RtG-GX-quX"/>
+                                            <constraint firstItem="Zum-ge-zPF" firstAttribute="top" secondItem="Ttc-gP-x6J" secondAttribute="top" constant="5" id="i6L-Ay-sFD"/>
+                                            <constraint firstItem="Zum-ge-zPF" firstAttribute="centerY" secondItem="Ttc-gP-x6J" secondAttribute="centerY" id="mb1-ll-ObV"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hours:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="NO8-wY-MGr">
@@ -113,7 +114,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" editable="NO" text="A brief description of a restaurant" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nd-G3-sW8" userLabel="Description">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="white" editable="NO" text="A brief description of a restaurant" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nd-G3-sW8" userLabel="Description">
                                         <rect key="frame" x="319" y="98" width="221" height="101"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
@@ -144,6 +145,7 @@
                                     <constraint firstAttribute="trailing" secondItem="OmH-kW-GDf" secondAttribute="trailing" id="mmX-DY-AKJ"/>
                                     <constraint firstItem="7X2-T2-PaL" firstAttribute="top" secondItem="WRv-f7-ZoJ" secondAttribute="top" id="nIV-7B-0VB"/>
                                     <constraint firstItem="WRv-f7-ZoJ" firstAttribute="leading" secondItem="YKI-7m-TH9" secondAttribute="leading" id="oTQ-67-XRk"/>
+                                    <constraint firstItem="3nd-G3-sW8" firstAttribute="top" secondItem="OmH-kW-GDf" secondAttribute="bottom" constant="17" id="sIh-m6-eg3"/>
                                     <constraint firstItem="fH4-pF-x8F" firstAttribute="trailing" secondItem="7X2-T2-PaL" secondAttribute="trailing" id="uXh-71-Ndu"/>
                                     <constraint firstAttribute="height" constant="200" id="wUT-eW-8aj"/>
                                     <constraint firstAttribute="bottom" secondItem="3nd-G3-sW8" secondAttribute="bottom" constant="1" id="yTZ-04-060"/>
@@ -184,7 +186,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pH9-uF-H80" firstAttribute="top" secondItem="BLa-e5-cwC" secondAttribute="bottom" constant="63" id="1gF-wQ-5g4"/>
                             <constraint firstItem="U2D-DU-XfK" firstAttribute="top" secondItem="C4i-IM-JdP" secondAttribute="top" constant="10" id="34g-yU-RPB"/>
                             <constraint firstAttribute="bottom" secondItem="pH9-uF-H80" secondAttribute="bottom" id="7V2-oy-B5C"/>
                             <constraint firstItem="U2D-DU-XfK" firstAttribute="leading" secondItem="BLa-e5-cwC" secondAttribute="trailing" constant="8" id="KIF-3X-txw"/>
@@ -194,6 +195,7 @@
                             <constraint firstItem="pH9-uF-H80" firstAttribute="leading" secondItem="C4i-IM-JdP" secondAttribute="leading" id="Vnx-aA-tuC"/>
                             <constraint firstItem="BLa-e5-cwC" firstAttribute="leading" secondItem="C4i-IM-JdP" secondAttribute="leading" constant="10" id="a0H-tY-Zfv"/>
                             <constraint firstAttribute="trailing" secondItem="U2D-DU-XfK" secondAttribute="trailing" constant="10" id="jh7-wp-rhj"/>
+                            <constraint firstItem="pH9-uF-H80" firstAttribute="top" secondItem="C4i-IM-JdP" secondAttribute="top" constant="273" id="ycq-G5-bID"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Restaurant Information" id="2C1-Ok-S0X">
