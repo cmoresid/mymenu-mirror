@@ -75,23 +75,35 @@ MMMenuItemRating *touchedReview;
 
 -(void) detectOrientation {
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+	CGSize segmentControlSize = self.reviewOrderBySegmentControl.frame.size;
+
+	
     if (UIDeviceOrientationIsLandscape(deviceOrientation) &&
         !self.isShowingLandscape)
     {
         self.isShowingLandscape = YES;
-    }
+		self.searchBar.frame =CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.height, 44.0f);
+		self.reviewOrderBySegmentControl.frame = CGRectMake(([[UIScreen mainScreen] bounds].size.height/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
+		self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.height-20, 60);
+	}
     else if (UIDeviceOrientationIsPortrait(deviceOrientation) &&
              self.isShowingLandscape)
     {
         self.isShowingLandscape = NO;
-    }
+		self.searchBar.frame =CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 44.0f);
+		self.reviewOrderBySegmentControl.frame = CGRectMake(([[UIScreen mainScreen] bounds].size.width / 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
+		self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.width-20, 60);
+	}
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:UIDeviceOrientationDidChangeNotification object:nil];
+	self.merchantNameLabel.adjustsFontSizeToFitWidth = true;
 	[self detectOrientation];
+	//[self configureSearchBar];
+	//[self configureOtherViews];
 	[self registerForKeyboardNotifications];
 }
 
@@ -198,7 +210,7 @@ MMMenuItemRating *touchedReview;
 	
 	UISearchBar *newSearchBar;
 	if(self.isShowingLandscape) {
-		newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0f, 44.0f)];
+		newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.height, 44.0f)];
 	} else {
 		newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 44.0f)];
 	}
@@ -216,11 +228,7 @@ MMMenuItemRating *touchedReview;
 	
     layout.viewHeight = 44.0f;
 	
-	if(self.isShowingLandscape) {
-		[layout setSectionInset:UIEdgeInsetsMake(44, 0, 0, 0)];
-	} else {
-		[layout setSectionInset:UIEdgeInsetsMake(0, 44, 0, 0)];
-	}
+	[layout setSectionInset:UIEdgeInsetsMake(44, 0, 0, 0)];
     
     newSearchBar.delegate = self;
     self.searchBar = newSearchBar;
@@ -249,7 +257,6 @@ MMMenuItemRating *touchedReview;
         RACChannelTo(self.viewModel.merchantInformation, address);
     
     self.merchantRatingLabel.text = [MMPresentationFormatter formatRatingForRawRating:self.viewModel.merchantInformation.rating];
-    
     self.merchantHoursLabel.text = [MMPresentationFormatter formatBusinessHoursForOpenTime:self.viewModel.merchantInformation.opentime withCloseTime:self.viewModel.merchantInformation.closetime];
     
     // Ignore the first signal since don't care about the
@@ -260,7 +267,7 @@ MMMenuItemRating *touchedReview;
         deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(NSNumber *tabIndex) {
             self.searchBar.text = @"";
-            
+			
             if ([tabIndex isEqualToNumber:self.viewModel.reviewTabIndex]) {
                 [self configureCollectionViewForReviews];
             }
@@ -364,7 +371,13 @@ MMMenuItemRating *touchedReview;
     
     [searchBar removeFromSuperview];
     CGRect oldFrame = self.view.frame;
-    searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, searchBar.frame.size.width, searchBar.frame.size.height);
+	
+	if(self.isShowingLandscape) {
+		searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, [[UIScreen mainScreen] bounds].size.height, searchBar.frame.size.height);
+	} else {
+		searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 44, [[UIScreen mainScreen] bounds].size.width, searchBar.frame.size.height);
+	}
+	
     [self.view addSubview:searchBar];
     [searchBar becomeFirstResponder];
     
@@ -392,7 +405,13 @@ MMMenuItemRating *touchedReview;
 - (void)configureCategorySegmentAppearance:(NSArray *)categories {
     self.categorySegmentControl = [[HMSegmentedControl alloc] initWithSectionTitles:categories];
     self.categorySegmentControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
-	self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.width-20, 60);
+	
+	if(self.isShowingLandscape) {
+		self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.height-20, 60);
+	} else {
+		self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.width-20, 60);
+	}
+	
     self.categorySegmentControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
     self.categorySegmentControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
     self.categorySegmentControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
@@ -453,7 +472,12 @@ MMMenuItemRating *touchedReview;
 }
 
 - (void)configureSearchBar {
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 44.0f)];
+	UISearchBar *searchBar;
+	if(self.isShowingLandscape) {
+		searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.height, 44.0f)];
+	} else {
+		searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 44.0f)];
+	}
     searchBar.placeholder = NSLocalizedString(@"Search for Menu Item", nil);
     searchBar.translucent = FALSE;
     self.searchBar = searchBar;
@@ -530,6 +554,7 @@ MMMenuItemRating *touchedReview;
     cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:menitem.rating];
     cell.upVoteCountLabel.text = [NSString stringWithFormat:@"%@", menitem.likeCount];
     cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", menitem.firstname, menitem.lastname];
+
     cell.reviewLabel.text = menitem.review;
     
     return cell;
@@ -630,13 +655,18 @@ MMMenuItemRating *touchedReview;
         return;
 	
     CGSize segmentControlSize;
+	//if(self.isShowingLandscape) {
+		segmentControlSize = CGSizeMake(300.0, 30.0);
+	//} else {
+		//segmentControlSize = CGSizeMake(160.0, 40.0);
+	//}
+    //CGRect viewFrame = self.view.frame;
+	CGRect segmentControlFrame;
 	if(self.isShowingLandscape) {
-		segmentControlSize = CGSizeMake(300.0, 40.0);
+		segmentControlFrame = CGRectMake(([[UIScreen mainScreen] bounds].size.height/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
 	} else {
-		segmentControlSize = CGSizeMake(160.0, 40.0);
+		segmentControlFrame = CGRectMake(([[UIScreen mainScreen] bounds].size.width/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
 	}
-    CGRect viewFrame = self.view.frame;
-    CGRect segmentControlFrame = CGRectMake((viewFrame.size.width / 2.0) - segmentControlSize.width / 2.0, 0, segmentControlSize.width, segmentControlSize.height);
     
     self.reviewOrderBySegmentControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Top Rated", nil)]];
 
@@ -652,7 +682,8 @@ MMMenuItemRating *touchedReview;
 
 - (void)showShowOrderBySegmentControl {
     //[self.view insertSubview:self.reviewOrderBySegmentControl aboveSubview:self.menuItemsCollectionView];
-    [self.menuItemsCollectionView addSubview:self.reviewOrderBySegmentControl];
+	if(self.reviewOrderBySegmentControl)
+		[self.menuItemsCollectionView addSubview:self.reviewOrderBySegmentControl];
 }
 
 - (void)hideOrderBySegmentControl {
