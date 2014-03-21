@@ -31,9 +31,14 @@ import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
+import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.MenuItem;
+import ca.mymenuapp.data.api.model.MenuItemModification;
 import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.data.api.model.Restaurant;
+import ca.mymenuapp.data.api.model.User;
+import ca.mymenuapp.data.prefs.ObjectPreference;
+import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.ReviewsFragment;
 import ca.mymenuapp.ui.widgets.NotifyingScrollView;
 import ca.mymenuapp.ui.widgets.SlidingUpPanelLayout;
@@ -41,7 +46,11 @@ import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
+import javax.inject.Named;
+
+import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
 /**
  * An activity to display a single menu item.
@@ -52,21 +61,26 @@ public class MenuItemActivity extends BaseActivity {
   public static final String ARGS_RESTAURANT = "restaurant";
   public static final String ARGS_REVIEWS = "reviews";
 
+  @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreferences;
   @InjectExtra(ARGS_MENU_ITEM) MenuItem menuItem;
   @InjectExtra(ARGS_RESTAURANT) Restaurant restaurant;
   @InjectExtra(ARGS_REVIEWS) ArrayList<MenuItemReview> reviews;
 
+  @InjectView(R.id.scroll_view) ScrollView scrollView;
   @InjectView(R.id.menu_item_image_header) ImageView header;
   @InjectView(R.id.menu_item_description) TextView description;
   @InjectView(R.id.menu_item_reviews_summary) TextView reviewSummary;
   @InjectView(R.id.sliding_pane) View slidingPane;
+  @InjectView(R.id.menu_item_modifications) TextView menuMods;
 
   @InjectView(R.id.sliding_layout) SlidingUpPanelLayout slidingLayout;
 
   @Inject Picasso picasso;
+  @Inject MyMenuDatabase myMenuDatabase;
 
   private Drawable actionBarBackgroundDrawable;
   private ShareActionProvider shareActionProvider;
+  private List<MenuItemModification> modList;
 
   private NotifyingScrollView.OnScrollChangedListener onScrollChangedListener =
       new NotifyingScrollView.OnScrollChangedListener() {
@@ -128,7 +142,7 @@ public class MenuItemActivity extends BaseActivity {
       }
     });
 
-    bindView();
+    bindView(savedInstanceState);
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -155,14 +169,37 @@ public class MenuItemActivity extends BaseActivity {
   /**
    * Update view with our menu item data.
    */
-  private void bindView() {
+  private void bindView(Bundle savedInstanceState) {
+
+    getModifications();
     picasso.load(restaurant.businessPicture).into(actionBarTarget);
     picasso.load(menuItem.picture).fit().centerCrop().into(header);
     getActionBar().setTitle(menuItem.name);
     description.setText(menuItem.description);
-    getFragmentManager().beginTransaction()
-        .add(R.id.menu_item_reviews, ReviewsFragment.newInstance(reviews, false))
-        .commit();
+    if (savedInstanceState == null) {
+      getFragmentManager().beginTransaction()
+          .add(R.id.menu_item_reviews, ReviewsFragment.newInstance(reviews, false))
+          .commit();
+    }
+  }
+
+  private void getModifications() {
+
+    myMenuDatabase.getModifications(userPreferences.get(), menuItem,
+        new EndlessObserver<List<MenuItemModification>>() {
+          @Override public void onNext(List<MenuItemModification> response) {
+            modList = response;
+            String superMods = "";
+
+            for (MenuItemModification m : modList) {
+              superMods += "• ";
+              superMods += m.modification;
+              superMods += "\n\n";
+            }
+            menuMods.setText(superMods);
+          }
+        }
+    );
   }
 
   private void setShareIntent() {

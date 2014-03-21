@@ -22,6 +22,8 @@ import ca.mymenuapp.data.api.model.DietaryRestriction;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.MenuCategory;
 import ca.mymenuapp.data.api.model.MenuItem;
+import ca.mymenuapp.data.api.model.MenuItemModification;
+import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
@@ -297,6 +299,23 @@ public class MyMenuDatabase {
     String query = String.format(MyMenuApi.POST_LIKE_REVIEW, user.email, review.id, review.merchId,
         review.menuId);
     return myMenuApi.likeReview(query)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
+
+  public Subscription getModifications(User user, MenuItem menuItem,
+      Observer<List<MenuItemModification>> observer) {
+    String query =
+        String.format(MyMenuApi.GET_MODIFICATIONS, Long.toString(menuItem.id), user.email);
+    return myMenuApi.getModifications(query)
+        .map(new Func1<MenuItemModificationResponse, List<MenuItemModification>>() {
+          @Override public List<MenuItemModification> call(
+              MenuItemModificationResponse menuItemModificationResponse) {
+            return menuItemModificationResponse.modificationList;
+          }
+        })
+        .cache()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
