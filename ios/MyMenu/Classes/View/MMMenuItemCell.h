@@ -42,7 +42,7 @@
  *  The label that displays a brief description of
  *  the menu item.
  */
-@property(nonatomic, weak) IBOutlet UILabel *descriptionLabel;
+@property(nonatomic, weak) IBOutlet UITextView *descriptionView;
 
 /**
  *  The label that displays the current rating for a
@@ -55,7 +55,7 @@
  *  consume a menu item. An exclamation point is displayed
  *  in this label if a user cannot consume this menu item.
  */
-@property(nonatomic, weak) IBOutlet UILabel *restrictionLabel;
+@property(nonatomic, weak) IBOutlet UIImageView *restrictedImage;
 
 /**
  *  The view that the rating label resides in. The background
