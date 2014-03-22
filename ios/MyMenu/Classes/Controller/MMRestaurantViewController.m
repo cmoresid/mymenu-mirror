@@ -501,7 +501,7 @@ MMMenuItemRating *touchedReview;
     cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:menitem.rating];
     cell.upVoteCountLabel.text = [NSString stringWithFormat:@"%@", menitem.likeCount];
     cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", menitem.firstname, menitem.lastname];
-    cell.reviewLabel.text = menitem.review;
+    cell.reviewView.text = menitem.review;
     
     return cell;
 }
@@ -556,11 +556,6 @@ MMMenuItemRating *touchedReview;
     cell.priceLabel.text = [MMPresentationFormatter formatNumberAsPrice:menuItem.cost];
     cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:menuItem.rating];
     cell.descriptionView.text = menuItem.desc;
-    cell.descriptionView.contentInset = UIEdgeInsetsMake(-5, 0, -5, 0);
-    cell.descriptionView.scrollEnabled = YES;
-    cell.descriptionView.textContainer.lineFragmentPadding = 0;
-    cell.descriptionView.textContainer.maximumNumberOfLines = 2;
-    cell.descriptionView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
     
     cell.restrictedImage.image = (menuItem.restrictionflag) ? [UIImage imageNamed:@"restriction.png"] : nil;
     
