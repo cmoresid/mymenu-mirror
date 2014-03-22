@@ -192,17 +192,21 @@
     else {
         self.selectedMerchantId = ((MMMerchant *)[self.restaurants objectAtIndex:indexPath.row]).mid;
     }
-    
+	[self.detailViewController.navigationController setViewControllers:[NSArray arrayWithObject:self.detailViewController] animated:NO];
+	[self.detailViewController.navigationController setNeedsStatusBarAppearanceUpdate];
     [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"restaurantSegue"]) {
-        UINavigationController *controller = segue.destinationViewController;
+        //UINavigationController *controller = segue.destinationViewController;
 
-        RBStoryboardLink *storyboardLink = [controller.viewControllers firstObject];
-        MMRestaurantViewController *restaurantViewController = (MMRestaurantViewController *) storyboardLink.scene;
+        //RBStoryboardLink *storyboardLink = [controller.viewControllers firstObject];
 
+		
+		//[nav popToRootViewControllerAnimated:YES];
+		
+        MMRestaurantViewController *restaurantViewController = (MMRestaurantViewController *) segue.destinationViewController;
         restaurantViewController.currentMerchantId = self.selectedMerchantId;
     }
 }

@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
-        <!--Restaurant View Controller - Restaurant Information-->
+        <!--Restaurant View Controller-->
         <scene sceneID="m5j-NM-KY9">
             <objects>
                 <viewController id="sDb-0H-8Q4" customClass="MMRestaurantViewController" sceneMemberID="viewController">
@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U2D-DU-XfK" userLabel="Restaurant_Pic">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U2D-DU-XfK" userLabel="Restaurant_Pic">
                                 <rect key="frame" x="558" y="10" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -24,7 +24,7 @@
                                     <constraint firstAttribute="height" constant="200" id="YaL-Vu-1d4"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLa-e5-cwC" customClass="MMBorderedView">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLa-e5-cwC" customClass="MMBorderedView">
                                 <rect key="frame" x="10" y="10" width="540" height="200"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -198,13 +198,6 @@
                             <constraint firstItem="pH9-uF-H80" firstAttribute="top" secondItem="C4i-IM-JdP" secondAttribute="top" constant="273" id="ycq-G5-bID"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Restaurant Information" id="2C1-Ok-S0X">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="kZP-Wm-vcn">
-                            <connections>
-                                <action selector="cancelToMainScreen:" destination="sDb-0H-8Q4" id="h35-VW-Zhi"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="leftSwipeGestureForCategory" destination="sld-Od-xYw" id="Pkc-v2-89B"/>
@@ -232,7 +225,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4552" y="1135"/>
+            <point key="canvasLocation" x="4240" y="1447"/>
         </scene>
         <!--Menu Item View Controller-->
         <scene sceneID="sNX-nW-PBW">
@@ -506,7 +499,6 @@
         <scene sceneID="6iG-fS-oSo">
             <objects>
                 <navigationController storyboardIdentifier="popOverNavigation" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="Agh-8r-0gf" customClass="MMBaseNavigationController" sceneMemberID="viewController">
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QbU-dM-u3W">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -627,7 +619,7 @@
                         <viewControllerLayoutGuide type="bottom" id="WCc-GH-6rD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ilf-k2-JCU">
-                        <rect key="frame" x="0.0" y="0.0" width="500" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wvE-62-pc4">
@@ -765,13 +757,11 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="2jG-E2-0do"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="desc" destination="11R-WG-zEu" id="XD5-hu-pIk"/>
@@ -797,7 +787,7 @@
                         <viewControllerLayoutGuide type="bottom" id="8CI-vP-dQy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" placeholderIntrinsicWidth="250" placeholderIntrinsicHeight="200" id="LBE-fp-TOp">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="252" height="200"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8K-Xp-r8q">
@@ -809,7 +799,7 @@
                                 </state>
                             </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DwZ-go-eTn">
-                                <rect key="frame" x="8" y="-22" width="167" height="216"/>
+                                <rect key="frame" x="8" y="-22" width="168" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                         </subviews>
@@ -835,7 +825,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wa4-eh-271"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fi8-fA-6QF">
-                        <rect key="frame" x="0.0" y="0.0" width="350" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="352" height="200"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duN-Dz-S3O">
@@ -850,7 +840,7 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eu8-pB-mm5">
-                                <rect key="frame" x="0.0" y="-6" width="350" height="216"/>
+                                <rect key="frame" x="0.0" y="-6" width="352" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                         </subviews>

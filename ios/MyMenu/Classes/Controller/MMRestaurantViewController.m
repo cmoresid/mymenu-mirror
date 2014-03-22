@@ -94,22 +94,22 @@ MMMenuItemRating *touchedReview;
 	[self.searchBar removeFromSuperview];
 	[self.reviewOrderBySegmentControl removeFromSuperview];
 	//[self.categorySegmentControl removeFromSuperview];
-    if (UIDeviceOrientationIsLandscape(deviceOrientation) &&
-        !self.isShowingLandscape)
-    {
-        self.isShowingLandscape = YES;
-		self.searchBar.frame =CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.height, 44.0f);
-		self.reviewOrderBySegmentControl.frame = CGRectMake(([[UIScreen mainScreen] bounds].size.height/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
+//    if (UIDeviceOrientationIsLandscape(deviceOrientation) &&
+//        !self.isShowingLandscape)
+//    {
+//        self.isShowingLandscape = YES;
+		self.searchBar.frame =CGRectMake(0.0, 0.0, self.view.frame.size.width, 44.0f);
+		self.reviewOrderBySegmentControl.frame = CGRectMake((self.view.frame.size.width/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
 		//self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.height-20, 60);
-	}
-    else if (UIDeviceOrientationIsPortrait(deviceOrientation) &&
-             self.isShowingLandscape)
-    {
-        self.isShowingLandscape = NO;
-		self.searchBar.frame =CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 44.0f);
-		self.reviewOrderBySegmentControl.frame = CGRectMake(([[UIScreen mainScreen] bounds].size.width / 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
-		//self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.width-20, 60);
-	}
+//	}
+//    else if (UIDeviceOrientationIsPortrait(deviceOrientation) &&
+//             self.isShowingLandscape)
+//    {
+//        self.isShowingLandscape = NO;
+//		self.searchBar.frame =CGRectMake(0.0, 0.0, self.view.superview.frame.size.width, 44.0f);
+//		self.reviewOrderBySegmentControl.frame = CGRectMake((self.view.superview.frame.size.width / 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
+//		//self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.width-20, 60);
+//	}
 	
 	[self.menuItemsCollectionView addSubview:self.searchBar];
 	
@@ -136,7 +136,7 @@ MMMenuItemRating *touchedReview;
     [super viewDidLoad];
 
     
-    [self hideAllViewsBeforeDataLoads];
+	[self hideAllViewsBeforeDataLoads];
     
     @weakify(self);
     [[[[MMMerchantService sharedService] getMerchantWithMerchantID:self.currentMerchantId]
@@ -230,11 +230,13 @@ MMMenuItemRating *touchedReview;
     
 	
 	UISearchBar *newSearchBar;
-	if(self.isShowingLandscape) {
-		newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.height, 44.0f)];
-	} else {
-		newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 44.0f)];
-	}
+//	if(self.isShowingLandscape) {
+//		newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.height, 44.0f)];
+//	} else {
+//		newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 44.0f)];
+//	}
+	newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 44.0f)];
+	
     newSearchBar.placeholder = NSLocalizedString(@"Search for Menu Item", nil);
     
     if (![self.currentValueInSearchBar isEqualToString:@""]) {
@@ -393,11 +395,14 @@ MMMenuItemRating *touchedReview;
     [searchBar removeFromSuperview];
     CGRect oldFrame = self.view.frame;
 	
-	if(self.isShowingLandscape) {
-		searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, [[UIScreen mainScreen] bounds].size.height, searchBar.frame.size.height);
-	} else {
-		searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, [[UIScreen mainScreen] bounds].size.width, searchBar.frame.size.height);
-	}
+//	if(self.isShowingLandscape) {
+//		searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, [[UIScreen mainScreen] bounds].size.height, searchBar.frame.size.height);
+//	} else {
+//		searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, [[UIScreen mainScreen] bounds].size.width, searchBar.frame.size.height);
+//	}
+	
+	searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, 	self.view.frame.size.width, searchBar.frame.size.height);
+
 	
     [self.view addSubview:searchBar];
     [searchBar becomeFirstResponder];
@@ -427,23 +432,28 @@ MMMenuItemRating *touchedReview;
     self.categorySegmentControl = [[HMSegmentedControl alloc] initWithSectionTitles:categories];
     self.categorySegmentControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
 	
-	if(self.isShowingLandscape) {
-		self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.height-20, 60);
-	} else {
-		self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.width-20, 60);
-	}
+//	if(self.isShowingLandscape) {
+//		self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.height-20, 60);
+//	} else {
+//		self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.width-20, 60);
+//	}
+	
+
+	self.categorySegmentControl.frame = CGRectMake(10, 213, self.view.frame.size.width-20, 60);
 	
     self.categorySegmentControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
     self.categorySegmentControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
     self.categorySegmentControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    self.categorySegmentControl.scrollEnabled = YES;
+    self.categorySegmentControl.scrollEnabled = NO;
     self.categorySegmentControl.selectionIndicatorColor = [UIColor tealColor];
+	self.categorySegmentControl.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
     
     self.categorySegmentControl.layer.masksToBounds = NO;
     self.categorySegmentControl.layer.shadowColor = [UIColor blackColor].CGColor;
     self.categorySegmentControl.layer.shadowOpacity = 0.3;
     self.categorySegmentControl.layer.shadowRadius = 2;
     self.categorySegmentControl.layer.shadowOffset = CGSizeMake(0.0f, 4.0f);
+	[self.categorySegmentControl sizeToFit];
 }
 
 - (void)configureCategorySegmentEvents {
@@ -488,17 +498,21 @@ MMMenuItemRating *touchedReview;
 #pragma mark - Private Helper Methods
 
 - (void)hideAllViewsBeforeDataLoads {
-    [self.view.subviews setValue:@YES forKeyPath:@"hidden"];
+    //[self.view.subviews setValue:@YES forKeyPath:@"hidden"];
+	
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 - (void)configureSearchBar {
 	UISearchBar *searchBar;
-	if(self.isShowingLandscape) {
-		searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.height, 44.0f)];
-	} else {
-		searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 44.0f)];
-	}
+//	if(self.isShowingLandscape) {
+//		searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.height, 44.0f)];
+//	} else {
+//		searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 44.0f)];
+//	}
+	
+	searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 44.0f)];
+
     searchBar.placeholder = NSLocalizedString(@"Search for Menu Item", nil);
     searchBar.translucent = FALSE;
     self.searchBar = searchBar;
@@ -683,12 +697,13 @@ MMMenuItemRating *touchedReview;
 	//}
     //CGRect viewFrame = self.view.frame;
 	CGRect segmentControlFrame;
-	if(self.isShowingLandscape) {
-		segmentControlFrame = CGRectMake(([[UIScreen mainScreen] bounds].size.height/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
-	} else {
-		segmentControlFrame = CGRectMake(([[UIScreen mainScreen] bounds].size.width/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
-	}
-    
+//	if(self.isShowingLandscape) {
+//		segmentControlFrame = CGRectMake(([[UIScreen mainScreen] bounds].size.height/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
+//	} else {
+//		segmentControlFrame = CGRectMake(([[UIScreen mainScreen] bounds].size.width/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
+//	}
+    segmentControlFrame = CGRectMake((self.view.frame.size.width/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
+	
     self.reviewOrderBySegmentControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Top Rated", nil)]];
 
     self.reviewOrderBySegmentControl.frame = segmentControlFrame;

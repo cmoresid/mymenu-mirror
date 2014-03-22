@@ -68,7 +68,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	
 	// Delegate our self to the db fetcher.
     [MMDBFetcher get].delegate = self;
-    self.navigationController.toolbar.hidden = TRUE;
+    //self.navigationController.toolbar.hidden = TRUE;
 }
 
 
@@ -162,6 +162,14 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
     //create toolbar and set origin and dimensions
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
+	
+	if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) ||
+        ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
+		[toolbar setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.height, 44)];
+	} else if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait || [[UIDevice currentDevice] orientation] == UIDeviceOrientationPortraitUpsideDown) {
+		[toolbar setFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width,44)];
+	}
+	
     [toolbar setBarTintColor:[UIColor darkTealColor]];
     [toolbar setTintColor:[UIColor whiteColor]];
     [toolbar setDelegate:self];
@@ -197,7 +205,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     //add buttons to the toolbar
     [self setToolbarItems:[NSArray arrayWithObjects:buttonFilter, buttonWeek, flexibleSpace, dateLabel, flexibleSpace, searchBarButtonItem, negativeSeperator, nil]];
 	[self setToolbar:toolbar];
-	
 	[self.toolbar setItems:self.toolbarItems];
 	[self.view addSubview:self.toolbar];
 	
