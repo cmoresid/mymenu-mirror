@@ -25,7 +25,7 @@
 /**
  *  The controller that shows the selected menu item a user selects.
  */
-@interface MMMenuItemViewController : UIViewController <UITableViewDataSource, MMDBFetcherDelegate, UITextViewDelegate, UIPopoverControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MMMenuItemViewController : UITableViewController <UITableViewDataSource, MMDBFetcherDelegate, UITextViewDelegate, UIPopoverControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 /**
  *  The item that the user touched before
