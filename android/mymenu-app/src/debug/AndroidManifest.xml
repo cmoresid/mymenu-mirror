@@ -23,5 +23,12 @@
   <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
   <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
-  <application/>
+  <application>
+
+    <meta-data
+        android:name="com.google.android.maps.v2.API_KEY"
+        android:value="AIzaSyAulAQHlep3oe1tpOSl0C9QUL1e_3UjELg"/>
+
+  </application>
+
 </manifest>

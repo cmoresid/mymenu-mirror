@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2014 MyMenu, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see [http://www.gnu.org/licenses/].
+ */
+
 package ca.mymenuapp.ui.activities;
 
 import android.app.Fragment;
@@ -20,20 +37,17 @@ import android.widget.ImageView;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
-import ca.mymenuapp.data.api.model.CategorizedMenu;
-import ca.mymenuapp.data.api.model.MenuItemReview;
-import ca.mymenuapp.data.api.model.Restaurant;
+import ca.mymenuapp.data.api.model.RestaurantMenu;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
-import ca.mymenuapp.ui.fragments.MenuCategoryFragment;
-import ca.mymenuapp.ui.fragments.RestaurantsReviewFragment;
+import ca.mymenuapp.ui.fragments.MenuItemsGridFragment;
+import ca.mymenuapp.ui.fragments.ReviewsFragment;
 import ca.mymenuapp.ui.misc.AlphaForegroundColorSpan;
 import ca.mymenuapp.ui.widgets.KenBurnsView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
-import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -49,7 +63,6 @@ import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
  * todo : handle landscape
  */
 public class RestaurantActivity extends BaseActivity implements AbsListView.OnScrollListener {
-
   public static final String ARGS_RESTAURANT_ID = "restaurant_id";
 
   @InjectExtra(ARGS_RESTAURANT_ID) long restaurantId;
@@ -85,28 +98,25 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
   private AlphaForegroundColorSpan alphaForegroundColorSpan;
   private SpannableString spannableString;
   private TypedValue typedValue = new TypedValue();
-  // Keep a reference to the listView that was last scrolled so we can
-  // synchronize the different pages.
-  private AbsListView lastScrolledListView;
-
-  private List<MenuItemReview> reviewList;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     inflateView(R.layout.activity_restaurant);
 
-    getActionBar().setDisplayHomeAsUpEnabled(true);
+    tabStrip.setTextColorResource(android.R.color.white);
 
-    myMenuDatabase.getRestaurant(restaurantId, new EndlessObserver<Restaurant>() {
-      @Override public void onNext(Restaurant restaurant) {
-        spannableString = new SpannableString(restaurant.businessName);
-        picasso.load(restaurant.businessPicture).fit().centerCrop().into(restaurantHeaderLogo);
-      }
-    });
-    myMenuDatabase.getMenu(userPreference.get(), restaurantId,
-        new EndlessObserver<CategorizedMenu>() {
-          @Override public void onNext(CategorizedMenu menu) {
+    init();
+    setupFancyScroll();
+
+    myMenuDatabase.getRestaurantAndMenu(userPreference.get(), restaurantId,
+        new EndlessObserver<RestaurantMenu>() {
+          @Override public void onNext(RestaurantMenu menu) {
+            spannableString = new SpannableString(menu.getRestaurant().businessName);
+            picasso.load(menu.getRestaurant().businessPicture)
+                .fit()
+                .centerCrop()
+                .into(restaurantHeaderLogo);
             restaurantHeaderBackground.loadImages(picasso, menu.getRandomMenuItem().picture,
                 menu.getRandomMenuItem().picture);
             pager.setAdapter(new MenuCategoryAdapter(getFragmentManager(), menu));
@@ -114,17 +124,6 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
           }
         }
     );
-    myMenuDatabase.getRestaurantReviews(restaurantId, new EndlessObserver<List<MenuItemReview>>() {
-      @Override public void onNext(List<MenuItemReview> reviews) {
-        reviewList = reviews;
-      }
-    });
-
-    tabStrip.setTextColorResource(android.R.color.white);
-    init();
-    setupActionBar();
-
-    restaurantHeader.bringToFront(); // explicit, list scrolls behind the header
   }
 
   /**
@@ -142,8 +141,71 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
   /**
    * Setup the action bar for effects.
    */
-  private void setupActionBar() {
+  private void setupFancyScroll() {
+    getActionBar().setDisplayHomeAsUpEnabled(true);
     getActionBar().setIcon(R.drawable.ic_transparent);
+    restaurantHeader.bringToFront(); // explicit, list scrolls behind the header
+    restaurantHeaderLogo.bringToFront();
+  }
+
+  /**
+   * Get the height of the action bar.
+   */
+  public int getActionBarHeight() {
+    if (actionBarHeight != 0) {
+      return actionBarHeight;
+    }
+    getTheme().resolveAttribute(android.R.attr.actionBarSize, typedValue, true);
+    actionBarHeight =
+        TypedValue.complexToDimensionPixelSize(typedValue.data, getResources().getDisplayMetrics());
+    return actionBarHeight;
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        Intent upIntent = NavUtils.getParentActivityIntent(this);
+        if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
+          TaskStackBuilder.create(this).addNextIntentWithParentStack(upIntent).startActivities();
+        } else {
+          NavUtils.navigateUpTo(this, upIntent);
+        }
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+  }
+
+  @Override public void onScrollStateChanged(AbsListView view, int scrollState) {
+    // ignore
+  }
+
+  @Override public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+      int totalItemCount) {
+    int scrollY = getScrollY(view);
+    restaurantHeader.setTranslationY(Math.max(-scrollY, minHeaderTranslation));
+    float ratio = clamp(restaurantHeader.getTranslationY() / minHeaderTranslation, 0.0f, 1.0f);
+    interpolate(restaurantHeaderLogo, actionBarIconView,
+        smoothInterpolator.getInterpolation(ratio));
+    float alpha = clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F);
+    setTitleAlpha(alpha);
+  }
+
+  public int getScrollY(AbsListView listView) {
+    View c = listView.getChildAt(0);
+    if (c == null) {
+      return 0;
+    }
+
+    int firstVisiblePosition = listView.getFirstVisiblePosition();
+    int top = c.getTop();
+
+    int headerHeight = 0;
+    if (firstVisiblePosition >= 1) {
+      headerHeight = listView.getChildAt(0).getHeight();
+    }
+
+    return -top + firstVisiblePosition * c.getHeight() + headerHeight;
   }
 
   /**
@@ -204,80 +266,14 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
     return rect;
   }
 
-  public int getScrollY(AbsListView listView) {
-    View c = listView.getChildAt(0);
-    if (c == null) {
-      return 0;
-    }
-
-    int firstVisiblePosition = listView.getFirstVisiblePosition();
-    int top = c.getTop();
-
-    int headerHeight = 0;
-    if (firstVisiblePosition >= 1) {
-      headerHeight = ((View) listView.getTag()).getHeight();
-    }
-
-    return -top + firstVisiblePosition * c.getHeight() + headerHeight;
-  }
-
-  /**
-   * Get the height of the action bar.
-   */
-  public int getActionBarHeight() {
-    if (actionBarHeight != 0) {
-      return actionBarHeight;
-    }
-    getTheme().resolveAttribute(android.R.attr.actionBarSize, typedValue, true);
-    actionBarHeight =
-        TypedValue.complexToDimensionPixelSize(typedValue.data, getResources().getDisplayMetrics());
-    return actionBarHeight;
-  }
-
-  @Override public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        Intent upIntent = NavUtils.getParentActivityIntent(this);
-        if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
-          TaskStackBuilder.create(this).addNextIntentWithParentStack(upIntent).startActivities();
-        } else {
-          NavUtils.navigateUpTo(this, upIntent);
-        }
-        return true;
-      default:
-        return super.onOptionsItemSelected(item);
-    }
-  }
-
-  @Override public void onScrollStateChanged(AbsListView view, int scrollState) {
-    // ignore
-  }
-
-  @Override public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
-      int totalItemCount) {
-    if (lastScrolledListView == null) {
-      lastScrolledListView = view;
-    } else if (view != lastScrolledListView) {
-      lastScrolledListView = view;
-      return;
-    }
-    int scrollY = getScrollY(view);
-    restaurantHeader.setTranslationY(Math.max(-scrollY, minHeaderTranslation));
-    float ratio = clamp(restaurantHeader.getTranslationY() / minHeaderTranslation, 0.0f, 1.0f);
-    interpolate(restaurantHeaderLogo, actionBarIconView,
-        smoothInterpolator.getInterpolation(ratio));
-    float alpha = clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F);
-    setTitleAlpha(alpha);
-  }
-
   /**
    * A pager that displays a menu by categories.
    * Each page contains a list of menu items for that particular category.
    */
   class MenuCategoryAdapter extends FragmentPagerAdapter {
-    private final CategorizedMenu menu;
+    private final RestaurantMenu menu;
 
-    MenuCategoryAdapter(FragmentManager fm, CategorizedMenu menu) {
+    MenuCategoryAdapter(FragmentManager fm, RestaurantMenu menu) {
       super(fm);
       this.menu = menu;
     }
@@ -288,10 +284,10 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
 
     @Override public Fragment getItem(int position) {
       if (position < menu.getCategoryCount()) {
-        return MenuCategoryFragment.newInstance(menu.getMenuItemsByCategory(position));
+        return MenuItemsGridFragment.newInstance(menu.getMenuItemsByCategory(position),
+            menu.getRestaurant(), menu.getReviews());
       } else {
-        // todo, what if reviewList is not yet initialized
-        return RestaurantsReviewFragment.newInstance(reviewList);
+        return ReviewsFragment.newInstance(menu.getReviews(), true);
       }
     }
 

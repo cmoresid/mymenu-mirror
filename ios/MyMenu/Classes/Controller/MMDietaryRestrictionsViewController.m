@@ -64,6 +64,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getAllRestrictions];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     self.restrictionsCollectionView.delegate = self;

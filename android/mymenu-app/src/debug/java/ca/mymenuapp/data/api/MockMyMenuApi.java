@@ -20,6 +20,7 @@ package ca.mymenuapp.data.api;
 import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.MenuCategoryResponse;
+import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
@@ -72,14 +73,20 @@ final class MockMyMenuApi implements MyMenuApi {
   }
 
   @Override
+  public Observable<MenuItemModificationResponse> getModifications(@Field("query") String query) {
+    return null;
+  }
+
+  @Override
   public Observable<UserRestrictionResponse> getRestrictionsForUser(@Field("query") String query) {
     return null;
   }
 
   @Override
-  public Observable<RestaurantResponse> getAllRestaurants(@Field("query") String query) {
+  public Observable<RestaurantResponse> getNearbyRestaurants(@Field("query") String query) {
     return null;
   }
+
 
   @Override public Observable<Response> createUser(@Field("email") String email,
       @Field("firstname") String firstname, @Field("lastname") String lastname,
@@ -114,6 +121,10 @@ final class MockMyMenuApi implements MyMenuApi {
 
   @Override
   public Observable<MenuItemReviewResponse> getReviewsForRestaurant(@Field("query") String query) {
+    return null;
+  }
+
+  @Override public Observable<Response> likeReview(@Field("query") String query) {
     return null;
   }
 }

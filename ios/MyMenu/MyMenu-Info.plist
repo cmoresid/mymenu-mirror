@@ -10,16 +10,10 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleGetInfoString</key>
 	<string></string>
+	<key>CFBundleIcons</key>
+	<dict/>
 	<key>CFBundleIcons~ipad</key>
-	<dict>
-		<key>CFBundlePrimaryIcon</key>
-		<dict>
-			<key>CFBundleIconFiles</key>
-			<array>
-				<string>logo</string>
-			</array>
-		</dict>
-	</dict>
+	<dict/>
 	<key>CFBundleIdentifier</key>
 	<string>org.enactforum.originaljoes</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -50,8 +44,8 @@
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

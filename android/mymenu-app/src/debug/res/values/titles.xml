@@ -17,6 +17,6 @@
   -->
 
 <resources>
-  <string name="application_name">MyMenu Sample Debug</string>
+  <string name="application_name">MyMenu Debug</string>
   <string name="launcher_name">MyMenu Debug</string>
 </resources>

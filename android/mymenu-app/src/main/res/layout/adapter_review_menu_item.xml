@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+  ~ Copyright (C) 2014 MyMenu, Inc.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see [http://www.gnu.org/licenses/].
+  -->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,26 +28,17 @@
       android:layout_width="match_parent"
       android:layout_height="48dp"
       android:layout_alignParentLeft="true"
-      android:layout_toLeftOf="@+id/dislike"
+      android:layout_toLeftOf="@+id/overflow"
       android:gravity="center_vertical"
-      android:drawableStart="@drawable/ic_action_emo_basic"
+      android:drawableStart="@drawable/ic_emo_basic"
       tools:text="f2prateek@gmail.com"/>
 
-  <ImageView
-      android:id="@+id/dislike"
+  <ca.mymenuapp.ui.widgets.OverflowView
+      android:id="@+id/overflow"
       android:layout_width="wrap_content"
-      android:layout_height="48dp"
-      style="?android:buttonBarButtonStyle"
-      android:layout_toLeftOf="@+id/like"
-      android:src="@drawable/ic_action_dontlike"/>
-
-  <ImageView
-      android:id="@+id/like"
-      android:layout_width="wrap_content"
-      android:layout_height="48dp"
+      android:layout_height="wrap_content"
       android:layout_alignParentRight="true"
-      style="?android:buttonBarButtonStyle"
-      android:src="@drawable/ic_action_like"/>
+      style="?android:buttonBarButtonStyle"/>
 
   <TextView
       android:id="@+id/rating"

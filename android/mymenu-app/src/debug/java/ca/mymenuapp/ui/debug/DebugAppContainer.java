@@ -49,7 +49,7 @@ import ca.mymenuapp.data.prefs.BooleanPreference;
 import ca.mymenuapp.data.prefs.IntPreference;
 import ca.mymenuapp.data.prefs.StringPreference;
 import ca.mymenuapp.ui.AppContainer;
-import ca.mymenuapp.ui.activities.MainActivity;
+import ca.mymenuapp.ui.activities.LoginActivity;
 import ca.mymenuapp.ui.misc.EnumAdapter;
 import ca.mymenuapp.util.Strings;
 import com.f2prateek.ln.Ln;
@@ -99,6 +99,7 @@ import static retrofit.RestAdapter.LogLevel;
  */
 @Singleton
 public class DebugAppContainer implements AppContainer {
+  @SuppressWarnings("SimpleDateFormat")
   private static final DateFormat DATE_DISPLAY_FORMAT = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
 
   private final OkHttpClient client;
@@ -636,8 +637,7 @@ public class DebugAppContainer implements AppContainer {
   private void setEndpointAndRelaunch(String endpoint) {
     Ln.d("Setting network endpoint to %s", endpoint);
     apiEndpoint.set(endpoint);
-
-    Intent newApp = new Intent(app, MainActivity.class);
+    Intent newApp = new Intent(app, LoginActivity.class);
     newApp.setFlags(FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NEW_TASK);
     app.startActivity(newApp);
     app.buildApplicationGraphAndInject();

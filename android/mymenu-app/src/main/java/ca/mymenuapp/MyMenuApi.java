@@ -19,6 +19,7 @@ package ca.mymenuapp;
 
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
 import ca.mymenuapp.data.api.model.MenuCategoryResponse;
+import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
@@ -35,14 +36,37 @@ import rx.Observable;
 
 /** RESTful interface to talk to the MyMenu backend. */
 public interface MyMenuApi {
+  String GET_MODIFICATIONS = "SELECT modification FROM modificationmenulink WHERE menuid = %s "
+      + "AND restrictid IN(SELECT restrictid FROM restrictionuserlink WHERE email = '%s')";
   String GET_ALL_RESTRICTIONS_QUERY = "SELECT * FROM restrictions";
   String GET_USER_QUERY = "SELECT * FROM users WHERE email='%s' AND password='%s'";
   String GET_USER_RESTRICTIONS = "SELECT * FROM restrictionuserlink where email='%s'";
   String DELETE_USER_RESTRICTIONS = "DELETE from restrictionuserlink WHERE email='%s'";
   String GET_RESTAURANT_MENU = "SELECT * from menu where merchid = %d";
   String GET_MENU_CATEGORIES = "SELECT * from menucategories";
-  String GET_ALL_RESTAURANTS = "SELECT * FROM merchusers";
+  String GET_NEARBY_RESTAURANTS =
+      "SELECT id, business_name, category, "
+          + "business_number, business_address1, "
+
+          + "rating, business_picture, business_description, distance, lat, longa "
+          + "FROM(SELECT id, business_name, "
+          + "category, business_number, business_address1, rating, business_picture, lat, longa, "
+          + "business_description, "
+          + "SQRT(longadiff - -latdiff)*111.12 AS distance "
+          + "FROM (SELECT m.id, m.business_name, mc.name AS category, "
+          + "m.business_number, m.business_address1, m.rating, m.business_picture, "
+          + "m.business_description, "
+          + "m.lat, m.longa, POW(m.longa - %s, 2) AS longadiff, POW(m.lat - %s, 2) "
+          + "AS latdiff FROM merchusers m, "
+          + "merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances "
+          + "ORDER BY distance ASC LIMIT 50";
+
   String GET_RESTAURANT_REVIEWS = "SELECT * from ratings where merchid = %d";
+  String POST_LIKE_REVIEW =
+      "insert into ratinglikes (useremail, ratingid, merchid, menuid, adddate)"
+          + " values('%s', %d, %d, %d, sysdate())";
+  String POST_DISLIKE_REVIEW = "SELECT * from ratings where merchid = %d";
+  String POST_SPAM_REVIEW = "SELECT * from ratings where merchid = %d";
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(@Field("query") String query);
@@ -51,10 +75,13 @@ public interface MyMenuApi {
   Observable<UserResponse> getUser(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<MenuItemModificationResponse> getModifications(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<UserRestrictionResponse> getRestrictionsForUser(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
-  Observable<RestaurantResponse> getAllRestaurants(@Field("query") String query);
+  Observable<RestaurantResponse> getNearbyRestaurants(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/put.php")
   Observable<Response> createUser(@Field("email") String email,
@@ -81,4 +108,7 @@ public interface MyMenuApi {
 
   @FormUrlEncoded @POST("/php/menu/custom.php")
   Observable<MenuItemReviewResponse> getReviewsForRestaurant(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<Response> likeReview(@Field("query") String query);
 }
