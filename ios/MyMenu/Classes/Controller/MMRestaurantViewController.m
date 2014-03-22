@@ -89,7 +89,6 @@ MMMenuItemRating *touchedReview;
 }
 
 -(void) detectOrientation {
-    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
 	CGSize segmentControlSize = self.reviewOrderBySegmentControl.frame.size;
 	[self.searchBar removeFromSuperview];
 	[self.reviewOrderBySegmentControl removeFromSuperview];
