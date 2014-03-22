@@ -49,7 +49,7 @@
                             <constraint firstItem="r8F-v3-6lz" firstAttribute="centerX" secondItem="Eda-xB-hjq" secondAttribute="centerX" id="bvu-Iy-aEs"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priced" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiX-Ta-7sU">
+                    <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priced" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiX-Ta-7sU">
                         <rect key="frame" x="52" y="80" width="65" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
