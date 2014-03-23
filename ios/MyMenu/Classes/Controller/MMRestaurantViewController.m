@@ -634,12 +634,11 @@ MMMenuItemRating *touchedReview;
     cell.contentView.backgroundColor = [UIColor whiteColor];
     cell.contentView.layer.cornerRadius = 5;
     cell.contentView.layer.masksToBounds = YES;
-    cell.titleLabel.numberOfLines = 2;
     cell.ratingBg.backgroundColor = [UIColor lightBackgroundGray];
     cell.ratingBg.layer.cornerRadius = 5;
     
     [cell.menuImageView setImageWithURL:[NSURL URLWithString:menuItem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
-    cell.titleLabel.text = menuItem.name;
+    cell.titleView.text = menuItem.name;
     cell.priceLabel.text = [MMPresentationFormatter formatNumberAsPrice:menuItem.cost];
     cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:menuItem.rating];
     cell.descriptionView.text = menuItem.desc;
