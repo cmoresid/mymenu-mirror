@@ -920,6 +920,7 @@
                         <outlet property="itemName" destination="li6-mM-6ea" id="l32-tW-6Un"/>
                         <outlet property="itemRating" destination="vbs-gB-2GE" id="u2h-ma-yUF"/>
                         <outlet property="itemRatingView" destination="Fpg-ya-fa7" id="dik-Af-Pdj"/>
+                        <outlet property="menuModificationsView" destination="GKo-Yd-fot" id="uBZ-Eu-9aY"/>
                         <outlet property="ratingButton" destination="kLb-oY-fJc" id="mMs-Kh-JoR"/>
                         <outlet property="ratingsCollectionView" destination="SSh-ux-ORq" id="ZZ0-Z1-hSA"/>
                         <outlet property="userReviewField" destination="fsZ-dV-eRX" id="895-nQ-Ce2"/>

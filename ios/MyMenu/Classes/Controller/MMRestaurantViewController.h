@@ -117,14 +117,5 @@
  */
 @property(nonatomic, strong) MMReviewPopOverViewController *revPopOver;
 
-@property(nonatomic) BOOL isShowingLandscape;
-
-/**
- *  Return to main screen button
- *
- *  @param sender UIButton
- */
-- (IBAction)cancelToMainScreen:(id)sender;
-
 @end
 

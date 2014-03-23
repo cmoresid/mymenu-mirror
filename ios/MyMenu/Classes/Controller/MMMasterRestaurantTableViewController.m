@@ -199,13 +199,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"restaurantSegue"]) {
-        //UINavigationController *controller = segue.destinationViewController;
-
-        //RBStoryboardLink *storyboardLink = [controller.viewControllers firstObject];
-
-		
-		//[nav popToRootViewControllerAnimated:YES];
-		
         MMRestaurantViewController *restaurantViewController = (MMRestaurantViewController *) segue.destinationViewController;
         restaurantViewController.currentMerchantId = self.selectedMerchantId;
     }

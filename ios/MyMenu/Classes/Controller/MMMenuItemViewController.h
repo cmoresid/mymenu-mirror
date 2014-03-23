@@ -88,7 +88,7 @@
 /**
  *  The tablview that holds the avaliable Restrictions for the menu item
  */
-@property(nonatomic, weak) IBOutlet UITableView *menuModificationsTableView;
+@property(nonatomic, weak) IBOutlet UITextView *menuModificationsView;
 
 /**
  *  Rate button

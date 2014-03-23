@@ -66,75 +66,47 @@ MMMenuItemRating *touchedReview;
     if (self) {
         self.viewModel = [[MMRestaurantViewModel alloc] init];
         self.searching = NO;
-        self.currentValueInSearchBar = @"";
-		// init orientation.
-		UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-		if (UIDeviceOrientationIsLandscape(deviceOrientation))
-		{
-			self.isShowingLandscape = YES;
-		}
-		else if (UIDeviceOrientationIsPortrait(deviceOrientation))
-		{
-			self.isShowingLandscape = NO;
-		}
-		
+        self.currentValueInSearchBar = @"";		
     }
     
     return self;
 }
 
-
--(void) awakeFromNib {
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:UIDeviceOrientationDidChangeNotification object:nil];
-}
-
--(void) detectOrientation {
+- (void)didReceiveOrientationChangeNotification:(NSNotification *)notification {
 	CGSize segmentControlSize = self.reviewOrderBySegmentControl.frame.size;
 	[self.searchBar removeFromSuperview];
 	[self.reviewOrderBySegmentControl removeFromSuperview];
-	//[self.categorySegmentControl removeFromSuperview];
-//    if (UIDeviceOrientationIsLandscape(deviceOrientation) &&
-//        !self.isShowingLandscape)
-//    {
-//        self.isShowingLandscape = YES;
-		self.searchBar.frame =CGRectMake(0.0, 0.0, self.view.frame.size.width, 44.0f);
-		self.reviewOrderBySegmentControl.frame = CGRectMake((self.view.frame.size.width/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
-		//self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.height-20, 60);
-//	}
-//    else if (UIDeviceOrientationIsPortrait(deviceOrientation) &&
-//             self.isShowingLandscape)
-//    {
-//        self.isShowingLandscape = NO;
-//		self.searchBar.frame =CGRectMake(0.0, 0.0, self.view.superview.frame.size.width, 44.0f);
-//		self.reviewOrderBySegmentControl.frame = CGRectMake((self.view.superview.frame.size.width / 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
-//		//self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.width-20, 60);
-//	}
-	
+
+    self.searchBar.frame = CGRectMake(0.0, 10.0f, self.view.frame.size.width, 44.0f);
+    self.reviewOrderBySegmentControl.frame = CGRectMake((self.view.frame.size.width / 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
+    
 	[self.menuItemsCollectionView addSubview:self.searchBar];
+    
+    MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
 	
-	if(self.searchBar.isHidden){
+    layout.viewHeight = 54.0f;
+	[layout setSectionInset:UIEdgeInsetsMake(54.0f, 0, 0, 0)];
+	
+	if (self.searchBar.isHidden) {
 		[self.menuItemsCollectionView addSubview:self.reviewOrderBySegmentControl];
 	}
-
-	//[self.view addSubview:self.categorySegmentControl];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 	self.merchantNameLabel.adjustsFontSizeToFitWidth = true;
-	[self registerForKeyboardNotifications];
+	[self subscribeToNotifications];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
-    [self unregisterForKeyboardNotifications];
+    [self unsubscribeFromNotifications];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
 	[self hideAllViewsBeforeDataLoads];
     
     @weakify(self);
@@ -188,7 +160,7 @@ MMMenuItemRating *touchedReview;
 
 #pragma mark - Register/Unregister Notification Methods
 
-- (void)registerForKeyboardNotifications {
+- (void)subscribeToNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(moveViewUp:)
                                                  name:UIKeyboardWillShowNotification
@@ -198,14 +170,21 @@ MMMenuItemRating *touchedReview;
                                              selector:@selector(moveViewDown:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveOrientationChangeNotification:) name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
 }
 
-- (void)unregisterForKeyboardNotifications {
+- (void)unsubscribeFromNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillShowNotification
                                                   object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIDeviceOrientationDidChangeNotification
                                                   object:nil];
 }
 
@@ -226,16 +205,8 @@ MMMenuItemRating *touchedReview;
     if (![self isViewPushedUp:self.view.frame]) {
         return;
     }
-    
 	
-	UISearchBar *newSearchBar;
-//	if(self.isShowingLandscape) {
-//		newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.height, 44.0f)];
-//	} else {
-//		newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 44.0f)];
-//	}
-	newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 44.0f)];
-	
+	UISearchBar *newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 10.0f, self.view.frame.size.width, 44.0f)];
     newSearchBar.placeholder = NSLocalizedString(@"Search for Menu Item", nil);
     
     if (![self.currentValueInSearchBar isEqualToString:@""]) {
@@ -246,11 +217,11 @@ MMMenuItemRating *touchedReview;
     [self.menuItemsCollectionView addSubview:newSearchBar];
     
     MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
+	
+    layout.viewHeight = 54.0f;
+	[layout setSectionInset:UIEdgeInsetsMake(54.0f, 0, 0, 0)];
     
-	
-    layout.viewHeight = 44.0f;
-	
-	[layout setSectionInset:UIEdgeInsetsMake(44, 0, 0, 0)];
+    [self.menuItemsCollectionView reloadData];
     
     newSearchBar.delegate = self;
     self.searchBar = newSearchBar;
@@ -354,10 +325,6 @@ MMMenuItemRating *touchedReview;
     return FALSE;
 }
 
-- (IBAction)cancelToMainScreen:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 #pragma mark - Search Bar Delegate Methods
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -394,12 +361,6 @@ MMMenuItemRating *touchedReview;
     [searchBar removeFromSuperview];
     CGRect oldFrame = self.view.frame;
 	
-//	if(self.isShowingLandscape) {
-//		searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, [[UIScreen mainScreen] bounds].size.height, searchBar.frame.size.height);
-//	} else {
-//		searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, [[UIScreen mainScreen] bounds].size.width, searchBar.frame.size.height);
-//	}
-	
 	searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, 	self.view.frame.size.width, searchBar.frame.size.height);
 
 	
@@ -431,13 +392,6 @@ MMMenuItemRating *touchedReview;
     self.categorySegmentControl = [[HMSegmentedControl alloc] initWithSectionTitles:categories];
     self.categorySegmentControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
 	
-//	if(self.isShowingLandscape) {
-//		self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.height-20, 60);
-//	} else {
-//		self.categorySegmentControl.frame = CGRectMake(10, 213, [[UIScreen mainScreen] bounds].size.width-20, 60);
-//	}
-	
-
 	self.categorySegmentControl.frame = CGRectMake(10, 213, self.view.frame.size.width-20, 60);
 	
     self.categorySegmentControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
@@ -497,20 +451,14 @@ MMMenuItemRating *touchedReview;
 #pragma mark - Private Helper Methods
 
 - (void)hideAllViewsBeforeDataLoads {
-    //[self.view.subviews setValue:@YES forKeyPath:@"hidden"];
-	
+    [self.view.subviews setValue:@YES forKeyPath:@"hidden"];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 - (void)configureSearchBar {
 	UISearchBar *searchBar;
-//	if(self.isShowingLandscape) {
-//		searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.height, 44.0f)];
-//	} else {
-//		searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 44.0f)];
-//	}
 	
-	searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 44.0f)];
+	searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 10.0f, self.view.frame.size.width, 44.0f)];
 
     searchBar.placeholder = NSLocalizedString(@"Search for Menu Item", nil);
     searchBar.translucent = FALSE;
@@ -525,8 +473,8 @@ MMMenuItemRating *touchedReview;
     
     MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
     
-    layout.viewHeight = 44.0f;
-    [layout setSectionInset:UIEdgeInsetsMake(44, 0, 0, 0)];
+    layout.viewHeight = 54.0f;
+    [layout setSectionInset:UIEdgeInsetsMake(54.0f, 0, 0, 0)];
     
     [self.menuItemsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
     
@@ -688,19 +636,9 @@ MMMenuItemRating *touchedReview;
         return;
 	
     CGSize segmentControlSize;
-	//if(self.isShowingLandscape) {
-		segmentControlSize = CGSizeMake(300.0, 30.0);
-	//} else {
-		//segmentControlSize = CGSizeMake(160.0, 40.0);
-	//}
-    //CGRect viewFrame = self.view.frame;
-	CGRect segmentControlFrame;
-//	if(self.isShowingLandscape) {
-//		segmentControlFrame = CGRectMake(([[UIScreen mainScreen] bounds].size.height/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
-//	} else {
-//		segmentControlFrame = CGRectMake(([[UIScreen mainScreen] bounds].size.width/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
-//	}
-    segmentControlFrame = CGRectMake((self.view.frame.size.width/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
+    segmentControlSize = CGSizeMake(300.0, 30.0);
+
+	CGRect segmentControlFrame = CGRectMake((self.view.frame.size.width/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
 	
     self.reviewOrderBySegmentControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Top Rated", nil)]];
 
@@ -715,7 +653,6 @@ MMMenuItemRating *touchedReview;
 }
 
 - (void)showShowOrderBySegmentControl {
-    //[self.view insertSubview:self.reviewOrderBySegmentControl aboveSubview:self.menuItemsCollectionView];
 	if(self.reviewOrderBySegmentControl)
 		[self.menuItemsCollectionView addSubview:self.reviewOrderBySegmentControl];
 }
