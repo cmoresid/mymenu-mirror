@@ -42,7 +42,6 @@ import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import com.f2prateek.ln.Ln;
 import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.inject.Inject;
@@ -65,7 +64,7 @@ public class MainActivity extends BaseActivity {
   @Inject MyMenuDatabase myMenuDatabase;
   @Inject ReactiveLocationProvider locationProvider;
 
-  @InjectView(R.id.pager) @Optional ViewPager viewPager;
+  @Optional @InjectView(R.id.pager) ViewPager viewPager;
 
   List<Restaurant> restaurants = Collections.emptyList();
 
@@ -166,7 +165,7 @@ public class MainActivity extends BaseActivity {
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(new EndlessObserver<List<Restaurant>>() {
             @Override public void onNext(List<Restaurant> restaurantList) {
-              bus.post(new OnRestaurantListAvailableEvent(new ArrayList<>(restaurantList)));
+              bus.post(new OnRestaurantListAvailableEvent(restaurantList));
               // filtered ones in memory, now fetch a search from the network and notify any
               // observers
               // todo: show a progress bar in the action bar

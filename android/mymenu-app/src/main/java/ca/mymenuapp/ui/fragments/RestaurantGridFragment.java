@@ -112,7 +112,7 @@ public class RestaurantGridFragment extends BaseFragment
   }
 
   class RestaurantListAdapter extends BindableListAdapter<Restaurant> {
-    NumberFormat nf = DecimalFormat.getInstance();
+    final NumberFormat nf = DecimalFormat.getInstance();
 
     public RestaurantListAdapter(Context context, List<Restaurant> restaurants) {
       super(context, restaurants);
