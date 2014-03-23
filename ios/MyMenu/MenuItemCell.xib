@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="RestaurantCell" selectionStyle="blue" indentationWidth="10" reuseIdentifier="Cell" rowHeight="113" id="5dF-mP-Eii" customClass="MMMenuItemCell">
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="RestaurantCell" selectionStyle="blue" indentationWidth="10" reuseIdentifier="Cell" rowHeight="113" id="5dF-mP-Eii" customClass="MMMenuItemCell">
             <rect key="frame" x="0.0" y="0.0" width="512" height="113"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5dF-mP-Eii" id="hp0-sW-cUd">
@@ -49,7 +49,7 @@
                             <constraint firstItem="r8F-v3-6lz" firstAttribute="centerX" secondItem="Eda-xB-hjq" secondAttribute="centerX" id="bvu-Iy-aEs"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priced" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiX-Ta-7sU">
+                    <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priced" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiX-Ta-7sU">
                         <rect key="frame" x="52" y="80" width="65" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
