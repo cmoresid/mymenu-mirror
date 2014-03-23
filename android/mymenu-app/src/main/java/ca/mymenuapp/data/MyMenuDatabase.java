@@ -28,7 +28,7 @@ import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.RestaurantMenu;
-import ca.mymenuapp.data.api.model.RestaurantResponse;
+import ca.mymenuapp.data.api.model.RestaurantListResponse;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionLink;
@@ -282,9 +282,9 @@ public class MyMenuDatabase {
     });
     final String query = String.format(MyMenuApi.GET_NEARBY_RESTAURANTS, longa, lat);
     myMenuApi.getNearbyRestaurants(query)
-        .map(new Func1<RestaurantResponse, List<Restaurant>>() {
+        .map(new Func1<RestaurantListResponse, List<Restaurant>>() {
           @Override
-          public List<Restaurant> call(RestaurantResponse restResponse) {
+          public List<Restaurant> call(RestaurantListResponse restResponse) {
             return restResponse.restList;
           }
         })

@@ -17,8 +17,8 @@
 
 package ca.mymenuapp.data.api;
 
-import ca.mymenuapp.data.api.model.MenuItem;
 import ca.mymenuapp.data.api.model.MockDataLoader;
+import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.User;
 import com.f2prateek.ln.Ln;
 import java.util.List;
@@ -40,6 +40,7 @@ public final class ServerDatabase {
   }
 
   Map<String, User> userMap;
+  List<Restaurant> restaurants;
 
   public static String nextStringId() {
     return Long.toHexString(nextId());
@@ -60,11 +61,12 @@ public final class ServerDatabase {
     Ln.d("Initializing mock data...");
 
     userMap = mockDataLoader.newUsers();
+    restaurants = mockDataLoader.newRestaurants();
   }
 
-  public List<MenuItem> getMenuItem() {
+  public List<Restaurant> getRestaurants() {
     initializeMockData();
-    return null;
+    return restaurants;
   }
 
   public User getUser(String email, String password) {

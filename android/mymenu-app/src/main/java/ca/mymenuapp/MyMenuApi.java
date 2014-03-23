@@ -23,7 +23,7 @@ import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
-import ca.mymenuapp.data.api.model.RestaurantResponse;
+import ca.mymenuapp.data.api.model.RestaurantListResponse;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import retrofit.client.Response;
@@ -44,22 +44,20 @@ public interface MyMenuApi {
   String DELETE_USER_RESTRICTIONS = "DELETE from restrictionuserlink WHERE email='%s'";
   String GET_RESTAURANT_MENU = "SELECT * from menu where merchid = %d";
   String GET_MENU_CATEGORIES = "SELECT * from menucategories";
-  String GET_NEARBY_RESTAURANTS =
-      "SELECT id, business_name, category, "
-          + "business_number, business_address1, "
-
-          + "rating, business_picture, business_description, distance, lat, longa "
-          + "FROM(SELECT id, business_name, "
-          + "category, business_number, business_address1, rating, business_picture, lat, longa, "
-          + "business_description, "
-          + "SQRT(longadiff - -latdiff)*111.12 AS distance "
-          + "FROM (SELECT m.id, m.business_name, mc.name AS category, "
-          + "m.business_number, m.business_address1, m.rating, m.business_picture, "
-          + "m.business_description, "
-          + "m.lat, m.longa, POW(m.longa - %s, 2) AS longadiff, POW(m.lat - %s, 2) "
-          + "AS latdiff FROM merchusers m, "
-          + "merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances "
-          + "ORDER BY distance ASC LIMIT 50";
+  String GET_NEARBY_RESTAURANTS = "SELECT id, business_name, category, "
+      + "business_number, business_address1, "
+      + "rating, business_picture, business_description, distance, lat, longa "
+      + "FROM(SELECT id, business_name, "
+      + "category, business_number, business_address1, rating, business_picture, lat, longa, "
+      + "business_description, "
+      + "SQRT(longadiff - -latdiff)*111.12 AS distance "
+      + "FROM (SELECT m.id, m.business_name, mc.name AS category, "
+      + "m.business_number, m.business_address1, m.rating, m.business_picture, "
+      + "m.business_description, "
+      + "m.lat, m.longa, POW(m.longa - %s, 2) AS longadiff, POW(m.lat - %s, 2) "
+      + "AS latdiff FROM merchusers m, "
+      + "merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances "
+      + "ORDER BY distance ASC LIMIT 50";
 
   String GET_RESTAURANT_REVIEWS = "SELECT * from ratings where merchid = %d";
   String POST_LIKE_REVIEW =
@@ -81,7 +79,7 @@ public interface MyMenuApi {
   Observable<UserRestrictionResponse> getRestrictionsForUser(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
-  Observable<RestaurantResponse> getNearbyRestaurants(@Field("query") String query);
+  Observable<RestaurantListResponse> getNearbyRestaurants(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/put.php")
   Observable<Response> createUser(@Field("email") String email,

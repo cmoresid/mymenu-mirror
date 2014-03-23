@@ -24,7 +24,7 @@ import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
-import ca.mymenuapp.data.api.model.RestaurantResponse;
+import ca.mymenuapp.data.api.model.RestaurantListResponse;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import com.f2prateek.ln.Ln;
@@ -83,10 +83,11 @@ final class MockMyMenuApi implements MyMenuApi {
   }
 
   @Override
-  public Observable<RestaurantResponse> getNearbyRestaurants(@Field("query") String query) {
-    return null;
+  public Observable<RestaurantListResponse> getNearbyRestaurants(@Field("query") String query) {
+    RestaurantListResponse restaurantListResponse = new RestaurantListResponse();
+    restaurantListResponse.restList = serverDatabase.getRestaurants();
+    return Observable.from(restaurantListResponse);
   }
-
 
   @Override public Observable<Response> createUser(@Field("email") String email,
       @Field("firstname") String firstname, @Field("lastname") String lastname,

@@ -19,7 +19,9 @@ package ca.mymenuapp.data.api.model;
 
 import android.app.Application;
 import android.content.res.AssetManager;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.inject.Inject;
@@ -56,13 +58,46 @@ public final class MockDataLoader {
     return item;
   }
 
-  public Map<Long, Restaurant> newRestaurants() {
-    Map<Long, Restaurant> restaurantMap = new LinkedHashMap<>();
+  /**
+   * Return a mock path to the image with this filename.
+   * Must be under assets/mock/images
+   */
+  private String picture(String filename) {
+    return "mock:///mock/images/" + filename;
+  }
+
+  public List<Restaurant> newRestaurants() {
+    List<Restaurant> restaurants = new ArrayList<>();
     AtomicLong nextId = new AtomicLong();
 
-    restaurantMap.put(nextId.get(), new Restaurant.Builder(nextId.getAndIncrement()).get());
+    restaurants.add(new RestaurantBuilder(nextId.getAndIncrement()) //
+            .businessName("Boston Pizza (Whyte Ave)")
+            .businessNumber("780-429-9999")
+            .businessDescription(
+                "A Sports Bar and a Restaurant, two great concepts under one roof!")
+            .businessPicture(picture("boston_pizza.png"))
+            .address("10854 82nd Avenue")
+            .city("Edmonton")
+            .locality("AB")
+            .postalCode("T6E 2B3")
+            .country("Canada")
+            .lat(53.518415)
+            .lng(-113.511446)
+            .facebook("https://www.facebook.com/bpwhyteave")
+            .twitter("https://twitter.com/bostonpizza")
+            .website("http://t.co/HzkIcOBoQ2")
+            .rating(6.7)
+            .ratingCount("5")
+            .category("Canadian")
+            .priceLow("10")
+            .distance("0.34")
+            .priceHigh("30")
+            .openTime("11:00:00")
+            .closeTime("02:00:00")
+            .get()
+    );
 
-    return restaurantMap;
+    return restaurants;
   }
 
   public Map<String, User> newUsers() {
@@ -71,7 +106,7 @@ public final class MockDataLoader {
     AtomicLong nextId = new AtomicLong();
 
     userMap.put("spiderman@avengers.com",
-        new User.Builder(nextId.getAndIncrement()).email("spiderman@avengers.com")
+        new UserBuilder(nextId.getAndIncrement()).email("spiderman@avengers.com")
             .firstName("Peter")
             .lastName("Parker")
             .password("spiderman")
@@ -85,7 +120,7 @@ public final class MockDataLoader {
     );
 
     userMap.put("captainamerica@avengers.com",
-        new User.Builder(nextId.getAndIncrement()).email("captainamerica@avengers.com")
+        new UserBuilder(nextId.getAndIncrement()).email("captainamerica@avengers.com")
             .firstName("Steve")
             .lastName("Rogers")
             .password("captainamerica")
@@ -99,7 +134,7 @@ public final class MockDataLoader {
     );
 
     userMap.put("blackwidow@avengers.com",
-        new User.Builder(nextId.getAndIncrement()).email("blackwidow@avengers.com")
+        new UserBuilder(nextId.getAndIncrement()).email("blackwidow@avengers.com")
             .firstName("Natasha")
             .lastName("Romanova")
             .password("blackwidow")

@@ -23,14 +23,13 @@ import org.simpleframework.xml.Root;
 
 @Root(name = "results")
 
-public class RestaurantResponse {
+public class RestaurantListResponse {
 
   @ElementList(name = "result", inline = true) public List<Restaurant> restList;
-  @ElementList(required = false) public long timestamp;
 
   @Override
   public String toString() {
-    return "RestaurantResponse{" +
+    return "RestaurantListResponse{" +
         "restList=" + restList +
         '}';
   }
