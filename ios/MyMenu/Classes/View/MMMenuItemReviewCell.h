@@ -42,7 +42,7 @@
  *  The label that contains a portion of the review
  *  that an individual has written.
  */
-@property(nonatomic, weak) IBOutlet UILabel *reviewLabel;
+@property(nonatomic, weak) IBOutlet UITextView *reviewView;
 
 /**
  *  The label that contains the rating that a reviewer

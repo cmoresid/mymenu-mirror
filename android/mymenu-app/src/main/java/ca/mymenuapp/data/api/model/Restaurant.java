@@ -72,6 +72,10 @@ public class Restaurant implements Parcelable, ClusterItem {
     return location;
   }
 
+  @Override public LatLng getPosition() {
+    return new LatLng(lat, lng);
+  }
+
   protected Restaurant(Parcel in) {
     id = in.readLong();
     email = in.readString();
@@ -151,10 +155,6 @@ public class Restaurant implements Parcelable, ClusterItem {
           return new Restaurant[size];
         }
       };
-
-  @Override public LatLng getPosition() {
-    return new LatLng(lat, lng);
-  }
 
   static class Builder {
     final Restaurant restaurant;

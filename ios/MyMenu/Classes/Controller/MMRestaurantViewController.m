@@ -588,8 +588,7 @@ MMMenuItemRating *touchedReview;
     cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:menitem.rating];
     cell.upVoteCountLabel.text = [NSString stringWithFormat:@"%@", menitem.likeCount];
     cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", menitem.firstname, menitem.lastname];
-
-    cell.reviewLabel.text = menitem.review;
+    cell.reviewView.text = menitem.review;
     
     return cell;
 }
@@ -643,8 +642,9 @@ MMMenuItemRating *touchedReview;
     cell.titleLabel.text = menuItem.name;
     cell.priceLabel.text = [MMPresentationFormatter formatNumberAsPrice:menuItem.cost];
     cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:menuItem.rating];
-    cell.descriptionLabel.text = menuItem.desc;
-    cell.restrictionLabel.text = (menuItem.restrictionflag) ? @"!" : @"";
+    cell.descriptionView.text = menuItem.desc;
+    
+    cell.restrictedImage.image = (menuItem.restrictionflag) ? [UIImage imageNamed:@"restriction.png"] : nil;
     
     return cell;
 }
