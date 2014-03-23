@@ -138,8 +138,19 @@ public class MainActivity extends BaseActivity {
 
     // Associate searchable configuration with the SearchView
     SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-    SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+    MenuItem searchMenuItem = menu.findItem(R.id.search);
+    SearchView searchView = (SearchView) searchMenuItem.getActionView();
     searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+    searchMenuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+      @Override public boolean onMenuItemActionExpand(MenuItem item) {
+        return true;
+      }
+
+      @Override public boolean onMenuItemActionCollapse(MenuItem item) {
+        bus.post(new OnRestaurantListAvailableEvent(restaurants));
+        return true;
+      }
+    });
 
     return true;
   }

@@ -62,14 +62,13 @@ public class RestaurantsMapFragment extends BaseMapFragment
         clusterManager.clearItems();
       } else {
         clusterManager = new ClusterManager<>(activityContext, getMap());
+        // Point the map's listeners at the listeners implemented by the cluster manager.
+        getMap().setOnCameraChangeListener(clusterManager);
+        getMap().setOnMarkerClickListener(clusterManager);
+        clusterManager.setOnClusterItemClickListener(this);
       }
 
-      // Point the map's listeners at the listeners implemented by the cluster manager.
-      getMap().setOnCameraChangeListener(clusterManager);
-      getMap().setOnMarkerClickListener(clusterManager);
-
       clusterManager.addItems(restaurants);
-      clusterManager.setOnClusterItemClickListener(this);
       clusterManager.cluster();
     }
   }
