@@ -36,10 +36,10 @@ import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.SphericalUtil;
 import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.List;
 import javax.inject.Inject;
 import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
@@ -63,7 +63,7 @@ public class RestaurantGridFragment extends BaseFragment
   LocationRequest request = LocationRequest.create()
       .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
       .setInterval(5000);
-  Location lastKnownLocation;
+  LatLng lastLatLng;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,7 +83,7 @@ public class RestaurantGridFragment extends BaseFragment
         locationProvider.getUpdatedLocation(request).subscribe(new Action1<Location>() {
           @Override
           public void call(Location location) {
-            lastKnownLocation = location;
+            lastLatLng = new LatLng(location.getLatitude(), location.getLongitude());
           }
         });
   }
@@ -112,7 +112,6 @@ public class RestaurantGridFragment extends BaseFragment
   }
 
   class RestaurantListAdapter extends BindableListAdapter<Restaurant> {
-    final NumberFormat nf = DecimalFormat.getInstance();
 
     public RestaurantListAdapter(Context context, List<Restaurant> restaurants) {
       super(context, restaurants);
@@ -141,24 +140,26 @@ public class RestaurantGridFragment extends BaseFragment
           .centerCrop()
           .into(holder.picture);
       holder.label.setText(item.businessName);
-      holder.rating.setText(Double.toString(item.rating));
+      holder.rating.setText(String.format("%.1f", item.rating));
       holder.address.setText(item.address);
       // todo, show text
       holder.cuisine.setText(item.category);
 
-      Double distInt = Double.parseDouble(item.distance);
-      String distance = "";
-      nf.setMaximumFractionDigits(1);
-
-      if (distInt < 1) {
-        nf.setMaximumFractionDigits(0);
-        distInt *= 1000;
-        distance = nf.format(distInt) + "m";
+      double distance; // in metres
+      if (lastLatLng != null) {
+        distance = SphericalUtil.computeDistanceBetween(lastLatLng, item.getPosition());
       } else {
-        distance = nf.format(distInt) + "km";
+        distance = Double.parseDouble(item.distance) * 1000; // convert to metres
       }
 
-      holder.distance.setText(distance);
+      if (distance < 1000) {
+        // show it in metres
+        holder.distance.setText(getString(R.string.metres, distance));
+      } else {
+        // show it in km
+        distance /= 1000;
+        holder.distance.setText(getString(R.string.kilometres, distance));
+      }
     }
 
     class ViewHolder {

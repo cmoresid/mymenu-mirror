@@ -80,4 +80,8 @@
   <string name="search">Search</string>
   <string name="restaurant_search_hint">Type in a Restaurant Name</string>
 
+  <!-- Restaurant Grid Fragment -->
+  <string name="kilometres">%1$.1f k</string>
+  <string name="metres">%1$.0fm</string>
+
 </resources>
