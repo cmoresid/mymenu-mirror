@@ -101,16 +101,6 @@
 @property(nonatomic, weak) IBOutlet UIButton *eatenThisButton;
 
 /**
- *  Scrollview for the Entire view (Mostly for moving textfield up for keyboard)
- */
-@property(nonatomic, weak) IBOutlet UIScrollView *scrollView;
-
-/**
- *  The Current Navigation Bar
- */
-@property(nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
-
-/**
  *  Current Rating of menu Item
  */
 @property(nonatomic, strong) NSNumber *rating;
@@ -125,7 +115,7 @@
 /**
  *  Switch the ratings view to show top rated first or most recent
  */
-@property(nonatomic, weak) IBOutlet UISegmentedControl *reviewSegment;
+@property(nonatomic, strong) UISegmentedControl *reviewSegment;
 
 /**
  *  Share the menu item via facebook
