@@ -30,7 +30,7 @@
  *  The label that displays the name of
  *  the menu item.
  */
-@property(nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property(nonatomic, weak) IBOutlet UITextView *titleView;
 
 /**
  *  The label that displays the price of
