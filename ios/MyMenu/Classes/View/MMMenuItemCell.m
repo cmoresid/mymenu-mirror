@@ -28,6 +28,12 @@
 }
 
 - (void)awakeFromNib {
+    self.titleView.contentInset = UIEdgeInsetsMake(-12, 0, -5, 0);
+    self.titleView.editable = NO;
+    self.titleView.scrollEnabled = NO;
+    self.titleView.textContainer.lineFragmentPadding = 0;
+    self.titleView.textContainer.maximumNumberOfLines = 1;
+    self.titleView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
     self.descriptionView.contentInset = UIEdgeInsetsMake(-5, 0, -5, 0);
     self.descriptionView.editable = NO;
     self.descriptionView.scrollEnabled = NO;
