@@ -47,6 +47,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import retrofit.client.Response;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
 /**
@@ -156,7 +158,7 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
           setProgressBarIndeterminateVisibility(false);
           userPreference.set(user);
           Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-          intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+          intent.setFlags(FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NEW_TASK);
           startActivity(intent);
           finish();
         }

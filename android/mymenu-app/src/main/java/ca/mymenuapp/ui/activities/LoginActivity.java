@@ -36,6 +36,8 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
 /**
@@ -65,7 +67,6 @@ public class LoginActivity extends BaseActivity {
     Intent intent = new Intent(this, SignUpActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     startActivity(intent);
-    finish();
   }
 
   @OnClick(R.id.login) void onLoginClicked() {
@@ -106,7 +107,7 @@ public class LoginActivity extends BaseActivity {
           if (user != null) {
             userPreference.set(user);
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
           } else {
