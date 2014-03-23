@@ -38,10 +38,8 @@ import ca.mymenuapp.ui.widgets.BetterViewAnimator;
 import com.google.android.gms.location.LocationRequest;
 import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;
-import hugo.weaving.DebugLog;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
@@ -101,12 +99,12 @@ public class RestaurantGridFragment extends BaseFragment
     bus.post(new MainActivity.OnRestaurantClickEvent(restaurant));
   }
 
-  @Subscribe @DebugLog
+  @Subscribe
   public void onRestaurantsAvailableEvent(MainActivity.OnRestaurantListAvailableEvent event) {
     initGrid(event.restaurants);
   }
 
-  private void initGrid(ArrayList<Restaurant> restaurants) {
+  private void initGrid(List<Restaurant> restaurants) {
     adapter = new RestaurantListAdapter(activityContext, restaurants);
     gridView.setAdapter(adapter);
     gridView.setOnItemClickListener(this);

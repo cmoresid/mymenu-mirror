@@ -43,6 +43,7 @@ import com.f2prateek.ln.Ln;
 import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -55,7 +56,9 @@ import rx.util.functions.Func1;
 
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
-/** The top level activity that is shown first to the user. */
+/**
+ * The top level activity that is shown first to the user.
+ */
 public class MainActivity extends BaseActivity {
 
   @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
@@ -64,7 +67,7 @@ public class MainActivity extends BaseActivity {
 
   @InjectView(R.id.pager) @Optional ViewPager viewPager;
 
-  ArrayList<Restaurant> restaurants;
+  List<Restaurant> restaurants = Collections.emptyList();
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -72,31 +75,33 @@ public class MainActivity extends BaseActivity {
 
     inflateView(R.layout.activity_main);
 
-    if (savedInstanceState == null) {
-      locationProvider.getLastKnownLocation().subscribe(new Action1<Location>() {
-        @Override
-        public void call(Location location) {
-          myMenuDatabase.getNearbyRestaurants(Double.toString(location.getLatitude()),
-              Double.toString(location.getLongitude()), new EndlessObserver<List<Restaurant>>() {
-            @Override public void onNext(List<Restaurant> restaurantList) {
-              restaurants = new ArrayList<>(restaurantList);
-              if (viewPager != null) {
-                // we're on a phone
-                setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
-              } else {
-                // we're on a tablet layout
-                setupPanes();
+    locationProvider.getLastKnownLocation().subscribe(new Action1<Location>() {
+      @Override
+      public void call(Location location) {
+        myMenuDatabase.getNearbyRestaurants(Double.toString(location.getLatitude()),
+            Double.toString(location.getLongitude()), new EndlessObserver<List<Restaurant>>() {
+              @Override public void onNext(List<Restaurant> restaurantList) {
+                restaurants = restaurantList;
+                bus.post(new OnRestaurantListAvailableEvent(restaurantList));
               }
             }
-          });
-        }
-      });
+        );
+      }
+    });
+
+    if (savedInstanceState == null) {
+      if (viewPager != null) {
+        // we're on a phone
+        setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
+      } else {
+        // we're on a tablet layout
+        setupPanes();
+      }
     }
   }
 
   /** Setup the tabs to display our fragments. */
   private void setupTabs(int tab) {
-    ArrayList<Restaurant> arrayList = new ArrayList<>(restaurants);
     ActionBar actionBar = getActionBar();
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     SwipeableActionBarTabsAdapter tabsAdapter = new SwipeableActionBarTabsAdapter(this, viewPager);
@@ -197,14 +202,15 @@ public class MainActivity extends BaseActivity {
   }
 
   public static class OnRestaurantListAvailableEvent {
-    public final ArrayList<Restaurant> restaurants;
+    public final List<Restaurant> restaurants;
 
-    public OnRestaurantListAvailableEvent(ArrayList<Restaurant> restaurants) {
+    public OnRestaurantListAvailableEvent(List<Restaurant> restaurants) {
       this.restaurants = restaurants;
     }
   }
 
   @Produce public OnRestaurantListAvailableEvent produceRestaurants() {
+    Ln.d("Producing %d restaurants.", restaurants.size());
     return new OnRestaurantListAvailableEvent(restaurants);
   }
 }

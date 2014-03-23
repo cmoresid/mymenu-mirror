@@ -24,8 +24,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterManager;
 import com.squareup.otto.Subscribe;
-import hugo.weaving.DebugLog;
-import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
 import rx.util.functions.Action1;
@@ -55,12 +54,12 @@ public class RestaurantsMapFragment extends BaseMapFragment
     });
   }
 
-  @Subscribe @DebugLog
+  @Subscribe
   public void onRestaurantsAvailableEvent(MainActivity.OnRestaurantListAvailableEvent event) {
     initMap(event.restaurants);
   }
 
-  private void initMap(ArrayList<Restaurant> restaurants) {
+  private void initMap(List<Restaurant> restaurants) {
     // Point the map's listeners at the listeners implemented by the cluster manager.
     map.setOnCameraChangeListener(clusterManager);
     map.setOnMarkerClickListener(clusterManager);
