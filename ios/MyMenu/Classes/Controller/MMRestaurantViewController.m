@@ -35,12 +35,6 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "MMMerchantService.h"
 
-#define kReview @"kReview"
-#define kCondensedTopReviews @"condensedTopReviews"
-#define kCondensedRecentReviews @"condensedRecentReviews"
-#define kAllRecentReviews @"allRecentReviews"
-#define kAllTopReviews @"allTopReviews"
-
 @interface MMRestaurantViewController ()
 
 @property(nonatomic, strong) HMSegmentedControl *categorySegmentControl;
@@ -60,6 +54,10 @@ MMMenuItemRating *touchedReview;
 
 #pragma mark - View Controller Methods
 
+- (void)awakeFromNib {
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     
@@ -72,29 +70,19 @@ MMMenuItemRating *touchedReview;
     return self;
 }
 
-- (void)didReceiveOrientationChangeNotification:(NSNotification *)notification {
-	CGSize segmentControlSize = self.reviewOrderBySegmentControl.frame.size;
-	[self.searchBar removeFromSuperview];
-	[self.reviewOrderBySegmentControl removeFromSuperview];
-
-    self.searchBar.frame = CGRectMake(0.0, 10.0f, self.view.frame.size.width, 44.0f);
-    self.reviewOrderBySegmentControl.frame = CGRectMake((self.view.frame.size.width / 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
+- (UIDeviceOrientation)translateFromUIInterfaceOrientation {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
-	[self.menuItemsCollectionView addSubview:self.searchBar];
-    
-    MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
-	
-    layout.viewHeight = 54.0f;
-	[layout setSectionInset:UIEdgeInsetsMake(54.0f, 0, 0, 0)];
-	
-	if (self.searchBar.isHidden) {
-		[self.menuItemsCollectionView addSubview:self.reviewOrderBySegmentControl];
-	}
+    return UIInterfaceOrientationIsPortrait(orientation) ? UIDeviceOrientationPortrait : UIDeviceOrientationLandscapeLeft;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 	self.merchantNameLabel.adjustsFontSizeToFitWidth = true;
+    
+    [self configureCollectionViewLayoutCellSizeForOrientation:[self translateFromUIInterfaceOrientation]];
+    [self.menuItemsCollectionView reloadData];
+    
 	[self subscribeToNotifications];
 }
 
@@ -141,6 +129,56 @@ MMMenuItemRating *touchedReview;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Orientation Change Methods
+
+- (void)didReceiveOrientationChangeNotification:(NSNotification *)notification {
+    UIDevice *device = notification.object;
+    
+	CGSize segmentControlSize = self.reviewOrderBySegmentControl.frame.size;
+	[self.searchBar removeFromSuperview];
+	[self.reviewOrderBySegmentControl removeFromSuperview];
+    
+    self.searchBar.frame = CGRectMake(0.0, 10.0f, self.view.frame.size.width, 44.0f);
+    self.reviewOrderBySegmentControl.frame = CGRectMake((self.view.frame.size.width / 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
+    
+	[self.menuItemsCollectionView addSubview:self.searchBar];
+    
+    MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
+
+    layout.viewHeight = 54.0f;
+	[layout setSectionInset:UIEdgeInsetsMake(54.0f, 0, 0, 0)];
+    
+    [self configureCollectionViewLayoutCellSizeForOrientation:device.orientation];
+    
+    [self.menuItemsCollectionView reloadData];
+	
+	if (self.searchBar.isHidden) {
+		[self.menuItemsCollectionView addSubview:self.reviewOrderBySegmentControl];
+	}
+}
+
+- (void)configureCollectionViewLayoutCellSizeForOrientation:(UIDeviceOrientation)orientation {
+    MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
+    
+    if (UIDeviceOrientationIsPortrait(orientation)) {
+        layout.itemSize = CGSizeMake(384.0f, 113.0f);
+    }
+    else {
+        layout.itemSize = CGSizeMake(700.0f, 113.0f);
+    }
+}
+
+- (UICollectionViewCell *)configureCellSizeWithOrientation:(UIDeviceOrientation)orientation withCell:(UICollectionViewCell *)cell {
+    if (UIDeviceOrientationIsPortrait(orientation)) {
+        cell.contentView.frame = CGRectMake(cell.contentView.frame.origin.x, cell.contentView.frame.origin.y, 384, cell.contentView.frame.size.height);
+    }
+    else {
+        cell.contentView.frame = CGRectMake(cell.contentView.frame.origin.x, cell.contentView.frame.origin.y, 700, cell.contentView.frame.size.height);
+    }
+    
+    return cell;
 }
 
 #pragma mark - Gesture Recognition Methods
@@ -392,7 +430,7 @@ MMMenuItemRating *touchedReview;
     self.categorySegmentControl = [[HMSegmentedControl alloc] initWithSectionTitles:categories];
     self.categorySegmentControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
 	
-	self.categorySegmentControl.frame = CGRectMake(10, 213, self.view.frame.size.width-20, 60);
+	self.categorySegmentControl.frame = CGRectMake(10, self.merchantInformationContainer.frame.origin.y + self.merchantInformationContainer.frame.size.height + 5, self.view.frame.size.width-20, 60);
 	
     self.categorySegmentControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
     self.categorySegmentControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
@@ -528,6 +566,11 @@ MMMenuItemRating *touchedReview;
                                                    fromCollectionView:collectionView];
     MMMenuItemRating *menitem = [self.viewModel getItemFromCurrentDataSourceForIndexPath:indexPath];
     
+    cell = (MMMenuItemReviewCell *) [self configureCellSizeWithOrientation:[self translateFromUIInterfaceOrientation] withCell:cell];
+    
+    [cell updateConstraints];
+    [cell updateConstraintsIfNeeded];
+    
     cell.contentView.backgroundColor = [UIColor whiteColor];
     cell.contentView.layer.cornerRadius = 5;
     cell.contentView.layer.masksToBounds = YES;
@@ -578,6 +621,11 @@ MMMenuItemRating *touchedReview;
 - (UICollectionViewCell *)configureMenuItemCell:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
     MMMenuItem *menuItem = [self.viewModel getItemFromCurrentDataSourceForIndexPath:indexPath];
     MMMenuItemCell *cell = [self retrieveMenuItemCellForItemPath:indexPath collectionView:collectionView];
+    
+    cell = (MMMenuItemCell *) [self configureCellSizeWithOrientation:[self translateFromUIInterfaceOrientation] withCell:cell];
+    
+    [cell updateConstraints];
+    [cell updateConstraintsIfNeeded];
     
     cell.contentView.backgroundColor = [UIColor whiteColor];
     cell.contentView.layer.cornerRadius = 5;

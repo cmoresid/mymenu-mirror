@@ -69,6 +69,13 @@
 @property(nonatomic, weak) IBOutlet UIImageView *merchantImageView;
 
 /**
+ *  The view that contains the merchant information
+ *  on the top left of the screen. It also is responsible
+ *  for drawing the grey border as well.
+ */
+@property(nonatomic, weak) IBOutlet UIView *merchantInformationContainer;
+
+/**
  *  The rounded background for restaurant rating
  */
 @property(nonatomic, weak) IBOutlet UIView *ratingView;

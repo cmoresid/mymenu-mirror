@@ -323,6 +323,33 @@ MMMenuItemRating *touchedItem;
 
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, tableView.frame.size.width, 32.0f)];
+    header.backgroundColor = [UIColor tealColor];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 4.0, 200.0f, 16.0f)];
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont systemFontOfSize:16.0f];
+    
+    switch (section) {
+        case 1:
+            label.text = NSLocalizedString(@"Modifications", nil);
+            break;
+        case 2:
+            label.text = NSLocalizedString(@"Submit Rating", nil);
+            break;
+        case 3:
+            label.text = NSLocalizedString(@"Reviews", nil);
+            break;
+        default:
+            break;
+    }
+    
+    [header addSubview:label];
+    
+    return header;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return condensedReviews.count;
 }
