@@ -39,10 +39,23 @@ public interface MyMenuApi {
   String GET_MODIFICATIONS = "SELECT modification FROM modificationmenulink WHERE menuid = %s "
       + "AND restrictid IN(SELECT restrictid FROM restrictionuserlink WHERE email = '%s')";
   String GET_ALL_RESTRICTIONS_QUERY = "SELECT * FROM restrictions";
+  String EDIT_USER = "UPDATE users SET firstname='%s',lastname='%s',password='%s', city='%s',"
+      + "locality='%s',gender='%s' WHERE email = '%s'";
   String GET_USER_QUERY = "SELECT * FROM users WHERE email='%s' AND password='%s'";
   String GET_USER_RESTRICTIONS = "SELECT * FROM restrictionuserlink where email='%s'";
   String DELETE_USER_RESTRICTIONS = "DELETE from restrictionuserlink WHERE email='%s'";
-  String GET_RESTAURANT_MENU = "SELECT * from menu where merchid = %d";
+  String GET_RESTAURANT_MENU = "SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, "
+      + "m.rating, mc.name AS category, 'edible' AS edible, m.categoryid FROM menu m, menucategories mc "
+      + "WHERE m.id "
+      + "not IN(SELECT Distinct rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid "
+      + "IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%s')) AND "
+      + "m.merchid = %s AND m.categoryid = mc.id UNION "
+      + "SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, "
+      + "m.rating, mc.name AS category, 'notedible' AS edible, m.categoryid FROM menu m, menucategories mc "
+      + "WHERE "
+      + "m.id IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN("
+      + "SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%s')) "
+      + "AND m.merchid = %s AND m.categoryid = mc.id";
   String GET_MENU_CATEGORIES = "SELECT * from menucategories";
   String GET_NEARBY_RESTAURANTS = "SELECT id, business_name, category, "
       + "business_number, business_address1, "
@@ -80,6 +93,9 @@ public interface MyMenuApi {
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<RestaurantListResponse> getNearbyRestaurants(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<Response> editUser(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/put.php")
   Observable<Response> createUser(@Field("email") String email,

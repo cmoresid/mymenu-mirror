@@ -42,6 +42,7 @@ import ca.mymenuapp.ui.activities.MenuItemActivity;
 import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.HeaderGridView;
 import com.f2prateek.dart.InjectExtra;
+import com.f2prateek.ln.Ln;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -81,7 +82,7 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
     MenuItemsGridFragment fragment = new MenuItemsGridFragment();
     Bundle args = new Bundle();
     ArrayList<MenuItem> menuItemArrayList = new ArrayList<>(menuItems);
-    Collections.shuffle(menuItemArrayList); // todo, evaluate usefullness?
+    //Collections.shuffle(menuItemArrayList); // todo, evaluate usefullness?
     args.putParcelableArrayList(ARGS_ITEMS, menuItemArrayList);
     args.putParcelable(ARGS_RESTAURANT, restaurant);
     args.putParcelableArrayList(ARGS_REVIEWS, new ArrayList<Parcelable>(reviews));
@@ -188,11 +189,19 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
       ViewHolder holder = (ViewHolder) view.getTag();
       holder.label.setText(item.name);
       picasso.load(item.picture).fit().centerCrop().into(holder.picture);
+      holder.restrictTag.setImageResource(R.drawable.restriction);
+      if(item.edible.compareTo("notedible") == 0){
+       holder.restrictTag.setVisibility(View.VISIBLE);
+      }
+      else{
+        holder.restrictTag.setVisibility(View.INVISIBLE);
+      }
     }
 
     class ViewHolder {
       @InjectView(R.id.menu_item_picture) ImageView picture;
       @InjectView(R.id.menu_item_label) TextView label;
+      @InjectView(R.id.restrict_tag) ImageView restrictTag;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);

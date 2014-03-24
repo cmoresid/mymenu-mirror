@@ -14,9 +14,9 @@
   ~
   ~ You should have received a copy of the GNU General Public License
   ~ along with this program.  If not, see [http://www.gnu.org/licenses/].
-  -->
-
+-->
 <resources>
+
   <!-- Main Activity -->
   <string name="logout">Logout</string>
 
@@ -80,8 +80,16 @@
   <string name="search">Search</string>
   <string name="restaurant_search_hint">Type in a Restaurant Name</string>
 
+<<<<<<< HEAD
   <!-- Restaurant Grid Fragment -->
   <string name="kilometres">%1$.1f k</string>
   <string name="metres">%1$.0fm</string>
+=======
+  <!-- Specials Fragment -->
+  <string name="specials">Specials</string>
+
+  <!--Settings Fragment -->
+  <string name="settings">Settings</string>
+>>>>>>> ab475dd... R file not generating
 
 </resources>

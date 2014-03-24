@@ -17,6 +17,7 @@
 
 package ca.mymenuapp.data.api.model;
 
+import com.f2prateek.ln.Ln;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -60,6 +61,8 @@ public class RestaurantMenu {
       }
       menu.get(menuItem.categoryId).add(menuItem);
     }
+
+
 
     Map<Long, MenuCategory> categoryMap = new HashMap<>();
     for (MenuCategory menuCategory : menuCategories) {

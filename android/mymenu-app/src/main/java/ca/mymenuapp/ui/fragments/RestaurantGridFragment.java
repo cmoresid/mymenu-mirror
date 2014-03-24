@@ -142,7 +142,6 @@ public class RestaurantGridFragment extends BaseFragment
       holder.label.setText(item.businessName);
       holder.rating.setText(String.format("%.1f", item.rating));
       holder.address.setText(item.address);
-      // todo, show text
       holder.cuisine.setText(item.category);
 
       double distance; // in metres

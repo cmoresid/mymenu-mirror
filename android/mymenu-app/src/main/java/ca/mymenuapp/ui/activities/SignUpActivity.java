@@ -166,7 +166,7 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
     }
   }
 
-  boolean validatePassword(EditText passwordText) {
+  private boolean validatePassword(EditText passwordText) {
     boolean hasError = false;
     hasError |= isEmpty(passwordText);
     if (!hasError) {
@@ -182,7 +182,7 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
     return hasError;
   }
 
-  boolean isEmpty(EditText editText) {
+  private boolean isEmpty(EditText editText) {
     boolean hasError = false;
     if (TextUtils.isEmpty(editText.getText())) {
       Ln.e("Email was blank.");

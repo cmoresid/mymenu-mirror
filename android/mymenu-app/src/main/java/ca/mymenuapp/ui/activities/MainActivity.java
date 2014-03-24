@@ -108,6 +108,8 @@ public class MainActivity extends BaseActivity {
         RestaurantGridFragment.class, null);
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.map)),
         RestaurantsMapFragment.class, null);
+    //  tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.settings)),
+    //   SettingsFragment.class, null);
     actionBar.setSelectedNavigationItem(tab);
   }
 

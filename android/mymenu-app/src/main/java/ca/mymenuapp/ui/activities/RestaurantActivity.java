@@ -37,6 +37,7 @@ import android.widget.ImageView;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
+import ca.mymenuapp.data.api.model.MenuItemModification;
 import ca.mymenuapp.data.api.model.RestaurantMenu;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
@@ -47,7 +48,9 @@ import ca.mymenuapp.ui.misc.AlphaForegroundColorSpan;
 import ca.mymenuapp.ui.widgets.KenBurnsView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.f2prateek.dart.InjectExtra;
+import com.f2prateek.ln.Ln;
 import com.squareup.picasso.Picasso;
+import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -272,7 +275,6 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
    */
   class MenuCategoryAdapter extends FragmentPagerAdapter {
     private final RestaurantMenu menu;
-
     MenuCategoryAdapter(FragmentManager fm, RestaurantMenu menu) {
       super(fm);
       this.menu = menu;
