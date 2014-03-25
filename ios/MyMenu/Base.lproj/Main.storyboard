@@ -815,14 +815,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Specials" image="172-pricetag.png" id="mT4-zx-cj1"/>
+                    <tabBarItem key="tabBarItem" title="Specials" image="specials-icon.png" id="mT4-zx-cj1"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="Specials"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5U4-Dz-SmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4604" y="103"/>
+            <point key="canvasLocation" x="4612" y="209"/>
         </scene>
         <!--Storyboard Link - Profile-->
         <scene sceneID="ETw-b6-E7z">
@@ -837,14 +837,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="19-gear.png" id="MKy-EL-AQI"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile-icon.png" id="MKy-EL-AQI"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="Profile"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cK5-Pb-PSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4612" y="1038"/>
+            <point key="canvasLocation" x="4616" y="1354"/>
         </scene>
         <!--Dietary Restrictions View Controller - Dietary Restrictions-->
         <scene sceneID="IDW-UL-YJN">
@@ -932,7 +932,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <scene sceneID="8cd-LS-TG8">
             <objects>
                 <navigationController definesPresentationContext="YES" id="WhE-My-njP" customClass="MMBaseNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Restrictions" image="184-warning.png" id="sT7-h9-rNJ"/>
+                    <tabBarItem key="tabBarItem" title="Restrictions" image="restriction-icon.png" id="sT7-h9-rNJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FTT-VY-YUE">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -942,13 +942,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vFU-aH-rdY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4614" y="2022"/>
+            <point key="canvasLocation" x="4624" y="2495"/>
         </scene>
         <!--Split View Controller - Restaurants-->
         <scene sceneID="ydv-hH-WP7">
             <objects>
                 <splitViewController extendedLayoutIncludesOpaqueBars="YES" id="FBe-5D-9yS" customClass="MMSplitViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Restaurants" image="125-food.png" id="dhW-fu-cX2"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Restaurants" image="restaurant-icon.png" id="dhW-fu-cX2"/>
                     <toolbarItems/>
                     <connections>
                         <segue destination="T0e-TR-sQ7" kind="relationship" relationship="masterViewController" id="smQ-UH-5Ym"/>
@@ -1111,7 +1111,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WdU-i9-r9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9384" y="-1521"/>
+            <point key="canvasLocation" x="8160" y="-1609"/>
         </scene>
         <!--Detail Map View Controller - Detail-->
         <scene sceneID="XjI-23-2aY">
@@ -1156,10 +1156,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-        <image name="125-food.png" width="29" height="23"/>
-        <image name="172-pricetag.png" width="28" height="23"/>
         <image name="184-warning.png" width="24" height="19"/>
-        <image name="19-gear.png" width="26" height="26"/>
+        <image name="profile-icon.png" width="25" height="25"/>
+        <image name="restaurant-icon.png" width="27" height="30"/>
+        <image name="restriction-icon.png" width="25" height="25"/>
+        <image name="specials-icon.png" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
@@ -1167,7 +1168,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="62S-hN-Lz1"/>
         <segue reference="6mi-bI-qhf"/>
-        <segue reference="RgV-gk-1Ps"/>
     </inferredMetricsTieBreakers>
 </document>
