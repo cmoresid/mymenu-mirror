@@ -21,7 +21,7 @@
     }
     else {
         annotationId = AnnotationViewID;
-        imageName = @"LocationMarker.png";
+        imageName = @"location-marker.png";
     }
 
     MKAnnotationView *annotationView = (MKAnnotationView *) [map dequeueReusableAnnotationViewWithIdentifier:annotationId];
