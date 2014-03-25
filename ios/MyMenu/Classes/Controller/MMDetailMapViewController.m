@@ -150,7 +150,7 @@
 #pragma mark - Split View Delegate Methods
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController {
-    barButtonItem.title = NSLocalizedString(@"List", @"List");
+    barButtonItem.title = NSLocalizedString(@"View Restaurants", nil);
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
 }

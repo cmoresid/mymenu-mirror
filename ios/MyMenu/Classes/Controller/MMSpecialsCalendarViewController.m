@@ -31,6 +31,7 @@
     calendarView.calendar = self.calendar;
     calendarView.rowCellClass = [TSQTACalendarRowCell class];
     calendarView.firstDate = [NSDate dateWithTimeIntervalSinceNow:0];
+	self.firstDate = calendarView.firstDate;
     calendarView.lastDate = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * 365 * 5];
     calendarView.backgroundColor = [UIColor clearColor];
     calendarView.pagingEnabled = YES;
@@ -98,8 +99,9 @@
 
 - (void)calendarView:(TSQCalendarView *)calendarView didSelectDate:(NSDate *)date {
 	self.selectedDate = date;
-	[self.specialsCollectionController setSelectedDate:date];
-	[self.specialsCollectionController loadSelectedDate];
+	
+		[self.specialsCollectionController setSelectedDate:date];
+		[self.specialsCollectionController loadSelectedDate];
 }
 
 @end

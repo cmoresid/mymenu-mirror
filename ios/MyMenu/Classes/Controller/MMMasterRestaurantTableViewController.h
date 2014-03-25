@@ -78,4 +78,6 @@
  */
 @property IBOutlet UITableView *tableView;
 
+@property BOOL showingRestaurant;
+
 @end

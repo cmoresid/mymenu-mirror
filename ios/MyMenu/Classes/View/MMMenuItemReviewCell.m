@@ -28,6 +28,10 @@
 }
 
 - (void)awakeFromNib {
+    self.ratingBg.layer.cornerRadius = 5;
+    self.ratingBg.layer.masksToBounds = YES;
+    
+    self.reviewView.editable = NO;
     self.reviewView.contentInset = UIEdgeInsetsMake(-5, 0, -5, 0);
     self.reviewView.scrollEnabled = NO;
     self.reviewView.textContainer.lineFragmentPadding = 0;

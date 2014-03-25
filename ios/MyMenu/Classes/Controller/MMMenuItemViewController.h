@@ -25,7 +25,7 @@
 /**
  *  The controller that shows the selected menu item a user selects.
  */
-@interface MMMenuItemViewController : UIViewController <UITableViewDataSource, MMDBFetcherDelegate, UITextViewDelegate, UIPopoverControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MMMenuItemViewController : UITableViewController <UITableViewDataSource, MMDBFetcherDelegate, UITextViewDelegate, UIPopoverControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 /**
  *  The item that the user touched before
@@ -88,7 +88,7 @@
 /**
  *  The tablview that holds the avaliable Restrictions for the menu item
  */
-@property(nonatomic, weak) IBOutlet UITableView *menuModificationsTableView;
+@property(nonatomic, weak) IBOutlet UITextView *menuModificationsView;
 
 /**
  *  Rate button
@@ -99,16 +99,6 @@
  *  I've eaten this button
  */
 @property(nonatomic, weak) IBOutlet UIButton *eatenThisButton;
-
-/**
- *  Scrollview for the Entire view (Mostly for moving textfield up for keyboard)
- */
-@property(nonatomic, weak) IBOutlet UIScrollView *scrollView;
-
-/**
- *  The Current Navigation Bar
- */
-@property(nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
 
 /**
  *  Current Rating of menu Item
@@ -125,21 +115,14 @@
 /**
  *  Switch the ratings view to show top rated first or most recent
  */
-@property(nonatomic, weak) IBOutlet UISegmentedControl *reviewSegment;
+@property(nonatomic, strong) UISegmentedControl *reviewSegment;
 
 /**
- *  Share the menu item via facebook
+ *  Share the menu item via Social Media
  *
  *  @param sender UIButton
  */
-- (IBAction)shareViaFacebook:(id)sender;
-
-/**
- *  Share the menu Item via Twitter
- *
- *  @param sender UIButton
- */
-- (IBAction)shareViaTwitter:(id)sender;
+- (IBAction)shareMenuItem:(id)sender;
 
 /**
  *  Rate the menu item button selected

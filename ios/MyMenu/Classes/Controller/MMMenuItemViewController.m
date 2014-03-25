@@ -31,6 +31,8 @@
 #import "MMMenuItemReviewCell.h"
 #import "MMReviewPopOverViewController.h"
 #import "MMPresentationFormatter.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "MMMenuItemCollectionViewFlowLayout.h"
 
 #define kCondensedTopReviews @"condensedTopReviews"
 #define kCondensedRecentReviews @"condensedRecentReviews"
@@ -38,13 +40,11 @@
 #define kAllTopReviews @"allTopReviews"
 #define kReview @"kReview"
 
-
 @interface MMMenuItemViewController ()
 
 @end
 
 @implementation MMMenuItemViewController
-
 
 NSMutableArray *mods;
 NSInteger ratingValue;
@@ -54,7 +54,6 @@ NSMutableArray *allReviews;
 NSMutableDictionary *reviewDictionary;
 MMMenuItemRating *touchedItem;
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -63,65 +62,58 @@ MMMenuItemRating *touchedItem;
     return self;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    userProfile = [[MMUser alloc] init];
+
     reviewDictionary = [[NSMutableDictionary alloc] init];
-    // Do any additional setup after loading the view.
     mods = [[NSMutableArray alloc] init];
+    
     self.rating = nil;
     self.userReviewField.delegate = self;
-    self.ratingsCollectionView.delegate = self;
-    self.ratingsCollectionView.dataSource = self;
-    // Register for keyboard notifications to allow
-    // for view to scroll to text field
-    [self registerForKeyboardNotifications];
+
+    [self configureView];
     [[self.userReviewField layer] setBorderColor:[[UIColor tealColor] CGColor]];
     [[self.userReviewField layer] setBorderWidth:2.3];
     [[self.userReviewField layer] setCornerRadius:5];
-    [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.ratingButton setTitle:@"Rate This Item" forState:UIControlStateNormal];
-    _itemName.text = _currentMenuItem.name;
-    _itemDescription.text = _currentMenuItem.desc;
-    [_itemDescription setTextColor:[UIColor blackColor]];
-    [_itemDescription setFont:[UIFont systemFontOfSize:19.0]];
-    _itemImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_currentMenuItem.picture]]];
-    _itemRating.text = [MMPresentationFormatter formatRatingForRawRating:_currentMenuItem.rating];
-    _itemRatingView.backgroundColor = [UIColor lightBackgroundGray];
-    _itemRatingView.layer.cornerRadius = 17.5;
-    self.menuModificationsTableView.dataSource = self;
+    
     userProfile = [[MMLoginManager sharedLoginManager] getLoggedInUser];
     [MMDBFetcher get].delegate = self;
     [[MMDBFetcher get] getModifications:_currentMenuItem.itemid withUser:userProfile.email];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     [self.ratingsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
-    [self.reviewSegment addTarget:self
-                           action:@selector(changeReviewSort:)
-                 forControlEvents:UIControlEventValueChanged];
-    [self.menuModificationsTableView reloadData];
+
     [self.ratingsCollectionView reloadData];
 
     if ([[MMLoginManager sharedLoginManager] isUserLoggedInAsGuest]) {
         _eatenThisButton.hidden = YES;
-    }else{
+    }
+    else {
         _eatenThisButton.hidden = NO;
         _eatenThisButton.enabled = YES;
         _eatenThisButton.backgroundColor = [UIColor lightTealColor];
         [[MMDBFetcher get] userEaten:userProfile.email withItem:_currentMenuItem.itemid];
         [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     }
-
 }
 
+- (void)configureView {
+    self.itemName.text = self.currentMenuItem.name;
+    self.itemRating.text = [MMPresentationFormatter formatRatingForRawRating:_currentMenuItem.rating];
+    self.itemDescription.text = self.currentMenuItem.desc;
+    self.itemDescription.font = [UIFont systemFontOfSize:18.0];
+    self.itemRatingView.layer.cornerRadius = 17.5;
+    [self.itemImage setImageWithURL:[NSURL URLWithString:_currentMenuItem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+    
+    self.ratingsCollectionView.delegate = self;
+    self.ratingsCollectionView.dataSource = self;
+    [self.ratingsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
+}
 
 - (void)didRetrieveTopItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response {
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
-    MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
     condensedReviews = [[NSMutableArray alloc] init];
     allReviews = [[NSMutableArray alloc] init];
-    rating.useremail = @"See More Reviews";
-    rating.id = [NSNumber numberWithInt:-1];
+    
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
                                                           message:@"Unable to communicate with server."
@@ -134,25 +126,16 @@ MMMenuItemRating *touchedItem;
     } else {
         if (ratings.count != 0) {
             allReviews = [ratings mutableCopy];
-            if (ratings.count >= 4) {
-                for (NSInteger w = 0; w <= 2; w++) {
-                    [condensedReviews addObject:[ratings objectAtIndex:w]];
-                }
-                [condensedReviews addObject:rating];
-            } else {
-                condensedReviews = [ratings mutableCopy];
-                [condensedReviews addObject:rating];
-            }
-        } else {
-            rating.review = @"There are not any reviews available for this dish.";
-            [condensedReviews addObject:rating];
-            [allReviews addObject:rating];
+            condensedReviews = [ratings mutableCopy];
         }
+
         [reviewDictionary setObject:allReviews forKey:kAllTopReviews];
         [reviewDictionary setObject:condensedReviews forKey:kCondensedTopReviews];
+        
         if (self.reviewViewFlag) {
             condensedReviews = [reviewDictionary objectForKey:kAllTopReviews];
         }
+        
         [self.ratingsCollectionView reloadData];
     }
 
@@ -160,11 +143,9 @@ MMMenuItemRating *touchedItem;
 
 - (void)didRetrieveRecentItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response {
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
-    MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
-    rating.useremail = @"See More Reviews";
-    rating.id = [NSNumber numberWithInt:-1];
     allReviews = [[NSMutableArray alloc] init];
     condensedReviews = [[NSMutableArray alloc] init];
+    
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
                                                           message:@"Unable to communicate with server."
@@ -177,25 +158,16 @@ MMMenuItemRating *touchedItem;
     } else {
         if (ratings.count != 0) {
             allReviews = [ratings mutableCopy];
-            if (ratings.count >= 4) {
-                for (NSInteger w = 0; w <= 2; w++) {
-                    [condensedReviews addObject:[ratings objectAtIndex:w]];
-                }
-                [condensedReviews addObject:rating];
-            } else {
-                condensedReviews = [ratings mutableCopy];
-                [condensedReviews addObject:rating];
-            }
-        } else {
-            rating.review = @"There are not any reviews available for this dish.";
-            [condensedReviews addObject:rating];
-            [allReviews addObject:rating];
+            condensedReviews = [ratings mutableCopy];
         }
+
         [reviewDictionary setObject:allReviews forKey:kAllRecentReviews];
         [reviewDictionary setObject:condensedReviews forKey:kCondensedRecentReviews];
+        
         if (self.reviewViewFlag) {
             condensedReviews = [reviewDictionary objectForKey:kAllRecentReviews];
         }
+        
         [self.ratingsCollectionView reloadData];
     }
 
@@ -216,130 +188,28 @@ MMMenuItemRating *touchedItem;
         if (modificationsArray.count != 0) {
             mods = [modificationsArray mutableCopy];
         } else {
+            mods = [NSMutableArray new];
             [mods addObject:@"There are not any modifications available for this dish."];
         }
-        [[MMDBFetcher get] getItemRatingsTop:_currentMenuItem.itemid];
+
+        self.menuModificationsView.text = [mods componentsJoinedByString:@"\n"];
+        
+        [[MMDBFetcher get] getItemRatings:_currentMenuItem.itemid];
         [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-        [self.menuModificationsTableView reloadData];
     }
-}
-
-
-
-
-#pragma mark - Table View
-// Theres only one section in this view
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-// Return the amount of restaurants.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return mods.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-    NSString *modification = [mods objectAtIndex:indexPath.row];
-
-    UITextView *modificationView = (UITextView *) [cell viewWithTag:500];
-    [modificationView setFont:[UIFont systemFontOfSize:30.0]];
-    modificationView.text = modification;
-
-    return cell;
 }
 
 - (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
     return FALSE;
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-// Call this method somewhere in your view controller setup code.
-- (void)registerForKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
-}
-
-// If a text field is not visible, move the content view
-// using an animation to bring the text field into view by
-// scrolling the content view.
-- (void)keyboardWasShown:(NSNotification *)aNotification {
-    NSDictionary *info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    //float copyHeight = kbSize.height /2.0f;
-    kbSize.height = kbSize.height * 0.1f;
-
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-    self.scrollView.contentInset = contentInsets;
-    self.scrollView.scrollIndicatorInsets = contentInsets;
-
-    // If active text field is hidden by keyboard, scroll it so it's visible
-    // Your app might not need or want this behavior.
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
-    CGRect bRect = self.activeField.frame;
-
-    bRect.origin.y += 300;
-
-    if (CGRectContainsPoint(aRect, self.activeField.frame.origin)) {
-
-        [self.scrollView scrollRectToVisible:bRect animated:YES];
-    }
-}
-
-// Reset the scroll view to the default location when the
-// keyboard is hidden.
-- (void)keyboardWillBeHidden:(NSNotification *)aNotification {
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    self.scrollView.contentInset = contentInsets;
-    self.scrollView.scrollIndicatorInsets = contentInsets;
-}
-
-// Set the reference to the text field that should be
-// focused on.
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    if ([textView.text isEqualToString:@"Please enter your review here..."]) {
-        textView.text = @"";
-    }
-    self.activeField = textView;
-}
-
-// Remove the reference to the active textfield.
-- (void)textViewDidEndEditing:(UITextView *)textView {
-    self.activeField = nil;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"backToRestPage"]) {
-        //MMRestaurantViewController *restaurantController = [segue destinationViewController];
-        //restaurantController.currentMerchant = _currentMerchant;
-
-    }
-}
-
-- (IBAction)shareViaFacebook:(id)sender {
-    SLComposeViewController *controller = [MMSocialMediaService shareMenuItem:self.currentMenuItem withService:SLServiceTypeFacebook];
-
-    if (controller) {
-        [self presentViewController:controller animated:TRUE completion:nil];
-    }
-}
-
-- (IBAction)shareViaTwitter:(id)sender {
-    SLComposeViewController *controller = [MMSocialMediaService shareMenuItem:self.currentMenuItem withService:SLServiceTypeTwitter];
+- (IBAction)shareMenuItem:(id)sender {
+    UIViewController *controller = [MMSocialMediaService shareMenuItem:self.currentMenuItem];
 
     if (controller) {
         [self presentViewController:controller animated:TRUE completion:nil];
@@ -389,6 +259,18 @@ MMMenuItemRating *touchedItem;
 
 }
 
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([textView.text isEqual:@"Please enter your review here..."]) {
+        textView.text = @"";
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if ([textView.text isEqual:@""]) {
+        textView.text = @"Please enter your review here...";
+        [textView resignFirstResponder];
+    }
+}
 
 - (void)didCreateRating:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
@@ -411,17 +293,61 @@ MMMenuItemRating *touchedItem;
         [message show];
 
         return;
-    } else {
+    }
+    else {
         self.userReviewField.text = @"Please enter your review here...";
         [self.ratingButton setTitle:[[NSString alloc] initWithFormat:@"Rate This Item"] forState:UIControlStateNormal];
         [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
+}
 
-
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, tableView.frame.size.width, 32.0f)];
+    header.backgroundColor = [UIColor tealColor];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 4.0, 200.0f, 16.0f)];
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont systemFontOfSize:16.0f];
+    
+    switch (section) {
+        case 1:
+            label.text = NSLocalizedString(@"Modifications", nil);
+            break;
+        case 2:
+            label.text = NSLocalizedString(@"Submit Rating", nil);
+            break;
+        case 3:
+            label.text = NSLocalizedString(@"Reviews", nil);
+            break;
+        default:
+            break;
+    }
+    
+    [header addSubview:label];
+    
+    return header;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return condensedReviews.count;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *reusableview = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        static NSString *cellIdentifyer = @"CellHeader";
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:cellIdentifyer forIndexPath:indexPath];
+        
+        self.reviewSegment = (UISegmentedControl *) [headerView viewWithTag:500];
+        [self.reviewSegment addTarget:self
+                               action:@selector(changeReviewSort:)
+                     forControlEvents:UIControlEventValueChanged];
+        
+        reusableview = headerView;
+    }
+    
+    return reusableview;
 }
 
 // I implemented didSelectItemAtIndexPath:, but you could use willSelectItemAtIndexPath: depending on what you intend to do. See the docs of these two methods for the differences.
@@ -486,12 +412,14 @@ MMMenuItemRating *touchedItem;
         [message show];
 
         return;
-    } else if (exists){
+    } else if (exists) {
+        [_eatenThisButton setTitle:NSLocalizedString(@"I have eaten this", nil) forState:UIControlStateDisabled];
         _eatenThisButton.enabled = NO;
         _eatenThisButton.backgroundColor = [UIColor lightGrayColor];
     }else{
+        [_eatenThisButton setTitle:NSLocalizedString(@"I have not eaten this", nil) forState:UIControlStateNormal];
         _eatenThisButton.enabled = YES;
-        _eatenThisButton.backgroundColor = [UIColor lightTealColor];
+        _eatenThisButton.backgroundColor = [UIColor tealColor];
     }
 
 }
@@ -500,46 +428,22 @@ MMMenuItemRating *touchedItem;
     static NSString *identifier = @"ReviewCell";
 
     MMMenuItemReviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    //cell.userInteractionEnabled = YES;
+
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"MenuItemReviewCell" owner:self options:NULL] objectAtIndex:0];
     }
-
-
+    
     MMMenuItemRating *menitem = [condensedReviews objectAtIndex:indexPath.row];
-    UILabel *textReview = (UILabel *) [cell viewWithTag:102];
-    UILabel *textName = (UILabel *) [cell viewWithTag:101];
-    UILabel *likeLabel = (UILabel *) [cell viewWithTag:108];
-    UIView *labelBack = (UIView *) [cell viewWithTag:106];
-    UIImageView *likeImage = (UIImageView *) [cell viewWithTag:107];
-    UIImage *image = [UIImage imageNamed:@"upvote"];
-
-    if (menitem.id == [NSNumber numberWithInt:-1]) {
-        textName.text = @"See More Reviews";
-        likeLabel.text = @"";
-        textReview.text = @"";
-        labelBack.backgroundColor = [UIColor whiteColor];
-        likeImage.hidden = YES;
-    } else {
-        // Rounded Corners
-        likeImage.hidden = NO;
-        cell.contentView.backgroundColor = [UIColor whiteColor];
-        cell.contentView.layer.cornerRadius = 5;
-        cell.contentView.layer.masksToBounds = YES;
-        UILabel *textRating = (UILabel *) [cell viewWithTag:104];
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-        [formatter setMaximumFractionDigits:1];
-        [formatter setMinimumFractionDigits:1];
-        likeLabel.text = [NSString stringWithFormat:@"%@", menitem.likeCount];
-        labelBack.backgroundColor = [UIColor lightBackgroundGray];
-        labelBack.layer.cornerRadius = 5;
-        textRating.text = [formatter stringFromNumber:menitem.rating];
-        textName.text = [NSString stringWithFormat:@"%@ %@", menitem.firstname, menitem.lastname];
-        [textReview setText:menitem.review];
-        likeImage.image = image;
-    }
+    
+    cell.contentView.layer.masksToBounds = YES;
+    cell.contentView.layer.cornerRadius = 5.0f;
+    cell.upVoteCountLabel.text = [NSString stringWithFormat:@"%@", menitem.likeCount];
+    cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:menitem.rating];
+    cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", menitem.firstname, menitem.lastname];
+    cell.reviewView.text = menitem.review;
+    cell.likeImageView.image = [UIImage imageNamed:@"upvote.png"];
     cell.rating = menitem;
+    
     return cell;
 }
 
@@ -548,6 +452,19 @@ MMMenuItemRating *touchedItem;
     
     switch ([control selectedSegmentIndex]) {
         case 0:
+            reviews = [reviewDictionary objectForKey:kCondensedRecentReviews];
+            if (reviews == nil) {
+                [[MMDBFetcher get] getItemRatings:_currentMenuItem.itemid];
+                [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
+            } else
+                if (self.reviewViewFlag) {
+                    condensedReviews = [reviewDictionary objectForKey:kAllTopReviews];
+                }else{
+                    condensedReviews = reviews;
+                }
+            break;
+        
+        case 1:
             reviews = [reviewDictionary objectForKey:kCondensedTopReviews];
             
             if (reviews == nil) {
@@ -559,19 +476,7 @@ MMMenuItemRating *touchedItem;
                 }else{
                     condensedReviews = reviews;
                 }
-
-            break;
-        case 1:
-            reviews = [reviewDictionary objectForKey:kCondensedRecentReviews];
-            if (reviews == nil) {
-                [[MMDBFetcher get] getItemRatings:_currentMenuItem.itemid];
-                [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
-            } else
-                if (self.reviewViewFlag) {
-                    condensedReviews = [reviewDictionary objectForKey:kAllTopReviews];
-                }else{
-                    condensedReviews = reviews;
-                }
+            
             break;
         default:
             break;
@@ -635,5 +540,18 @@ MMMenuItemRating *touchedItem;
     [[MMDBFetcher get] eatenThis:userProfile.email withMenuItem:_currentMenuItem.itemid withMerch:_currentMenuItem.merchid];
     [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
 }
+
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+
+
 
 @end

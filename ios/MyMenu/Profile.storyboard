@@ -10,7 +10,6 @@
                 <splitViewController title="Profile" id="dTJ-os-mjA" customClass="MMProfileSplitViewController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="19-gear.png" id="C8f-FB-0SN"/>
                     <toolbarItems/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <segue destination="KDb-g8-3lI" kind="relationship" relationship="masterViewController" id="OMc-Ii-Ss0"/>
                         <segue destination="3EN-r5-9Hz" kind="relationship" relationship="detailViewController" id="gOw-pC-nlI"/>
@@ -160,12 +159,10 @@
                         <viewControllerLayoutGuide type="bottom" id="raw-ur-844"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UxP-0t-gZF">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="Main"/>
                     </userDefinedRuntimeAttributes>

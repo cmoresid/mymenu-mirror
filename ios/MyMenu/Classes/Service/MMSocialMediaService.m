@@ -21,43 +21,12 @@
 
 @implementation MMSocialMediaService
 
-+ (SLComposeViewController *)shareMenuItem:(MMMenuItem *)menuItem withService:(NSString *)serviceType {
-    // Only support Facebook and Twitter for now.
-    if ([serviceType isEqualToString:SLServiceTypeFacebook])
-        return [self shareMenuItemOnFacebook:menuItem];
-
-    if ([serviceType isEqualToString:SLServiceTypeTwitter])
-        return [self shareMenuItemOnTwitter:menuItem];
-
-    return nil;
-}
-
-+ (SLComposeViewController *)shareMenuItemOnFacebook:(MMMenuItem *)menuItem {
-    if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
-        return nil;
-
-    SLComposeViewController *fbComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-
++ (UIViewController *)shareMenuItem:(MMMenuItem *)menuItem {
     NSString *initialMessage = @"I just tried %@! You should try it to! http://www.mymenuapp.ca";
-
-    [fbComposer setInitialText:[NSString stringWithFormat:initialMessage, menuItem.name]];
-    [fbComposer addImage:[self getImageForMenuItem:menuItem]];
-
-    return fbComposer;
-}
-
-+ (SLComposeViewController *)shareMenuItemOnTwitter:(MMMenuItem *)menuItem {
-    if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
-        return nil;
-
-    SLComposeViewController *twitterComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-
-    NSString *initialMessage = @"I just tried %@! You should try it to! http://www.mymenuapp.ca";
-
-    [twitterComposer setInitialText:[NSString stringWithFormat:initialMessage, menuItem.name]];
-    [twitterComposer addImage:[self getImageForMenuItem:menuItem]];
-
-    return twitterComposer;
+    NSString *postText = [NSString stringWithFormat:initialMessage, menuItem.name];
+    UIImage *postImage = [MMSocialMediaService getImageForMenuItem:menuItem];
+    
+    return [[UIActivityViewController alloc] initWithActivityItems:@[postText, postImage]applicationActivities:nil];
 }
 
 + (UIImage *)getImageForMenuItem:(MMMenuItem *)menuItem {
