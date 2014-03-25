@@ -49,8 +49,26 @@
 
 - (void)configureTabBarAppearance {
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UITabBar appearance] setBarTintColor:[UIColor darkTealColor]];
+    [[UITabBar appearance] setBarTintColor:[UIColor sidebarBackgroundGray]];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f], NSForegroundColorAttributeName : [UIColor tealColor]} forState:UIControlStateSelected];
 
+    NSArray *selectedImages = @[@"restaurant-icon-selected.png", @"specials-icon-selected.png", @"restriction-icon-selected.png", @"profile-icon-selected.png"];
+    
+    NSArray *tabBarItems = self.tabBar.items;
+    
+    for (int i = 0; i < tabBarItems.count; i++) {
+        UITabBarItem *tabBarItem = tabBarItems[i];
+        
+        UIImage *image = tabBarItem.image;
+        tabBarItem.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        tabBarItem.selectedImage = [[UIImage imageNamed:selectedImages[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    }
+    
+    for (UITabBarItem *item in self.tabBar.items) {
+        UIImage *image = item.image;
+        item.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        
+    }
 
     UIColor *color = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : color} forState:UIControlStateNormal];
