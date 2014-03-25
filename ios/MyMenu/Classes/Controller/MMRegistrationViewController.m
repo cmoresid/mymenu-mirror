@@ -157,7 +157,6 @@
     }
     
     return YES;
-    
 }
 
 - (void)didSelectCity:(NSString *)city {
@@ -265,11 +264,13 @@
     [self.provinceField resignFirstResponder];
 }
 
-// Set the popover view size depending on which text field
-// is selected.
+/**
+ *  Set the popover view size depending on which text field
+ *  is selected.
+ */
 - (CGSize)getPopoverViewSizeForTextField:(UITextField *)textField {
     return (textField == self.birthdayField) ?
-            CGSizeMake(450.0f, 220.0f) : CGSizeMake(350.0f, 200.0f);
+            CGSizeMake(400.0f, 220.0f) : CGSizeMake(350.0f, 200.0f);
 }
 
 - (IBAction)next:(id)sender {
