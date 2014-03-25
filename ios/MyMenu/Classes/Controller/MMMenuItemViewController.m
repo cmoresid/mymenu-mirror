@@ -233,16 +233,8 @@ MMMenuItemRating *touchedItem;
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)shareViaFacebook:(id)sender {
-    SLComposeViewController *controller = [MMSocialMediaService shareMenuItem:self.currentMenuItem withService:SLServiceTypeFacebook];
-
-    if (controller) {
-        [self presentViewController:controller animated:TRUE completion:nil];
-    }
-}
-
-- (IBAction)shareViaTwitter:(id)sender {
-    SLComposeViewController *controller = [MMSocialMediaService shareMenuItem:self.currentMenuItem withService:SLServiceTypeTwitter];
+- (IBAction)shareMenuItem:(id)sender {
+    UIViewController *controller = [MMSocialMediaService shareMenuItem:self.currentMenuItem];
 
     if (controller) {
         [self presentViewController:controller animated:TRUE completion:nil];

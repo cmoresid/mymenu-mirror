@@ -118,18 +118,11 @@
 @property(nonatomic, strong) UISegmentedControl *reviewSegment;
 
 /**
- *  Share the menu item via facebook
+ *  Share the menu item via Social Media
  *
  *  @param sender UIButton
  */
-- (IBAction)shareViaFacebook:(id)sender;
-
-/**
- *  Share the menu Item via Twitter
- *
- *  @param sender UIButton
- */
-- (IBAction)shareViaTwitter:(id)sender;
+- (IBAction)shareMenuItem:(id)sender;
 
 /**
  *  Rate the menu item button selected

@@ -134,6 +134,8 @@
 		B0A990A418CA43E900AC4CBB /* RestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9906918CA43E900AC4CBB /* RestaurantCell.m */; };
 		B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DC18A8245600BA47CB /* CurrentLocation.png */; };
 		B0B0C4DF18A8245600BA47CB /* LocationMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B0C4DD18A8245600BA47CB /* LocationMarker.png */; };
+		B0B7B98418E143CC00A7E76D /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B7B98218E143CB00A7E76D /* share.png */; };
+		B0B7B98518E143CC00A7E76D /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B7B98318E143CC00A7E76D /* share@2x.png */; };
 		B0B8288D18C904C600FAACAF /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = B0627E2818A2CB3700EAA045 /* 19-gear.png */; };
 		B0D162FB18D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D162FA18D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.m */; };
 		B0DE3FF118CAA68800190F2F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0DE3FF018CAA68800190F2F /* Profile.storyboard */; };
@@ -360,6 +362,8 @@
 		B0B0C4DD18A8245600BA47CB /* LocationMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LocationMarker.png; sourceTree = "<group>"; };
 		B0B344E918D246700023924D /* libPods-TimesSquare.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TimesSquare.a"; path = "Pods/build/Debug-iphoneos/libPods-TimesSquare.a"; sourceTree = "<group>"; };
 		B0B6E64F18D671D200BB0298 /* MMLocationManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMLocationManagerDelegate.h; sourceTree = "<group>"; };
+		B0B7B98218E143CB00A7E76D /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		B0B7B98318E143CC00A7E76D /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
 		B0D162F918D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMenuItemCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		B0D162FA18D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMenuItemCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		B0DE3FF018CAA68800190F2F /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -410,6 +414,8 @@
 		8333C3EC1894B5680028FFBE /* image_pack */ = {
 			isa = PBXGroup;
 			children = (
+				B0B7B98218E143CB00A7E76D /* share.png */,
+				B0B7B98318E143CC00A7E76D /* share@2x.png */,
 				B0EA513B18DE16F00075E239 /* restriction.png */,
 				B0EA513C18DE16F00075E239 /* restriction@2x.png */,
 				B048558E18CF9F89003BC8A9 /* restricted.png */,
@@ -956,7 +962,9 @@
 				83CC9EDD18D253FB00E0B48A /* CalendarSelectedDate.png in Resources */,
 				B03D7C8A18CCFD8200F7F5CE /* StaticData.plist in Resources */,
 				B0627E2F18A2CB3700EAA045 /* 184-warning.png in Resources */,
+				B0B7B98418E143CC00A7E76D /* share.png in Resources */,
 				B0B0C4DE18A8245600BA47CB /* CurrentLocation.png in Resources */,
+				B0B7B98518E143CC00A7E76D /* share@2x.png in Resources */,
 				174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */,
 				B0E7616C18CA8D2700D1ABF7 /* Menu.storyboard in Resources */,
 				83CC9ED718D253FB00E0B48A /* CalendarPreviousMonth.png in Resources */,

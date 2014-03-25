@@ -404,7 +404,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="687" y="-169"/>
         </scene>
-        <!--Registration View Controller-->
+        <!--Registration View Controller - Sign Up-->
         <scene sceneID="LAw-1S-Rhl">
             <objects>
                 <tableViewController id="fti-an-hf6" customClass="MMRegistrationViewController" sceneMemberID="viewController">
@@ -740,7 +740,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="H04-FP-n6p">
+                    <navigationItem key="navigationItem" title="Sign Up" id="H04-FP-n6p">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="W7F-05-yyp">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
