@@ -20,6 +20,7 @@
 #import "MMLoginManager.h"
 #import "MMValidator.h"
 #import "MMValidationManager.h"
+#import "MMTextField.h"
 
 @interface MMLoginViewController ()
 
@@ -205,6 +206,25 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     self.activeField = nil;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *) textField {
+    BOOL didResign = [textField resignFirstResponder];
+    
+    if (!didResign)
+        return NO;
+    
+    if ([textField isKindOfClass:[MMTextField class]]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[(MMTextField *)textField nextField] becomeFirstResponder];
+        });
+    }
+    
+    if (textField == self.password) {
+        [self login:self.password];
+    }
+    
+    return YES;
 }
 
 #pragma mark - Action Methods
