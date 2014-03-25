@@ -20,6 +20,7 @@
 #import "MMRegistrationViewController.h"
 #import "MMDietaryRestrictionsViewController.h"
 #import "MMUserNameValidator.h"
+#import "MMTextField.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 
 @interface MMRegistrationViewController ()
@@ -95,20 +96,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Allow view controller to act as
-    // delegate for the following text fields.
-    self.cityField.delegate = self;
-    self.genderField.delegate = self;
-    self.provinceField.delegate = self;
-    self.birthdayField.delegate = self;
-
     // Initialize shared user profile page
     self.userProfile = [[MMUser alloc] init];
-
-    // Register for keyboard notifications to allow
-    // for view to scroll to text field
-    [self registerForKeyboardNotifications];
-    [self.emailField becomeFirstResponder];
 
     self.validationManager = [[MMValidationManager alloc] init];
     [self configureFormValidation];
@@ -116,6 +105,13 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (BOOL)createPopoverForTextField:(UITextField *)textField {
+    return (textField == self.cityField ||
+            textField == self.genderField ||
+            textField == self.provinceField ||
+            textField == self.birthdayField);
 }
 
 // If cancel button is clicked in navigation bar, dismiss
@@ -126,6 +122,10 @@
 
 // Configure text fields that require a popover view.
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (![self createPopoverForTextField:textField]) {
+        return YES;
+    }
+    
     MMRegistrationPopoverViewController *locationContent = [self getPopoverViewControllerForTextField:textField];
     locationContent.delegate = self;
 
@@ -144,6 +144,22 @@
     return FALSE;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *) textField {
+    BOOL didResign = [textField resignFirstResponder];
+    
+    if (!didResign)
+        return NO;
+    
+    if ([textField isKindOfClass:[MMTextField class]]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[(MMTextField *)textField nextField] becomeFirstResponder];
+        });
+    }
+    
+    return YES;
+    
+}
+
 - (void)didSelectCity:(NSString *)city {
     self.cityField.text = city;
     self.userProfile.city = city;
@@ -156,7 +172,7 @@
     self.userProfile.gender = (gender != nil) ?
             [gender characterAtIndex:0] : 'U';
 
-
+    [self.locationPopoverController dismissPopoverAnimated:YES];
 }
 
 - (void)didSelectProvince:(NSString *)province {
@@ -256,60 +272,6 @@
             CGSizeMake(450.0f, 220.0f) : CGSizeMake(350.0f, 200.0f);
 }
 
-// Call this method somewhere in your view controller setup code.
-- (void)registerForKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
-}
-
-// If a text field is not visible, move the content view
-// using an animation to bring the text field into view by
-// scrolling the content view.
-- (void)keyboardWasShown:(NSNotification *)aNotification {
-    NSDictionary *info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-
-    kbSize.height = kbSize.height / 1.8f;
-    kbSize.width = kbSize.width / 1.8f;
-
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-    self.scrollView.contentInset = contentInsets;
-    self.scrollView.scrollIndicatorInsets = contentInsets;
-
-    // If active text field is hidden by keyboard, scroll it so it's visible
-    // Your app might not need or want this behavior.
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
-
-    if (!CGRectContainsPoint(aRect, self.activeField.frame.origin)) {
-        [self.scrollView scrollRectToVisible:self.activeField.frame animated:YES];
-    }
-}
-
-// Reset the scroll view to the default location when the
-// keyboard is hidden.
-- (void)keyboardWillBeHidden:(NSNotification *)aNotification {
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    self.scrollView.contentInset = contentInsets;
-    self.scrollView.scrollIndicatorInsets = contentInsets;
-}
-
-// Set the reference to the text field that should be
-// focused on.
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    self.activeField = textField;
-}
-
-// Remove the reference to the active textfield.
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    self.activeField = nil;
-}
-
 - (IBAction)next:(id)sender {
     NSArray *validationMessages = [self.validationManager getValidationMessagesAsArray];
 
@@ -344,21 +306,6 @@
         MMDietaryRestrictionsViewController *destinationController = [segue destinationViewController];
         destinationController.userProfile = self.userProfile;
     }
-}
-
-- (void)dealloc {
-    // Compiler hint to remove any strong references to
-    // registration view controller.
-    self.locationPopoverController.delegate = nil;
-    self.cityPopoverViewController.delegate = nil;
-    self.genderPopoverViewController.delegate = nil;
-    self.provincePopoverViewController.delegate = nil;
-    self.birthdayPopoverViewController.delegate = nil;
-    self.locationPopoverController = nil;
-    self.cityPopoverViewController = nil;
-    self.provincePopoverViewController = nil;
-    self.genderPopoverViewController = nil;
-    self.birthdayPopoverViewController = nil;
 }
 
 @end

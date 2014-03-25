@@ -314,13 +314,12 @@ MMMenuItemRating *touchedItem;
         [message show];
 
         return;
-    } else {
+    }
+    else {
         self.userReviewField.text = @"Please enter your review here...";
         [self.ratingButton setTitle:[[NSString alloc] initWithFormat:@"Rate This Item"] forState:UIControlStateNormal];
         [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
-
-
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

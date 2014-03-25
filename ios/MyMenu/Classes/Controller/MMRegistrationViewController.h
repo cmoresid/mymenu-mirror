@@ -28,7 +28,7 @@
  This view allows a user to provide additional information for their profile.
  We provide the user with options to fill in their city, gender, birthday.
  */
-@interface MMRegistrationViewController : UIViewController <UITextFieldDelegate, UIPopoverControllerDelegate, MMRegistrationPopoverDelegate>
+@interface MMRegistrationViewController : UITableViewController <UITextFieldDelegate, UIPopoverControllerDelegate, MMRegistrationPopoverDelegate>
 
 /**
  *  Users chosen email textfield
