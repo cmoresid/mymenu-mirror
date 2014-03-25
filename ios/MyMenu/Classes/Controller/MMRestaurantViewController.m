@@ -422,8 +422,25 @@ MMMenuItemRating *touchedReview;
 - (void)configureCategorySegmentControlWithCategories:(NSArray *)categories {
     [self configureCategorySegmentAppearance:categories];
     [self configureCategorySegmentEvents];
-    
+    [self configureConstraintsForCategorySegment];
+}
+
+- (void)configureConstraintsForCategorySegment {
     [self.view addSubview:self.categorySegmentControl];
+    
+    NSDictionary *viewsDictionary = @{
+        @"merchantInformationContainer": self.merchantInformationContainer,
+        @"categorySegmentControl": self.categorySegmentControl,
+        @"menuItemsCollectionView": self.menuItemsCollectionView,
+        @"merchantImageView": self.merchantImageView
+    };
+    
+    NSArray *constraint1 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[merchantInformationContainer]-5-[categorySegmentControl]" options:0 metrics:nil views:viewsDictionary];
+    
+    NSArray *constraint2 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[categorySegmentControl]-5-[menuItemsCollectionView]" options:0 metrics:nil views:viewsDictionary];
+    
+    [self.view addConstraints:constraint1];
+    [self.view addConstraints:constraint2];
 }
 
 - (void)configureCategorySegmentAppearance:(NSArray *)categories {
