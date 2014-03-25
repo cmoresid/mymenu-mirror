@@ -38,6 +38,7 @@ import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
+import ca.mymenuapp.ui.fragments.SettingsFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import com.f2prateek.ln.Ln;
 import com.squareup.otto.Produce;
@@ -108,8 +109,8 @@ public class MainActivity extends BaseActivity {
         RestaurantGridFragment.class, null);
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.map)),
         RestaurantsMapFragment.class, null);
-    //  tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.settings)),
-    //   SettingsFragment.class, null);
+    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.settings)),
+        SettingsFragment.class, null);
     actionBar.setSelectedNavigationItem(tab);
   }
 

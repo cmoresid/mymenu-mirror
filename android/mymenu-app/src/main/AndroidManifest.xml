@@ -31,7 +31,7 @@
       android:required="true"/>
 
   <application
-      android:name="ca.mymenuapp.MyMenuApp"
+      android:name=".MyMenuApp"
       android:allowBackup="true"
       android:icon="@drawable/ic_launcher"
       android:label="@string/launcher_name"
@@ -40,6 +40,7 @@
     <meta-data
         android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version"/>
+
     <meta-data
         android:name="com.google.android.maps.v2.API_KEY"
         android:value="AIzaSyAulAQHlep3oe1tpOSl0C9QUL1e_3UjELg"/>
@@ -52,7 +53,6 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-
     <activity
         android:name=".ui.activities.MainActivity"
         android:label="@string/application_name"
@@ -60,31 +60,24 @@
       <intent-filter>
         <action android:name="android.intent.action.SEARCH"/>
       </intent-filter>
-
-      <meta-data
-          android:name="android.app.searchable"
+      <meta-data android:name="android.app.searchable"
           android:resource="@xml/activity_main_searchable"/>
     </activity>
-
     <activity
         android:name=".ui.activities.DietaryPreferencesActivity"
         android:label="@string/application_name"/>
-
     <activity
         android:name=".ui.activities.SignUpActivity"
         android:label="@string/application_name"/>
-
     <activity
         android:name=".ui.activities.RestaurantActivity"
-        android:label="@string/application_name"
+        android:theme="@style/AppTheme.Transparent"
         android:parentActivityName=".ui.activities.MainActivity"
-        android:theme="@style/AppTheme.Transparent"/>
-
+        android:label="@string/application_name"/>
     <activity
         android:name=".ui.activities.MenuItemActivity"
-        android:label="@string/application_name"
-        android:theme="@style/AppTheme.Transparent"/>
-
+        android:theme="@style/AppTheme.Transparent"
+        android:label="@string/application_name"/>
   </application>
 
 </manifest>

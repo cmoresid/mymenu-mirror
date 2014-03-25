@@ -22,20 +22,22 @@ import ca.mymenuapp.data.api.model.MenuCategoryResponse;
 import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
-import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.RestaurantListResponse;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import retrofit.client.Response;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
-import retrofit.http.GET;
 import retrofit.http.POST;
-import retrofit.http.Path;
 import rx.Observable;
+
+<<<<<<<HEAD
+    =======
+    >>>>>>>46a4f37...Settings page implemented,menu items are now tagged with the restriction tag.The icon needs work though.
 
 /** RESTful interface to talk to the MyMenu backend. */
 public interface MyMenuApi {
+  String GET_RESTAURANT = "SELECT * FROM merchusers WHERE id = %d";
   String GET_MODIFICATIONS = "SELECT modification FROM modificationmenulink WHERE menuid = %s "
       + "AND restrictid IN(SELECT restrictid FROM restrictionuserlink WHERE email = '%s')";
   String GET_ALL_RESTRICTIONS_QUERY = "SELECT * FROM restrictions";
@@ -45,13 +47,15 @@ public interface MyMenuApi {
   String GET_USER_RESTRICTIONS = "SELECT * FROM restrictionuserlink where email='%s'";
   String DELETE_USER_RESTRICTIONS = "DELETE from restrictionuserlink WHERE email='%s'";
   String GET_RESTAURANT_MENU = "SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, "
-      + "m.rating, mc.name AS category, 'edible' AS edible, m.categoryid FROM menu m, menucategories mc "
+      + "m.rating, mc.name AS category, 'edible' AS edible, m.categoryid FROM"
+      + " menu m, menucategories mc "
       + "WHERE m.id "
       + "not IN(SELECT Distinct rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid "
       + "IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%s')) AND "
       + "m.merchid = %s AND m.categoryid = mc.id UNION "
       + "SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, "
-      + "m.rating, mc.name AS category, 'notedible' AS edible, m.categoryid FROM menu m, menucategories mc "
+      + "m.rating, mc.name AS category, 'notedible' AS edible, m.categoryid FROM"
+      + " menu m, menucategories mc "
       + "WHERE "
       + "m.id IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN("
       + "SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%s')) "
@@ -112,13 +116,14 @@ public interface MyMenuApi {
   Observable<Response> putUserRestriction(@Field("email") String email,
       @Field("restrictid") long restrictId);
 
-  @GET("/rest/merchusers/{id}.xml") Observable<Restaurant> getRestaurant(@Path("id") long id);
-
-  @FormUrlEncoded @POST("/php/menu/custom.php")
-  Observable<MenuResponse> getMenu(@Field("query") String query);
+  @FormUrlEncoded @POST("/php/merchusers/custom.php")
+  Observable<RestaurantListResponse> getRestaurant(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/menu/custom.php")
   Observable<MenuCategoryResponse> getMenuCategories(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/menu/custom.php")
+  Observable<MenuResponse> getMenu(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/menu/custom.php")
   Observable<MenuItemReviewResponse> getReviewsForRestaurant(@Field("query") String query);

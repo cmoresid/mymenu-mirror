@@ -17,6 +17,19 @@ public class MenuItemModification implements Parcelable {
     // default constructor
   }
 
+  @SuppressWarnings("unused")
+  public static final Parcelable.Creator<MenuItemModification> CREATOR =
+      new Parcelable.Creator<MenuItemModification>() {
+
+        @Override public MenuItemModification createFromParcel(Parcel parcel) {
+          return null;
+        }
+
+        @Override public MenuItemModification[] newArray(int i) {
+          return new MenuItemModification[0];
+        }
+      };
+
   protected MenuItemModification(Parcel in) {
     id = in.readLong();
     restrictId = in.readLong();

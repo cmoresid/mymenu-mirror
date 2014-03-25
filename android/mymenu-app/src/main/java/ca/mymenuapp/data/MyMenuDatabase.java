@@ -34,7 +34,6 @@ import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionLink;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import ca.mymenuapp.data.rx.EndObserver;
-import com.f2prateek.ln.Ln;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -99,9 +98,13 @@ public class MyMenuDatabase {
   }
 
   public Subscription editUser(final User user, Observer<Response> observer) {
-    final String query = String.format(MyMenuApi.GET_USER_QUERY, user.firstName, user.lastName, user.password, user.city,
-        user.locality, user.gender, user.email);
-    return myMenuApi.editUser(query).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+    final String query =
+        String.format(MyMenuApi.EDIT_USER, user.firstName, user.lastName, user.password, user.city,
+            user.locality, user.gender, user.email);
+    return myMenuApi.editUser(query)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
   }
 
   public Subscription getAllRestrictions(Observer<List<DietaryRestriction>> observer) {
@@ -199,8 +202,9 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
-  public Subscription getRestaurant(final long id, Observer<Restaurant> observer) {
-    return myMenuApi.getRestaurant(id)
+  public Subscription getRestaurant(final long id, Observer<RestaurantResponse> observer) {
+    final String query = String.format(MyMenuApi.GET_RESTAURANT, id);
+    return myMenuApi.getRestaurant(query)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
@@ -236,19 +240,23 @@ public class MyMenuDatabase {
       }
     });
 
-    myMenuApi.getMenu(String.format(MyMenuApi.GET_RESTAURANT_MENU, user.email, restaurantId, user.email, restaurantId))
+    myMenuApi.getMenu(
+        String.format(MyMenuApi.GET_RESTAURANT_MENU, user.email, restaurantId, user.email,
+            restaurantId)
+    )
         .map(new Func1<MenuResponse, List<MenuItem>>() {
-              @Override
-              public List<MenuItem> call(MenuResponse menuResponse) {
-                return menuResponse.menuItems;
-              }
-            }
+               @Override
+               public List<MenuItem> call(MenuResponse menuResponse) {
+                 return menuResponse.menuItems;
+               }
+             }
         )
         .map(new Func1<List<MenuItem>, RestaurantMenu>() {
           @Override
           public RestaurantMenu call(List<MenuItem> menuItems) {
+            final String query = String.format(MyMenuApi.GET_RESTAURANT, restaurantId);
             Restaurant restaurant =
-                BlockingObservable.from(myMenuApi.getRestaurant(restaurantId)).first();
+                BlockingObservable.from(myMenuApi.getRestaurant(query)).first().restList.get(0);
             List<MenuCategory> categories =
                 BlockingObservable.from(myMenuApi.getMenuCategories(MyMenuApi.GET_MENU_CATEGORIES))
                     .first().categories;

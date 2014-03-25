@@ -42,16 +42,7 @@
       android:ellipsize="end"
       android:textColor="#fff"
       android:background="@drawable/gradient_overlay"
-      />
-  <ca.mymenuapp.ui.widgets.SquaredImageView
-      tools:background="@drawable/rounded_rating_background"
-      android:id="@+id/restrict_tag"
-      android:layout_height="wrap_content"
-      android:layout_width="wrap_content"
-      android:layout_gravity="top"
-      android:gravity="top"
-      android:src="@drawable/restriction_mymenu"
-      android:visibility="invisible"
+      tools:drawableLeft="@drawable/restriction_mymenu"
       />
 
 </FrameLayout>

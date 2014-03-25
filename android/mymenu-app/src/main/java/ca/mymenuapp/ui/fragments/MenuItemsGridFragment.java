@@ -42,10 +42,8 @@ import ca.mymenuapp.ui.activities.MenuItemActivity;
 import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.HeaderGridView;
 import com.f2prateek.dart.InjectExtra;
-import com.f2prateek.ln.Ln;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import javax.inject.Inject;
@@ -189,19 +187,17 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
       ViewHolder holder = (ViewHolder) view.getTag();
       holder.label.setText(item.name);
       picasso.load(item.picture).fit().centerCrop().into(holder.picture);
-      holder.restrictTag.setImageResource(R.drawable.restriction);
-      if(item.edible.compareTo("notedible") == 0){
-       holder.restrictTag.setVisibility(View.VISIBLE);
-      }
-      else{
-        holder.restrictTag.setVisibility(View.INVISIBLE);
+      if (item.edible.compareTo("notedible") == 0) {
+        holder.label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.restriction_mymenu, 0, 0,
+            0);
+      } else {
+        holder.label.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
       }
     }
 
     class ViewHolder {
       @InjectView(R.id.menu_item_picture) ImageView picture;
       @InjectView(R.id.menu_item_label) TextView label;
-      @InjectView(R.id.restrict_tag) ImageView restrictTag;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);

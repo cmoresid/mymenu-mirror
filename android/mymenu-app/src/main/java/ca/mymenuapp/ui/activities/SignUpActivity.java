@@ -19,7 +19,6 @@ package ca.mymenuapp.ui.activities;
 
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -35,8 +34,8 @@ import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
+import ca.mymenuapp.ui.adapters.LocalizedEnumAdapter;
 import ca.mymenuapp.ui.fragments.DatePickerFragment;
-import ca.mymenuapp.ui.misc.EnumAdapter;
 import ca.mymenuapp.util.Strings;
 import com.f2prateek.ln.Ln;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
@@ -68,17 +67,16 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
   @InjectView(R.id.given_name) EditText givenNameText;
   @InjectView(R.id.surname) EditText surnameText;
   @InjectView(R.id.locality) Spinner localitySpinner;
-  @InjectView(R.id.city) Spinner citySpinner;
   @InjectView(R.id.birthdate) TextView birthdateText;
   @InjectView(R.id.gender) Spinner genderSpinner;
+  @InjectView(R.id.city) EditText cityText;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     inflateView(R.layout.activity_sign_up);
 
-    citySpinner.setAdapter(new LocalizedEnumAdapter<>(this, City.class));
-    localitySpinner.setAdapter(new LocalizedEnumAdapter<>(this, State.class));
-    genderSpinner.setAdapter(new LocalizedEnumAdapter<>(this, Gender.class));
+    localitySpinner.setAdapter(new LocalizedEnumAdapter<>(this, LocalizedEnumAdapter.State.class));
+    genderSpinner.setAdapter(new LocalizedEnumAdapter<>(this, LocalizedEnumAdapter.Gender.class));
   }
 
   @OnClick(R.id.birthdate) public void onDateClicked() {
@@ -119,7 +117,7 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
       confirmPasswordText.setError(null);
     }
 
-    if (validatePassword(passwordText) && validatePassword(confirmPasswordText)) {
+    if (!hasError) {
       if (passwordText.getText().toString().compareTo(confirmPasswordText.getText().toString())
           != 0) {
         hasError = true;
@@ -136,20 +134,24 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
       hasError = true;
       Crouton.makeText(this, R.string.birthday_required, Style.ALERT).show();
     }
+    if (isEmpty(cityText)) {
+      hasError = true;
+      Crouton.makeText(this, R.string.city_required, Style.ALERT).show();
+    }
 
     if (!hasError) {
       user.email = emailText.getText().toString();
       user.firstName = givenNameText.getText().toString();
       user.lastName = surnameText.getText().toString();
       user.password = passwordText.getText().toString();
-      user.city = ((City) citySpinner.getSelectedItem()).value;
-      user.locality = ((State) localitySpinner.getSelectedItem()).value;
+      user.city = cityText.getText().toString();
+      user.locality = ((LocalizedEnumAdapter.State) localitySpinner.getSelectedItem()).value;
       user.country = "can"; // todo, show userPreference
 
       user.birthday = birthDate.get(Calendar.DAY_OF_MONTH);
       user.birthmonth = birthDate.get(Calendar.MONTH);
       user.birthyear = birthDate.get(Calendar.YEAR);
-      user.gender = ((Gender) genderSpinner.getSelectedItem()).value;
+      user.gender = ((LocalizedEnumAdapter.Gender) genderSpinner.getSelectedItem()).value;
 
       setProgressBarIndeterminateVisibility(true);
 
@@ -192,72 +194,5 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
       editText.setError(null);
     }
     return hasError;
-  }
-
-  enum City implements LocalizedEnum {
-    EDMONTON("Edmonton", R.string.edmonton);
-
-    String value;
-    int resourceId;
-
-    City(String value, int resourceId) {
-      this.value = value;
-      this.resourceId = resourceId;
-    }
-
-    @Override public int getStringResourceId() {
-      return resourceId;
-    }
-  }
-
-  enum Gender implements LocalizedEnum {
-    MALE('m', R.string.male), FEMALE('f', R.string.female), UNSPECIFIED('u', R.string.unspecified);
-
-    char value;
-    int resourceId;
-
-    Gender(char value, int resourceId) {
-      this.value = value;
-      this.resourceId = resourceId;
-    }
-
-    @Override public int getStringResourceId() {
-      return resourceId;
-    }
-  }
-
-  enum State implements LocalizedEnum {
-    Alberta("Alberta", R.string.alberta);
-
-    String value;
-    int resourceId;
-
-    State(String value, int resourceId) {
-      this.value = value;
-      this.resourceId = resourceId;
-    }
-
-    @Override public int getStringResourceId() {
-      return resourceId;
-    }
-  }
-
-  // Interface for enums that need to be displayed to the userPreference
-  interface LocalizedEnum {
-    int getStringResourceId();
-  }
-
-  /**
-   * An {@link ca.mymenuapp.ui.misc.EnumAdapter} that can display localized strings.
-   */
-  class LocalizedEnumAdapter<T extends LocalizedEnum> extends EnumAdapter {
-
-    LocalizedEnumAdapter(Context context, Class<T> enumType) {
-      super(context, enumType);
-    }
-
-    @Override protected String getName(Enum item) {
-      return getString(((LocalizedEnum) item).getStringResourceId());
-    }
   }
 }

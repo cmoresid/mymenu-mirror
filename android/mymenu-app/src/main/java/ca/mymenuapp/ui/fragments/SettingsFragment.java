@@ -17,6 +17,7 @@ import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
+import ca.mymenuapp.ui.adapters.LocalizedEnumAdapter;
 import com.f2prateek.ln.Ln;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -32,7 +33,10 @@ public class SettingsFragment extends BaseFragment {
   @InjectView(R.id.settings_name) TextView givenNameText;
   @InjectView(R.id.settings_password) EditText passwordText;
   @InjectView(R.id.settings_confirm_password) EditText confirmPasswordText;
-  @InjectView(R.id.settings_city) Spinner citySpinner;
+  @InjectView(R.id.settings_firstname) EditText firstName;
+  @InjectView(R.id.settings_lastname) EditText lastName;
+  @InjectView(R.id.settings_locality) Spinner localitySpinner;
+  @InjectView(R.id.settings_city) EditText cityText;
   private User user;
 
   @Override
@@ -49,25 +53,24 @@ public class SettingsFragment extends BaseFragment {
   @Override public void onStart() {
     super.onStart();
     user = userPreference.get();
+    firstName.setText(user.firstName);
+    lastName.setText(user.lastName);
+    cityText.setText(user.city);
     givenNameText.setText("Welcome, " + user.firstName + " " + user.lastName + ".");
+    localitySpinner.setAdapter(
+        new LocalizedEnumAdapter<>(getActivity(), LocalizedEnumAdapter.State.class));
   }
 
   @OnClick(R.id.settings_save) public void onSaveClick() {
 
     boolean hasError = false;
+    boolean setPassword = false;
 
-    hasError |= validatePassword(passwordText);
-    hasError |= validatePassword(confirmPasswordText);
+    if (!TextUtils.isEmpty(passwordText.getText())) {
+      setPassword = true;
+      hasError |= validatePassword(passwordText);
+      hasError |= validatePassword(confirmPasswordText);
 
-    if (passwordText.getText().toString().compareTo(confirmPasswordText.getText().toString())
-        != 0) {
-      hasError = true;
-      confirmPasswordText.setError(getString(R.string.passwords_do_not_match));
-    } else {
-      confirmPasswordText.setError(null);
-    }
-
-    if (validatePassword(passwordText) && validatePassword(confirmPasswordText)) {
       if (passwordText.getText().toString().compareTo(confirmPasswordText.getText().toString())
           != 0) {
         hasError = true;
@@ -75,10 +78,37 @@ public class SettingsFragment extends BaseFragment {
       } else {
         confirmPasswordText.setError(null);
       }
+      if (validatePassword(passwordText) && validatePassword(confirmPasswordText)) {
+        if (passwordText.getText().toString().compareTo(confirmPasswordText.getText().toString())
+            != 0) {
+          hasError = true;
+          confirmPasswordText.setError(getString(R.string.passwords_do_not_match));
+        } else {
+          confirmPasswordText.setError(null);
+        }
+      }
+    }
+    if (isEmpty(firstName)) {
+      hasError = true;
+      firstName.setError(getString(R.string.required));
+    } else if (isEmpty(lastName)) {
+      hasError = true;
+      lastName.setError(getString(R.string.required));
+    }
+    if (isEmpty(cityText)) {
+      hasError = true;
+      cityText.setError(getString(R.string.required));
     }
 
     if (!hasError) {
-      user.password = confirmPasswordText.getText().toString();
+      if (setPassword) {
+        user.password = passwordText.toString();
+      }
+      user.city = cityText.getText().toString();
+      user.locality = ((LocalizedEnumAdapter.State) localitySpinner.getSelectedItem()).value;
+      user.firstName = firstName.getText().toString();
+      user.lastName = lastName.getText().toString();
+      /* At this point there is no error so we can update the database's user */
       myMenuDatabase.editUser(user, new EndlessObserver<Response>() {
         @Override public void onNext(Response response) {
           Toast.makeText(getActivity(), "Preferences Saved.", Toast.LENGTH_LONG).show();
@@ -90,7 +120,8 @@ public class SettingsFragment extends BaseFragment {
 
   private boolean validatePassword(EditText passwordText) {
     boolean hasError = false;
-    hasError |= isEmpty(passwordText);
+    hasError = isEmpty(passwordText);
+
     if (!hasError) {
       Editable pass = passwordText.getText();
       if (pass.length() < 5) {
