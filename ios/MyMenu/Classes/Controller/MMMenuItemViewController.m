@@ -114,11 +114,9 @@ MMMenuItemRating *touchedItem;
 
 - (void)didRetrieveTopItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response {
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
-    MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
     condensedReviews = [[NSMutableArray alloc] init];
     allReviews = [[NSMutableArray alloc] init];
-    rating.useremail = @"See More Reviews";
-    rating.id = [NSNumber numberWithInt:-1];
+    
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
                                                           message:@"Unable to communicate with server."
@@ -135,21 +133,19 @@ MMMenuItemRating *touchedItem;
                 for (NSInteger w = 0; w <= 2; w++) {
                     [condensedReviews addObject:[ratings objectAtIndex:w]];
                 }
-                [condensedReviews addObject:rating];
-            } else {
-                condensedReviews = [ratings mutableCopy];
-                [condensedReviews addObject:rating];
             }
-        } else {
-            rating.review = @"There are not any reviews available for this dish.";
-            [condensedReviews addObject:rating];
-            [allReviews addObject:rating];
+            else {
+                condensedReviews = [ratings mutableCopy];
+            }
         }
+
         [reviewDictionary setObject:allReviews forKey:kAllTopReviews];
         [reviewDictionary setObject:condensedReviews forKey:kCondensedTopReviews];
+        
         if (self.reviewViewFlag) {
             condensedReviews = [reviewDictionary objectForKey:kAllTopReviews];
         }
+        
         [self.ratingsCollectionView reloadData];
     }
 
@@ -157,11 +153,9 @@ MMMenuItemRating *touchedItem;
 
 - (void)didRetrieveRecentItemRatings:(NSArray *)ratings withResponse:(MMDBFetcherResponse *)response {
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
-    MMMenuItemRating *rating = [[MMMenuItemRating alloc] init];
-    rating.useremail = @"See More Reviews";
-    rating.id = [NSNumber numberWithInt:-1];
     allReviews = [[NSMutableArray alloc] init];
     condensedReviews = [[NSMutableArray alloc] init];
+    
     if (!response.wasSuccessful) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Communication Error"
                                                           message:@"Unable to communicate with server."
@@ -178,21 +172,19 @@ MMMenuItemRating *touchedItem;
                 for (NSInteger w = 0; w <= 2; w++) {
                     [condensedReviews addObject:[ratings objectAtIndex:w]];
                 }
-                [condensedReviews addObject:rating];
-            } else {
-                condensedReviews = [ratings mutableCopy];
-                [condensedReviews addObject:rating];
             }
-        } else {
-            rating.review = @"There are not any reviews available for this dish.";
-            [condensedReviews addObject:rating];
-            [allReviews addObject:rating];
+            else {
+                condensedReviews = [ratings mutableCopy];
+            }
         }
+
         [reviewDictionary setObject:allReviews forKey:kAllRecentReviews];
         [reviewDictionary setObject:condensedReviews forKey:kCondensedRecentReviews];
+        
         if (self.reviewViewFlag) {
             condensedReviews = [reviewDictionary objectForKey:kAllRecentReviews];
         }
+        
         [self.ratingsCollectionView reloadData];
     }
 
