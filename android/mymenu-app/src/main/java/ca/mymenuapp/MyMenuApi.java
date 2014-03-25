@@ -31,18 +31,11 @@ import retrofit.http.FormUrlEncoded;
 import retrofit.http.POST;
 import rx.Observable;
 
-<<<<<<<HEAD
-    =======
-    >>>>>>>46a4f37...Settings page implemented,menu items are now tagged with the restriction tag.The icon needs work though.
-
 /** RESTful interface to talk to the MyMenu backend. */
 public interface MyMenuApi {
-  String GET_RESTAURANT = "SELECT * FROM merchusers WHERE id = %d";
   String GET_MODIFICATIONS = "SELECT modification FROM modificationmenulink WHERE menuid = %s "
       + "AND restrictid IN(SELECT restrictid FROM restrictionuserlink WHERE email = '%s')";
   String GET_ALL_RESTRICTIONS_QUERY = "SELECT * FROM restrictions";
-  String EDIT_USER = "UPDATE users SET firstname='%s',lastname='%s',password='%s', city='%s',"
-      + "locality='%s',gender='%s' WHERE email = '%s'";
   String GET_USER_QUERY = "SELECT * FROM users WHERE email='%s' AND password='%s'";
   String GET_USER_RESTRICTIONS = "SELECT * FROM restrictionuserlink where email='%s'";
   String DELETE_USER_RESTRICTIONS = "DELETE from restrictionuserlink WHERE email='%s'";
@@ -82,6 +75,9 @@ public interface MyMenuApi {
           + " values('%s', %d, %d, %d, sysdate())";
   String POST_DISLIKE_REVIEW = "SELECT * from ratings where merchid = %d";
   String POST_SPAM_REVIEW = "SELECT * from ratings where merchid = %d";
+  String GET_RESTAURANT = "SELECT * FROM merchusers WHERE id = %d";
+  String EDIT_USER = "UPDATE users SET firstname='%s',lastname='%s',password='%s', city='%s',"
+      + "locality='%s',gender='%s' WHERE email = '%s'";
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(@Field("query") String query);
@@ -97,9 +93,6 @@ public interface MyMenuApi {
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<RestaurantListResponse> getNearbyRestaurants(@Field("query") String query);
-
-  @FormUrlEncoded @POST("/php/users/custom.php")
-  Observable<Response> editUser(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/put.php")
   Observable<Response> createUser(@Field("email") String email,
@@ -120,14 +113,17 @@ public interface MyMenuApi {
   Observable<RestaurantListResponse> getRestaurant(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/menu/custom.php")
-  Observable<MenuCategoryResponse> getMenuCategories(@Field("query") String query);
+  Observable<MenuResponse> getMenu(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/menu/custom.php")
-  Observable<MenuResponse> getMenu(@Field("query") String query);
+  Observable<MenuCategoryResponse> getMenuCategories(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/menu/custom.php")
   Observable<MenuItemReviewResponse> getReviewsForRestaurant(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<Response> likeReview(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<Response> editUser(@Field("query") String query);
 }

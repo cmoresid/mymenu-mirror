@@ -202,7 +202,7 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
-  public Subscription getRestaurant(final long id, Observer<RestaurantResponse> observer) {
+  public Subscription getRestaurant(final long id, Observer<RestaurantListResponse> observer) {
     final String query = String.format(MyMenuApi.GET_RESTAURANT, id);
     return myMenuApi.getRestaurant(query)
         .subscribeOn(Schedulers.io())
