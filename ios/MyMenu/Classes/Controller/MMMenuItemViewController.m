@@ -40,13 +40,11 @@
 #define kAllTopReviews @"allTopReviews"
 #define kReview @"kReview"
 
-
 @interface MMMenuItemViewController ()
 
 @end
 
 @implementation MMMenuItemViewController
-
 
 NSMutableArray *mods;
 NSInteger ratingValue;
@@ -55,7 +53,6 @@ NSMutableArray *condensedReviews;
 NSMutableArray *allReviews;
 NSMutableDictionary *reviewDictionary;
 MMMenuItemRating *touchedItem;
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -129,14 +126,7 @@ MMMenuItemRating *touchedItem;
     } else {
         if (ratings.count != 0) {
             allReviews = [ratings mutableCopy];
-            if (ratings.count >= 4) {
-                for (NSInteger w = 0; w <= 2; w++) {
-                    [condensedReviews addObject:[ratings objectAtIndex:w]];
-                }
-            }
-            else {
-                condensedReviews = [ratings mutableCopy];
-            }
+            condensedReviews = [ratings mutableCopy];
         }
 
         [reviewDictionary setObject:allReviews forKey:kAllTopReviews];
@@ -168,14 +158,7 @@ MMMenuItemRating *touchedItem;
     } else {
         if (ratings.count != 0) {
             allReviews = [ratings mutableCopy];
-            if (ratings.count >= 4) {
-                for (NSInteger w = 0; w <= 2; w++) {
-                    [condensedReviews addObject:[ratings objectAtIndex:w]];
-                }
-            }
-            else {
-                condensedReviews = [ratings mutableCopy];
-            }
+            condensedReviews = [ratings mutableCopy];
         }
 
         [reviewDictionary setObject:allReviews forKey:kAllRecentReviews];
@@ -276,6 +259,18 @@ MMMenuItemRating *touchedItem;
 
 }
 
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([textView.text isEqual:@"Please enter your review here..."]) {
+        textView.text = @"";
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if ([textView.text isEqual:@""]) {
+        textView.text = @"Please enter your review here...";
+        [textView resignFirstResponder];
+    }
+}
 
 - (void)didCreateRating:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
@@ -433,37 +428,20 @@ MMMenuItemRating *touchedItem;
     static NSString *identifier = @"ReviewCell";
 
     MMMenuItemReviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    //cell.userInteractionEnabled = YES;
+
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"MenuItemReviewCell" owner:self options:NULL] objectAtIndex:0];
     }
     
-    
     MMMenuItemRating *menitem = [condensedReviews objectAtIndex:indexPath.row];
-    UILabel *textReview = (UILabel *) [cell viewWithTag:102];
-    UILabel *textName = (UILabel *) [cell viewWithTag:101];
-    UILabel *likeLabel = (UILabel *) [cell viewWithTag:108];
-    UIView *labelBack = (UIView *) [cell viewWithTag:106];
-    UIImageView *likeImage = (UIImageView *) [cell viewWithTag:107];
-    UIImage *image = [UIImage imageNamed:@"upvote"];
     
-    // Rounded Corners
-    likeImage.hidden = NO;
-    cell.contentView.backgroundColor = [UIColor whiteColor];
-    cell.contentView.layer.cornerRadius = 5;
     cell.contentView.layer.masksToBounds = YES;
-    UILabel *textRating = (UILabel *) [cell viewWithTag:104];
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatter setMaximumFractionDigits:1];
-    [formatter setMinimumFractionDigits:1];
-    likeLabel.text = [NSString stringWithFormat:@"%@", menitem.likeCount];
-    labelBack.backgroundColor = [UIColor lightBackgroundGray];
-    labelBack.layer.cornerRadius = 5;
-    textRating.text = [formatter stringFromNumber:menitem.rating];
-    textName.text = [NSString stringWithFormat:@"%@ %@", menitem.firstname, menitem.lastname];
-    [textReview setText:menitem.review];
-    likeImage.image = image;
+    cell.contentView.layer.cornerRadius = 5.0f;
+    cell.upVoteCountLabel.text = [NSString stringWithFormat:@"%@", menitem.likeCount];
+    cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:menitem.rating];
+    cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", menitem.firstname, menitem.lastname];
+    cell.reviewView.text = menitem.review;
+    cell.likeImageView.image = [UIImage imageNamed:@"upvote.png"];
     cell.rating = menitem;
     
     return cell;
