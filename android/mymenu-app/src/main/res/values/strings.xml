@@ -61,6 +61,8 @@
   <string name="like">Like</string>
   <string name="share">Share</string>
   <string name="share_menu_item">%1$s at %2$s - %3$s</string>
+  <string name="empty_modifications_text">There are no modifications available for this dish.
+  </string>
 
   <!-- Reviews Fragment -->
   <string name="date">Date</string>
@@ -77,5 +79,9 @@
   <!-- Main Activity -->
   <string name="search">Search</string>
   <string name="restaurant_search_hint">Type in a Restaurant Name</string>
+
+  <!-- Restaurant Grid Fragment -->
+  <string name="kilometres">%1$.1f k</string>
+  <string name="metres">%1$.0fm</string>
 
 </resources>

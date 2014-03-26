@@ -60,7 +60,7 @@
         android:label="@string/application_name"
         android:launchMode="singleTop">
       <intent-filter>
-        <action android:name="android.intent.action.SEARCH" />
+        <action android:name="android.intent.action.SEARCH"/>
       </intent-filter>
       <meta-data android:name="android.app.searchable"
           android:resource="@xml/activity_main_searchable"/>
