@@ -41,4 +41,9 @@
  */
 - (NSString *)getAboutURL;
 
+/**
+ *  
+ */
+- (NSArray *)getSelectedTabBarImageNames;
+
 @end

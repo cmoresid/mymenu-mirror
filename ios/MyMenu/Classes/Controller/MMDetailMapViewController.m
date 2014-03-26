@@ -28,10 +28,7 @@
 @interface MMDetailMapViewController ()
 
 @property(strong, nonatomic) IBOutlet MKMapView *mapView;
-@property(strong, nonatomic) UIPopoverController *masterPopoverController;
 @property(strong, nonatomic) id <MKMapViewDelegate> mapDelegate;
-
-- (void)configureView;
 
 @end
 
@@ -54,7 +51,6 @@
     }];
     
     [self.mapView setUserTrackingMode:MKUserTrackingModeNone animated:NO];
-    [self configureView];
 }
 
 - (void)didReceiveMerchants:(NSMutableArray *)merchants {
@@ -78,26 +74,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Manage Detail View (Portrait Mode)
-
-- (void)setDetailItem:(id)newDetailItem {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-        [self configureView]; // Update the view
-    }
-
-    if (self.masterPopoverController != nil) {
-        [self.masterPopoverController dismissPopoverAnimated:YES];
-    }
-}
-
-- (void)configureView {
-    // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
-    }
 }
 
 #pragma mark - Location Notification Callback Methods

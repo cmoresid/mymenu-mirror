@@ -17,6 +17,7 @@
 
 #import "MMLoginManager.h"
 #import "MMDBFetcher.h"
+#import <ReactiveCocoa/RACSignal.h>
 
 NSString *const kCurrentUser = @"kCurrentUser";
 NSString *const kUserLoginNotification = @"kUserLoginNotification";
@@ -166,6 +167,10 @@ static MMLoginManager *instance;
         [[NSNotificationCenter defaultCenter] postNotificationName:kUserUpdateErrorNotification
                                                             object:nil];
     }
+}
+
+- (RACSignal *)changePasswordForUser:(MMUser *)user {
+    return [[MMDBFetcher get] changePasswordForUser:user];
 }
 
 @end

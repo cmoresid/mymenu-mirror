@@ -18,6 +18,8 @@
 #import <Foundation/Foundation.h>
 #import "MMDBFetcherDelegate.h"
 
+@class RACSignal;
+
 /**
  *  Notification identifer that refers to the notification 
  *  that is sent when a user is logged.
@@ -127,5 +129,10 @@ extern NSString *const kUserUpdateErrorNotification;
  *  @param userToUpdate The user profile to update.
  */
 - (void)beginUpdateUser:(MMUser *)userToUpdate;
+
+/**
+ *  Change password for user.
+ */
+- (RACSignal *)changePasswordForUser:(MMUser *)user;
 
 @end

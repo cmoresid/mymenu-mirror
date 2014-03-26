@@ -32,13 +32,12 @@
  */
 @interface MMDetailMapViewController : UIViewController <UISplitViewControllerDelegate, MMMerchantDataSourceDelegate, RBStoryboardLinkSource>
 
-@property(nonatomic, strong) id detailItem;
-@property(nonatomic, weak) IBOutlet UILabel *detailDescriptionLabel;
-
 /**
  *  Current users location, based on GPS
  */
-@property(nonatomic) CLLocation *location;
+@property(nonatomic, strong) CLLocation *location;
+
+@property(nonatomic, strong) UIPopoverController *masterPopoverController;
 
 /**
  *  Adds the restaurants to the map view.

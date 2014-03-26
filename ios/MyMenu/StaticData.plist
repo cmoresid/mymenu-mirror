@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-        <key>AboutURL</key>
-        <string>http://www.mymenuapp.ca/about</string>
-    </dict>
+<dict>
+	<key>AboutURL</key>
+	<string>http://www.mymenuapp.ca/about</string>
+	<key>SelectedTabBarImages</key>
+	<array>
+		<string>restaurant-icon-selected.png</string>
+		<string>specials-icon-selected.png</string>
+		<string>restriction-icon-selected.png</string>
+		<string>profile-icon-selected.png</string>
+	</array>
+</dict>
 </plist>

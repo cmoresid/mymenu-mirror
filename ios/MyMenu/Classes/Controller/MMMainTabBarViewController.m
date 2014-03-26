@@ -17,6 +17,7 @@
 
 #import "MMMainTabBarViewController.h"
 #import "UIColor+MyMenuColors.h"
+#import "MMStaticDataHelper.h"
 
 @interface MMMainTabBarViewController ()
 
@@ -49,21 +50,53 @@
 
 - (void)configureTabBarAppearance {
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UITabBar appearance] setBarTintColor:[UIColor darkTealColor]];
+    [[UITabBar appearance] setBarTintColor:[UIColor sidebarBackgroundGray]];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f], NSForegroundColorAttributeName : [UIColor tealColor]} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
 
-
-    UIColor *color = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : color} forState:UIControlStateNormal];
+    NSArray *selectedImages = [[MMStaticDataHelper sharedDataHelper] getSelectedTabBarImageNames];
+    NSArray *tabBarItems = self.tabBar.items;
+    
+    for (int i = 0; i < tabBarItems.count; i++) {
+        UITabBarItem *tabBarItem = tabBarItems[i];
+        
+        UIImage *image = tabBarItem.image;
+        tabBarItem.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        tabBarItem.selectedImage = [[UIImage imageNamed:selectedImages[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    }
 }
 
-#pragma mark - MMDBFetcher Delegate Methods
+#pragma mark - Rotation Events
 
-- (void)didCreateUser:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
-    NSLog(@"Did create user.");
+- (BOOL)shouldAutomaticallyForwardRotationMethods {
+    return YES;
 }
 
-- (void)didAddUserRestrictions:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
-    NSLog(@"Did add user restrictions.");
+- (BOOL)shouldAutomaticallyForwardAppearanceMethods {
+    return YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
+                                duration:(NSTimeInterval)duration {
+    
+    [super willRotateToInterfaceOrientation:orientation duration:duration];
+    
+    // Forward manually to any non-viewable child split view controllers.
+    for (UIViewController *cvc in self.childViewControllers) {
+        if ((cvc.view.superview == nil) && ([cvc isKindOfClass: [UISplitViewController class]])) {
+            [cvc willRotateToInterfaceOrientation:orientation duration:duration];
+        }
+    }
+}
+
+- (void)didRotateFromInterfaceOrientation: (UIInterfaceOrientation)orientation {
+    [super didRotateFromInterfaceOrientation:orientation];
+    
+    for (UIViewController *cvc in self.childViewControllers) {
+        if ((cvc.view.superview == nil) && ([cvc isKindOfClass:[UISplitViewController class]])) {
+            [cvc didRotateFromInterfaceOrientation:orientation];
+        }
+    }
 }
 
 @end

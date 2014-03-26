@@ -16,12 +16,13 @@
 //
 
 #import "MMMasterProfileViewController.h"
+#import "MMAboutViewController.h"
+#import "MMAccountViewController.h"
+#import "MMSplitViewManager.h"
 
 typedef NS_ENUM(NSInteger, MMProfilePageType) {
     MMAccountPage = 0,
-    MMReviewsPage = 1,
-    MMAboutPage = 2,
-    MMNotificationPage = 3
+    MMAboutPage = 1
 };
 
 @interface MMMasterProfileViewController ()
@@ -43,7 +44,7 @@ typedef NS_ENUM(NSInteger, MMProfilePageType) {
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    self.currentDetailViewController = [self.splitViewController.viewControllers lastObject];
+    self.currentDetailViewController = ((UINavigationController *) [self.splitViewController.viewControllers lastObject]).topViewController;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,72 +56,45 @@ typedef NS_ENUM(NSInteger, MMProfilePageType) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger selectedRow = indexPath.row;
-    MMBaseNavigationController *masterNavigationController = [self.splitViewController.viewControllers firstObject];
+    
+    MMSplitViewManager *detailViewManager = (MMSplitViewManager *) self.splitViewController.delegate;
 
     switch (selectedRow) {
         case MMAccountPage:
             [self configureAccountController];
             break;
-        case MMReviewsPage:
-            [self configureReviewsController];
-            break;
         case MMAboutPage:
             [self configureAboutController];
-            break;
-        case MMNotificationPage:
-            [self configureNotificationsController];
             break;
         default:
             break;
     }
-
-    self.splitViewController.viewControllers = [NSArray arrayWithObjects:masterNavigationController, self.currentDetailViewController, nil];
+    
+    detailViewManager.detailViewController = (UIViewController<MMDetailViewController> *) self.currentDetailViewController;
 }
 
 #pragma mark - Configure Child View Controllers Methods
 
 - (void)configureAccountController {
-    if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"AccountNavigationController"]) {
+    if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"AccountViewController"]) {
         return;
     }
 
     self.accountController = (self.accountController != nil) ? self.accountController :
-            [self.storyboard instantiateViewControllerWithIdentifier:@"AccountNavigationController"];
+            [self.storyboard instantiateViewControllerWithIdentifier:@"AccountViewController"];
 
     self.currentDetailViewController = self.accountController;
 }
 
-- (void)configureReviewsController {
-    if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"ReviewsNavigationController"]) {
-        return;
-    }
-
-    self.reviewsController = (self.reviewsController != nil) ? self.reviewsController :
-            [self.storyboard instantiateViewControllerWithIdentifier:@"ReviewsNavigationController"];
-
-    self.currentDetailViewController = self.reviewsController;
-}
-
 - (void)configureAboutController {
-    if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"AboutNavigationController"]) {
+    if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"AboutViewController"]) {
         return;
     }
 
     self.aboutController = (self.accountController != nil) ? self.aboutController :
-            [self.storyboard instantiateViewControllerWithIdentifier:@"AboutNavigationController"];
+            [self.storyboard instantiateViewControllerWithIdentifier:@"AboutViewController"];
 
     self.currentDetailViewController = self.aboutController;
-}
-
-- (void)configureNotificationsController {
-    if ([self.currentDetailViewController.restorationIdentifier isEqualToString:@"NotificationsNavigationController"]) {
-        return;
-    }
-
-    self.notificationsController = (self.notificationsController != nil) ? self.notificationsController :
-            [self.storyboard instantiateViewControllerWithIdentifier:@"NotificationsNavigationController"];
-
-    self.currentDetailViewController = self.notificationsController;
 }
 
 @end

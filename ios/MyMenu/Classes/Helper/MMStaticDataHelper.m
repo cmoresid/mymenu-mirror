@@ -47,4 +47,8 @@ static MMStaticDataHelper *instance;
     return [_data objectForKey:@"AboutURL"];
 }
 
+- (NSArray *)getSelectedTabBarImageNames {
+    return [_data objectForKey:@"SelectedTabBarImages"];
+}
+
 @end

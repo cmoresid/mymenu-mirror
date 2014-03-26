@@ -30,6 +30,14 @@
 + (UIColor *)tealColor;
 
 /**
+ *  The teal color used in the background of the rating
+ *  wheel.
+ *
+ *  @return rgb(48, 199, 175)
+ */
++ (UIColor *)ratingWheelBackgroundTealColor;
+
+/**
  *  The dark teal color used in the navigation bar.
  *
  *  @return rgb(41.0, 169.0, 149.0)

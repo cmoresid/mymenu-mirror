@@ -137,6 +137,11 @@
 - (void)editUser:(MMUser *)user;
 
 /**
+ *  Changes the user's password.
+ */
+- (RACSignal *)changePasswordForUser:(MMUser *)user;
+
+/**
 * Get all information for the user with the given email.
 */
 - (void)getUser:(NSString *)email;
@@ -156,6 +161,9 @@
  */
 - (RACSignal *)getItemRatingsMerchantRecent:(NSNumber *)merchid;
 
+/**
+ * Get the top rated (most liked) reviews for a merchant.
+ */
 - (RACSignal *)getItemRatingsMerchantTop:(NSNumber *)merchid;
 
 /**
