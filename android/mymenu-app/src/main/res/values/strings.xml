@@ -92,6 +92,8 @@
   <!-- Main Activity -->
   <string name="search">Search</string>
   <string name="restaurant_search_hint">Type in a Restaurant Name</string>
+  <string name="drawer_close">Drawer Close</string>
+  <string name="drawer_open">Drawer Open</string>
 
   <!-- Restaurant Grid Fragment -->
   <string name="kilometres">%1$.1f k</string>

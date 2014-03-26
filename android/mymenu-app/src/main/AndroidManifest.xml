@@ -66,9 +66,6 @@
           android:resource="@xml/activity_main_searchable"/>
     </activity>
     <activity
-        android:name=".ui.activities.DietaryPreferencesActivity"
-        android:label="@string/application_name"/>
-    <activity
         android:name=".ui.activities.SignUpActivity"
         android:label="@string/application_name"/>
     <activity

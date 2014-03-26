@@ -18,24 +18,28 @@
 package ca.mymenuapp.ui.activities;
 
 import android.app.ActionBar;
-import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.SearchView;
 import butterknife.InjectView;
-import butterknife.Optional;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
+import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.fragments.SettingsFragment;
@@ -65,8 +69,11 @@ public class MainActivity extends BaseActivity {
   @Inject MyMenuDatabase myMenuDatabase;
   @Inject ReactiveLocationProvider locationProvider;
 
-  @Optional @InjectView(R.id.pager) ViewPager viewPager;
+  @InjectView(R.id.pager) ViewPager viewPager;
+  @InjectView(R.id.drawer_layout) DrawerLayout drawerLayout;
+  @InjectView(R.id.restaraunt_grid_container) FrameLayout restaurantGridContainer;
 
+  ActionBarDrawerToggle drawerToggle;
   List<Restaurant> restaurants = Collections.emptyList();
 
   @Override
@@ -89,37 +96,88 @@ public class MainActivity extends BaseActivity {
       }
     });
 
+    setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
     if (savedInstanceState == null) {
-      if (viewPager != null) {
-        // we're on a phone
-        setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
-      } else {
-        // we're on a tablet layout
-        setupPanes();
-      }
+      getFragmentManager().beginTransaction()
+          .add(R.id.restaraunt_grid_container, new RestaurantGridFragment())
+          .commit();
     }
+
+    // start drawer in open state
+    drawerLayout.openDrawer(restaurantGridContainer);
+
+    // allow user to toggle drawer with the action bar
+    drawerToggle =
+        new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.drawer_open,
+            R.string.drawer_close) {
+
+          @Override public void onDrawerOpened(View drawerView) {
+            super.onDrawerOpened(drawerView);
+            invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+          }
+
+          @Override public void onDrawerClosed(View drawerView) {
+            super.onDrawerClosed(drawerView);
+            invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+          }
+        };
+    drawerLayout.setDrawerListener(drawerToggle);
+    getActionBar().setDisplayHomeAsUpEnabled(true);
+    getActionBar().setHomeButtonEnabled(true);
   }
 
   /** Setup the tabs to display our fragments. */
   private void setupTabs(int tab) {
-    ActionBar actionBar = getActionBar();
+    final ActionBar actionBar = getActionBar();
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     SwipeableActionBarTabsAdapter tabsAdapter = new SwipeableActionBarTabsAdapter(this, viewPager);
-    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.restaurants)),
-        RestaurantGridFragment.class, null);
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.map)),
         RestaurantsMapFragment.class, null);
+    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.dietary_preferences)),
+        DietaryPreferencesFragment.class, null);
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.settings)),
         SettingsFragment.class, null);
     actionBar.setSelectedNavigationItem(tab);
+
+    viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+      @Override public void onPageScrolled(int position, float positionOffset,
+          int positionOffsetPixels) {
+        if (position == 0) {
+          // Enable user to slide the drawer layout
+          drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+          drawerToggle.setDrawerIndicatorEnabled(true);
+          getActionBar().setDisplayHomeAsUpEnabled(true);
+          getActionBar().setHomeButtonEnabled(true);
+        } else {
+          // Disable user from sliding the drawer layout
+          drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+          drawerToggle.setDrawerIndicatorEnabled(false);
+          getActionBar().setDisplayHomeAsUpEnabled(false);
+          getActionBar().setHomeButtonEnabled(false);
+        }
+      }
+
+      @Override public void onPageSelected(int position) {
+        // ignore
+      }
+
+      @Override public void onPageScrollStateChanged(int state) {
+        // ignore
+      }
+    });
   }
 
-  /** Setup the panes to display our fragments. */
-  private void setupPanes() {
-    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-    transaction.add(R.id.restaurant_list_container, new RestaurantGridFragment());
-    transaction.add(R.id.restaurant_map_container, new RestaurantsMapFragment());
-    transaction.commit();
+  @Override
+  protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
+    // Sync the toggle state after onRestoreInstanceState has occurred.
+    drawerToggle.syncState();
+  }
+
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    drawerToggle.onConfigurationChanged(newConfig);
   }
 
   @Subscribe public void onRestaurantClicked(OnRestaurantClickEvent event) {
@@ -131,9 +189,7 @@ public class MainActivity extends BaseActivity {
   @Override
   protected void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
-    if (viewPager != null) {
-      outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
-    }
+    outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -156,6 +212,26 @@ public class MainActivity extends BaseActivity {
     });
 
     return true;
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    // Pass the event to ActionBarDrawerToggle, if it returns
+    // true, then it has handled the app icon touch event
+    if (drawerToggle.onOptionsItemSelected(item)) {
+      return true;
+    }
+    // Handle other action bar items...
+    switch (item.getItemId()) {
+      case R.id.logout:
+        userPreference.delete();
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        loginIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(loginIntent);
+        finish();
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
   }
 
   @Override
@@ -185,24 +261,6 @@ public class MainActivity extends BaseActivity {
               // todo: show a progress bar in the action bar
             }
           });
-    }
-  }
-
-  @Override public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.dietary_preferences:
-        Intent dietaryPreferencesIntent = new Intent(this, DietaryPreferencesActivity.class);
-        startActivity(dietaryPreferencesIntent);
-        return true;
-      case R.id.logout:
-        userPreference.delete();
-        Intent loginIntent = new Intent(this, LoginActivity.class);
-        loginIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(loginIntent);
-        finish();
-        return true;
-      default:
-        return super.onOptionsItemSelected(item);
     }
   }
 
