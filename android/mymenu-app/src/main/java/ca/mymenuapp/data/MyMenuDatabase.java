@@ -304,6 +304,21 @@ public class MyMenuDatabase {
     return subscription;
   }
 
+  public Subscription getNearbyRestaurantsByName(final double lat, final double lng,
+      final String name, Observer<List<Restaurant>> observer) {
+    final String query = String.format(MyMenuApi.GET_NEARBY_RESTAURANTS_BY_NAME, lng, lat, name);
+    return myMenuApi.getNearbyRestaurantsByName(query)
+        .map(new Func1<RestaurantListResponse, List<Restaurant>>() {
+          @Override
+          public List<Restaurant> call(RestaurantListResponse restResponse) {
+            return restResponse.restList;
+          }
+        })
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
+
   public Subscription likeReview(User user, MenuItemReview review, Observer<Response> observer) {
     String query = String.format(MyMenuApi.POST_LIKE_REVIEW, user.email, review.id, review.merchId,
         review.menuId);

@@ -31,10 +31,59 @@
       tools:context="ca.mymenuapp.ui.activities.MainActivity"/>
 
   <!-- The navigation drawer -->
-  <FrameLayout android:id="@+id/restaraunt_grid_container"
+  <LinearLayout
+      android:id="@+id/drawer"
       android:layout_width="340dp"
       android:layout_height="match_parent"
       android:layout_gravity="start"
-      android:background="@android:color/white"/>
+      android:background="@android:color/white"
+      android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/search_restaurants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="@string/restaurant_search_hint"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/holo_gap">
+      <TextView
+          android:id="@+id/sort_distance"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:text="@string/distance"
+          android:gravity="center"
+          style="?android:buttonBarButtonStyle"/>
+      <TextView
+          android:id="@+id/sort_rating"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:text="@string/top_rated"
+          android:gravity="center"
+          style="?android:buttonBarButtonStyle"/>
+      <TextView
+          android:id="@+id/sort_cuisine"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:text="@string/cuisine"
+          android:gravity="center"
+          style="?android:buttonBarButtonStyle"/>
+    </LinearLayout>
+
+    <FrameLayout android:id="@+id/restaraunt_grid_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="start"
+        android:background="@android:color/white"/>
+
+  </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

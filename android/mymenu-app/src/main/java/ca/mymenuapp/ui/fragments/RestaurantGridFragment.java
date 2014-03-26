@@ -148,7 +148,8 @@ public class RestaurantGridFragment extends BaseFragment
       if (lastLatLng != null) {
         distance = SphericalUtil.computeDistanceBetween(lastLatLng, item.getPosition());
       } else {
-        distance = Double.parseDouble(item.distance) * 1000; // convert to metres
+        // server returns distance in km, convert to metres
+        distance = Double.parseDouble(item.distance) * 1000;
       }
 
       if (distance < 1000) {

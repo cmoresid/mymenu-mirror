@@ -18,8 +18,6 @@
 package ca.mymenuapp.ui.activities;
 
 import android.app.ActionBar;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.location.Location;
@@ -27,12 +25,15 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.SearchView;
+import android.widget.EditText;
+import android.widget.TextView;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
@@ -45,9 +46,12 @@ import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.fragments.SettingsFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import com.f2prateek.ln.Ln;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.SphericalUtil;
 import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -57,6 +61,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.util.functions.Action1;
 import rx.util.functions.Func1;
+import rx.util.functions.Func2;
 
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
@@ -71,10 +76,12 @@ public class MainActivity extends BaseActivity {
 
   @InjectView(R.id.pager) ViewPager viewPager;
   @InjectView(R.id.drawer_layout) DrawerLayout drawerLayout;
-  @InjectView(R.id.restaraunt_grid_container) FrameLayout restaurantGridContainer;
+  @InjectView(R.id.drawer) View drawer;
+  @InjectView(R.id.search_restaurants) EditText searchField;
 
   ActionBarDrawerToggle drawerToggle;
   List<Restaurant> restaurants = Collections.emptyList();
+  LatLng lastLatLng;
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -85,6 +92,7 @@ public class MainActivity extends BaseActivity {
     locationProvider.getLastKnownLocation().subscribe(new Action1<Location>() {
       @Override
       public void call(Location location) {
+        lastLatLng = new LatLng(location.getLatitude(), location.getLongitude());
         myMenuDatabase.getNearbyRestaurants(location.getLatitude(), location.getLongitude(),
             new EndlessObserver<List<Restaurant>>() {
               @Override public void onNext(List<Restaurant> restaurantList) {
@@ -104,7 +112,7 @@ public class MainActivity extends BaseActivity {
     }
 
     // start drawer in open state
-    drawerLayout.openDrawer(restaurantGridContainer);
+    drawerLayout.openDrawer(drawer);
 
     // allow user to toggle drawer with the action bar
     drawerToggle =
@@ -124,6 +132,19 @@ public class MainActivity extends BaseActivity {
     drawerLayout.setDrawerListener(drawerToggle);
     getActionBar().setDisplayHomeAsUpEnabled(true);
     getActionBar().setHomeButtonEnabled(true);
+    searchField.addTextChangedListener(new TextWatcher() {
+      @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+      }
+
+      @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+        searchRestaurantsInMemory(s.toString());
+      }
+
+      @Override public void afterTextChanged(Editable s) {
+
+      }
+    });
   }
 
   /** Setup the tabs to display our fragments. */
@@ -180,6 +201,38 @@ public class MainActivity extends BaseActivity {
     drawerToggle.onConfigurationChanged(newConfig);
   }
 
+  @OnClick({ R.id.sort_distance, R.id.sort_rating, R.id.sort_cuisine }) void onSortButtonClicked(
+      TextView button) {
+    switch (button.getId()) {
+      case R.id.sort_distance:
+        sortRestaurants(new Comparator<Restaurant>() {
+          @Override public int compare(Restaurant lhs, Restaurant rhs) {
+            return Double.compare(
+                SphericalUtil.computeDistanceBetween(lastLatLng, lhs.getPosition()),
+                SphericalUtil.computeDistanceBetween(lastLatLng, rhs.getPosition()));
+          }
+        });
+        break;
+      case R.id.sort_rating:
+        sortRestaurants(new Comparator<Restaurant>() {
+          @Override public int compare(Restaurant lhs, Restaurant rhs) {
+            // sort descending
+            return Double.compare(rhs.rating, lhs.rating);
+          }
+        });
+        break;
+      case R.id.sort_cuisine:
+        sortRestaurants(new Comparator<Restaurant>() {
+          @Override public int compare(Restaurant lhs, Restaurant rhs) {
+            return lhs.category.compareTo(rhs.category);
+          }
+        });
+        break;
+      default:
+        throw new IllegalArgumentException("Not handled!");
+    }
+  }
+
   @Subscribe public void onRestaurantClicked(OnRestaurantClickEvent event) {
     Intent intent = new Intent(this, RestaurantActivity.class);
     intent.putExtra(RestaurantActivity.ARGS_RESTAURANT_ID, event.restaurant.id);
@@ -194,23 +247,6 @@ public class MainActivity extends BaseActivity {
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.activity_main, menu);
-
-    // Associate searchable configuration with the SearchView
-    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-    MenuItem searchMenuItem = menu.findItem(R.id.search);
-    SearchView searchView = (SearchView) searchMenuItem.getActionView();
-    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-    searchMenuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-      @Override public boolean onMenuItemActionExpand(MenuItem item) {
-        return true;
-      }
-
-      @Override public boolean onMenuItemActionCollapse(MenuItem item) {
-        bus.post(new OnRestaurantListAvailableEvent(restaurants));
-        return true;
-      }
-    });
-
     return true;
   }
 
@@ -234,34 +270,51 @@ public class MainActivity extends BaseActivity {
     }
   }
 
-  @Override
-  protected void onNewIntent(Intent intent) {
-    handleIntent(intent);
+  private void searchRestaurantsInMemory(final String searchText) {
+    Ln.d(searchText);
+    // Filter ones in memory quickly
+    Observable.from(restaurants)
+        .filter(new Func1<Restaurant, Boolean>() {
+          @Override public Boolean call(Restaurant restaurant) {
+            return restaurant.businessName.toLowerCase().contains(searchText.toLowerCase());
+          }
+        })
+        .toList()
+        .subscribeOn(Schedulers.computation())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new EndlessObserver<List<Restaurant>>() {
+          @Override public void onNext(List<Restaurant> restaurantList) {
+            bus.post(new OnRestaurantListAvailableEvent(restaurantList));
+            searchRestaurantsFromNetwork(searchText);
+          }
+        });
   }
 
-  private void handleIntent(Intent intent) {
-    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-      final String query = intent.getStringExtra(SearchManager.QUERY);
-      Ln.d(query);
-      // Filter ones in memory quickly
-      Observable.from(restaurants)
-          .filter(new Func1<Restaurant, Boolean>() {
-            @Override public Boolean call(Restaurant restaurant) {
-              return restaurant.businessName.toLowerCase().contains(query.toLowerCase());
-            }
-          })
-          .toList()
-          .subscribeOn(Schedulers.computation())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(new EndlessObserver<List<Restaurant>>() {
-            @Override public void onNext(List<Restaurant> restaurantList) {
-              bus.post(new OnRestaurantListAvailableEvent(restaurantList));
-              // filtered ones in memory, now fetch a search from the network and notify any
-              // observers
-              // todo: show a progress bar in the action bar
-            }
-          });
-    }
+  private void searchRestaurantsFromNetwork(final String searchText) {
+    // todo: actually test this against the network, we don;t have enough restaurants for now
+    myMenuDatabase.getNearbyRestaurantsByName(lastLatLng.latitude, lastLatLng.longitude, searchText,
+        new EndlessObserver<List<Restaurant>>() {
+          @Override public void onNext(List<Restaurant> restaurantList) {
+            bus.post(new OnRestaurantListAvailableEvent(restaurantList));
+          }
+        }
+    );
+  }
+
+  private void sortRestaurants(final Comparator<Restaurant> restaurantComparator) {
+    Observable.from(restaurants)
+        .toSortedList(new Func2<Restaurant, Restaurant, Integer>() {
+          @Override public Integer call(Restaurant lhs, Restaurant rhs) {
+            return restaurantComparator.compare(lhs, rhs);
+          }
+        })
+        .subscribeOn(Schedulers.computation())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new EndlessObserver<List<Restaurant>>() {
+          @Override public void onNext(List<Restaurant> restaurantList) {
+            bus.post(new OnRestaurantListAvailableEvent(restaurantList));
+          }
+        });
   }
 
   public static class OnRestaurantClickEvent {

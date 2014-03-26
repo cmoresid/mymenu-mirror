@@ -78,12 +78,23 @@ public interface MyMenuApi {
   String GET_RESTAURANT = "SELECT * FROM merchusers WHERE id = %d";
   String EDIT_USER = "UPDATE users SET firstname='%s',lastname='%s',password='%s', city='%s',"
       + "locality='%s',gender='%s' WHERE email = '%s'";
+  String GET_NEARBY_RESTAURANTS_BY_NAME =
+      "SELECT id, business_name, category, business_number, business_address1, rating, "
+          + "business_picture, business_description, distance, lat, longa "
+          + "FROM(SELECT id, business_name, category, business_number, business_address1, rating, "
+          + "business_picture, lat, longa, business_description, SQRT(longadiff - -latdiff)*111.12 "
+          + "AS distance FROM (SELECT m.id, m.business_name, mc.name AS category, "
+          + "m.business_number, m.business_address1, m.rating, m.business_picture,"
+          + " m.business_description, m.lat, m.longa, POW(m.longa - %s, 2) AS longadiff, "
+          + "POW(m.lat - %s, 2) AS latdiff FROM merchusers m, merchcategories mc WHERE"
+          + " m.categoryid=mc.id) AS temp) AS distances WHERE UPPER(business_name)"
+          + " LIKE UPPER('%%%s%%') ORDER BY distance ASC LIMIT 25";
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/users/custom.php")
-  Observable<UserResponse> getUser(@Field("query") String query);
+  @FormUrlEncoded @POST("/php/users/custom.php") Observable<UserResponse> getUser(
+      @Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<MenuItemModificationResponse> getModifications(@Field("query") String query);
@@ -94,36 +105,38 @@ public interface MyMenuApi {
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<RestaurantListResponse> getNearbyRestaurants(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/users/put.php")
-  Observable<Response> createUser(@Field("email") String email,
-      @Field("firstname") String firstname, @Field("lastname") String lastname,
-      @Field("password") String password, @Field("city") String city,
-      @Field("locality") String locality, @Field("country") String country,
-      @Field("gender") char gender, @Field("birthday") int birthday,
-      @Field("birthmonth") int birthmonth, @Field("birthyear") int birthyear);
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<RestaurantListResponse> getNearbyRestaurantsByName(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/users/put.php") Observable<Response> createUser(
+      @Field("email") String email, @Field("firstname") String firstname,
+      @Field("lastname") String lastname, @Field("password") String password,
+      @Field("city") String city, @Field("locality") String locality,
+      @Field("country") String country, @Field("gender") char gender,
+      @Field("birthday") int birthday, @Field("birthmonth") int birthmonth,
+      @Field("birthyear") int birthyear);
 
   @FormUrlEncoded @POST("/php/restrictionuserlink/custom.php")
   Observable<Response> deleteUserRestrictions(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/restrictionuserlink/put.php")
-  Observable<Response> putUserRestriction(@Field("email") String email,
-      @Field("restrictid") long restrictId);
+  @FormUrlEncoded @POST("/php/restrictionuserlink/put.php") Observable<Response> putUserRestriction(
+      @Field("email") String email, @Field("restrictid") long restrictId);
 
   @FormUrlEncoded @POST("/php/merchusers/custom.php")
   Observable<RestaurantListResponse> getRestaurant(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/menu/custom.php")
-  Observable<MenuResponse> getMenu(@Field("query") String query);
+  @FormUrlEncoded @POST("/php/menu/custom.php") Observable<MenuResponse> getMenu(
+      @Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/menu/custom.php")
-  Observable<MenuCategoryResponse> getMenuCategories(@Field("query") String query);
+  @FormUrlEncoded @POST("/php/menu/custom.php") Observable<MenuCategoryResponse> getMenuCategories(
+      @Field("query") String query);
 
   @FormUrlEncoded @POST("/php/menu/custom.php")
   Observable<MenuItemReviewResponse> getReviewsForRestaurant(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/users/custom.php")
-  Observable<Response> likeReview(@Field("query") String query);
+  @FormUrlEncoded @POST("/php/users/custom.php") Observable<Response> likeReview(
+      @Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/users/custom.php")
-  Observable<Response> editUser(@Field("query") String query);
+  @FormUrlEncoded @POST("/php/users/custom.php") Observable<Response> editUser(
+      @Field("query") String query);
 }
