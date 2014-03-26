@@ -17,6 +17,7 @@
 
 #import "MMMainTabBarViewController.h"
 #import "UIColor+MyMenuColors.h"
+#import "MMStaticDataHelper.h"
 
 @interface MMMainTabBarViewController ()
 
@@ -51,9 +52,9 @@
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setBarTintColor:[UIColor sidebarBackgroundGray]];
     [[UITabBarItem appearance] setTitleTextAttributes:@{ NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f], NSForegroundColorAttributeName : [UIColor tealColor]} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
 
-    NSArray *selectedImages = @[@"restaurant-icon-selected.png", @"specials-icon-selected.png", @"restriction-icon-selected.png", @"profile-icon-selected.png"];
-    
+    NSArray *selectedImages = [[MMStaticDataHelper sharedDataHelper] getSelectedTabBarImageNames];
     NSArray *tabBarItems = self.tabBar.items;
     
     for (int i = 0; i < tabBarItems.count; i++) {
@@ -63,18 +64,9 @@
         tabBarItem.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         tabBarItem.selectedImage = [[UIImage imageNamed:selectedImages[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
-    
-    for (UITabBarItem *item in self.tabBar.items) {
-        UIImage *image = item.image;
-        item.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        
-    }
-
-    UIColor *color = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : color} forState:UIControlStateNormal];
 }
 
-#pragma mark - Stuff
+#pragma mark - Rotation Events
 
 - (BOOL)shouldAutomaticallyForwardRotationMethods {
     return YES;
@@ -83,8 +75,6 @@
 - (BOOL)shouldAutomaticallyForwardAppearanceMethods {
     return YES;
 }
-
-#pragma mark - Rotation Events
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
                                 duration:(NSTimeInterval)duration {
