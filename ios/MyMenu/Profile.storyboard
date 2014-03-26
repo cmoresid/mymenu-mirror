@@ -8,7 +8,7 @@
         <scene sceneID="Gcd-mV-Bq8">
             <objects>
                 <splitViewController title="Profile" id="dTJ-os-mjA" customClass="MMProfileSplitViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="E6EA53A1-F8E8-4BA2-8CCA-B965EF83B64E" id="C8f-FB-0SN"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="1B65EB1B-EDE7-4C76-ADBC-CA7913E59F3A" id="C8f-FB-0SN"/>
                     <toolbarItems/>
                     <connections>
                         <segue destination="KDb-g8-3lI" kind="relationship" relationship="masterViewController" id="OMc-Ii-Ss0"/>
@@ -445,7 +445,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="703" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urV-tL-fTG">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urV-tL-fTG" customClass="MMButton">
                                                     <rect key="frame" x="226" y="8" width="250" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -596,7 +596,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="E6EA53A1-F8E8-4BA2-8CCA-B965EF83B64E" width="26" height="26">
+        <image name="1B65EB1B-EDE7-4C76-ADBC-CA7913E59F3A" width="26" height="26">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPD1YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBMU
 GR4fJSYtMDY5VSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBz
