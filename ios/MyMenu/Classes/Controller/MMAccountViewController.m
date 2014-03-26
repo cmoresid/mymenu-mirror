@@ -46,21 +46,35 @@
 
 #pragma mark - View Controller Methods
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
+- (void)configureNavigationItems {
     self.navigationItem.title = NSLocalizedString(@"Account Information", nil);
     
     if (self.navigationPaneBarButtonItem) {
         [self.navigationItem setLeftBarButtonItem:self.navigationPaneBarButtonItem
-                                                animated:NO];
+                                         animated:NO];
     }
-    
-    MMUser *loggedInUser = [[MMLoginManager sharedLoginManager] getLoggedInUser];
+}
 
+- (void)populateFieldsFromLoggedInUser {
+    MMUser *loggedInUser = [[MMLoginManager sharedLoginManager] getLoggedInUser];
+    
+    self.emailAddressField.text = loggedInUser.email;
     self.givenNameField.text = loggedInUser.firstName;
     self.surnameField.text = loggedInUser.lastName;
+    
+    self.emailAddressField.enabled = NO;
+    self.givenNameField.enabled = NO;
+    self.surnameField.enabled = NO;
+    
+    self.defaultCity.placeholder = loggedInUser.city;
+    self.defaultLocality.placeholder = loggedInUser.locality;
+}
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self configureNavigationItems];
+    [self populateFieldsFromLoggedInUser];
     [self configureValidation];
 }
 
@@ -95,7 +109,7 @@
 
     self.locationValidationManager = [MMValidationManager new];
 
-    MMRequiredTextFieldValidator *locationValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.defaultLocationField withValidationMessage:NSLocalizedString(@"* Location cannot be empty.", nil)];
+    MMRequiredTextFieldValidator *locationValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.defaultCity withValidationMessage:NSLocalizedString(@"* Location cannot be empty.", nil)];
 
     [self.locationValidationManager addValidator:locationValidator];
 }
@@ -190,7 +204,7 @@
     }
 
     MMUser *userToUpdate = [[MMLoginManager sharedLoginManager] getLoggedInUser];
-    userToUpdate.city = self.defaultLocationField.text;
+    userToUpdate.city = self.defaultCity.text;
 
     [self.updatedPasswordField resignFirstResponder];
     [self.confirmPasswordField resignFirstResponder];

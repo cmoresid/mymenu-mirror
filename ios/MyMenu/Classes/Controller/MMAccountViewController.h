@@ -25,6 +25,10 @@
  */
 @interface MMAccountViewController : UITableViewController <MMDetailViewController>
 
+/**
+ *
+ */
+@property(nonatomic, weak) IBOutlet UITextField *emailAddressField;
 
 /**
  *  First Name View
@@ -49,7 +53,9 @@
 /**
  *  Default Location View
  */
-@property(nonatomic, weak) IBOutlet UITextField *defaultLocationField;
+@property(nonatomic, weak) IBOutlet UITextField *defaultCity;
+
+@property(nonatomic, weak) IBOutlet UITextField *defaultLocality;
 
 @property (nonatomic, retain) UIBarButtonItem *navigationPaneBarButtonItem;
 
