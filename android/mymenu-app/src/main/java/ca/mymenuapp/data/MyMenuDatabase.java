@@ -202,14 +202,6 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
-  public Subscription getRestaurant(final long id, Observer<RestaurantListResponse> observer) {
-    final String query = String.format(MyMenuApi.GET_RESTAURANT, id);
-    return myMenuApi.getRestaurant(query)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(observer);
-  }
-
   // todo, when we call this, we will already have the restaurant, so pass that instead of id
   public Subscription getRestaurantAndMenu(final User user, final long restaurantId,
       Observer<RestaurantMenu> observer) {
@@ -240,10 +232,10 @@ public class MyMenuDatabase {
       }
     });
 
-    myMenuApi.getMenu(
+    final String getMenuQuery =
         String.format(MyMenuApi.GET_RESTAURANT_MENU, user.email, restaurantId, user.email,
-            restaurantId)
-    )
+            restaurantId);
+    myMenuApi.getMenu(getMenuQuery)
         .map(new Func1<MenuResponse, List<MenuItem>>() {
                @Override
                public List<MenuItem> call(MenuResponse menuResponse) {
@@ -254,9 +246,10 @@ public class MyMenuDatabase {
         .map(new Func1<List<MenuItem>, RestaurantMenu>() {
           @Override
           public RestaurantMenu call(List<MenuItem> menuItems) {
-            final String query = String.format(MyMenuApi.GET_RESTAURANT, restaurantId);
+            final String getRestaurantQuery = String.format(MyMenuApi.GET_RESTAURANT, restaurantId);
             Restaurant restaurant =
-                BlockingObservable.from(myMenuApi.getRestaurant(query)).first().restList.get(0);
+                BlockingObservable.from(myMenuApi.getRestaurant(getRestaurantQuery))
+                    .first().restList.get(0);
             List<MenuCategory> categories =
                 BlockingObservable.from(myMenuApi.getMenuCategories(MyMenuApi.GET_MENU_CATEGORIES))
                     .first().categories;
@@ -274,7 +267,7 @@ public class MyMenuDatabase {
     return subscription;
   }
 
-  public Subscription getNearbyRestaurants(final String lat, final String longa,
+  public Subscription getNearbyRestaurants(final double lat, final double lng,
       Observer<List<Restaurant>> observer) {
     if (restaurantsCache != null) {
       // We have a cached value. Emit it immediately.
@@ -296,7 +289,7 @@ public class MyMenuDatabase {
         restaurantsCache = response;
       }
     });
-    final String query = String.format(MyMenuApi.GET_NEARBY_RESTAURANTS, longa, lat);
+    final String query = String.format(MyMenuApi.GET_NEARBY_RESTAURANTS, lng, lat);
     myMenuApi.getNearbyRestaurants(query)
         .map(new Func1<RestaurantListResponse, List<Restaurant>>() {
           @Override

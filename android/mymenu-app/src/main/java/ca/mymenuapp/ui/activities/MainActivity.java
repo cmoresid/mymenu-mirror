@@ -78,8 +78,8 @@ public class MainActivity extends BaseActivity {
     locationProvider.getLastKnownLocation().subscribe(new Action1<Location>() {
       @Override
       public void call(Location location) {
-        myMenuDatabase.getNearbyRestaurants(Double.toString(location.getLatitude()),
-            Double.toString(location.getLongitude()), new EndlessObserver<List<Restaurant>>() {
+        myMenuDatabase.getNearbyRestaurants(location.getLatitude(), location.getLongitude(),
+            new EndlessObserver<List<Restaurant>>() {
               @Override public void onNext(List<Restaurant> restaurantList) {
                 restaurants = restaurantList;
                 bus.post(new OnRestaurantListAvailableEvent(restaurantList));
