@@ -90,8 +90,12 @@
     [self.mapView setCenterCoordinate:location.coordinate animated:YES];
     [self.mapView setRegion:region animated:NO];
 
-    self.mapDelegate = [[MMRestaurantMapDelegate alloc] init];
+    MMRestaurantMapDelegate *delegate = [[MMRestaurantMapDelegate alloc] init];
+    delegate.splitViewNavigationController = [self.splitViewController.viewControllers lastObject];
+    
+    self.mapDelegate = delegate;
     self.mapView.delegate = self.mapDelegate;
+
 }
 
 #pragma mark - Configure Map View Methods
@@ -104,8 +108,7 @@
             start.latitude = [restaurant.lat doubleValue];
             start.longitude = [restaurant.longa doubleValue];
             [annotation setCoordinate:start];
-            [annotation setTitle:restaurant.businessname];
-            [annotation setSubtitle:restaurant.desc];
+            [annotation setTitle:[NSString stringWithFormat:@"%@", restaurant.mid]];
         
             return annotation;
     }];
@@ -136,5 +139,6 @@
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
 }
+
 
 @end

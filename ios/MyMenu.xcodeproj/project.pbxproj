@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		12D2EDB8343A44C081D735C2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD0A88C83664DE885E9A628 /* libPods.a */; };
 		1722200318C279380022FE8B /* MenuItemReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1722200218C279380022FE8B /* MenuItemReviewCell.xib */; };
+		1729346118E262B300C7B9A7 /* MMMapPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1729346018E262B200C7B9A7 /* MMMapPopOverViewController.m */; };
 		1731DFAE18A6CFB2008BE05B /* MenuItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1731DFAD18A6CFB2008BE05B /* MenuItemCell.xib */; };
 		1744F9BF18C524FD009CCC95 /* upvote.png in Resources */ = {isa = PBXBuildFile; fileRef = 1744F9BD18C524FD009CCC95 /* upvote.png */; };
 		1744F9C018C524FD009CCC95 /* upvote@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1744F9BE18C524FD009CCC95 /* upvote@2x.png */; };
@@ -170,6 +171,8 @@
 
 /* Begin PBXFileReference section */
 		1722200218C279380022FE8B /* MenuItemReviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuItemReviewCell.xib; sourceTree = "<group>"; };
+		1729345F18E262B200C7B9A7 /* MMMapPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMapPopOverViewController.h; sourceTree = "<group>"; };
+		1729346018E262B200C7B9A7 /* MMMapPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMapPopOverViewController.m; sourceTree = "<group>"; };
 		1731DFAD18A6CFB2008BE05B /* MenuItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuItemCell.xib; sourceTree = "<group>"; };
 		1744F9BD18C524FD009CCC95 /* upvote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upvote.png; sourceTree = "<group>"; };
 		1744F9BE18C524FD009CCC95 /* upvote@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upvote@2x.png"; sourceTree = "<group>"; };
@@ -722,6 +725,8 @@
 				B0A9901518CA43E900AC4CBB /* MMSpecialsCollectionViewController.m */,
 				B0A9901618CA43E900AC4CBB /* MMSpecialsTypeController.h */,
 				B0A9901718CA43E900AC4CBB /* MMSpecialsTypeController.m */,
+				1729345F18E262B200C7B9A7 /* MMMapPopOverViewController.h */,
+				1729346018E262B200C7B9A7 /* MMMapPopOverViewController.m */,
 				83CC9EC318D24F2A00E0B48A /* MMSpecialsCalendarViewController.h */,
 				83CC9EC418D24F2A00E0B48A /* MMSpecialsCalendarViewController.m */,
 				B0A9901A18CA43E900AC4CBB /* MMSplitViewController.h */,
@@ -1157,6 +1162,7 @@
 				B07D3C1F18E2271300B65168 /* TSQTACalendarRowCell.m in Sources */,
 				B0A9906E18CA43E900AC4CBB /* MMAccountViewController.m in Sources */,
 				B0A9906A18CA43E900AC4CBB /* MMAppDelegate.m in Sources */,
+				1729346118E262B300C7B9A7 /* MMMapPopOverViewController.m in Sources */,
 				B0A9906C18CA43E900AC4CBB /* UIColor+MyMenuColors.m in Sources */,
 				B0A9907B18CA43E900AC4CBB /* MMRegistrationPopoverViewController.m in Sources */,
 				B0A9908A18CA43E900AC4CBB /* MMMenuItemRating.m in Sources */,

@@ -17,12 +17,31 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "MMMapPopOverViewController.h"
 
 /**
  * Implements the `MMMapViewDelegate` protocol provided by
  * Apple. We implement the delegate in order to provide
  * custom pins for the restaurants.
  */
-@interface MMRestaurantMapDelegate : NSObject <MKMapViewDelegate>
+@interface MMRestaurantMapDelegate : NSObject <MKMapViewDelegate, UIPopoverControllerDelegate>
 
+/**
+ *  Reference to the popover controller
+ */
+@property(nonatomic, strong) MMMapPopOverViewController *mapPopOverViewController;
+/**
+ *  Popover view controller
+ */
+@property(nonatomic, strong) UIPopoverController *popOverController;
+
+/**
+ *  Outlet to the popover view to detect touches.
+ */
+@property(nonatomic, strong) UIView * containerView;
+
+/**
+ *  reference to the navigation controller in the map view
+ */
+@property(nonatomic, strong) UINavigationController *splitViewNavigationController;
 @end
