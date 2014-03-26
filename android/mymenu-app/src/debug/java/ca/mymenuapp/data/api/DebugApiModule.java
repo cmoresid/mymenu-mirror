@@ -42,20 +42,21 @@ import static ca.mymenuapp.data.DebugDataModule.DEBUG_API_ENDPOINT;
     overrides = true)
 public final class DebugApiModule {
 
-  @Provides @Singleton Endpoint provideEndpoint(
-      @Named(DEBUG_API_ENDPOINT) StringPreference apiEndpoint) {
+  @Provides @Singleton
+  Endpoint provideEndpoint(@Named(DEBUG_API_ENDPOINT) StringPreference apiEndpoint) {
     return Endpoints.newFixedEndpoint(apiEndpoint.get());
   }
 
-  @Provides @Singleton MockRestAdapter provideMockRestAdapter(RestAdapter restAdapter,
-      SharedPreferences preferences) {
+  @Provides @Singleton
+  MockRestAdapter provideMockRestAdapter(RestAdapter restAdapter, SharedPreferences preferences) {
     MockRestAdapter mockRestAdapter = MockRestAdapter.from(restAdapter);
     AndroidMockValuePersistence.install(mockRestAdapter, preferences);
     return mockRestAdapter;
   }
 
-  @Provides @Singleton MyMenuApi provideMyMenuApi(RestAdapter restAdapter,
-      MockRestAdapter mockRestAdapter, @IsMockMode boolean isMockMode, MockMyMenuApi mockService) {
+  @Provides @Singleton
+  MyMenuApi provideMyMenuApi(RestAdapter restAdapter, MockRestAdapter mockRestAdapter,
+      @IsMockMode boolean isMockMode, MockMyMenuApi mockService) {
     if (isMockMode) {
       return mockRestAdapter.create(MyMenuApi.class, mockService);
     }

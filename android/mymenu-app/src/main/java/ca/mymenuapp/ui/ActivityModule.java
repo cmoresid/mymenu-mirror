@@ -65,8 +65,8 @@ public class ActivityModule {
     return activity;
   }
 
-  @Provides @Singleton ReactiveLocationProvider reactiveLocationProvider(
-      @ForActivity Context context) {
+  @Provides @Singleton
+  ReactiveLocationProvider reactiveLocationProvider(@ForActivity Context context) {
     return new ReactiveLocationProvider(context);
   }
 }
