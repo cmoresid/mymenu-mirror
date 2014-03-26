@@ -13,9 +13,26 @@ public class MenuItemModification implements Parcelable {
   @Element(name = "menuid", required = false) public long menuId;
   @Element(name = "modification", required = false) public String modification;
 
-  public MenuItemModification() {
-    // default constructor
+  @Override public int describeContents() {
+    return 0;
   }
+
+  protected MenuItemModification() {
+
+  }
+
+  @SuppressWarnings("unused")
+  public static final Parcelable.Creator<MenuItemModification> CREATOR =
+      new Parcelable.Creator<MenuItemModification>() {
+
+        @Override public MenuItemModification createFromParcel(Parcel parcel) {
+          return null;
+        }
+
+        @Override public MenuItemModification[] newArray(int i) {
+          return new MenuItemModification[0];
+        }
+      };
 
   protected MenuItemModification(Parcel in) {
     id = in.readLong();
@@ -24,30 +41,19 @@ public class MenuItemModification implements Parcelable {
     modification = in.readString();
   }
 
-  @Override
-  public int describeContents() {
-    return 0;
+  @Override public void writeToParcel(Parcel parcel, int i) {
+    parcel.writeLong(id);
+    parcel.writeLong(restrictId);
+    parcel.writeLong(menuId);
+    parcel.writeString(modification);
   }
 
-  @Override
-  public void writeToParcel(Parcel dest, int flags) {
-    dest.writeLong(id);
-    dest.writeLong(restrictId);
-    dest.writeLong(menuId);
-    dest.writeString(modification);
+  @Override public String toString() {
+    return "MenuItemModification{" +
+        "id=" + id +
+        ", restrictId=" + restrictId +
+        ", menuId=" + menuId +
+        ", modification='" + modification + '\'' +
+        '}';
   }
-
-  @SuppressWarnings("unused")
-  public static final Parcelable.Creator<MenuItemModification> CREATOR =
-      new Parcelable.Creator<MenuItemModification>() {
-        @Override
-        public MenuItemModification createFromParcel(Parcel in) {
-          return new MenuItemModification(in);
-        }
-
-        @Override
-        public MenuItemModification[] newArray(int size) {
-          return new MenuItemModification[size];
-        }
-      };
 }

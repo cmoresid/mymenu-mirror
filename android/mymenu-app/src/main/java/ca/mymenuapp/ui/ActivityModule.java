@@ -34,6 +34,7 @@ import ca.mymenuapp.ui.fragments.MenuItemsGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.fragments.ReviewsFragment;
+import ca.mymenuapp.ui.fragments.SettingsFragment;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -46,7 +47,7 @@ import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
         RestaurantActivity.class, MenuItemActivity.class, DietaryPreferencesActivity.class,
         // Fragments
         BaseFragment.class, DietaryPreferencesFragment.class, MenuItemsGridFragment.class,
-        ReviewsFragment.class, RestaurantGridFragment.class,
+        ReviewsFragment.class, RestaurantGridFragment.class, SettingsFragment.class,
 
         // Map Fragments
         BaseMapFragment.class, RestaurantsMapFragment.class

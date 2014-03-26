@@ -22,16 +22,13 @@ import ca.mymenuapp.data.api.model.MenuCategoryResponse;
 import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
-import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.RestaurantListResponse;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import retrofit.client.Response;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
-import retrofit.http.GET;
 import retrofit.http.POST;
-import retrofit.http.Path;
 import rx.Observable;
 
 /** RESTful interface to talk to the MyMenu backend. */
@@ -42,7 +39,20 @@ public interface MyMenuApi {
   String GET_USER_QUERY = "SELECT * FROM users WHERE email='%s' AND password='%s'";
   String GET_USER_RESTRICTIONS = "SELECT * FROM restrictionuserlink where email='%s'";
   String DELETE_USER_RESTRICTIONS = "DELETE from restrictionuserlink WHERE email='%s'";
-  String GET_RESTAURANT_MENU = "SELECT * from menu where merchid = %d";
+  String GET_RESTAURANT_MENU = "SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, "
+      + "m.rating, mc.name AS category, 'edible' AS edible, m.categoryid FROM"
+      + " menu m, menucategories mc "
+      + "WHERE m.id "
+      + "not IN(SELECT Distinct rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid "
+      + "IN(SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%s')) AND "
+      + "m.merchid = %s AND m.categoryid = mc.id UNION "
+      + "SELECT m.id, m.merchid, m.name, m.cost, m.picture, m.description, "
+      + "m.rating, mc.name AS category, 'notedible' AS edible, m.categoryid FROM"
+      + " menu m, menucategories mc "
+      + "WHERE "
+      + "m.id IN(SELECT rml.menuid FROM restrictionmenulink rml WHERE rml.restrictid IN("
+      + "SELECT rul.restrictid FROM restrictionuserlink rul WHERE rul.email='%s')) "
+      + "AND m.merchid = %s AND m.categoryid = mc.id";
   String GET_MENU_CATEGORIES = "SELECT * from menucategories";
   String GET_NEARBY_RESTAURANTS = "SELECT id, business_name, category, "
       + "business_number, business_address1, "
@@ -65,6 +75,9 @@ public interface MyMenuApi {
           + " values('%s', %d, %d, %d, sysdate())";
   String POST_DISLIKE_REVIEW = "SELECT * from ratings where merchid = %d";
   String POST_SPAM_REVIEW = "SELECT * from ratings where merchid = %d";
+  String GET_RESTAURANT = "SELECT * FROM merchusers WHERE id = %d";
+  String EDIT_USER = "UPDATE users SET firstname='%s',lastname='%s',password='%s', city='%s',"
+      + "locality='%s',gender='%s' WHERE email = '%s'";
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(@Field("query") String query);
@@ -96,7 +109,8 @@ public interface MyMenuApi {
   Observable<Response> putUserRestriction(@Field("email") String email,
       @Field("restrictid") long restrictId);
 
-  @GET("/rest/merchusers/{id}.xml") Observable<Restaurant> getRestaurant(@Path("id") long id);
+  @FormUrlEncoded @POST("/php/merchusers/custom.php")
+  Observable<RestaurantListResponse> getRestaurant(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/menu/custom.php")
   Observable<MenuResponse> getMenu(@Field("query") String query);
@@ -109,4 +123,7 @@ public interface MyMenuApi {
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<Response> likeReview(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<Response> editUser(@Field("query") String query);
 }

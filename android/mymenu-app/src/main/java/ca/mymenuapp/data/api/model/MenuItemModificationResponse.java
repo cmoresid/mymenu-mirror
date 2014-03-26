@@ -22,8 +22,8 @@ import org.simpleframework.xml.Root;
 
 @Root(name = "results")
 public class MenuItemModificationResponse {
-  @ElementList(name = "result", inline = true, required = false) public
-  ArrayList<MenuItemModification> modificationList;
+  @ElementList(name = "result", inline = true, required = false)
+  public ArrayList<MenuItemModification> modificationList;
   @ElementList(required = false) public long timestamp;
 
   @Override public String toString() {

@@ -23,7 +23,6 @@ import ca.mymenuapp.data.api.model.MenuCategoryResponse;
 import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
-import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.RestaurantListResponse;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
@@ -33,7 +32,6 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import retrofit.client.Response;
 import retrofit.http.Field;
-import retrofit.http.Path;
 import rx.Observable;
 
 /**
@@ -89,6 +87,10 @@ final class MockMyMenuApi implements MyMenuApi {
     return Observable.from(restaurantListResponse);
   }
 
+  @Override public Observable<Response> editUser(@Field("query") String query) {
+    return null;
+  }
+
   @Override public Observable<Response> createUser(@Field("email") String email,
       @Field("firstname") String firstname, @Field("lastname") String lastname,
       @Field("password") String password, @Field("city") String city,
@@ -107,7 +109,7 @@ final class MockMyMenuApi implements MyMenuApi {
     return null;
   }
 
-  @Override public Observable<Restaurant> getRestaurant(@Path("id") long id) {
+  @Override public Observable<RestaurantListResponse> getRestaurant(@Field("query") String query) {
     return null;
   }
 

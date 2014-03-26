@@ -38,6 +38,7 @@ import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
+import ca.mymenuapp.ui.fragments.SettingsFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import com.f2prateek.ln.Ln;
 import com.squareup.otto.Produce;
@@ -77,8 +78,8 @@ public class MainActivity extends BaseActivity {
     locationProvider.getLastKnownLocation().subscribe(new Action1<Location>() {
       @Override
       public void call(Location location) {
-        myMenuDatabase.getNearbyRestaurants(Double.toString(location.getLatitude()),
-            Double.toString(location.getLongitude()), new EndlessObserver<List<Restaurant>>() {
+        myMenuDatabase.getNearbyRestaurants(location.getLatitude(), location.getLongitude(),
+            new EndlessObserver<List<Restaurant>>() {
               @Override public void onNext(List<Restaurant> restaurantList) {
                 restaurants = restaurantList;
                 bus.post(new OnRestaurantListAvailableEvent(restaurantList));
@@ -108,6 +109,8 @@ public class MainActivity extends BaseActivity {
         RestaurantGridFragment.class, null);
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.map)),
         RestaurantsMapFragment.class, null);
+    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.settings)),
+        SettingsFragment.class, null);
     actionBar.setSelectedNavigationItem(tab);
   }
 

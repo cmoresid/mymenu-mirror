@@ -27,7 +27,7 @@ import org.simpleframework.xml.Root;
 
 @Root(name = "result")
 public class Restaurant implements Parcelable, ClusterItem {
-  @Element(name = "id") public long id;
+  @Element(name = "id", required = false) public long id;
   @Element(name = "email", required = false) public String email;
   @Element(name = "password", required = false) public String password;
   @Element(name = "firstname", required = false) public String firstName;
@@ -155,6 +155,124 @@ public class Restaurant implements Parcelable, ClusterItem {
           return new Restaurant[size];
         }
       };
+
+  static class Builder {
+    final Restaurant restaurant;
+
+    Builder(long id) {
+      // skip personal info
+      restaurant = new Restaurant();
+      restaurant.id = id;
+      // canned data
+      // firstName
+      // lastName
+      restaurant.businessNumber = "780-318-1058";
+    }
+
+    Builder email(String email) {
+      restaurant.email = email;
+      return this;
+    }
+
+    Builder name(String businessName) {
+      restaurant.businessName = businessName;
+      return this;
+    }
+
+    Builder picture(String businessPicture) {
+      restaurant.businessPicture = businessPicture;
+      return this;
+    }
+
+    Builder address(String address) {
+      restaurant.address = address;
+      return this;
+    }
+
+    Builder city(String city) {
+      restaurant.city = city;
+      return this;
+    }
+
+    Builder locality(String locality) {
+      restaurant.locality = locality;
+      return this;
+    }
+
+    Builder postalCode(String postalCode) {
+      restaurant.postalCode = postalCode;
+      return this;
+    }
+
+    Builder country(String country) {
+      restaurant.country = country;
+      return this;
+    }
+
+    Builder lat(Double lat) {
+      restaurant.lat = lat;
+      return this;
+    }
+
+    Builder lng(Double lng) {
+      restaurant.lng = lng;
+      return this;
+    }
+
+    Builder facebook(String facebook) {
+      restaurant.facebook = facebook;
+      return this;
+    }
+
+    Builder twitter(String twitter) {
+      restaurant.twitter = twitter;
+      return this;
+    }
+
+    Builder website(String website) {
+      restaurant.website = website;
+      return this;
+    }
+
+    Builder rating(double rating) {
+      restaurant.rating = rating;
+      return this;
+    }
+
+    Builder ratingCount(String ratingCount) {
+      restaurant.ratingCount = ratingCount;
+      return this;
+    }
+
+    Builder categoryId(String categoryId) {
+      restaurant.categoryId = categoryId;
+      return this;
+    }
+
+    Builder priceLow(String priceLow) {
+      restaurant.priceLow = priceLow;
+      return this;
+    }
+
+    Builder priceHigh(String priceHigh) {
+      restaurant.priceHigh = priceHigh;
+      return this;
+    }
+
+    Builder openTime(String openTime) {
+      restaurant.openTime = openTime;
+      return this;
+    }
+
+    Builder closeTime(String closeTime) {
+      restaurant.closeTime = closeTime;
+      return this;
+    }
+
+    Restaurant get() {
+      return restaurant;
+    }
+  }
 
   @Override public String toString() {
     return "Restaurant{" +

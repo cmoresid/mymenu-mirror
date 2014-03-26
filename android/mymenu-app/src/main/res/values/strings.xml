@@ -14,9 +14,9 @@
   ~
   ~ You should have received a copy of the GNU General Public License
   ~ along with this program.  If not, see [http://www.gnu.org/licenses/].
-  -->
-
+-->
 <resources>
+
   <!-- Main Activity -->
   <string name="logout">Logout</string>
 
@@ -40,10 +40,23 @@
   <string name="gender">Gender</string>
   <string name="edmonton">Edmonton</string>
   <string name="alberta">Alberta</string>
+  <string name="bc">British Colombia</string>
+  <string name="sask">Saskatchewan</string>
+  <string name="mani">Manitoba</string>
+  <string name="ontario">Ontario</string>
+  <string name="quebec">Quebec</string>
+  <string name="nwt">North West Territories</string>
+  <string name="yuk">Yukon</string>
+  <string name="nunavut">Nunavut</string>
+  <string name="nfld">Newfoundland</string>
+  <string name="novascot">Nova Scotia</string>
+  <string name="pei">Prince Edward Island</string>
+  <string name="newb">New Brunswick</string>
   <string name="male">Male</string>
   <string name="female">Female</string>
   <string name="passwords_do_not_match">Passwords Do Not Match</string>
   <string name="birthday_required">Birthday Required</string>
+  <string name="city_required">City Required</string>
   <string name="unspecified">Unspecified</string>
 
   <!-- Dietary Preferences Fragment -->
@@ -83,5 +96,14 @@
   <!-- Restaurant Grid Fragment -->
   <string name="kilometres">%1$.1f k</string>
   <string name="metres">%1$.0fm</string>
+
+  <!-- Specials Fragment -->
+  <string name="specials">Specials</string>
+
+  <!--Settings Fragment -->
+  <string name="settings">Settings</string>
+  <string name="settings_save">Save</string>
+  <string name="settings_firstname">First Name</string>
+  <string name="settings_lastname">Last Name</string>
 
 </resources>

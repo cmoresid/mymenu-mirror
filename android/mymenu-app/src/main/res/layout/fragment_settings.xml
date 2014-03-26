@@ -16,14 +16,12 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with this program.  If not, see [http://www.gnu.org/licenses/].
   -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
-
-  <LinearLayout
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
@@ -31,79 +29,55 @@
       android:gravity="center">
 
     <TextView
-        android:id="@android:id/title"
+        android:id="@+id/settings_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:gravity="center"
-        android:text="@string/application_name"
-        android:textSize="60sp"
-        />
-
-    <com.greenhalolabs.emailautocompletetextview.EmailAutoCompleteTextView
-        android:id="@+id/email"
+        android:text="@string/settings"
+        android:textSize="60sp"/>
+    android:textColor="@color/turqoise"/>
+    <TextView
+        android:id="@+id/settings_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/email"
+        android:hint="@string/given_name"
+        />
+
+    <EditText
+        android:id="@+id/settings_firstname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/settings_firstname"
         />
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/settings_lastname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/settings_lastname"
+        />
+
+    <EditText
+        android:id="@+id/settings_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
         android:inputType="textPassword"
+
         />
     <EditText
-        android:id="@+id/confirm_password"
+        android:id="@+id/settings_confirm_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/confirm_password"
         android:inputType="textPassword"
         />
     <EditText
-        android:id="@+id/given_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/given_name"
-        />
-    <EditText
-        android:id="@+id/surname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/surname"
-        />
-    <EditText
-        android:id="@+id/city"
+        android:id="@+id/settings_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/city"
         />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-      <TextView
-          android:layout_width="0dp"
-          android:layout_weight="1"
-          android:layout_height="wrap_content"
-          android:text="@string/locality"/>
-
-      <Spinner
-          android:id="@+id/locality"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          />
-    </LinearLayout>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/birthdate"
-        android:text="@string/birthday"
-        style="?android:buttonBarButtonStyle"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,21 +87,22 @@
           android:layout_width="0dp"
           android:layout_weight="1"
           android:layout_height="wrap_content"
-          android:text="@string/gender"/>
+          android:text="@string/locality"/>
 
       <Spinner
-          android:id="@+id/gender"
+          android:id="@+id/settings_locality"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           />
     </LinearLayout>
 
     <Button
-        android:id="@+id/sign_up"
+        android:id="@+id/settings_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sign_up"
+        android:text="@string/settings_save"
         />
 
   </LinearLayout>
 </ScrollView>
+

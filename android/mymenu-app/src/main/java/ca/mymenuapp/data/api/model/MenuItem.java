@@ -27,19 +27,19 @@ import org.simpleframework.xml.Root;
 public class MenuItem implements Parcelable {
   private static final String NULL_STRING = "null";
 
-  @Element(name = "id") public long id;
-  @Element(name = "merchid") public long merchantId;
-  @Element(name = "name") public String name;
-  @Element(name = "cost") public float cost;
+  @Element(name = "id", required = false) public long id;
+  @Element(name = "merchid", required = false) public long merchantId;
+  @Element(name = "name", required = false) public String name;
+  @Element(name = "cost", required = false) public float cost;
   @Element(name = "picture", required = false) public String picture;
-  @Element(name = "description") public String description;
-  @Element(name = "rating") public float rating;
+  @Element(name = "description", required = false) public String description;
+  @Element(name = "rating", required = false) public float rating;
   // ratingCount may be null or "null", so keep it as a string!
-  @Element(name = "ratingcount") public String ratingCount;
-  @Element(name = "categoryid") public long categoryId;
-
+  @Element(name = "ratingcount", required = false) public String ratingCount;
+  @Element(name = "categoryid", required = false) public long categoryId;
+  @Element(name = "category", required = false) public String category;
   // flag to mark whether this item is edible by the current user
-  @Element(required = false) public boolean edible;
+  @Element(name = "edible") public String edible;
 
   public MenuItem() {
     // default constructor
@@ -70,7 +70,8 @@ public class MenuItem implements Parcelable {
     rating = in.readFloat();
     ratingCount = in.readString();
     categoryId = in.readLong();
-    edible = in.readByte() != 0x00;
+    category = in.readString();
+    edible = in.readString();
   }
 
   @Override
@@ -89,7 +90,8 @@ public class MenuItem implements Parcelable {
     dest.writeFloat(rating);
     dest.writeString(ratingCount);
     dest.writeLong(categoryId);
-    dest.writeByte((byte) (edible ? 0x01 : 0x00));
+    dest.writeString(category);
+    dest.writeString(edible);
   }
 
   @SuppressWarnings("unused")
@@ -106,7 +108,7 @@ public class MenuItem implements Parcelable {
   };
 
   @Override public String toString() {
-    return "Menu{" +
+    return "MenuItem{" +
         "id=" + id +
         ", merchantId=" + merchantId +
         ", name='" + name + '\'' +
@@ -114,8 +116,10 @@ public class MenuItem implements Parcelable {
         ", picture='" + picture + '\'' +
         ", description='" + description + '\'' +
         ", rating=" + rating +
-        ", ratingCount=" + ratingCount +
+        ", ratingCount='" + ratingCount + '\'' +
         ", categoryId=" + categoryId +
+        ", category='" + category + '\'' +
+        ", edible=" + edible +
         '}';
   }
 }

@@ -44,7 +44,6 @@ import ca.mymenuapp.ui.widgets.HeaderGridView;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import javax.inject.Inject;
@@ -81,7 +80,7 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
     MenuItemsGridFragment fragment = new MenuItemsGridFragment();
     Bundle args = new Bundle();
     ArrayList<MenuItem> menuItemArrayList = new ArrayList<>(menuItems);
-    Collections.shuffle(menuItemArrayList); // todo, evaluate usefullness?
+    //Collections.shuffle(menuItemArrayList); // todo, evaluate usefullness?
     args.putParcelableArrayList(ARGS_ITEMS, menuItemArrayList);
     args.putParcelable(ARGS_RESTAURANT, restaurant);
     args.putParcelableArrayList(ARGS_REVIEWS, new ArrayList<Parcelable>(reviews));
@@ -188,6 +187,12 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
       ViewHolder holder = (ViewHolder) view.getTag();
       holder.label.setText(item.name);
       picasso.load(item.picture).fit().centerCrop().into(holder.picture);
+      if (item.edible.compareTo("notedible") == 0) {
+        holder.label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.restriction_mymenu, 0, 0,
+            0);
+      } else {
+        holder.label.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+      }
     }
 
     class ViewHolder {

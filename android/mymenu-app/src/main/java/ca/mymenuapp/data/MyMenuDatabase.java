@@ -97,6 +97,16 @@ public class MyMenuDatabase {
         .observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
   }
 
+  public Subscription editUser(final User user, Observer<Response> observer) {
+    final String query =
+        String.format(MyMenuApi.EDIT_USER, user.firstName, user.lastName, user.password, user.city,
+            user.locality, user.gender, user.email);
+    return myMenuApi.editUser(query)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
+
   public Subscription getAllRestrictions(Observer<List<DietaryRestriction>> observer) {
     if (dietaryRestrictionsCache != null) {
       // We have a cached value. Emit it immediately.
@@ -192,13 +202,6 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
-  public Subscription getRestaurant(final long id, Observer<Restaurant> observer) {
-    return myMenuApi.getRestaurant(id)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(observer);
-  }
-
   // todo, when we call this, we will already have the restaurant, so pass that instead of id
   public Subscription getRestaurantAndMenu(final User user, final long restaurantId,
       Observer<RestaurantMenu> observer) {
@@ -229,18 +232,24 @@ public class MyMenuDatabase {
       }
     });
 
-    myMenuApi.getMenu(String.format(MyMenuApi.GET_RESTAURANT_MENU, restaurantId)) //
+    final String getMenuQuery =
+        String.format(MyMenuApi.GET_RESTAURANT_MENU, user.email, restaurantId, user.email,
+            restaurantId);
+    myMenuApi.getMenu(getMenuQuery)
         .map(new Func1<MenuResponse, List<MenuItem>>() {
-          @Override
-          public List<MenuItem> call(MenuResponse menuResponse) {
-            return menuResponse.menuItems;
-          }
-        })
+               @Override
+               public List<MenuItem> call(MenuResponse menuResponse) {
+                 return menuResponse.menuItems;
+               }
+             }
+        )
         .map(new Func1<List<MenuItem>, RestaurantMenu>() {
           @Override
           public RestaurantMenu call(List<MenuItem> menuItems) {
+            final String getRestaurantQuery = String.format(MyMenuApi.GET_RESTAURANT, restaurantId);
             Restaurant restaurant =
-                BlockingObservable.from(myMenuApi.getRestaurant(restaurantId)).first();
+                BlockingObservable.from(myMenuApi.getRestaurant(getRestaurantQuery))
+                    .first().restList.get(0);
             List<MenuCategory> categories =
                 BlockingObservable.from(myMenuApi.getMenuCategories(MyMenuApi.GET_MENU_CATEGORIES))
                     .first().categories;
@@ -258,7 +267,7 @@ public class MyMenuDatabase {
     return subscription;
   }
 
-  public Subscription getNearbyRestaurants(final String lat, final String longa,
+  public Subscription getNearbyRestaurants(final double lat, final double lng,
       Observer<List<Restaurant>> observer) {
     if (restaurantsCache != null) {
       // We have a cached value. Emit it immediately.
@@ -280,7 +289,7 @@ public class MyMenuDatabase {
         restaurantsCache = response;
       }
     });
-    final String query = String.format(MyMenuApi.GET_NEARBY_RESTAURANTS, longa, lat);
+    final String query = String.format(MyMenuApi.GET_NEARBY_RESTAURANTS, lng, lat);
     myMenuApi.getNearbyRestaurants(query)
         .map(new Func1<RestaurantListResponse, List<Restaurant>>() {
           @Override
