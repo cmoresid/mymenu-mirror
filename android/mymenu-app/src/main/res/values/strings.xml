@@ -82,6 +82,8 @@
   <string name="rating">Rating</string>
   <string name="like_count">Like Count</string>
   <string name="sort">Sort</string>
+  <string name="rate_button">Review This Item</string>
+  <string name="cancel_button">Cancel</string>
 
   <!-- Restaurant List Fragment -->
   <string name="restaurants">Restaurants</string>

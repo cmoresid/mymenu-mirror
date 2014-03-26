@@ -30,6 +30,7 @@ import android.widget.ScrollView;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.MenuItem;
@@ -40,6 +41,7 @@ import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.ReviewsFragment;
+import ca.mymenuapp.ui.fragments.WriteReviewFragment;
 import ca.mymenuapp.ui.widgets.NotifyingScrollView;
 import ca.mymenuapp.ui.widgets.SlidingUpPanelLayout;
 import com.f2prateek.dart.InjectExtra;
@@ -190,13 +192,14 @@ public class MenuItemActivity extends BaseActivity {
           @Override public void onNext(List<MenuItemModification> response) {
             modList = response;
             String superMods = "";
-
-            for (MenuItemModification m : modList) {
-              superMods += "• ";
-              superMods += m.modification;
-              superMods += "\n\n";
+            if (!(modList == null)) {
+              for (MenuItemModification m : modList) {
+                superMods += "• ";
+                superMods += m.modification;
+                superMods += "\n\n";
+              }
+              menuMods.setText(superMods);
             }
-            menuMods.setText(superMods);
           }
         }
     );
@@ -212,5 +215,11 @@ public class MenuItemActivity extends BaseActivity {
     );
     shareIntent.setType("text/plain");
     shareActionProvider.setShareIntent(shareIntent);
+  }
+
+  @OnClick(R.id.write_review_button) void onWriteReviewClicked() {
+    WriteReviewFragment wrf = new WriteReviewFragment(menuItem);
+    //FragmentTransaction ft = getFragmentManager().beginTransaction();
+    wrf.show(getFragmentManager(), "write_review_fragment");
   }
 }
