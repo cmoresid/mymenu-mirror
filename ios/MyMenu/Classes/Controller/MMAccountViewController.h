@@ -23,7 +23,7 @@
 /**
  *  Controller for the settings view
  */
-@interface MMAccountViewController : UITableViewController <MMDetailViewController>
+@interface MMAccountViewController : UITableViewController <MMDetailViewController, UITextFieldDelegate>
 
 /**
  *

@@ -8,7 +8,7 @@
         <scene sceneID="Gcd-mV-Bq8">
             <objects>
                 <splitViewController title="Profile" id="dTJ-os-mjA" customClass="MMProfileSplitViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="A158BF35-B73C-43B2-B2DF-E599B5CED508" id="C8f-FB-0SN"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="E6EA53A1-F8E8-4BA2-8CCA-B965EF83B64E" id="C8f-FB-0SN"/>
                     <toolbarItems/>
                     <connections>
                         <segue destination="KDb-g8-3lI" kind="relationship" relationship="masterViewController" id="OMc-Ii-Ss0"/>
@@ -269,11 +269,14 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your New Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="teG-Uy-NG6">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your New Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="teG-Uy-NG6" customClass="MMTextField">
                                                     <rect key="frame" x="185" y="8" width="500" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
+                                                    <connections>
+                                                        <outlet property="nextField" destination="ljL-RN-eng" id="4JG-sQ-aoD"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -302,11 +305,14 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Your New Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljL-RN-eng">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Your New Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljL-RN-eng" customClass="MMTextField">
                                                     <rect key="frame" x="185" y="8" width="500" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
+                                                    <connections>
+                                                        <outlet property="nextField" destination="teG-Uy-NG6" id="Gzh-tu-m3V"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -590,7 +596,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="A158BF35-B73C-43B2-B2DF-E599B5CED508" width="26" height="26">
+        <image name="E6EA53A1-F8E8-4BA2-8CCA-B965EF83B64E" width="26" height="26">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPD1YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBMU
 GR4fJSYtMDY5VSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBz

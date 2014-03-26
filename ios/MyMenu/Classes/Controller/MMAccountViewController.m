@@ -12,6 +12,7 @@
 #import "MMValidator.h"
 #import "MMValidationManager.h"
 #import "MMSplitViewManager.h"
+#import "MMTextField.h"
 #import <RACEXTScope.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
@@ -73,6 +74,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.updatedPasswordField.delegate = self;
+    self.confirmPasswordField.delegate = self;
+    
     [self configureNavigationItems];
     [self populateFieldsFromLoggedInUser];
     [self configureValidation];
@@ -93,6 +97,23 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Text Field Delegate Methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *) textField {
+    BOOL didResign = [textField resignFirstResponder];
+    
+    if (!didResign)
+        return NO;
+    
+    if ([textField isKindOfClass:[MMTextField class]]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[(MMTextField *)textField nextField] becomeFirstResponder];
+        });
+    }
+    
+    return YES;
 }
 
 #pragma mark - Validation
