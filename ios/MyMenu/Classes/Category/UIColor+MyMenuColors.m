@@ -37,6 +37,10 @@
     return [[UIColor alloc] initWithRed:41.0 / 255.0f green:169.0 / 255.0f blue:149.0 / 255.0f alpha:1.0f];
 }
 
++ (UIColor *)ratingWheelBackgroundTealColor {
+    return [[UIColor alloc] initWithRed:48.0 / 255.0f green:199.0 / 255.0f blue:175.0 / 255.0f alpha:1.0f];
+}
+
 + (UIColor *)lightTealColor {
     return [[UIColor alloc] initWithRed:136.0 / 255.0f green:221.0 / 255.0f blue:207.0 / 255.0f alpha:1.0f];
 }
