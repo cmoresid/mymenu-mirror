@@ -32,9 +32,6 @@
  */
 @interface MMDetailMapViewController : UIViewController <UISplitViewControllerDelegate, MMMerchantDataSourceDelegate, RBStoryboardLinkSource>
 
-@property(nonatomic, strong) id detailItem;
-@property(nonatomic, weak) IBOutlet UILabel *detailDescriptionLabel;
-
 /**
  *  Current users location, based on GPS
  */

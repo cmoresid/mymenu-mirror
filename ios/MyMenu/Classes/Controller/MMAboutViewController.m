@@ -37,7 +37,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.navigationItem.title = NSLocalizedString(@"About", nil);
+    
+    if (self.navigationPaneBarButtonItem) {
+        [self.navigationItem setLeftBarButtonItem:self.navigationPaneBarButtonItem
+                                         animated:NO];
+    }
+    
     self.aboutWebView.delegate = self;
     [self.aboutWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[MMStaticDataHelper sharedDataHelper] getAboutURL]]]];
 }
@@ -45,6 +52,18 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem {
+    if (navigationPaneBarButtonItem == _navigationPaneBarButtonItem)
+        return;
+    
+    if (navigationPaneBarButtonItem)
+        [self.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
+    else
+        [self.navigationItem setLeftBarButtonItem:nil animated:NO];
+    
+    _navigationPaneBarButtonItem = navigationPaneBarButtonItem;
 }
 
 #pragma mark - Webview Delegate Methods

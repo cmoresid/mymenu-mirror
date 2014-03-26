@@ -39,7 +39,6 @@
 		83893ED718919AD400D36670 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83893ED518919AD400D36670 /* InfoPlist.strings */; };
 		83A61ED118922E4E00269357 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A61ED018922E4E00269357 /* MapKit.framework */; };
 		83CC9EC518D24F2A00E0B48A /* MMSpecialsCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CC9EC418D24F2A00E0B48A /* MMSpecialsCalendarViewController.m */; };
-		83CC9EC818D24FA300E0B48A /* TSQTACalendarRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CC9EC718D24FA300E0B48A /* TSQTACalendarRowCell.m */; };
 		83CC9ED718D253FB00E0B48A /* CalendarPreviousMonth.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ECA18D253FB00E0B48A /* CalendarPreviousMonth.png */; };
 		83CC9ED818D253FB00E0B48A /* CalendarPreviousMonth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ECB18D253FB00E0B48A /* CalendarPreviousMonth@2x.png */; };
 		83CC9ED918D253FB00E0B48A /* CalendarRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CC9ECC18D253FB00E0B48A /* CalendarRow.png */; };
@@ -75,6 +74,7 @@
 		B07D3C1A18E2199300B65168 /* restriction-icon-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07D3C1218E2199300B65168 /* restriction-icon-selected@2x.png */; };
 		B07D3C1B18E2199300B65168 /* specials-icon-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = B07D3C1318E2199300B65168 /* specials-icon-selected.png */; };
 		B07D3C1C18E2199300B65168 /* specials-icon-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07D3C1418E2199300B65168 /* specials-icon-selected@2x.png */; };
+		B07D3C1F18E2271300B65168 /* TSQTACalendarRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B07D3C1E18E2271300B65168 /* TSQTACalendarRowCell.m */; };
 		B085156D18E126BD00AFF94F /* MMTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B085156C18E126BD00AFF94F /* MMTextField.m */; };
 		B0881ABF18D3AD5D003EDDFF /* MMRestaurantViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0881ABE18D3AD5D003EDDFF /* MMRestaurantViewModel.m */; };
 		B0881AC218D3C7F3003EDDFF /* MMMenuService.m in Sources */ = {isa = PBXBuildFile; fileRef = B0881AC118D3C7F3003EDDFF /* MMMenuService.m */; };
@@ -145,6 +145,7 @@
 		B0A990A418CA43E900AC4CBB /* RestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A9906918CA43E900AC4CBB /* RestaurantCell.m */; };
 		B0B1B6A718E1D69700D32EA7 /* location-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B1B6A518E1D69700D32EA7 /* location-marker.png */; };
 		B0B1B6A818E1D69700D32EA7 /* location-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B1B6A618E1D69700D32EA7 /* location-marker@2x.png */; };
+		B0B46F1E18E25DB700630DA7 /* MMSplitViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B46F1D18E25DB700630DA7 /* MMSplitViewManager.m */; };
 		B0B7B98418E143CC00A7E76D /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B7B98218E143CB00A7E76D /* share.png */; };
 		B0B7B98518E143CC00A7E76D /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0B7B98318E143CC00A7E76D /* share@2x.png */; };
 		B0D162FB18D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D162FA18D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.m */; };
@@ -195,8 +196,6 @@
 		83B88AE518BBFD55002BAF20 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		83CC9EC318D24F2A00E0B48A /* MMSpecialsCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpecialsCalendarViewController.h; sourceTree = "<group>"; };
 		83CC9EC418D24F2A00E0B48A /* MMSpecialsCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpecialsCalendarViewController.m; sourceTree = "<group>"; };
-		83CC9EC618D24FA300E0B48A /* TSQTACalendarRowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSQTACalendarRowCell.h; sourceTree = "<group>"; };
-		83CC9EC718D24FA300E0B48A /* TSQTACalendarRowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSQTACalendarRowCell.m; sourceTree = "<group>"; };
 		83CC9ECA18D253FB00E0B48A /* CalendarPreviousMonth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalendarPreviousMonth.png; sourceTree = "<group>"; };
 		83CC9ECB18D253FB00E0B48A /* CalendarPreviousMonth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CalendarPreviousMonth@2x.png"; sourceTree = "<group>"; };
 		83CC9ECC18D253FB00E0B48A /* CalendarRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalendarRow.png; sourceTree = "<group>"; };
@@ -246,6 +245,8 @@
 		B07D3C1218E2199300B65168 /* restriction-icon-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "restriction-icon-selected@2x.png"; sourceTree = "<group>"; };
 		B07D3C1318E2199300B65168 /* specials-icon-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "specials-icon-selected.png"; sourceTree = "<group>"; };
 		B07D3C1418E2199300B65168 /* specials-icon-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "specials-icon-selected@2x.png"; sourceTree = "<group>"; };
+		B07D3C1D18E2271300B65168 /* TSQTACalendarRowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSQTACalendarRowCell.h; sourceTree = "<group>"; };
+		B07D3C1E18E2271300B65168 /* TSQTACalendarRowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSQTACalendarRowCell.m; sourceTree = "<group>"; };
 		B085156B18E126BD00AFF94F /* MMTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTextField.h; sourceTree = "<group>"; };
 		B085156C18E126BD00AFF94F /* MMTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTextField.m; sourceTree = "<group>"; };
 		B0881ABD18D3AD5D003EDDFF /* MMRestaurantViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMRestaurantViewModel.h; path = ViewModel/MMRestaurantViewModel.h; sourceTree = "<group>"; };
@@ -381,6 +382,8 @@
 		B0B1B6A518E1D69700D32EA7 /* location-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-marker.png"; sourceTree = "<group>"; };
 		B0B1B6A618E1D69700D32EA7 /* location-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-marker@2x.png"; sourceTree = "<group>"; };
 		B0B344E918D246700023924D /* libPods-TimesSquare.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TimesSquare.a"; path = "Pods/build/Debug-iphoneos/libPods-TimesSquare.a"; sourceTree = "<group>"; };
+		B0B46F1C18E25DB700630DA7 /* MMSplitViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSplitViewManager.h; sourceTree = "<group>"; };
+		B0B46F1D18E25DB700630DA7 /* MMSplitViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSplitViewManager.m; sourceTree = "<group>"; };
 		B0B6E64F18D671D200BB0298 /* MMLocationManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMLocationManagerDelegate.h; sourceTree = "<group>"; };
 		B0B7B98218E143CB00A7E76D /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		B0B7B98318E143CC00A7E76D /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
@@ -727,8 +730,6 @@
 				B0A9901718CA43E900AC4CBB /* MMSpecialsTypeController.m */,
 				83CC9EC318D24F2A00E0B48A /* MMSpecialsCalendarViewController.h */,
 				83CC9EC418D24F2A00E0B48A /* MMSpecialsCalendarViewController.m */,
-				83CC9EC618D24FA300E0B48A /* TSQTACalendarRowCell.h */,
-				83CC9EC718D24FA300E0B48A /* TSQTACalendarRowCell.m */,
 				B0A9901A18CA43E900AC4CBB /* MMSplitViewController.h */,
 				B0A9901B18CA43E900AC4CBB /* MMSplitViewController.m */,
 			);
@@ -743,6 +744,8 @@
 				B0A9901D18CA43E900AC4CBB /* MMRegistrationPopoverDelegate.h */,
 				B0A9901E18CA43E900AC4CBB /* MMRestaurantMapDelegate.h */,
 				B0A9901F18CA43E900AC4CBB /* MMRestaurantMapDelegate.m */,
+				B0B46F1C18E25DB700630DA7 /* MMSplitViewManager.h */,
+				B0B46F1D18E25DB700630DA7 /* MMSplitViewManager.m */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -868,6 +871,8 @@
 				B0A9906918CA43E900AC4CBB /* RestaurantCell.m */,
 				B085156B18E126BD00AFF94F /* MMTextField.h */,
 				B085156C18E126BD00AFF94F /* MMTextField.m */,
+				B07D3C1D18E2271300B65168 /* TSQTACalendarRowCell.h */,
+				B07D3C1E18E2271300B65168 /* TSQTACalendarRowCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1131,10 +1136,10 @@
 				B0A9908B18CA43E900AC4CBB /* MMMerchant.m in Sources */,
 				B048559218CFA8E8003BC8A9 /* UIImage+MMTransform.m in Sources */,
 				B0A9909518CA43E900AC4CBB /* MMSocialMediaService.m in Sources */,
-				83CC9EC818D24FA300E0B48A /* TSQTACalendarRowCell.m in Sources */,
 				B0A9908C18CA43E900AC4CBB /* MMPopoverDataPair.m in Sources */,
 				B0A9909C18CA43E900AC4CBB /* MMValidationManager.m in Sources */,
 				B0A9908818CA43E900AC4CBB /* MMMenuItem.m in Sources */,
+				B0B46F1E18E25DB700630DA7 /* MMSplitViewManager.m in Sources */,
 				B0A9908218CA43E900AC4CBB /* MMSpecialsTypeController.m in Sources */,
 				B01D523E18D6C6DE000DB283 /* UISearchBar+RAC.m in Sources */,
 				B0A9908118CA43E900AC4CBB /* MMSpecialsCollectionViewController.m in Sources */,
@@ -1157,6 +1162,7 @@
 				B0E7616818CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.m in Sources */,
 				B0A9907318CA43E900AC4CBB /* MMLoginViewController.m in Sources */,
 				B0881AC218D3C7F3003EDDFF /* MMMenuService.m in Sources */,
+				B07D3C1F18E2271300B65168 /* TSQTACalendarRowCell.m in Sources */,
 				B0A9906E18CA43E900AC4CBB /* MMAccountViewController.m in Sources */,
 				B0A9906A18CA43E900AC4CBB /* MMAppDelegate.m in Sources */,
 				B0A9906C18CA43E900AC4CBB /* UIColor+MyMenuColors.m in Sources */,

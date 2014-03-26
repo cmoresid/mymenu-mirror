@@ -74,14 +74,39 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : color} forState:UIControlStateNormal];
 }
 
-#pragma mark - MMDBFetcher Delegate Methods
+#pragma mark - Stuff
 
-- (void)didCreateUser:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
-    NSLog(@"Did create user.");
+- (BOOL)shouldAutomaticallyForwardRotationMethods {
+    return YES;
 }
 
-- (void)didAddUserRestrictions:(BOOL)successful withResponse:(MMDBFetcherResponse *)response {
-    NSLog(@"Did add user restrictions.");
+- (BOOL)shouldAutomaticallyForwardAppearanceMethods {
+    return YES;
+}
+
+#pragma mark - Rotation Events
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
+                                duration:(NSTimeInterval)duration {
+    
+    [super willRotateToInterfaceOrientation:orientation duration:duration];
+    
+    // Forward manually to any non-viewable child split view controllers.
+    for (UIViewController *cvc in self.childViewControllers) {
+        if ((cvc.view.superview == nil) && ([cvc isKindOfClass: [UISplitViewController class]])) {
+            [cvc willRotateToInterfaceOrientation:orientation duration:duration];
+        }
+    }
+}
+
+- (void)didRotateFromInterfaceOrientation: (UIInterfaceOrientation)orientation {
+    [super didRotateFromInterfaceOrientation:orientation];
+    
+    for (UIViewController *cvc in self.childViewControllers) {
+        if ((cvc.view.superview == nil) && ([cvc isKindOfClass:[UISplitViewController class]])) {
+            [cvc didRotateFromInterfaceOrientation:orientation];
+        }
+    }
 }
 
 @end

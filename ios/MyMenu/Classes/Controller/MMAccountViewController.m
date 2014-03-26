@@ -11,18 +11,16 @@
 #import "MMUser.h"
 #import "MMValidator.h"
 #import "MMValidationManager.h"
+#import "MMSplitViewManager.h"
+#import <RACEXTScope.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
 @interface MMAccountViewController ()
 
 - (void)registerForUpdateUserNotifications;
-
 - (void)unregisterForUpdateUserNotifications;
-
 - (void)updateUser:(NSNotification *)notification;
-
 - (void)updateUserError:(NSNotification *)notification;
-
 - (void)configureValidation;
 
 @property(nonatomic, strong) MMValidationManager *passwordValidationManager;
@@ -32,19 +30,32 @@
 
 @implementation MMAccountViewController
 
-#pragma mark - View Controller Methods
+#pragma mark - Custom Accessor Methods
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem {
+    if (navigationPaneBarButtonItem == _navigationPaneBarButtonItem)
+        return;
+    
+    if (navigationPaneBarButtonItem)
+        [self.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
+    else
+        [self.navigationItem setLeftBarButtonItem:nil animated:NO];
+    
+    _navigationPaneBarButtonItem = navigationPaneBarButtonItem;
 }
+
+#pragma mark - View Controller Methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    self.navigationItem.title = NSLocalizedString(@"Account Information", nil);
+    
+    if (self.navigationPaneBarButtonItem) {
+        [self.navigationItem setLeftBarButtonItem:self.navigationPaneBarButtonItem
+                                                animated:NO];
+    }
+    
     MMUser *loggedInUser = [[MMLoginManager sharedLoginManager] getLoggedInUser];
 
     self.givenNameField.text = loggedInUser.firstName;
@@ -55,7 +66,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
+    
     [self registerForUpdateUserNotifications];
 }
 

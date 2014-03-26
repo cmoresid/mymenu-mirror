@@ -16,16 +16,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMSplitViewManager.h"
+
+@class MMSplitViewManager;
 
 /**
  *  A child controller of the `MMMasterProfileViewController`. Provides
  *  a web view that displays the About page on the MyMenu website.
  */
-@interface MMAboutViewController : UIViewController <UIWebViewDelegate>
+@interface MMAboutViewController : UIViewController <UIWebViewDelegate, MMDetailViewController>
 
 /**
  *  The web view that displays the About page.
  */
 @property(nonatomic, weak) IBOutlet UIWebView *aboutWebView;
+
+@property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 
 @end

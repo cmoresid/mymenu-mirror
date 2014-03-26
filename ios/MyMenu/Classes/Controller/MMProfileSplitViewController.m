@@ -16,9 +16,14 @@
 //
 
 #import "MMProfileSplitViewController.h"
+#import "MMAccountViewController.h"
+#import "MMSplitViewManager.h"
 #import "MMLoginManager.h"
+#import <objc/message.h>
 
 @interface MMProfileSplitViewController ()
+
+@property(nonatomic, strong) MMSplitViewManager *manager;
 
 @end
 
@@ -35,10 +40,25 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     if ([[MMLoginManager sharedLoginManager] isUserLoggedInAsGuest]) {
         [[MMLoginManager sharedLoginManager] logoutUser];
         [self performSegueWithIdentifier:@"userMustLogin" sender:self];
     }
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.manager = [[MMSplitViewManager alloc] init];
+    
+    self.manager.splitViewController = self;
+    self.delegate = self.manager;
+    
+    UINavigationController *navController = [self.viewControllers lastObject];
+    MMAccountViewController *startingController = (MMAccountViewController *) navController.topViewController;
+    
+    self.manager.detailViewController = startingController;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +70,34 @@
 
 - (BOOL)needsTopLayoutGuide {
     return NO;
+}
+
+#pragma mark - Rotation Events
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
+                                duration:(NSTimeInterval)duration {
+    
+    [super willRotateToInterfaceOrientation:orientation duration:duration];
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)io
+                                         duration:(NSTimeInterval)duration {
+    
+    [super willAnimateRotationToInterfaceOrientation:io duration:duration];
+}
+
+- (void)didRotateFromInterfaceOrientation: (UIInterfaceOrientation)orientation {
+    [super didRotateFromInterfaceOrientation: orientation];
+    
+    // Not sure why but this delegate method does not get called on its own when
+    // the rotation events are forwarded. It must have something to do with the
+    // view not actually being visible.
+    if (UIInterfaceOrientationIsPortrait(orientation)) {
+        id delegate = [self delegate];
+        [delegate splitViewController:self
+               willShowViewController:[[self viewControllers] objectAtIndex:0]
+            invalidatingBarButtonItem:[super valueForKey:@"_barButtonItem"]];
+    }
 }
 
 @end

@@ -16,11 +16,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMSplitViewManager.h"
+
+@class MMSplitViewManager;
 
 /**
  *  Controller for the settings view
  */
-@interface MMAccountViewController : UITableViewController
+@interface MMAccountViewController : UITableViewController <MMDetailViewController>
 
 
 /**
@@ -48,6 +51,7 @@
  */
 @property(nonatomic, weak) IBOutlet UITextField *defaultLocationField;
 
+@property (nonatomic, retain) UIBarButtonItem *navigationPaneBarButtonItem;
 
 /**
  *  Saves the users new password
