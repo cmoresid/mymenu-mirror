@@ -8,7 +8,7 @@
         <scene sceneID="Gcd-mV-Bq8">
             <objects>
                 <splitViewController title="Profile" id="dTJ-os-mjA" customClass="MMProfileSplitViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="1B65EB1B-EDE7-4C76-ADBC-CA7913E59F3A" id="C8f-FB-0SN"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="12B6DF38-3A97-4150-9154-F4324ADB5832" id="C8f-FB-0SN"/>
                     <toolbarItems/>
                     <connections>
                         <segue destination="KDb-g8-3lI" kind="relationship" relationship="masterViewController" id="OMc-Ii-Ss0"/>
@@ -334,7 +334,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r24-tb-x7d" customClass="MMButton">
                                                     <rect key="frame" x="532" y="7" width="150" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.2627450980392157" green="0.7803921568627451" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="IiU-f4-ZVl"/>
                                                     </constraints>
@@ -413,7 +413,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8B-IF-lJu" customClass="MMButton">
                                                     <rect key="frame" x="534" y="7" width="150" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.26274509800000001" green="0.78039215689999997" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="Z5t-Kb-ype"/>
                                                     </constraints>
@@ -448,7 +448,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urV-tL-fTG" customClass="MMButton">
                                                     <rect key="frame" x="226" y="8" width="250" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.2627450980392157" green="0.7803921568627451" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="250" id="FnA-9w-EcX"/>
                                                     </constraints>
@@ -477,12 +477,14 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="changePasswordButton" destination="r24-tb-x7d" id="p0S-WW-LZk"/>
                         <outlet property="confirmPasswordField" destination="ljL-RN-eng" id="quA-bt-0XR"/>
                         <outlet property="defaultCity" destination="PSd-oD-riX" id="GQ7-vd-D8Y"/>
                         <outlet property="defaultLocality" destination="nsa-E4-eaR" id="4vE-x6-ZCo"/>
                         <outlet property="emailAddressField" destination="NEO-5L-qkf" id="W7Y-p0-LeM"/>
                         <outlet property="givenNameField" destination="w2f-dE-BYR" id="bNa-Iy-Qyp"/>
                         <outlet property="surnameField" destination="h8U-Ld-uRb" id="vK7-SX-yQf"/>
+                        <outlet property="updateLocationButton" destination="o8B-IF-lJu" id="qeI-2t-v21"/>
                         <outlet property="updatedPasswordField" destination="teG-Uy-NG6" id="Qgo-bh-93p"/>
                     </connections>
                 </tableViewController>
@@ -596,7 +598,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1B65EB1B-EDE7-4C76-ADBC-CA7913E59F3A" width="26" height="26">
+        <image name="12B6DF38-3A97-4150-9154-F4324ADB5832" width="26" height="26">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPD1YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBMU
 GR4fJSYtMDY5VSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBz

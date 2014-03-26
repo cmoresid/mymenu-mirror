@@ -13,6 +13,10 @@
 #import "MMValidationManager.h"
 #import "MMSplitViewManager.h"
 #import "MMTextField.h"
+#import "MMRegistrationPopoverViewController.h"
+#import "UIStoryboard+UIStoryboard_MyMenu.h"
+#import "UIColor+MyMenuColors.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RACEXTScope.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
@@ -22,10 +26,6 @@
 - (void)unregisterForUpdateUserNotifications;
 - (void)updateUser:(NSNotification *)notification;
 - (void)updateUserError:(NSNotification *)notification;
-- (void)configureValidation;
-
-@property(nonatomic, strong) MMValidationManager *passwordValidationManager;
-@property(nonatomic, strong) MMValidationManager *locationValidationManager;
 
 @end
 
@@ -74,12 +74,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.updatedPasswordField.delegate = self;
-    self.confirmPasswordField.delegate = self;
+    [self configureDelegates];
     
+    [self configureDataBindings];
     [self configureNavigationItems];
     [self populateFieldsFromLoggedInUser];
-    [self configureValidation];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -116,23 +115,62 @@
     return YES;
 }
 
-#pragma mark - Validation
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (![self createPopoverForTextField:textField]) {
+        return YES;
+    }
+    
+    MMRegistrationPopoverViewController *locationContent = [self getPopoverViewControllerForTextField:textField];
+    locationContent.delegate = self;
+    
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:locationContent];
+    
+    popover.popoverContentSize = CGSizeMake(350.0f, 200.0f);
+    popover.delegate = self;
+    
+    self.locationPopoverController = popover;
+    
+    [self.locationPopoverController presentPopoverFromRect:textField.frame
+                                                    inView:textField.superview
+                                  permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                  animated:YES];
+    
+    return FALSE;
+}
 
-- (void)configureValidation {
-    self.passwordValidationManager = [MMValidationManager new];
+- (BOOL)createPopoverForTextField:(UITextField *)textField {
+    return (textField == self.defaultLocality || textField == self.defaultCity);
+}
 
-    MMRequiredTextFieldValidator *passwordRequiredValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.updatedPasswordField withValidationMessage:NSLocalizedString(@"* New password must be provided.", nil)];
+- (MMRegistrationPopoverViewController *)getPopoverViewControllerForTextField:(UITextField *)textField {
+    MMRegistrationPopoverViewController *registrationPopover = nil;
+    
+    if (textField == self.defaultCity) {
+        registrationPopover = [[UIStoryboard mainStoryBoard] instantiateViewControllerWithIdentifier:@"CityPopoverViewController"];
+    }
+    else if (textField == self.defaultLocality) {
+        registrationPopover = [[UIStoryboard mainStoryBoard] instantiateViewControllerWithIdentifier:@"ProvincePopoverViewController"];
+    }
+    
+    return registrationPopover;
+}
 
-    MMMatchingTextFieldValidator *passwordMatchingValidator = [[MMMatchingTextFieldValidator alloc] initWithFirstTextField:self.updatedPasswordField withSecondTextField:self.confirmPasswordField withValidationMessage:NSLocalizedString(@"* Passwords must match.", nil)];
+#pragma mark - MMRegistrationPopoverViewController Delegate Methods
 
-    [self.passwordValidationManager addValidator:passwordRequiredValidator];
-    [self.passwordValidationManager addValidator:passwordMatchingValidator];
+- (void)didSelectCity:(NSString *)city {
+    self.defaultCity.text = city;
+    [self.locationPopoverController dismissPopoverAnimated:YES];
+}
 
-    self.locationValidationManager = [MMValidationManager new];
+- (void)didSelectProvince:(NSString *)province {
+    self.defaultLocality.text = province;
+    [self.locationPopoverController dismissPopoverAnimated:YES];
+}
 
-    MMRequiredTextFieldValidator *locationValidator = [[MMRequiredTextFieldValidator alloc] initWithTextField:self.defaultCity withValidationMessage:NSLocalizedString(@"* Location cannot be empty.", nil)];
+#pragma mark - Popover Controller Delegate Methods
 
-    [self.locationValidationManager addValidator:locationValidator];
+- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
+    return NO;
 }
 
 #pragma mark - Register Notification Methods
@@ -163,6 +201,9 @@
 
 - (void)updateUser:(NSNotification *)notification {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
+    self.defaultCity.text = nil;
+    self.defaultLocality.text = nil;
 
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success", nil)
                                                       message:NSLocalizedString(@"Update Successful.", nil)
@@ -186,50 +227,52 @@
 #pragma mark - Action Methods
 
 - (IBAction)updatePassword:(id)sender {
-    NSArray *validationErrors = [self.passwordValidationManager getValidationMessagesAsArray];
-
-    if (validationErrors.count > 0) {
-        NSString *validationMessage = [validationErrors componentsJoinedByString:@"\n"];
-
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Validation Error(s)", nil)
-                                                          message:validationMessage
-                                                         delegate:nil
-                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                otherButtonTitles:nil];
-
-        [message show];
-        return;
-    }
-
     MMUser *userToUpdate = [[MMLoginManager sharedLoginManager] getLoggedInUser];
     userToUpdate.password = self.confirmPasswordField.text;
 
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[MMLoginManager sharedLoginManager] beginUpdateUser:userToUpdate];
+    @weakify(self);
+    [[[MMLoginManager sharedLoginManager] changePasswordForUser:userToUpdate]
+        subscribeNext:^(NSNumber *result) {
+            @strongify(self);
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            self.confirmPasswordField.text = @"";
+            self.updatedPasswordField.text = @"";
+            
+            [self.confirmPasswordField resignFirstResponder];
+            [self.updatedPasswordField resignFirstResponder];
+            
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success", nil)
+                                                              message:NSLocalizedString(@"Successfully updated your password.", nil)
+                                                             delegate:nil
+                                                    cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                    otherButtonTitles:nil];
+            [message show];
+        }
+        error:^(NSError *error) {
+            @strongify(self);
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                              message:NSLocalizedString(@"Unable to update your password.", nil)
+                                                             delegate:nil
+                                                    cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                    otherButtonTitles:nil];
+            [message show];
+    }];
 }
 
 - (IBAction)updateDefaultLocation:(id)sender {
-    NSArray *validationErrors = [self.locationValidationManager getValidationMessagesAsArray];
-
-    if (validationErrors.count > 0) {
-        NSString *validationMessage = [validationErrors componentsJoinedByString:@"\n"];
-
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Validation Error(s)", nil)
-                                                          message:validationMessage
-                                                         delegate:nil
-                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                otherButtonTitles:nil];
-
-        [message show];
-        return;
-    }
-
     MMUser *userToUpdate = [[MMLoginManager sharedLoginManager] getLoggedInUser];
-    userToUpdate.city = self.defaultCity.text;
+    userToUpdate.city = (self.defaultCity.text.length > 0) ? self.defaultCity.text : userToUpdate.city;
+    userToUpdate.locality = (self.defaultLocality.text.length > 0) ? self.defaultLocality.text : userToUpdate.locality;
 
+    self.defaultCity.placeholder = userToUpdate.city;
+    self.defaultLocality.placeholder = userToUpdate.locality;
+    
     [self.updatedPasswordField resignFirstResponder];
     [self.confirmPasswordField resignFirstResponder];
-    [self.tableView resignFirstResponder];
 
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[MMLoginManager sharedLoginManager] beginUpdateUser:userToUpdate];
@@ -238,6 +281,43 @@
 - (IBAction)logout:(id)sender {
     [[MMLoginManager sharedLoginManager] logoutUser];
     [self.splitViewController performSegueWithIdentifier:@"userMustLogin" sender:self];
+}
+
+#pragma mark - Private Helper Methods
+
+- (void)configureDataBindings {
+    RAC(self.changePasswordButton, enabled) =
+        [RACSignal
+            combineLatest:@[self.updatedPasswordField.rac_textSignal, self.confirmPasswordField.rac_textSignal]
+            reduce:^(NSString *updatedPassword, NSString *confirmPassword) {
+                return @([updatedPassword isEqualToString:confirmPassword] && ![updatedPassword isEqualToString:@""]);
+    }];
+    
+    RAC(self.changePasswordButton, backgroundColor) =
+        [RACObserve(self.changePasswordButton, enabled)
+            map:^UIColor *(NSNumber *enabled) {
+                return [enabled isEqualToNumber:@YES] ? [UIColor tealColor] : [UIColor lightGrayColor];
+    }];
+    
+    RAC(self.updateLocationButton, enabled) =
+        [RACSignal
+            combineLatest:@[RACObserve(self.defaultLocality, text), RACObserve(self.defaultCity, text)]
+            reduce:^(NSString *defaultLocality, NSString *defaultCity) {
+                return @(defaultLocality.length > 0 || defaultCity.length > 0 );
+    }];
+    
+    RAC(self.updateLocationButton, backgroundColor) =
+        [RACObserve(self.updateLocationButton, enabled)
+         map:^UIColor *(NSNumber *enabled) {
+             return [enabled isEqualToNumber:@YES] ? [UIColor tealColor] : [UIColor lightGrayColor];
+    }];
+}
+
+- (void)configureDelegates {
+    self.updatedPasswordField.delegate = self;
+    self.confirmPasswordField.delegate = self;
+    self.defaultCity.delegate = self;
+    self.defaultLocality.delegate = self;
 }
 
 @end
