@@ -28,7 +28,6 @@
 @interface MMDetailMapViewController ()
 
 @property(strong, nonatomic) IBOutlet MKMapView *mapView;
-@property(strong, nonatomic) UIPopoverController *masterPopoverController;
 @property(strong, nonatomic) id <MKMapViewDelegate> mapDelegate;
 
 @end

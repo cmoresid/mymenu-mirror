@@ -194,6 +194,9 @@
     }
 	[self.detailViewController.navigationController setViewControllers:[NSArray arrayWithObject:self.detailViewController] animated:NO];
 	[self.detailViewController.navigationController setNeedsStatusBarAppearanceUpdate];
+    
+    [self.detailViewController.masterPopoverController dismissPopoverAnimated:YES];
+    
     [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
 }
 
