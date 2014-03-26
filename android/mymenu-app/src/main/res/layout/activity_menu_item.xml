@@ -96,7 +96,7 @@
       android:layout_height="match_parent"
       android:orientation="vertical">
 
-    <TextView
+   <TextView
         android:id="@+id/menu_item_reviews_summary"
         android:layout_width="match_parent"
         android:layout_height="128dp"
@@ -104,6 +104,12 @@
         android:text="The Awesome Sliding Up Panel. Summary and rating wheel go here."
         android:background="@color/turqoise"
         android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/write_review_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rate_button"/>
 
     <FrameLayout
         android:id="@+id/menu_item_reviews"
