@@ -27,7 +27,7 @@
 @interface MMAccountViewController : UITableViewController <MMDetailViewController, UITextFieldDelegate, MMRegistrationPopoverDelegate, UIPopoverControllerDelegate>
 
 /**
- *
+ *  Email Adress field
  */
 @property(nonatomic, weak) IBOutlet UITextField *emailAddressField;
 
@@ -55,15 +55,28 @@
  *  Default Location View
  */
 @property(nonatomic, weak) IBOutlet UITextField *defaultCity;
-
+/**
+ *  Province Field
+ */
 @property(nonatomic, weak) IBOutlet UITextField *defaultLocality;
 
+/**
+ *  Button to update your password
+ */
 @property(nonatomic, weak) IBOutlet UIButton *changePasswordButton;
-
+/**
+ *  BUtton to change your location
+ */
 @property(nonatomic, weak) IBOutlet UIButton *updateLocationButton;
 
+/**
+ *  Button to pull out list on left side when in portrait mode
+ */
 @property(nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 
+/**
+ *  Reference to the location popover controller.
+ */
 @property(nonatomic, strong) UIPopoverController *locationPopoverController;
 
 /**
