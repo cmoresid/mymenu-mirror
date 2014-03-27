@@ -37,6 +37,7 @@
     self.descriptionView.contentInset = UIEdgeInsetsMake(-5, 0, -5, 0);
     self.descriptionView.editable = NO;
     self.descriptionView.scrollEnabled = NO;
+    self.userInteractionEnabled = YES;
     self.descriptionView.textContainer.lineFragmentPadding = 0;
     self.descriptionView.textContainer.maximumNumberOfLines = 2;
     self.descriptionView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;

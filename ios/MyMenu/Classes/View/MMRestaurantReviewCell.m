@@ -15,11 +15,12 @@
 //  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
-#import "MMMenuItemReviewCell.h"
+#import "MMRestaurantReviewCell.h"
 
-@implementation MMMenuItemReviewCell
+@implementation MMRestaurantReviewCell
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code

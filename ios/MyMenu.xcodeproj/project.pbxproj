@@ -28,6 +28,8 @@
 		1744F9BF18C524FD009CCC95 /* upvote.png in Resources */ = {isa = PBXBuildFile; fileRef = 1744F9BD18C524FD009CCC95 /* upvote.png */; };
 		1744F9C018C524FD009CCC95 /* upvote@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1744F9BE18C524FD009CCC95 /* upvote@2x.png */; };
 		174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */; };
+		17F02E7D18E4A62E001974F8 /* RestaurantReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17F02E7C18E4A62E001974F8 /* RestaurantReviewCell.xib */; };
+		17F02E8018E4A7E0001974F8 /* MMRestaurantReviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F02E7F18E4A7E0001974F8 /* MMRestaurantReviewCell.m */; };
 		83893EAB18919AD400D36670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAA18919AD400D36670 /* Foundation.framework */; };
 		83893EAD18919AD400D36670 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAC18919AD400D36670 /* CoreGraphics.framework */; };
 		83893EAF18919AD400D36670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAE18919AD400D36670 /* UIKit.framework */; };
@@ -177,6 +179,9 @@
 		1744F9BD18C524FD009CCC95 /* upvote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upvote.png; sourceTree = "<group>"; };
 		1744F9BE18C524FD009CCC95 /* upvote@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upvote@2x.png"; sourceTree = "<group>"; };
 		174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantTableCell.xib; sourceTree = "<group>"; };
+		17F02E7C18E4A62E001974F8 /* RestaurantReviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantReviewCell.xib; sourceTree = "<group>"; };
+		17F02E7E18E4A7E0001974F8 /* MMRestaurantReviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRestaurantReviewCell.h; sourceTree = "<group>"; };
+		17F02E7F18E4A7E0001974F8 /* MMRestaurantReviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestaurantReviewCell.m; sourceTree = "<group>"; };
 		5C67526E59F84C8AAF4F8411 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		68625818F04245E796C47BC4 /* Pods-MyMenuTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMenuTests.xcconfig"; path = "Pods/Pods-MyMenuTests.xcconfig"; sourceTree = "<group>"; };
 		83893EA718919AD400D36670 /* MyMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -624,6 +629,7 @@
 				1731DFAD18A6CFB2008BE05B /* MenuItemCell.xib */,
 				1722200218C279380022FE8B /* MenuItemReviewCell.xib */,
 				174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */,
+				17F02E7C18E4A62E001974F8 /* RestaurantReviewCell.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -872,6 +878,8 @@
 				B085156C18E126BD00AFF94F /* MMTextField.m */,
 				B07D3C1D18E2271300B65168 /* TSQTACalendarRowCell.h */,
 				B07D3C1E18E2271300B65168 /* TSQTACalendarRowCell.m */,
+				17F02E7E18E4A7E0001974F8 /* MMRestaurantReviewCell.h */,
+				17F02E7F18E4A7E0001974F8 /* MMRestaurantReviewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1020,6 +1028,7 @@
 				1744F9BF18C524FD009CCC95 /* upvote.png in Resources */,
 				83CC9EDC18D253FB00E0B48A /* CalendarRowBottom@2x.png in Resources */,
 				B0E7616518CA7EB900D1ABF7 /* Specials.storyboard in Resources */,
+				17F02E7D18E4A62E001974F8 /* RestaurantReviewCell.xib in Resources */,
 				83893EBE18919AD400D36670 /* Main.storyboard in Resources */,
 				B0D22EFE18E2C1AB004C0E98 /* profile-icon@2x.png in Resources */,
 			);
@@ -1172,6 +1181,7 @@
 				B0A9907518CA43E900AC4CBB /* MMMasterProfileViewController.m in Sources */,
 				B0A9909418CA43E900AC4CBB /* MMNetworkClientProxy.m in Sources */,
 				83893EB718919AD400D36670 /* main.m in Sources */,
+				17F02E8018E4A7E0001974F8 /* MMRestaurantReviewCell.m in Sources */,
 				B0A9907418CA43E900AC4CBB /* MMMainTabBarViewController.m in Sources */,
 				B0A9906F18CA43E900AC4CBB /* MMBaseNavigationController.m in Sources */,
 				B0A990A318CA43E900AC4CBB /* MMRoundedView.m in Sources */,
