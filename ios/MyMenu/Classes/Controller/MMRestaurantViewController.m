@@ -21,12 +21,12 @@
 #import "MMMenuItemCell.h"
 #import "MMMenuItemViewController.h"
 #import "MMMenuItemRating.h"
-#import "MMMenuItemReviewCell.h"
 #import "UIStoryboard+UIStoryboard_MyMenu.h"
 #import "MMReviewPopOverViewController.h"
 #import "MMMenuItemCollectionViewFlowLayout.h"
 #import "MMRestaurantViewModel.h"
 #import "MMPresentationFormatter.h"
+#import "MMRestaurantReviewCell.h"
 
 #import <HMSegmentedControl/HMSegmentedControl.h>
 #import <MBProgressHUD/MBProgressHUD.h>
@@ -533,7 +533,7 @@ MMMenuItemRating *touchedReview;
     
     [self.menuItemsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
     
-    [self.menuItemsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
+    [self.menuItemsCollectionView registerNib:[UINib nibWithNibName:@"RestaurantReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
 }
 
 - (void)hideSearchBarInCollectionView {
@@ -567,23 +567,23 @@ MMMenuItemRating *touchedReview;
     [self hideOrderBySegmentControl];
 }
 
-- (MMMenuItemReviewCell *)retrieveReviewCellForIndexPath:(NSIndexPath *)indexPath fromCollectionView:(UICollectionView *)collectionView {
+- (MMRestaurantReviewCell *)retrieveReviewCellForIndexPath:(NSIndexPath *)indexPath fromCollectionView:(UICollectionView *)collectionView {
     static NSString *identifier = @"ReviewCell";
     
-    MMMenuItemReviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    MMRestaurantReviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"MenuItemReviewCell" owner:self options:NULL] objectAtIndex:0];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"RestaurantReviewCell" owner:self options:NULL] objectAtIndex:0];
     }
     
     return cell;
 }
 
 - (UICollectionViewCell *)configureReviewCell:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
-    MMMenuItemReviewCell *cell = [self retrieveReviewCellForIndexPath:indexPath
+    MMRestaurantReviewCell *cell = [self retrieveReviewCellForIndexPath:indexPath
                                                    fromCollectionView:collectionView];
     MMMenuItemRating *menitem = [self.viewModel getItemFromCurrentDataSourceForIndexPath:indexPath];
     
-    cell = (MMMenuItemReviewCell *) [self configureCellSizeWithOrientation:[self translateFromUIInterfaceOrientation] withCell:cell];
+    cell = (MMRestaurantReviewCell *) [self configureCellSizeWithOrientation:[self translateFromUIInterfaceOrientation] withCell:cell];
     
     [cell updateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -593,6 +593,7 @@ MMMenuItemRating *touchedReview;
     cell.contentView.layer.masksToBounds = YES;
     cell.ratingBg.layer.cornerRadius = 5;
     
+    cell.menuItemName.text = menitem.menuitemname;
     cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:menitem.rating];
     cell.upVoteCountLabel.text = [NSString stringWithFormat:@"%@", menitem.likeCount];
     cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", menitem.firstname, menitem.lastname];
