@@ -54,6 +54,24 @@ NSInteger ratingValue;
 
     [MMDBFetcher get].delegate = self;
 
+    [self setupHeader];
+    
+    if (self.menuItemReview.itemImage != nil && ![self.menuItemReview.itemImage isEqualToString:@"null"]) {
+        [self.menuItemImage setImageWithURL:[NSURL URLWithString:self.menuItemReview.itemImage] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
+    }
+    if (![self.menuItemReview.useremail isEqualToString:userprofile.email]) {
+        _edit.enabled = NO;
+        [_edit setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    }
+    
+    [self isUserLoggedInAsAGuest];
+
+}
+
+/**
+ *  Sets up the information about the review and populates fields
+ */
+-(void) setupHeader{
     _ratingLabel = (UILabel *) [self.view viewWithTag:100];
     _labelBack = (UIView *) [self.view viewWithTag:101];
     
@@ -72,15 +90,12 @@ NSInteger ratingValue;
     _labelBack.layer.cornerRadius = 5;
     _ratingLabel.text = rate;
     _ratingLabel.userInteractionEnabled = NO;
-    
-    if (self.menuItemReview.itemImage != nil && ![self.menuItemReview.itemImage isEqualToString:@"null"]) {
-        [self.menuItemImage setImageWithURL:[NSURL URLWithString:self.menuItemReview.itemImage] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
-    }
-    if (![self.menuItemReview.useremail isEqualToString:userprofile.email]) {
-        _edit.enabled = NO;
-        [_edit setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
-    }
-    
+}
+
+/**
+ *  Sets up popover based on whether or not a user has an account or not
+ */
+-(void) isUserLoggedInAsAGuest{
     if ([[MMLoginManager sharedLoginManager] isUserLoggedInAsGuest]) {
         
         _edit.enabled = NO;
@@ -94,7 +109,6 @@ NSInteger ratingValue;
         [[MMDBFetcher get] userLiked:userprofile.email withReview:self.menuItemReview.id];
         [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     }
-
 }
 - (void)viewDidAppear:(BOOL)animated {
     self.oldPopOverController.popoverContentSize = CGSizeMake(500, 400);
@@ -218,7 +232,7 @@ NSInteger ratingValue;
 
     UITouch *touch = [[event allTouches] anyObject];
 
-
+    //check to make sure that the touch on the screen happened on the current rating.
     if (CGRectContainsPoint([_ratingLabel frame], [touch locationInView:_labelBack]) && _ratingLabel.userInteractionEnabled) {
         // Make sure keyboard is hidden before you show popup.
         [self.desc resignFirstResponder];
