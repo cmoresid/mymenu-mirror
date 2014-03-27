@@ -61,13 +61,12 @@ public class SettingsFragment extends BaseFragment {
         new LocalizedEnumAdapter<>(getActivity(), LocalizedEnumAdapter.State.class));
   }
 
-  @OnClick(R.id.settings_save) public void onSaveClick() {
-
+  @OnClick(R.id.settings_save) public void onSaveClicked() {
     boolean hasError = false;
-    boolean setPassword = false;
+    boolean passwordSet = false;
 
     if (!TextUtils.isEmpty(passwordText.getText())) {
-      setPassword = true;
+      passwordSet = true;
       hasError |= validatePassword(passwordText);
       hasError |= validatePassword(confirmPasswordText);
 
@@ -101,7 +100,7 @@ public class SettingsFragment extends BaseFragment {
     }
 
     if (!hasError) {
-      if (setPassword) {
+      if (passwordSet) {
         user.password = passwordText.toString();
       }
       user.city = cityText.getText().toString();
@@ -119,7 +118,7 @@ public class SettingsFragment extends BaseFragment {
   }
 
   private boolean validatePassword(EditText passwordText) {
-    boolean hasError = false;
+    boolean hasError;
     hasError = isEmpty(passwordText);
 
     if (!hasError) {

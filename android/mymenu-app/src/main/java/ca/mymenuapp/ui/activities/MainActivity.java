@@ -18,32 +18,40 @@
 package ca.mymenuapp.ui.activities;
 
 import android.app.ActionBar;
-import android.app.FragmentTransaction;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.SearchView;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import butterknife.InjectView;
-import butterknife.Optional;
+import butterknife.OnClick;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
+import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.fragments.SettingsFragment;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import com.f2prateek.ln.Ln;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.SphericalUtil;
 import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -53,6 +61,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.util.functions.Action1;
 import rx.util.functions.Func1;
+import rx.util.functions.Func2;
 
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
@@ -65,9 +74,14 @@ public class MainActivity extends BaseActivity {
   @Inject MyMenuDatabase myMenuDatabase;
   @Inject ReactiveLocationProvider locationProvider;
 
-  @Optional @InjectView(R.id.pager) ViewPager viewPager;
+  @InjectView(R.id.pager) ViewPager viewPager;
+  @InjectView(R.id.drawer_layout) DrawerLayout drawerLayout;
+  @InjectView(R.id.drawer) View drawer;
+  @InjectView(R.id.search_restaurants) EditText searchField;
 
+  ActionBarDrawerToggle drawerToggle;
   List<Restaurant> restaurants = Collections.emptyList();
+  LatLng lastLatLng;
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -78,6 +92,7 @@ public class MainActivity extends BaseActivity {
     locationProvider.getLastKnownLocation().subscribe(new Action1<Location>() {
       @Override
       public void call(Location location) {
+        lastLatLng = new LatLng(location.getLatitude(), location.getLongitude());
         myMenuDatabase.getNearbyRestaurants(location.getLatitude(), location.getLongitude(),
             new EndlessObserver<List<Restaurant>>() {
               @Override public void onNext(List<Restaurant> restaurantList) {
@@ -89,37 +104,133 @@ public class MainActivity extends BaseActivity {
       }
     });
 
+    setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
     if (savedInstanceState == null) {
-      if (viewPager != null) {
-        // we're on a phone
-        setupTabs(savedInstanceState != null ? savedInstanceState.getInt("tab", 0) : 0);
-      } else {
-        // we're on a tablet layout
-        setupPanes();
-      }
+      getFragmentManager().beginTransaction()
+          .add(R.id.restaraunt_grid_container, new RestaurantGridFragment())
+          .commit();
     }
+
+    // start drawer in open state
+    drawerLayout.openDrawer(drawer);
+
+    // allow user to toggle drawer with the action bar
+    drawerToggle =
+        new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.drawer_open,
+            R.string.drawer_close) {
+
+          @Override public void onDrawerOpened(View drawerView) {
+            super.onDrawerOpened(drawerView);
+            invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+          }
+
+          @Override public void onDrawerClosed(View drawerView) {
+            super.onDrawerClosed(drawerView);
+            invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+          }
+        };
+    drawerLayout.setDrawerListener(drawerToggle);
+    getActionBar().setDisplayHomeAsUpEnabled(true);
+    getActionBar().setHomeButtonEnabled(true);
+    searchField.addTextChangedListener(new TextWatcher() {
+      @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+      }
+
+      @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+        searchRestaurantsInMemory(s.toString());
+      }
+
+      @Override public void afterTextChanged(Editable s) {
+
+      }
+    });
   }
 
   /** Setup the tabs to display our fragments. */
   private void setupTabs(int tab) {
-    ActionBar actionBar = getActionBar();
+    final ActionBar actionBar = getActionBar();
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     SwipeableActionBarTabsAdapter tabsAdapter = new SwipeableActionBarTabsAdapter(this, viewPager);
-    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.restaurants)),
-        RestaurantGridFragment.class, null);
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.map)),
         RestaurantsMapFragment.class, null);
+    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.dietary_preferences)),
+        DietaryPreferencesFragment.class, null);
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.settings)),
         SettingsFragment.class, null);
     actionBar.setSelectedNavigationItem(tab);
+
+    viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+      @Override public void onPageScrolled(int position, float positionOffset,
+          int positionOffsetPixels) {
+        if (position == 0) {
+          // Enable user to slide the drawer layout
+          drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+          drawerToggle.setDrawerIndicatorEnabled(true);
+          getActionBar().setDisplayHomeAsUpEnabled(true);
+          getActionBar().setHomeButtonEnabled(true);
+        } else {
+          // Disable user from sliding the drawer layout
+          drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+          drawerToggle.setDrawerIndicatorEnabled(false);
+          getActionBar().setDisplayHomeAsUpEnabled(false);
+          getActionBar().setHomeButtonEnabled(false);
+        }
+      }
+
+      @Override public void onPageSelected(int position) {
+        // ignore
+      }
+
+      @Override public void onPageScrollStateChanged(int state) {
+        // ignore
+      }
+    });
   }
 
-  /** Setup the panes to display our fragments. */
-  private void setupPanes() {
-    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-    transaction.add(R.id.restaurant_list_container, new RestaurantGridFragment());
-    transaction.add(R.id.restaurant_map_container, new RestaurantsMapFragment());
-    transaction.commit();
+  @Override
+  protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
+    // Sync the toggle state after onRestoreInstanceState has occurred.
+    drawerToggle.syncState();
+  }
+
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    drawerToggle.onConfigurationChanged(newConfig);
+  }
+
+  @OnClick({ R.id.sort_distance, R.id.sort_rating, R.id.sort_cuisine }) void onSortButtonClicked(
+      TextView button) {
+    switch (button.getId()) {
+      case R.id.sort_distance:
+        sortRestaurants(new Comparator<Restaurant>() {
+          @Override public int compare(Restaurant lhs, Restaurant rhs) {
+            return Double.compare(
+                SphericalUtil.computeDistanceBetween(lastLatLng, lhs.getPosition()),
+                SphericalUtil.computeDistanceBetween(lastLatLng, rhs.getPosition()));
+          }
+        });
+        break;
+      case R.id.sort_rating:
+        sortRestaurants(new Comparator<Restaurant>() {
+          @Override public int compare(Restaurant lhs, Restaurant rhs) {
+            // sort descending
+            return Double.compare(rhs.rating, lhs.rating);
+          }
+        });
+        break;
+      case R.id.sort_cuisine:
+        sortRestaurants(new Comparator<Restaurant>() {
+          @Override public int compare(Restaurant lhs, Restaurant rhs) {
+            return lhs.category.compareTo(rhs.category);
+          }
+        });
+        break;
+      default:
+        throw new IllegalArgumentException("Not handled!");
+    }
   }
 
   @Subscribe public void onRestaurantClicked(OnRestaurantClickEvent event) {
@@ -131,69 +242,22 @@ public class MainActivity extends BaseActivity {
   @Override
   protected void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
-    if (viewPager != null) {
-      outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
-    }
+    outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.activity_main, menu);
-
-    // Associate searchable configuration with the SearchView
-    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-    MenuItem searchMenuItem = menu.findItem(R.id.search);
-    SearchView searchView = (SearchView) searchMenuItem.getActionView();
-    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-    searchMenuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-      @Override public boolean onMenuItemActionExpand(MenuItem item) {
-        return true;
-      }
-
-      @Override public boolean onMenuItemActionCollapse(MenuItem item) {
-        bus.post(new OnRestaurantListAvailableEvent(restaurants));
-        return true;
-      }
-    });
-
     return true;
   }
 
-  @Override
-  protected void onNewIntent(Intent intent) {
-    handleIntent(intent);
-  }
-
-  private void handleIntent(Intent intent) {
-    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-      final String query = intent.getStringExtra(SearchManager.QUERY);
-      Ln.d(query);
-      // Filter ones in memory quickly
-      Observable.from(restaurants)
-          .filter(new Func1<Restaurant, Boolean>() {
-            @Override public Boolean call(Restaurant restaurant) {
-              return restaurant.businessName.toLowerCase().contains(query.toLowerCase());
-            }
-          })
-          .toList()
-          .subscribeOn(Schedulers.computation())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(new EndlessObserver<List<Restaurant>>() {
-            @Override public void onNext(List<Restaurant> restaurantList) {
-              bus.post(new OnRestaurantListAvailableEvent(restaurantList));
-              // filtered ones in memory, now fetch a search from the network and notify any
-              // observers
-              // todo: show a progress bar in the action bar
-            }
-          });
-    }
-  }
-
   @Override public boolean onOptionsItemSelected(MenuItem item) {
+    // Pass the event to ActionBarDrawerToggle, if it returns
+    // true, then it has handled the app icon touch event
+    if (drawerToggle.onOptionsItemSelected(item)) {
+      return true;
+    }
+    // Handle other action bar items...
     switch (item.getItemId()) {
-      case R.id.dietary_preferences:
-        Intent dietaryPreferencesIntent = new Intent(this, DietaryPreferencesActivity.class);
-        startActivity(dietaryPreferencesIntent);
-        return true;
       case R.id.logout:
         userPreference.delete();
         Intent loginIntent = new Intent(this, LoginActivity.class);
@@ -204,6 +268,53 @@ public class MainActivity extends BaseActivity {
       default:
         return super.onOptionsItemSelected(item);
     }
+  }
+
+  private void searchRestaurantsInMemory(final String searchText) {
+    Ln.d(searchText);
+    // Filter ones in memory quickly
+    Observable.from(restaurants)
+        .filter(new Func1<Restaurant, Boolean>() {
+          @Override public Boolean call(Restaurant restaurant) {
+            return restaurant.businessName.toLowerCase().contains(searchText.toLowerCase());
+          }
+        })
+        .toList()
+        .subscribeOn(Schedulers.computation())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new EndlessObserver<List<Restaurant>>() {
+          @Override public void onNext(List<Restaurant> restaurantList) {
+            bus.post(new OnRestaurantListAvailableEvent(restaurantList));
+            searchRestaurantsFromNetwork(searchText);
+          }
+        });
+  }
+
+  private void searchRestaurantsFromNetwork(final String searchText) {
+    // todo: actually test this against the network, we don;t have enough restaurants for now
+    myMenuDatabase.getNearbyRestaurantsByName(lastLatLng.latitude, lastLatLng.longitude, searchText,
+        new EndlessObserver<List<Restaurant>>() {
+          @Override public void onNext(List<Restaurant> restaurantList) {
+            bus.post(new OnRestaurantListAvailableEvent(restaurantList));
+          }
+        }
+    );
+  }
+
+  private void sortRestaurants(final Comparator<Restaurant> restaurantComparator) {
+    Observable.from(restaurants)
+        .toSortedList(new Func2<Restaurant, Restaurant, Integer>() {
+          @Override public Integer call(Restaurant lhs, Restaurant rhs) {
+            return restaurantComparator.compare(lhs, rhs);
+          }
+        })
+        .subscribeOn(Schedulers.computation())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new EndlessObserver<List<Restaurant>>() {
+          @Override public void onNext(List<Restaurant> restaurantList) {
+            bus.post(new OnRestaurantListAvailableEvent(restaurantList));
+          }
+        });
   }
 
   public static class OnRestaurantClickEvent {

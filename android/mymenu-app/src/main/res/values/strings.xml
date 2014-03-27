@@ -91,11 +91,16 @@
 
   <!-- Main Activity -->
   <string name="search">Search</string>
-  <string name="restaurant_search_hint">Type in a Restaurant Name</string>
+  <string name="restaurant_search_hint">Search</string>
+  <string name="drawer_close">Drawer Close</string>
+  <string name="drawer_open">Drawer Open</string>
+  <string name="distance">Distance</string>
+  <string name="top_rated">Top Rated</string>
+  <string name="cuisine">Cuisine</string>
 
   <!-- Restaurant Grid Fragment -->
-  <string name="kilometres">%1$.1f k</string>
-  <string name="metres">%1$.0fm</string>
+  <string name="kilometres">%1$.1f km</string>
+  <string name="metres">%1$.0f m</string>
 
   <!-- Specials Fragment -->
   <string name="specials">Specials</string>
