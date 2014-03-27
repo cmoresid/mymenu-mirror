@@ -169,6 +169,9 @@
                                         <size key="customSize" width="384" height="113"/>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="omx-Ad-mOH">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="sDb-0H-8Q4" id="Lgh-DX-Ei3"/>
                                     <outletCollection property="gestureRecognizers" destination="sld-Od-xYw" appends="YES" id="0Uc-eW-4va"/>

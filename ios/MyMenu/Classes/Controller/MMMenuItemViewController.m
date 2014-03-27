@@ -94,6 +94,7 @@ MMMenuItemRating *touchedItem;
         [[MMDBFetcher get] userEaten:userProfile.email withItem:_currentMenuItem.itemid];
         [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     }
+    [self.tableView reloadData];
 }
 
 - (void)configureView {
@@ -137,6 +138,7 @@ MMMenuItemRating *touchedItem;
         }
         
         [self.ratingsCollectionView reloadData];
+        [self.tableView reloadData];
     }
 
 }
@@ -169,6 +171,7 @@ MMMenuItemRating *touchedItem;
         }
         
         [self.ratingsCollectionView reloadData];
+        [self.tableView reloadData];
     }
 
 }
@@ -191,9 +194,12 @@ MMMenuItemRating *touchedItem;
             mods = [NSMutableArray new];
             [mods addObject:@"There are not any modifications available for this dish."];
         }
-
-        self.menuModificationsView.text = [mods componentsJoinedByString:@"\n"];
         
+        self.menuModificationsView.text = [mods componentsJoinedByString:@"\n -"];
+        self.menuModificationsView.font = [UIFont systemFontOfSize:16];
+        [self.menuModificationsView sizeToFit];
+        
+        [self.tableView reloadData];
         [[MMDBFetcher get] getItemRatings:_currentMenuItem.itemid];
         [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     }
@@ -299,6 +305,46 @@ MMMenuItemRating *touchedItem;
         [self.ratingButton setTitle:[[NSString alloc] initWithFormat:@"Rate This Item"] forState:UIControlStateNormal];
         [self.ratingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
+}
+
+//- (void)configureCollectionViewLayoutCellSizeForOrientation:(UIDeviceOrientation)orientation {
+//    MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
+//    
+//    if (UIDeviceOrientationIsPortrait(orientation)) {
+//        layout.itemSize = CGSizeMake(384.0f, 113.0f);
+//    }
+//    else {
+//        layout.itemSize = CGSizeMake(700.0f, 113.0f);
+//    }
+//}
+
+- (UICollectionViewCell *)configureCellSizeWithOrientation:(UIDeviceOrientation)orientation withCell:(UICollectionViewCell *)cell {
+    if (UIDeviceOrientationIsPortrait(orientation)) {
+        cell.contentView.frame = CGRectMake(cell.contentView.frame.origin.x, cell.contentView.frame.origin.y, 384, cell.contentView.frame.size.height);
+    }
+    else {
+        cell.contentView.frame = CGRectMake(cell.contentView.frame.origin.x, cell.contentView.frame.origin.y, 700, cell.contentView.frame.size.height);
+    }
+    
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat height = 301;
+    switch (indexPath.section){
+        case 1:
+            height = self.menuModificationsView.frame.size.height + 20;
+            break;
+        case 2:
+            height = self.userReviewField.frame.size.height + 10;
+            break;
+        case 3:
+            height = MAX ((condensedReviews.count * 125) + 20, self.ratingsCollectionView.frame.size.height);
+            break;
+        default:
+            break;
+    }
+    return height;
+    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
