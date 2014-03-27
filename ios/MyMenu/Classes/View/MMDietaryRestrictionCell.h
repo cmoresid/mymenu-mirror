@@ -35,8 +35,4 @@
 
 @property(nonatomic) BOOL isSelected;
 
-@property(nonatomic, strong) UIImage *restrictionImageWithMask;
-
-@property(nonatomic, strong) UIImage *restrictionImageWithoutMask;
-
 @end

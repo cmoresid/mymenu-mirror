@@ -19,6 +19,9 @@
 #import "MMAccountViewController.h"
 #import "MMBaseNavigationController.h"
 
+@class MMAccountViewController;
+@class MMAboutViewController;
+
 /**
  *  Master controller that encapsulates the Profile Tab
  */
@@ -27,27 +30,16 @@
 /**
  *  Account View Controller
  */
-@property(nonatomic, strong) MMBaseNavigationController *accountController;
-
-/**
- *  Reviews View Controller
- */
-@property(nonatomic, strong) MMBaseNavigationController *reviewsController;
+@property(nonatomic, strong) MMAccountViewController *accountController;
 
 /**
  *  About View Controller
  */
-@property(nonatomic, strong) MMBaseNavigationController *aboutController;
-
-/**
- *  Notifications View Controller
- *  Not implemented yet.
- */
-@property(nonatomic, strong) MMBaseNavigationController *notificationsController;
+@property(nonatomic, strong) MMAboutViewController *aboutController;
 
 /**
  *  The current selected view controller.
  */
-@property(nonatomic, strong) MMBaseNavigationController *currentDetailViewController;
+@property(nonatomic, strong) UIViewController *currentDetailViewController;
 
 @end

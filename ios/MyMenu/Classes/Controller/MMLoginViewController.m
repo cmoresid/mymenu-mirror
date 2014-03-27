@@ -63,7 +63,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidDisappear:animated];
-
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 
     [self registerForKeyboardNotifications];
     [self registerForLoginNotifications];
@@ -72,6 +73,8 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
 
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    
     [self unregisterForKeyboardNotifications];
     [self unregisterForLoginNotifications];
 }

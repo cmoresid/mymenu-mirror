@@ -167,7 +167,6 @@
     [cell.restrictionImageView setImageWithURL:[NSURL URLWithString:[restriction image]]
                     placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]
                     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                        cell.restrictionImageWithoutMask = [UIImage imageWithImage:image scaledToSize:CGSizeMake(150.0f, 150.0f)];
                         cell.correspondingRestrictionId = restriction.id;
                         
                         cell.isSelected = [usersDietaryRestrictionIDs containsObject:restriction.id];

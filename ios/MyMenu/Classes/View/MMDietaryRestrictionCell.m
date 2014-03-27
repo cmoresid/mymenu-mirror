@@ -17,43 +17,63 @@
 
 #import "MMDietaryRestrictionCell.h"
 #import "UIImage+MMTransform.h"
+#import <QuartzCore/CAGradientLayer.h>
+
+const CGFloat PADDING_TOP = 2.0f;
+const CGFloat PADDING_RIGHT = 3.0f;
 
 @interface MMDietaryRestrictionCell ()
-
-- (void)configureImageWithMask;
 
 @end
 
 @implementation MMDietaryRestrictionCell
 
-- (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
+- (CAGradientLayer *)getGradientLayer {
+    CGSize contentViewSize = self.contentView.bounds.size;
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = CGRectMake(0.0, 0.0, contentViewSize.width, contentViewSize.height * 0.20);
+    gradientLayer.colors = @[(id)[UIColor colorWithRed:0 green:0 blue:0 alpha:0.40].CGColor, (id)[UIColor colorWithRed:0 green:0 blue:0 alpha:0.10].CGColor];
     
-    return self;
+    gradientLayer.startPoint = CGPointMake(0.0, 0.0f);
+    gradientLayer.endPoint = CGPointMake(0.0f, 1.0f);
+    
+    return gradientLayer;
+}
+
+- (CALayer *)getRestrictionImageMask {
+    CGSize contentViewSize = self.contentView.bounds.size;
+    UIImage *backgroundImage = [UIImage imageNamed:@"restriction-overlay.png"];
+    CGSize imageSize = backgroundImage.size;
+    CALayer *aLayer = [CALayer layer];
+    
+    CGRect  startFrame = CGRectMake(contentViewSize.width - imageSize.width - PADDING_RIGHT, PADDING_TOP, imageSize.width, imageSize.height);
+    aLayer.contents = (id)backgroundImage.CGImage;
+    aLayer.frame = startFrame;
+    
+    return aLayer;
 }
 
 - (void)setIsSelected:(BOOL)isSelected {
     if (isSelected) {
-        [self configureImageWithMask];
+        CAGradientLayer *gradientLayer = [self getGradientLayer];
+        CALayer *imageLayer = [self getRestrictionImageMask];
         
-        self.restrictionImageView.image = self.restrictionImageWithMask;
+        [self.restrictionImageView.layer addSublayer:gradientLayer];
+        [self.restrictionImageView.layer addSublayer:imageLayer];
+        [self.restrictionImageView.layer setValue:gradientLayer forKey:@"GradientLayer"];
+        [self.restrictionImageView.layer setValue:imageLayer forKey:@"MaskLayer"];
     }
     else {
-        self.restrictionImageView.image = self.restrictionImageWithoutMask;
+        CALayer *gradientLayer = [self.restrictionImageView.layer valueForKey:@"GradientLayer"];
+        CALayer *imageLayer = [self.restrictionImageView.layer valueForKey:@"MaskLayer"];
+        
+        [gradientLayer removeFromSuperlayer];
+        [imageLayer removeFromSuperlayer];
+        [self.restrictionImageView.layer setValue:nil forKey:@"GradientLayer"];
+        [self.restrictionImageView.layer setValue:nil forKey:@"MaskLayer"];
     }
     
     _isSelected = isSelected;
-}
-
-- (void)configureImageWithMask {
-    if (self.restrictionImageWithMask) {
-        return;
-    }
-    
-    self.restrictionImageWithMask = [UIImage addRestrictionMask:self.restrictionImageWithoutMask];
 }
 
 @end

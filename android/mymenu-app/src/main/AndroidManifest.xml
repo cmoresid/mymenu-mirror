@@ -58,16 +58,7 @@
     <activity
         android:name=".ui.activities.MainActivity"
         android:label="@string/application_name"
-        android:launchMode="singleTop">
-      <intent-filter>
-        <action android:name="android.intent.action.SEARCH"/>
-      </intent-filter>
-      <meta-data android:name="android.app.searchable"
-          android:resource="@xml/activity_main_searchable"/>
-    </activity>
-    <activity
-        android:name=".ui.activities.DietaryPreferencesActivity"
-        android:label="@string/application_name"/>
+        android:launchMode="singleTop"/>
     <activity
         android:name=".ui.activities.SignUpActivity"
         android:label="@string/application_name"/>

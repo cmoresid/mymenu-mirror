@@ -341,10 +341,9 @@ static MMDBFetcher *instance;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
     [request setURL:[NSURL URLWithString:@"http://mymenuapp.ca/php/users/custom.php"]];
 
-    NSString *queryFormat = @"query=UPDATE users SET firstname='%@',lastname='%@',password='%@', city='%@',locality='%@',gender='%c' WHERE email = '%@'";
+    NSString *queryFormat = @"query=UPDATE users SET firstname='%@',lastname='%@', city='%@',locality='%@' WHERE email = '%@'";
     NSString *query = [NSString stringWithFormat:queryFormat, user.firstName,
-                                                 user.lastName, user.password, user.city, user.locality,
-                                                 user.gender, user.email];
+                                                 user.lastName, user.city, user.locality, user.email];
 
 
     [request setValue:[NSString stringWithFormat:@"%d", [query length]] forHTTPHeaderField:@"Content-length"];
@@ -366,6 +365,29 @@ static MMDBFetcher *instance;
                                     [self.delegate didUpdateUser:FALSE withResponse:dbResponse];
                                 }
                             }];
+}
+
+- (RACSignal *)changePasswordForUser:(MMUser *)user {
+    static NSString *url = @"http://mymenuapp.ca/php/users/custom.php";
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        NSString *sqlQueryFormat = @"UPDATE users SET password='%@' WHERE email = '%@'";
+        NSString *sqlQuery = [NSString stringWithFormat:sqlQueryFormat, user.password, user.email];
+        
+        NSDictionary *parameters = @{@"query": sqlQuery};
+        AFHTTPRequestOperation *operation = [self.networkManager POST:url parameters:parameters
+            success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [subscriber sendNext:@YES];
+                [subscriber sendCompleted];
+        }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [subscriber sendError:error];
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [operation cancel];
+        }];
+    }];
 }
 
 - (void)editReview:(MMMenuItemRating *)review {
@@ -482,11 +504,6 @@ static MMDBFetcher *instance;
                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                 MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
-                                if (![self canPerformCallback:self.delegate withSelector:@selector(didAddUserRestrictions:withResponse:)]) {
-                                    NSLog(@"Warning: Delegate does not implement optional protocol selector - didAddUserRestrictions:withResponse:");
-                                    return;
-                                }
-
                                 if (dbResponse.wasSuccessful) {
                                     [self innerAddUserRestrictions:email withRestrictionIDs:restrictions];
                                 }
@@ -515,15 +532,7 @@ static MMDBFetcher *instance;
                                 completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                     MMDBFetcherResponse *dbResponse = [self createResponseWith:data withError:error];
 
-                                    if (![self canPerformCallback:self.delegate withSelector:@selector(didAddUserRestrictions:withResponse:)]) {
-                                        NSLog(@"Warning: Delegate does not implement optional protocol selector - didAddUserRestrictions:withResponse:");
-                                        return;
-                                    }
-
-                                    if (dbResponse.wasSuccessful) {
-                                        [self.delegate didAddUserRestrictions:TRUE withResponse:dbResponse];
-                                    }
-                                    else {
+                                    if (!dbResponse.wasSuccessful) {
                                         [dbResponse.messages addObject:@"Unable to add a dietary restriction."];
                                         [self.delegate didAddUserRestrictions:FALSE withResponse:dbResponse];
                                     }

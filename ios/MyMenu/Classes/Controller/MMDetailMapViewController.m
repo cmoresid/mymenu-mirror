@@ -28,10 +28,7 @@
 @interface MMDetailMapViewController ()
 
 @property(strong, nonatomic) IBOutlet MKMapView *mapView;
-@property(strong, nonatomic) UIPopoverController *masterPopoverController;
 @property(strong, nonatomic) id <MKMapViewDelegate> mapDelegate;
-
-- (void)configureView;
 
 @end
 
@@ -54,7 +51,6 @@
     }];
     
     [self.mapView setUserTrackingMode:MKUserTrackingModeNone animated:NO];
-    [self configureView];
 }
 
 - (void)didReceiveMerchants:(NSMutableArray *)merchants {
@@ -80,26 +76,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Manage Detail View (Portrait Mode)
-
-- (void)setDetailItem:(id)newDetailItem {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-        [self configureView]; // Update the view
-    }
-
-    if (self.masterPopoverController != nil) {
-        [self.masterPopoverController dismissPopoverAnimated:YES];
-    }
-}
-
-- (void)configureView {
-    // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
-    }
-}
-
 #pragma mark - Location Notification Callback Methods
 
 - (void)didReceiveUserLocation:(CLLocation *)location {
@@ -114,8 +90,12 @@
     [self.mapView setCenterCoordinate:location.coordinate animated:YES];
     [self.mapView setRegion:region animated:NO];
 
-    self.mapDelegate = [[MMRestaurantMapDelegate alloc] init];
+    MMRestaurantMapDelegate *delegate = [[MMRestaurantMapDelegate alloc] init];
+    delegate.splitViewNavigationController = [self.splitViewController.viewControllers lastObject];
+    
+    self.mapDelegate = delegate;
     self.mapView.delegate = self.mapDelegate;
+
 }
 
 #pragma mark - Configure Map View Methods
@@ -128,8 +108,7 @@
             start.latitude = [restaurant.lat doubleValue];
             start.longitude = [restaurant.longa doubleValue];
             [annotation setCoordinate:start];
-            [annotation setTitle:restaurant.businessname];
-            [annotation setSubtitle:restaurant.desc];
+            [annotation setTitle:[NSString stringWithFormat:@"%@", restaurant.mid]];
         
             return annotation;
     }];
@@ -160,5 +139,6 @@
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
 }
+
 
 @end

@@ -74,7 +74,6 @@ public class MenuItemActivity extends BaseActivity {
   @InjectView(R.id.menu_item_reviews_summary) TextView reviewSummary;
   @InjectView(R.id.sliding_pane) View slidingPane;
   @InjectView(R.id.menu_item_modifications) TextView menuMods;
-
   @InjectView(R.id.sliding_layout) SlidingUpPanelLayout slidingLayout;
 
   @Inject Picasso picasso;
@@ -203,6 +202,14 @@ public class MenuItemActivity extends BaseActivity {
           }
         }
     );
+  }
+
+  @Override public void onBackPressed() {
+    if (slidingLayout.isPaneVisible()) {
+      slidingLayout.collapsePane();
+    } else {
+      super.onBackPressed();
+    }
   }
 
   private void setShareIntent() {

@@ -16,12 +16,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMSplitViewManager.h"
+#import "MMRegistrationPopoverDelegate.h"
+
+@class MMSplitViewManager;
 
 /**
  *  Controller for the settings view
  */
-@interface MMAccountViewController : UITableViewController
+@interface MMAccountViewController : UITableViewController <MMDetailViewController, UITextFieldDelegate, MMRegistrationPopoverDelegate, UIPopoverControllerDelegate>
 
+/**
+ *
+ */
+@property(nonatomic, weak) IBOutlet UITextField *emailAddressField;
 
 /**
  *  First Name View
@@ -46,8 +54,17 @@
 /**
  *  Default Location View
  */
-@property(nonatomic, weak) IBOutlet UITextField *defaultLocationField;
+@property(nonatomic, weak) IBOutlet UITextField *defaultCity;
 
+@property(nonatomic, weak) IBOutlet UITextField *defaultLocality;
+
+@property(nonatomic, weak) IBOutlet UIButton *changePasswordButton;
+
+@property(nonatomic, weak) IBOutlet UIButton *updateLocationButton;
+
+@property(nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
+
+@property(nonatomic, strong) UIPopoverController *locationPopoverController;
 
 /**
  *  Saves the users new password

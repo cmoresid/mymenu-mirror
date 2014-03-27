@@ -21,7 +21,6 @@ import android.content.Context;
 import ca.mymenuapp.MyMenuModule;
 import ca.mymenuapp.dagger.scopes.ForActivity;
 import ca.mymenuapp.ui.activities.BaseActivity;
-import ca.mymenuapp.ui.activities.DietaryPreferencesActivity;
 import ca.mymenuapp.ui.activities.LoginActivity;
 import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.ui.activities.MenuItemActivity;
@@ -45,7 +44,7 @@ import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
     injects = {
         // Activities
         BaseActivity.class, MainActivity.class, LoginActivity.class, SignUpActivity.class,
-        RestaurantActivity.class, MenuItemActivity.class, DietaryPreferencesActivity.class,
+        RestaurantActivity.class, MenuItemActivity.class,
         // Fragments
         BaseFragment.class, DietaryPreferencesFragment.class, MenuItemsGridFragment.class,
         ReviewsFragment.class, RestaurantGridFragment.class, SettingsFragment.class,
