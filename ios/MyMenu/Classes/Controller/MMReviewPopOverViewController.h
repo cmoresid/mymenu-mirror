@@ -107,6 +107,8 @@ typedef void (^FinishCallback)(BOOL);
  */
 @property(nonatomic, copy) FinishCallback callback;
 
+@property BOOL reviewSize;
+
 /**
  *  Reference kept for the current popover.
  */

@@ -92,7 +92,6 @@
 		B0A9906D18CA43E900AC4CBB /* MMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FED18CA43E900AC4CBB /* MMAboutViewController.m */; };
 		B0A9906E18CA43E900AC4CBB /* MMAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FEF18CA43E900AC4CBB /* MMAccountViewController.m */; };
 		B0A9906F18CA43E900AC4CBB /* MMBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FF118CA43E900AC4CBB /* MMBaseNavigationController.m */; };
-		B0A9907018CA43E900AC4CBB /* MMCategoryPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FF318CA43E900AC4CBB /* MMCategoryPopOverViewController.m */; };
 		B0A9907118CA43E900AC4CBB /* MMDetailMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FF518CA43E900AC4CBB /* MMDetailMapViewController.m */; };
 		B0A9907218CA43E900AC4CBB /* MMDietaryRestrictionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FF718CA43E900AC4CBB /* MMDietaryRestrictionsViewController.m */; };
 		B0A9907318CA43E900AC4CBB /* MMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FF918CA43E900AC4CBB /* MMLoginViewController.m */; };
@@ -278,8 +277,6 @@
 		B0A98FEF18CA43E900AC4CBB /* MMAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAccountViewController.m; sourceTree = "<group>"; };
 		B0A98FF018CA43E900AC4CBB /* MMBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBaseNavigationController.h; sourceTree = "<group>"; };
 		B0A98FF118CA43E900AC4CBB /* MMBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBaseNavigationController.m; sourceTree = "<group>"; };
-		B0A98FF218CA43E900AC4CBB /* MMCategoryPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCategoryPopOverViewController.h; sourceTree = "<group>"; };
-		B0A98FF318CA43E900AC4CBB /* MMCategoryPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCategoryPopOverViewController.m; sourceTree = "<group>"; };
 		B0A98FF418CA43E900AC4CBB /* MMDetailMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDetailMapViewController.h; sourceTree = "<group>"; };
 		B0A98FF518CA43E900AC4CBB /* MMDetailMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDetailMapViewController.m; sourceTree = "<group>"; };
 		B0A98FF618CA43E900AC4CBB /* MMDietaryRestrictionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDietaryRestrictionsViewController.h; sourceTree = "<group>"; };
@@ -699,8 +696,6 @@
 				B0A98FEF18CA43E900AC4CBB /* MMAccountViewController.m */,
 				B0A98FF018CA43E900AC4CBB /* MMBaseNavigationController.h */,
 				B0A98FF118CA43E900AC4CBB /* MMBaseNavigationController.m */,
-				B0A98FF218CA43E900AC4CBB /* MMCategoryPopOverViewController.h */,
-				B0A98FF318CA43E900AC4CBB /* MMCategoryPopOverViewController.m */,
 				B0A98FF418CA43E900AC4CBB /* MMDetailMapViewController.h */,
 				B0A98FF518CA43E900AC4CBB /* MMDetailMapViewController.m */,
 				B0A98FF618CA43E900AC4CBB /* MMDietaryRestrictionsViewController.h */,
@@ -1163,7 +1158,6 @@
 				B0A9908418CA43E900AC4CBB /* MMSplitViewController.m in Sources */,
 				B0A9909A18CA43E900AC4CBB /* MMTextFieldValidator.m in Sources */,
 				B0D162FB18D3619B00A23BE1 /* MMMenuItemCollectionViewFlowLayout.m in Sources */,
-				B0A9907018CA43E900AC4CBB /* MMCategoryPopOverViewController.m in Sources */,
 				B0A9909218CA43E900AC4CBB /* MMLocationManager.m in Sources */,
 				B0E7616818CA852D00D1ABF7 /* UIStoryboard+UIStoryboard_MyMenu.m in Sources */,
 				B0A9907318CA43E900AC4CBB /* MMLoginViewController.m in Sources */,
