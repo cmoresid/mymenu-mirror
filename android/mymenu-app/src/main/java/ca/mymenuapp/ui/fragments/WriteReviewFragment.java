@@ -15,7 +15,6 @@ import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.MenuItem;
 import ca.mymenuapp.ui.activities.BaseActivity;
 import ca.mymenuapp.ui.widgets.RatingWheelView;
-import com.f2prateek.ln.Ln;
 
 public class WriteReviewFragment extends DialogFragment {
 
@@ -52,7 +51,6 @@ public class WriteReviewFragment extends DialogFragment {
   @Override public void onStart() {
     super.onStart();
     itemName.setText(menuItem.name);
-    wheel.setProgressAndMax(10 , 100);
 
   }
 

@@ -3,16 +3,17 @@ package ca.mymenuapp.ui.widgets;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import ca.mymenuapp.R;
-import java.text.NumberFormat;
+import com.f2prateek.ln.Ln;
 
-public class RatingWheelView extends View{
+public class RatingWheelView extends View {
 
   private final RectF tempRect = new RectF();
 
@@ -20,6 +21,11 @@ public class RatingWheelView extends View{
   private final Paint circlePaint = new Paint();
   private final Paint innerCirclePaint = new Paint();
   private final Paint ratingPaint = new Paint();
+  private float halfTextWidth;
+  private float halfTextHeight;
+  private double centerX;
+  private double centerY;
+  private boolean isSet;
   private TextView ratingValue;
 
   private int rating;
@@ -42,6 +48,32 @@ public class RatingWheelView extends View{
   }
 
   @Override public boolean onTouchEvent(MotionEvent event) {
+    if (isSet) {
+      double deltaX = event.getX() - this.centerX;
+      double deltaY = event.getY() - this.centerY;
+      double angleRadians = Math.atan(deltaX / deltaY);
+
+      if (angleRadians > 3.1415) angleRadians = 3.1415 - angleRadians;
+
+      double degrees = angleRadians * (180.0 / 3.1415);
+
+      // Check which quadrant the touch occured in and adjust
+      // the angle appropriately.
+      if (event.getX() >= centerX && event.getY() >= centerY) {
+        degrees = degrees + 180.0;
+      } else if (event.getX() >= centerX) {
+        degrees = 270.0 + (90.0 - Math.abs(degrees));
+      } else if (event.getY() >= centerY) {
+        degrees = 90.0 + (90.0 - Math.abs(degrees));
+      }
+
+      double percentageOfCircle = (1 - (degrees / 360.0));
+      int y = (int) Math.round(percentageOfCircle * 10);
+
+      setRating(y);
+    } else {
+      Ln.e("Center was not set so input was not dealt with");
+    }
     return super.onTouchEvent(event);
   }
 
@@ -51,10 +83,11 @@ public class RatingWheelView extends View{
     innerCirclePaint.setColor(0xffffffff);
     progressPaint.setColor(getResources().getColor(R.color.pale_green));
     progressPaint.setAntiAlias(true);
-    rating = 1;
-    ratingPaint.setColor(getResources().getColor(R.color.storm_dust));
-    ratingPaint.setTextSize(20);
-    max = 100;
+    ratingPaint.setColor(getResources().getColor(R.color.silver));
+    Typeface tf = Typeface.create("Helvetica Neu", Typeface.BOLD);
+    ratingPaint.setTypeface(tf);
+    max = 10;
+    setRating(1);
   }
 
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -65,25 +98,41 @@ public class RatingWheelView extends View{
   }
 
   @Override protected void onDraw(Canvas canvas) {
+    super.onDraw(canvas);
+    if (!isSet) {
+      centerX = canvas.getWidth() / 2;
+      centerY = canvas.getHeight() / 2;
+      isSet = true;
+    }
+
     tempRect.set(0, 0, getWidth(), getHeight());
     canvas.drawCircle(tempRect.centerX(), tempRect.centerY(), tempRect.width() / 2, circlePaint);
     canvas.drawArc(tempRect, -90, 360 * rating / max, true, progressPaint);
     canvas.drawCircle(tempRect.centerX(), tempRect.centerY(), tempRect.width() / 4,
         innerCirclePaint);
-    canvas.drawText(progressText,tempRect.centerX(),tempRect.centerY(),ratingPaint);
-    super.onDraw(canvas);
-  }
+    ratingPaint.setTextSize(tempRect.height() / 3);
+
+    Rect textBounds = new Rect();
+    ratingPaint.getTextBounds(progressText, 0, progressText.length(), textBounds);
+    halfTextWidth = ratingPaint.measureText(progressText) / 2; // Use measureText to calculate width
+    halfTextHeight = textBounds.height() / 2; // Use height from getTextBounds()
+
+    canvas.drawText(progressText, tempRect.centerX() - halfTextWidth,
+        tempRect.centerY() + halfTextHeight, ratingPaint);
+    }
 
   /**
    * Sets the current progress and maximum progress value, both of which
    * must be valid values.
    */
-  public void setProgressAndMax(int progress, int max) {
-    progress = progress > max ? max : progress; // don't let progress be greater than max
-    this.rating = progress;
-    this.max = max;
-    progressText = Integer.toString(progress);
+  public void setRating(int rating) {
+    rating = rating > max ? max : rating; // don't let progress be greater than max
+    this.rating = rating;
+    progressText = Integer.toString(rating);
     invalidate();
   }
 
+  public int getRating() {
+    return this.rating;
+  }
 }
