@@ -161,7 +161,6 @@ MMMenuItemRating *touchedReview;
 
 - (void)configureCollectionViewLayoutCellSizeForOrientation:(UIDeviceOrientation)orientation {
     MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
-    
     if (UIDeviceOrientationIsPortrait(orientation)) {
         layout.itemSize = CGSizeMake(384.0f, 113.0f);
     }
@@ -171,6 +170,7 @@ MMMenuItemRating *touchedReview;
 }
 
 - (UICollectionViewCell *)configureCellSizeWithOrientation:(UIDeviceOrientation)orientation withCell:(UICollectionViewCell *)cell {
+    
     if (UIDeviceOrientationIsPortrait(orientation)) {
         cell.contentView.frame = CGRectMake(cell.contentView.frame.origin.x, cell.contentView.frame.origin.y, 384, cell.contentView.frame.size.height);
     }
@@ -478,6 +478,7 @@ MMMenuItemRating *touchedReview;
 #pragma mark - Collection View Delegate Methods
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+
     if (self.viewModel.dataSourceType == MMReviewsDataSource) {
         return [self configureReviewCell:indexPath collectionView:collectionView];
     } else {
@@ -530,7 +531,7 @@ MMMenuItemRating *touchedReview;
     
     layout.viewHeight = 54.0f;
     [layout setSectionInset:UIEdgeInsetsMake(54.0f, 0, 0, 0)];
-    
+    layout.footerReferenceSize = CGSizeMake(self.menuItemsCollectionView.frame.size.width, 50);
     [self.menuItemsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
     
     [self.menuItemsCollectionView registerNib:[UINib nibWithNibName:@"RestaurantReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
@@ -592,6 +593,7 @@ MMMenuItemRating *touchedReview;
     cell.contentView.layer.cornerRadius = 5;
     cell.contentView.layer.masksToBounds = YES;
     cell.ratingBg.layer.cornerRadius = 5;
+    cell.userInteractionEnabled = YES;
     
     cell.menuItemName.text = menitem.menuitemname;
     cell.ratinglabel.text = [MMPresentationFormatter formatRatingForRawRating:menitem.rating];
@@ -650,6 +652,7 @@ MMMenuItemRating *touchedReview;
     cell.contentView.layer.masksToBounds = YES;
     cell.ratingBg.backgroundColor = [UIColor lightBackgroundGray];
     cell.ratingBg.layer.cornerRadius = 5;
+    cell.userInteractionEnabled = YES;
     
     [cell.menuImageView setImageWithURL:[NSURL URLWithString:menuItem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
     cell.titleView.text = menuItem.name;
