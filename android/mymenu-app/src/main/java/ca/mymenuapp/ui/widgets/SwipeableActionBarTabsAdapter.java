@@ -55,13 +55,14 @@ public class SwipeableActionBarTabsAdapter extends FragmentPagerAdapter
     }
   }
 
-  public SwipeableActionBarTabsAdapter(Activity activity, ViewPager pager) {
+  public SwipeableActionBarTabsAdapter(Activity activity, ViewPager pager,
+      DelegateOnPageChangeListener delegate) {
     super(activity.getFragmentManager());
     context = activity;
     actionBar = activity.getActionBar();
     viewPager = pager;
     viewPager.setAdapter(this);
-    viewPager.setOnPageChangeListener(this);
+    delegate.addOnPageChangeListener(this);
   }
 
   public void addTab(ActionBar.Tab tab, Class<?> clss, Bundle args) {

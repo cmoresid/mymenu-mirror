@@ -42,6 +42,7 @@ import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.ReviewsFragment;
 import ca.mymenuapp.ui.widgets.NotifyingScrollView;
 import ca.mymenuapp.ui.widgets.SlidingUpPanelLayout;
+import ca.mymenuapp.util.CollectionUtils;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -70,8 +71,8 @@ public class MenuItemActivity extends BaseActivity {
   @InjectView(R.id.menu_item_image_header) ImageView header;
   @InjectView(R.id.menu_item_description) TextView description;
   @InjectView(R.id.menu_item_reviews_summary) TextView reviewSummary;
+  @InjectView(R.id.menu_item_modifications_title) TextView modificationsTitle;
   @InjectView(R.id.sliding_pane) View slidingPane;
-  @InjectView(R.id.menu_item_modifications) TextView menuMods;
   @InjectView(R.id.sliding_layout) SlidingUpPanelLayout slidingLayout;
 
   @Inject Picasso picasso;
@@ -79,7 +80,6 @@ public class MenuItemActivity extends BaseActivity {
 
   private Drawable actionBarBackgroundDrawable;
   private ShareActionProvider shareActionProvider;
-  private List<MenuItemModification> modList;
 
   private NotifyingScrollView.OnScrollChangedListener onScrollChangedListener =
       new NotifyingScrollView.OnScrollChangedListener() {
@@ -183,26 +183,28 @@ public class MenuItemActivity extends BaseActivity {
   }
 
   private void getModifications() {
-
     myMenuDatabase.getModifications(userPreferences.get(), menuItem,
         new EndlessObserver<List<MenuItemModification>>() {
-          @Override public void onNext(List<MenuItemModification> response) {
-            modList = response;
-            String superMods = "";
-
-            for (MenuItemModification m : modList) {
-              superMods += "• ";
-              superMods += m.modification;
-              superMods += "\n\n";
+          @Override public void onNext(List<MenuItemModification> modifications) {
+            if (CollectionUtils.isNullOrEmpty(modifications)) {
+              return;
             }
-            menuMods.setText(superMods);
+
+            modificationsTitle.setVisibility(View.VISIBLE);
+
+            for (MenuItemModification modification : modifications) {
+              TextView textView = new TextView(MenuItemActivity.this);
+              textView.setText(
+                  getString(R.string.modification_text_format, modification.modification));
+              scrollView.addView(textView);
+            }
           }
         }
     );
   }
 
   @Override public void onBackPressed() {
-    if (slidingLayout.isPaneVisible()) {
+    if (slidingLayout.isExpanded()) {
       slidingLayout.collapsePane();
     } else {
       super.onBackPressed();

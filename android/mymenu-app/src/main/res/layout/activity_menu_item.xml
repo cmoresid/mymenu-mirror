@@ -67,25 +67,15 @@
           android:fontFamily="sans-serif-light"/>
 
       <TextView
+          android:id="@+id/menu_item_modifications_title"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:paddingTop="@dimen/holo_gap"
-          android:paddingRight="@dimen/activity_horizontal_margin"
-          android:paddingLeft="@dimen/activity_horizontal_margin"
+          android:layout_marginLeft="@dimen/activity_horizontal_margin"
+          android:layout_marginRight="@dimen/activity_horizontal_margin"
           android:text="@string/modifications"
+          android:visibility="gone"
           style="?android:attr/listSeparatorTextViewStyle"/>
-
-      <TextView android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/menu_item_modifications"
-          android:paddingRight="@dimen/activity_horizontal_margin"
-          android:paddingLeft="@dimen/activity_horizontal_margin"
-          android:text="@string/empty_modifications_text"
-          />
-
-      <FrameLayout
-          android:layout_width="match_parent"
-          android:layout_height="500dp"/>
 
     </LinearLayout>
 
