@@ -345,6 +345,16 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
+  public Subscription addRating(final MenuItemReview review, Observer<Response> observer) {
+    final String query =
+        String.format(MyMenuApi.POST_INSERT_REVIEW, review.userEmail, review.menuId, review.merchId,
+            Double.toString(review.rating), review.description);
+    return myMenuApi.addRating(query)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
+
   public Subscription addReport(final MenuItemReview review, User user,
       Observer<Response> observer) {
     final String query =

@@ -131,7 +131,7 @@ public class ReviewsFragment extends BaseFragment
         adapter.sort(new Comparator<MenuItemReview>() {
           // sort reviews by rating, highest going first
           @Override public int compare(MenuItemReview lhs, MenuItemReview rhs) {
-            return Float.compare(rhs.rating, lhs.rating);
+            return Double.compare(rhs.rating, lhs.rating);
           }
         });
         break;
@@ -162,6 +162,7 @@ public class ReviewsFragment extends BaseFragment
               }
             }
         );
+        Toast.makeText(getActivity(), "Liked!", Toast.LENGTH_LONG).show();
         break;
       case R.id.spam:
         myMenuDatabase.addReport(itemReview, userPreference.get(), new EndlessObserver<Response>() {

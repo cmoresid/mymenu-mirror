@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -48,9 +49,21 @@ public class RatingWheelView extends View {
   }
 
   @Override public boolean onTouchEvent(MotionEvent event) {
+    //calculateRating(event.getX(), event.getY());
+    // Instantiates the drag shadow builder.
+    DragShadowBuilder myShadow = new DragShadowBuilder();
+    this.startDrag(null,  // the data to be dragged
+        myShadow,  // the drag shadow builder
+        null,      // no need to use local data
+        0          // flags (not currently used, set to 0)
+    );
+    return super.onTouchEvent(event);
+  }
+
+  public void calculateRating(float x, float y) {
     if (isSet) {
-      double deltaX = event.getX() - this.centerX;
-      double deltaY = event.getY() - this.centerY;
+      double deltaX = x - this.centerX;
+      double deltaY = y - this.centerY;
       double angleRadians = Math.atan(deltaX / deltaY);
 
       if (angleRadians > 3.1415) angleRadians = 3.1415 - angleRadians;
@@ -59,22 +72,22 @@ public class RatingWheelView extends View {
 
       // Check which quadrant the touch occured in and adjust
       // the angle appropriately.
-      if (event.getX() >= centerX && event.getY() >= centerY) {
+      if (x >= centerX && y >= centerY) {
         degrees = degrees + 180.0;
-      } else if (event.getX() >= centerX) {
+      } else if (x >= centerX) {
         degrees = 270.0 + (90.0 - Math.abs(degrees));
-      } else if (event.getY() >= centerY) {
+      } else if (y >= centerY) {
         degrees = 90.0 + (90.0 - Math.abs(degrees));
       }
 
       double percentageOfCircle = (1 - (degrees / 360.0));
-      int y = (int) Math.round(percentageOfCircle * 10);
+      int finalrating = (int) Math.round(percentageOfCircle * 10);
 
-      setRating(y);
+      setRating(finalrating);
     } else {
       Ln.e("Center was not set so input was not dealt with");
     }
-    return super.onTouchEvent(event);
+    invalidate();
   }
 
   private void init() {
@@ -97,6 +110,17 @@ public class RatingWheelView extends View {
     setMeasuredDimension(size, size);
   }
 
+  @Override public boolean onDragEvent(DragEvent event) {
+    super.onDragEvent(event);
+    switch (event.getAction()) {
+      case DragEvent.ACTION_DRAG_LOCATION:
+        calculateRating(event.getX(), event.getY());
+      default:
+        break;
+    }
+    return true;
+  }
+
   @Override protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
     if (!isSet) {
@@ -104,7 +128,10 @@ public class RatingWheelView extends View {
       centerY = canvas.getHeight() / 2;
       isSet = true;
     }
-
+    if (progressText.equals("0") || rating == 0) {
+      progressText = "1";
+      rating = 1;
+    }
     tempRect.set(0, 0, getWidth(), getHeight());
     canvas.drawCircle(tempRect.centerX(), tempRect.centerY(), tempRect.width() / 2, circlePaint);
     canvas.drawArc(tempRect, -90, 360 * rating / max, true, progressPaint);
@@ -119,7 +146,7 @@ public class RatingWheelView extends View {
 
     canvas.drawText(progressText, tempRect.centerX() - halfTextWidth,
         tempRect.centerY() + halfTextHeight, ratingPaint);
-    }
+  }
 
   /**
    * Sets the current progress and maximum progress value, both of which
@@ -132,7 +159,7 @@ public class RatingWheelView extends View {
     invalidate();
   }
 
-  public int getRating() {
-    return this.rating;
+  public double getRating() {
+    return (double) this.rating;
   }
 }
