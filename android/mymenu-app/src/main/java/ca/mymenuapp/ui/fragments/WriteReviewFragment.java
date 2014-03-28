@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -28,7 +28,6 @@ import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
 public class WriteReviewFragment extends DialogFragment {
 
-  @InjectView(R.id.write_review_name) TextView itemName;
   @InjectView(R.id.write_review_rating_wheel) RatingWheelView wheel;
   @InjectView(R.id.write_review_text) EditText reviewText;
 
@@ -52,6 +51,7 @@ public class WriteReviewFragment extends DialogFragment {
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
     ButterKnife.inject(this, view);
   }
 
@@ -62,13 +62,9 @@ public class WriteReviewFragment extends DialogFragment {
 
   @Override public void onStart() {
     super.onStart();
-    //LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) wheel.getLayoutParams();
-    //params.height = 400;
-    //wheel.setLayoutParams(params);
-    itemName.setText(menuItem.name);
   }
 
-  @OnClick(R.id.write_review_save) void onSaveClicked() {
+  @OnClick(R.id.actionbar_save) void onSaveClicked() {
     /* User has finished writing review.. Do some error checking. */
     MenuItemReview review = new MenuItemReview();
     User user = userPreference.get();
@@ -87,11 +83,11 @@ public class WriteReviewFragment extends DialogFragment {
         }
       });
       Toast.makeText(getActivity(), "Review Saved.", Toast.LENGTH_LONG).show();
-      this.dismiss();
+      dismiss();
     }
   }
 
-  @OnClick(R.id.write_review_cancel) void onCancelClicked() {
-    this.dismiss();
+  @OnClick(R.id.actionbar_cancel) void onCancelClicked() {
+    dismiss();
   }
 }
