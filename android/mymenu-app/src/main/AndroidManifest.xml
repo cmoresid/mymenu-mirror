@@ -48,13 +48,18 @@
         android:value="AIzaSyAulAQHlep3oe1tpOSl0C9QUL1e_3UjELg"/>
 
     <activity
-        android:name=".ui.activities.LoginActivity"
+        android:name=".ui.activities.LaunchActivity"
+        android:theme="@style/AppTheme.Launch"
         android:label="@string/application_name">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
+
+    <activity
+        android:name=".ui.activities.LoginActivity"
+        android:label="@string/application_name"/>
     <activity
         android:name=".ui.activities.MainActivity"
         android:label="@string/application_name"

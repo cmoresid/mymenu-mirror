@@ -109,5 +109,6 @@
   <string name="settings_save">Save</string>
   <string name="settings_firstname">First Name</string>
   <string name="settings_lastname">Last Name</string>
+  <string name="empty_modifications_text">No Modifications For This Item</string>
 
 </resources>

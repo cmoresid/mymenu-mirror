@@ -67,11 +67,11 @@ public class MenuItemActivity extends BaseActivity {
   @InjectExtra(ARGS_RESTAURANT) Restaurant restaurant;
   @InjectExtra(ARGS_REVIEWS) ArrayList<MenuItemReview> reviews;
 
-  @InjectView(R.id.scroll_view) ScrollView scrollView;
   @InjectView(R.id.menu_item_image_header) ImageView header;
   @InjectView(R.id.menu_item_description) TextView description;
   @InjectView(R.id.menu_item_reviews_summary) TextView reviewSummary;
-  @InjectView(R.id.menu_item_modifications_title) TextView modificationsTitle;
+  @InjectView(R.id.menu_item_modifications_text) TextView modificationsText;
+
   @InjectView(R.id.sliding_pane) View slidingPane;
   @InjectView(R.id.sliding_layout) SlidingUpPanelLayout slidingLayout;
 
@@ -190,14 +190,11 @@ public class MenuItemActivity extends BaseActivity {
               return;
             }
 
-            modificationsTitle.setVisibility(View.VISIBLE);
-
+            StringBuilder modificationText = new StringBuilder();
             for (MenuItemModification modification : modifications) {
-              TextView textView = new TextView(MenuItemActivity.this);
-              textView.setText(
-                  getString(R.string.modification_text_format, modification.modification));
-              scrollView.addView(textView);
+              modificationText.append("• ").append(modification.modification).append("\n\n");
             }
+            modificationsText.setText(modificationText.toString());
           }
         }
     );

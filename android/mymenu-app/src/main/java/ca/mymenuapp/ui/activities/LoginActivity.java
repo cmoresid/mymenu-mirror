@@ -56,13 +56,8 @@ public class LoginActivity extends BaseActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    inflateView(R.layout.activity_login);
 
-    if (userPreference.get() != null) {
-      Intent intent = new Intent(this, MainActivity.class);
-      startActivity(intent);
-      finish();
-    }
+    inflateView(R.layout.activity_login);
 
     passwordText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
       @Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
