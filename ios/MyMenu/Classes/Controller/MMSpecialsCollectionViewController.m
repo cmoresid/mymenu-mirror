@@ -68,8 +68,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	// Delegate our self to the db fetcher.
     [MMDBFetcher get].delegate = self;
     //self.navigationController.toolbar.hidden = TRUE;
-	
-	[self setupToolbar];
 	[self detectOrientation];
 }
 
@@ -87,6 +85,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+		[self setupToolbar];
     // Setup the Types we Can filter.
     // These need to be in this order, Food,Drinks,Dessert represent type in the database by 1,2,3.
     types = [NSArray arrayWithObjects:@"Food", @"Drinks", @"Dessert", nil];
@@ -192,7 +191,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	
 	
 	self.labelView = [[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, 300.0f, 21.0f)];
-	[self.labelView setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
+	[self.labelView setFont:[UIFont boldSystemFontOfSize:17]];
 	[self.labelView setBackgroundColor:[UIColor clearColor]];
 	[self.labelView setTextColor:[UIColor whiteColor]];
 	//[self.labelView setText:@"Title"];
