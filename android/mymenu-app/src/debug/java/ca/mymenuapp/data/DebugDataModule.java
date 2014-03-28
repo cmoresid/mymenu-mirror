@@ -118,68 +118,68 @@ public final class DebugDataModule {
           return null;
         }
       };
-      context.init(null, new TrustManager[] {permissive}, null);
+      context.init(null, new TrustManager[] { permissive }, null);
       return context.getSocketFactory();
     } catch (Exception e) {
       throw new AssertionError(e);
     }
   }
 
-  @Provides @Singleton
-  OkHttpClient provideOkHttpClient(@ForApplication Context applicationContext) {
+  @Provides @Singleton OkHttpClient provideOkHttpClient(
+      @ForApplication Context applicationContext) {
     OkHttpClient client = DataModule.createOkHttpClient(applicationContext);
     client.setSslSocketFactory(createBadSslSocketFactory());
     return client;
   }
 
-  @Provides @Singleton @Named(DEBUG_API_ENDPOINT)
-  StringPreference provideEndpointPreference(SharedPreferences preferences) {
+  @Provides @Singleton @Named(DEBUG_API_ENDPOINT) StringPreference provideEndpointPreference(
+      SharedPreferences preferences) {
     return new StringPreference(preferences, DEBUG_API_ENDPOINT, ApiEndpoints.MOCK_MODE.url);
   }
 
-  @Provides @Singleton @IsMockMode
-  boolean provideIsMockMode(@Named(DEBUG_API_ENDPOINT) StringPreference endpoint) {
+  @Provides @Singleton @IsMockMode boolean provideIsMockMode(
+      @Named(DEBUG_API_ENDPOINT) StringPreference endpoint) {
     return ApiEndpoints.isMockMode(endpoint.get());
   }
 
-  @Provides @Singleton @Named(DEBUG_NETWORK_PROXY)
-  StringPreference provideNetworkProxy(SharedPreferences preferences) {
+  @Provides @Singleton @Named(DEBUG_NETWORK_PROXY) StringPreference provideNetworkProxy(
+      SharedPreferences preferences) {
     return new StringPreference(preferences, DEBUG_NETWORK_PROXY);
   }
 
-  @Provides @Singleton @Named(DEBUG_NETWORK_LOG_LEVEL)
-  IntPreference provideNetworkLogging(SharedPreferences preferences) {
+  @Provides @Singleton @Named(DEBUG_NETWORK_LOG_LEVEL) IntPreference provideNetworkLogging(
+      SharedPreferences preferences) {
     return new IntPreference(preferences, DEBUG_NETWORK_LOG_LEVEL);
   }
 
-  @Provides @Singleton @Named(DEBUG_ANIMATION_SPEED)
-  IntPreference provideAnimationSpeed(SharedPreferences preferences) {
+  @Provides @Singleton @Named(DEBUG_ANIMATION_SPEED) IntPreference provideAnimationSpeed(
+      SharedPreferences preferences) {
     return new IntPreference(preferences, DEBUG_ANIMATION_SPEED, DEFAULT_ANIMATION_SPEED);
   }
 
-  @Provides @Singleton @Named(DEBUG_PICASSO_DEBUGGING)
-  BooleanPreference providePicassoDebugging(SharedPreferences preferences) {
+  @Provides @Singleton @Named(DEBUG_PICASSO_DEBUGGING) BooleanPreference providePicassoDebugging(
+      SharedPreferences preferences) {
     return new BooleanPreference(preferences, DEBUG_PICASSO_DEBUGGING, DEFAULT_PICASSO_DEBUGGING);
   }
 
-  @Provides @Singleton @Named(DEBUG_PIXEL_GRID_ENABLED)
-  BooleanPreference providePixelGridEnabled(SharedPreferences preferences) {
+  @Provides @Singleton @Named(DEBUG_PIXEL_GRID_ENABLED) BooleanPreference providePixelGridEnabled(
+      SharedPreferences preferences) {
     return new BooleanPreference(preferences, DEBUG_PIXEL_GRID_ENABLED, DEFAULT_PIXEL_GRID_ENABLED);
   }
 
-  @Provides @Singleton @Named(DEBUG_PIXEL_RATIO_ENABLED)
-  BooleanPreference providePixelRatioEnabled(SharedPreferences preferences) {
+  @Provides @Singleton @Named(DEBUG_PIXEL_RATIO_ENABLED) BooleanPreference providePixelRatioEnabled(
+      SharedPreferences preferences) {
     return new BooleanPreference(preferences, DEBUG_PIXEL_RATIO_ENABLED,
         DEFAULT_PIXEL_RATIO_ENABLED);
   }
 
-  @Provides @Singleton @Named(DEBUG_DRAWER_SEEN)
-  BooleanPreference provideSeenDebugDrawer(SharedPreferences preferences) {
+  @Provides @Singleton @Named(DEBUG_DRAWER_SEEN) BooleanPreference provideSeenDebugDrawer(
+      SharedPreferences preferences) {
     return new BooleanPreference(preferences, DEBUG_DRAWER_SEEN, DEFAULT_SEEN_DEBUG_DRAWER);
   }
 
-  @Provides @Singleton @Named(DEBUG_SCALPEL_ENABLED)
-  BooleanPreference provideScalpelEnabled(SharedPreferences preferences) {
+  @Provides @Singleton @Named(DEBUG_SCALPEL_ENABLED) BooleanPreference provideScalpelEnabled(
+      SharedPreferences preferences) {
     return new BooleanPreference(preferences, DEBUG_SCALPEL_ENABLED, DEFAULT_SCALPEL_ENABLED);
   }
 
@@ -200,9 +200,8 @@ public final class DebugDataModule {
     return builder.build();
   }
 
-  @Provides @Singleton @Named(DataModule.USER_PREFERENCE)
-  ObjectPreference<User> providesUser(SharedPreferences preferences, Gson gson,
-      @IsMockMode boolean isMockMode) {
+  @Provides @Singleton @Named(DataModule.USER_PREFERENCE) ObjectPreference<User> providesUser(
+      SharedPreferences preferences, Gson gson, @IsMockMode boolean isMockMode) {
     return new ObjectPreference<>(preferences, gson, User.class,
         DataModule.USER_PREFERENCE + ".mock");
   }

@@ -37,7 +37,7 @@ public class MenuItemReview implements Parcelable {
   @Element(name = "useremail") public String userEmail;
   @Element(name = "menuid") public long menuId;
   @Element(name = "merchid") public long merchId;
-  @Element(name = "rating") public float rating;
+  @Element(name = "rating") public double rating;
   @Element(name = "ratingdescription") public String description;
   @Element(name = "ratingdate") public String date;
   // likeCount may be null or "null", so keep it as a string!
@@ -78,7 +78,7 @@ public class MenuItemReview implements Parcelable {
     userEmail = in.readString();
     menuId = in.readLong();
     merchId = in.readLong();
-    rating = in.readFloat();
+    rating = in.readDouble();
     description = in.readString();
     date = in.readString();
     likeCount = in.readString();
@@ -95,7 +95,7 @@ public class MenuItemReview implements Parcelable {
     dest.writeString(userEmail);
     dest.writeLong(menuId);
     dest.writeLong(merchId);
-    dest.writeFloat(rating);
+    dest.writeDouble(rating);
     dest.writeString(description);
     dest.writeString(date);
     dest.writeString(likeCount);
