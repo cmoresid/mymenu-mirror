@@ -42,7 +42,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
     if (self) {
         // Custom initialization
-
+		
 
     }
 
@@ -59,7 +59,6 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-	[self detectOrientation];
 	//add toolbar to the main view
 
 	
@@ -69,6 +68,9 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 	// Delegate our self to the db fetcher.
     [MMDBFetcher get].delegate = self;
     //self.navigationController.toolbar.hidden = TRUE;
+	
+	[self setupToolbar];
+	[self detectOrientation];
 }
 
 
@@ -84,7 +86,7 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupToolbar];
+	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     // Setup the Types we Can filter.
     // These need to be in this order, Food,Drinks,Dessert represent type in the database by 1,2,3.
     types = [NSArray arrayWithObjects:@"Food", @"Drinks", @"Dessert", nil];
@@ -163,11 +165,11 @@ static NSString *days[] = {@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"F
     //create toolbar and set origin and dimensions
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
 	
-	if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) ||
-        ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
-		[toolbar setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.height, 44)];
-	} else if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait || [[UIDevice currentDevice] orientation] == UIDeviceOrientationPortraitUpsideDown) {
-		[toolbar setFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width,44)];
+	UIInterfaceOrientation orientation = self.interfaceOrientation;
+	if (UIInterfaceOrientationIsLandscape(orientation)) {
+		[toolbar setFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.width, [[UIScreen mainScreen] bounds].size.height, 44)];
+	} else if (UIInterfaceOrientationIsPortrait(orientation)) {
+		[toolbar setFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height,[[UIScreen mainScreen] bounds].size.width,44)];
 	}
 	
     [toolbar setBarTintColor:[UIColor darkTealColor]];

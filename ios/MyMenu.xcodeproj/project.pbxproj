@@ -30,6 +30,7 @@
 		174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174FE0C318945FE000CB82C0 /* RestaurantTableCell.xib */; };
 		17F02E7D18E4A62E001974F8 /* RestaurantReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17F02E7C18E4A62E001974F8 /* RestaurantReviewCell.xib */; };
 		17F02E8018E4A7E0001974F8 /* MMRestaurantReviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F02E7F18E4A7E0001974F8 /* MMRestaurantReviewCell.m */; };
+		8305045D18E4EE9100372566 /* MMValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8305045C18E4EE9100372566 /* MMValidator.m */; };
 		83893EAB18919AD400D36670 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAA18919AD400D36670 /* Foundation.framework */; };
 		83893EAD18919AD400D36670 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAC18919AD400D36670 /* CoreGraphics.framework */; };
 		83893EAF18919AD400D36670 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83893EAE18919AD400D36670 /* UIKit.framework */; };
@@ -83,7 +84,6 @@
 		B08B12C518E1E8F000FD16CC /* specials-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B08B12C318E1E8F000FD16CC /* specials-icon@2x.png */; };
 		B08B12C818E1F01600FD16CC /* restaurant-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B08B12C618E1F01600FD16CC /* restaurant-icon.png */; };
 		B08B12C918E1F01600FD16CC /* restaurant-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B08B12C718E1F01600FD16CC /* restaurant-icon@2x.png */; };
-		B09C25EC18A38EE000E05289 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09C25EB18A38EE000E05289 /* libPods.a */; };
 		B09CCF9818D5358A0036F90F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83893EC518919AD400D36670 /* Images.xcassets */; };
 		B0A7675918D2BB6400626F00 /* MMBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A7675818D2BB6400626F00 /* MMBorderedView.m */; };
 		B0A9906A18CA43E900AC4CBB /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FE518CA43E900AC4CBB /* MMAppDelegate.m */; };
@@ -183,6 +183,8 @@
 		17F02E7F18E4A7E0001974F8 /* MMRestaurantReviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRestaurantReviewCell.m; sourceTree = "<group>"; };
 		5C67526E59F84C8AAF4F8411 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		68625818F04245E796C47BC4 /* Pods-MyMenuTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMenuTests.xcconfig"; path = "Pods/Pods-MyMenuTests.xcconfig"; sourceTree = "<group>"; };
+		8305045B18E4EE9100372566 /* MMValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMValidator.h; sourceTree = "<group>"; };
+		8305045C18E4EE9100372566 /* MMValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMValidator.m; sourceTree = "<group>"; };
 		83893EA718919AD400D36670 /* MyMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83893EAA18919AD400D36670 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		83893EAC18919AD400D36670 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -424,7 +426,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B09C25EC18A38EE000E05289 /* libPods.a in Frameworks */,
 				83893ECD18919AD400D36670 /* XCTest.framework in Frameworks */,
 				83893ECF18919AD400D36670 /* UIKit.framework in Frameworks */,
 				83893ECE18919AD400D36670 /* Foundation.framework in Frameworks */,
@@ -435,6 +436,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8305045A18E4EE6600372566 /* Test Validators */ = {
+			isa = PBXGroup;
+			children = (
+				8305045B18E4EE9100372566 /* MMValidator.h */,
+				8305045C18E4EE9100372566 /* MMValidator.m */,
+			);
+			name = "Test Validators";
+			sourceTree = "<group>";
+		};
 		8333C3EC1894B5680028FFBE /* image_pack */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,6 +552,7 @@
 		83893ED218919AD400D36670 /* MyMenuTests */ = {
 			isa = PBXGroup;
 			children = (
+				8305045A18E4EE6600372566 /* Test Validators */,
 				B0EB0C8218A397A200CAAF44 /* MMMockNetworkClient.h */,
 				B0EB0C8318A397A200CAAF44 /* MMMockNetworkClient.m */,
 				B027167618A3527D0027BF4E /* MMMockDBFetcherDelegate.h */,
@@ -1198,6 +1209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8305045D18E4EE9100372566 /* MMValidator.m in Sources */,
 				B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */,
 				B0EB0C8418A397A200CAAF44 /* MMMockNetworkClient.m in Sources */,
 				B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */,
@@ -1345,6 +1357,26 @@
 				INFOPLIST_FILE = "MyMenu/MyMenu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-v",
+					"-lxml2",
+					"-lz",
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					ImageIO,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1368,6 +1400,26 @@
 				INFOPLIST_FILE = "MyMenu/MyMenu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-v",
+					"-lxml2",
+					"-lz",
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					ImageIO,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
