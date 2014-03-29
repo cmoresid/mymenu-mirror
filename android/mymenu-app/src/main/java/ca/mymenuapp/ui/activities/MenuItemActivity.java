@@ -29,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import ca.mymenuapp.R;
@@ -223,8 +224,12 @@ public class MenuItemActivity extends BaseActivity {
   }
 
   @OnClick(R.id.write_review_button) void onWriteReviewClicked() {
-    WriteReviewFragment wrf = new WriteReviewFragment(menuItem);
-    //FragmentTransaction ft = getFragmentManager().beginTransaction();
-    wrf.show(getFragmentManager(), "write_review_fragment");
+    if (!userPreferences.get().isGuest()) {
+      WriteReviewFragment wrf = new WriteReviewFragment(menuItem);
+      //FragmentTransaction ft = getFragmentManager().beginTransaction();
+      wrf.show(getFragmentManager(), "write_review_fragment");
+    } else {
+      Toast.makeText(this, "Sign in/Sign up to review.", 0).show();
+    }
   }
 }

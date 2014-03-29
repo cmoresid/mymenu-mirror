@@ -17,8 +17,13 @@
 -->
 <resources>
 
+  <!-- Guest Mode -->
+  <string name="guest_user">guest@mymenu.ca</string>
+
+
   <!-- Main Activity -->
   <string name="logout">Logout</string>
+  <string name="login_signup">Login/SignUp</string>
 
   <!-- Login Activity -->
   <string name="sign_up">Sign Up</string>
@@ -112,5 +117,6 @@
   <string name="settings_firstname">First Name</string>
   <string name="settings_lastname">Last Name</string>
   <string name="empty_modifications_text">No Modifications For This Item</string>
+  <string name="guest_mode">Guest</string>
 
 </resources>
