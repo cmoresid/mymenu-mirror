@@ -35,6 +35,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "MMMerchantService.h"
 
+#define CONTAINER_PADDING 5.0f
+
 @interface MMRestaurantViewController ()
 
 @property(nonatomic, strong) HMSegmentedControl *categorySegmentControl;
@@ -80,6 +82,11 @@ MMMenuItemRating *touchedReview;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 	self.merchantNameLabel.adjustsFontSizeToFitWidth = true;
+    
+    if (![self.currentValueInSearchBar isEqualToString:@""]) {
+        self.searchBar.text = self.currentValueInSearchBar;
+        self.searchBar.text = @"";
+    }
     
     self.currentOrientation = [self translateFromUIInterfaceOrientation];
     
@@ -140,16 +147,20 @@ MMMenuItemRating *touchedReview;
     self.currentOrientation = [self translateFromUIInterfaceOrientation];
     
 	CGSize segmentControlSize = self.reviewOrderBySegmentControl.frame.size;
-    
-	[self.searchBar removeFromSuperview];
 	[self.reviewOrderBySegmentControl removeFromSuperview];
-    
-    self.searchBar.frame = CGRectMake(0.0, 10.0f, self.view.frame.size.width, 44.0f);
     self.reviewOrderBySegmentControl.frame = CGRectMake((self.view.frame.size.width / 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
     
-	[self.menuItemsCollectionView addSubview:self.searchBar];
+    [self.searchBar performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
     
-    [self addSpaceForSearchBarInCollectionView];
+    if (self.isSearching) {
+        self.searchBar.showsCancelButton = YES;
+        
+        [self.searchBar performSelectorOnMainThread:@selector(setNeedsLayout) withObject:nil waitUntilDone:YES];
+    }
+    else {
+        [self.menuItemsCollectionView performSelectorOnMainThread:@selector(addSubview:) withObject:self.searchBar waitUntilDone:YES];
+        [self addSpaceForSearchBarInCollectionView];
+    }
     
     [self configureCollectionViewLayoutCellSizeForCurrentOrientation];
     
@@ -209,7 +220,9 @@ MMMenuItemRating *touchedReview;
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
-    [self subscribeToOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveOrientationChangeNotification:) name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
 }
 
 - (void)unsubscribeFromNotifications {
@@ -220,25 +233,23 @@ MMMenuItemRating *touchedReview;
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
     
-    [self unsubscribeFromOrientationNotifications];
-}
-
-- (void)unsubscribeFromOrientationNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIDeviceOrientationDidChangeNotification
                                                   object:nil];
 }
 
+- (void)unsubscribeFromOrientationNotifications {
+
+}
+
 - (void)subscribeToOrientationNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveOrientationChangeNotification:) name:UIDeviceOrientationDidChangeNotification
-                                               object:nil];
+
 }
 
 #pragma mark - Keyboard/Scrolling Methods
 
 - (CGFloat)getSearchBarVerticalOffsetWhileSearching {
-    return self.categorySegmentControl.frame.origin.y + self.categorySegmentControl.frame.size.height - self.searchBar.frame.size.height + 5.0f;
+    return self.categorySegmentControl.frame.origin.y + self.categorySegmentControl.frame.size.height + + CONTAINER_PADDING - self.searchBar.frame.size.height;
 }
 
 - (void)moveViewUp:(NSNotification *)notification {
@@ -261,6 +272,7 @@ MMMenuItemRating *touchedReview;
 	
 	UISearchBar *newSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 10.0f, self.view.frame.size.width, 44.0f)];
     newSearchBar.placeholder = NSLocalizedString(@"Search for Menu Item", nil);
+    newSearchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     if (![self.currentValueInSearchBar isEqualToString:@""]) {
         newSearchBar.text = self.currentValueInSearchBar;
@@ -268,7 +280,6 @@ MMMenuItemRating *touchedReview;
     }
     
     [self.menuItemsCollectionView addSubview:newSearchBar];
-    
     [self addSpaceForSearchBarInCollectionView];
     
     newSearchBar.delegate = self;
@@ -286,7 +297,7 @@ MMMenuItemRating *touchedReview;
     MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
 	
     layout.viewHeight = 0.0f;
-	[layout setSectionInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+	[layout setSectionInset:UIEdgeInsetsMake(0, 0, 25.0f, 0)];
     
     [self.menuItemsCollectionView reloadData];
 }
@@ -428,6 +439,7 @@ MMMenuItemRating *touchedReview;
     CGRect oldFrame = self.view.frame;
     
 	searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + [self getSearchBarVerticalOffsetWhileSearching] - 64, self.view.frame.size.width, searchBar.frame.size.height);
+    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
     [self.view addSubview:searchBar];
     [searchBar becomeFirstResponder];
@@ -726,6 +738,11 @@ MMMenuItemRating *touchedReview;
 
 - (void)selectItemInMenuItemCollection:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
     touchedItem = [self.viewModel getItemFromCurrentDataSourceForIndexPath:indexPath];
+    
+    if ([self.searchBar isFirstResponder]) {
+        self.currentValueInSearchBar = self.searchBar.text;
+        [self.searchBar performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+    }
     
     [self performSegueWithIdentifier:@"showMenuItem" sender:self];
 }

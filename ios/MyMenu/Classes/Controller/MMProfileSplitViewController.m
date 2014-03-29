@@ -58,6 +58,8 @@
     UINavigationController *navController = [self.viewControllers lastObject];
     MMAccountViewController *startingController = (MMAccountViewController *) navController.topViewController;
     
+    self.presentsWithGesture = NO;
+    
     self.manager.detailViewController = startingController;
 }
 

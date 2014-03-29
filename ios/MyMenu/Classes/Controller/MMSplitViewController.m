@@ -60,6 +60,8 @@
     MMMasterRestaurantTableViewController *master = (MMMasterRestaurantTableViewController *)masterNavController.topViewController;
     MMDetailMapViewController *detail = (MMDetailMapViewController *) detailNavController.topViewController;
     
+    self.presentsWithGesture = NO;
+    
     master.delegate = detail;
     self.delegate = detail;
 }
