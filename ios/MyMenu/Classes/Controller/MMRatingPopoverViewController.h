@@ -26,7 +26,7 @@ typedef void (^RatingsReturnBlock)(NSNumber *);
 /**
  *  The rating popover which shows the circle rating.
  */
-@interface MMRatingPopoverViewController : UIViewController
+@interface MMRatingPopoverViewController : UIViewController <UIPopoverControllerDelegate>
 
 /**
  *  The Rating view
@@ -72,9 +72,14 @@ typedef void (^RatingsReturnBlock)(NSNumber *);
  */
 @property(nonatomic, strong) MMMerchant *menuItemMerchant;
 /**
- *
+ *  old view for returning
  */
 @property(nonatomic, strong) UIView *oldView;
+
+/**
+ *  popovercontroller created to call this controller
+ */
+@property(nonatomic, strong) UIPopoverController *thisPopOverController;
 
 /**
  *  The rating the user selected.

@@ -60,6 +60,8 @@
         [self.menuItemImage setImageWithURL:[NSURL URLWithString:self.menuItem.picture] placeholderImage:[UIImage imageNamed:@"restriction_placeholder.png"]];
     }
 }
+
+
 - (void) viewWillDisappear:(BOOL)animated{
     if (self.navigationController != Nil)
         self.selectedRating(self.ratingView.rating);

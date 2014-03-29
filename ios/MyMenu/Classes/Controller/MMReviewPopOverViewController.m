@@ -253,7 +253,8 @@ NSInteger ratingValue;
         ratingPop.menuItem = self.menuItem;
         ratingPop.menuItemMerchant = self.selectedRestaurant;
         ratingPop.oldView = self.view;
-
+        ratingPop.thisPopOverController = self.oldPopOverController;
+        
         // Check if a rating has been previously selected. If one has
         // been, pre-select that value in the ratings wheel in the
         // popover.
@@ -270,11 +271,10 @@ NSInteger ratingValue;
 
             NSString *rate = [formatter stringFromNumber:self.menuItemReview.rating];
             self.ratingLabel.text = rate;
-            
+
             ratingValue = [rating integerValue];
             self.edit.enabled = NO;
             [self.desc becomeFirstResponder];
-            self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 350, 300);
             [self.navigationController setNavigationBarHidden:YES];
             [self.popOverController dismissPopoverAnimated:YES];
         };
@@ -285,6 +285,7 @@ NSInteger ratingValue;
         
         [self.navigationController setNavigationBarHidden:NO];
         [self.navigationController pushViewController:ratingPop animated:YES];
+        
     }
 }
 
