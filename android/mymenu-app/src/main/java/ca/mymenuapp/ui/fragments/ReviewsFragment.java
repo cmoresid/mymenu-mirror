@@ -155,23 +155,32 @@ public class ReviewsFragment extends BaseFragment
   @Override public void onReviewActionClicked(int action, MenuItemReview itemReview) {
     switch (action) {
       case R.id.like:
-        myMenuDatabase.likeReview(userPreference.get(), itemReview,
-            new EndlessObserver<Response>() {
-              @Override public void onNext(Response args) {
-                // ignore...
+        if (!userPreference.get().isGuest()) {
+          myMenuDatabase.likeReview(userPreference.get(), itemReview,
+              new EndlessObserver<Response>() {
+                @Override public void onNext(Response args) {
+                  // ignore...
+                }
               }
-            }
-        );
-        Toast.makeText(getActivity(), "Liked!", Toast.LENGTH_LONG).show();
+          );
+          Toast.makeText(getActivity(), "Liked!", 0).show();
+        } else {
+          Toast.makeText(getActivity(), "Sign in/Sign up to like.", 0).show();
+        }
         break;
       case R.id.spam:
-        myMenuDatabase.addReport(itemReview, userPreference.get(), new EndlessObserver<Response>() {
-              @Override public void onNext(Response args) {
-                // ignore...
+        if (!userPreference.get().isGuest()) {
+          myMenuDatabase.addReport(itemReview, userPreference.get(),
+              new EndlessObserver<Response>() {
+                @Override public void onNext(Response args) {
+                  // ignore...
+                }
               }
-            }
-        );
-        Toast.makeText(getActivity(), "Reported.", Toast.LENGTH_LONG).show();
+          );
+          Toast.makeText(getActivity(), "Reported.", 0).show();
+        } else {
+          Toast.makeText(getActivity(), "Sign in/Sign up to report.", 0).show();
+        }
         break;
       default:
         throw new RuntimeException("Invalid Action " + action);

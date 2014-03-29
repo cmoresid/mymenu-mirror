@@ -35,6 +35,7 @@ import ca.mymenuapp.util.Strings;
 import com.f2prateek.ln.Ln;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
+import java.util.Collections;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -77,6 +78,18 @@ public class LoginActivity extends BaseActivity {
     Intent intent = new Intent(this, SignUpActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     startActivity(intent);
+  }
+
+  @OnClick(R.id.guest_mode) void onGuestClicked() {
+    User user = new User();
+
+    user.email = getString(R.string.guest_user);
+    user.restrictions = Collections.emptyList();
+    userPreference.set(user);
+
+    Intent intent = new Intent(this, MainActivity.class);
+    startActivity(intent);
+    finish();
   }
 
   @OnClick(R.id.login) void onLoginClicked() {

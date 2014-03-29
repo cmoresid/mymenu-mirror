@@ -65,5 +65,4 @@ public class ActivityModule {
   @Provides @Singleton @ForActivity Context provideActivityContext() {
     return activity;
   }
-
 }

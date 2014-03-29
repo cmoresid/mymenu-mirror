@@ -159,10 +159,13 @@ public class MainActivity extends BaseActivity {
         new SwipeableActionBarTabsAdapter(this, viewPager, delegateOnPageChangeListener);
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.map)),
         RestaurantsMapFragment.class, null);
-    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.dietary_preferences)),
-        DietaryPreferencesFragment.class, null);
-    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.settings)),
-        SettingsFragment.class, null);
+
+    if (!userPreference.get().email.equals(getString(R.string.guest_user))) {
+      tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.dietary_preferences)),
+          DietaryPreferencesFragment.class, null);
+      tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.settings)),
+          SettingsFragment.class, null);
+    }
     actionBar.setSelectedNavigationItem(tab);
 
     delegateOnPageChangeListener.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -207,8 +210,8 @@ public class MainActivity extends BaseActivity {
     drawerToggle.onConfigurationChanged(newConfig);
   }
 
-  @OnClick({ R.id.sort_distance, R.id.sort_rating, R.id.sort_cuisine })
-  void onSortButtonClicked(TextView button) {
+  @OnClick({ R.id.sort_distance, R.id.sort_rating, R.id.sort_cuisine }) void onSortButtonClicked(
+      TextView button) {
     switch (button.getId()) {
       case R.id.sort_distance:
         sortRestaurants(new Comparator<Restaurant>() {
@@ -256,6 +259,15 @@ public class MainActivity extends BaseActivity {
     return true;
   }
 
+  @Override public boolean onPrepareOptionsMenu(Menu menu) {
+    if (userPreference.get().isGuest()) {
+      menu.removeItem(R.id.logout);
+    } else {
+      menu.removeItem(R.id.login);
+    }
+    return super.onPrepareOptionsMenu(menu);
+  }
+
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     // Pass the event to ActionBarDrawerToggle, if it returns
     // true, then it has handled the app icon touch event
@@ -265,6 +277,13 @@ public class MainActivity extends BaseActivity {
     // Handle other action bar items...
     switch (item.getItemId()) {
       case R.id.logout:
+        userPreference.delete();
+        Intent logoutIntent = new Intent(this, LoginActivity.class);
+        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(logoutIntent);
+        finish();
+        return true;
+      case R.id.login:
         userPreference.delete();
         Intent loginIntent = new Intent(this, LoginActivity.class);
         loginIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

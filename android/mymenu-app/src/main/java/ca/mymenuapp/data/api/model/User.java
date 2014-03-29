@@ -23,6 +23,9 @@ import org.simpleframework.xml.Root;
 
 @Root(name = "result")
 public class User {
+
+  private static final String IS_GUEST = "guest@mymenu.ca";
+
   @Element(name = "id") public long id;
   @Element(name = "email") public String email;
   @Element(name = "firstname") public String firstName;
@@ -39,6 +42,13 @@ public class User {
 
   // List of restrictions for this user
   @Element(required = false) public List<Long> restrictions;
+
+  public boolean isGuest() {
+    if (this.email.compareTo(IS_GUEST) == 0) {
+      return true;
+    }
+    return false;
+  }
 
   @Override public String toString() {
     return "User{" +
