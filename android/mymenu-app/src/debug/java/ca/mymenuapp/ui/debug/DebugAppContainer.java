@@ -49,7 +49,7 @@ import ca.mymenuapp.data.prefs.BooleanPreference;
 import ca.mymenuapp.data.prefs.IntPreference;
 import ca.mymenuapp.data.prefs.StringPreference;
 import ca.mymenuapp.ui.AppContainer;
-import ca.mymenuapp.ui.activities.LoginActivity;
+import ca.mymenuapp.ui.activities.LaunchActivity;
 import ca.mymenuapp.ui.misc.EnumAdapter;
 import ca.mymenuapp.util.Strings;
 import com.f2prateek.ln.Ln;
@@ -207,7 +207,7 @@ public class DebugAppContainer implements AppContainer {
   }
 
   private static String getSizeString(long bytes) {
-    String[] units = new String[] {"B", "KB", "MB", "GB"};
+    String[] units = new String[] { "B", "KB", "MB", "GB" };
     int unit = 0;
     while (bytes >= 1024) {
       bytes /= 1024;
@@ -636,7 +636,7 @@ public class DebugAppContainer implements AppContainer {
   private void setEndpointAndRelaunch(String endpoint) {
     Ln.d("Setting network endpoint to %s", endpoint);
     apiEndpoint.set(endpoint);
-    Intent newApp = new Intent(app, LoginActivity.class);
+    Intent newApp = new Intent(app, LaunchActivity.class);
     newApp.setFlags(FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NEW_TASK);
     app.startActivity(newApp);
     app.buildApplicationGraphAndInject();

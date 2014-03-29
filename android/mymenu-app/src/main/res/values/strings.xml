@@ -74,8 +74,7 @@
   <string name="like">Like</string>
   <string name="share">Share</string>
   <string name="share_menu_item">%1$s at %2$s - %3$s</string>
-  <string name="empty_modifications_text">There are no modifications available for this dish.
-  </string>
+  <string name="modification_text_format">• %1$s</string>
 
   <!-- Reviews Fragment -->
   <string name="date">Date</string>
@@ -110,5 +109,6 @@
   <string name="settings_save">Save</string>
   <string name="settings_firstname">First Name</string>
   <string name="settings_lastname">Last Name</string>
+  <string name="empty_modifications_text">No Modifications For This Item</string>
 
 </resources>

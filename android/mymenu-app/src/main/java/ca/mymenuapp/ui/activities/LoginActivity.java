@@ -21,7 +21,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.widget.EditText;
+import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import ca.mymenuapp.R;
@@ -54,13 +56,21 @@ public class LoginActivity extends BaseActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     inflateView(R.layout.activity_login);
 
-    if (userPreference.get() != null) {
-      Intent intent = new Intent(this, MainActivity.class);
-      startActivity(intent);
-      finish();
-    }
+    passwordText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+      @Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        Ln.d("onEditorAction");
+        switch (actionId) {
+          case R.id.action_login:
+            onLoginClicked();
+            return true;
+          default:
+            return false;
+        }
+      }
+    });
   }
 
   @OnClick(R.id.sign_up) void onSignUpClicked() {
@@ -102,6 +112,11 @@ public class LoginActivity extends BaseActivity {
       final String email = emailText.getText().toString();
       final String password = passwordText.getText().toString();
       myMenuDatabase.getUser(email, password, new EndlessObserver<User>() {
+        @Override public void onError(Throwable throwable) {
+          super.onError(throwable);
+          setProgressBarIndeterminateVisibility(false);
+        }
+
         @Override public void onNext(User user) {
           setProgressBarIndeterminateVisibility(false);
           if (user != null) {

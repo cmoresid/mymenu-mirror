@@ -42,6 +42,7 @@ import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.ReviewsFragment;
 import ca.mymenuapp.ui.widgets.NotifyingScrollView;
 import ca.mymenuapp.ui.widgets.SlidingUpPanelLayout;
+import ca.mymenuapp.util.CollectionUtils;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -66,12 +67,12 @@ public class MenuItemActivity extends BaseActivity {
   @InjectExtra(ARGS_RESTAURANT) Restaurant restaurant;
   @InjectExtra(ARGS_REVIEWS) ArrayList<MenuItemReview> reviews;
 
-  @InjectView(R.id.scroll_view) ScrollView scrollView;
   @InjectView(R.id.menu_item_image_header) ImageView header;
   @InjectView(R.id.menu_item_description) TextView description;
   @InjectView(R.id.menu_item_reviews_summary) TextView reviewSummary;
+  @InjectView(R.id.menu_item_modifications_text) TextView modificationsText;
+
   @InjectView(R.id.sliding_pane) View slidingPane;
-  @InjectView(R.id.menu_item_modifications) TextView menuMods;
   @InjectView(R.id.sliding_layout) SlidingUpPanelLayout slidingLayout;
 
   @Inject Picasso picasso;
@@ -79,7 +80,6 @@ public class MenuItemActivity extends BaseActivity {
 
   private Drawable actionBarBackgroundDrawable;
   private ShareActionProvider shareActionProvider;
-  private List<MenuItemModification> modList;
 
   private NotifyingScrollView.OnScrollChangedListener onScrollChangedListener =
       new NotifyingScrollView.OnScrollChangedListener() {
@@ -183,26 +183,25 @@ public class MenuItemActivity extends BaseActivity {
   }
 
   private void getModifications() {
-
     myMenuDatabase.getModifications(userPreferences.get(), menuItem,
         new EndlessObserver<List<MenuItemModification>>() {
-          @Override public void onNext(List<MenuItemModification> response) {
-            modList = response;
-            String superMods = "";
-
-            for (MenuItemModification m : modList) {
-              superMods += "• ";
-              superMods += m.modification;
-              superMods += "\n\n";
+          @Override public void onNext(List<MenuItemModification> modifications) {
+            if (CollectionUtils.isNullOrEmpty(modifications)) {
+              return;
             }
-            menuMods.setText(superMods);
+
+            StringBuilder modificationText = new StringBuilder();
+            for (MenuItemModification modification : modifications) {
+              modificationText.append("• ").append(modification.modification).append("\n\n");
+            }
+            modificationsText.setText(modificationText.toString());
           }
         }
     );
   }
 
   @Override public void onBackPressed() {
-    if (slidingLayout.isPaneVisible()) {
+    if (slidingLayout.isExpanded()) {
       slidingLayout.collapsePane();
     } else {
       super.onBackPressed();

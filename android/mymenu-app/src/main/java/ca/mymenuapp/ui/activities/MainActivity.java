@@ -44,6 +44,7 @@ import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.fragments.SettingsFragment;
+import ca.mymenuapp.ui.widgets.DelegateOnPageChangeListener;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import com.f2prateek.ln.Ln;
 import com.google.android.gms.maps.model.LatLng;
@@ -149,9 +150,13 @@ public class MainActivity extends BaseActivity {
 
   /** Setup the tabs to display our fragments. */
   private void setupTabs(int tab) {
+    DelegateOnPageChangeListener delegateOnPageChangeListener = new DelegateOnPageChangeListener();
+    viewPager.setOnPageChangeListener(delegateOnPageChangeListener);
+
     final ActionBar actionBar = getActionBar();
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-    SwipeableActionBarTabsAdapter tabsAdapter = new SwipeableActionBarTabsAdapter(this, viewPager);
+    SwipeableActionBarTabsAdapter tabsAdapter =
+        new SwipeableActionBarTabsAdapter(this, viewPager, delegateOnPageChangeListener);
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.map)),
         RestaurantsMapFragment.class, null);
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.dietary_preferences)),
@@ -160,7 +165,7 @@ public class MainActivity extends BaseActivity {
         SettingsFragment.class, null);
     actionBar.setSelectedNavigationItem(tab);
 
-    viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+    delegateOnPageChangeListener.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
       @Override public void onPageScrolled(int position, float positionOffset,
           int positionOffsetPixels) {
         if (position == 0) {

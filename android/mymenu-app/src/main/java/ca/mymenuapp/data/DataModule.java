@@ -39,6 +39,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
 
 /**
  * Module for any data sources, including databases (which we don't use), http clients, image
@@ -100,5 +101,10 @@ public final class DataModule {
 
   @Provides @Singleton MyMenuDatabase provideMyMenuDatabase(MyMenuApi myMenuApi) {
     return new MyMenuDatabase(myMenuApi);
+  }
+
+  @Provides @Singleton ReactiveLocationProvider reactiveLocationProvider(
+      @ForApplication Context context) {
+    return new ReactiveLocationProvider(context);
   }
 }
