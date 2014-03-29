@@ -49,7 +49,6 @@ public class MenuItemReviewAdapter extends BindableListAdapter<MenuItemReview> {
     ViewHolder viewHolder = new ViewHolder(view);
     view.setTag(viewHolder);
     viewHolder.overflow.addItem(R.id.like, R.string.like);
-    viewHolder.overflow.addItem(R.id.dislike, R.string.dislike);
     viewHolder.overflow.addItem(R.id.spam, R.string.spam);
     return view;
   }
