@@ -83,6 +83,8 @@ NSInteger ratingValue;
     NSString *rate = [formatter stringFromNumber:self.menuItemReview.rating];
     
     _desc.text = self.menuItemReview.review;
+    self.desc.userInteractionEnabled = NO;
+    self.desc.editable = NO;
     _menuItemName.text = self.menuItemReview.menuitemname;
     _restaurantName.text = self.menuItemReview.merchantName;
     _likecount.text = [NSString stringWithFormat:@"%@", self.menuItemReview.likeCount];
@@ -223,6 +225,7 @@ NSInteger ratingValue;
 
 - (IBAction)editReview:(id)sender {
     _desc.editable = YES;
+    self.desc.userInteractionEnabled = YES;
     _ratingLabel.userInteractionEnabled = YES;
     [_desc becomeFirstResponder];
 
@@ -267,10 +270,11 @@ NSInteger ratingValue;
 
             NSString *rate = [formatter stringFromNumber:self.menuItemReview.rating];
             self.ratingLabel.text = rate;
-
+            
             ratingValue = [rating integerValue];
             self.edit.enabled = NO;
             [self.desc becomeFirstResponder];
+            self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 350, 300);
             [self.navigationController setNavigationBarHidden:YES];
             [self.popOverController dismissPopoverAnimated:YES];
         };

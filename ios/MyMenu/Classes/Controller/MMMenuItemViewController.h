@@ -118,6 +118,12 @@
 @property(nonatomic, strong) UISegmentedControl *reviewSegment;
 
 /**
+ *  Current Orientation of the device.
+ *
+ */
+@property(nonatomic) UIDeviceOrientation currentOrientation;
+
+/**
  *  Share the menu item via Social Media
  *
  *  @param sender UIButton
@@ -151,5 +157,7 @@
  *  @param sender UIButton
  */
 - (IBAction)iveEatenThis:(id)sender;
+
+
 
 @end
