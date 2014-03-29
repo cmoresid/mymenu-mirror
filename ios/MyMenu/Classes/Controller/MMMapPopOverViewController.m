@@ -25,8 +25,7 @@
 
 @implementation MMMapPopOverViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -34,30 +33,22 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
 /**
  *  Called when user touches in the popover to go to the restaurant page.
  */
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     
-    if (CGRectContainsPoint([self.contentView frame], [touch locationInView:self.contentView]))
-    {
+    if (CGRectContainsPoint([self.contentView frame], [touch locationInView:self.contentView])) {
         MMRestaurantViewController *restaurantViewController = [[UIStoryboard menuStoryboard] instantiateViewControllerWithIdentifier:@"restaurantView"];
         restaurantViewController.currentMerchantId = self.merchant.mid;
+        
         [self.popOverController dismissPopoverAnimated:YES];
         [self.splitViewNavigationController pushViewController:restaurantViewController animated:YES];
     }
 }
 
-
-
-
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

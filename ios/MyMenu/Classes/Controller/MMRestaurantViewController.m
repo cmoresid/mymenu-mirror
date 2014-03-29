@@ -152,12 +152,7 @@ MMMenuItemRating *touchedReview;
     
     [self.searchBar performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
     
-    if (self.isSearching) {
-        self.searchBar.showsCancelButton = YES;
-        
-        [self.searchBar performSelectorOnMainThread:@selector(setNeedsLayout) withObject:nil waitUntilDone:YES];
-    }
-    else {
+    if (!self.searching) {
         [self.menuItemsCollectionView performSelectorOnMainThread:@selector(addSubview:) withObject:self.searchBar waitUntilDone:YES];
         [self addSpaceForSearchBarInCollectionView];
     }
