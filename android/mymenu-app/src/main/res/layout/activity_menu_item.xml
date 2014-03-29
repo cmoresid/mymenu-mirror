@@ -105,6 +105,12 @@
         android:background="@color/turqoise"
         android:textSize="16sp"/>
 
+    <Button
+        android:id="@+id/write_review_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rate_button"/>
+
     <FrameLayout
         android:id="@+id/menu_item_reviews"
         android:layout_width="match_parent"

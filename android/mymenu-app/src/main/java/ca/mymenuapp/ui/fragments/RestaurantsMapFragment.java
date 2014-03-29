@@ -17,12 +17,16 @@
 package ca.mymenuapp.ui.fragments;
 
 import android.location.Location;
+import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.util.CollectionUtils;
 import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.clustering.ClusterManager;
+import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.squareup.otto.Subscribe;
 import java.util.List;
 import javax.inject.Inject;
@@ -66,6 +70,7 @@ public class RestaurantsMapFragment extends BaseMapFragment
         getMap().setOnCameraChangeListener(clusterManager);
         getMap().setOnMarkerClickListener(clusterManager);
         clusterManager.setOnClusterItemClickListener(this);
+        clusterManager.setRenderer(new RestaurantRenderer());
       }
 
       clusterManager.addItems(restaurants);
@@ -81,5 +86,21 @@ public class RestaurantsMapFragment extends BaseMapFragment
   @Override public boolean onClusterItemClick(Restaurant restaurant) {
     bus.post(new MainActivity.OnRestaurantClickEvent(restaurant));
     return false;
+  }
+
+  /**
+   * Draws profile photos inside markers (using IconGenerator).
+   * When there are multiple people in the cluster, draw multiple photos (using MultiDrawable).
+   */
+  private class RestaurantRenderer extends DefaultClusterRenderer<Restaurant> {
+
+    public RestaurantRenderer() {
+      super(activityContext, getMap(), clusterManager);
+    }
+
+    @Override
+    protected void onBeforeClusterItemRendered(Restaurant r, MarkerOptions markerOptions) {
+      markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.locationmarker));
+    }
   }
 }

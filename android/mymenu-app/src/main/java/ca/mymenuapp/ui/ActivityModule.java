@@ -35,6 +35,7 @@ import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.fragments.ReviewsFragment;
 import ca.mymenuapp.ui.fragments.SettingsFragment;
+import ca.mymenuapp.ui.fragments.WriteReviewFragment;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -47,6 +48,7 @@ import javax.inject.Singleton;
         // Fragments
         BaseFragment.class, DietaryPreferencesFragment.class, MenuItemsGridFragment.class,
         ReviewsFragment.class, RestaurantGridFragment.class, SettingsFragment.class,
+        WriteReviewFragment.class,
 
         // Map Fragments
         BaseMapFragment.class, RestaurantsMapFragment.class
@@ -63,4 +65,5 @@ public class ActivityModule {
   @Provides @Singleton @ForActivity Context provideActivityContext() {
     return activity;
   }
+
 }

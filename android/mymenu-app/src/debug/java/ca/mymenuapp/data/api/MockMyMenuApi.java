@@ -96,6 +96,10 @@ final class MockMyMenuApi implements MyMenuApi {
     return null;
   }
 
+  @Override public Observable<Response> addRating(@Field("query") String query) {
+    return null;
+  }
+
   @Override public Observable<Response> addReport(@Field("query") String query) {
     return null;
   }

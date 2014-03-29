@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:divider="?android:attr/dividerVertical"
+        android:background="@color/storm_dust"
+        android:showDividers="middle"
+        android:dividerPadding="12dp">
+
+      <include layout="@layout/include_cancel_button"/>
+      <include layout="@layout/include_save_button"/>
+    </LinearLayout>
+
+    <ca.mymenuapp.ui.widgets.RatingWheelView
+        android:id="@+id/write_review_rating_wheel"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="16dp"/>
+
+    <EditText
+        android:paddingTop="10dp"
+        android:id="@+id/write_review_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="3"
+        android:hint="Enter Review Here..."
+        tools:text="Review Text Here"/>
+  </LinearLayout>
+
+</ScrollView>
