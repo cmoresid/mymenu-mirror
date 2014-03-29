@@ -160,7 +160,7 @@ public class MainActivity extends BaseActivity {
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.map)),
         RestaurantsMapFragment.class, null);
 
-    if (!userPreference.get().email.equals(getString(R.string.guest_user))) {
+    if (!userPreference.get().isGuest()) {
       tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.dietary_preferences)),
           DietaryPreferencesFragment.class, null);
       tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.settings)),
