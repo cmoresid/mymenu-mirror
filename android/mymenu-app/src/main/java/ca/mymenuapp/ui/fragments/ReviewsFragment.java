@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.Toast;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
@@ -162,11 +163,14 @@ public class ReviewsFragment extends BaseFragment
             }
         );
         break;
-      case R.id.dislike:
-        // todo
-        break;
       case R.id.spam:
-        // todo
+        myMenuDatabase.addReport(itemReview, userPreference.get(), new EndlessObserver<Response>() {
+              @Override public void onNext(Response args) {
+                // ignore...
+              }
+            }
+        );
+        Toast.makeText(getActivity(), "Reported.", Toast.LENGTH_LONG).show();
         break;
       default:
         throw new RuntimeException("Invalid Action " + action);

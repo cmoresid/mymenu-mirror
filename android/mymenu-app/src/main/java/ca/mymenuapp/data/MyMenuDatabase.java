@@ -344,4 +344,15 @@ public class MyMenuDatabase {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
   }
+
+  public Subscription addReport(final MenuItemReview review, User user,
+      Observer<Response> observer) {
+    final String query =
+        String.format(MyMenuApi.POST_SPAM_REVIEW, user.email, review.id, review.menuId,
+            review.merchId);
+    return myMenuApi.addReport(query)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
 }
