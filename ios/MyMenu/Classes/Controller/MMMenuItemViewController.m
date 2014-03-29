@@ -195,9 +195,12 @@ MMMenuItemRating *touchedItem;
             [mods addObject:@"There are not any modifications available for this dish."];
         }
         
-        self.menuModificationsView.text = [mods componentsJoinedByString:@"\n -"];
+        [mods replaceObjectAtIndex:0 withObject:[NSString stringWithFormat:@"- %@", [mods firstObject]]];
+        self.menuModificationsView.text = [mods componentsJoinedByString:@"\n- "];
         self.menuModificationsView.font = [UIFont systemFontOfSize:16];
         [self.menuModificationsView sizeToFit];
+        self.menuModificationsView.editable = NO;
+        self.menuModificationsView.userInteractionEnabled = NO;
         
         [self.tableView reloadData];
         [[MMDBFetcher get] getItemRatings:_currentMenuItem.itemid];
@@ -332,7 +335,7 @@ MMMenuItemRating *touchedItem;
     CGFloat height = 301;
     switch (indexPath.section){
         case 1:
-            height = self.menuModificationsView.frame.size.height + 20;
+            height = self.menuModificationsView.frame.size.height + 5;
             break;
         case 2:
             height = self.userReviewField.frame.size.height + 10;
