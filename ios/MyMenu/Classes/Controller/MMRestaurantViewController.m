@@ -42,6 +42,7 @@
 @property(nonatomic, weak) IBOutlet UIGestureRecognizer *rightSwipeGestureForCategory;
 @property(nonatomic, getter = isSearching) BOOL searching;
 @property(nonatomic, strong) NSString *currentValueInSearchBar;
+@property(nonatomic) UIDeviceOrientation currentOrientation;
 
 - (IBAction)changeCategoryBySwipe:(UISwipeGestureRecognizer *)sender;
 
@@ -80,7 +81,9 @@ MMMenuItemRating *touchedReview;
     [super viewDidAppear:animated];
 	self.merchantNameLabel.adjustsFontSizeToFitWidth = true;
     
-    [self configureCollectionViewLayoutCellSizeForOrientation:[self translateFromUIInterfaceOrientation]];
+    self.currentOrientation = [self translateFromUIInterfaceOrientation];
+    
+    [self configureCollectionViewLayoutCellSizeForCurrentOrientation];
     [self.menuItemsCollectionView reloadData];
     
 	[self subscribeToNotifications];
@@ -134,9 +137,10 @@ MMMenuItemRating *touchedReview;
 #pragma mark - Orientation Change Methods
 
 - (void)didReceiveOrientationChangeNotification:(NSNotification *)notification {
-    UIDevice *device = notification.object;
+    self.currentOrientation = [self translateFromUIInterfaceOrientation];
     
 	CGSize segmentControlSize = self.reviewOrderBySegmentControl.frame.size;
+    
 	[self.searchBar removeFromSuperview];
 	[self.reviewOrderBySegmentControl removeFromSuperview];
     
@@ -145,12 +149,9 @@ MMMenuItemRating *touchedReview;
     
 	[self.menuItemsCollectionView addSubview:self.searchBar];
     
-    MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
-
-    layout.viewHeight = 54.0f;
-	[layout setSectionInset:UIEdgeInsetsMake(54.0f, 0, 0, 0)];
+    [self addSpaceForSearchBarInCollectionView];
     
-    [self configureCollectionViewLayoutCellSizeForOrientation:device.orientation];
+    [self configureCollectionViewLayoutCellSizeForCurrentOrientation];
     
     [self.menuItemsCollectionView reloadData];
 	
@@ -159,9 +160,9 @@ MMMenuItemRating *touchedReview;
 	}
 }
 
-- (void)configureCollectionViewLayoutCellSizeForOrientation:(UIDeviceOrientation)orientation {
+- (void)configureCollectionViewLayoutCellSizeForCurrentOrientation {
     MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
-    if (UIDeviceOrientationIsPortrait(orientation)) {
+    if (UIDeviceOrientationIsPortrait(self.currentOrientation)) {
         layout.itemSize = CGSizeMake(384.0f, 113.0f);
     }
     else {
@@ -169,9 +170,8 @@ MMMenuItemRating *touchedReview;
     }
 }
 
-- (UICollectionViewCell *)configureCellSizeWithOrientation:(UIDeviceOrientation)orientation withCell:(UICollectionViewCell *)cell {
-    
-    if (UIDeviceOrientationIsPortrait(orientation)) {
+- (UICollectionViewCell *)configureCellSizeWithCell:(UICollectionViewCell *)cell {
+    if (UIDeviceOrientationIsPortrait(self.currentOrientation)) {
         cell.contentView.frame = CGRectMake(cell.contentView.frame.origin.x, cell.contentView.frame.origin.y, 384, cell.contentView.frame.size.height);
     }
     else {
@@ -209,9 +209,7 @@ MMMenuItemRating *touchedReview;
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveOrientationChangeNotification:) name:UIDeviceOrientationDidChangeNotification
-                                               object:nil];
+    [self subscribeToOrientationNotifications];
 }
 
 - (void)unsubscribeFromNotifications {
@@ -221,18 +219,35 @@ MMMenuItemRating *touchedReview;
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
+    
+    [self unsubscribeFromOrientationNotifications];
+}
+
+- (void)unsubscribeFromOrientationNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIDeviceOrientationDidChangeNotification
                                                   object:nil];
 }
 
+- (void)subscribeToOrientationNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveOrientationChangeNotification:) name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+}
+
 #pragma mark - Keyboard/Scrolling Methods
+
+- (CGFloat)getSearchBarVerticalOffsetWhileSearching {
+    return self.categorySegmentControl.frame.origin.y + self.categorySegmentControl.frame.size.height - self.searchBar.frame.size.height + 5.0f;
+}
 
 - (void)moveViewUp:(NSNotification *)notification {
     if (!self.searching) return;
     
     CGRect oldFrame = self.view.frame;
-    CGRect newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - 275, oldFrame.size.width, oldFrame.size.height);
+    CGRect newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y - [self getSearchBarVerticalOffsetWhileSearching], oldFrame.size.width, oldFrame.size.height);
+    
+    [self removeSpaceForSearchBarInCollectionView];
     
     [UIView animateWithDuration:0.3 animations:^{
         [self.view setFrame:newFrame];
@@ -254,22 +269,35 @@ MMMenuItemRating *touchedReview;
     
     [self.menuItemsCollectionView addSubview:newSearchBar];
     
+    [self addSpaceForSearchBarInCollectionView];
+    
+    newSearchBar.delegate = self;
+    self.searchBar = newSearchBar;
+    
+    CGRect oldFrame = self.view.frame;
+    CGRect newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + [self getSearchBarVerticalOffsetWhileSearching], oldFrame.size.width, oldFrame.size.height);
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view setFrame:newFrame];
+    }];
+}
+
+- (void)removeSpaceForSearchBarInCollectionView {
+    MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
+	
+    layout.viewHeight = 0.0f;
+	[layout setSectionInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    
+    [self.menuItemsCollectionView reloadData];
+}
+
+- (void)addSpaceForSearchBarInCollectionView {
     MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
 	
     layout.viewHeight = 54.0f;
 	[layout setSectionInset:UIEdgeInsetsMake(54.0f, 0, 0, 0)];
     
     [self.menuItemsCollectionView reloadData];
-    
-    newSearchBar.delegate = self;
-    self.searchBar = newSearchBar;
-    
-    CGRect oldFrame = self.view.frame;
-    CGRect newFrame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275, oldFrame.size.width, oldFrame.size.height);
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.view setFrame:newFrame];
-    }];
 }
 
 #pragma mark - RX Event Wire-up Methods
@@ -398,14 +426,17 @@ MMMenuItemRating *touchedReview;
     
     [searchBar removeFromSuperview];
     CGRect oldFrame = self.view.frame;
-	
-	searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + 275 - 64, 	self.view.frame.size.width, searchBar.frame.size.height);
+    
+	searchBar.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y + [self getSearchBarVerticalOffsetWhileSearching] - 64, self.view.frame.size.width, searchBar.frame.size.height);
 
-	
     [self.view addSubview:searchBar];
     [searchBar becomeFirstResponder];
     
     self.searchBar = searchBar;
+}
+
+- (void)configureCollectionViewForSearching {
+    
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -530,8 +561,7 @@ MMMenuItemRating *touchedReview;
     MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
     
     layout.viewHeight = 54.0f;
-    [layout setSectionInset:UIEdgeInsetsMake(54.0f, 0, 0, 0)];
-    layout.footerReferenceSize = CGSizeMake(self.menuItemsCollectionView.frame.size.width, 50);
+    [layout setSectionInset:UIEdgeInsetsMake(54.0f, 0.0f, 25.0f, 0.0f)];
     [self.menuItemsCollectionView registerNib:[UINib nibWithNibName:@"MenuItemCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
     
     [self.menuItemsCollectionView registerNib:[UINib nibWithNibName:@"RestaurantReviewCell" bundle:nil] forCellWithReuseIdentifier:@"ReviewCell"];
@@ -584,7 +614,7 @@ MMMenuItemRating *touchedReview;
                                                    fromCollectionView:collectionView];
     MMMenuItemRating *menitem = [self.viewModel getItemFromCurrentDataSourceForIndexPath:indexPath];
     
-    cell = (MMRestaurantReviewCell *) [self configureCellSizeWithOrientation:[self translateFromUIInterfaceOrientation] withCell:cell];
+    cell = (MMRestaurantReviewCell *) [self configureCellSizeWithCell:cell];
     
     [cell updateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -642,7 +672,7 @@ MMMenuItemRating *touchedReview;
     MMMenuItem *menuItem = [self.viewModel getItemFromCurrentDataSourceForIndexPath:indexPath];
     MMMenuItemCell *cell = [self retrieveMenuItemCellForItemPath:indexPath collectionView:collectionView];
     
-    cell = (MMMenuItemCell *) [self configureCellSizeWithOrientation:[self translateFromUIInterfaceOrientation] withCell:cell];
+    cell = (MMMenuItemCell *) [self configureCellSizeWithCell:cell];
     
     [cell updateConstraints];
     [cell updateConstraintsIfNeeded];
