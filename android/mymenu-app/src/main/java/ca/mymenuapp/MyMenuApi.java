@@ -73,8 +73,8 @@ public interface MyMenuApi {
   String POST_LIKE_REVIEW =
       "insert into ratinglikes (useremail, ratingid, merchid, menuid, adddate)"
           + " values('%s', %d, %d, %d, sysdate())";
-  String POST_DISLIKE_REVIEW = "SELECT * from ratings where merchid = %d";
-  String POST_SPAM_REVIEW = "SELECT * from ratings where merchid = %d";
+  String POST_SPAM_REVIEW = "insert into ratingreport (useremail, ratingid, merchid, menuid, adddate) values ("
+      + "'%s', %d, %d, %d, sysdate())";
   String GET_RESTAURANT = "SELECT * FROM merchusers WHERE id = %d";
   String EDIT_USER = "UPDATE users SET firstname='%s',lastname='%s',password='%s', city='%s',"
       + "locality='%s',gender='%s' WHERE email = '%s'";
@@ -138,5 +138,8 @@ public interface MyMenuApi {
       @Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/custom.php") Observable<Response> editUser(
+      @Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/ratings/custom.php") Observable<Response> addReport(
       @Field("query") String query);
 }
