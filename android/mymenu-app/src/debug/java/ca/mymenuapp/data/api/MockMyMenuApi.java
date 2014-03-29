@@ -23,6 +23,7 @@ import ca.mymenuapp.data.api.model.MenuCategoryResponse;
 import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
+import ca.mymenuapp.data.api.model.MenuSpecialResponse;
 import ca.mymenuapp.data.api.model.RestaurantListResponse;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
@@ -101,6 +102,11 @@ final class MockMyMenuApi implements MyMenuApi {
   }
 
   @Override public Observable<Response> addReport(@Field("query") String query) {
+    return null;
+  }
+
+  @Override public Observable<MenuSpecialResponse> getSpecialsForDateRange(
+      @Field("query") String query) {
     return null;
   }
 
