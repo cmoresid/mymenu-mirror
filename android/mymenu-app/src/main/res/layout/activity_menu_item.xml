@@ -32,6 +32,7 @@
       android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/scroll_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -62,30 +63,28 @@
           android:layout_height="wrap_content"
           android:paddingTop="@dimen/holo_gap"
           android:paddingRight="@dimen/activity_horizontal_margin"
-          android:paddingLeft="@dimen/activity_horizontal_margin"
+          android:layout_marginLeft="@dimen/activity_horizontal_margin"
           style="?android:textAppearanceLarge"
           android:fontFamily="sans-serif-light"/>
 
       <TextView
+          android:id="@+id/menu_item_modifications_title"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:paddingTop="@dimen/holo_gap"
-          android:paddingRight="@dimen/activity_horizontal_margin"
           android:paddingLeft="@dimen/activity_horizontal_margin"
+          android:paddingRight="@dimen/activity_horizontal_margin"
           android:text="@string/modifications"
           style="?android:attr/listSeparatorTextViewStyle"/>
 
-      <TextView android:layout_width="wrap_content"
+      <TextView
+          android:id="@+id/menu_item_modifications_text"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:id="@+id/menu_item_modifications"
           android:paddingRight="@dimen/activity_horizontal_margin"
           android:paddingLeft="@dimen/activity_horizontal_margin"
           android:text="@string/empty_modifications_text"
           />
-
-      <FrameLayout
-          android:layout_width="match_parent"
-          android:layout_height="500dp"/>
 
     </LinearLayout>
 

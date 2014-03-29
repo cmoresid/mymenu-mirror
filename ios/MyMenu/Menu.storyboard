@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="sDb-0H-8Q4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Restaurant View Controller-->
@@ -52,7 +51,7 @@
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="Zum-ge-zPF" firstAttribute="centerY" secondItem="Ttc-gP-x6J" secondAttribute="centerY" id="Q5O-Yu-JeV"/>
-                                            <constraint firstAttribute="width" secondItem="Ttc-gP-x6J" secondAttribute="height" multiplier="1:1" id="e8a-t6-kXZ"/>
+                                            <constraint firstAttribute="width" secondItem="Ttc-gP-x6J" secondAttribute="height" id="e8a-t6-kXZ"/>
                                             <constraint firstItem="Zum-ge-zPF" firstAttribute="leading" secondItem="Ttc-gP-x6J" secondAttribute="leading" id="qN0-R9-3TT"/>
                                             <constraint firstItem="Zum-ge-zPF" firstAttribute="top" secondItem="Ttc-gP-x6J" secondAttribute="top" constant="27" id="tvA-JN-lM1"/>
                                             <constraint firstAttribute="trailing" secondItem="Zum-ge-zPF" secondAttribute="trailing" id="waz-7d-1HZ"/>
@@ -323,7 +322,6 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="500" height="500"/>
                     <connections>
                         <outlet property="cancelButton" destination="yhs-pH-uOa" id="ZJo-2x-RA6"/>
                         <outlet property="doneButton" destination="70K-Yy-VMf" id="F3f-K4-AI4"/>
@@ -490,7 +488,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="400" height="500"/>
                     <connections>
                         <outlet property="desc" destination="11R-WG-zEu" id="XD5-hu-pIk"/>
                         <outlet property="edit" destination="1x6-VW-g62" id="GVD-c3-lNg"/>

@@ -12,6 +12,7 @@
 @class MMDBFetcherResponse;
 @class MMMerchant;
 @class MMUser;
+@class MMSpecial;
 
 typedef void (^BooleanResponseBlock)(BOOL, MMDBFetcherResponse *);
 
@@ -23,10 +24,15 @@ typedef void (^MerchantResponseBlock)(MMMerchant *, MMDBFetcherResponse *);
 
 typedef void (^UserResponseBlock)(MMUser *, MMDBFetcherResponse *);
 
+typedef void (^SpecialResponseBlock)(NSArray *, NSDate *, MMDBFetcherResponse *);
+
 @interface MMMockDBFetcherDelegate : NSObject <MMDBFetcherDelegate>
 
+@property(nonatomic, copy) BooleanResponseBlock booleanResponseCallback;
+@property(nonatomic, copy) SpecialResponseBlock specialResponseCallback;
 @property(nonatomic, copy) MerchantResponseBlock merchantResponseCallback;
 @property(nonatomic, copy) UserResponseBlock userResponseCallback;
-@property(nonatomic, copy) ArrayResponseBlock getMenuResponseCallback;
+@property(nonatomic, copy) ArrayResponseBlock arrayResponseCallback;
+@property(nonatomic, copy) IntegerResponseBlock integerResponseCallback;
 
 @end

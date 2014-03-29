@@ -21,6 +21,7 @@ import android.content.Context;
 import ca.mymenuapp.MyMenuModule;
 import ca.mymenuapp.dagger.scopes.ForActivity;
 import ca.mymenuapp.ui.activities.BaseActivity;
+import ca.mymenuapp.ui.activities.LaunchActivity;
 import ca.mymenuapp.ui.activities.LoginActivity;
 import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.ui.activities.MenuItemActivity;
@@ -37,13 +38,12 @@ import ca.mymenuapp.ui.fragments.SettingsFragment;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
-import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
 
 @Module(
     injects = {
         // Activities
-        BaseActivity.class, MainActivity.class, LoginActivity.class, SignUpActivity.class,
-        RestaurantActivity.class, MenuItemActivity.class,
+        BaseActivity.class, LaunchActivity.class, MainActivity.class, LoginActivity.class,
+        SignUpActivity.class, RestaurantActivity.class, MenuItemActivity.class,
         // Fragments
         BaseFragment.class, DietaryPreferencesFragment.class, MenuItemsGridFragment.class,
         ReviewsFragment.class, RestaurantGridFragment.class, SettingsFragment.class,
@@ -62,10 +62,5 @@ public class ActivityModule {
 
   @Provides @Singleton @ForActivity Context provideActivityContext() {
     return activity;
-  }
-
-  @Provides @Singleton
-  ReactiveLocationProvider reactiveLocationProvider(@ForActivity Context context) {
-    return new ReactiveLocationProvider(context);
   }
 }
