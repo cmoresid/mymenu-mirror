@@ -62,6 +62,27 @@ MMMenuItemRating *touchedItem;
     return self;
 }
 
+- (void)awakeFromNib {
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+}
+
+- (void)subscribeToOrientationNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveOrientationChangeNotification:) name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+}
+- (void)didReceiveOrientationChangeNotification:(NSNotification *)notification {
+    self.currentOrientation = [self translateFromUIInterfaceOrientation];
+    [self configureCollectionViewLayoutCellSizeForCurrentOrientation];
+    [self.ratingsCollectionView reloadData];
+}
+
+- (UIDeviceOrientation)translateFromUIInterfaceOrientation {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    return UIInterfaceOrientationIsPortrait(orientation) ? UIDeviceOrientationPortrait : UIDeviceOrientationLandscapeLeft;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -70,7 +91,7 @@ MMMenuItemRating *touchedItem;
     
     self.rating = nil;
     self.userReviewField.delegate = self;
-
+    self.tableView.backgroundColor = [UIColor whiteColor];
     [self configureView];
     [[self.userReviewField layer] setBorderColor:[[UIColor tealColor] CGColor]];
     [[self.userReviewField layer] setBorderWidth:2.3];
@@ -95,6 +116,22 @@ MMMenuItemRating *touchedItem;
         [MBProgressHUD showHUDAddedTo:self.view animated:TRUE];
     }
     [self.tableView reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self subscribeToOrientationNotifications];
+    self.currentOrientation = [self translateFromUIInterfaceOrientation];
+    [self configureCollectionViewLayoutCellSizeForCurrentOrientation];
+    [self.ratingsCollectionView reloadData];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [self unsubscribeFromOrientationNotifications];
+}
+- (void)unsubscribeFromOrientationNotifications {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIDeviceOrientationDidChangeNotification
+                                                  object:nil];
 }
 
 - (void)configureView {
@@ -310,27 +347,6 @@ MMMenuItemRating *touchedItem;
     }
 }
 
-//- (void)configureCollectionViewLayoutCellSizeForOrientation:(UIDeviceOrientation)orientation {
-//    MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.menuItemsCollectionView.collectionViewLayout;
-//    
-//    if (UIDeviceOrientationIsPortrait(orientation)) {
-//        layout.itemSize = CGSizeMake(384.0f, 113.0f);
-//    }
-//    else {
-//        layout.itemSize = CGSizeMake(700.0f, 113.0f);
-//    }
-//}
-
-- (UICollectionViewCell *)configureCellSizeWithOrientation:(UIDeviceOrientation)orientation withCell:(UICollectionViewCell *)cell {
-    if (UIDeviceOrientationIsPortrait(orientation)) {
-        cell.contentView.frame = CGRectMake(cell.contentView.frame.origin.x, cell.contentView.frame.origin.y, 384, cell.contentView.frame.size.height);
-    }
-    else {
-        cell.contentView.frame = CGRectMake(cell.contentView.frame.origin.x, cell.contentView.frame.origin.y, 700, cell.contentView.frame.size.height);
-    }
-    
-    return cell;
-}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat height = 301;
     switch (indexPath.section){
@@ -341,7 +357,15 @@ MMMenuItemRating *touchedItem;
             height = self.userReviewField.frame.size.height + 10;
             break;
         case 3:
-            height = MAX ((condensedReviews.count * 125) + 20, self.ratingsCollectionView.frame.size.height);
+            if (condensedReviews.count == 0){
+                height = 0;
+            }else
+                if (UIDeviceOrientationIsPortrait(self.currentOrientation)) {
+                    NSInteger oddHeightCheck = (((condensedReviews.count % 2) == 1) ? condensedReviews.count+1 : condensedReviews.count);
+                    height =(oddHeightCheck * 120/2) + 20;
+                }else{
+                    height =(condensedReviews.count * 120) + 20;
+            }
             break;
         default:
             break;
@@ -449,6 +473,26 @@ MMMenuItemRating *touchedItem;
     }
     
 }
+- (void)configureCollectionViewLayoutCellSizeForCurrentOrientation {
+    MMMenuItemCollectionViewFlowLayout *layout = (MMMenuItemCollectionViewFlowLayout *)self.ratingsCollectionView.collectionViewLayout;
+    if (UIDeviceOrientationIsPortrait(self.currentOrientation)) {
+        layout.itemSize = CGSizeMake(384.0f, 113.0f);
+    }
+    else {
+        layout.itemSize = CGSizeMake(700.0f, 113.0f);
+    }
+}
+
+- (UICollectionViewCell *)configureCellSizeWithCell:(UICollectionViewCell *)cell {
+    if (UIDeviceOrientationIsPortrait(self.currentOrientation)) {
+        cell.contentView.frame = CGRectMake(cell.contentView.frame.origin.x, cell.contentView.frame.origin.y, 384, cell.contentView.frame.size.height);
+    }
+    else {
+        cell.contentView.frame = CGRectMake(cell.contentView.frame.origin.x, cell.contentView.frame.origin.y, 700, cell.contentView.frame.size.height);
+    }
+    
+    return cell;
+}
 
 - (void)didUserEat:(BOOL)exists withResponse:(MMDBFetcherResponse *)response {
     [MBProgressHUD hideAllHUDsForView:self.view animated:TRUE];
@@ -477,7 +521,7 @@ MMMenuItemRating *touchedItem;
     static NSString *identifier = @"ReviewCell";
 
     MMMenuItemReviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-
+    cell = (MMMenuItemReviewCell *) [self configureCellSizeWithCell:cell];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"MenuItemReviewCell" owner:self options:NULL] objectAtIndex:0];
     }

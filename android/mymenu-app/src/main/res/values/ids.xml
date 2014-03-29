@@ -18,6 +18,5 @@
 
 <resources>
   <item type="id" name="like"/>
-  <item type="id" name="dislike"/>
   <item type="id" name="spam"/>
 </resources>
