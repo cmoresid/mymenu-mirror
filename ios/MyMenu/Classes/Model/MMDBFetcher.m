@@ -894,6 +894,7 @@ static MMDBFetcher *instance;
         
         AFHTTPRequestOperation *operation = [self.networkManager POST:@"http://mymenuapp.ca/php/menu/custom.php" parameters:queryParameters
             success:^(AFHTTPRequestOperation *operation, id responseObject) {
+				NSLog(@"%@",[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
                 RXMLElement *rootXML = [RXMLElement elementFromXMLData:responseObject];
                 NSMutableArray *menuitems = [[NSMutableArray alloc] init];
                 
