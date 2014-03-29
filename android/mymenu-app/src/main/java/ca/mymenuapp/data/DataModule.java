@@ -73,18 +73,18 @@ public final class DataModule {
     return new GsonBuilder().create();
   }
 
-  @Provides @Singleton SharedPreferences provideSharedPreferences(
-      @ForApplication Context applicationContext) {
+  @Provides @Singleton
+  SharedPreferences provideSharedPreferences(@ForApplication Context applicationContext) {
     return applicationContext.getSharedPreferences(BuildConfig.PACKAGE_NAME, Context.MODE_PRIVATE);
   }
 
-  @Provides @Singleton OkHttpClient provideOkHttpClient(
-      @ForApplication Context applicationContext) {
+  @Provides @Singleton
+  OkHttpClient provideOkHttpClient(@ForApplication Context applicationContext) {
     return createOkHttpClient(applicationContext);
   }
 
-  @Provides @Singleton Picasso providePicasso(@ForApplication Context applicationContext,
-      OkHttpClient client) {
+  @Provides @Singleton
+  Picasso providePicasso(@ForApplication Context applicationContext, OkHttpClient client) {
     return new Picasso.Builder(applicationContext).downloader(new OkHttpDownloader(client))
         .listener(new Picasso.Listener() {
           @Override public void onImageLoadFailed(Picasso picasso, Uri uri, Exception e) {
@@ -94,8 +94,8 @@ public final class DataModule {
         .build();
   }
 
-  @Provides @Singleton @Named(USER_PREFERENCE) ObjectPreference<User> providesUser(
-      SharedPreferences preferences, Gson gson) {
+  @Provides @Singleton @Named(USER_PREFERENCE)
+  ObjectPreference<User> providesUser(SharedPreferences preferences, Gson gson) {
     return new ObjectPreference<>(preferences, gson, User.class, USER_PREFERENCE);
   }
 
