@@ -61,6 +61,9 @@
 		B025696118CBC92100264A3B /* MMMainTabViewSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B025696018CBC92100264A3B /* MMMainTabViewSegue.m */; };
 		B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */; };
 		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
+		B030B17918E7A6B400CA939E /* MMClusterAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B030B17818E7A6B400CA939E /* MMClusterAnnotationView.m */; };
+		B030B19C18E7A7DC00CA939E /* cluster.png in Resources */ = {isa = PBXBuildFile; fileRef = B030B18A18E7A7DC00CA939E /* cluster.png */; };
+		B030B19D18E7A7DC00CA939E /* cluster@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B030B18B18E7A7DC00CA939E /* cluster@2x.png */; };
 		B03D7C8A18CCFD8200F7F5CE /* StaticData.plist in Resources */ = {isa = PBXBuildFile; fileRef = B03D7C8918CCFD8200F7F5CE /* StaticData.plist */; };
 		B03D7C8E18CCFE2000F7F5CE /* MMStaticDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B03D7C8D18CCFE2000F7F5CE /* MMStaticDataHelper.m */; };
 		B043819818D5702F00780D89 /* MMPresentationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B043819718D5702F00780D89 /* MMPresentationFormatter.m */; };
@@ -228,6 +231,10 @@
 		B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMockDBFetcherDelegate.m; sourceTree = "<group>"; };
 		B027167918A3574B0027BF4E /* MMDBFetcherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDBFetcherTests.m; sourceTree = "<group>"; };
 		B02BDC5418D78D39004D276D /* MMMerchantDataSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMMerchantDataSourceDelegate.h; sourceTree = "<group>"; };
+		B030B17718E7A6B400CA939E /* MMClusterAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMClusterAnnotationView.h; sourceTree = "<group>"; };
+		B030B17818E7A6B400CA939E /* MMClusterAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMClusterAnnotationView.m; sourceTree = "<group>"; };
+		B030B18A18E7A7DC00CA939E /* cluster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cluster.png; path = "../../../../../Dropbox2/Dropbox/ios-assets/map_cluster/cluster.png"; sourceTree = "<group>"; };
+		B030B18B18E7A7DC00CA939E /* cluster@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cluster@2x.png"; path = "../../../../../Dropbox2/Dropbox/ios-assets/map_cluster/cluster@2x.png"; sourceTree = "<group>"; };
 		B031A68F18D2449B000BF353 /* libPods-ABCalendarPicker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ABCalendarPicker.a"; path = "Pods/build/Debug-iphoneos/libPods-ABCalendarPicker.a"; sourceTree = "<group>"; };
 		B03D7C8918CCFD8200F7F5CE /* StaticData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StaticData.plist; sourceTree = "<group>"; };
 		B03D7C8C18CCFE2000F7F5CE /* MMStaticDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMStaticDataHelper.h; path = Helper/MMStaticDataHelper.h; sourceTree = "<group>"; };
@@ -448,6 +455,8 @@
 		8333C3EC1894B5680028FFBE /* image_pack */ = {
 			isa = PBXGroup;
 			children = (
+				B030B18A18E7A7DC00CA939E /* cluster.png */,
+				B030B18B18E7A7DC00CA939E /* cluster@2x.png */,
 				B0D22F0718E2D414004C0E98 /* restriction-overlay.png */,
 				B0D22F0818E2D414004C0E98 /* restriction-overlay@2x.png */,
 				B0D22EF718E2C1AB004C0E98 /* profile-icon-selected.png */,
@@ -864,6 +873,8 @@
 				B0A7675818D2BB6400626F00 /* MMBorderedView.m */,
 				B0A9905A18CA43E900AC4CBB /* MMButton.h */,
 				B0A9905B18CA43E900AC4CBB /* MMButton.m */,
+				B030B17718E7A6B400CA939E /* MMClusterAnnotationView.h */,
+				B030B17818E7A6B400CA939E /* MMClusterAnnotationView.m */,
 				B0A9905C18CA43E900AC4CBB /* MMDietaryRestrictionCell.h */,
 				B0A9905D18CA43E900AC4CBB /* MMDietaryRestrictionCell.m */,
 				B0A9905E18CA43E900AC4CBB /* MMMenuItemCell.h */,
@@ -992,6 +1003,7 @@
 				83CC9EDF18D253FB00E0B48A /* CalendarTodaysDate.png in Resources */,
 				B0D22F0918E2D414004C0E98 /* restriction-overlay.png in Resources */,
 				83CC9EE118D253FB00E0B48A /* Default-568h@2x.png in Resources */,
+				B030B19D18E7A7DC00CA939E /* cluster@2x.png in Resources */,
 				83CC9EDB18D253FB00E0B48A /* CalendarRowBottom.png in Resources */,
 				B08B12C018E1E80400FD16CC /* restriction-icon.png in Resources */,
 				83CC9EDE18D253FB00E0B48A /* CalendarSelectedDate@2x.png in Resources */,
@@ -1025,6 +1037,7 @@
 				B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */,
 				B08B12C418E1E8F000FD16CC /* specials-icon.png in Resources */,
 				83CC9EE318D253FB00E0B48A /* Default@2x.png in Resources */,
+				B030B19C18E7A7DC00CA939E /* cluster.png in Resources */,
 				B08B12C118E1E80400FD16CC /* restriction-icon@2x.png in Resources */,
 				B0B1B6A818E1D69700D32EA7 /* location-marker@2x.png in Resources */,
 				83893EB518919AD400D36670 /* InfoPlist.strings in Resources */,
@@ -1186,6 +1199,7 @@
 				B0A9907518CA43E900AC4CBB /* MMMasterProfileViewController.m in Sources */,
 				B0A9909418CA43E900AC4CBB /* MMNetworkClientProxy.m in Sources */,
 				83893EB718919AD400D36670 /* main.m in Sources */,
+				B030B17918E7A6B400CA939E /* MMClusterAnnotationView.m in Sources */,
 				17F02E8018E4A7E0001974F8 /* MMRestaurantReviewCell.m in Sources */,
 				B0A9907418CA43E900AC4CBB /* MMMainTabBarViewController.m in Sources */,
 				B0A9906F18CA43E900AC4CBB /* MMBaseNavigationController.m in Sources */,

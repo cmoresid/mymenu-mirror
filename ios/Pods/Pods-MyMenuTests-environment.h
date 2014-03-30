@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 2
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
+// CCHMapClusterController
+#define COCOAPODS_POD_AVAILABLE_CCHMapClusterController
+#define COCOAPODS_VERSION_MAJOR_CCHMapClusterController 1
+#define COCOAPODS_VERSION_MINOR_CCHMapClusterController 5
+#define COCOAPODS_VERSION_PATCH_CCHMapClusterController 0
+
 // HMSegmentedControl
 #define COCOAPODS_POD_AVAILABLE_HMSegmentedControl
 #define COCOAPODS_VERSION_MAJOR_HMSegmentedControl 1
