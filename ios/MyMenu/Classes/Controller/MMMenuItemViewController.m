@@ -466,9 +466,9 @@ MMMenuItemRating *touchedItem;
         // Make sure keyboard is hidden before you show popup.
         [self.userReviewField resignFirstResponder];
         
-        [self.popOverController presentPopoverFromRect:cell.frame
-                                                inView:cell.superview
-                              permittedArrowDirections:UIPopoverArrowDirectionAny
+        [self.popOverController presentPopoverFromRect:CGRectMake(self.ratingsCollectionView.frame.size.width/2, self.ratingsCollectionView.frame.size.height-150, 1, 1)
+                                                inView:self.ratingsCollectionView
+                              permittedArrowDirections:UIPopoverArrowDirectionDown
                                               animated:YES];
     }
     
@@ -582,7 +582,7 @@ MMMenuItemRating *touchedItem;
     currentRating.rating = [NSNumber numberWithInteger:ratingValue];
     if ((self.userReviewField.text == nil || [self.userReviewField.text isEqualToString:@""]) || [self.userReviewField.text isEqualToString:@"Please enter your review here..."]) {
 
-        currentRating.review = @"";
+        currentRating.review = @" ";
     } else {
         currentRating.review = self.userReviewField.text;
     }

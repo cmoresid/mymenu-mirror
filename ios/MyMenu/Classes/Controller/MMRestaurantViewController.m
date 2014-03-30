@@ -703,7 +703,6 @@ MMMenuItemRating *touchedReview;
 }
 
 - (void)selectItemInReviewCollection:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView {
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
 
     MMMenuItemRating *selectedReview = [self.viewModel getItemFromCurrentDataSourceForIndexPath:indexPath];
     
@@ -725,9 +724,9 @@ MMMenuItemRating *touchedReview;
     reviewPop.oldPopOverController = popover;
     self.popOverController = popover;
     
-    [self.popOverController presentPopoverFromRect:cell.frame
-                                            inView:cell.superview
-                          permittedArrowDirections:UIPopoverArrowDirectionAny
+    [self.popOverController presentPopoverFromRect:CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height-150, 1, 1)
+                                            inView:self.view
+                          permittedArrowDirections:UIPopoverArrowDirectionDown
                                           animated:YES];
 }
 
