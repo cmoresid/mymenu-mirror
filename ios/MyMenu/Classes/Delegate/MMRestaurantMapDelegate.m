@@ -29,8 +29,16 @@
 - (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation {
     
     NSUInteger numAnnotations = mapClusterAnnotation.annotations.count;
-    NSString *unit = numAnnotations > 1 ? NSLocalizedString(@"restaurants", nil) : NSLocalizedString(@"restaurant", nil);
-    return [NSString stringWithFormat:@"%tu %@", numAnnotations, unit];
+    
+    if (numAnnotations == 1) {
+        MKPointAnnotation *point = [[mapClusterAnnotation.annotations allObjects] firstObject];
+        
+        return point.title;
+    }
+    else {
+        NSString *unit = numAnnotations > 1 ? NSLocalizedString(@"restaurants", nil) : NSLocalizedString(@"restaurant", nil);
+        return [NSString stringWithFormat:@"%tu %@", numAnnotations, unit];
+    }
 }
 
 - (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation {
@@ -71,13 +79,14 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     BOOL isUserLocationAnnotation = [view.annotation isKindOfClass:[MKUserLocation class]];
-    BOOL isSingleAnnotation = ((MMClusterAnnotationView *)view).count == 1;
+    BOOL isSingleAnnotation = !isUserLocationAnnotation && (((MMClusterAnnotationView *)view).count == 1);
     
     if(isUserLocationAnnotation || !isSingleAnnotation) {
         return;
     }
     
     [mapView deselectAnnotation:view.annotation animated:YES];
+
     NSNumber *merchId = [NSNumber numberWithInteger:[((MKPointAnnotation *) view.annotation).title integerValue]];
     
     [[[MMMerchantService sharedService] getMerchantWithMerchantID:merchId]

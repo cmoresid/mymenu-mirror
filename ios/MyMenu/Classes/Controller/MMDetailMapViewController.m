@@ -121,8 +121,11 @@
     
     NSArray *mapAnnotationsArray = mapAnnotations.array;
     
-    [self.mapClusterController addAnnotations:mapAnnotationsArray withCompletionHandler:nil];
-    [self zoomToFitCoordinates:mapAnnotationsArray];
+    @weakify(self);
+    [self.mapClusterController addAnnotations:mapAnnotationsArray withCompletionHandler:^{
+        @strongify(self);
+        [self zoomToFitCoordinates:mapAnnotationsArray];
+    }];
 }
 
 - (void)zoomToFitCoordinates:(NSArray*)annotations {
