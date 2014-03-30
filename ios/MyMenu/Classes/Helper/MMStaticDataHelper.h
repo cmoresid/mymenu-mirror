@@ -42,7 +42,11 @@
 - (NSString *)getAboutURL;
 
 /**
- *  
+ *  Retrieves an array of image names that
+ *  correspond to the selected images for
+ *  the tab bar.
+ *
+ *  @return An array of image file names.
  */
 - (NSArray *)getSelectedTabBarImageNames;
 

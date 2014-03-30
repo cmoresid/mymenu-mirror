@@ -442,10 +442,6 @@ MMMenuItemRating *touchedReview;
     self.searchBar = searchBar;
 }
 
-- (void)configureCollectionViewForSearching {
-    
-}
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [self.viewModel searchForItemWithValue:searchText];
     [self.menuItemsCollectionView reloadData];
@@ -540,6 +536,16 @@ MMMenuItemRating *touchedReview;
     } else {
         [self selectItemInMenuItemCollection:indexPath collectionView:collectionView];
     }
+}
+
+#pragma mark - RBStoryboardLinkSource Delegate Methods
+
+- (BOOL)needsTopLayoutGuide {
+    return YES;
+}
+
+- (BOOL)needsBottomLayoutGuide {
+    return YES;
 }
 
 #pragma mark - Private Helper Methods

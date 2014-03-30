@@ -23,6 +23,7 @@
 #import "MMDBFetcher.h"
 #import <RBStoryboardLink/RBStoryboardLinkSource.h>
 #import "MMMerchantDataSourceDelegate.h"
+#import "MMSplitViewManager.h"
 
 @class MMLocationManager;
 @class MMRestaurantMapDelegate;
@@ -30,7 +31,7 @@
 /**
  *  Map View on the Restaruants tab.
  */
-@interface MMDetailMapViewController : UIViewController <UISplitViewControllerDelegate, MMMerchantDataSourceDelegate, RBStoryboardLinkSource>
+@interface MMDetailMapViewController : UIViewController <MMMerchantDataSourceDelegate, MMDetailViewController>
 
 /**
  *  Current users location, based on GPS
@@ -38,10 +39,10 @@
 @property(nonatomic, strong) CLLocation *location;
 
 /**
- *  A reference to the popover controller that acts
- *  as the drawer in portrait mode.
+ *  The bar button that is displayed in portrait mode to
+ *  show the restaurant drawer.
  */
-@property(nonatomic, strong) UIPopoverController *masterPopoverController;
+@property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 
 /**
  *  Adds the restaurants to the map view.

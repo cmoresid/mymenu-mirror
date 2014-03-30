@@ -15,29 +15,15 @@
 //  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
- *  Provides an interface for any detail view controller
- *  that wishes to support landscape and portrait mode.
+ *  Custom segue that is triggered when a user selects
+ *  a restaurant in the master restaurant list. Segue
+ *  responsible for maintaining the navigation child
+ *  controller stack for the detail portion of the split
+ *  view.
  */
-@protocol MMDetailViewController
-
-@property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
-
-@end
-
-/**
- *
- */
-@interface MMSplitViewManager : NSObject <UISplitViewControllerDelegate>
-
-@property (nonatomic, weak) IBOutlet UISplitViewController *splitViewController;
-
-@property (nonatomic, weak) IBOutlet UIViewController<MMDetailViewController> *detailViewController;
-
-- (instancetype)initWithNavigationButtonItemText:(NSString *)buttonText;
-
-- (void)dismissSlideOverDrawer;
+@interface MMRestaurantSegue : UIStoryboardSegue
 
 @end

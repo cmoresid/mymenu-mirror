@@ -50,7 +50,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.manager = [[MMSplitViewManager alloc] init];
+    self.manager = [[MMSplitViewManager alloc] initWithNavigationButtonItemText:NSLocalizedString(@"View Profile Information", nil)];
     
     self.manager.splitViewController = self;
     self.delegate = self.manager;

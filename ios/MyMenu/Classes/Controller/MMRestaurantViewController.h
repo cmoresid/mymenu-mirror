@@ -17,6 +17,7 @@
 #import <UIKit/UIKit.h>
 #import "MMDBFetcherDelegate.h"
 #import "MMReviewPopOverViewController.h"
+#import <RBStoryboardLink/RBStoryboardLinkSource.h>
 
 @class MMRestaurantViewModel;
 @class HMSegmentedControl;
@@ -31,7 +32,7 @@
  *  either by rating, category or name.
 */
 @interface MMRestaurantViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, UIPopoverControllerDelegate,
-    UIGestureRecognizerDelegate>
+    UIGestureRecognizerDelegate, RBStoryboardLinkSource>
 
 /**
  *  The current selected merchant.

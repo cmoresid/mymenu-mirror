@@ -15,14 +15,14 @@
 //  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <RACEXTScope.h>
+#import <CCHMapClusterController/CCHMapClusterController.h>
+
 #import "MMDetailMapViewController.h"
 #import "MMLocationManager.h"
 #import "MMRestaurantMapDelegate.h"
 #import "MMMasterRestaurantTableViewController.h"
-#import "MMAppDelegate.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
-#import <RACEXTScope.h>
-#import <CCHMapClusterController/CCHMapClusterController.h>
 #import "MMMerchantService.h"
 #import "MMSplitViewController.h"
 
@@ -35,6 +35,18 @@
 @end
 
 @implementation MMDetailMapViewController
+
+- (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem {
+    if (navigationPaneBarButtonItem == _navigationPaneBarButtonItem)
+        return;
+    
+    if (navigationPaneBarButtonItem)
+        [self.navigationItem setLeftBarButtonItem:navigationPaneBarButtonItem animated:NO];
+    else
+        [self.navigationItem setLeftBarButtonItem:nil animated:NO];
+    
+    _navigationPaneBarButtonItem = navigationPaneBarButtonItem;
+}
 
 #pragma mark - View Controller Methods
 
@@ -55,7 +67,7 @@
     [self.mapView setUserTrackingMode:MKUserTrackingModeNone animated:NO];
     
     MMRestaurantMapDelegate *delegate = [[MMRestaurantMapDelegate alloc] init];
-    delegate.splitViewNavigationController = [self.splitViewController.viewControllers lastObject];
+    delegate.parentSplitViewController = self.splitViewController;
     delegate.mapView = self.mapView;
     
     self.mapDelegate = delegate;
@@ -159,30 +171,6 @@
     
     region = [self.mapView regionThatFits:region];
     [self.mapView setRegion:region animated:YES];
-}
-
-#pragma mark - RBStoryboardLinkSource Delegate Methods
-
-- (BOOL)needsTopLayoutGuide {
-    return FALSE;
-}
-
-- (BOOL)needsBottomLayoutGuide {
-    return FALSE;
-}
-
-#pragma mark - Split View Delegate Methods
-
-- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController {
-    barButtonItem.title = NSLocalizedString(@"View Restaurants", nil);
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-    self.masterPopoverController = popoverController;
-}
-
-- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
-    // Called when the view is shown again in the split view, invalidating the button and popover controller.
-    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-    self.masterPopoverController = nil;
 }
 
 @end

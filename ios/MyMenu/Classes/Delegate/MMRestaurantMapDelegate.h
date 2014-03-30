@@ -44,7 +44,7 @@
 /**
  *  reference to the navigation controller in the map view
  */
-@property(nonatomic, strong) UINavigationController *splitViewNavigationController;
+@property(nonatomic, strong) UISplitViewController *parentSplitViewController;
 
 /**
  *  The map view that corresponds to the map view

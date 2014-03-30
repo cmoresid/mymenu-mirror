@@ -45,11 +45,6 @@
  */
 @property(nonatomic, strong) MMMerchant *selectedRestaurant;
 
-/**
- *  The map view controller to the right of the tableview
- */
-@property(nonatomic, strong) MMDetailMapViewController *detailViewController;
-
 
 @property(nonatomic, weak) id<MMMerchantDataSourceDelegate> delegate;
 

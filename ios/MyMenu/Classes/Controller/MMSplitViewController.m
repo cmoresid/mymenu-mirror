@@ -20,55 +20,55 @@
 #import "MMMasterRestaurantTableViewController.h"
 #import "MMDetailMapViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MMSplitViewManager.h"
 
 @interface MMSplitViewController ()
+
+@property(nonatomic, strong) MMSplitViewManager *manager;
 
 @end
 
 @implementation MMSplitViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    
-    if (self) {
-        
-    }
-    
-    return self;
-}
-
-- (BOOL)needsTopLayoutGuide {
-    return FALSE;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Set the title color of all nested navigation bars
-    // to white.
-    UINavigationController *navController;
-    for (id controller in self.viewControllers) {
-        if ([controller isKindOfClass:[UINavigationController class]]) {
-            navController = (UINavigationController *) controller;
-            navController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-        }
-    }
+    [self configureChildNavigationBarAppearance];
 
+    self.manager = [[MMSplitViewManager alloc] initWithNavigationButtonItemText:NSLocalizedString(@"View Restaurants", nil)];
+    self.manager.splitViewController = self;
+    self.delegate = self.manager;
+    
     UINavigationController *masterNavController = [self.viewControllers firstObject];
     UINavigationController *detailNavController = [self.viewControllers lastObject];
     
     MMMasterRestaurantTableViewController *master = (MMMasterRestaurantTableViewController *)masterNavController.topViewController;
     MMDetailMapViewController *detail = (MMDetailMapViewController *) detailNavController.topViewController;
     
-    self.presentsWithGesture = NO;
-    
+    self.manager.detailViewController = detail;
     master.delegate = detail;
-    self.delegate = detail;
+    
+    self.presentsWithGesture = NO;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)needsTopLayoutGuide {
+    return FALSE;
+}
+
+- (void)configureChildNavigationBarAppearance {
+    UINavigationController *navController;
+    
+    for (id controller in self.viewControllers) {
+        if ([controller isKindOfClass:[UINavigationController class]]) {
+            navController = (UINavigationController *) controller;
+            navController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+        }
+    }
 }
 
 @end

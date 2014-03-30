@@ -1,9 +1,18 @@
 //
-//  MMSplitViewDelegate.m
-//  MyMenu
+//  Copyright (C) 2014  MyMenu, Inc.
 //
-//  Created by Connor Moreside on 2014-03-25.
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
 //
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
 #import "MMSplitViewManager.h"
@@ -12,15 +21,22 @@
 
 @property(nonatomic, strong) UIBarButtonItem *navigationPaneButtonItem;
 @property(nonatomic, strong) UIPopoverController *navigationPopoverController;
+@property(nonatomic, strong) NSString *navigationButtonItemText;
 
 @end
 
 @implementation MMSplitViewManager
 
-// -------------------------------------------------------------------------------
-//	setDetailViewController:
-//  Custom implementation of the setter for the detailViewController property.
-// -------------------------------------------------------------------------------
+- (instancetype)initWithNavigationButtonItemText:(NSString *)buttonText {
+    self = [super init];
+    
+    if (self) {
+        self.navigationButtonItemText = buttonText;
+    }
+    
+    return self;
+}
+
 - (void)setDetailViewController:(UIViewController<MMDetailViewController> *)detailViewController {
     // Clear any bar button item from the detail view controller that is about to
     // no longer be displayed.
@@ -44,8 +60,13 @@
     
     // Dismiss the navigation popover if one was present.  This will
     // only occur if the device is in portrait.
-    if (self.navigationPopoverController)
+    [self dismissSlideOverDrawer];
+}
+
+- (void)dismissSlideOverDrawer {
+    if (self.navigationPopoverController) {
         [self.navigationPopoverController dismissPopoverAnimated:YES];
+    }
 }
 
 - (void)splitViewController:(UISplitViewController *)svc
@@ -55,7 +76,7 @@
 
     // If the barButtonItem does not have a title (or image) adding it to a toolbar
     // will do nothing.
-    barButtonItem.title = @"View Profile Information";
+    barButtonItem.title = self.navigationButtonItemText;
     
     self.navigationPaneButtonItem = barButtonItem;
     self.navigationPopoverController = pc;

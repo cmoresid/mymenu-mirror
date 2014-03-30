@@ -92,7 +92,8 @@
 
     NSNumber *merchId = [NSNumber numberWithInteger:[((MKPointAnnotation *) view.annotation).title integerValue]];
     
-    [[[MMMerchantService sharedService] getMerchantWithMerchantID:merchId]
+    [[[[MMMerchantService sharedService] getMerchantWithMerchantID:merchId]
+     deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(MMMerchant *merchant) {
          
          [self createPopOverView:merchant];
@@ -103,7 +104,7 @@
          
          self.mapPopOverViewController.merchant = merchant;
          self.mapPopOverViewController.contentView = self.containerView;
-         self.mapPopOverViewController.splitViewNavigationController = self.splitViewNavigationController;
+         self.mapPopOverViewController.parentSplitViewController = self.parentSplitViewController;
          
          self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.mapPopOverViewController];
          self.popOverController.delegate = self;
