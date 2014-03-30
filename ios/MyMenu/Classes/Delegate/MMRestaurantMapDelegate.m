@@ -30,6 +30,9 @@
     
     NSUInteger numAnnotations = mapClusterAnnotation.annotations.count;
     
+    // If there is only one annotation in the custered annotation, don't
+    // clober the title for that annotation; otherwise, you can't fetch
+    // the merchant information.
     if (numAnnotations == 1) {
         MKPointAnnotation *point = [[mapClusterAnnotation.annotations allObjects] firstObject];
         

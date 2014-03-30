@@ -17,8 +17,18 @@
 
 #import <MapKit/MapKit.h>
 
+/**
+ *  Custom annotation that is used in the
+ *  clustering for the map. It has a field
+ *  that describes how many pins are in the
+ *  cluster.
+ */
 @interface MMClusterAnnotationView : MKAnnotationView
 
+/**
+ *  Represents how many pins are represented by
+ *  this cluster.
+ */
 @property (assign, nonatomic) NSUInteger count;
 
 @end

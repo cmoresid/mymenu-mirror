@@ -37,6 +37,10 @@
  */
 @property(nonatomic, strong) CLLocation *location;
 
+/**
+ *  A reference to the popover controller that acts
+ *  as the drawer in portrait mode.
+ */
 @property(nonatomic, strong) UIPopoverController *masterPopoverController;
 
 /**

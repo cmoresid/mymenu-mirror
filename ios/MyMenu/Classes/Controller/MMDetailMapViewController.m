@@ -73,8 +73,9 @@
             return ![annot isKindOfClass:[MKUserLocation class]];
     }];
     
-    [self.mapClusterController removeAnnotations:annotsSequence.array withCompletionHandler:nil];
-    [self pinRestaurants:[merchants copy]];
+    [self.mapClusterController removeAnnotations:annotsSequence.array withCompletionHandler:^{
+        [self pinRestaurants:[merchants copy]];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
