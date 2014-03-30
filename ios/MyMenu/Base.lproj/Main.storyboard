@@ -910,7 +910,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <constraint firstAttribute="bottom" secondItem="yE2-Pu-TNk" secondAttribute="bottom" id="mVn-Nz-40u"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Restrictions" image="184-warning.png" id="iHh-BL-VdX"/>
                     <navigationItem key="navigationItem" title="Dietary Restrictions" id="Zks-L5-CYQ">
                         <barButtonItem key="backBarButtonItem" title="Back" id="lJb-yj-5td"/>
                         <barButtonItem key="rightBarButtonItem" title="Save" style="done" id="gKx-JV-bIT">
@@ -1156,7 +1155,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-        <image name="184-warning.png" width="24" height="19"/>
         <image name="profile-icon.png" width="25" height="25"/>
         <image name="restaurant-icon.png" width="27" height="30"/>
         <image name="restriction-icon.png" width="25" height="25"/>
@@ -1169,6 +1167,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ljw-kG-1B6"/>
-        <segue reference="RgV-gk-1Ps"/>
+        <segue reference="62S-hN-Lz1"/>
     </inferredMetricsTieBreakers>
 </document>

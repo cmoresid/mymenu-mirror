@@ -63,6 +63,7 @@
     
     self.mapClusterController = [[CCHMapClusterController alloc] initWithMapView:self.mapView];
     self.mapClusterController.delegate = delegate;
+    self.mapClusterController.cellSize = 80.0;
 }
 
 - (void)didReceiveMerchants:(NSMutableArray *)merchants {

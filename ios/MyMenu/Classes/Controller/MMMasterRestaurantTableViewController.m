@@ -57,10 +57,10 @@
     
     @weakify(self);
     [[[[MMLocationManager sharedLocationManager].getLatestLocation
-        deliverOn:[RACScheduler mainThreadScheduler]]
         flattenMap:^RACStream *(CLLocation *location) {
             return [[MMMerchantService sharedService] getDefaultCompressedMerchantsForLocation:location];
         }]
+        deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(NSMutableArray *compressedMerchants) {
             @strongify(self);
             _restaurants = compressedMerchants;
