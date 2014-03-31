@@ -49,17 +49,21 @@
     [super awakeFromNib];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    MMDetailMapViewController *detailMapViewController = (MMDetailMapViewController *)((UINavigationController *) [self.splitViewController.viewControllers lastObject]).topViewController;
+    
+    @weakify(self);
+    [detailMapViewController.viewAppeared subscribeNext:^(NSNumber *didViewAppear) {
+        @strongify(self);
+        
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
+    }];
     
     // Throttle connection, just to make sure if multiple location signals
     // are sent at the same time, you ignore the first ones. Sometimes, duplicate
     // pins will get dropped if you don't throttle.
-    @weakify(self);
     [[[[[MMLocationManager sharedLocationManager].getLatestLocation
         throttle:3.0]
         flattenMap:^RACStream *(CLLocation *location) {

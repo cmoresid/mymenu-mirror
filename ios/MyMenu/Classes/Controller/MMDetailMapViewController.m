@@ -36,6 +36,16 @@
 
 @implementation MMDetailMapViewController
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    
+    if (self) {
+        self.viewAppeared = [RACSubject subject];
+    }
+    
+    return self;
+}
+
 - (void)setNavigationPaneBarButtonItem:(UIBarButtonItem *)navigationPaneBarButtonItem {
     if (navigationPaneBarButtonItem == _navigationPaneBarButtonItem)
         return;
@@ -95,6 +105,7 @@
     [super viewDidAppear:animated];
     
     [self.mapView setShowsUserLocation:YES];
+    [self.viewAppeared sendNext:@YES];
 }
 
 - (void)didReceiveMemoryWarning {

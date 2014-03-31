@@ -18,6 +18,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "MMDBFetcherDelegate.h"
 #import "MMDBFetcher.h"
@@ -37,6 +38,8 @@
  *  Current users location, based on GPS
  */
 @property(nonatomic, strong) CLLocation *location;
+
+@property(nonatomic, strong) RACSubject *viewAppeared;
 
 /**
  *  The bar button that is displayed in portrait mode to
