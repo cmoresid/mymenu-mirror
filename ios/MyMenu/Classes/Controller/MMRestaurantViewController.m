@@ -756,7 +756,7 @@ MMMenuItemRating *touchedReview;
 
 	CGRect segmentControlFrame = CGRectMake((self.view.frame.size.width/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
 	
-    self.reviewOrderBySegmentControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Top Rated", nil)]];
+    self.reviewOrderBySegmentControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Most Liked", nil)]];
 
     self.reviewOrderBySegmentControl.frame = segmentControlFrame;
     self.reviewOrderBySegmentControl.alpha = 1.0;
