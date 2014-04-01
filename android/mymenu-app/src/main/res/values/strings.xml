@@ -110,6 +110,11 @@
 
   <!-- Specials Fragment -->
   <string name="specials">Specials</string>
+  <string name="date_range_text">Displaying specials between %1$s and %2$s</string>
+  <string name="date_range_prompt">Select an end date.</string>
+  <string name="filter_drinks">Drinks</string>
+  <string name="filter_entrees">Entrees</string>
+  <string name="filter_desserts">Desserts</string>
 
   <!--Settings Fragment -->
   <string name="settings">Settings</string>

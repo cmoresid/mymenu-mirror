@@ -19,6 +19,7 @@ package ca.mymenuapp.util;
 
 import android.text.TextUtils;
 import android.util.Patterns;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,5 +56,16 @@ public final class Strings {
     final Pattern emailPattern = Patterns.EMAIL_ADDRESS;
     final Matcher matcher = emailPattern.matcher(string);
     return matcher.matches();
+  }
+
+  public static String join(List<String> parts) {
+    StringBuilder builder = new StringBuilder();
+    for (String part : parts) {
+      if (builder.length() > 0) {
+        builder.append(", ");
+      }
+      builder.append(part);
+    }
+    return builder.toString();
   }
 }

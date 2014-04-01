@@ -26,6 +26,7 @@ import org.simpleframework.xml.Root;
 @Root(name = "result")
 public class MenuItem implements Parcelable {
   private static final String NULL_STRING = "null";
+  private static final String NOT_EDIBLE = "notedible";
 
   @Element(name = "id", required = false) public long id;
   @Element(name = "merchid", required = false) public long merchantId;
@@ -43,6 +44,10 @@ public class MenuItem implements Parcelable {
 
   public MenuItem() {
     // default constructor
+  }
+
+  public boolean isNotEdible() {
+    return edible.compareTo(NOT_EDIBLE) == 0;
   }
 
   /**
