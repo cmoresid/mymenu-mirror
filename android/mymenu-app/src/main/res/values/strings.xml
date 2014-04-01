@@ -116,12 +116,18 @@
   <string name="filter_entrees">Entrees</string>
   <string name="filter_desserts">Desserts</string>
 
-  <!--Settings Fragment -->
+  <!-- Settings Fragment -->
   <string name="settings">Settings</string>
   <string name="settings_save">Save</string>
   <string name="settings_firstname">First Name</string>
   <string name="settings_lastname">Last Name</string>
   <string name="empty_modifications_text">No Modifications For This Item</string>
   <string name="guest_mode">Guest</string>
+
+  <!-- Restaurant Activity -->
+  <string name="info">Info</string>
+  <string name="address">Address</string>
+  <string name="hours">Hours</string>
+  <string name="restaurant_hours">Hours : %1$s - %2$s</string>
 
 </resources>

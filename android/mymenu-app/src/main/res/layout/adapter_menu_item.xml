@@ -40,7 +40,7 @@
       android:padding="6dp"
       android:singleLine="true"
       android:ellipsize="end"
-      android:textColor="#fff"
+      android:textColor="@color/white"
       android:background="@drawable/gradient_overlay"
       tools:drawableLeft="@drawable/restriction_mymenu"
       />
