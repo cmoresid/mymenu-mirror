@@ -62,6 +62,13 @@ public class MenuItemReviewAdapter extends BindableListAdapter<MenuItemReview> {
     } else {
       setLeftDrawable(R.drawable.ic_emo_basic, holder.email);
     }
+    holder.rating.setText(Double.toString(review.rating));
+    if (review.getLikeCount() == 0) {
+      holder.likeCount.setVisibility(View.GONE);
+    } else {
+      holder.likeCount.setVisibility(View.VISIBLE);
+      holder.likeCount.setText("+" + review.getLikeCount());
+    }
     holder.overflow.setListener(new OverflowView.OverflowActionListener() {
       @Override public void onPopupShown() {
 
@@ -86,6 +93,7 @@ public class MenuItemReviewAdapter extends BindableListAdapter<MenuItemReview> {
     @InjectView(R.id.review) TextView review;
     @InjectView(R.id.overflow) OverflowView overflow;
     @InjectView(R.id.rating) TextView rating;
+    @InjectView(R.id.like_count) TextView likeCount;
 
     ViewHolder(View root) {
       ButterKnife.inject(this, root);
