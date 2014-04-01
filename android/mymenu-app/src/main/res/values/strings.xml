@@ -97,7 +97,7 @@
 
   <!-- Main Activity -->
   <string name="search">Search</string>
-  <string name="restaurant_search_hint">Search</string>
+  <string name="restaurant_search_hint">Search...</string>
   <string name="drawer_close">Drawer Close</string>
   <string name="drawer_open">Drawer Open</string>
   <string name="distance">Distance</string>

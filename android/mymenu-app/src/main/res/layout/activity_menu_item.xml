@@ -20,12 +20,12 @@
 <ca.mymenuapp.ui.widgets.SlidingUpPanelLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sliding_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:collapsedHeight="128dp"
-    android:gravity="bottom"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:gravity="bottom">
 
   <ca.mymenuapp.ui.widgets.NotifyingScrollView
       android:id="@+id/scroll_view"
@@ -84,8 +84,7 @@
           android:layout_height="wrap_content"
           android:paddingRight="@dimen/activity_horizontal_margin"
           android:paddingLeft="@dimen/activity_horizontal_margin"
-          android:text="@string/empty_modifications_text"
-          />
+          android:text="@string/empty_modifications_text"/>
 
     </LinearLayout>
 
@@ -118,8 +117,8 @@
           android:layout_height="fill_parent"
           android:background="?android:dividerVertical"
           android:layout_marginBottom="4dp"
-          android:layout_marginTop="4dp"
-          />
+          android:layout_marginTop="4dp"/>
+
       <TextView
           android:id="@+id/write_review_button"
           android:layout_width="0dp"
@@ -129,9 +128,8 @@
           android:textSize="25sp"
           android:textColor="@color/white"
           android:background="@color/turqoise"
-          style="?android:buttonBarButtonStyle"
+          style="?android:buttonBarButtonStyle"/>
 
-          />
     </LinearLayout>
 
     <FrameLayout
