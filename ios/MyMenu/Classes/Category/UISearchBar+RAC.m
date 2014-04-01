@@ -7,9 +7,10 @@
 //
 //  https://github.com/dewind/ReactiveCocoaExample
 
-#import "UISearchBar+RAC.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <objc/runtime.h>
+
+#import "UISearchBar+RAC.h"
 
 @interface UISearchBar()<UISearchBarDelegate>
 

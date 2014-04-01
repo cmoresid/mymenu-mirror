@@ -16,6 +16,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "MMSplitViewManager.h"
 
 @class MMSplitViewManager;
@@ -31,6 +32,10 @@
  */
 @property(nonatomic, weak) IBOutlet UIWebView *aboutWebView;
 
+/**
+ *  The bar button that is displayed in portrait mode to
+ *  show the settings drawer.
+ */
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 
 @end

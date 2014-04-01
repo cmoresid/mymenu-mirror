@@ -17,7 +17,10 @@
 
 #import "MMMapPopOverViewController.h"
 #import "MMRestaurantViewController.h"
+#import "MMMasterRestaurantTableViewController.h"
+#import "MMDetailMapViewController.h"
 #import "UIStoryboard+UIStoryboard_MyMenu.h"
+#import "MMSplitViewManager.h"
 
 @interface MMMapPopOverViewController ()
 
@@ -39,12 +42,12 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     
-    if (CGRectContainsPoint([self.contentView frame], [touch locationInView:self.contentView])) {
-        MMRestaurantViewController *restaurantViewController = [[UIStoryboard menuStoryboard] instantiateViewControllerWithIdentifier:@"restaurantView"];
-        restaurantViewController.currentMerchantId = self.merchant.mid;
-        
+    if (CGRectContainsPoint([self.contentView frame], [touch locationInView:self.contentView])) {        
         [self.popOverController dismissPopoverAnimated:YES];
-        [self.splitViewNavigationController pushViewController:restaurantViewController animated:YES];
+        
+        MMMasterRestaurantTableViewController *master = (MMMasterRestaurantTableViewController *)((UINavigationController *) [self.parentSplitViewController.viewControllers firstObject]).topViewController;
+        
+        [master performSegueWithIdentifier:@"restaurantSegue" sender:self];
     }
 }
 

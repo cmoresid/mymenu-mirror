@@ -17,6 +17,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import <CCHMapClusterController/CCHMapClusterControllerDelegate.h>
 #import "MMMapPopOverViewController.h"
 
 /**
@@ -24,7 +25,7 @@
  * Apple. We implement the delegate in order to provide
  * custom pins for the restaurants.
  */
-@interface MMRestaurantMapDelegate : NSObject <MKMapViewDelegate, UIPopoverControllerDelegate>
+@interface MMRestaurantMapDelegate : NSObject <MKMapViewDelegate, UIPopoverControllerDelegate, CCHMapClusterControllerDelegate>
 
 /**
  *  Reference to the popover controller
@@ -43,5 +44,11 @@
 /**
  *  reference to the navigation controller in the map view
  */
-@property(nonatomic, strong) UINavigationController *splitViewNavigationController;
+@property(nonatomic, strong) UISplitViewController *parentSplitViewController;
+
+/**
+ *  The map view that corresponds to the map view
+ */
+@property(nonatomic, weak) MKMapView *mapView;
+
 @end

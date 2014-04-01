@@ -1,23 +1,43 @@
 //
-//  MMSplitViewDelegate.h
-//  MyMenu
+//  Copyright (C) 2014  MyMenu, Inc.
 //
-//  Created by Connor Moreside on 2014-03-25.
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
 //
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see [http://www.gnu.org/licenses/].
 //
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  Provides an interface for any detail view controller
+ *  that wishes to support landscape and portrait mode.
+ */
 @protocol MMDetailViewController
 
 @property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem;
 
 @end
 
+/**
+ *
+ */
 @interface MMSplitViewManager : NSObject <UISplitViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UISplitViewController *splitViewController;
 
 @property (nonatomic, weak) IBOutlet UIViewController<MMDetailViewController> *detailViewController;
+
+- (instancetype)initWithNavigationButtonItemText:(NSString *)buttonText;
+
+- (void)dismissSlideOverDrawer;
 
 @end

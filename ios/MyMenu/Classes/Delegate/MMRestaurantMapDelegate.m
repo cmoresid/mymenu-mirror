@@ -21,61 +21,79 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "MMPresentationFormatter.h"
+#import <CCHMapClusterController/CCHMapClusterAnnotation.h>
+#import "MMClusterAnnotationView.h"
 
 @implementation MMRestaurantMapDelegate
 
+- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation {
+    
+    NSUInteger numAnnotations = mapClusterAnnotation.annotations.count;
+    
+    // If there is only one annotation in the custered annotation, don't
+    // clober the title for that annotation; otherwise, you can't fetch
+    // the merchant information.
+    if (numAnnotations == 1) {
+        MKPointAnnotation *point = [[mapClusterAnnotation.annotations allObjects] firstObject];
+        
+        return point.title;
+    }
+    else {
+        NSString *unit = numAnnotations > 1 ? NSLocalizedString(@"restaurants", nil) : NSLocalizedString(@"restaurant", nil);
+        return [NSString stringWithFormat:@"%tu %@", numAnnotations, unit];
+    }
+}
+
+- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation {
+    
+    NSUInteger numAnnotations = MIN(mapClusterAnnotation.annotations.count, 5);
+    NSArray *annotations = [mapClusterAnnotation.annotations.allObjects subarrayWithRange:NSMakeRange(0, numAnnotations)];
+    NSArray *titles = [annotations valueForKey:@"subtitle"];
+    
+    return [titles componentsJoinedByString:@", "];
+}
+
+- (void)mapClusterController:(CCHMapClusterController *)mapClusterController willReuseMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation {
+    
+    MMClusterAnnotationView *clusterAnnotationView = (MMClusterAnnotationView *)[self.mapView viewForAnnotation:mapClusterAnnotation];
+    clusterAnnotationView.count = mapClusterAnnotation.annotations.count;
+}
+
 - (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation {
-    static NSString *AnnotationViewID = @"annotationViewID";
-    
-    NSString *annotationId;
-    NSString *imageName;
-    
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
-    else {
-        annotationId = AnnotationViewID;
-        imageName = @"location-marker.png";
-    }
-    
-    MKAnnotationView *annotationView = (MKAnnotationView *) [map dequeueReusableAnnotationViewWithIdentifier:annotationId];
-    
-    if (annotationView == nil) {
-        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationId];
-    }
-    
-    
-    annotationView.image = [UIImage imageNamed:imageName];
-    annotationView.annotation = annotation;
-    annotationView.canShowCallout = TRUE;
-    
-    return annotationView;
-}
 
-- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews {
-    for (MKAnnotationView *annView in annotationViews) {
-        if ([annView.annotation isKindOfClass:[MKUserLocation class]]) {
-            continue;
-        }
-        
-        CGRect endFrame = annView.frame;
-        annView.frame = CGRectOffset(endFrame, 0, -500);
-        
-        [UIView animateWithDuration:0.5
-                         animations:^{
-                             annView.frame = endFrame;
-                         }];
+    static NSString *identifier = @"clusterAnnotation";
+    
+    MMClusterAnnotationView *clusterAnnotationView = (MMClusterAnnotationView *)[map dequeueReusableAnnotationViewWithIdentifier:identifier];
+    if (clusterAnnotationView) {
+        clusterAnnotationView.annotation = annotation;
+    } else {
+        clusterAnnotationView = [[MMClusterAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        clusterAnnotationView.canShowCallout = YES;
     }
+    
+    CCHMapClusterAnnotation *clusterAnnotation = (CCHMapClusterAnnotation *)annotation;
+    clusterAnnotationView.count = clusterAnnotation.annotations.count;
+    
+    return clusterAnnotationView;
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    if([view.annotation isKindOfClass:[MKUserLocation class]]){
+    BOOL isUserLocationAnnotation = [view.annotation isKindOfClass:[MKUserLocation class]];
+    BOOL isSingleAnnotation = !isUserLocationAnnotation && (((MMClusterAnnotationView *)view).count == 1);
+    
+    if(isUserLocationAnnotation || !isSingleAnnotation) {
         return;
     }
+    
     [mapView deselectAnnotation:view.annotation animated:YES];
+
     NSNumber *merchId = [NSNumber numberWithInteger:[((MKPointAnnotation *) view.annotation).title integerValue]];
     
-    [[[MMMerchantService sharedService] getMerchantWithMerchantID:merchId]
+    [[[[MMMerchantService sharedService] getMerchantWithMerchantID:merchId]
+     deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(MMMerchant *merchant) {
          
          [self createPopOverView:merchant];
@@ -84,11 +102,9 @@
          [self.mapPopOverViewController setView:self.containerView];
          [self.mapPopOverViewController setPreferredContentSize:CGSizeMake(self.containerView.frame.size.width, 80)];
          
-         
          self.mapPopOverViewController.merchant = merchant;
          self.mapPopOverViewController.contentView = self.containerView;
-         self.mapPopOverViewController.splitViewNavigationController = self.splitViewNavigationController;
-         
+         self.mapPopOverViewController.parentSplitViewController = self.parentSplitViewController;
          
          self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.mapPopOverViewController];
          self.popOverController.delegate = self;
@@ -101,6 +117,7 @@
          
      }];
 }
+
 /**
  *  Fills the popover view with the information needed.
  */
@@ -129,6 +146,7 @@
     [self.containerView addSubview:merchTitle];
     [self.containerView addSubview:merchPhone];
     [self.containerView addSubview:merchHours];
+    
     self.containerView.userInteractionEnabled = YES;
 }
 

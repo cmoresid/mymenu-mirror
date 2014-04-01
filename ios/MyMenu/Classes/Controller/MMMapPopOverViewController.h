@@ -35,7 +35,7 @@
 /**
  *  reference to the navigation controller from the split view
  */
-@property(nonatomic, strong) UINavigationController *splitViewNavigationController;
+@property(nonatomic, strong) UISplitViewController *parentSplitViewController;
 
 /**
  *  Reference to the popover instantiated in the MapDelegate

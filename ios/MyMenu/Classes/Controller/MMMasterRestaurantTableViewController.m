@@ -32,6 +32,7 @@
 #import "UISearchBar+RAC.h"
 #import "MMSplitViewController.h"
 #import "MMPresentationFormatter.h"
+#import "MMMapPopOverViewController.h"
 
 @interface MMMasterRestaurantTableViewController ()
 
@@ -48,19 +49,27 @@
     [super awakeFromNib];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    MMDetailMapViewController *detailMapViewController = (MMDetailMapViewController *)((UINavigationController *) [self.splitViewController.viewControllers lastObject]).topViewController;
+    
     @weakify(self);
-    [[[[MMLocationManager sharedLocationManager].getLatestLocation
-        deliverOn:[RACScheduler mainThreadScheduler]]
+    [detailMapViewController.viewAppeared subscribeNext:^(NSNumber *didViewAppear) {
+        @strongify(self);
+        
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
+    }];
+    
+    // Throttle connection, just to make sure if multiple location signals
+    // are sent at the same time, you ignore the first ones. Sometimes, duplicate
+    // pins will get dropped if you don't throttle.
+    [[[[[MMLocationManager sharedLocationManager].getLatestLocation
+        throttle:3.0]
         flattenMap:^RACStream *(CLLocation *location) {
             return [[MMMerchantService sharedService] getDefaultCompressedMerchantsForLocation:location];
         }]
+        deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(NSMutableArray *compressedMerchants) {
             @strongify(self);
             _restaurants = compressedMerchants;
@@ -103,7 +112,6 @@
             [self updatedOrderByFilter:self.orderbySegmentControl];
     }];
     
-    self.detailViewController = (MMDetailMapViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
@@ -186,24 +194,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.searchflag) {
-        self.selectedMerchantId = ((MMMerchant *)[self.filteredrestaurants objectAtIndex:indexPath.row]).mid;
-    }
-    else {
-        self.selectedMerchantId = ((MMMerchant *)[self.restaurants objectAtIndex:indexPath.row]).mid;
-    }
-	[self.detailViewController.navigationController setViewControllers:[NSArray arrayWithObject:self.detailViewController] animated:NO];
-	[self.detailViewController.navigationController setNeedsStatusBarAppearanceUpdate];
-    
-    [self.detailViewController.masterPopoverController dismissPopoverAnimated:YES];
+    self.selectedMerchantId = self.searchflag ? ((MMMerchant *)[self.filteredrestaurants objectAtIndex:indexPath.row]).mid : ((MMMerchant *)[self.restaurants objectAtIndex:indexPath.row]).mid;
     
     [self performSegueWithIdentifier:@"restaurantSegue" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"restaurantSegue"]) {
-        MMRestaurantViewController *restaurantViewController = (MMRestaurantViewController *) segue.destinationViewController;
-        restaurantViewController.currentMerchantId = self.selectedMerchantId;
+        RBStoryboardLink *storyBoardLink = (RBStoryboardLink *) segue.destinationViewController;
+        MMRestaurantViewController *restaurantViewController = (MMRestaurantViewController *) storyBoardLink.scene;
+        
+        restaurantViewController.currentMerchantId = ([sender isKindOfClass:MMMapPopOverViewController.class]) ? ((MMMapPopOverViewController *)sender).merchant.mid : self.selectedMerchantId;
     }
 }
 

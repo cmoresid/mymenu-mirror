@@ -51,7 +51,10 @@ static MMMerchantService *instance;
 }
 
 - (RACSignal *)getMerchantWithMerchantID:(NSNumber *)merchantId {
-    return [[MMDBFetcher get] getMerchant:merchantId];
+    NSString *key = [NSString stringWithFormat:@"merchid/%@", [merchantId stringValue]];
+    RACSignal *compressedMerchantsSignal = [[MMDBFetcher get] getMerchant:merchantId];
+    
+    return [self configureOrGetCachedForSignal:compressedMerchantsSignal withKey:key];
 }
 
 - (RACSignal *)getDefaultCompressedMerchantsForLocation:(CLLocation *)location {

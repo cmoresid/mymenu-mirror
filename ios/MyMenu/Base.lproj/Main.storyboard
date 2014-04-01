@@ -871,7 +871,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="5PO-oJ-x22" customClass="MMDietaryRestrictionCell">
-                                        <rect key="frame" x="50" y="89" width="150" height="171"/>
+                                        <rect key="frame" x="50" y="25" width="150" height="171"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="171"/>
@@ -910,7 +910,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <constraint firstAttribute="bottom" secondItem="yE2-Pu-TNk" secondAttribute="bottom" id="mVn-Nz-40u"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Restrictions" image="184-warning.png" id="iHh-BL-VdX"/>
                     <navigationItem key="navigationItem" title="Dietary Restrictions" id="Zks-L5-CYQ">
                         <barButtonItem key="backBarButtonItem" title="Back" id="lJb-yj-5td"/>
                         <barButtonItem key="rightBarButtonItem" title="Save" style="done" id="gKx-JV-bIT">
@@ -1075,7 +1074,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="orderbySegmentControl" destination="32O-Gz-2z1" id="Upa-QN-iFV"/>
                         <outlet property="searchDisplayController" destination="56W-t4-YSN" id="8Db-Y2-snP"/>
                         <outlet property="tableView" destination="cNd-Hg-SbY" id="Tkf-I9-K0v"/>
-                        <segue destination="S4K-y2-rcY" kind="push" identifier="restaurantSegue" splitViewControllerTargetIndex="1" id="dTD-3H-sRo"/>
+                        <segue destination="S4K-y2-rcY" kind="custom" identifier="restaurantSegue" customClass="MMRestaurantSegue" id="8FD-Pg-6vZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LRc-1Q-Jt2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1100,18 +1099,19 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <viewControllerLayoutGuide type="bottom" id="NHM-DK-Igv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="T6s-9u-X3s">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="zGQ-PB-nFP"/>
+                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="Menu"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WdU-i9-r9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8160" y="-1609"/>
+            <point key="canvasLocation" x="8138" y="-1607"/>
         </scene>
         <!--Detail Map View Controller - Detail-->
         <scene sceneID="XjI-23-2aY">
@@ -1126,7 +1126,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eH9-mO-zrD">
-                                <rect key="frame" x="0.0" y="44" width="766" height="930"/>
+                                <rect key="frame" x="0.0" y="0.0" width="766" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="tintColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -1136,10 +1136,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eH9-mO-zrD" firstAttribute="leading" secondItem="2nE-TQ-7Yp" secondAttribute="leading" id="Mrm-xH-8kd"/>
-                            <constraint firstItem="eH9-mO-zrD" firstAttribute="top" secondItem="Ul5-Kc-toB" secondAttribute="bottom" id="TyY-0d-sAL"/>
-                            <constraint firstAttribute="trailing" secondItem="eH9-mO-zrD" secondAttribute="trailing" constant="2" id="lBh-3z-peN"/>
-                            <constraint firstItem="5Bm-bF-mb3" firstAttribute="top" secondItem="eH9-mO-zrD" secondAttribute="bottom" constant="1" id="w5L-O3-LXA"/>
+                            <constraint firstItem="eH9-mO-zrD" firstAttribute="leading" secondItem="2nE-TQ-7Yp" secondAttribute="leading" id="PLM-69-ZvW"/>
+                            <constraint firstAttribute="trailing" secondItem="eH9-mO-zrD" secondAttribute="trailing" constant="2" id="QQc-gf-KHT"/>
+                            <constraint firstItem="eH9-mO-zrD" firstAttribute="top" secondItem="2nE-TQ-7Yp" secondAttribute="top" id="fUa-Xm-mg2"/>
+                            <constraint firstAttribute="bottom" secondItem="eH9-mO-zrD" secondAttribute="bottom" id="zKF-gu-bBK"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -1156,7 +1156,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-        <image name="184-warning.png" width="24" height="19"/>
         <image name="profile-icon.png" width="25" height="25"/>
         <image name="restaurant-icon.png" width="27" height="30"/>
         <image name="restriction-icon.png" width="25" height="25"/>
@@ -1169,6 +1168,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ljw-kG-1B6"/>
-        <segue reference="RgV-gk-1Ps"/>
+        <segue reference="62S-hN-Lz1"/>
     </inferredMetricsTieBreakers>
 </document>

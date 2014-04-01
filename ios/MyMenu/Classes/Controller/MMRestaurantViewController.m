@@ -442,10 +442,6 @@ MMMenuItemRating *touchedReview;
     self.searchBar = searchBar;
 }
 
-- (void)configureCollectionViewForSearching {
-    
-}
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [self.viewModel searchForItemWithValue:searchText];
     [self.menuItemsCollectionView reloadData];
@@ -540,6 +536,16 @@ MMMenuItemRating *touchedReview;
     } else {
         [self selectItemInMenuItemCollection:indexPath collectionView:collectionView];
     }
+}
+
+#pragma mark - RBStoryboardLinkSource Delegate Methods
+
+- (BOOL)needsTopLayoutGuide {
+    return YES;
+}
+
+- (BOOL)needsBottomLayoutGuide {
+    return YES;
 }
 
 #pragma mark - Private Helper Methods
@@ -750,7 +756,7 @@ MMMenuItemRating *touchedReview;
 
 	CGRect segmentControlFrame = CGRectMake((self.view.frame.size.width/ 2.0) - segmentControlSize.width / 2.0, 10, segmentControlSize.width, segmentControlSize.height);
 	
-    self.reviewOrderBySegmentControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Top Rated", nil)]];
+    self.reviewOrderBySegmentControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Most Liked", nil)]];
 
     self.reviewOrderBySegmentControl.frame = segmentControlFrame;
     self.reviewOrderBySegmentControl.alpha = 1.0;
