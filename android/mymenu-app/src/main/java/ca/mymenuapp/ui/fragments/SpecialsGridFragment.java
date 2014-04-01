@@ -281,8 +281,6 @@ public class SpecialsGridFragment extends BaseFragment
     }
   }
 
-
-
   @Override public void onDateUnselected(Date date) {
     Ln.d("Unselected " + date);
   }

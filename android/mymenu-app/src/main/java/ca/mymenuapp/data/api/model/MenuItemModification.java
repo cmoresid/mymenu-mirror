@@ -9,7 +9,11 @@ import org.simpleframework.xml.Root;
 public class MenuItemModification implements Parcelable {
 
   @Element(name = "id", required = false) public long id;
+
+  /* The id of the restriction this modification is for.  */
   @Element(name = "restrictid", required = false) public long restrictId;
+
+  /* The id of the menu item this modification is for.  */
   @Element(name = "menuid", required = false) public long menuId;
   @Element(name = "modification", required = false) public String modification;
 
