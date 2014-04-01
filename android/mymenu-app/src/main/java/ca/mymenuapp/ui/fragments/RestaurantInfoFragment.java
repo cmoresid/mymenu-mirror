@@ -40,9 +40,8 @@ public class RestaurantInfoFragment extends BaseFragment {
   @Inject Picasso picasso;
 
   @InjectView(R.id.restaurant_info_description) TextView description;
-  @InjectView(R.id.restaurant_info_address) TextView address;
+  @InjectView(R.id.restaurant_info_address_hours) TextView addressHours;
   @InjectView(R.id.restaurant_info_map) ImageView map;
-  @InjectView(R.id.restaurant_info_hours) TextView hours;
 
   AbsListView.OnScrollListener scrollListener;
 
@@ -66,8 +65,10 @@ public class RestaurantInfoFragment extends BaseFragment {
     super.onStart();
 
     description.setText(restaurant.businessDescription);
-    address.setText(restaurant.address);
-    hours.setText(getString(R.string.restaurant_hours, restaurant.openTime, restaurant.closeTime));
+    addressHours.setText(
+        getString(R.string.restaurant_address_hours, restaurant.openTime, restaurant.closeTime,
+            restaurant.address)
+    );
     picasso.load(buildMapUrl(restaurant.lat, restaurant.lng)).fit().centerInside().into(map);
   }
 
@@ -78,7 +79,7 @@ public class RestaurantInfoFragment extends BaseFragment {
         + ","
         + lng
         + "&"
-        + "size=128x128&"
+        + "size=1024x1024&"
         + "zoom=13&"
         + "key=AIzaSyB5rAy1gQWGYOWm_zf8drIzaqVISMTn75o";
   }

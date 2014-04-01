@@ -126,8 +126,6 @@
 
   <!-- Restaurant Activity -->
   <string name="info">Info</string>
-  <string name="address">Address</string>
-  <string name="hours">Hours</string>
-  <string name="restaurant_hours">Hours : %1$s - %2$s</string>
+  <string name="restaurant_address_hours">%1$s - %2$s at %3$s</string>
 
 </resources>
