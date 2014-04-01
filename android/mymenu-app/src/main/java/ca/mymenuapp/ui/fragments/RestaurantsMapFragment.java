@@ -16,18 +16,29 @@
 
 package ca.mymenuapp.ui.fragments;
 
+import android.content.Context;
 import android.location.Location;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.util.CollectionUtils;
+import com.f2prateek.ln.Ln;
 import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.squareup.otto.Subscribe;
+import com.squareup.picasso.Picasso;
 import java.util.List;
 import javax.inject.Inject;
 import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
@@ -37,22 +48,33 @@ public class RestaurantsMapFragment extends BaseMapFragment
     implements ClusterManager.OnClusterItemClickListener<Restaurant> {
 
   @Inject ReactiveLocationProvider locationProvider;
+  @Inject Picasso picasso;
 
   ClusterManager<Restaurant> clusterManager;
+  private Restaurant selectedRestaurant;
 
   @Override public void onStart() {
     super.onStart();
 
+    //getMap().setInfoWindowAdapter(new CustomInfoAdapter(activityContext));
     getMap().setMyLocationEnabled(true);
     getMap().setIndoorEnabled(true);
     getMap().getUiSettings().setAllGesturesEnabled(true);
-
-    locationProvider.getLastKnownLocation().subscribe(new Action1<Location>() {
+    getMap().setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
       @Override
-      public void call(Location location) {
-        centerMap(location);
+      public void onInfoWindowClick(Marker marker) {
+        bus.post(new MainActivity.OnRestaurantClickEvent(selectedRestaurant));
       }
     });
+
+    locationProvider.getLastKnownLocation().
+
+        subscribe(new Action1<Location>() {
+                    @Override public void call(Location location) {
+                      centerMap(location);
+                    }
+                  }
+        );
   }
 
   @Subscribe
@@ -65,16 +87,20 @@ public class RestaurantsMapFragment extends BaseMapFragment
       if (clusterManager != null) {
         clusterManager.clearItems();
       } else {
+
         clusterManager = new ClusterManager<>(activityContext, getMap());
         // Point the map's listeners at the listeners implemented by the cluster manager.
         getMap().setOnCameraChangeListener(clusterManager);
         getMap().setOnMarkerClickListener(clusterManager);
         clusterManager.setOnClusterItemClickListener(this);
-        clusterManager.setRenderer(new RestaurantRenderer());
+        getMap().setInfoWindowAdapter(clusterManager.getMarkerManager());
+        clusterManager.getClusterMarkerCollection().setOnInfoWindowAdapter(new CustomInfoAdapter(activityContext));
+        clusterManager.getMarkerCollection().setOnInfoWindowAdapter(new CustomInfoAdapter(activityContext));
+        clusterManager.setRenderer(new RestaurantRenderer(activityContext,getMap(),clusterManager));
       }
-
       clusterManager.addItems(restaurants);
       clusterManager.cluster();
+
     }
   }
 
@@ -84,7 +110,7 @@ public class RestaurantsMapFragment extends BaseMapFragment
   }
 
   @Override public boolean onClusterItemClick(Restaurant restaurant) {
-    bus.post(new MainActivity.OnRestaurantClickEvent(restaurant));
+    this.selectedRestaurant = restaurant;
     return false;
   }
 
@@ -92,15 +118,57 @@ public class RestaurantsMapFragment extends BaseMapFragment
    * Draws profile photos inside markers (using IconGenerator).
    * When there are multiple people in the cluster, draw multiple photos (using MultiDrawable).
    */
-  private class RestaurantRenderer extends DefaultClusterRenderer<Restaurant> {
+  static class RestaurantRenderer extends DefaultClusterRenderer<Restaurant> {
 
-    public RestaurantRenderer() {
-      super(activityContext, getMap(), clusterManager);
+    public RestaurantRenderer(Context activityContext, GoogleMap googleMap, ClusterManager cM) {
+      super(activityContext, googleMap, cM);
     }
 
     @Override
     protected void onBeforeClusterItemRendered(Restaurant r, MarkerOptions markerOptions) {
       markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.locationmarker));
+    }
+  }
+
+  class CustomInfoAdapter implements GoogleMap.InfoWindowAdapter {
+    private final LayoutInflater inflater;
+
+    CustomInfoAdapter(Context activityContext) {
+      inflater = LayoutInflater.from(activityContext);
+    }
+
+    @Override
+    public View getInfoContents(Marker marker) {
+      return null;
+    }
+
+    @Override public View getInfoWindow(Marker marker) {
+      View view = inflater.inflate(R.layout.custom_info_window, null);
+      ViewHolder viewHolder = new ViewHolder(view);
+      picasso.load(selectedRestaurant.businessPicture).placeholder(R.drawable.ic_launcher).error(R.drawable.progress_primary_mymenu).into(
+          viewHolder.restImgView);
+      viewHolder.phone.setText(selectedRestaurant.businessNumber);
+      viewHolder.title.setText(selectedRestaurant.businessName);
+      viewHolder.time.setText(selectedRestaurant.openTime + "-" + selectedRestaurant.closeTime);
+
+      Ln.e("In getInfoWindow");
+      Ln.e("business Picture :" + selectedRestaurant.businessPicture);
+      Ln.e("open :" + selectedRestaurant.openTime);
+      Ln.e("close:" + selectedRestaurant.closeTime);
+      picasso.load(selectedRestaurant.businessPicture).placeholder(R.drawable.ic_launcher).error(R.drawable.progress_primary_mymenu).into(
+          viewHolder.restImgView);
+      return view;
+    }
+
+    class ViewHolder {
+      @InjectView(R.id.info_rest_image) ImageView restImgView;
+      @InjectView(R.id.info_time) TextView time;
+      @InjectView(R.id.info_rest_phone) TextView phone;
+      @InjectView(R.id.info_rest_title) TextView title;
+
+      ViewHolder(View root) {
+        ButterKnife.inject(this, root);
+      }
     }
   }
 }
