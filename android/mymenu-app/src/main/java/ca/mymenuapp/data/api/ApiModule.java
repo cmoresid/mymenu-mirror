@@ -51,8 +51,8 @@ public final class ApiModule {
     return new XmlConverter();
   }
 
-  @Provides @Singleton RestAdapter provideRestAdapter(Endpoint endpoint, Client client,
-      Converter converter) {
+  @Provides @Singleton
+  RestAdapter provideRestAdapter(Endpoint endpoint, Client client, Converter converter) {
     return new RestAdapter.Builder() //
         .setEndpoint(endpoint) //
         .setClient(client) //

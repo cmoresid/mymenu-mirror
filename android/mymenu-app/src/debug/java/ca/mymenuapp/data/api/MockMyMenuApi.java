@@ -105,8 +105,8 @@ final class MockMyMenuApi implements MyMenuApi {
     return null;
   }
 
-  @Override public Observable<MenuSpecialResponse> getSpecialsForDateRange(
-      @Field("query") String query) {
+  @Override
+  public Observable<MenuSpecialResponse> getSpecialsForDateRange(@Field("query") String query) {
     return null;
   }
 
