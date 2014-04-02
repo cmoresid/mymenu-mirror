@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright 2014 Prateek Srivastava (@f2prateek)
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <ca.mymenuapp.ui.widgets.SquaredImageView
+      tools:background="@drawable/gradient_overlay"
+      android:id="@+id/special_picture"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:scaleType="centerCrop"/>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_gravity="bottom"
+      android:background="@drawable/gradient_overlay">
+
+    <TextView
+        tools:text="Chocolate Explosion"
+        android:id="@+id/special_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:paddingRight="@dimen/holo_gap"
+        android:paddingLeft="@dimen/holo_gap"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+
+    <TextView
+        tools:text="Decadent chocolate explosion."
+        android:id="@+id/special_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/holo_gap"
+        android:paddingRight="@dimen/holo_gap"
+        android:paddingLeft="@dimen/holo_gap"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:gravity="bottom"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/white"/>
+
+  </LinearLayout>
+
+
+</FrameLayout>

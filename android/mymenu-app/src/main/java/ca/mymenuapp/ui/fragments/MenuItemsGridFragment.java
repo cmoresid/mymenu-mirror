@@ -69,7 +69,7 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
   @Inject Picasso picasso;
 
   AbsListView.OnScrollListener scrollListener;
-  BindableListAdapter<MenuItem> gridAdapter;
+  MenuItemAdapter gridAdapter;
   ShareActionProvider shareActionProvider;
 
   /**
@@ -109,7 +109,7 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
 
   @Override public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-    gridAdapter = new MenuItemAdapter(activityContext, items);
+    gridAdapter = new MenuItemAdapter(activityContext, items, picasso);
     gridView.setAdapter(gridAdapter);
     gridView.setOnScrollListener(scrollListener);
     gridView.setOnItemClickListener(this);
@@ -166,10 +166,13 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
     startActivity(intent);
   }
 
-  class MenuItemAdapter extends BindableListAdapter<MenuItem> {
+  static class MenuItemAdapter extends BindableListAdapter<MenuItem> {
 
-    public MenuItemAdapter(Context context, List<MenuItem> menuItems) {
+    final Picasso picasso;
+
+    public MenuItemAdapter(Context context, List<MenuItem> menuItems, Picasso picasso) {
       super(context, menuItems);
+      this.picasso = picasso;
     }
 
     @Override public long getItemId(int position) {
@@ -187,7 +190,7 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
       ViewHolder holder = (ViewHolder) view.getTag();
       holder.label.setText(item.name);
       picasso.load(item.picture).fit().centerCrop().into(holder.picture);
-      if (item.edible.compareTo("notedible") == 0) {
+      if (item.isNotEdible()) {
         holder.label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.restriction_mymenu, 0, 0,
             0);
       } else {
@@ -195,7 +198,7 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
       }
     }
 
-    class ViewHolder {
+    static class ViewHolder {
       @InjectView(R.id.menu_item_picture) ImageView picture;
       @InjectView(R.id.menu_item_label) TextView label;
 

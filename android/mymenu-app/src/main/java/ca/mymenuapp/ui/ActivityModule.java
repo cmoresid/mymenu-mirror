@@ -32,9 +32,11 @@ import ca.mymenuapp.ui.fragments.BaseMapFragment;
 import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.MenuItemsGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
+import ca.mymenuapp.ui.fragments.RestaurantInfoFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.fragments.ReviewsFragment;
 import ca.mymenuapp.ui.fragments.SettingsFragment;
+import ca.mymenuapp.ui.fragments.SpecialsGridFragment;
 import ca.mymenuapp.ui.fragments.WriteReviewFragment;
 import dagger.Module;
 import dagger.Provides;
@@ -45,10 +47,11 @@ import javax.inject.Singleton;
         // Activities
         BaseActivity.class, LaunchActivity.class, MainActivity.class, LoginActivity.class,
         SignUpActivity.class, RestaurantActivity.class, MenuItemActivity.class,
+
         // Fragments
         BaseFragment.class, DietaryPreferencesFragment.class, MenuItemsGridFragment.class,
         ReviewsFragment.class, RestaurantGridFragment.class, SettingsFragment.class,
-        WriteReviewFragment.class,
+        WriteReviewFragment.class, SpecialsGridFragment.class, RestaurantInfoFragment.class,
 
         // Map Fragments
         BaseMapFragment.class, RestaurantsMapFragment.class

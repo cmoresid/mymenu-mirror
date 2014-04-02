@@ -24,6 +24,8 @@ import org.simpleframework.xml.Root;
 public class MenuCategory {
   @Element(name = "id") public long id;
   @Element(name = "name") public String name;
+  @Element(name = "custom", required = false) public String custom;
+  @Element(name = "merchid", required = false) public String merchId;
 
   @Override public String toString() {
     return "MenuCategory{" +

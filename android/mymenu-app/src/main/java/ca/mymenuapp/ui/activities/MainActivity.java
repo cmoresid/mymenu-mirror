@@ -44,6 +44,7 @@ import ca.mymenuapp.ui.fragments.DietaryPreferencesFragment;
 import ca.mymenuapp.ui.fragments.RestaurantGridFragment;
 import ca.mymenuapp.ui.fragments.RestaurantsMapFragment;
 import ca.mymenuapp.ui.fragments.SettingsFragment;
+import ca.mymenuapp.ui.fragments.SpecialsGridFragment;
 import ca.mymenuapp.ui.widgets.DelegateOnPageChangeListener;
 import ca.mymenuapp.ui.widgets.SwipeableActionBarTabsAdapter;
 import com.f2prateek.ln.Ln;
@@ -159,7 +160,8 @@ public class MainActivity extends BaseActivity {
         new SwipeableActionBarTabsAdapter(this, viewPager, delegateOnPageChangeListener);
     tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.map)),
         RestaurantsMapFragment.class, null);
-
+    tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.specials)),
+        SpecialsGridFragment.class, null);
     if (!userPreference.get().isGuest()) {
       tabsAdapter.addTab(actionBar.newTab().setText(getString(R.string.dietary_preferences)),
           DietaryPreferencesFragment.class, null);
@@ -210,8 +212,8 @@ public class MainActivity extends BaseActivity {
     drawerToggle.onConfigurationChanged(newConfig);
   }
 
-  @OnClick({ R.id.sort_distance, R.id.sort_rating, R.id.sort_cuisine }) void onSortButtonClicked(
-      TextView button) {
+  @OnClick({ R.id.sort_distance, R.id.sort_rating, R.id.sort_cuisine })
+  void onSortButtonClicked(TextView button) {
     switch (button.getId()) {
       case R.id.sort_distance:
         sortRestaurants(new Comparator<Restaurant>() {

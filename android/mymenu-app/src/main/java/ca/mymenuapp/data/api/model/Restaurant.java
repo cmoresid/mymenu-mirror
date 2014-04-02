@@ -20,26 +20,34 @@ package ca.mymenuapp.data.api.model;
 import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.f2prateek.ln.Ln;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterItem;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 @Root(name = "result")
 public class Restaurant implements Parcelable, ClusterItem {
   @Element(name = "id", required = false) public long id;
+
+  /* Restaurant Account Manager Information */
   @Element(name = "email", required = false) public String email;
   @Element(name = "password", required = false) public String password;
   @Element(name = "firstname", required = false) public String firstName;
   @Element(name = "lastname", required = false) public String lastName;
   @Element(name = "contact_phone", required = false) public String phone;
+
+  /* Restaurant Information */
   @Element(name = "business_name", required = false) public String businessName;
   @Element(name = "business_number", required = false) public String businessNumber;
   @Element(name = "business_description", required = false) public String businessDescription;
   @Element(name = "business_picture", required = false) public String businessPicture;
   @Element(name = "business_address1", required = false) public String address;
   @Element(name = "business_city", required = false) public String city;
-  @Element(name = "business_locality", required = false) public String locality;
+  @Element(name = "business_locality", required = false) public String locality; //Province
   @Element(name = "business_postalcode", required = false) public String postalCode;
   @Element(name = "business_country", required = false) public String country;
   @Element(name = "lat", required = false) public double lat;
@@ -54,6 +62,8 @@ public class Restaurant implements Parcelable, ClusterItem {
   @Element(name = "pricehigh", required = false) public String priceHigh;
   @Element(name = "opentime", required = false) public String openTime;
   @Element(name = "closetime", required = false) public String closeTime;
+
+  /* Calculated distance from the user. */
   @Element(name = "distance", required = false) public String distance;
   @Element(name = "categoryid", required = false) public String categoryId;
 
@@ -61,6 +71,16 @@ public class Restaurant implements Parcelable, ClusterItem {
 
   public Restaurant() {
     // default constructor
+  }
+
+  public String getTime(String time) {
+    try {
+      Date date = new SimpleDateFormat("HH:mm:ss").parse(time);
+      return new SimpleDateFormat("HH:mm").format(date);
+    } catch (ParseException e) {
+      Ln.e(e);
+      return null;
+    }
   }
 
   public Location getLocation() {

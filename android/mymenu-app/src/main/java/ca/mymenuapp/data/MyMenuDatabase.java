@@ -26,6 +26,8 @@ import ca.mymenuapp.data.api.model.MenuItemModification;
 import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReview;
 import ca.mymenuapp.data.api.model.MenuResponse;
+import ca.mymenuapp.data.api.model.MenuSpecial;
+import ca.mymenuapp.data.api.model.MenuSpecialResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.data.api.model.RestaurantListResponse;
 import ca.mymenuapp.data.api.model.RestaurantMenu;
@@ -34,7 +36,11 @@ import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionLink;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import ca.mymenuapp.data.rx.EndObserver;
+import ca.mymenuapp.util.Strings;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -136,7 +142,6 @@ public class MyMenuDatabase {
             return dietaryRestrictionResponse.restrictionList;
           }
         })
-        .cache()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(dietaryRestrictionsRequest);
@@ -339,7 +344,6 @@ public class MyMenuDatabase {
             return menuItemModificationResponse.modificationList;
           }
         })
-        .cache()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
@@ -350,6 +354,34 @@ public class MyMenuDatabase {
         String.format(MyMenuApi.POST_INSERT_REVIEW, review.userEmail, review.menuId, review.merchId,
             Double.toString(review.rating), review.description);
     return myMenuApi.addRating(query)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
+
+  public Subscription getSpecialsForDateRange(Date startDate, Date endDate,
+      Observer<List<MenuSpecial>> observer) {
+    List<String> days = new ArrayList<>();
+    Calendar start = Calendar.getInstance();
+    start.setTime(startDate);
+    Calendar end = Calendar.getInstance();
+    end.setTime(endDate);
+    while (!start.after(end)) {
+      days.add("'" + MenuSpecial.getDayStringForDay(start.get(Calendar.DAY_OF_WEEK)) + "'");
+      start.add(Calendar.DATE, 1);
+    }
+
+    String allDays = Strings.join(days);
+
+    String query = String.format(MyMenuApi.GET_SPECIALS_FOR_DATE, allDays,
+        MenuSpecial.DATE_FORMAT.format(endDate),
+        MenuSpecial.DATE_FORMAT.format(startDate)); // note that enddate comes before startdate
+    return myMenuApi.getSpecialsForDateRange(query)
+        .map(new Func1<MenuSpecialResponse, List<MenuSpecial>>() {
+          @Override public List<MenuSpecial> call(MenuSpecialResponse menuSpecialResponse) {
+            return menuSpecialResponse.menuSpecials;
+          }
+        })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);

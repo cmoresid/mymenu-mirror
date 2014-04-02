@@ -29,7 +29,7 @@ import android.widget.BaseAdapter;
  */
 public abstract class BindableAdapter<T> extends BaseAdapter {
   private final Context context;
-  private final LayoutInflater inflater;
+  protected final LayoutInflater inflater;
 
   public BindableAdapter(Context context) {
     this.context = context;

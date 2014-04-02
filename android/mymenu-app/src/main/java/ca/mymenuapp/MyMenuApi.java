@@ -22,6 +22,7 @@ import ca.mymenuapp.data.api.model.MenuCategoryResponse;
 import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
+import ca.mymenuapp.data.api.model.MenuSpecialResponse;
 import ca.mymenuapp.data.api.model.RestaurantListResponse;
 import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
@@ -56,14 +57,14 @@ public interface MyMenuApi {
   String GET_MENU_CATEGORIES = "SELECT * from menucategories";
   String GET_NEARBY_RESTAURANTS = "SELECT id, business_name, category, "
       + "business_number, business_address1, "
-      + "rating, business_picture, business_description, distance, lat, longa "
+      + "rating, business_picture, business_description, distance, lat, longa, opentime, closetime "
       + "FROM(SELECT id, business_name, "
       + "category, business_number, business_address1, rating, business_picture, lat, longa, "
-      + "business_description, "
+      + "business_description, opentime, closetime, "
       + "SQRT(longadiff - -latdiff)*111.12 AS distance "
       + "FROM (SELECT m.id, m.business_name, mc.name AS category, "
       + "m.business_number, m.business_address1, m.rating, m.business_picture, "
-      + "m.business_description, "
+      + "m.business_description, m.opentime, m.closetime, "
       + "m.lat, m.longa, POW(m.longa - %s, 2) AS longadiff, POW(m.lat - %s, 2) "
       + "AS latdiff FROM merchusers m, "
       + "merchcategories mc WHERE m.categoryid=mc.id) AS temp) AS distances "
@@ -93,11 +94,23 @@ public interface MyMenuApi {
           + " m.categoryid=mc.id) AS temp) AS distances WHERE UPPER(business_name)"
           + " LIKE UPPER('%%%s%%') ORDER BY distance ASC LIMIT 25";
 
+  String GET_SPECIALS_FOR_DATE =
+      "SELECT DISTINCT specials.id, specials.merchid, merchusers.business_name "
+          + "AS business, specials.name, specials.description, specials.picture, "
+          + "specials.startdate, specials.enddate, specials.categoryid, specials.weekday, "
+          + "specials.occurType FROM specials INNER JOIN merchusers "
+          + "ON specials.merchid=merchusers.id "
+          + "WHERE (specials.weekday IN (%s) "
+          // ('friday','saturday')
+          + "OR (datediff(specials.startdate, '%s')<= 0 "
+          // enddate
+          + "AND datediff('%s', specials.enddate)<=0))"; // startdate
+
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/users/custom.php") Observable<UserResponse> getUser(
-      @Field("query") String query);
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<UserResponse> getUser(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<MenuItemModificationResponse> getModifications(@Field("query") String query);
@@ -111,41 +124,45 @@ public interface MyMenuApi {
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<RestaurantListResponse> getNearbyRestaurantsByName(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/users/put.php") Observable<Response> createUser(
-      @Field("email") String email, @Field("firstname") String firstname,
-      @Field("lastname") String lastname, @Field("password") String password,
-      @Field("city") String city, @Field("locality") String locality,
-      @Field("country") String country, @Field("gender") char gender,
-      @Field("birthday") int birthday, @Field("birthmonth") int birthmonth,
-      @Field("birthyear") int birthyear);
+  @FormUrlEncoded @POST("/php/users/put.php")
+  Observable<Response> createUser(@Field("email") String email,
+      @Field("firstname") String firstname, @Field("lastname") String lastname,
+      @Field("password") String password, @Field("city") String city,
+      @Field("locality") String locality, @Field("country") String country,
+      @Field("gender") char gender, @Field("birthday") int birthday,
+      @Field("birthmonth") int birthmonth, @Field("birthyear") int birthyear);
 
   @FormUrlEncoded @POST("/php/restrictionuserlink/custom.php")
   Observable<Response> deleteUserRestrictions(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/restrictionuserlink/put.php") Observable<Response> putUserRestriction(
-      @Field("email") String email, @Field("restrictid") long restrictId);
+  @FormUrlEncoded @POST("/php/restrictionuserlink/put.php")
+  Observable<Response> putUserRestriction(@Field("email") String email,
+      @Field("restrictid") long restrictId);
 
   @FormUrlEncoded @POST("/php/merchusers/custom.php")
   Observable<RestaurantListResponse> getRestaurant(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/menu/custom.php") Observable<MenuResponse> getMenu(
-      @Field("query") String query);
+  @FormUrlEncoded @POST("/php/menu/custom.php")
+  Observable<MenuResponse> getMenu(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/menu/custom.php") Observable<MenuCategoryResponse> getMenuCategories(
-      @Field("query") String query);
+  @FormUrlEncoded @POST("/php/menu/custom.php")
+  Observable<MenuCategoryResponse> getMenuCategories(@Field("query") String query);
 
   @FormUrlEncoded @POST("/php/menu/custom.php")
   Observable<MenuItemReviewResponse> getReviewsForRestaurant(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/users/custom.php") Observable<Response> likeReview(
-      @Field("query") String query);
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<Response> likeReview(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/users/custom.php") Observable<Response> editUser(
-      @Field("query") String query);
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<Response> editUser(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/ratings/custom.php") Observable<Response> addRating(
-      @Field("query") String query);
+  @FormUrlEncoded @POST("/php/ratings/custom.php")
+  Observable<Response> addRating(@Field("query") String query);
 
-  @FormUrlEncoded @POST("/php/ratings/custom.php") Observable<Response> addReport(
-      @Field("query") String query);
+  @FormUrlEncoded @POST("/php/ratings/custom.php")
+  Observable<Response> addReport(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/specials/custom.php")
+  Observable<MenuSpecialResponse> getSpecialsForDateRange(@Field("query") String query);
 }

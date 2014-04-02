@@ -70,6 +70,7 @@ public class MenuItemActivity extends BaseActivity {
   @InjectExtra(ARGS_RESTAURANT) Restaurant restaurant;
   @InjectExtra(ARGS_REVIEWS) ArrayList<MenuItemReview> reviews;
 
+  @InjectView(R.id.menu_item_reviews_summary) TextView rating;
   @InjectView(R.id.menu_item_image_header) ImageView header;
   @InjectView(R.id.menu_item_description) TextView description;
   @InjectView(R.id.menu_item_reviews_summary) TextView reviewSummary;
@@ -178,6 +179,7 @@ public class MenuItemActivity extends BaseActivity {
     picasso.load(menuItem.picture).fit().centerCrop().into(header);
     getActionBar().setTitle(menuItem.name);
     description.setText(menuItem.description);
+    rating.setText(Float.toString(menuItem.rating));
     if (savedInstanceState == null) {
       getFragmentManager().beginTransaction()
           .add(R.id.menu_item_reviews, ReviewsFragment.newInstance(reviews, false))
@@ -226,7 +228,6 @@ public class MenuItemActivity extends BaseActivity {
   @OnClick(R.id.write_review_button) void onWriteReviewClicked() {
     if (!userPreferences.get().isGuest()) {
       WriteReviewFragment wrf = new WriteReviewFragment(menuItem);
-      //FragmentTransaction ft = getFragmentManager().beginTransaction();
       wrf.show(getFragmentManager(), "write_review_fragment");
     } else {
       Toast.makeText(this, "Sign in/Sign up to review.", 0).show();

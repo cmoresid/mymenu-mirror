@@ -32,9 +32,9 @@ public class User {
   @Element(name = "lastname") public String lastName;
   @Element(name = "password") public String password;
   @Element(name = "city") public String city;
-  @Element(name = "locality") public String locality;
+  @Element(name = "locality") public String locality; //Province
   @Element(name = "country") public String country;
-  @Element(name = "gender") public char gender;
+  @Element(name = "gender") public char gender; // Male/Female/Unspecified
   @Element(name = "birthday") public int birthday;
   @Element(name = "birthmonth") public int birthmonth;
   @Element(name = "birthyear") public int birthyear;
@@ -43,6 +43,7 @@ public class User {
   // List of restrictions for this user
   @Element(required = false) public List<Long> restrictions;
 
+  /* Used to check whether the user is logged in as a guest */
   public boolean isGuest() {
     if (this.email.compareTo(IS_GUEST) == 0) {
       return true;

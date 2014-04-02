@@ -42,6 +42,7 @@ import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.MenuItemsGridFragment;
+import ca.mymenuapp.ui.fragments.RestaurantInfoFragment;
 import ca.mymenuapp.ui.fragments.ReviewsFragment;
 import ca.mymenuapp.ui.misc.AlphaForegroundColorSpan;
 import ca.mymenuapp.ui.widgets.KenBurnsView;
@@ -279,12 +280,16 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
     }
 
     @Override public int getCount() {
-      return menu.getCategoryCount() + 1;
+      return menu.getCategoryCount() + 2;
     }
 
     @Override public Fragment getItem(int position) {
-      if (position < menu.getCategoryCount()) {
-        return MenuItemsGridFragment.newInstance(menu.getMenuItemsByCategory(position),
+      if (position == 0) {
+        return RestaurantInfoFragment.newInstance(menu.getRestaurant());
+      }
+      int menuPage = position - 1;
+      if (menuPage < menu.getCategoryCount()) {
+        return MenuItemsGridFragment.newInstance(menu.getMenuItemsByCategory(menuPage),
             menu.getRestaurant(), menu.getReviews());
       } else {
         return ReviewsFragment.newInstance(menu.getReviews(), true);
@@ -292,8 +297,12 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
     }
 
     @Override public CharSequence getPageTitle(int position) {
-      if (position < menu.getCategoryCount()) {
-        return menu.getCategoryTitle(position);
+      if (position == 0) {
+        return getString(R.string.info);
+      }
+      int menuPage = position - 1;
+      if (menuPage < menu.getCategoryCount()) {
+        return menu.getCategoryTitle(menuPage);
       } else {
         return getString(R.string.reviews);
       }

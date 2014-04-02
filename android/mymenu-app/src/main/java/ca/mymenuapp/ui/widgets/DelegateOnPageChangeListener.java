@@ -24,8 +24,8 @@ public class DelegateOnPageChangeListener implements ViewPager.OnPageChangeListe
     pageChangeListeners.add(listener);
   }
 
-  @Override public void onPageScrolled(int position, float positionOffset,
-      int positionOffsetPixels) {
+  @Override
+  public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
     if (!CollectionUtils.isNullOrEmpty(pageChangeListeners)) {
       for (ViewPager.OnPageChangeListener listener : pageChangeListeners) {
         listener.onPageScrolled(position, positionOffset, positionOffsetPixels);

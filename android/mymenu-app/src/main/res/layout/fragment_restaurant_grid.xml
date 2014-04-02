@@ -36,7 +36,7 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:numColumns="auto_fit"
-      android:columnWidth="480dp"
+      android:columnWidth="@dimen/restaurant_grid_item_width"
       android:stretchMode="columnWidth"
       android:drawSelectorOnTop="true"
       android:scrollbarStyle="insideOverlay"

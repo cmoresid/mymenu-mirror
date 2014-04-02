@@ -26,6 +26,7 @@ import org.simpleframework.xml.Root;
 @Root(name = "result")
 public class MenuItem implements Parcelable {
   private static final String NULL_STRING = "null";
+  private static final String NOT_EDIBLE = "notedible";
 
   @Element(name = "id", required = false) public long id;
   @Element(name = "merchid", required = false) public long merchantId;
@@ -37,12 +38,17 @@ public class MenuItem implements Parcelable {
   // ratingCount may be null or "null", so keep it as a string!
   @Element(name = "ratingcount", required = false) public String ratingCount;
   @Element(name = "categoryid", required = false) public long categoryId;
-  @Element(name = "category", required = false) public String category;
+  @Element(name = "category", required = false) public String category; // Dinner/Lunch etc.
   // flag to mark whether this item is edible by the current user
-  @Element(name = "edible") public String edible;
+  @Element(name = "edible") public String edible; /* To check whether the item is restricted for the
+                                                    user */
 
   public MenuItem() {
     // default constructor
+  }
+
+  public boolean isNotEdible() {
+    return edible.compareTo(NOT_EDIBLE) == 0;
   }
 
   /**
