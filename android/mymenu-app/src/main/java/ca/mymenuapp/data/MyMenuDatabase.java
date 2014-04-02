@@ -104,8 +104,7 @@ public class MyMenuDatabase {
   }
 
   public Subscription checkUser(final User user, Observer<UserResponse> observer) {
-    final String query =
-        String.format(MyMenuApi.CHECK_USER_EXISTS, user.email);
+    final String query = String.format(MyMenuApi.CHECK_USER_EXISTS, user.email);
     return myMenuApi.checkUser(query).subscribeOn(Schedulers.io()) //
         .observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
   }
