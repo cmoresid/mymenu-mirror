@@ -49,10 +49,13 @@ import ca.mymenuapp.util.CollectionUtils;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
+import retrofit.client.Response;
 
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
@@ -60,7 +63,7 @@ import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
  * An activity to display a single menu item.
  * It displays the reviews for the menu item, and allows the user to rate the menu item.
  */
-public class MenuItemActivity extends BaseActivity {
+public class MenuItemActivity extends BaseActivity implements WriteReviewFragment.CallBack {
   public static final String ARGS_MENU_ITEM = "menu_item";
   public static final String ARGS_RESTAURANT = "restaurant";
   public static final String ARGS_REVIEWS = "reviews";
@@ -84,6 +87,7 @@ public class MenuItemActivity extends BaseActivity {
 
   private Drawable actionBarBackgroundDrawable;
   private ShareActionProvider shareActionProvider;
+  private ReviewsFragment fragment;
 
   private NotifyingScrollView.OnScrollChangedListener onScrollChangedListener =
       new NotifyingScrollView.OnScrollChangedListener() {
@@ -173,7 +177,6 @@ public class MenuItemActivity extends BaseActivity {
    * Update view with our menu item data.
    */
   private void bindView(Bundle savedInstanceState) {
-
     getModifications();
     picasso.load(restaurant.businessPicture).into(actionBarTarget);
     picasso.load(menuItem.picture).fit().centerCrop().into(header);
@@ -181,9 +184,8 @@ public class MenuItemActivity extends BaseActivity {
     description.setText(menuItem.description);
     rating.setText(Float.toString(menuItem.rating));
     if (savedInstanceState == null) {
-      getFragmentManager().beginTransaction()
-          .add(R.id.menu_item_reviews, ReviewsFragment.newInstance(reviews, false))
-          .commit();
+      fragment = ReviewsFragment.newInstance(reviews, false);
+      getFragmentManager().beginTransaction().add(R.id.menu_item_reviews, fragment).commit();
     }
   }
 
@@ -232,5 +234,19 @@ public class MenuItemActivity extends BaseActivity {
     } else {
       Toast.makeText(this, "Sign in/Sign up to review.", 0).show();
     }
+  }
+
+  @Override public void onReviewCreated(final MenuItemReview review) {
+    rating.setText(String.valueOf((menuItem.rating * menuItem.getRatingCount() + review.rating) / (
+        menuItem.getRatingCount()
+            + 1)));
+
+    reviews.add(review);
+    fragment.onReviewCreated(review);
+    myMenuDatabase.addRating(review, new EndlessObserver<Response>() {
+      @Override public void onNext(Response response) {
+        Crouton.makeText(MenuItemActivity.this, R.string.review_saved, Style.CONFIRM).show();
+      }
+    });
   }
 }
