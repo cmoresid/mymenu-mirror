@@ -28,6 +28,7 @@ import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.util.CollectionUtils;
+import com.f2prateek.ln.Ln;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -37,6 +38,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.squareup.otto.Subscribe;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 import javax.inject.Inject;
@@ -145,21 +147,26 @@ public class RestaurantsMapFragment extends BaseMapFragment
       return null;
     }
 
-    @Override public View getInfoWindow(Marker marker) {
-      View view = inflater.inflate(R.layout.custom_info_window, null);
+    @Override public View getInfoWindow(final Marker marker) {
+      final View view = inflater.inflate(R.layout.custom_info_window, null);
       ViewHolder viewHolder = new ViewHolder(view);
-      picasso.load(selectedRestaurant.businessPicture)
-          .placeholder(R.drawable.ic_launcher)
-          .error(R.drawable.progress_primary_mymenu)
-          .into(viewHolder.restImgView);
       viewHolder.phone.setText(selectedRestaurant.businessNumber);
       viewHolder.title.setText(selectedRestaurant.businessName);
-      viewHolder.time.setText(selectedRestaurant.openTime + "-" + selectedRestaurant.closeTime);
+      viewHolder.time.setText(selectedRestaurant.getTime(selectedRestaurant.openTime)
+          + "-"
+          + selectedRestaurant.getTime(selectedRestaurant.closeTime));
+      picasso.load(selectedRestaurant.businessPicture).into(viewHolder.restImgView, new Callback() {
+        @Override public void onSuccess() {
+          if (marker != null && marker.isInfoWindowShown()) {
+            marker.hideInfoWindow();
+            marker.showInfoWindow();
+          }
+        }
 
-      picasso.load(selectedRestaurant.businessPicture)
-          .placeholder(R.drawable.ic_launcher)
-          .error(R.drawable.progress_primary_mymenu)
-          .into(viewHolder.restImgView);
+        @Override public void onError() {
+          Ln.e("Failed loading");
+        }
+      });
       return view;
     }
 

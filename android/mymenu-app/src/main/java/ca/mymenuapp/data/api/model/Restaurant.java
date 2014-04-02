@@ -20,8 +20,12 @@ package ca.mymenuapp.data.api.model;
 import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.f2prateek.ln.Ln;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterItem;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -67,6 +71,16 @@ public class Restaurant implements Parcelable, ClusterItem {
 
   public Restaurant() {
     // default constructor
+  }
+
+  public String getTime(String time) {
+    try {
+      Date date = new SimpleDateFormat("HH:mm:ss").parse(time);
+      return new SimpleDateFormat("HH:mm").format(date);
+    } catch (ParseException e) {
+      Ln.e(e);
+      return null;
+    }
   }
 
   public Location getLocation() {

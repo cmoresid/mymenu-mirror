@@ -66,7 +66,7 @@ public class RestaurantInfoFragment extends BaseFragment {
 
     description.setText(restaurant.businessDescription);
     addressHours.setText(
-        getString(R.string.restaurant_address_hours, restaurant.openTime, restaurant.closeTime,
+        getString(R.string.restaurant_address_hours, restaurant.getTime(restaurant.openTime), restaurant.getTime(restaurant.closeTime),
             restaurant.address)
     );
     picasso.load(buildMapUrl(restaurant.lat, restaurant.lng)).fit().centerInside().into(map);
