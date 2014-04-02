@@ -63,8 +63,6 @@
 		B027167818A3527D0027BF4E /* MMMockDBFetcherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167718A3527D0027BF4E /* MMMockDBFetcherDelegate.m */; };
 		B027167A18A3574B0027BF4E /* MMDBFetcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B027167918A3574B0027BF4E /* MMDBFetcherTests.m */; };
 		B030B17918E7A6B400CA939E /* MMClusterAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B030B17818E7A6B400CA939E /* MMClusterAnnotationView.m */; };
-		B030B19C18E7A7DC00CA939E /* cluster.png in Resources */ = {isa = PBXBuildFile; fileRef = B030B18A18E7A7DC00CA939E /* cluster.png */; };
-		B030B19D18E7A7DC00CA939E /* cluster@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B030B18B18E7A7DC00CA939E /* cluster@2x.png */; };
 		B03D7C8A18CCFD8200F7F5CE /* StaticData.plist in Resources */ = {isa = PBXBuildFile; fileRef = B03D7C8918CCFD8200F7F5CE /* StaticData.plist */; };
 		B03D7C8E18CCFE2000F7F5CE /* MMStaticDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B03D7C8D18CCFE2000F7F5CE /* MMStaticDataHelper.m */; };
 		B043819818D5702F00780D89 /* MMPresentationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B043819718D5702F00780D89 /* MMPresentationFormatter.m */; };
@@ -89,6 +87,8 @@
 		B08B12C818E1F01600FD16CC /* restaurant-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B08B12C618E1F01600FD16CC /* restaurant-icon.png */; };
 		B08B12C918E1F01600FD16CC /* restaurant-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B08B12C718E1F01600FD16CC /* restaurant-icon@2x.png */; };
 		B09CCF9818D5358A0036F90F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83893EC518919AD400D36670 /* Images.xcassets */; };
+		B0A2757818ECA28D0021E149 /* cluster.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A2757618ECA28D0021E149 /* cluster.png */; };
+		B0A2757918ECA28D0021E149 /* cluster@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A2757718ECA28D0021E149 /* cluster@2x.png */; };
 		B0A7675918D2BB6400626F00 /* MMBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A7675818D2BB6400626F00 /* MMBorderedView.m */; };
 		B0A9906A18CA43E900AC4CBB /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FE518CA43E900AC4CBB /* MMAppDelegate.m */; };
 		B0A9906B18CA43E900AC4CBB /* NSArray+MerchantSort.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A98FE818CA43E900AC4CBB /* NSArray+MerchantSort.m */; };
@@ -236,8 +236,6 @@
 		B02BDC5418D78D39004D276D /* MMMerchantDataSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMMerchantDataSourceDelegate.h; sourceTree = "<group>"; };
 		B030B17718E7A6B400CA939E /* MMClusterAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMClusterAnnotationView.h; sourceTree = "<group>"; };
 		B030B17818E7A6B400CA939E /* MMClusterAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMClusterAnnotationView.m; sourceTree = "<group>"; };
-		B030B18A18E7A7DC00CA939E /* cluster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cluster.png; path = "../../../../../Dropbox2/Dropbox/ios-assets/map_cluster/cluster.png"; sourceTree = "<group>"; };
-		B030B18B18E7A7DC00CA939E /* cluster@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cluster@2x.png"; path = "../../../../../Dropbox2/Dropbox/ios-assets/map_cluster/cluster@2x.png"; sourceTree = "<group>"; };
 		B031A68F18D2449B000BF353 /* libPods-ABCalendarPicker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ABCalendarPicker.a"; path = "Pods/build/Debug-iphoneos/libPods-ABCalendarPicker.a"; sourceTree = "<group>"; };
 		B03D7C8918CCFD8200F7F5CE /* StaticData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StaticData.plist; sourceTree = "<group>"; };
 		B03D7C8C18CCFE2000F7F5CE /* MMStaticDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMStaticDataHelper.h; path = Helper/MMStaticDataHelper.h; sourceTree = "<group>"; };
@@ -275,6 +273,8 @@
 		B09C25E718A38DF400E05289 /* libPods-OCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-OCMock.a"; path = "Pods/build/Debug-iphoneos/libPods-OCMock.a"; sourceTree = "<group>"; };
 		B09C25E918A38E3E00E05289 /* libPods-RaptureXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-RaptureXML.a"; path = "Pods/build/Debug-iphoneos/libPods-RaptureXML.a"; sourceTree = "<group>"; };
 		B09C25EB18A38EE000E05289 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		B0A2757618ECA28D0021E149 /* cluster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cluster.png; sourceTree = "<group>"; };
+		B0A2757718ECA28D0021E149 /* cluster@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cluster@2x.png"; sourceTree = "<group>"; };
 		B0A7675718D2BB6400626F00 /* MMBorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBorderedView.h; sourceTree = "<group>"; };
 		B0A7675818D2BB6400626F00 /* MMBorderedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBorderedView.m; sourceTree = "<group>"; };
 		B0A98FE418CA43E900AC4CBB /* MMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
@@ -458,8 +458,8 @@
 		8333C3EC1894B5680028FFBE /* image_pack */ = {
 			isa = PBXGroup;
 			children = (
-				B030B18A18E7A7DC00CA939E /* cluster.png */,
-				B030B18B18E7A7DC00CA939E /* cluster@2x.png */,
+				B0A2757618ECA28D0021E149 /* cluster.png */,
+				B0A2757718ECA28D0021E149 /* cluster@2x.png */,
 				B0D22F0718E2D414004C0E98 /* restriction-overlay.png */,
 				B0D22F0818E2D414004C0E98 /* restriction-overlay@2x.png */,
 				B0D22EF718E2C1AB004C0E98 /* profile-icon-selected.png */,
@@ -1008,7 +1008,6 @@
 				83CC9EDF18D253FB00E0B48A /* CalendarTodaysDate.png in Resources */,
 				B0D22F0918E2D414004C0E98 /* restriction-overlay.png in Resources */,
 				83CC9EE118D253FB00E0B48A /* Default-568h@2x.png in Resources */,
-				B030B19D18E7A7DC00CA939E /* cluster@2x.png in Resources */,
 				83CC9EDB18D253FB00E0B48A /* CalendarRowBottom.png in Resources */,
 				B08B12C018E1E80400FD16CC /* restriction-icon.png in Resources */,
 				83CC9EDE18D253FB00E0B48A /* CalendarSelectedDate@2x.png in Resources */,
@@ -1031,6 +1030,7 @@
 				174FE0C418945FE000CB82C0 /* RestaurantTableCell.xib in Resources */,
 				B07D3C1718E2199300B65168 /* restaurant-icon-selected.png in Resources */,
 				B0E7616C18CA8D2700D1ABF7 /* Menu.storyboard in Resources */,
+				B0A2757818ECA28D0021E149 /* cluster.png in Resources */,
 				83CC9ED718D253FB00E0B48A /* CalendarPreviousMonth.png in Resources */,
 				83CC9EE018D253FB00E0B48A /* CalendarTodaysDate@2x.png in Resources */,
 				B0D22EFB18E2C1AB004C0E98 /* profile-icon-selected.png in Resources */,
@@ -1042,9 +1042,9 @@
 				B06B61A8189F4AD300A51A81 /* restriction_placeholder.png in Resources */,
 				B08B12C418E1E8F000FD16CC /* specials-icon.png in Resources */,
 				83CC9EE318D253FB00E0B48A /* Default@2x.png in Resources */,
-				B030B19C18E7A7DC00CA939E /* cluster.png in Resources */,
 				B08B12C118E1E80400FD16CC /* restriction-icon@2x.png in Resources */,
 				B0B1B6A818E1D69700D32EA7 /* location-marker@2x.png in Resources */,
+				B0A2757918ECA28D0021E149 /* cluster@2x.png in Resources */,
 				83893EB518919AD400D36670 /* InfoPlist.strings in Resources */,
 				83CC9EDA18D253FB00E0B48A /* CalendarRow@2x.png in Resources */,
 				B07D3C1C18E2199300B65168 /* specials-icon-selected@2x.png in Resources */,
