@@ -36,6 +36,7 @@ import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.adapters.MenuItemReviewAdapter;
 import ca.mymenuapp.ui.misc.BindableListAdapter;
+import ca.mymenuapp.util.CollectionUtils;
 import com.f2prateek.dart.InjectExtra;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -107,8 +108,7 @@ public class ReviewsFragment extends BaseFragment
 
   @Override public void onStart() {
     super.onStart();
-    adapter = new MenuItemReviewAdapter(activityContext, menuItemReviews, this);
-    listView.setAdapter(adapter);
+    init();
   }
 
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -163,9 +163,9 @@ public class ReviewsFragment extends BaseFragment
                 }
               }
           );
-          Toast.makeText(getActivity(), "Liked!", 0).show();
+          Toast.makeText(getActivity(), R.string.liked, Toast.LENGTH_LONG).show();
         } else {
-          Toast.makeText(getActivity(), "Sign in/Sign up to like.", 0).show();
+          Toast.makeText(getActivity(), R.string.sign_up, Toast.LENGTH_LONG).show();
         }
         break;
       case R.id.spam:
@@ -177,13 +177,28 @@ public class ReviewsFragment extends BaseFragment
                 }
               }
           );
-          Toast.makeText(getActivity(), "Reported.", 0).show();
+          Toast.makeText(getActivity(), R.string.reported, Toast.LENGTH_LONG).show();
         } else {
-          Toast.makeText(getActivity(), "Sign in/Sign up to report.", 0).show();
+          Toast.makeText(getActivity(), R.string.sign_up, Toast.LENGTH_LONG).show();
         }
         break;
       default:
         throw new RuntimeException("Invalid Action " + action);
     }
+  }
+
+  public void onReviewCreated(MenuItemReview review) {
+    if (CollectionUtils.isNullOrEmpty(menuItemReviews)) {
+      menuItemReviews = new ArrayList<>();
+      init();
+    }
+    menuItemReviews.add(review);
+    adapter.notifyDataSetChanged();
+    adapter.notifyDataSetInvalidated();
+  }
+
+  private void init() {
+    adapter = new MenuItemReviewAdapter(activityContext, menuItemReviews, this);
+    listView.setAdapter(adapter);
   }
 }
