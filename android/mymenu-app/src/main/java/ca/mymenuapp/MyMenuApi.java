@@ -106,6 +106,11 @@ public interface MyMenuApi {
           // enddate
           + "AND datediff('%s', specials.enddate)<=0))"; // startdate
 
+  String CHECK_USER_EXISTS = "SELECT * from users where email='%s'";
+
+  @FormUrlEncoded @POST("/php/users/custom.php")
+  Observable<UserResponse> checkUser(@Field("query") String query);
+
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(@Field("query") String query);
 
