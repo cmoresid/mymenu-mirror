@@ -101,7 +101,7 @@ public class SettingsFragment extends BaseFragment {
 
     if (!hasError) {
       if (passwordSet) {
-        user.password = passwordText.toString();
+        user.password = passwordText.getText().toString();
       }
       user.city = cityText.getText().toString();
       user.locality = ((LocalizedEnumAdapter.State) localitySpinner.getSelectedItem()).value;

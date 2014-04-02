@@ -32,10 +32,12 @@ import butterknife.OnClick;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.User;
+import ca.mymenuapp.data.api.model.UserResponse;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.adapters.LocalizedEnumAdapter;
 import ca.mymenuapp.ui.fragments.DatePickerFragment;
+import ca.mymenuapp.util.CollectionUtils;
 import ca.mymenuapp.util.Strings;
 import com.f2prateek.ln.Ln;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
@@ -155,14 +157,22 @@ public class SignUpActivity extends BaseActivity implements DatePickerDialog.OnD
 
       setProgressBarIndeterminateVisibility(true);
 
-      myMenuDatabase.createUser(user, new EndlessObserver<Response>() {
-        @Override public void onNext(Response response) {
-          setProgressBarIndeterminateVisibility(false);
-          userPreference.set(user);
-          Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-          intent.setFlags(FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NEW_TASK);
-          startActivity(intent);
-          finish();
+      myMenuDatabase.checkUser(user, new EndlessObserver<UserResponse>() {
+        @Override public void onNext(UserResponse args) {
+          if (!CollectionUtils.isNullOrEmpty(args.userList)) {
+            Crouton.makeText(SignUpActivity.this, "Email is already taken!", Style.ALERT).show();
+          } else {
+            myMenuDatabase.createUser(user, new EndlessObserver<Response>() {
+              @Override public void onNext(Response response) {
+                setProgressBarIndeterminateVisibility(false);
+                userPreference.set(user);
+                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                intent.setFlags(FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+              }
+            });
+          }
         }
       });
     }

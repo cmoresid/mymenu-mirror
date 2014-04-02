@@ -23,7 +23,7 @@ import org.simpleframework.xml.Root;
 
 @Root(name = "results")
 public class UserResponse {
-  @ElementList(name = "result", inline = true) public List<User> userList;
+  @ElementList(name = "result", required = false, inline = true) public List<User> userList;
 
   @Override public String toString() {
     return "UserResponse{" +

@@ -47,6 +47,10 @@ final class MockMyMenuApi implements MyMenuApi {
     this.serverDatabase = serverDatabase;
   }
 
+  @Override public Observable<UserResponse> checkUser(@Field("query") String query) {
+    return null;
+  }
+
   @Override public Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(
       @Field("query") String query) {
     return null;
