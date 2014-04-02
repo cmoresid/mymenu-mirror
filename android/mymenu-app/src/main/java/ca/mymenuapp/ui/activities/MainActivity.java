@@ -212,8 +212,8 @@ public class MainActivity extends BaseActivity {
     drawerToggle.onConfigurationChanged(newConfig);
   }
 
-  @OnClick({ R.id.sort_distance, R.id.sort_rating, R.id.sort_cuisine }) void onSortButtonClicked(
-      TextView button) {
+  @OnClick({ R.id.sort_distance, R.id.sort_rating, R.id.sort_cuisine })
+  void onSortButtonClicked(TextView button) {
     switch (button.getId()) {
       case R.id.sort_distance:
         sortRestaurants(new Comparator<Restaurant>() {
