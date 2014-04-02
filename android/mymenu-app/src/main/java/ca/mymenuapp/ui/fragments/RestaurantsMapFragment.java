@@ -28,7 +28,6 @@ import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.Restaurant;
 import ca.mymenuapp.ui.activities.MainActivity;
 import ca.mymenuapp.util.CollectionUtils;
-import com.f2prateek.ln.Ln;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -55,8 +54,6 @@ public class RestaurantsMapFragment extends BaseMapFragment
 
   @Override public void onStart() {
     super.onStart();
-
-    //getMap().setInfoWindowAdapter(new CustomInfoAdapter(activityContext));
     getMap().setMyLocationEnabled(true);
     getMap().setIndoorEnabled(true);
     getMap().getUiSettings().setAllGesturesEnabled(true);
@@ -93,14 +90,18 @@ public class RestaurantsMapFragment extends BaseMapFragment
         getMap().setOnCameraChangeListener(clusterManager);
         getMap().setOnMarkerClickListener(clusterManager);
         clusterManager.setOnClusterItemClickListener(this);
+        /* Custom info window adapter */
         getMap().setInfoWindowAdapter(clusterManager.getMarkerManager());
-        clusterManager.getClusterMarkerCollection().setOnInfoWindowAdapter(new CustomInfoAdapter(activityContext));
-        clusterManager.getMarkerCollection().setOnInfoWindowAdapter(new CustomInfoAdapter(activityContext));
-        clusterManager.setRenderer(new RestaurantRenderer(activityContext,getMap(),clusterManager));
+        clusterManager.getClusterMarkerCollection()
+            .setOnInfoWindowAdapter(new CustomInfoAdapter(activityContext));
+        clusterManager.getMarkerCollection()
+            .setOnInfoWindowAdapter(new CustomInfoAdapter(activityContext));
+        /* Renderer for custom icons */
+        clusterManager.setRenderer(
+            new RestaurantRenderer(activityContext, getMap(), clusterManager));
       }
       clusterManager.addItems(restaurants);
       clusterManager.cluster();
-
     }
   }
 
@@ -115,8 +116,7 @@ public class RestaurantsMapFragment extends BaseMapFragment
   }
 
   /**
-   * Draws profile photos inside markers (using IconGenerator).
-   * When there are multiple people in the cluster, draw multiple photos (using MultiDrawable).
+   * Changes the marker icon.
    */
   static class RestaurantRenderer extends DefaultClusterRenderer<Restaurant> {
 
@@ -130,6 +130,9 @@ public class RestaurantsMapFragment extends BaseMapFragment
     }
   }
 
+  /*
+   * Provides an adapter to show custom info windows when you click a marker.
+   */
   class CustomInfoAdapter implements GoogleMap.InfoWindowAdapter {
     private final LayoutInflater inflater;
 
@@ -145,18 +148,18 @@ public class RestaurantsMapFragment extends BaseMapFragment
     @Override public View getInfoWindow(Marker marker) {
       View view = inflater.inflate(R.layout.custom_info_window, null);
       ViewHolder viewHolder = new ViewHolder(view);
-      picasso.load(selectedRestaurant.businessPicture).placeholder(R.drawable.ic_launcher).error(R.drawable.progress_primary_mymenu).into(
-          viewHolder.restImgView);
+      picasso.load(selectedRestaurant.businessPicture)
+          .placeholder(R.drawable.ic_launcher)
+          .error(R.drawable.progress_primary_mymenu)
+          .into(viewHolder.restImgView);
       viewHolder.phone.setText(selectedRestaurant.businessNumber);
       viewHolder.title.setText(selectedRestaurant.businessName);
       viewHolder.time.setText(selectedRestaurant.openTime + "-" + selectedRestaurant.closeTime);
 
-      Ln.e("In getInfoWindow");
-      Ln.e("business Picture :" + selectedRestaurant.businessPicture);
-      Ln.e("open :" + selectedRestaurant.openTime);
-      Ln.e("close:" + selectedRestaurant.closeTime);
-      picasso.load(selectedRestaurant.businessPicture).placeholder(R.drawable.ic_launcher).error(R.drawable.progress_primary_mymenu).into(
-          viewHolder.restImgView);
+      picasso.load(selectedRestaurant.businessPicture)
+          .placeholder(R.drawable.ic_launcher)
+          .error(R.drawable.progress_primary_mymenu)
+          .into(viewHolder.restImgView);
       return view;
     }
 

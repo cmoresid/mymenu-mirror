@@ -12,13 +12,13 @@
       android:layout_width="50dp"
       android:layout_height="50dp"
       android:layout_marginRight="5dp"
-      android:adjustViewBounds="true" >
+      android:adjustViewBounds="true">
   </ImageView>
 
   <LinearLayout
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:orientation="vertical" >
+      android:orientation="vertical">
 
     <TextView
         android:id="@+id/info_rest_title"
@@ -28,21 +28,21 @@
         android:singleLine="true"
         android:textColor="#ff000000"
         android:textSize="14dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/info_rest_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#ff7f7f7f"
-        android:textSize="14dp" />
+        android:textSize="14dp"/>
 
     <TextView
         android:id="@+id/info_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#ff7f7f7f"
-        android:textSize="14dp" />
+        android:textSize="14dp"/>
   </LinearLayout>
 
 </LinearLayout>
