@@ -102,6 +102,7 @@ public class DietaryPreferencesFragment extends BaseFragment
       @Override public void onNext(List<Long> dietaryRestrictionIds) {
         userPreference.get().restrictions = dietaryRestrictionIds;
         userPreference.save();
+        myMenuDatabase.evictRestaurantCache();
         if (gridAdapter != null) {
           gridAdapter.notifyDataSetInvalidated();
         }

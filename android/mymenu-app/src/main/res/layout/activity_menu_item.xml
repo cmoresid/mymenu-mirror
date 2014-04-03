@@ -42,11 +42,6 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/action_bar_gradient"/>
-
         <ca.mymenuapp.ui.widgets.AspectRatioImageView
             android:id="@+id/menu_item_image_header"
             android:layout_width="match_parent"
@@ -55,6 +50,11 @@
             app:dominantMeasurement="width"
             app:aspectRatio="0.67"
             android:scaleType="centerCrop"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/action_bar_gradient"/>
 
       </FrameLayout>
 

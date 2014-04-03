@@ -205,16 +205,16 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
       holder.label.setText(item.name);
       picasso.load(item.picture).fit().centerCrop().into(holder.picture);
       if (item.isNotEdible()) {
-        holder.label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.restriction_mymenu, 0, 0,
-            0);
+        holder.restriction.setVisibility(View.VISIBLE);
       } else {
-        holder.label.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        holder.restriction.setVisibility(View.GONE);
       }
     }
 
     static class ViewHolder {
       @InjectView(R.id.menu_item_picture) ImageView picture;
       @InjectView(R.id.menu_item_label) TextView label;
+      @InjectView(R.id.menu_item_restriction_icon) ImageView restriction;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);

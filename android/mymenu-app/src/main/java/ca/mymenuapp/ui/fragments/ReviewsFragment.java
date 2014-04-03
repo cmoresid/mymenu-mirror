@@ -163,6 +163,8 @@ public class ReviewsFragment extends BaseFragment
                 }
               }
           );
+          itemReview.likeCount = String.valueOf(itemReview.getLikeCount() + 1);
+          adapter.notifyDataSetChanged();
           Toast.makeText(getActivity(), R.string.liked, Toast.LENGTH_LONG).show();
         } else {
           Toast.makeText(getActivity(), R.string.sign_up, Toast.LENGTH_LONG).show();
