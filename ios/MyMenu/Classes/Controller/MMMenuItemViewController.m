@@ -625,6 +625,7 @@ MMMenuItemRating *touchedItem;
         
         return;
     }
+    [_eatenThisButton setTitle:NSLocalizedString(@"I have eaten this", nil) forState:UIControlStateDisabled];
 }
 
 - (IBAction)iveEatenThis:(id)sender {
