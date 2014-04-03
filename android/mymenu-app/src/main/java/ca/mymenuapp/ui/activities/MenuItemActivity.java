@@ -88,6 +88,7 @@ public class MenuItemActivity extends BaseActivity implements WriteReviewFragmen
   private Drawable actionBarBackgroundDrawable;
   private ShareActionProvider shareActionProvider;
   private ReviewsFragment fragment;
+  private DecimalFormat formatter = new DecimalFormat("#,##0.0");
 
   private NotifyingScrollView.OnScrollChangedListener onScrollChangedListener =
       new NotifyingScrollView.OnScrollChangedListener() {
@@ -219,7 +220,7 @@ public class MenuItemActivity extends BaseActivity implements WriteReviewFragmen
         calculatedRating += m.rating;
       }
       calculatedRating = calculatedRating / reviews.size();
-      rating.setText(Double.toString(calculatedRating));
+      rating.setText(String.valueOf(formatter.format(calculatedRating)));
     } else {
       rating.setText("N/A");
     }
@@ -277,7 +278,6 @@ public class MenuItemActivity extends BaseActivity implements WriteReviewFragmen
   }
 
   @Override public void onReviewCreated(final MenuItemReview review) {
-    DecimalFormat formatter = new DecimalFormat("#,##0.0");
 
     String updatedRate = String.valueOf(formatter.format(
         (menuItem.rating * reviews.size() + review.rating) / (reviews.size() + 1)));
