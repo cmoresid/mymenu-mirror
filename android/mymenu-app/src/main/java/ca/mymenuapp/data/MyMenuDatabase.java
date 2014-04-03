@@ -579,4 +579,8 @@ public class MyMenuDatabase {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
   }
+
+  public void evictRestaurantCache() {
+    restaurantsCache.clear();
+  }
 }

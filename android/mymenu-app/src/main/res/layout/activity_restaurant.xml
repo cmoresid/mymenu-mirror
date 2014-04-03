@@ -36,6 +36,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/action_bar_gradient"/>
+
     <ImageView
         android:id="@+id/restaurant_header_logo"
         android:layout_width="@dimen/restaurant_header_logo_size"
