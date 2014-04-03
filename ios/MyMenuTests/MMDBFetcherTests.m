@@ -12,6 +12,7 @@
 #import "MMMockNetworkClient.h"
 #import "MMNetworkClientProxy.h"
 #import "MMValidator.h"
+#import "MMRestaurantViewModel.h"
 @class MMMenuItem;
 
 
@@ -113,9 +114,6 @@ MMMockDBFetcherDelegate *mockDelegate;
 			XCTAssert([MMValidator isValidMenuItem:item], @"Failed to Validate item");
 		}
 	};
-
-	
-    [dbFetcher getRestrictedMenu:[NSNumber numberWithInt:1] withUserEmail:@"bieber3@ualberta.ca"];
 	
     // Be sure to set network client to nil
     dbFetcher.networkClient = nil;
