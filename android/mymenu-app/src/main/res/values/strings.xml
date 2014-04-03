@@ -130,5 +130,6 @@
   <string name="review_saved">Review Saved</string>
   <string name="reported">Reported</string>
   <string name="liked">Liked</string>
+  <string name="eaten_this">I\'ve Eaten this!</string>
 
 </resources>

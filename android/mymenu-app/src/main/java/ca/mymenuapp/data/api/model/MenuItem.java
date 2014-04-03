@@ -56,13 +56,13 @@ public class MenuItem implements Parcelable {
    *
    * @return 0 if likeCount is null or "null", else likeCount
    */
-  public long getRatingCount() {
+  public int getRatingCount() {
     if (TextUtils.isEmpty(ratingCount)) {
       return 0;
     } else if (ratingCount.compareTo(NULL_STRING) == 0) {
       return 0;
     } else {
-      return Long.parseLong(ratingCount);
+      return Integer.parseInt(ratingCount);
     }
   }
 
