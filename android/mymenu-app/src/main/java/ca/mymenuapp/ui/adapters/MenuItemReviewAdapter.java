@@ -30,6 +30,9 @@ import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.OverflowView;
 import java.util.List;
 
+/**
+ * An adapter for the menu item reviews list.
+ */
 public class MenuItemReviewAdapter extends BindableListAdapter<MenuItemReview> {
 
   private final OnReviewActionClickedListener onReviewActionClickedListener;

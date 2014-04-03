@@ -24,4 +24,8 @@
       android:title="@string/share"
       android:actionProviderClass="android.widget.ShareActionProvider"/>
 
+  <item android:id="@+id/menu_item_eaten"
+      android:showAsAction="always"
+      android:title="@string/eaten_this"/>
+
 </menu>
