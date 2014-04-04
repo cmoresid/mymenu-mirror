@@ -25,6 +25,9 @@ import retrofit.client.Response;
 
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
+/**
+ * A fragment where users can update/edit their account information.
+ */
 public class SettingsFragment extends BaseFragment {
 
   @Inject MyMenuDatabase myMenuDatabase;

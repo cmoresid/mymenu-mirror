@@ -20,11 +20,13 @@ package ca.mymenuapp.data;
 import ca.mymenuapp.MyMenuApi;
 import ca.mymenuapp.data.api.model.DietaryRestriction;
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
+import ca.mymenuapp.data.api.model.EatenThisResponse;
 import ca.mymenuapp.data.api.model.MenuCategory;
 import ca.mymenuapp.data.api.model.MenuItem;
 import ca.mymenuapp.data.api.model.MenuItemModification;
 import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReview;
+import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.MenuResponse;
 import ca.mymenuapp.data.api.model.MenuSpecial;
 import ca.mymenuapp.data.api.model.MenuSpecialResponse;
@@ -37,6 +39,7 @@ import ca.mymenuapp.data.api.model.UserRestrictionLink;
 import ca.mymenuapp.data.api.model.UserRestrictionResponse;
 import ca.mymenuapp.data.rx.EndObserver;
 import ca.mymenuapp.util.Strings;
+import com.f2prateek.ln.Ln;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -78,6 +81,14 @@ public class MyMenuDatabase {
     this.myMenuApi = myMenuApi;
   }
 
+  /**
+   * Retrieves a single user object.
+   *
+   * @param email of the user.
+   * @param password of the user.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription getUser(final String email, final String password, Observer<User> observer) {
     final String query = String.format(MyMenuApi.GET_USER_QUERY, email, password);
     return myMenuApi //
@@ -96,6 +107,13 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
+  /**
+   * Inserts a new user into the database.
+   *
+   * @param user to be inserted.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription createUser(final User user, Observer<Response> observer) {
     return myMenuApi.createUser(user.email, user.firstName, user.lastName, user.password, user.city,
         user.locality, user.country, user.gender, user.birthday, user.birthmonth,
@@ -103,12 +121,26 @@ public class MyMenuDatabase {
         .observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
   }
 
+  /**
+   * Checks if a user with a certain email already exists in the user table.
+   *
+   * @param user with the email attribute to be checked.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription checkUser(final User user, Observer<UserResponse> observer) {
     final String query = String.format(MyMenuApi.CHECK_USER_EXISTS, user.email);
     return myMenuApi.checkUser(query).subscribeOn(Schedulers.io()) //
         .observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
   }
 
+  /**
+   * Updates attributes of a certain user in the user table.
+   *
+   * @param user to be edited.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription editUser(final User user, Observer<Response> observer) {
     final String query =
         String.format(MyMenuApi.EDIT_USER, user.firstName, user.lastName, user.password, user.city,
@@ -119,6 +151,12 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
+  /**
+   * Gets all restrictions that are currently in the restrictions table.
+   *
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription getAllRestrictions(Observer<List<DietaryRestriction>> observer) {
     if (dietaryRestrictionsCache != null) {
       // We have a cached value. Emit it immediately.
@@ -155,6 +193,13 @@ public class MyMenuDatabase {
     return subscription;
   }
 
+  /**
+   * Returns all restrictions that a specific user has selected.
+   *
+   * @param user object who's restrictions are wanted.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription getUserRestrictions(final User user, Observer<List<Long>> observer) {
     final String query = String.format(MyMenuApi.GET_USER_RESTRICTIONS, user.email);
     return myMenuApi.getRestrictionsForUser(query)
@@ -191,6 +236,13 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
+  /**
+   * Deletes all restrictions associated with the email of the user passed in.
+   *
+   * @param user object who's restrictions are to be deleted.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription deleteUserRestrictions(final User user, Observer<Response> observer) {
     final String query = String.format(MyMenuApi.DELETE_USER_RESTRICTIONS, user.email);
     return myMenuApi.deleteUserRestrictions(query)
@@ -199,6 +251,13 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
+  /**
+   * Inserts all restrictions that a user has selected into the restrictions table.
+   *
+   * @param user whos restrictions are to be added.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription updateUserRestrictions(final User user, Observer<List<Response>> observer) {
     return Observable.from(user.restrictions)
         .flatMap(new Func1<Long, Observable<Response>>() {
@@ -213,7 +272,15 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
-  // todo, when we call this, we will already have the restaurant, so pass that instead of id
+  /**
+   * Returns all restaurant information and menu for a specific restaurant. Flags the menu items
+   * that correspond with a user's selected restrictions.
+   *
+   * @param user who is logged in.
+   * @param restaurantId of the restaurant.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription getRestaurantAndMenu(final User user, final long restaurantId,
       Observer<RestaurantMenu> observer) {
     RestaurantMenu menu = menuCache.get(restaurantId);
@@ -278,6 +345,14 @@ public class MyMenuDatabase {
     return subscription;
   }
 
+  /**
+   * Gets the top 50 closest restaurants to the users current location.
+   *
+   * @param lat of the user.
+   * @param lng of the user.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription getNearbyRestaurants(final double lat, final double lng,
       Observer<List<Restaurant>> observer) {
     if (restaurantsCache != null) {
@@ -315,6 +390,16 @@ public class MyMenuDatabase {
     return subscription;
   }
 
+  /**
+   * Performs a fuzzy search with the string the user has entered in the search bar. Returns the
+   * top 25 closest restaurants to the user's location.
+   *
+   * @param lat of the user.
+   * @param lng of the user.
+   * @param name of the restaurant.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription getNearbyRestaurantsByName(final double lat, final double lng,
       final String name, Observer<List<Restaurant>> observer) {
     final String query = String.format(MyMenuApi.GET_NEARBY_RESTAURANTS_BY_NAME, lng, lat, name);
@@ -330,6 +415,14 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
+  /**
+   * Inserts a like into the ratinglikes table.
+   *
+   * @param user who liked the review.
+   * @param review that was liked.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription likeReview(User user, MenuItemReview review, Observer<Response> observer) {
     String query = String.format(MyMenuApi.POST_LIKE_REVIEW, user.email, review.id, review.merchId,
         review.menuId);
@@ -339,6 +432,15 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
+  /**
+   * Returns a list of modifications that will make a menu item edible based on the user's selected
+   * restrictions. If there are no modifications available, nothing is returned.
+   *
+   * @param user who's restrictions will be used for querying.
+   * @param menuItem that the user wants to eat.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription getModifications(User user, MenuItem menuItem,
       Observer<List<MenuItemModification>> observer) {
     String query =
@@ -355,6 +457,13 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
+  /**
+   * Inserts a new review/rating into the ratings table.
+   *
+   * @param review to be added.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription addRating(final MenuItemReview review, Observer<Response> observer) {
     final String query =
         String.format(MyMenuApi.POST_INSERT_REVIEW, review.userEmail, review.menuId, review.merchId,
@@ -365,6 +474,14 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
+  /**
+   * Returns a list of specials for the selected date range.
+   *
+   * @param startDate of the special.
+   * @param endDate of the special.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription getSpecialsForDateRange(Date startDate, Date endDate,
       Observer<List<MenuSpecial>> observer) {
     List<String> days = new ArrayList<>();
@@ -393,6 +510,14 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
+  /**
+   * Inserts a report into the ratingreport table.
+   *
+   * @param review that is being reported.
+   * @param user who is reporting the review.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
   public Subscription addReport(final MenuItemReview review, User user,
       Observer<Response> observer) {
     final String query =
@@ -402,5 +527,60 @@ public class MyMenuDatabase {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
+  }
+
+  /**
+   * Inserts a row into the eatenthis table.
+   *
+   * @param menuitem that has been eaten.
+   * @param user who has ate.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
+  public Subscription addEatenThis(final MenuItem menuitem, User user,
+      Observer<Response> observer) {
+    final String query =
+        String.format(MyMenuApi.INSERT_EATEN, user.email, menuitem.id, menuitem.merchantId);
+    Ln.e("query:" + query);
+    return myMenuApi.addEatenThis(query)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
+
+  /**
+   * Returns results if the user has eaten the menu item.
+   *
+   * @param menuitem that may or may not been eaten.
+   * @param user who has ate.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
+  public Subscription hasEatenThis(final MenuItem menuitem, User user,
+      Observer<EatenThisResponse> observer) {
+    final String query = String.format(MyMenuApi.CHECK_USER_EATEN, user.email, menuitem.id);
+    return myMenuApi.hasEatenThis(query)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
+
+  /**
+   * Gets all reviews for a menu item.
+   *
+   * @param menuItem who's reviews we want.
+   * @param observer for the callback.
+   * @return a Subscription for the result of the query.
+   */
+  public Subscription getReviews(MenuItem menuItem, Observer<MenuItemReviewResponse> observer) {
+    String query = String.format(MyMenuApi.GET_MENUITEM_REVIEWS, menuItem.id);
+    return myMenuApi.getReviews(query)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
+
+  public void evictRestaurantCache() {
+    restaurantsCache.clear();
   }
 }

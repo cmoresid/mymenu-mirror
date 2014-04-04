@@ -18,6 +18,7 @@
 package ca.mymenuapp;
 
 import ca.mymenuapp.data.api.model.DietaryRestrictionResponse;
+import ca.mymenuapp.data.api.model.EatenThisResponse;
 import ca.mymenuapp.data.api.model.MenuCategoryResponse;
 import ca.mymenuapp.data.api.model.MenuItemModificationResponse;
 import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
@@ -108,8 +109,18 @@ public interface MyMenuApi {
 
   String CHECK_USER_EXISTS = "SELECT * from users where email='%s'";
 
-  @FormUrlEncoded @POST("/php/users/custom.php")
-  Observable<UserResponse> checkUser(@Field("query") String query);
+  String GET_MENUITEM_REVIEWS = "SELECT * FROM ratings where menuid=%d";
+
+  String CHECK_USER_EATEN = "SELECT * from eatenthis where useremail='%s' AND menuid=%d";
+
+  String INSERT_EATEN = "insert into eatenthis (useremail, menuid, merchid, adddate) values"
+      + " ('%s', %d, %d, sysdate())";
+
+  @FormUrlEncoded @POST("/php/users/custom.php") Observable<UserResponse> checkUser(
+      @Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/ratings/custom.php") Observable<MenuItemReviewResponse> getReviews(
+      @Field("query") String query);
 
   @FormUrlEncoded @POST("/php/users/custom.php")
   Observable<DietaryRestrictionResponse> getAllDietaryRestrictions(@Field("query") String query);
@@ -169,4 +180,10 @@ public interface MyMenuApi {
 
   @FormUrlEncoded @POST("/php/specials/custom.php")
   Observable<MenuSpecialResponse> getSpecialsForDateRange(@Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/ratings/custom.php") Observable<Response> addEatenThis(
+      @Field("query") String query);
+
+  @FormUrlEncoded @POST("/php/ratings/custom.php") Observable<EatenThisResponse> hasEatenThis(
+      @Field("query") String query);
 }

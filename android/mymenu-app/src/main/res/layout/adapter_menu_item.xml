@@ -41,8 +41,15 @@
       android:singleLine="true"
       android:ellipsize="end"
       android:textColor="@color/white"
-      android:background="@drawable/gradient_overlay"
-      tools:drawableLeft="@drawable/restriction_mymenu"
-      />
+      android:background="@drawable/gradient_overlay"/>
+
+  <ca.mymenuapp.ui.widgets.SquaredImageView
+      android:id="@+id/menu_item_restriction_icon"
+      android:layout_width="32dp"
+      android:layout_height="32dp"
+      android:padding="@dimen/holo_gap"
+      android:layout_gravity="top|right"
+      android:scaleType="centerCrop"
+      android:src="@drawable/restriction_mymenu"/>
 
 </FrameLayout>

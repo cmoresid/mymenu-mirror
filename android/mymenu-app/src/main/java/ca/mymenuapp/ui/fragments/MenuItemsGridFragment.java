@@ -35,12 +35,16 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
+import ca.mymenuapp.data.MyMenuDatabase;
 import ca.mymenuapp.data.api.model.MenuItem;
 import ca.mymenuapp.data.api.model.MenuItemReview;
+import ca.mymenuapp.data.api.model.MenuItemReviewResponse;
 import ca.mymenuapp.data.api.model.Restaurant;
+import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.activities.MenuItemActivity;
 import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.HeaderGridView;
+import ca.mymenuapp.util.CollectionUtils;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
@@ -67,10 +71,13 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
   @InjectView(R.id.menu_grid) HeaderGridView gridView;
 
   @Inject Picasso picasso;
+  @Inject MyMenuDatabase myMenuDatabase;
 
   AbsListView.OnScrollListener scrollListener;
   MenuItemAdapter gridAdapter;
   ShareActionProvider shareActionProvider;
+  Intent ourIntent;
+  List<MenuItemReview> menuItemReviews;
 
   /**
    * Returns a new instance of this fragment for the given section number.
@@ -153,17 +160,24 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
 
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    MenuItem menuItem = (MenuItem) parent.getAdapter().getItem(position);
-    Intent intent = new Intent(activityContext, MenuItemActivity.class);
-    intent.putExtra(MenuItemActivity.ARGS_MENU_ITEM, menuItem);
-    intent.putExtra(MenuItemActivity.ARGS_RESTAURANT, restaurant);
-    // todo : optimize in a background thread?
-    ArrayList<MenuItemReview> menuItemReviews = new ArrayList<>();
-    for (MenuItemReview review : reviews) {
-      if (review.menuId == menuItem.id) menuItemReviews.add(review);
+    final MenuItem menuItem = (MenuItem) parent.getAdapter().getItem(position);
+    ourIntent = new Intent(activityContext, MenuItemActivity.class);
+    ourIntent.putExtra(MenuItemActivity.ARGS_MENU_ITEM, menuItem);
+    ourIntent.putExtra(MenuItemActivity.ARGS_RESTAURANT, restaurant);
+
+    /* Retrieves reviews for the selected menu item */
+    if (menuItem!=null) {
+      myMenuDatabase.getReviews(menuItem, new EndlessObserver<MenuItemReviewResponse>() {
+        @Override public void onNext(MenuItemReviewResponse args) {
+          ArrayList<MenuItemReview> mIr = new ArrayList<>();
+          if (!CollectionUtils.isNullOrEmpty(args.reviews)) {
+            mIr = (ArrayList) args.reviews;
+          }
+          ourIntent.putExtra(MenuItemActivity.ARGS_REVIEWS, mIr);
+          startActivity(ourIntent);
+        }
+      });
     }
-    intent.putExtra(MenuItemActivity.ARGS_REVIEWS, menuItemReviews);
-    startActivity(intent);
   }
 
   static class MenuItemAdapter extends BindableListAdapter<MenuItem> {
@@ -191,16 +205,16 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
       holder.label.setText(item.name);
       picasso.load(item.picture).fit().centerCrop().into(holder.picture);
       if (item.isNotEdible()) {
-        holder.label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.restriction_mymenu, 0, 0,
-            0);
+        holder.restriction.setVisibility(View.VISIBLE);
       } else {
-        holder.label.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        holder.restriction.setVisibility(View.GONE);
       }
     }
 
     static class ViewHolder {
       @InjectView(R.id.menu_item_picture) ImageView picture;
       @InjectView(R.id.menu_item_label) TextView label;
+      @InjectView(R.id.menu_item_restriction_icon) ImageView restriction;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);

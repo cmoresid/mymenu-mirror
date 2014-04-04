@@ -23,6 +23,10 @@ import javax.inject.Named;
 
 import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
 
+/**
+ * The rating wheel fragment. The user can select a rating using the widget, as well as enter
+ * review text.
+ */
 public class WriteReviewFragment extends DialogFragment {
 
   @InjectView(R.id.write_review_rating_wheel) RatingWheelView wheel;

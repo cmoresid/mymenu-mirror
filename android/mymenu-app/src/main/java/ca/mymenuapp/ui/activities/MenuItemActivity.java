@@ -34,6 +34,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
+import ca.mymenuapp.data.api.model.EatenThisResponse;
 import ca.mymenuapp.data.api.model.MenuItem;
 import ca.mymenuapp.data.api.model.MenuItemModification;
 import ca.mymenuapp.data.api.model.MenuItemReview;
@@ -49,8 +50,7 @@ import ca.mymenuapp.util.CollectionUtils;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -88,6 +88,7 @@ public class MenuItemActivity extends BaseActivity implements WriteReviewFragmen
   private Drawable actionBarBackgroundDrawable;
   private ShareActionProvider shareActionProvider;
   private ReviewsFragment fragment;
+  private DecimalFormat formatter = new DecimalFormat("#,##0.0");
 
   private NotifyingScrollView.OnScrollChangedListener onScrollChangedListener =
       new NotifyingScrollView.OnScrollChangedListener() {
@@ -156,12 +157,43 @@ public class MenuItemActivity extends BaseActivity implements WriteReviewFragmen
     super.onCreateOptionsMenu(menu);
 
     getMenuInflater().inflate(R.menu.activity_menu_item, menu);
-
     android.view.MenuItem item = menu.findItem(R.id.menu_item_share);
+
+    final android.view.MenuItem eaten = menu.findItem(R.id.menu_item_eaten);
+
+    myMenuDatabase.hasEatenThis(menuItem, userPreferences.get(),
+        new EndlessObserver<EatenThisResponse>() {
+          @Override public void onNext(EatenThisResponse args) {
+            if (!CollectionUtils.isNullOrEmpty(args.eatenThis)) {
+              eaten.setEnabled(false);
+            }
+          }
+        }
+    );
+
     shareActionProvider = (ShareActionProvider) item.getActionProvider();
     setShareIntent();
 
     return true;
+  }
+
+  @Override public boolean onOptionsItemSelected(final android.view.MenuItem item) {
+
+    switch (item.getItemId()) {
+      case R.id.menu_item_eaten:
+        myMenuDatabase.addEatenThis(menuItem, userPreferences.get(),
+            new EndlessObserver<Response>() {
+              @Override public void onNext(Response args) {
+                item.setEnabled(false);
+              }
+            }
+        );
+        break;
+      default:
+        break;
+    }
+
+    return super.onOptionsItemSelected(item);
   }
 
   /**
@@ -182,7 +214,16 @@ public class MenuItemActivity extends BaseActivity implements WriteReviewFragmen
     picasso.load(menuItem.picture).fit().centerCrop().into(header);
     getActionBar().setTitle(menuItem.name);
     description.setText(menuItem.description);
-    rating.setText(Float.toString(menuItem.rating));
+    if (!CollectionUtils.isNullOrEmpty(reviews)) {
+      double calculatedRating = 0;
+      for (MenuItemReview m : reviews) {
+        calculatedRating += m.rating;
+      }
+      calculatedRating = calculatedRating / reviews.size();
+      rating.setText(String.valueOf(formatter.format(calculatedRating)));
+    } else {
+      rating.setText("N/A");
+    }
     if (savedInstanceState == null) {
       fragment = ReviewsFragment.newInstance(reviews, false);
       getFragmentManager().beginTransaction().add(R.id.menu_item_reviews, fragment).commit();
@@ -237,15 +278,16 @@ public class MenuItemActivity extends BaseActivity implements WriteReviewFragmen
   }
 
   @Override public void onReviewCreated(final MenuItemReview review) {
-    rating.setText(String.valueOf((menuItem.rating * menuItem.getRatingCount() + review.rating) / (
-        menuItem.getRatingCount()
-            + 1)));
+
+    String updatedRate = String.valueOf(formatter.format(
+        (menuItem.rating * reviews.size() + review.rating) / (reviews.size() + 1)));
+    rating.setText(updatedRate);
 
     reviews.add(review);
     fragment.onReviewCreated(review);
     myMenuDatabase.addRating(review, new EndlessObserver<Response>() {
       @Override public void onNext(Response response) {
-        Crouton.makeText(MenuItemActivity.this, R.string.review_saved, Style.CONFIRM).show();
+        Toast.makeText(MenuItemActivity.this, "Review Saved", Toast.LENGTH_LONG).show();
       }
     });
   }
