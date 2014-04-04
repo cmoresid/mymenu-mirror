@@ -14,7 +14,7 @@
   ~
   ~ You should have received a copy of the GNU General Public License
   ~ along with this program.  If not, see [http://www.gnu.org/licenses/].
--->
+  -->
 <resources>
 
   <!-- Guest Mode -->
@@ -126,7 +126,7 @@
 
   <!-- Restaurant Activity -->
   <string name="info">Info</string>
-  <string name="restaurant_address_hours">%1$s - %2$s at %3$s</string>
+  <string name="restaurant_address_hours">Open : %1$s - Close: %2$s at %3$s</string>
   <string name="review_saved">Review Saved</string>
   <string name="reported">Reported</string>
   <string name="liked">Liked</string>
