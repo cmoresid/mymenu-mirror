@@ -19,8 +19,12 @@ package ca.mymenuapp.ui.activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.RectF;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
@@ -29,11 +33,13 @@ import android.support.v4.view.ViewPager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.TypedValue;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.ImageView;
+import android.widget.ShareActionProvider;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.MyMenuDatabase;
@@ -49,6 +55,7 @@ import ca.mymenuapp.ui.widgets.KenBurnsView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
+import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -84,6 +91,8 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
   @Inject Picasso picasso;
   @Inject @Named(USER_PREFERENCE) ObjectPreference<User> userPreference;
 
+  private RestaurantMenu menu;
+
   // color of the action bar title
   private int actionBarTitleColor;
   // height of the action bar title
@@ -99,6 +108,7 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
   private AlphaForegroundColorSpan alphaForegroundColorSpan;
   private SpannableString spannableString;
   private TypedValue typedValue = new TypedValue();
+  private ShareActionProvider shareActionProvider;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -112,7 +122,9 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
 
     myMenuDatabase.getRestaurantAndMenu(userPreference.get(), restaurantId,
         new EndlessObserver<RestaurantMenu>() {
-          @Override public void onNext(RestaurantMenu menu) {
+          @Override public void onNext(RestaurantMenu restaurantMenu) {
+            menu = restaurantMenu;
+            setShareIntent();
             spannableString = new SpannableString(menu.getRestaurant().businessName);
             picasso.load(menu.getRestaurant().businessPicture)
                 .fit()
@@ -307,5 +319,47 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
         return getString(R.string.reviews);
       }
     }
+  }
+
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.activity_restaurant, menu);
+    android.view.MenuItem item = menu.findItem(R.id.restaurant_share);
+    shareActionProvider = (ShareActionProvider) item.getActionProvider();
+    return true;
+  }
+
+  private void setShareIntent() {
+    Intent shareIntent = new Intent();
+    shareIntent.setAction(Intent.ACTION_SEND);
+    // todo check if this item has a picture
+    shareIntent.putExtra(Intent.EXTRA_TEXT,
+        getString(R.string.share_restaurant, menu.getRestaurant().businessName,
+            menu.getRestaurant().businessPicture)
+    );
+    shareIntent.setType("text/plain");
+    shareActionProvider.setShareIntent(shareIntent);
+  }
+
+  @Override public boolean onMenuItemSelected(int featureId, MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.restaurant_call:
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:" + menu.getRestaurant().businessNumber));
+        if (isAvailable(this, intent)) {
+          startActivity(intent);
+        }
+        return true;
+      default:
+        return super.onMenuItemSelected(featureId, item);
+    }
+  }
+
+  /**
+   * Check if any apps are installed on the app to receive this intent.
+   */
+  public static boolean isAvailable(Context ctx, Intent intent) {
+    final PackageManager mgr = ctx.getPackageManager();
+    List<ResolveInfo> list = mgr.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+    return list.size() > 0;
   }
 }

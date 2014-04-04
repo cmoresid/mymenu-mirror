@@ -18,8 +18,6 @@
 package ca.mymenuapp.ui.fragments;
 
 import android.content.Context;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,11 +25,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ca.mymenuapp.R;
@@ -42,7 +40,6 @@ import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.misc.BindableListAdapter;
 import ca.mymenuapp.ui.widgets.BetterViewAnimator;
-import ca.mymenuapp.util.CollectionUtils;
 import com.f2prateek.ln.Ln;
 import com.squareup.picasso.Picasso;
 import java.util.List;
@@ -58,8 +55,7 @@ import static ca.mymenuapp.data.DataModule.USER_PREFERENCE;
  * Preferences are toggled by clicking on the item.
  * A grey tile indicates that te userPreference is allergic.
  */
-public class DietaryPreferencesFragment extends BaseFragment
-    implements AdapterView.OnItemClickListener {
+public class DietaryPreferencesFragment extends BaseFragment {
 
   @Inject MyMenuDatabase myMenuDatabase;
   @Inject Picasso picasso;
@@ -103,7 +99,7 @@ public class DietaryPreferencesFragment extends BaseFragment
         userPreference.get().restrictions = dietaryRestrictionIds;
         userPreference.save();
         // clear the restaurants so we can query with the new restrictions
-        myMenuDatabase.evictRestaurantCache();
+        myMenuDatabase.clearRestaurantMenuCache();
         if (gridAdapter != null) {
           gridAdapter.notifyDataSetInvalidated();
         }
@@ -115,20 +111,6 @@ public class DietaryPreferencesFragment extends BaseFragment
     root.setDisplayedChildId(R.id.grid);
     gridAdapter = new DietaryRestrictionsAdapter(activityContext, restrictionList);
     grid.setAdapter(gridAdapter);
-    grid.setOnItemClickListener(this);
-  }
-
-  @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    if (userPreference.get().restrictions == null) {
-      Ln.d("userPreference restrictions not yet ready");
-      return;
-    }
-    if (!userPreference.get().restrictions.contains(id)) {
-      userPreference.get().restrictions.add(id);
-    } else if (userPreference.get().restrictions.contains(id)) {
-      userPreference.get().restrictions.remove(id);
-    }
-    gridAdapter.notifyDataSetInvalidated();
   }
 
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -165,19 +147,10 @@ public class DietaryPreferencesFragment extends BaseFragment
   }
 
   class DietaryRestrictionsAdapter extends BindableListAdapter<DietaryRestriction> {
-    private final ColorMatrixColorFilter greyScaleFilter;
 
     public DietaryRestrictionsAdapter(Context context,
         List<DietaryRestriction> dietaryRestrictions) {
       super(context, dietaryRestrictions);
-
-      ColorMatrix matrix = new ColorMatrix();
-      matrix.setSaturation(0); //0 means grayscale
-      greyScaleFilter = new ColorMatrixColorFilter(matrix);
-    }
-
-    @Override public long getItemId(int position) {
-      return getItem(position).id;
     }
 
     @Override public View newView(LayoutInflater inflater, int position, ViewGroup container) {
@@ -187,8 +160,10 @@ public class DietaryPreferencesFragment extends BaseFragment
       return view;
     }
 
-    @Override public void bindView(DietaryRestriction item, int position, View view) {
+    @Override public void bindView(final DietaryRestriction item, int position, View view) {
       ViewHolder holder = (ViewHolder) view.getTag();
+      holder.label.setOnCheckedChangeListener(null); // clear old listeners
+
       DietaryPreferencesFragment.this.picasso.load(item.picture)
           .placeholder(R.drawable.ic_launcher)
           .fit()
@@ -196,18 +171,27 @@ public class DietaryPreferencesFragment extends BaseFragment
           .into(holder.picture);
       holder.label.setText(item.userLabel);
 
-      if (!CollectionUtils.isNullOrEmpty(userPreference.get().restrictions)) {
-        if (userPreference.get().restrictions.contains(getItemId(position))) {
-          holder.picture.setColorFilter(greyScaleFilter);
-        } else {
-          holder.picture.setColorFilter(null);
-        }
+      if (userPreference.get().restrictions.contains(item.id)) {
+        holder.label.setChecked(true);
+      } else {
+        holder.label.setChecked(false);
       }
+
+      holder.label.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+          Ln.d("onCheckedChanged " + item.id);
+          if (isChecked) {
+            userPreference.get().restrictions.add(item.id);
+          } else {
+            userPreference.get().restrictions.remove(item.id);
+          }
+        }
+      });
     }
 
     class ViewHolder {
       @InjectView(R.id.restriction_picture) ImageView picture;
-      @InjectView(R.id.restriction_label) TextView label;
+      @InjectView(R.id.restriction_label) CheckBox label;
 
       ViewHolder(View root) {
         ButterKnife.inject(this, root);

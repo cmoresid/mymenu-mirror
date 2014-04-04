@@ -580,7 +580,7 @@ public class MyMenuDatabase {
         .subscribe(observer);
   }
 
-  public void evictRestaurantCache() {
-    restaurantsCache.clear();
+  public void clearRestaurantMenuCache() {
+    menuCache.clear();
   }
 }

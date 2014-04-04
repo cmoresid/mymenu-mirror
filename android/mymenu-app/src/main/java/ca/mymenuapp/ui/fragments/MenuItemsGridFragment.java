@@ -125,20 +125,6 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     super.onCreateOptionsMenu(menu, inflater);
     inflater.inflate(R.menu.fragment_menu_item_grid, menu);
-
-    android.view.MenuItem item = menu.findItem(R.id.restaurant_share);
-    shareActionProvider = (ShareActionProvider) item.getActionProvider();
-    setShareIntent();
-  }
-
-  private void setShareIntent() {
-    Intent shareIntent = new Intent();
-    shareIntent.setAction(Intent.ACTION_SEND);
-    // todo check if this item has a picture
-    shareIntent.putExtra(Intent.EXTRA_TEXT,
-        getString(R.string.share_restaurant, restaurant.businessName, restaurant.businessPicture));
-    shareIntent.setType("text/plain");
-    shareActionProvider.setShareIntent(shareIntent);
   }
 
   @Override public boolean onOptionsItemSelected(android.view.MenuItem item) {

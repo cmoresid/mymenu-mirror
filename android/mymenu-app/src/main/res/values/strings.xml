@@ -131,5 +131,6 @@
   <string name="reported">Reported</string>
   <string name="liked">Liked</string>
   <string name="eaten_this">I\'ve Eaten this!</string>
+  <string name="call">Call</string>
 
 </resources>

@@ -278,7 +278,6 @@ public class MenuItemActivity extends BaseActivity implements WriteReviewFragmen
   }
 
   @Override public void onReviewCreated(final MenuItemReview review) {
-
     String updatedRate = String.valueOf(formatter.format(
         (menuItem.rating * reviews.size() + review.rating) / (reviews.size() + 1)));
     rating.setText(updatedRate);

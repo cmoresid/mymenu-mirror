@@ -31,9 +31,4 @@
     </menu>
   </item>
 
-  <item android:id="@+id/restaurant_share"
-      android:showAsAction="ifRoom"
-      android:title="@string/share"
-      android:actionProviderClass="android.widget.ShareActionProvider"/>
-
 </menu>
