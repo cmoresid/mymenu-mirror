@@ -263,24 +263,32 @@ Postconditions: You will be directed to the app you selected the menu item to.
 
 ### Sort Restaurant Reviews
 User Stories: 21, 23, 24
+
 1. Launch App.
 ![launch](android-test-assets/menu_item/1.png?raw=true)
 
-2. Click on a restaurant, e.g. Boston Pizza
+2. Click on a restaurant, e.g. Boston Pizza and select reviews page
+![launch](android-test-assets/seeTopLiked/2reviewlist.png?raw=true)
 
-3. Click on the reviews page.
+3. Click on the sort button at the top of the page.
+![launch](android-test-assets/seeTopLiked/3actionbar.png?raw=true)
 
-4. Click on the sort button at the top of the page.
+4. Select one of the sort options.
+![launch](android-test-assets/seeTopLiked/4likecount.png?raw=true)
 
-5. Select one of the sort options.
 
-Postconditions: Reviews are now sorted.
+Postconditions: Reviews are now sorted. This process is the same for sorting 
+by top rated and most recent.
 
 6. Click on the overflow (three squares) icon next to a review.
+![launch](android-test-assets/reviewreport/prereport.png?raw=true)
 
 7. Click on 'Like'.
+![launch](android-test-assets/reviewreport/toast.png?raw=true)
 
-Postconditions:
+Postconditions: The review that you selected will now be liked and the like 
+count will increase.
+
 
 ### Mark Menu Item as Eaten
 User Stories: 25
@@ -288,9 +296,14 @@ User Stories: 25
 ![launch](android-test-assets/menu_item/1.png?raw=true)
 
 2. Click on a restaurant, e.g. Boston Pizza
+![launch](android-test-assets/eatenthis/1menulist.png?raw=true)
 
-3. Select a Menu Item, e.g. Pesto Chicken Burger (choose one you haven't liked before)
+3. Select a Menu Item, e.g. Pesto Chicken Burger (choose one you haven't liked 
+before)
+![launch](android-test-assets/eatenthis/2pesto.png?raw=true)
 
 4. Click the 'eaten this' button at the top.
+![launch](android-test-assets/eatenthis/atepesto.png?raw=true)
 
-Postconditions: MenuItem is now liked and the like button will be disabled.
+Postconditions: MenuItem is now marked as something that whoever is logged in 
+has eaten.
