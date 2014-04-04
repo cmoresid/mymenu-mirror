@@ -48,6 +48,7 @@
         android:hint="@string/restaurant_search_hint"
         android:padding="@dimen/holo_gap"
         android:textColor="@color/white"
+        android:drawableRight="@drawable/ic_action_search"
         android:textColorHint="@color/alice_blue"
         android:background="@color/shamrock"/>
 

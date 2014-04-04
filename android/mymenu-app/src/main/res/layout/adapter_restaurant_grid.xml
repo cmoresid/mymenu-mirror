@@ -39,6 +39,7 @@
       tools:text="10"
       android:layout_alignBottom="@+id/rest_cuisine"
       android:layout_alignParentStart="true"/>
+
   <TextView
       android:id="@+id/rest_distance"
       android:layout_width="wrap_content"
@@ -49,6 +50,7 @@
       android:paddingLeft="4dp"
       android:layout_alignBaseline="@+id/rest_address"
       android:layout_below="@+id/rest_rating"/>
+
   <TextView
       android:id="@+id/rest_name"
       android:layout_width="wrap_content"

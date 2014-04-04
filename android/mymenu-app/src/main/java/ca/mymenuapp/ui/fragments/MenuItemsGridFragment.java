@@ -152,7 +152,7 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
     ourIntent.putExtra(MenuItemActivity.ARGS_RESTAURANT, restaurant);
 
     /* Retrieves reviews for the selected menu item */
-    if (menuItem!=null) {
+    if (menuItem != null) {
       myMenuDatabase.getReviews(menuItem, new EndlessObserver<MenuItemReviewResponse>() {
         @Override public void onNext(MenuItemReviewResponse args) {
           ArrayList<MenuItemReview> mIr = new ArrayList<>();

@@ -126,7 +126,9 @@
 
   <!-- Restaurant Activity -->
   <string name="info">Info</string>
-  <string name="restaurant_address_hours">Open : %1$s - Close: %2$s at %3$s</string>
+  <string name="restaurant_address_hours">Open from %1$s to %2$s</string>
+  <string name="restaurant_phone">Contact us at %1$s</string>
+
   <string name="review_saved">Review Saved</string>
   <string name="reported">Reported</string>
   <string name="liked">Liked</string>

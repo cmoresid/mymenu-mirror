@@ -79,7 +79,6 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static butterknife.ButterKnife.findById;
 import static ca.mymenuapp.data.DebugDataModule.DEBUG_ANIMATION_SPEED;
 import static ca.mymenuapp.data.DebugDataModule.DEBUG_API_ENDPOINT;
 import static ca.mymenuapp.data.DebugDataModule.DEBUG_DRAWER_SEEN;

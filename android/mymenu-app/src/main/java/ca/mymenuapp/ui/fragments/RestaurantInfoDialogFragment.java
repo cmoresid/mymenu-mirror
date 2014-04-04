@@ -19,6 +19,7 @@ package ca.mymenuapp.ui.fragments;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +27,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import ca.mymenuapp.MyMenuApp;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.Restaurant;
+import ca.mymenuapp.ui.activities.BaseActivity;
+import com.f2prateek.dart.Dart;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
 import javax.inject.Inject;
@@ -45,6 +47,8 @@ public class RestaurantInfoDialogFragment extends DialogFragment {
   @InjectView(R.id.restaurant_info_address) TextView address;
   @InjectView(R.id.restaurant_info_map) ImageView map;
   @InjectView(R.id.restaurant_info_hours) TextView hours;
+  @InjectView(R.id.restaurant_info_number) TextView number;
+  @InjectView(R.id.restaurant_info_avg_rating) TextView rating;
 
   public static RestaurantInfoDialogFragment newInstance(Restaurant restaurant) {
     RestaurantInfoDialogFragment f = new RestaurantInfoDialogFragment();
@@ -59,7 +63,8 @@ public class RestaurantInfoDialogFragment extends DialogFragment {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setStyle(STYLE_NO_TITLE, getTheme());
-    ((MyMenuApp) getActivity().getApplication()).getApplicationGraph().inject(this);
+    Dart.inject(this);
+    ((BaseActivity) getActivity()).getActivityGraph().inject(this);
   }
 
   @Override
@@ -76,13 +81,16 @@ public class RestaurantInfoDialogFragment extends DialogFragment {
   @Override public void onStart() {
     super.onStart();
 
-    getDialog().setTitle(restaurant.businessName);
+    // getDialog().setTitle(restaurant.businessName);
     description.setText(restaurant.businessDescription);
     address.setText(restaurant.address);
     hours.setText(
         getString(R.string.restaurant_address_hours, restaurant.getTime(restaurant.openTime),
-            restaurant.getTime(restaurant.closeTime), restaurant.address)
+            restaurant.getTime(restaurant.closeTime))
     );
+    number.setText(getString(R.string.restaurant_phone, restaurant.businessNumber));
+    Linkify.addLinks(number, Linkify.PHONE_NUMBERS);
+    rating.setText(String.valueOf(restaurant.rating / Double.parseDouble(restaurant.ratingCount)));
     picasso.load(buildMapUrl(restaurant.lat, restaurant.lng)).fit().centerInside().into(map);
   }
 
