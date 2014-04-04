@@ -48,7 +48,7 @@ import ca.mymenuapp.data.api.model.User;
 import ca.mymenuapp.data.prefs.ObjectPreference;
 import ca.mymenuapp.data.rx.EndlessObserver;
 import ca.mymenuapp.ui.fragments.MenuItemsGridFragment;
-import ca.mymenuapp.ui.fragments.RestaurantInfoFragment;
+import ca.mymenuapp.ui.fragments.RestaurantInfoDialogFragment;
 import ca.mymenuapp.ui.fragments.ReviewsFragment;
 import ca.mymenuapp.ui.misc.AlphaForegroundColorSpan;
 import ca.mymenuapp.ui.widgets.KenBurnsView;
@@ -292,16 +292,12 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
     }
 
     @Override public int getCount() {
-      return menu.getCategoryCount() + 2;
+      return menu.getCategoryCount() + 1;
     }
 
     @Override public Fragment getItem(int position) {
-      if (position == 0) {
-        return RestaurantInfoFragment.newInstance(menu.getRestaurant());
-      }
-      int menuPage = position - 1;
-      if (menuPage < menu.getCategoryCount()) {
-        return MenuItemsGridFragment.newInstance(menu.getMenuItemsByCategory(menuPage),
+      if (position < menu.getCategoryCount()) {
+        return MenuItemsGridFragment.newInstance(menu.getMenuItemsByCategory(position),
             menu.getRestaurant(), menu.getReviews());
       } else {
         return ReviewsFragment.newInstance(menu.getReviews(), true);
@@ -309,12 +305,8 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
     }
 
     @Override public CharSequence getPageTitle(int position) {
-      if (position == 0) {
-        return getString(R.string.info);
-      }
-      int menuPage = position - 1;
-      if (menuPage < menu.getCategoryCount()) {
-        return menu.getCategoryTitle(menuPage);
+      if (position < menu.getCategoryCount()) {
+        return menu.getCategoryTitle(position);
       } else {
         return getString(R.string.reviews);
       }
@@ -348,6 +340,11 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
         if (isAvailable(this, intent)) {
           startActivity(intent);
         }
+        return true;
+      case R.id.restaurant_info:
+        final RestaurantInfoDialogFragment fragment =
+            RestaurantInfoDialogFragment.newInstance(menu.getRestaurant());
+        fragment.show(getFragmentManager(), "info");
         return true;
       default:
         return super.onMenuItemSelected(featureId, item);

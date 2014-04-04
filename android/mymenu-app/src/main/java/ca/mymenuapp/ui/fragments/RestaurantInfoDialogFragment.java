@@ -16,23 +16,24 @@
 
 package ca.mymenuapp.ui.fragments;
 
-import android.app.Activity;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
+import ca.mymenuapp.MyMenuApp;
 import ca.mymenuapp.R;
 import ca.mymenuapp.data.api.model.Restaurant;
-import ca.mymenuapp.util.Bundler;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
 import javax.inject.Inject;
 
-public class RestaurantInfoFragment extends BaseFragment {
+public class RestaurantInfoDialogFragment extends DialogFragment {
+
   private static final String ARGS_RESTAURANT = "restaurant";
 
   @InjectExtra(ARGS_RESTAURANT) Restaurant restaurant;
@@ -40,32 +41,44 @@ public class RestaurantInfoFragment extends BaseFragment {
   @Inject Picasso picasso;
 
   @InjectView(R.id.restaurant_info_description) TextView description;
-  @InjectView(R.id.restaurant_info_address_hours) TextView addressHours;
+  @InjectView(R.id.restaurant_info_address) TextView address;
   @InjectView(R.id.restaurant_info_map) ImageView map;
+  @InjectView(R.id.restaurant_info_hours) TextView hours;
 
-  AbsListView.OnScrollListener scrollListener;
-
-  public static RestaurantInfoFragment newInstance(Restaurant restaurant) {
-    RestaurantInfoFragment fragment = new RestaurantInfoFragment();
-    fragment.setArguments(new Bundler().put(ARGS_RESTAURANT, restaurant).get());
-    return fragment;
+  public static RestaurantInfoDialogFragment newInstance(Restaurant restaurant) {
+    RestaurantInfoDialogFragment f = new RestaurantInfoDialogFragment();
+    Bundle args = new Bundle();
+    args.putParcelable(ARGS_RESTAURANT, restaurant);
+    f.setArguments(args);
+    f.setRetainInstance(true);
+    return f;
   }
 
-  @Override public void onAttach(Activity activity) {
-    super.onAttach(activity);
-    scrollListener = (AbsListView.OnScrollListener) activity;
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setStyle(STYLE_NO_TITLE, getTheme());
+    ((MyMenuApp) getActivity().getApplication()).getApplicationGraph().inject(this);
   }
 
-  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_restaurant_info, container, false);
+    return inflater.inflate(R.layout.fragment_restaurant_info_dialog, container, false);
+  }
+
+  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    ButterKnife.inject(this, view);
   }
 
   @Override public void onStart() {
     super.onStart();
 
+    getDialog().setTitle(restaurant.businessName);
     description.setText(restaurant.businessDescription);
-    addressHours.setText(
+    address.setText(restaurant.address);
+    hours.setText(
         getString(R.string.restaurant_address_hours, restaurant.getTime(restaurant.openTime),
             restaurant.getTime(restaurant.closeTime), restaurant.address)
     );
