@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMSpecialsCollectionViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMSpecialsCollectionViewController</TokenIdentifier>
+			<Abstract type="html">*  Displays the specials</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="80"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/setShowTypes:</TokenIdentifier>
+			<Abstract type="html">*  The types we can show (Food, Dessert, Drinks specials</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSMutableArray *showTypes</Declaration>
+			
+			
+			<Anchor>//api/name/showTypes</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/showTypes</TokenIdentifier>
+			<Abstract type="html">*  The types we can show (Food, Dessert, Drinks specials</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSMutableArray *showTypes</Declaration>
+			
+			
+			<Anchor>//api/name/showTypes</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCollectionViewController/showTypes</TokenIdentifier>
+			<Abstract type="html">*  The types we can show (Food, Dessert, Drinks specials</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSMutableArray *showTypes</Declaration>
+			
+			
+			<Anchor>//api/name/showTypes</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/setSelectedDate:</TokenIdentifier>
+			<Abstract type="html">*  Date the user has selected to show a week of</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSDate *selectedDate</Declaration>
+			
+			
+			<Anchor>//api/name/selectedDate</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/selectedDate</TokenIdentifier>
+			<Abstract type="html">*  Date the user has selected to show a week of</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSDate *selectedDate</Declaration>
+			
+			
+			<Anchor>//api/name/selectedDate</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCollectionViewController/selectedDate</TokenIdentifier>
+			<Abstract type="html">*  Date the user has selected to show a week of</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSDate *selectedDate</Declaration>
+			
+			
+			<Anchor>//api/name/selectedDate</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/setDateIndex:</TokenIdentifier>
+			<Abstract type="html">*  Date the user has selected to show a week of</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSMutableArray *dateIndex</Declaration>
+			
+			
+			<Anchor>//api/name/dateIndex</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/dateIndex</TokenIdentifier>
+			<Abstract type="html">*  Date the user has selected to show a week of</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSMutableArray *dateIndex</Declaration>
+			
+			
+			<Anchor>//api/name/dateIndex</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCollectionViewController/dateIndex</TokenIdentifier>
+			<Abstract type="html">*  Date the user has selected to show a week of</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSMutableArray *dateIndex</Declaration>
+			
+			
+			<Anchor>//api/name/dateIndex</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/setLabelView:</TokenIdentifier>
+			<Abstract type="html">*  Date the user has selected to show a week of</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UILabel *labelView</Declaration>
+			
+			
+			<Anchor>//api/name/labelView</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/labelView</TokenIdentifier>
+			<Abstract type="html">*  Date the user has selected to show a week of</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UILabel *labelView</Declaration>
+			
+			
+			<Anchor>//api/name/labelView</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCollectionViewController/labelView</TokenIdentifier>
+			<Abstract type="html">*  Date the user has selected to show a week of</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UILabel *labelView</Declaration>
+			
+			
+			<Anchor>//api/name/labelView</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/setSpecials:</TokenIdentifier>
+			<Abstract type="html">*  All specials by key an date</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSMutableDictionary *specials</Declaration>
+			
+			
+			<Anchor>//api/name/specials</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/specials</TokenIdentifier>
+			<Abstract type="html">*  All specials by key an date</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSMutableDictionary *specials</Declaration>
+			
+			
+			<Anchor>//api/name/specials</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCollectionViewController/specials</TokenIdentifier>
+			<Abstract type="html">*  All specials by key an date</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSMutableDictionary *specials</Declaration>
+			
+			
+			<Anchor>//api/name/specials</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/setSpecialsSaved:</TokenIdentifier>
+			<Abstract type="html">*  All specials by key an date</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSDictionary *specialsSaved</Declaration>
+			
+			
+			<Anchor>//api/name/specialsSaved</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/specialsSaved</TokenIdentifier>
+			<Abstract type="html">*  All specials by key an date</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSDictionary *specialsSaved</Declaration>
+			
+			
+			<Anchor>//api/name/specialsSaved</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCollectionViewController/specialsSaved</TokenIdentifier>
+			<Abstract type="html">*  All specials by key an date</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (atomic) NSDictionary *specialsSaved</Declaration>
+			
+			
+			<Anchor>//api/name/specialsSaved</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/setCurrentDate:</TokenIdentifier>
+			<Abstract type="html">*  todays date.</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readwrite) NSDate *currentDate</Declaration>
+			
+			
+			<Anchor>//api/name/currentDate</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/currentDate</TokenIdentifier>
+			<Abstract type="html">*  todays date.</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readwrite) NSDate *currentDate</Declaration>
+			
+			
+			<Anchor>//api/name/currentDate</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCollectionViewController/currentDate</TokenIdentifier>
+			<Abstract type="html">*  todays date.</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readwrite) NSDate *currentDate</Declaration>
+			
+			
+			<Anchor>//api/name/currentDate</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/setTypesPopoverController:</TokenIdentifier>
+			<Abstract type="html">*  The types popover view controller, done programmically</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *typesPopoverController</Declaration>
+			
+			
+			<Anchor>//api/name/typesPopoverController</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/typesPopoverController</TokenIdentifier>
+			<Abstract type="html">*  The types popover view controller, done programmically</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *typesPopoverController</Declaration>
+			
+			
+			<Anchor>//api/name/typesPopoverController</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCollectionViewController/typesPopoverController</TokenIdentifier>
+			<Abstract type="html">*  The types popover view controller, done programmically</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *typesPopoverController</Declaration>
+			
+			
+			<Anchor>//api/name/typesPopoverController</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/setWeekPopoverController:</TokenIdentifier>
+			<Abstract type="html">*  The week popover view controller, done programmically</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *weekPopoverController</Declaration>
+			
+			
+			<Anchor>//api/name/weekPopoverController</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/weekPopoverController</TokenIdentifier>
+			<Abstract type="html">*  The week popover view controller, done programmically</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *weekPopoverController</Declaration>
+			
+			
+			<Anchor>//api/name/weekPopoverController</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCollectionViewController/weekPopoverController</TokenIdentifier>
+			<Abstract type="html">*  The week popover view controller, done programmically</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *weekPopoverController</Declaration>
+			
+			
+			<Anchor>//api/name/weekPopoverController</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/setTypesController:</TokenIdentifier>
+			<Abstract type="html">*  The view controller that is presented within the types</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMSpecialsTypeController *typesController</Declaration>
+			
+			
+			<Anchor>//api/name/typesController</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/typesController</TokenIdentifier>
+			<Abstract type="html">*  The view controller that is presented within the types</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMSpecialsTypeController *typesController</Declaration>
+			
+			
+			<Anchor>//api/name/typesController</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCollectionViewController/typesController</TokenIdentifier>
+			<Abstract type="html">*  The view controller that is presented within the types</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMSpecialsTypeController *typesController</Declaration>
+			
+			
+			<Anchor>//api/name/typesController</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/setWeekController:</TokenIdentifier>
+			<Abstract type="html">*  The view controller that is presented within the week</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMSpecialsCalendarViewController *weekController</Declaration>
+			
+			
+			<Anchor>//api/name/weekController</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/weekController</TokenIdentifier>
+			<Abstract type="html">*  The view controller that is presented within the week</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMSpecialsCalendarViewController *weekController</Declaration>
+			
+			
+			<Anchor>//api/name/weekController</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCollectionViewController/weekController</TokenIdentifier>
+			<Abstract type="html">*  The view controller that is presented within the week</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMSpecialsCalendarViewController *weekController</Declaration>
+			
+			
+			<Anchor>//api/name/weekController</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/addShowType:</TokenIdentifier>
+			<Abstract type="html">* Adds a Special type to show, and reloads the view as Needed.</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>- (void)addShowType:(NSString *)type</Declaration>
+			
+			
+			<Anchor>//api/name/addShowType:</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/removeShowType:</TokenIdentifier>
+			<Abstract type="html">* Removes a Special type to show, and reloads the view as Needed.</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>- (void)removeShowType:(NSString *)type</Declaration>
+			
+			
+			<Anchor>//api/name/removeShowType:</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/containsShowType:</TokenIdentifier>
+			<Abstract type="html">* Checks if a Type is &quot;Currently&quot; being displayed.</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>- (bool)containsShowType:(NSString *)type</Declaration>
+			
+			
+			<Anchor>//api/name/containsShowType:</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/loadSelectedDate</TokenIdentifier>
+			<Abstract type="html">*  load the a week from the data into the collection view</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			
+			<Declaration>- (void)loadSelectedDate</Declaration>
+			
+			
+			<Anchor>//api/name/loadSelectedDate</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/setupToolbar</TokenIdentifier>
+			<Abstract type="html">Sets up the custom toolbar with all buttons, search bar and adds it to the view.</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)setupToolbar</Declaration>
+			
+			
+			<Anchor>//api/name/setupToolbar</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/filter:</TokenIdentifier>
+			<Abstract type="html">Loads the popover for the user when they click filter</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)filter:(UIBarButtonItem *)sender</Declaration>
+			
+			
+			<Anchor>//api/name/filter:</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/week:</TokenIdentifier>
+			<Abstract type="html">Loads the popover when the user clicks the week button</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)week:(UIBarButtonItem *)sender</Declaration>
+			
+			
+			<Anchor>//api/name/week:</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/loadDay:</TokenIdentifier>
+			<Abstract type="html">Request specials for a given day, with a Given Type</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)loadDay:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/loadDay:</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/loadDate:forType:</TokenIdentifier>
+			<Abstract type="html">Request specials for a given day, with a Given Type</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)loadDate:(NSDate *)date forType:(NSString *)type</Declaration>
+			
+			
+			<Anchor>//api/name/loadDate:forType:</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/getCurrentDatePlusDays:</TokenIdentifier>
+			<Abstract type="html">Returns a New Date from the current date + the number of days specified.</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			
+			<Declaration>- (NSDate *)getCurrentDatePlusDays:(NSUInteger)days</Declaration>
+			
+			
+			<Anchor>//api/name/getCurrentDatePlusDays:</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/getDate:PlusDays:</TokenIdentifier>
+			<Abstract type="html">Returns a New Date from the date specified + the number of days specified.</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			
+			<Declaration>- (NSDate *)getDate:(NSDate *)date PlusDays:(NSUInteger)days</Declaration>
+			
+			
+			<Anchor>//api/name/getDate:PlusDays:</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/didRetrieveSpecials:forDate:withResponse:</TokenIdentifier>
+			<Abstract type="html">The DBFetcher Sends our info here. We need the date to place it accordingly.</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)didRetrieveSpecials:(NSArray *)webSpecials forDate:(NSDate *)date withResponse:(MMDBFetcherResponse *)response</Declaration>
+			
+			
+			<Anchor>//api/name/didRetrieveSpecials:forDate:withResponse:</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/prepareForSegue:sender:</TokenIdentifier>
+			<Abstract type="html">Prepares for the popup window, sets up the proper types needed.</Abstract>
+			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/prepareForSegue:sender:</Anchor>
+            <NodeRef refid="80"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

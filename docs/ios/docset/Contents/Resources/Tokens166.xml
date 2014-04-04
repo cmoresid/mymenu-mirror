@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIActionSheet+RACSignalSupport.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIActionSheet(RACSignalSupport)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UIActionSheet+RACSignalSupport.h</DeclaredIn>
+            
+			
+			<NodeRef refid="166"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIActionSheet/setRac_delegateProxy:</TokenIdentifier>
+			<Abstract type="html">A delegate proxy which will be set as the receiver&apos;s delegate when any of the
+methods in this category are used.</Abstract>
+			<DeclaredIn>UIActionSheet+RACSignalSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACDelegateProxy *rac_delegateProxy</Declaration>
+			
+			
+			<Anchor>//api/name/rac_delegateProxy</Anchor>
+            <NodeRef refid="166"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIActionSheet/rac_delegateProxy</TokenIdentifier>
+			<Abstract type="html">A delegate proxy which will be set as the receiver&apos;s delegate when any of the
+methods in this category are used.</Abstract>
+			<DeclaredIn>UIActionSheet+RACSignalSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACDelegateProxy *rac_delegateProxy</Declaration>
+			
+			
+			<Anchor>//api/name/rac_delegateProxy</Anchor>
+            <NodeRef refid="166"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UIActionSheet/rac_delegateProxy</TokenIdentifier>
+			<Abstract type="html">A delegate proxy which will be set as the receiver&apos;s delegate when any of the
+methods in this category are used.</Abstract>
+			<DeclaredIn>UIActionSheet+RACSignalSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACDelegateProxy *rac_delegateProxy</Declaration>
+			
+			
+			<Anchor>//api/name/rac_delegateProxy</Anchor>
+            <NodeRef refid="166"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIActionSheet/rac_buttonClickedSignal</TokenIdentifier>
+			<Abstract type="html">Creates a signal for button clicks on the receiver.</Abstract>
+			<DeclaredIn>UIActionSheet+RACSignalSupport.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)rac_buttonClickedSignal</Declaration>
+			
+			
+			<Anchor>//api/name/rac_buttonClickedSignal</Anchor>
+            <NodeRef refid="166"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

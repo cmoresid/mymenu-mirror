@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACKVOChannel.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACKVOChannel</TokenIdentifier>
+			<Abstract type="html">A RACChannel that observes a KVO-compliant key path for changes.
+Methods needed for the convenience macro. Do not call explicitly.</Abstract>
+			<DeclaredIn>RACKVOChannel.h</DeclaredIn>
+            
+			
+			<NodeRef refid="110"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACKVOChannel/initWithTarget:keyPath:nilValue:</TokenIdentifier>
+			<Abstract type="html">Initializes a channel that will observe the given object and key path.</Abstract>
+			<DeclaredIn>RACKVOChannel.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithTarget:(NSObject *)target keyPath:(NSString *)keyPath nilValue:(id)nilValue</Declaration>
+			
+			
+			<Anchor>//api/name/initWithTarget:keyPath:nilValue:</Anchor>
+            <NodeRef refid="110"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

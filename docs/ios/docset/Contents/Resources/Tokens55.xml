@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMMerchantService.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMerchantService</TokenIdentifier>
+			<Abstract type="html">*  Provides an additional layer over top</Abstract>
+			<DeclaredIn>MMMerchantService.h</DeclaredIn>
+            
+			
+			<NodeRef refid="55"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/MMMerchantService/sharedService</TokenIdentifier>
+			<Abstract type="html">*  Retrieves the singleton of this</Abstract>
+			<DeclaredIn>MMMerchantService.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)sharedService</Declaration>
+			
+			
+			<Anchor>//api/name/sharedService</Anchor>
+            <NodeRef refid="55"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMerchantService/getMerchantWithMerchantID:</TokenIdentifier>
+			<Abstract type="html">*  Retrieves the merchant that corresponds</Abstract>
+			<DeclaredIn>MMMerchantService.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getMerchantWithMerchantID:(NSNumber *)merchantId</Declaration>
+			
+			
+			<Anchor>//api/name/getMerchantWithMerchantID:</Anchor>
+            <NodeRef refid="55"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMerchantService/getDefaultCompressedMerchantsForLocation:</TokenIdentifier>
+			<Abstract type="html">*  Retrieves a list of merchants that are within a certain</Abstract>
+			<DeclaredIn>MMMerchantService.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getDefaultCompressedMerchantsForLocation:(CLLocation *)location</Declaration>
+			
+			
+			<Anchor>//api/name/getDefaultCompressedMerchantsForLocation:</Anchor>
+            <NodeRef refid="55"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMerchantService/getCompressedMerchantsForLocation:withName:</TokenIdentifier>
+			<Abstract type="html">*  Retrieves a list of merchants that are within a certain threshold of</Abstract>
+			<DeclaredIn>MMMerchantService.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getCompressedMerchantsForLocation:(CLLocation *)location withName:(NSString *)merchantName</Declaration>
+			
+			
+			<Anchor>//api/name/getCompressedMerchantsForLocation:withName:</Anchor>
+            <NodeRef refid="55"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMerchantService/getCompressedMerchantsForLocation:withCuisineType:</TokenIdentifier>
+			<Abstract type="html">*  Retrieves a list of merchants that are within a certain threshold of</Abstract>
+			<DeclaredIn>MMMerchantService.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getCompressedMerchantsForLocation:(CLLocation *)location withCuisineType:(NSString *)cuisine</Declaration>
+			
+			
+			<Anchor>//api/name/getCompressedMerchantsForLocation:withCuisineType:</Anchor>
+            <NodeRef refid="55"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

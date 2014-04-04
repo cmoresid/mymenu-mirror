@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/TSQCalendarView.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/TSQCalendarView</TokenIdentifier>
+			<Abstract type="html">The TSQCalendarView class displays a monthly calendar in a self-contained scrolling view. It supports any calendar that NSCalendar supports.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+            
+			
+			<NodeRef refid="147"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/setFirstDate:</TokenIdentifier>
+			<Abstract type="html">The earliest month the calendar view displays.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSDate *firstDate</Declaration>
+			
+			
+			<Anchor>//api/name/firstDate</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/firstDate</TokenIdentifier>
+			<Abstract type="html">The earliest month the calendar view displays.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSDate *firstDate</Declaration>
+			
+			
+			<Anchor>//api/name/firstDate</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarView/firstDate</TokenIdentifier>
+			<Abstract type="html">The earliest month the calendar view displays.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSDate *firstDate</Declaration>
+			
+			
+			<Anchor>//api/name/firstDate</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/setLastDate:</TokenIdentifier>
+			<Abstract type="html">The latest month the calendar view displays.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSDate *lastDate</Declaration>
+			
+			
+			<Anchor>//api/name/lastDate</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/lastDate</TokenIdentifier>
+			<Abstract type="html">The latest month the calendar view displays.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSDate *lastDate</Declaration>
+			
+			
+			<Anchor>//api/name/lastDate</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarView/lastDate</TokenIdentifier>
+			<Abstract type="html">The latest month the calendar view displays.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSDate *lastDate</Declaration>
+			
+			
+			<Anchor>//api/name/lastDate</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/setSelectedDate:</TokenIdentifier>
+			<Abstract type="html">The currently-selected date on the calendar.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSDate *selectedDate</Declaration>
+			
+			
+			<Anchor>//api/name/selectedDate</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/selectedDate</TokenIdentifier>
+			<Abstract type="html">The currently-selected date on the calendar.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSDate *selectedDate</Declaration>
+			
+			
+			<Anchor>//api/name/selectedDate</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarView/selectedDate</TokenIdentifier>
+			<Abstract type="html">The currently-selected date on the calendar.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSDate *selectedDate</Declaration>
+			
+			
+			<Anchor>//api/name/selectedDate</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/setCalendar:</TokenIdentifier>
+			<Abstract type="html">The calendar type to use when displaying.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSCalendar *calendar</Declaration>
+			
+			
+			<Anchor>//api/name/calendar</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/calendar</TokenIdentifier>
+			<Abstract type="html">The calendar type to use when displaying.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSCalendar *calendar</Declaration>
+			
+			
+			<Anchor>//api/name/calendar</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarView/calendar</TokenIdentifier>
+			<Abstract type="html">The calendar type to use when displaying.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSCalendar *calendar</Declaration>
+			
+			
+			<Anchor>//api/name/calendar</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/setDelegate:</TokenIdentifier>
+			<Abstract type="html">The delegate of the calendar view.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;TSQCalendarViewDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/delegate</TokenIdentifier>
+			<Abstract type="html">The delegate of the calendar view.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;TSQCalendarViewDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarView/delegate</TokenIdentifier>
+			<Abstract type="html">The delegate of the calendar view.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;TSQCalendarViewDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/setPinsHeaderToTop:</TokenIdentifier>
+			<Abstract type="html">Whether to pin the header to the top of the view.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL pinsHeaderToTop</Declaration>
+			
+			
+			<Anchor>//api/name/pinsHeaderToTop</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/pinsHeaderToTop</TokenIdentifier>
+			<Abstract type="html">Whether to pin the header to the top of the view.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL pinsHeaderToTop</Declaration>
+			
+			
+			<Anchor>//api/name/pinsHeaderToTop</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarView/pinsHeaderToTop</TokenIdentifier>
+			<Abstract type="html">Whether to pin the header to the top of the view.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL pinsHeaderToTop</Declaration>
+			
+			
+			<Anchor>//api/name/pinsHeaderToTop</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/setPagingEnabled:</TokenIdentifier>
+			<Abstract type="html">Whether or not the calendar snaps to begin a month at the top of its bounds.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL pagingEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/pagingEnabled</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/pagingEnabled</TokenIdentifier>
+			<Abstract type="html">Whether or not the calendar snaps to begin a month at the top of its bounds.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL pagingEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/pagingEnabled</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarView/pagingEnabled</TokenIdentifier>
+			<Abstract type="html">Whether or not the calendar snaps to begin a month at the top of its bounds.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL pagingEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/pagingEnabled</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/setContentInset:</TokenIdentifier>
+			<Abstract type="html">The distance from the edges of the view to where the content begins.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIEdgeInsets contentInset</Declaration>
+			
+			
+			<Anchor>//api/name/contentInset</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/contentInset</TokenIdentifier>
+			<Abstract type="html">The distance from the edges of the view to where the content begins.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIEdgeInsets contentInset</Declaration>
+			
+			
+			<Anchor>//api/name/contentInset</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarView/contentInset</TokenIdentifier>
+			<Abstract type="html">The distance from the edges of the view to where the content begins.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIEdgeInsets contentInset</Declaration>
+			
+			
+			<Anchor>//api/name/contentInset</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/setContentOffset:</TokenIdentifier>
+			<Abstract type="html">The point on the calendar where the currently-visible region starts.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CGPoint contentOffset</Declaration>
+			
+			
+			<Anchor>//api/name/contentOffset</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/contentOffset</TokenIdentifier>
+			<Abstract type="html">The point on the calendar where the currently-visible region starts.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CGPoint contentOffset</Declaration>
+			
+			
+			<Anchor>//api/name/contentOffset</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarView/contentOffset</TokenIdentifier>
+			<Abstract type="html">The point on the calendar where the currently-visible region starts.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CGPoint contentOffset</Declaration>
+			
+			
+			<Anchor>//api/name/contentOffset</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/setHeaderCellClass:</TokenIdentifier>
+			<Abstract type="html">The cell class to use for month headers.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) Class headerCellClass</Declaration>
+			
+			
+			<Anchor>//api/name/headerCellClass</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/headerCellClass</TokenIdentifier>
+			<Abstract type="html">The cell class to use for month headers.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) Class headerCellClass</Declaration>
+			
+			
+			<Anchor>//api/name/headerCellClass</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarView/headerCellClass</TokenIdentifier>
+			<Abstract type="html">The cell class to use for month headers.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) Class headerCellClass</Declaration>
+			
+			
+			<Anchor>//api/name/headerCellClass</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/setRowCellClass:</TokenIdentifier>
+			<Abstract type="html">The cell class to use for week rows.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) Class rowCellClass</Declaration>
+			
+			
+			<Anchor>//api/name/rowCellClass</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/rowCellClass</TokenIdentifier>
+			<Abstract type="html">The cell class to use for week rows.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) Class rowCellClass</Declaration>
+			
+			
+			<Anchor>//api/name/rowCellClass</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarView/rowCellClass</TokenIdentifier>
+			<Abstract type="html">The cell class to use for week rows.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) Class rowCellClass</Declaration>
+			
+			
+			<Anchor>//api/name/rowCellClass</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarView/scrollToDate:animated:</TokenIdentifier>
+			<Abstract type="html">Scrolls the receiver until the specified date month is completely visible.</Abstract>
+			<DeclaredIn>TSQCalendarView.h</DeclaredIn>
+			
+			<Declaration>- (void)scrollToDate:(NSDate *)date animated:(BOOL)animated</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>date</Name>
+					<Abstract type="html">A date that identifies the month that will be visible.</Abstract>
+				</Parameter><Parameter>
+					<Name>animated</Name>
+					<Abstract type="html">YES if you want to animate the change in position, NO if it should be immediate.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/scrollToDate:animated:</Anchor>
+            <NodeRef refid="147"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

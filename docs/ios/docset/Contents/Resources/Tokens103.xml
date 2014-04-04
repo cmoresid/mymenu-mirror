@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACEmptySequence.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACEmptySequence</TokenIdentifier>
+			<Abstract type="html">Private class representing an empty sequence.</Abstract>
+			<DeclaredIn>RACEmptySequence.h</DeclaredIn>
+            
+			
+			<NodeRef refid="103"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACEmptySequence/empty</TokenIdentifier>
+			<Abstract type="html">Returns an empty stream.</Abstract>
+			<DeclaredIn>RACEmptySequence.m</DeclaredIn>
+			
+			<Declaration>+ (instancetype)empty</Declaration>
+			
+			
+			<Anchor>//api/name/empty</Anchor>
+            <NodeRef refid="103"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACEmptySequence/head</TokenIdentifier>
+			<Abstract type="html">The first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACEmptySequence.m</DeclaredIn>
+			
+			<Declaration>- (id)head</Declaration>
+			
+			
+			<Anchor>//api/name/head</Anchor>
+            <NodeRef refid="103"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACEmptySequence/tail</TokenIdentifier>
+			<Abstract type="html">All but the first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACEmptySequence.m</DeclaredIn>
+			
+			<Declaration>- (RACSequence *)tail</Declaration>
+			
+			
+			<Anchor>//api/name/tail</Anchor>
+            <NodeRef refid="103"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

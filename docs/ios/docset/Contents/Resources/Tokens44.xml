@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/SDWebImagePrefetcherDelegate.html">
+	<File path="Classes/MMMasterProfileViewController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/SDWebImagePrefetcherDelegate</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>SDWebImagePrefetcher.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMasterProfileViewController</TokenIdentifier>
+			<Abstract type="html">Master controller that encapsulates the Profile Tab</Abstract>
+			<DeclaredIn>MMMasterProfileViewController.h</DeclaredIn>
             
 			
 			<NodeRef refid="44"/>
@@ -13,51 +13,110 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/SDWebImagePrefetcherDelegate/imagePrefetcher:didPrefetchURL:finishedCount:totalCount:</TokenIdentifier>
-			<Abstract type="html">Called when an image was prefetched.</Abstract>
-			<DeclaredIn>SDWebImagePrefetcher.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterProfileViewController/setAccountController:</TokenIdentifier>
+			<Abstract type="html">Account View Controller</Abstract>
+			<DeclaredIn>MMMasterProfileViewController.h</DeclaredIn>
 			
-			<Declaration>- (void)imagePrefetcher:(SDWebImagePrefetcher *)imagePrefetcher didPrefetchURL:(NSURL *)imageURL finishedCount:(NSUInteger)finishedCount totalCount:(NSUInteger)totalCount</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>imagePrefetcher</Name>
-					<Abstract type="html">The current image prefetcher</Abstract>
-				</Parameter><Parameter>
-					<Name>imageURL</Name>
-					<Abstract type="html">The image url that was prefetched</Abstract>
-				</Parameter><Parameter>
-					<Name>finishedCount</Name>
-					<Abstract type="html">The total number of images that were prefetched</Abstract>
-				</Parameter><Parameter>
-					<Name>totalCount</Name>
-					<Abstract type="html">The total number of images that need to be prefetched</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, strong) MMAccountViewController *accountController</Declaration>
 			
-			<Anchor>//api/name/imagePrefetcher:didPrefetchURL:finishedCount:totalCount:</Anchor>
+			
+			<Anchor>//api/name/accountController</Anchor>
             <NodeRef refid="44"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/SDWebImagePrefetcherDelegate/imagePrefetcher:didFinishWithTotalCount:skippedCount:</TokenIdentifier>
-			<Abstract type="html">Called when all images are prefetched.</Abstract>
-			<DeclaredIn>SDWebImagePrefetcher.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterProfileViewController/accountController</TokenIdentifier>
+			<Abstract type="html">Account View Controller</Abstract>
+			<DeclaredIn>MMMasterProfileViewController.h</DeclaredIn>
 			
-			<Declaration>- (void)imagePrefetcher:(SDWebImagePrefetcher *)imagePrefetcher didFinishWithTotalCount:(NSUInteger)totalCount skippedCount:(NSUInteger)skippedCount</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>imagePrefetcher</Name>
-					<Abstract type="html">The current image prefetcher</Abstract>
-				</Parameter><Parameter>
-					<Name>totalCount</Name>
-					<Abstract type="html">The total number of images that need to be prefetched</Abstract>
-				</Parameter><Parameter>
-					<Name>skippedCount</Name>
-					<Abstract type="html">The total number of images that were skipped</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, strong) MMAccountViewController *accountController</Declaration>
 			
-			<Anchor>//api/name/imagePrefetcher:didFinishWithTotalCount:skippedCount:</Anchor>
+			
+			<Anchor>//api/name/accountController</Anchor>
+            <NodeRef refid="44"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMasterProfileViewController/accountController</TokenIdentifier>
+			<Abstract type="html">Account View Controller</Abstract>
+			<DeclaredIn>MMMasterProfileViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMAccountViewController *accountController</Declaration>
+			
+			
+			<Anchor>//api/name/accountController</Anchor>
+            <NodeRef refid="44"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterProfileViewController/setAboutController:</TokenIdentifier>
+			<Abstract type="html">About View Controller</Abstract>
+			<DeclaredIn>MMMasterProfileViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMAboutViewController *aboutController</Declaration>
+			
+			
+			<Anchor>//api/name/aboutController</Anchor>
+            <NodeRef refid="44"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterProfileViewController/aboutController</TokenIdentifier>
+			<Abstract type="html">About View Controller</Abstract>
+			<DeclaredIn>MMMasterProfileViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMAboutViewController *aboutController</Declaration>
+			
+			
+			<Anchor>//api/name/aboutController</Anchor>
+            <NodeRef refid="44"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMasterProfileViewController/aboutController</TokenIdentifier>
+			<Abstract type="html">About View Controller</Abstract>
+			<DeclaredIn>MMMasterProfileViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMAboutViewController *aboutController</Declaration>
+			
+			
+			<Anchor>//api/name/aboutController</Anchor>
+            <NodeRef refid="44"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterProfileViewController/setCurrentDetailViewController:</TokenIdentifier>
+			<Abstract type="html">The current selected view controller.</Abstract>
+			<DeclaredIn>MMMasterProfileViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIViewController *currentDetailViewController</Declaration>
+			
+			
+			<Anchor>//api/name/currentDetailViewController</Anchor>
+            <NodeRef refid="44"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterProfileViewController/currentDetailViewController</TokenIdentifier>
+			<Abstract type="html">The current selected view controller.</Abstract>
+			<DeclaredIn>MMMasterProfileViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIViewController *currentDetailViewController</Declaration>
+			
+			
+			<Anchor>//api/name/currentDetailViewController</Anchor>
+            <NodeRef refid="44"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMasterProfileViewController/currentDetailViewController</TokenIdentifier>
+			<Abstract type="html">The current selected view controller.</Abstract>
+			<DeclaredIn>MMMasterProfileViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIViewController *currentDetailViewController</Declaration>
+			
+			
+			<Anchor>//api/name/currentDetailViewController</Anchor>
             <NodeRef refid="44"/>
 		</Token>
 		

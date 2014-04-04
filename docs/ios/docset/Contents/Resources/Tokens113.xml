@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACObjCRuntime.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACObjCRuntime</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>RACObjCRuntime.h</DeclaredIn>
+            
+			
+			<NodeRef refid="113"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACObjCRuntime/createClass:inheritingFromClass:</TokenIdentifier>
+			<Abstract type="html">Invokes objc_allocateClassPair(). Can be called from ARC code.</Abstract>
+			<DeclaredIn>RACObjCRuntime.h</DeclaredIn>
+			
+			<Declaration>+ (Class)createClass:(const char *)className inheritingFromClass:(Class)superclass</Declaration>
+			
+			
+			<Anchor>//api/name/createClass:inheritingFromClass:</Anchor>
+            <NodeRef refid="113"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

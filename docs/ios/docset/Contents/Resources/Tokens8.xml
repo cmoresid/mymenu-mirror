@@ -1,18 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMLoginViewController.html">
+	<File path="Classes/AFImageResponseSerializer.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMLoginViewController</TokenIdentifier>
-			<Abstract type="html">Login view controller.
-A view controller that logs in a user.
-User is prompted for their email address (id) and their password.</Abstract>
-			<DeclaredIn>MMLoginViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/AFImageResponseSerializer</TokenIdentifier>
+			<Abstract type="html">AFImageSerializer is a subclass of AFHTTPResponseSerializer that validates and decodes image responses.</Abstract>
+			<DeclaredIn>AFURLResponseSerialization.h</DeclaredIn>
             
 			
 			<NodeRef refid="8"/>
 		</Token>
 		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AFImageResponseSerializer/setImageScale:</TokenIdentifier>
+			<Abstract type="html">The scale factor used when interpreting the image data to construct responseImage. Specifying a scale factor of 1.0 results in an image whose size matches the pixel-based dimensions of the image. Applying a different scale factor changes the size of the image as reported by the size property. This is set to the value of scale of the main screen by default, which automatically scales images for retina displays, for instance.</Abstract>
+			<DeclaredIn>AFURLResponseSerialization.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CGFloat imageScale</Declaration>
+			
+			
+			<Anchor>//api/name/imageScale</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AFImageResponseSerializer/imageScale</TokenIdentifier>
+			<Abstract type="html">The scale factor used when interpreting the image data to construct responseImage. Specifying a scale factor of 1.0 results in an image whose size matches the pixel-based dimensions of the image. Applying a different scale factor changes the size of the image as reported by the size property. This is set to the value of scale of the main screen by default, which automatically scales images for retina displays, for instance.</Abstract>
+			<DeclaredIn>AFURLResponseSerialization.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CGFloat imageScale</Declaration>
+			
+			
+			<Anchor>//api/name/imageScale</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AFImageResponseSerializer/imageScale</TokenIdentifier>
+			<Abstract type="html">The scale factor used when interpreting the image data to construct responseImage. Specifying a scale factor of 1.0 results in an image whose size matches the pixel-based dimensions of the image. Applying a different scale factor changes the size of the image as reported by the size property. This is set to the value of scale of the main screen by default, which automatically scales images for retina displays, for instance.</Abstract>
+			<DeclaredIn>AFURLResponseSerialization.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CGFloat imageScale</Declaration>
+			
+			
+			<Anchor>//api/name/imageScale</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AFImageResponseSerializer/setAutomaticallyInflatesResponseImage:</TokenIdentifier>
+			<Abstract type="html">Whether to automatically inflate response image data for compressed formats (such as PNG or JPEG). Enabling this can significantly improve drawing performance on iOS when used with setCompletionBlockWithSuccess:failure:, as it allows a bitmap representation to be constructed in the background rather than on the main thread. YES by default.</Abstract>
+			<DeclaredIn>AFURLResponseSerialization.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL automaticallyInflatesResponseImage</Declaration>
+			
+			
+			<Anchor>//api/name/automaticallyInflatesResponseImage</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AFImageResponseSerializer/automaticallyInflatesResponseImage</TokenIdentifier>
+			<Abstract type="html">Whether to automatically inflate response image data for compressed formats (such as PNG or JPEG). Enabling this can significantly improve drawing performance on iOS when used with setCompletionBlockWithSuccess:failure:, as it allows a bitmap representation to be constructed in the background rather than on the main thread. YES by default.</Abstract>
+			<DeclaredIn>AFURLResponseSerialization.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL automaticallyInflatesResponseImage</Declaration>
+			
+			
+			<Anchor>//api/name/automaticallyInflatesResponseImage</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AFImageResponseSerializer/automaticallyInflatesResponseImage</TokenIdentifier>
+			<Abstract type="html">Whether to automatically inflate response image data for compressed formats (such as PNG or JPEG). Enabling this can significantly improve drawing performance on iOS when used with setCompletionBlockWithSuccess:failure:, as it allows a bitmap representation to be constructed in the background rather than on the main thread. YES by default.</Abstract>
+			<DeclaredIn>AFURLResponseSerialization.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL automaticallyInflatesResponseImage</Declaration>
+			
+			
+			<Anchor>//api/name/automaticallyInflatesResponseImage</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
 		
         
 	</File>

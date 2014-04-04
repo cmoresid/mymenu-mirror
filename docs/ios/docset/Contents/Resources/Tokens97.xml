@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACCompoundDisposable.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACCompoundDisposable</TokenIdentifier>
+			<Abstract type="html">A disposable of disposables. When it is disposed, it disposes of all its
+contained disposables.</Abstract>
+			<DeclaredIn>RACCompoundDisposable.h</DeclaredIn>
+            
+			
+			<NodeRef refid="97"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACCompoundDisposable/compoundDisposable</TokenIdentifier>
+			<Abstract type="html">Creates and returns a new compound disposable.</Abstract>
+			<DeclaredIn>RACCompoundDisposable.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)compoundDisposable</Declaration>
+			
+			
+			<Anchor>//api/name/compoundDisposable</Anchor>
+            <NodeRef refid="97"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACCompoundDisposable/compoundDisposableWithDisposables:</TokenIdentifier>
+			<Abstract type="html">Creates and returns a new compound disposable containing the given
+disposables.</Abstract>
+			<DeclaredIn>RACCompoundDisposable.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)compoundDisposableWithDisposables:(NSArray *)disposables</Declaration>
+			
+			
+			<Anchor>//api/name/compoundDisposableWithDisposables:</Anchor>
+            <NodeRef refid="97"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCompoundDisposable/addDisposable:</TokenIdentifier>
+			<Abstract type="html">Adds the given disposable. If the receiving disposable has already been
+disposed of, the given disposable is disposed immediately.</Abstract>
+			<DeclaredIn>RACCompoundDisposable.h</DeclaredIn>
+			
+			<Declaration>- (void)addDisposable:(RACDisposable *)disposable</Declaration>
+			
+			
+			<Anchor>//api/name/addDisposable:</Anchor>
+            <NodeRef refid="97"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCompoundDisposable/removeDisposable:</TokenIdentifier>
+			<Abstract type="html">Removes the specified disposable from the compound disposable (regardless of
+its disposed status), or does nothing if it&apos;s not in the compound disposable.</Abstract>
+			<DeclaredIn>RACCompoundDisposable.h</DeclaredIn>
+			
+			<Declaration>- (void)removeDisposable:(RACDisposable *)disposable</Declaration>
+			
+			
+			<Anchor>//api/name/removeDisposable:</Anchor>
+            <NodeRef refid="97"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCompoundDisposable/isDisposed</TokenIdentifier>
+			<Abstract type="html">Whether the receiver has been disposed.</Abstract>
+			<DeclaredIn>RACCompoundDisposable.m</DeclaredIn>
+			
+			<Declaration>- (BOOL)isDisposed</Declaration>
+			
+			
+			<Anchor>//api/name/isDisposed</Anchor>
+            <NodeRef refid="97"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCompoundDisposable/dispose</TokenIdentifier>
+			<Abstract type="html">Performs the disposal work. Can be called multiple times, though sebsequent
+calls won&apos;t do anything.</Abstract>
+			<DeclaredIn>RACCompoundDisposable.m</DeclaredIn>
+			
+			<Declaration>- (void)dispose</Declaration>
+			
+			
+			<Anchor>//api/name/dispose</Anchor>
+            <NodeRef refid="97"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

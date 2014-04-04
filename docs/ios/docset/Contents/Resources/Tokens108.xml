@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACImmediateScheduler.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACImmediateScheduler</TokenIdentifier>
+			<Abstract type="html">A scheduler which immediately executes its scheduled blocks.</Abstract>
+			<DeclaredIn>RACImmediateScheduler.h</DeclaredIn>
+            
+			
+			<NodeRef refid="108"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACImmediateScheduler/schedule:</TokenIdentifier>
+			<Abstract type="html">Schedule the given block for execution on the scheduler.</Abstract>
+			<DeclaredIn>RACImmediateScheduler.m</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)schedule:(void ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/schedule:</Anchor>
+            <NodeRef refid="108"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACImmediateScheduler/after:schedule:</TokenIdentifier>
+			<Abstract type="html">Schedule the given block for execution on the scheduler at or after
+a specific time.</Abstract>
+			<DeclaredIn>RACImmediateScheduler.m</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)after:(NSDate *)date schedule:(void ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/after:schedule:</Anchor>
+            <NodeRef refid="108"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACImmediateScheduler/after:repeatingEvery:withLeeway:schedule:</TokenIdentifier>
+			<Abstract type="html">Reschedule the given block at a particular interval, starting at a specific
+time, and with a given leeway for deferral.</Abstract>
+			<DeclaredIn>RACImmediateScheduler.m</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)after:(NSDate *)date repeatingEvery:(NSTimeInterval)interval withLeeway:(NSTimeInterval)leeway schedule:(void ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/after:repeatingEvery:withLeeway:schedule:</Anchor>
+            <NodeRef refid="108"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

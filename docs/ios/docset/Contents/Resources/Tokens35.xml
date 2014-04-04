@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Categories/NSArray+MerchantSort.html">
+	<File path="Classes/MMDetailMapViewController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cat/NSArray(MerchantSort)</TokenIdentifier>
-			<Abstract type="html">An extension (category) method to NSArray so
-one can sort an array of MMMerchUser by a
-number of criteria.</Abstract>
-			<DeclaredIn>NSArray+MerchantSort.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMDetailMapViewController</TokenIdentifier>
+			<Abstract type="html">Map View on the Restaruants tab.</Abstract>
+			<DeclaredIn>MMDetailMapViewController.h</DeclaredIn>
             
 			
 			<NodeRef refid="35"/>
@@ -15,42 +13,94 @@ number of criteria.</Abstract>
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/NSArray/sortMerchantByDistance</TokenIdentifier>
-			<Abstract type="html">Sort an array of merchant users by
-distance from the user.</Abstract>
-			<DeclaredIn>NSArray+MerchantSort.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDetailMapViewController/setLocation:</TokenIdentifier>
+			<Abstract type="html">Current users location, based on GPS</Abstract>
+			<DeclaredIn>MMDetailMapViewController.h</DeclaredIn>
 			
-			<Declaration>- (NSArray *)sortMerchantByDistance</Declaration>
+			<Declaration>@property (nonatomic, strong) CLLocation *location</Declaration>
 			
 			
-			<Anchor>//api/name/sortMerchantByDistance</Anchor>
+			<Anchor>//api/name/location</Anchor>
             <NodeRef refid="35"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/NSArray/sortMerchantByTopRated</TokenIdentifier>
-			<Abstract type="html">Sort an array of merchant users by
-rating in descending order (top rated
-to lowest rating).</Abstract>
-			<DeclaredIn>NSArray+MerchantSort.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDetailMapViewController/location</TokenIdentifier>
+			<Abstract type="html">Current users location, based on GPS</Abstract>
+			<DeclaredIn>MMDetailMapViewController.h</DeclaredIn>
 			
-			<Declaration>- (NSArray *)sortMerchantByTopRated</Declaration>
+			<Declaration>@property (nonatomic, strong) CLLocation *location</Declaration>
 			
 			
-			<Anchor>//api/name/sortMerchantByTopRated</Anchor>
+			<Anchor>//api/name/location</Anchor>
             <NodeRef refid="35"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/NSArray/sortMerchantByCusine</TokenIdentifier>
-			<Abstract type="html">Sort an array of merchant users by
-cusine type.</Abstract>
-			<DeclaredIn>NSArray+MerchantSort.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/MMDetailMapViewController/location</TokenIdentifier>
+			<Abstract type="html">Current users location, based on GPS</Abstract>
+			<DeclaredIn>MMDetailMapViewController.h</DeclaredIn>
 			
-			<Declaration>- (NSArray *)sortMerchantByCusine</Declaration>
+			<Declaration>@property (nonatomic, strong) CLLocation *location</Declaration>
 			
 			
-			<Anchor>//api/name/sortMerchantByCusine</Anchor>
+			<Anchor>//api/name/location</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDetailMapViewController/setNavigationPaneBarButtonItem:</TokenIdentifier>
+			<Abstract type="html">The bar button that is displayed in portrait mode to
+show the restaurant drawer.</Abstract>
+			<DeclaredIn>MMDetailMapViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem</Declaration>
+			
+			
+			<Anchor>//api/name/navigationPaneBarButtonItem</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDetailMapViewController/navigationPaneBarButtonItem</TokenIdentifier>
+			<Abstract type="html">The bar button that is displayed in portrait mode to
+show the restaurant drawer.</Abstract>
+			<DeclaredIn>MMDetailMapViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem</Declaration>
+			
+			
+			<Anchor>//api/name/navigationPaneBarButtonItem</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMDetailMapViewController/navigationPaneBarButtonItem</TokenIdentifier>
+			<Abstract type="html">The bar button that is displayed in portrait mode to
+show the restaurant drawer.</Abstract>
+			<DeclaredIn>MMDetailMapViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem</Declaration>
+			
+			
+			<Anchor>//api/name/navigationPaneBarButtonItem</Anchor>
+            <NodeRef refid="35"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDetailMapViewController/pinRestaurants:</TokenIdentifier>
+			<Abstract type="html">Adds the restaurants to the map view.</Abstract>
+			<DeclaredIn>MMDetailMapViewController.h</DeclaredIn>
+			
+			<Declaration>- (void)pinRestaurants:(NSArray *)restaurants</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>restaurants</Name>
+					<Abstract type="html">in an NSArray</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/pinRestaurants:</Anchor>
             <NodeRef refid="35"/>
 		</Token>
 		

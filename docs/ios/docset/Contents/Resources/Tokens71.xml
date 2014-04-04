@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMRestaurantViewModel.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMRestaurantViewModel</TokenIdentifier>
+			<Abstract type="html">*  The View Model for MMRestaurantViewController. Responsible</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+            
+			
+			<NodeRef refid="71"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/setMerchantInformation:</TokenIdentifier>
+			<Abstract type="html">*  The MMMerchant model that this view model represents.</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMerchant *merchantInformation</Declaration>
+			
+			
+			<Anchor>//api/name/merchantInformation</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/merchantInformation</TokenIdentifier>
+			<Abstract type="html">*  The MMMerchant model that this view model represents.</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMerchant *merchantInformation</Declaration>
+			
+			
+			<Anchor>//api/name/merchantInformation</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewModel/merchantInformation</TokenIdentifier>
+			<Abstract type="html">*  The MMMerchant model that this view model represents.</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMerchant *merchantInformation</Declaration>
+			
+			
+			<Anchor>//api/name/merchantInformation</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/setControllerShouldShowProgressIndicator:</TokenIdentifier>
+			<Abstract type="html">*  Notifies the corresponding controller to hide/show a progress</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) RACSubject *controllerShouldShowProgressIndicator</Declaration>
+			
+			
+			<Anchor>//api/name/controllerShouldShowProgressIndicator</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/controllerShouldShowProgressIndicator</TokenIdentifier>
+			<Abstract type="html">*  Notifies the corresponding controller to hide/show a progress</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) RACSubject *controllerShouldShowProgressIndicator</Declaration>
+			
+			
+			<Anchor>//api/name/controllerShouldShowProgressIndicator</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewModel/controllerShouldShowProgressIndicator</TokenIdentifier>
+			<Abstract type="html">*  Notifies the corresponding controller to hide/show a progress</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) RACSubject *controllerShouldShowProgressIndicator</Declaration>
+			
+			
+			<Anchor>//api/name/controllerShouldShowProgressIndicator</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/setControllerShouldReloadDataSource:</TokenIdentifier>
+			<Abstract type="html">*  Notifies the corresponding conroller that the data source</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) RACSubject *controllerShouldReloadDataSource</Declaration>
+			
+			
+			<Anchor>//api/name/controllerShouldReloadDataSource</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/controllerShouldReloadDataSource</TokenIdentifier>
+			<Abstract type="html">*  Notifies the corresponding conroller that the data source</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) RACSubject *controllerShouldReloadDataSource</Declaration>
+			
+			
+			<Anchor>//api/name/controllerShouldReloadDataSource</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewModel/controllerShouldReloadDataSource</TokenIdentifier>
+			<Abstract type="html">*  Notifies the corresponding conroller that the data source</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) RACSubject *controllerShouldReloadDataSource</Declaration>
+			
+			
+			<Anchor>//api/name/controllerShouldReloadDataSource</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/setSelectedTabIndex:</TokenIdentifier>
+			<Abstract type="html">*  Represents the currently selected tab in the</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSInteger selectedTabIndex</Declaration>
+			
+			
+			<Anchor>//api/name/selectedTabIndex</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/selectedTabIndex</TokenIdentifier>
+			<Abstract type="html">*  Represents the currently selected tab in the</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSInteger selectedTabIndex</Declaration>
+			
+			
+			<Anchor>//api/name/selectedTabIndex</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewModel/selectedTabIndex</TokenIdentifier>
+			<Abstract type="html">*  Represents the currently selected tab in the</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSInteger selectedTabIndex</Declaration>
+			
+			
+			<Anchor>//api/name/selectedTabIndex</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/setReviewOrder:</TokenIdentifier>
+			<Abstract type="html">*  Represents which orderering the reviews</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSInteger reviewOrder</Declaration>
+			
+			
+			<Anchor>//api/name/reviewOrder</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/reviewOrder</TokenIdentifier>
+			<Abstract type="html">*  Represents which orderering the reviews</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSInteger reviewOrder</Declaration>
+			
+			
+			<Anchor>//api/name/reviewOrder</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewModel/reviewOrder</TokenIdentifier>
+			<Abstract type="html">*  Represents which orderering the reviews</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSInteger reviewOrder</Declaration>
+			
+			
+			<Anchor>//api/name/reviewOrder</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/setDataSourceType:</TokenIdentifier>
+			<Abstract type="html">*  Represents the type of objects that are</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSInteger dataSourceType</Declaration>
+			
+			
+			<Anchor>//api/name/dataSourceType</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/dataSourceType</TokenIdentifier>
+			<Abstract type="html">*  Represents the type of objects that are</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSInteger dataSourceType</Declaration>
+			
+			
+			<Anchor>//api/name/dataSourceType</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewModel/dataSourceType</TokenIdentifier>
+			<Abstract type="html">*  Represents the type of objects that are</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSInteger dataSourceType</Declaration>
+			
+			
+			<Anchor>//api/name/dataSourceType</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/setReviewTabIndex:</TokenIdentifier>
+			<Abstract type="html">*  Represents the index that corresponds to the</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly, getter=getReviewTabIndex) NSNumber *reviewTabIndex</Declaration>
+			
+			
+			<Anchor>//api/name/reviewTabIndex</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/getReviewTabIndex</TokenIdentifier>
+			<Abstract type="html">*  Represents the index that corresponds to the</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly, getter=getReviewTabIndex) NSNumber *reviewTabIndex</Declaration>
+			
+			
+			<Anchor>//api/name/reviewTabIndex</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewModel/reviewTabIndex</TokenIdentifier>
+			<Abstract type="html">*  Represents the index that corresponds to the</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly, getter=getReviewTabIndex) NSNumber *reviewTabIndex</Declaration>
+			
+			
+			<Anchor>//api/name/reviewTabIndex</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/getTabCategories</TokenIdentifier>
+			<Abstract type="html">*  Retrieves an NSArray of strings that will</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getTabCategories</Declaration>
+			
+			
+			<Anchor>//api/name/getTabCategories</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/getAllMenuItems</TokenIdentifier>
+			<Abstract type="html">*  Retrieves an NSMutableArray of all</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getAllMenuItems</Declaration>
+			
+			
+			<Anchor>//api/name/getAllMenuItems</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/numberOfItemsInCurrentDataSource</TokenIdentifier>
+			<Abstract type="html">*  Returns the number of items in the</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>- (NSInteger)numberOfItemsInCurrentDataSource</Declaration>
+			
+			
+			<Anchor>//api/name/numberOfItemsInCurrentDataSource</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/getItemFromCurrentDataSourceForIndexPath:</TokenIdentifier>
+			<Abstract type="html">*  Returns the object that at the specified</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>- (id)getItemFromCurrentDataSourceForIndexPath:(NSIndexPath *)indexPath</Declaration>
+			
+			
+			<Anchor>//api/name/getItemFromCurrentDataSourceForIndexPath:</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewModel/searchForItemWithValue:</TokenIdentifier>
+			<Abstract type="html">*  Searchs for a value in the current data sources and</Abstract>
+			<DeclaredIn>MMRestaurantViewModel.h</DeclaredIn>
+			
+			<Declaration>- (void)searchForItemWithValue:(NSString *)valueToSearchFor</Declaration>
+			
+			
+			<Anchor>//api/name/searchForItemWithValue:</Anchor>
+            <NodeRef refid="71"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

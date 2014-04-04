@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/CCHMapClusterControllerDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/CCHMapClusterControllerDelegate</TokenIdentifier>
+			<Abstract type="html">Protocol to configure custom titles and subtitles for cluster annotations.</Abstract>
+			<DeclaredIn>CCHMapClusterControllerDelegate.h</DeclaredIn>
+            
+			
+			<NodeRef refid="202"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/CCHMapClusterControllerDelegate/mapClusterController:titleForMapClusterAnnotation:</TokenIdentifier>
+			<Abstract type="html">Returns the title for a cluster annotation.</Abstract>
+			<DeclaredIn>CCHMapClusterControllerDelegate.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>mapClusterController</Name>
+					<Abstract type="html">The cluster controller sending the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>mapClusterAnnotation</Name>
+					<Abstract type="html">The cluster annotation.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/mapClusterController:titleForMapClusterAnnotation:</Anchor>
+            <NodeRef refid="202"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/CCHMapClusterControllerDelegate/mapClusterController:subtitleForMapClusterAnnotation:</TokenIdentifier>
+			<Abstract type="html">Returns the subtitle for a cluster annotation.</Abstract>
+			<DeclaredIn>CCHMapClusterControllerDelegate.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>mapClusterController</Name>
+					<Abstract type="html">The cluster controller sending the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>mapClusterAnnotation</Name>
+					<Abstract type="html">The cluster annotation.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/mapClusterController:subtitleForMapClusterAnnotation:</Anchor>
+            <NodeRef refid="202"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/CCHMapClusterControllerDelegate/mapClusterController:willReuseMapClusterAnnotation:</TokenIdentifier>
+			<Abstract type="html">Called before the given cluster annotation is reused for a cell.</Abstract>
+			<DeclaredIn>CCHMapClusterControllerDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)mapClusterController:(CCHMapClusterController *)mapClusterController willReuseMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>mapClusterController</Name>
+					<Abstract type="html">The cluster controller sending the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>mapClusterAnnotation</Name>
+					<Abstract type="html">The cluster annotation that&apos;s reused. Its properties are updated to reflect the current state.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/mapClusterController:willReuseMapClusterAnnotation:</Anchor>
+            <NodeRef refid="202"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIViewController+RBStoryboardLink.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIViewController(RBStoryboardLink)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UIViewController+RBStoryboardLink.h</DeclaredIn>
+            
+			
+			<NodeRef refid="196"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIViewController/rbsl_storyboardLink</TokenIdentifier>
+			<Abstract type="html">Returns the storyboard link this view controller is contained in, if any.</Abstract>
+			<DeclaredIn>UIViewController+RBStoryboardLink.h</DeclaredIn>
+			
+			<Declaration>- (RBStoryboardLink *)rbsl_storyboardLink</Declaration>
+			
+			
+			<Anchor>//api/name/rbsl_storyboardLink</Anchor>
+            <NodeRef refid="196"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIViewController/rbsl_targetViewController</TokenIdentifier>
+			<Abstract type="html">If the view controller is within a storyboard link, the link is returned.
+If not, self is returned. The intent is to access certain visual elements
+(such as toolbarItems) on the proper view controller when it&apos;s unknown if
+the view controller is contained in a link.</Abstract>
+			<DeclaredIn>UIViewController+RBStoryboardLink.h</DeclaredIn>
+			
+			<Declaration>- (UIViewController *)rbsl_targetViewController</Declaration>
+			
+			
+			<Anchor>//api/name/rbsl_targetViewController</Anchor>
+            <NodeRef refid="196"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

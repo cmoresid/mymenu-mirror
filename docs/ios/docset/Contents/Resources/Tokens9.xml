@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMMatchingTextFieldValidator.html">
+	<File path="Classes/AFJSONRequestSerializer.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMMatchingTextFieldValidator</TokenIdentifier>
-			<Abstract type="html">A concrete validator that compares two text fields and
-ensures that the contents of the text fields match.</Abstract>
-			<DeclaredIn>MMMatchingTextFieldValidator.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/AFJSONRequestSerializer</TokenIdentifier>
+			<Abstract type="html">## Throttling Bandwidth for HTTP Request Input Streams</Abstract>
+			<DeclaredIn>AFURLRequestSerialization.h</DeclaredIn>
             
 			
 			<NodeRef refid="9"/>
@@ -14,27 +13,79 @@ ensures that the contents of the text fields match.</Abstract>
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMMatchingTextFieldValidator/initWithFirstTextField:withSecondTextField:withValidationMessage:</TokenIdentifier>
-			<Abstract type="html">Initializes a comparator validator with the text fields that are to
-be compared and the validation error message to be shown if validation
-fails.</Abstract>
-			<DeclaredIn>MMMatchingTextFieldValidator.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/AFJSONRequestSerializer/setWritingOptions:</TokenIdentifier>
+			<Abstract type="html">Options for writing the request JSON data from Foundation objects. For possible values, see the NSJSONSerialization documentation section &quot;NSJSONWritingOptions&quot;. 0 by default.</Abstract>
+			<DeclaredIn>AFURLRequestSerialization.h</DeclaredIn>
 			
-			<Declaration>- (id)initWithFirstTextField:(UITextField *)textField1 withSecondTextField:(UITextField *)textField2 withValidationMessage:(NSString *)errorMessage</Declaration>
+			<Declaration>@property (nonatomic, assign) NSJSONWritingOptions writingOptions</Declaration>
+			
+			
+			<Anchor>//api/name/writingOptions</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AFJSONRequestSerializer/writingOptions</TokenIdentifier>
+			<Abstract type="html">Options for writing the request JSON data from Foundation objects. For possible values, see the NSJSONSerialization documentation section &quot;NSJSONWritingOptions&quot;. 0 by default.</Abstract>
+			<DeclaredIn>AFURLRequestSerialization.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) NSJSONWritingOptions writingOptions</Declaration>
+			
+			
+			<Anchor>//api/name/writingOptions</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AFJSONRequestSerializer/writingOptions</TokenIdentifier>
+			<Abstract type="html">Options for writing the request JSON data from Foundation objects. For possible values, see the NSJSONSerialization documentation section &quot;NSJSONWritingOptions&quot;. 0 by default.</Abstract>
+			<DeclaredIn>AFURLRequestSerialization.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) NSJSONWritingOptions writingOptions</Declaration>
+			
+			
+			<Anchor>//api/name/writingOptions</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/AFJSONRequestSerializer/serializerWithWritingOptions:</TokenIdentifier>
+			<Abstract type="html">Creates and returns a JSON serializer with specified reading and writing options.</Abstract>
+			<DeclaredIn>AFURLRequestSerialization.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)serializerWithWritingOptions:(NSJSONWritingOptions)writingOptions</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>textField1</Name>
-					<Abstract type="html">The first text field to compare.</Abstract>
-				</Parameter><Parameter>
-					<Name>textField2</Name>
-					<Abstract type="html">The second text field to compare.</Abstract>
-				</Parameter><Parameter>
-					<Name>errorMessage</Name>
-					<Abstract type="html">The validation message to be shown if validation fails.</Abstract>
+					<Name>writingOptions</Name>
+					<Abstract type="html">The specified JSON writing options.</Abstract>
 				</Parameter>
 			</Parameters>
-			<ReturnValue><Abstract type="html">The comparator validator.</Abstract></ReturnValue>
-			<Anchor>//api/name/initWithFirstTextField:withSecondTextField:withValidationMessage:</Anchor>
+			
+			<Anchor>//api/name/serializerWithWritingOptions:</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/AFJSONRequestSerializer/serializer</TokenIdentifier>
+			<Abstract type="html">Creates and returns a serializer with default configuration.</Abstract>
+			<DeclaredIn>AFURLRequestSerialization.m</DeclaredIn>
+			
+			<Declaration>+ (instancetype)serializer</Declaration>
+			
+			
+			<Anchor>//api/name/serializer</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AFJSONRequestSerializer/requestBySerializingRequest:withParameters:error:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>AFURLRequestSerialization.m</DeclaredIn>
+			
+			<Declaration>- (NSURLRequest *)requestBySerializingRequest:(NSURLRequest *)request withParameters:(id)parameters error:(NSError *__autoreleasing *)error</Declaration>
+			
+			
+			<Anchor>//api/name/requestBySerializingRequest:withParameters:error:</Anchor>
             <NodeRef refid="9"/>
 		</Token>
 		

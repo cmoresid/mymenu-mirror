@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSObject+RACDeallocating.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSObject(RACDeallocating)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSObject+RACDeallocating.h</DeclaredIn>
+            
+			
+			<NodeRef refid="155"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSObject/setRac_deallocDisposable:</TokenIdentifier>
+			<Abstract type="html">The compound disposable which will be disposed of when the receiver is
+deallocated.</Abstract>
+			<DeclaredIn>NSObject+RACDeallocating.h</DeclaredIn>
+			
+			<Declaration>@property (atomic, readonly, strong) RACCompoundDisposable *rac_deallocDisposable</Declaration>
+			
+			
+			<Anchor>//api/name/rac_deallocDisposable</Anchor>
+            <NodeRef refid="155"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSObject/rac_deallocDisposable</TokenIdentifier>
+			<Abstract type="html">The compound disposable which will be disposed of when the receiver is
+deallocated.</Abstract>
+			<DeclaredIn>NSObject+RACDeallocating.h</DeclaredIn>
+			
+			<Declaration>@property (atomic, readonly, strong) RACCompoundDisposable *rac_deallocDisposable</Declaration>
+			
+			
+			<Anchor>//api/name/rac_deallocDisposable</Anchor>
+            <NodeRef refid="155"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/NSObject/rac_deallocDisposable</TokenIdentifier>
+			<Abstract type="html">The compound disposable which will be disposed of when the receiver is
+deallocated.</Abstract>
+			<DeclaredIn>NSObject+RACDeallocating.h</DeclaredIn>
+			
+			<Declaration>@property (atomic, readonly, strong) RACCompoundDisposable *rac_deallocDisposable</Declaration>
+			
+			
+			<Anchor>//api/name/rac_deallocDisposable</Anchor>
+            <NodeRef refid="155"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSObject/rac_willDeallocSignal</TokenIdentifier>
+			<Abstract type="html">Returns a signal that will complete immediately before the receiver is fully
+deallocated. If already deallocated when the signal is subscribed to,
+a completed event will be sent immediately.</Abstract>
+			<DeclaredIn>NSObject+RACDeallocating.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)rac_willDeallocSignal</Declaration>
+			
+			
+			<Anchor>//api/name/rac_willDeallocSignal</Anchor>
+            <NodeRef refid="155"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

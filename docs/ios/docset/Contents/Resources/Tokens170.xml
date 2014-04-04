@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIBarButtonItem+RACCommandSupport.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIBarButtonItem(RACCommandSupport)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UIBarButtonItem+RACCommandSupport.h</DeclaredIn>
+            
+			
+			<NodeRef refid="170"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIBarButtonItem/setRac_command:</TokenIdentifier>
+			<Abstract type="html">Sets the control&apos;s command. When the control is clicked, the command is
+executed with the sender of the event. The control&apos;s enabledness is bound
+to the command&apos;s canExecute.</Abstract>
+			<DeclaredIn>UIBarButtonItem+RACCommandSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) RACCommand *rac_command</Declaration>
+			
+			
+			<Anchor>//api/name/rac_command</Anchor>
+            <NodeRef refid="170"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIBarButtonItem/rac_command</TokenIdentifier>
+			<Abstract type="html">Sets the control&apos;s command. When the control is clicked, the command is
+executed with the sender of the event. The control&apos;s enabledness is bound
+to the command&apos;s canExecute.</Abstract>
+			<DeclaredIn>UIBarButtonItem+RACCommandSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) RACCommand *rac_command</Declaration>
+			
+			
+			<Anchor>//api/name/rac_command</Anchor>
+            <NodeRef refid="170"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UIBarButtonItem/rac_command</TokenIdentifier>
+			<Abstract type="html">Sets the control&apos;s command. When the control is clicked, the command is
+executed with the sender of the event. The control&apos;s enabledness is bound
+to the command&apos;s canExecute.</Abstract>
+			<DeclaredIn>UIBarButtonItem+RACCommandSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) RACCommand *rac_command</Declaration>
+			
+			
+			<Anchor>//api/name/rac_command</Anchor>
+            <NodeRef refid="170"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

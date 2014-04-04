@@ -1,0 +1,1329 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>RACSequence Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">MyMenu </a></h1>
+				<a id="developerHome" href="../index.html">MyMenu</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">RACSequence Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/array">&nbsp;&nbsp;&nbsp;&nbsp;array</option>
+	
+	<option value="//api/name/eagerSequence">&nbsp;&nbsp;&nbsp;&nbsp;eagerSequence</option>
+	
+	<option value="//api/name/head">&nbsp;&nbsp;&nbsp;&nbsp;head</option>
+	
+	<option value="//api/name/lazySequence">&nbsp;&nbsp;&nbsp;&nbsp;lazySequence</option>
+	
+	<option value="//api/name/objectEnumerator">&nbsp;&nbsp;&nbsp;&nbsp;objectEnumerator</option>
+	
+	<option value="//api/name/tail">&nbsp;&nbsp;&nbsp;&nbsp;tail</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/empty">&nbsp;&nbsp;&nbsp;&nbsp;+ empty</option>
+	
+	<option value="//api/name/return:">&nbsp;&nbsp;&nbsp;&nbsp;+ return:</option>
+	
+	<option value="//api/name/sequenceWithHeadBlock:tailBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ sequenceWithHeadBlock:tailBlock:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/all:">&nbsp;&nbsp;&nbsp;&nbsp;- all:</option>
+	
+	<option value="//api/name/any:">&nbsp;&nbsp;&nbsp;&nbsp;- any:</option>
+	
+	<option value="//api/name/bind:">&nbsp;&nbsp;&nbsp;&nbsp;- bind:</option>
+	
+	<option value="//api/name/concat:">&nbsp;&nbsp;&nbsp;&nbsp;- concat:</option>
+	
+	<option value="//api/name/foldLeftWithStart:reduce:">&nbsp;&nbsp;&nbsp;&nbsp;- foldLeftWithStart:reduce:</option>
+	
+	<option value="//api/name/foldRightWithStart:reduce:">&nbsp;&nbsp;&nbsp;&nbsp;- foldRightWithStart:reduce:</option>
+	
+	<option value="//api/name/objectPassingTest:">&nbsp;&nbsp;&nbsp;&nbsp;- objectPassingTest:</option>
+	
+	<option value="//api/name/signal">&nbsp;&nbsp;&nbsp;&nbsp;- signal</option>
+	
+	<option value="//api/name/signalWithScheduler:">&nbsp;&nbsp;&nbsp;&nbsp;- signalWithScheduler:</option>
+	
+	<option value="//api/name/zipWith:">&nbsp;&nbsp;&nbsp;&nbsp;- zipWith:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/array">array</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/eagerSequence">eagerSequence</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/head">head</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lazySequence">lazySequence</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/objectEnumerator">objectEnumerator</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tail">tail</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/empty">empty</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/return:">return:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sequenceWithHeadBlock:tailBlock:">sequenceWithHeadBlock:tailBlock:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/all:">all:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/any:">any:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bind:">bind:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/concat:">concat:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/foldLeftWithStart:reduce:">foldLeftWithStart:reduce:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/foldRightWithStart:reduce:">foldRightWithStart:reduce:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/objectPassingTest:">objectPassingTest:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/signal">signal</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/signalWithScheduler:">signalWithScheduler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/zipWith:">zipWith:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="RACSequence Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">RACSequence Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value"><a href="../Classes/RACStream.html">RACStream</a> : NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSCoding<br />NSCopying<br />NSFastEnumeration</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">RACSequence.h<br />RACSequence.m</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Represents an immutable sequence of values. Unless otherwise specified, the
+sequences' values are evaluated lazily on demand. Like Cocoa collections,
+sequences cannot contain nil.</p>
+
+<p>Most inherited <a href="../Classes/RACStream.html">RACStream</a> methods that accept a block will execute the block
+<em>at most</em> once for each value that is evaluated in the returned sequence.
+Side effects are subject to the behavior described in
+<a href="#//api/name/sequenceWithHeadBlock:tailBlock:">sequenceWithHeadBlock:tailBlock:</a>.</p>
+
+<p>Implemented as a class cluster. A minimal implementation for a subclass
+consists simply of <a href="#//api/name/head">head</a> and <a href="#//api/name/tail">tail</a>.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/head">&nbsp;&nbsp;head</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tail">&nbsp;&nbsp;tail</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/array">&nbsp;&nbsp;array</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/objectEnumerator">&nbsp;&nbsp;objectEnumerator</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/eagerSequence">&nbsp;&nbsp;eagerSequence</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/lazySequence">&nbsp;&nbsp;lazySequence</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/signal">&ndash;&nbsp;signal</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/signalWithScheduler:">&ndash;&nbsp;signalWithScheduler:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/foldLeftWithStart:reduce:">&ndash;&nbsp;foldLeftWithStart:reduce:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/foldRightWithStart:reduce:">&ndash;&nbsp;foldRightWithStart:reduce:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/any:">&ndash;&nbsp;any:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/all:">&ndash;&nbsp;all:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/objectPassingTest:">&ndash;&nbsp;objectPassingTest:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sequenceWithHeadBlock:tailBlock:">+&nbsp;sequenceWithHeadBlock:tailBlock:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/empty">+&nbsp;empty</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/return:">+&nbsp;return:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bind:">&ndash;&nbsp;bind:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/concat:">&ndash;&nbsp;concat:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/zipWith:">&ndash;&nbsp;zipWith:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/array" title="array"></a>
+	<h3 class="subsubtitle method-title">array</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Evaluates the full sequence to produce an equivalently-sized array.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSArray *array</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/eagerSequence" title="eagerSequence"></a>
+	<h3 class="subsubtitle method-title">eagerSequence</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Converts a sequence into an eager sequence.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) RACSequence *eagerSequence</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>An eager sequence fully evaluates all of its values immediately. Sequences
+derived from an eager sequence will also be eager.</p>
+
+<p>Returns a new eager sequence, or the receiver if the sequence is already
+eager.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/head" title="head"></a>
+	<h3 class="subsubtitle method-title">head</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The first object in the sequence, or nil if the sequence is <a href="../Classes/RACSequence.html#//api/name/empty">empty</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) id head</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Subclasses must provide an implementation of this method.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/lazySequence" title="lazySequence"></a>
+	<h3 class="subsubtitle method-title">lazySequence</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Converts a sequence into a lazy sequence.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) RACSequence *lazySequence</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>A lazy sequence evaluates its values on demand, as they are accessed.
+Sequences derived from a lazy sequence will also be lazy.</p>
+
+<p>Returns a new lazy sequence, or the receiver if the sequence is already lazy.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/objectEnumerator" title="objectEnumerator"></a>
+	<h3 class="subsubtitle method-title">objectEnumerator</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an enumerator of all objects in the sequence.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSEnumerator *objectEnumerator</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tail" title="tail"></a>
+	<h3 class="subsubtitle method-title">tail</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>All but the first object in the sequence, or nil if the sequence is <a href="../Classes/RACSequence.html#//api/name/empty">empty</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) RACSequence *tail</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Subclasses must provide an implementation of this method.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/empty" title="empty"></a>
+	<h3 class="subsubtitle method-title">empty</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an empty stream.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)empty</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/return:" title="return:"></a>
+	<h3 class="subsubtitle method-title">return:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Lifts <code>value</code> into the stream monad.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)return:(id)<em>value</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a stream containing only the given value.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sequenceWithHeadBlock:tailBlock:" title="sequenceWithHeadBlock:tailBlock:"></a>
+	<h3 class="subsubtitle method-title">sequenceWithHeadBlock:tailBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a sequence that dynamically generates its values.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSequence *)sequenceWithHeadBlock:(id ( ^ ) ( void ))<em>headBlock</em> tailBlock:(RACSequence *( ^ ) ( void ))<em>tailBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>headBlock - Invoked the first time <a href="../Classes/RACSequence.html#//api/name/head">head</a> is accessed.
+tailBlock - Invoked the first time <a href="../Classes/RACSequence.html#//api/name/tail">tail</a> is accessed.</p>
+
+<p>The results from each block are memoized, so each block will be invoked at
+most once, no matter how many times the <a href="../Classes/RACSequence.html#//api/name/head">head</a> and <a href="../Classes/RACSequence.html#//api/name/tail">tail</a> properties of the
+sequence are accessed.</p>
+
+<p>Any side effects in <code>headBlock</code> or <code>tailBlock</code> should be thread-safe, since
+the sequence may be evaluated at any time from any thread. Not only that, but
+<a href="../Classes/RACSequence.html#//api/name/tail">tail</a> may be accessed before <a href="../Classes/RACSequence.html#//api/name/head">head</a>, or both may be accessed simultaneously.
+As noted above, side effects will only be triggered the <em>first</em> time <a href="../Classes/RACSequence.html#//api/name/head">head</a> or
+<a href="../Classes/RACSequence.html#//api/name/tail">tail</a> is invoked.</p>
+
+<p>Returns a sequence that lazily invokes the given blocks to provide <a href="../Classes/RACSequence.html#//api/name/head">head</a> and
+<a href="../Classes/RACSequence.html#//api/name/tail">tail</a>. <code>headBlock</code> must not be nil.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/all:" title="all:"></a>
+	<h3 class="subsubtitle method-title">all:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Check if all values in the sequence pass the block.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)all:(BOOL ( ^ ) ( id value ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>block - The block predicate used to check each item. Cannot be nil.</p>
+
+<p>Returns a boolean indicating if all values in the sequence passed.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/any:" title="any:"></a>
+	<h3 class="subsubtitle method-title">any:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Check if any value in sequence passes the block.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)any:(BOOL ( ^ ) ( id value ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>block - The block predicate used to check each item. Cannot be nil.</p>
+
+<p>Returns a boolean indiciating if any value in the sequence passed.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bind:" title="bind:"></a>
+	<h3 class="subsubtitle method-title">bind:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Lazily binds a block to the values in the receiver.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (instancetype)bind:(RACStreamBindBlock ( ^ ) ( void ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This should only be used if you need to terminate the bind early, or close
+over some state. <a href="#//api/name/flattenMap:">flattenMap:</a> is more appropriate for all other cases.</p>
+
+<p>block - A block returning a RACStreamBindBlock. This block will be invoked
+         each time the bound stream is re-evaluated. This block must not be
+         nil or return nil.</p>
+
+<p>Returns a new stream which represents the combined result of all lazy
+applications of <code>block</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/concat:" title="concat:"></a>
+	<h3 class="subsubtitle method-title">concat:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Appends the values of <code>stream</code> to the values in the receiver.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (instancetype)concat:(RACStream *)<em>stream</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>stream - A stream to concatenate. This must be an instance of the same
+          concrete class as the receiver, and should not be <code>nil</code>.</p>
+
+<p>Returns a new stream representing the receiver followed by <code>stream</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/foldLeftWithStart:reduce:" title="foldLeftWithStart:reduce:"></a>
+	<h3 class="subsubtitle method-title">foldLeftWithStart:reduce:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Applies a left fold to the sequence.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)foldLeftWithStart:(id)<em>start</em> reduce:(id ( ^ ) ( id accumulator , id value ))<em>reduce</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This is the same as iterating the sequence along with a provided start value.
+This uses a constant amount of memory. A left fold is left-associative so in
+the sequence [1,2,3] the block would applied in the following order:
+  reduce(reduce(reduce(start, 1), 2), 3)</p>
+
+<p>start  - The starting value for the fold. Used as <code>accumulator</code> for the
+          first fold.
+reduce - The block used to combine the accumulated value and the next value.
+          Cannot be nil.</p>
+
+<p>Returns a reduced value.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/foldRightWithStart:reduce:" title="foldRightWithStart:reduce:"></a>
+	<h3 class="subsubtitle method-title">foldRightWithStart:reduce:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Applies a right fold to the sequence.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)foldRightWithStart:(id)<em>start</em> reduce:(id ( ^ ) ( id first , RACSequence *rest ))<em>reduce</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>A right fold is equivalent to recursion on the list. The block is evaluated
+from the right to the left in list. It is right associative so it&rsquo;s applied
+to the rightmost elements first. For example, in the sequence [1,2,3] the
+block is applied in the order:
+   reduce(1, reduce(2, reduce(3, start)))</p>
+
+<p>start  - The starting value for the fold.
+reduce - The block used to combine the accumulated value and the next <a href="../Classes/RACSequence.html#//api/name/head">head</a>.
+          The block is given the accumulated value and the value of the rest
+          of the computation (result of the recursion). This is computed when
+          you retrieve its value using <code>rest.</code>head<code></code>. This allows you to
+          prevent unnecessary computation by not accessing <code>rest.</code>head<code></code> if you
+          don&rsquo;t need to.</p>
+
+<p>Returns a reduced value.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/objectPassingTest:" title="objectPassingTest:"></a>
+	<h3 class="subsubtitle method-title">objectPassingTest:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the first object that passes the block.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)objectPassingTest:(BOOL ( ^ ) ( id value ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>block - The block predicate used to check each item. Cannot be nil.</p>
+
+<p>Returns an object that passes the block or nil if no objects passed.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/signal" title="signal"></a>
+	<h3 class="subsubtitle method-title">signal</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Invokes <a href="#//api/name/signalWithScheduler:">signalWithScheduler:</a> with a new <a href="../Classes/RACScheduler.html">RACScheduler</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)signal</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/signalWithScheduler:" title="signalWithScheduler:"></a>
+	<h3 class="subsubtitle method-title">signalWithScheduler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Evaluates the full sequence on the given scheduler.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)signalWithScheduler:(RACScheduler *)<em>scheduler</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Each item is evaluated in its own scheduled block, such that control of the
+scheduler is yielded between each value.</p>
+
+<p>Returns a <a href="#//api/name/signal">signal</a> which sends the receiver&rsquo;s values on the given scheduler as
+they&rsquo;re evaluated.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSequence.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/zipWith:" title="zipWith:"></a>
+	<h3 class="subsubtitle method-title">zipWith:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Zips the values in the receiver with those of the given stream to create
+RACTuples.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (instancetype)zipWith:(RACSequence *)<em>sequence</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The first value of each stream will be combined, then the second value, and
+so forth, until at least one of the streams is exhausted.</p>
+
+<p>stream - The stream to zip with. This must be an instance of the same
+          concrete class as the receiver, and should not be <code>nil</code>.</p>
+
+<p>Returns a new stream of RACTuples, representing the zipped values of the
+two streams.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+                    
+                    
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 MyMenu. All rights reserved. (Last updated: 2014-04-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

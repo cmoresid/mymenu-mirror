@@ -4,8 +4,10 @@ ca.mymenuapp.data
 ca.mymenuapp.data.api
 ca.mymenuapp.data.api.model
 ca.mymenuapp.data.prefs
+ca.mymenuapp.data.rx
 ca.mymenuapp.ui
 ca.mymenuapp.ui.activities
+ca.mymenuapp.ui.adapters
 ca.mymenuapp.ui.debug
 ca.mymenuapp.ui.fragments
 ca.mymenuapp.ui.misc

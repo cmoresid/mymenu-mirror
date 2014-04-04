@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMRatingPopoverViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMRatingPopoverViewController</TokenIdentifier>
+			<Abstract type="html">The rating popover which shows the circle rating.</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="61"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/setRatingView:</TokenIdentifier>
+			<Abstract type="html">The Rating view</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet MMRatingView *ratingView</Declaration>
+			
+			
+			<Anchor>//api/name/ratingView</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/ratingView</TokenIdentifier>
+			<Abstract type="html">The Rating view</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet MMRatingView *ratingView</Declaration>
+			
+			
+			<Anchor>//api/name/ratingView</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingPopoverViewController/ratingView</TokenIdentifier>
+			<Abstract type="html">The Rating view</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet MMRatingView *ratingView</Declaration>
+			
+			
+			<Anchor>//api/name/ratingView</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/setCurrentRating:</TokenIdentifier>
+			<Abstract type="html">The current rating</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CGFloat currentRating</Declaration>
+			
+			
+			<Anchor>//api/name/currentRating</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/currentRating</TokenIdentifier>
+			<Abstract type="html">The current rating</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CGFloat currentRating</Declaration>
+			
+			
+			<Anchor>//api/name/currentRating</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingPopoverViewController/currentRating</TokenIdentifier>
+			<Abstract type="html">The current rating</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CGFloat currentRating</Declaration>
+			
+			
+			<Anchor>//api/name/currentRating</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/setMerchantName:</TokenIdentifier>
+			<Abstract type="html">Label to show restaurnt who the menu item belongs to</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantName</Declaration>
+			
+			
+			<Anchor>//api/name/merchantName</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/merchantName</TokenIdentifier>
+			<Abstract type="html">Label to show restaurnt who the menu item belongs to</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantName</Declaration>
+			
+			
+			<Anchor>//api/name/merchantName</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingPopoverViewController/merchantName</TokenIdentifier>
+			<Abstract type="html">Label to show restaurnt who the menu item belongs to</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantName</Declaration>
+			
+			
+			<Anchor>//api/name/merchantName</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/setMenuItemName:</TokenIdentifier>
+			<Abstract type="html">The Menu item which is being rated</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *menuItemName</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemName</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/menuItemName</TokenIdentifier>
+			<Abstract type="html">The Menu item which is being rated</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *menuItemName</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemName</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingPopoverViewController/menuItemName</TokenIdentifier>
+			<Abstract type="html">The Menu item which is being rated</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *menuItemName</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemName</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/setMenuItemImage:</TokenIdentifier>
+			<Abstract type="html">A picture of the menu item view</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *menuItemImage</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemImage</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/menuItemImage</TokenIdentifier>
+			<Abstract type="html">A picture of the menu item view</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *menuItemImage</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemImage</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingPopoverViewController/menuItemImage</TokenIdentifier>
+			<Abstract type="html">A picture of the menu item view</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *menuItemImage</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemImage</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/setCancelButton:</TokenIdentifier>
+			<Abstract type="html">reference to the cancel button</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *cancelButton</Declaration>
+			
+			
+			<Anchor>//api/name/cancelButton</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/cancelButton</TokenIdentifier>
+			<Abstract type="html">reference to the cancel button</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *cancelButton</Declaration>
+			
+			
+			<Anchor>//api/name/cancelButton</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingPopoverViewController/cancelButton</TokenIdentifier>
+			<Abstract type="html">reference to the cancel button</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *cancelButton</Declaration>
+			
+			
+			<Anchor>//api/name/cancelButton</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/setDoneButton:</TokenIdentifier>
+			<Abstract type="html">reference to the done button</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *doneButton</Declaration>
+			
+			
+			<Anchor>//api/name/doneButton</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/doneButton</TokenIdentifier>
+			<Abstract type="html">reference to the done button</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *doneButton</Declaration>
+			
+			
+			<Anchor>//api/name/doneButton</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingPopoverViewController/doneButton</TokenIdentifier>
+			<Abstract type="html">reference to the done button</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *doneButton</Declaration>
+			
+			
+			<Anchor>//api/name/doneButton</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/setMenuItem:</TokenIdentifier>
+			<Abstract type="html">The current menu item</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMenuItem *menuItem</Declaration>
+			
+			
+			<Anchor>//api/name/menuItem</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/menuItem</TokenIdentifier>
+			<Abstract type="html">The current menu item</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMenuItem *menuItem</Declaration>
+			
+			
+			<Anchor>//api/name/menuItem</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingPopoverViewController/menuItem</TokenIdentifier>
+			<Abstract type="html">The current menu item</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMenuItem *menuItem</Declaration>
+			
+			
+			<Anchor>//api/name/menuItem</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/setMenuItemMerchant:</TokenIdentifier>
+			<Abstract type="html">The Current menu item merchant</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMerchant *menuItemMerchant</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemMerchant</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/menuItemMerchant</TokenIdentifier>
+			<Abstract type="html">The Current menu item merchant</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMerchant *menuItemMerchant</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemMerchant</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingPopoverViewController/menuItemMerchant</TokenIdentifier>
+			<Abstract type="html">The Current menu item merchant</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMerchant *menuItemMerchant</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemMerchant</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/setOldView:</TokenIdentifier>
+			<Abstract type="html">old view for returning</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIView *oldView</Declaration>
+			
+			
+			<Anchor>//api/name/oldView</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/oldView</TokenIdentifier>
+			<Abstract type="html">old view for returning</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIView *oldView</Declaration>
+			
+			
+			<Anchor>//api/name/oldView</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingPopoverViewController/oldView</TokenIdentifier>
+			<Abstract type="html">old view for returning</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIView *oldView</Declaration>
+			
+			
+			<Anchor>//api/name/oldView</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/setThisPopOverController:</TokenIdentifier>
+			<Abstract type="html">popovercontroller created to call this controller</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *thisPopOverController</Declaration>
+			
+			
+			<Anchor>//api/name/thisPopOverController</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/thisPopOverController</TokenIdentifier>
+			<Abstract type="html">popovercontroller created to call this controller</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *thisPopOverController</Declaration>
+			
+			
+			<Anchor>//api/name/thisPopOverController</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingPopoverViewController/thisPopOverController</TokenIdentifier>
+			<Abstract type="html">popovercontroller created to call this controller</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *thisPopOverController</Declaration>
+			
+			
+			<Anchor>//api/name/thisPopOverController</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/setSelectedRating:</TokenIdentifier>
+			<Abstract type="html">The rating the user selected.</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) RatingsReturnBlock selectedRating</Declaration>
+			
+			
+			<Anchor>//api/name/selectedRating</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/selectedRating</TokenIdentifier>
+			<Abstract type="html">The rating the user selected.</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) RatingsReturnBlock selectedRating</Declaration>
+			
+			
+			<Anchor>//api/name/selectedRating</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingPopoverViewController/selectedRating</TokenIdentifier>
+			<Abstract type="html">The rating the user selected.</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) RatingsReturnBlock selectedRating</Declaration>
+			
+			
+			<Anchor>//api/name/selectedRating</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/setCancelRating:</TokenIdentifier>
+			<Abstract type="html">Close the rating box, and return nothing.</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) RatingsReturnBlock cancelRating</Declaration>
+			
+			
+			<Anchor>//api/name/cancelRating</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/cancelRating</TokenIdentifier>
+			<Abstract type="html">Close the rating box, and return nothing.</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) RatingsReturnBlock cancelRating</Declaration>
+			
+			
+			<Anchor>//api/name/cancelRating</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRatingPopoverViewController/cancelRating</TokenIdentifier>
+			<Abstract type="html">Close the rating box, and return nothing.</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) RatingsReturnBlock cancelRating</Declaration>
+			
+			
+			<Anchor>//api/name/cancelRating</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/submitReview:</TokenIdentifier>
+			<Abstract type="html">Save the rating the user selected</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)submitReview:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">UIButton</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/submitReview:</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/cancelReview:</TokenIdentifier>
+			<Abstract type="html">Cancel the input of a rating</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)cancelReview:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">UIButton</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/cancelReview:</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRatingPopoverViewController/moveRatingWheelWithTouch:</TokenIdentifier>
+			<Abstract type="html">Move the rating wheel based on touched point.</Abstract>
+			<DeclaredIn>MMRatingPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>- (void)moveRatingWheelWithTouch:(CGPoint)touchLocation</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>touchLocation</Name>
+					<Abstract type="html">CGPoint</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/moveRatingWheelWithTouch:</Anchor>
+            <NodeRef refid="61"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

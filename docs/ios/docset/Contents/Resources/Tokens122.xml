@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACSignal.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACSignal</TokenIdentifier>
+			<Abstract type="html">Additional methods to assist with debugging.
+Additional methods to assist with unit testing.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+            
+			
+			<NodeRef refid="122"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/createSignal:</TokenIdentifier>
+			<Abstract type="html">Creates a new signal. This is the preferred way to create a new signal
+operation or behavior.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)createSignal:(RACDisposable *( ^ ) ( id&lt;RACSubscriber&gt; subscriber ))didSubscribe</Declaration>
+			
+			
+			<Anchor>//api/name/createSignal:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/error:</TokenIdentifier>
+			<Abstract type="html">Returns a signal that immediately sends the given error.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)error:(NSError *)error</Declaration>
+			
+			
+			<Anchor>//api/name/error:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/never</TokenIdentifier>
+			<Abstract type="html">Returns a signal that never completes.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)never</Declaration>
+			
+			
+			<Anchor>//api/name/never</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/startEagerlyWithScheduler:block:</TokenIdentifier>
+			<Abstract type="html">Immediately schedules the given block on the given scheduler. The block is
+given a subscriber to which it can send events.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)startEagerlyWithScheduler:(RACScheduler *)scheduler block:(void ( ^ ) ( id&lt;RACSubscriber&gt; subscriber ))block</Declaration>
+			
+			
+			<Anchor>//api/name/startEagerlyWithScheduler:block:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/startLazilyWithScheduler:block:</TokenIdentifier>
+			<Abstract type="html">Invokes the given block only on the first subscription. The block is given a
+subscriber to which it can send events.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)startLazilyWithScheduler:(RACScheduler *)scheduler block:(void ( ^ ) ( id&lt;RACSubscriber&gt; subscriber ))block</Declaration>
+			
+			
+			<Anchor>//api/name/startLazilyWithScheduler:block:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/return:</TokenIdentifier>
+			<Abstract type="html">Returns a signal that immediately sends the given value and then completes.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)return:(id)value</Declaration>
+			
+			
+			<Anchor>//api/name/return:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/empty</TokenIdentifier>
+			<Abstract type="html">Returns a signal that immediately completes.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)empty</Declaration>
+			
+			
+			<Anchor>//api/name/empty</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/concat:</TokenIdentifier>
+			<Abstract type="html">Subscribes to signal when the source signal completes.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)concat:(RACSignal *)signal</Declaration>
+			
+			
+			<Anchor>//api/name/concat:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/zipWith:</TokenIdentifier>
+			<Abstract type="html">Zips the values in the receiver with those of the given signal to create
+RACTuples.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)zipWith:(RACSignal *)signal</Declaration>
+			
+			
+			<Anchor>//api/name/zipWith:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/bind:</TokenIdentifier>
+			<Abstract type="html">Lazily binds a block to the values in the receiver.</Abstract>
+			<DeclaredIn>RACSignal.m</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)bind:(RACStreamBindBlock ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/bind:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/logAll</TokenIdentifier>
+			<Abstract type="html">Logs all events that the receiver sends.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)logAll</Declaration>
+			
+			
+			<Anchor>//api/name/logAll</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/logNext</TokenIdentifier>
+			<Abstract type="html">Logs each next that the receiver sends.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)logNext</Declaration>
+			
+			
+			<Anchor>//api/name/logNext</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/logError</TokenIdentifier>
+			<Abstract type="html">Logs any error that the receiver sends.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)logError</Declaration>
+			
+			
+			<Anchor>//api/name/logError</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/logCompleted</TokenIdentifier>
+			<Abstract type="html">Logs any completed event that the receiver sends.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)logCompleted</Declaration>
+			
+			
+			<Anchor>//api/name/logCompleted</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/asynchronousFirstOrDefault:success:error:</TokenIdentifier>
+			<Abstract type="html">Spins the main run loop for a short while, waiting for the receiver to send a next.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (id)asynchronousFirstOrDefault:(id)defaultValue success:(BOOL *)success error:(NSError **)error</Declaration>
+			
+			
+			<Anchor>//api/name/asynchronousFirstOrDefault:success:error:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/asynchronouslyWaitUntilCompleted:</TokenIdentifier>
+			<Abstract type="html">Spins the main run loop for a short while, waiting for the receiver to complete.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)asynchronouslyWaitUntilCompleted:(NSError **)error</Declaration>
+			
+			
+			<Anchor>//api/name/asynchronouslyWaitUntilCompleted:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/doNext:</TokenIdentifier>
+			<Abstract type="html">Do the given block on next. This should be used to inject side effects into
+the signal.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)doNext:(void ( ^ ) ( id x ))block</Declaration>
+			
+			
+			<Anchor>//api/name/doNext:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/doError:</TokenIdentifier>
+			<Abstract type="html">Do the given block on error. This should be used to inject side effects
+into the signal.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)doError:(void ( ^ ) ( NSError *error ))block</Declaration>
+			
+			
+			<Anchor>//api/name/doError:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/doCompleted:</TokenIdentifier>
+			<Abstract type="html">Do the given block on completed. This should be used to inject side effects
+into the signal.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)doCompleted:(void ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/doCompleted:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/throttle:</TokenIdentifier>
+			<Abstract type="html">Send nexts only if we don&apos;t receive another next in interval seconds.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)throttle:(NSTimeInterval)interval</Declaration>
+			
+			
+			<Anchor>//api/name/throttle:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/throttle:valuesPassingTest:</TokenIdentifier>
+			<Abstract type="html">Throttles nexts for which predicate returns YES.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)throttle:(NSTimeInterval)interval valuesPassingTest:(BOOL ( ^ ) ( id next ))predicate</Declaration>
+			
+			
+			<Anchor>//api/name/throttle:valuesPassingTest:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/delay:</TokenIdentifier>
+			<Abstract type="html">Forwards next and completed events after delaying for interval seconds
+on the current scheduler (on which the events were delivered).</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)delay:(NSTimeInterval)interval</Declaration>
+			
+			
+			<Anchor>//api/name/delay:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/repeat</TokenIdentifier>
+			<Abstract type="html">Resubscribes when the signal completes.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)repeat</Declaration>
+			
+			
+			<Anchor>//api/name/repeat</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/initially:</TokenIdentifier>
+			<Abstract type="html">Execute the given block each time a subscription is created.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)initially:(void ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/initially:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/finally:</TokenIdentifier>
+			<Abstract type="html">Execute the given block when the signal completes or errors.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)finally:(void ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/finally:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/bufferWithTime:onScheduler:</TokenIdentifier>
+			<Abstract type="html">Divides the receiver&apos;s nexts into buffers which deliver every interval
+seconds.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)bufferWithTime:(NSTimeInterval)interval onScheduler:(RACScheduler *)scheduler</Declaration>
+			
+			
+			<Anchor>//api/name/bufferWithTime:onScheduler:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/collect</TokenIdentifier>
+			<Abstract type="html">Collect all receiver&apos;s nexts into a NSArray. nil values will be converted
+to NSNull.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)collect</Declaration>
+			
+			
+			<Anchor>//api/name/collect</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/takeLast:</TokenIdentifier>
+			<Abstract type="html">Takes the last count nexts after the receiving signal completes.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)takeLast:(NSUInteger)count</Declaration>
+			
+			
+			<Anchor>//api/name/takeLast:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/combineLatestWith:</TokenIdentifier>
+			<Abstract type="html">Combines the latest values from the receiver and the given signal into
+RACTuples, once both have sent at least one next.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)combineLatestWith:(RACSignal *)signal</Declaration>
+			
+			
+			<Anchor>//api/name/combineLatestWith:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/combineLatest:</TokenIdentifier>
+			<Abstract type="html">Combines the latest values from the given signals into RACTuples, once all
+the signals have sent at least one next.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)combineLatest:(id&lt;NSFastEnumeration&gt;)signals</Declaration>
+			
+			
+			<Anchor>//api/name/combineLatest:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/combineLatest:reduce:</TokenIdentifier>
+			<Abstract type="html">Combines signals using combineLatest:, then reduces the resulting tuples
+into a single value using -reduceEach:.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)combineLatest:(id&lt;NSFastEnumeration&gt;)signals reduce:(id ( ^ ) ( ))reduceBlock</Declaration>
+			
+			
+			<Anchor>//api/name/combineLatest:reduce:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/merge:</TokenIdentifier>
+			<Abstract type="html">Sends the latest next from any of the signals.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)merge:(id&lt;NSFastEnumeration&gt;)signals</Declaration>
+			
+			
+			<Anchor>//api/name/merge:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/flatten:</TokenIdentifier>
+			<Abstract type="html">Merges the signals sent by the receiver into a flattened signal, but only
+subscribes to maxConcurrent number of signals at a time. New signals are
+queued and subscribed to as other signals complete.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)flatten:(NSUInteger)maxConcurrent</Declaration>
+			
+			
+			<Anchor>//api/name/flatten:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/then:</TokenIdentifier>
+			<Abstract type="html">Ignores all nexts from the receiver, waits for the receiver to complete,
+then subscribes to a new signal.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)then:(RACSignal *( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/then:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/concat</TokenIdentifier>
+			<Abstract type="html">Concats the inner signals of a signal of signals.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)concat</Declaration>
+			
+			
+			<Anchor>//api/name/concat</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/aggregateWithStart:reduce:</TokenIdentifier>
+			<Abstract type="html">Aggregate nexts with the given start and combination.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)aggregateWithStart:(id)start reduce:(id ( ^ ) ( id running , id next ))reduceBlock</Declaration>
+			
+			
+			<Anchor>//api/name/aggregateWithStart:reduce:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/aggregateWithStartFactory:reduce:</TokenIdentifier>
+			<Abstract type="html">Aggregate nexts with the given start and combination. The start factory
+block is called to get a new start object for each subscription.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)aggregateWithStartFactory:(id ( ^ ) ( void ))startFactory reduce:(id ( ^ ) ( id running , id next ))reduceBlock</Declaration>
+			
+			
+			<Anchor>//api/name/aggregateWithStartFactory:reduce:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/setKeyPath:onObject:</TokenIdentifier>
+			<Abstract type="html">Invokes setKeyPath:onObject:nilValue: with nil for the nil value.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)setKeyPath:(NSString *)keyPath onObject:(NSObject *)object</Declaration>
+			
+			
+			<Anchor>//api/name/setKeyPath:onObject:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/setKeyPath:onObject:nilValue:</TokenIdentifier>
+			<Abstract type="html">Binds the receiver to an object, automatically setting the given key path on
+every next. When the signal completes, the binding is automatically
+disposed of.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)setKeyPath:(NSString *)keyPath onObject:(NSObject *)object nilValue:(id)nilValue</Declaration>
+			
+			
+			<Anchor>//api/name/setKeyPath:onObject:nilValue:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/interval:onScheduler:</TokenIdentifier>
+			<Abstract type="html">Sends NSDate.date every interval seconds.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)interval:(NSTimeInterval)interval onScheduler:(RACScheduler *)scheduler</Declaration>
+			
+			
+			<Anchor>//api/name/interval:onScheduler:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/interval:onScheduler:withLeeway:</TokenIdentifier>
+			<Abstract type="html">Sends NSDate.date at intervals of at least interval seconds, up to
+approximately interval + leeway seconds.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)interval:(NSTimeInterval)interval onScheduler:(RACScheduler *)scheduler withLeeway:(NSTimeInterval)leeway</Declaration>
+			
+			
+			<Anchor>//api/name/interval:onScheduler:withLeeway:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/takeUntil:</TokenIdentifier>
+			<Abstract type="html">Take nexts until the signalTrigger sends next or completed.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)takeUntil:(RACSignal *)signalTrigger</Declaration>
+			
+			
+			<Anchor>//api/name/takeUntil:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/takeUntilReplacement:</TokenIdentifier>
+			<Abstract type="html">Take nexts until the replacement sends an event.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)takeUntilReplacement:(RACSignal *)replacement</Declaration>
+			
+			
+			<Anchor>//api/name/takeUntilReplacement:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/catch:</TokenIdentifier>
+			<Abstract type="html">Subscribe to the returned signal when an error occurs.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)catch:(RACSignal *( ^ ) ( NSError *error ))catchBlock</Declaration>
+			
+			
+			<Anchor>//api/name/catch:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/catchTo:</TokenIdentifier>
+			<Abstract type="html">Subscribe to the given signal when an error occurs.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)catchTo:(RACSignal *)signal</Declaration>
+			
+			
+			<Anchor>//api/name/catchTo:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/try:</TokenIdentifier>
+			<Abstract type="html">Runs tryBlock against each of the receiver&apos;s values, passing values
+until tryBlock returns NO, or the receiver completes.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)try:(BOOL ( ^ ) ( id value , NSError **errorPtr ))tryBlock</Declaration>
+			
+			
+			<Anchor>//api/name/try:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/tryMap:</TokenIdentifier>
+			<Abstract type="html">Runs mapBlock against each of the receiver&apos;s values, mapping values until
+mapBlock returns nil, or the receiver completes.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)tryMap:(id ( ^ ) ( id value , NSError **errorPtr ))mapBlock</Declaration>
+			
+			
+			<Anchor>//api/name/tryMap:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/first</TokenIdentifier>
+			<Abstract type="html">Returns the first next. Note that this is a blocking call.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (id)first</Declaration>
+			
+			
+			<Anchor>//api/name/first</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/firstOrDefault:</TokenIdentifier>
+			<Abstract type="html">Returns the first next or defaultValue if the signal completes or errors
+without sending a next. Note that this is a blocking call.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (id)firstOrDefault:(id)defaultValue</Declaration>
+			
+			
+			<Anchor>//api/name/firstOrDefault:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/firstOrDefault:success:error:</TokenIdentifier>
+			<Abstract type="html">Returns the first next or defaultValue if the signal completes or errors
+without sending a next. If an error occurs success will be NO and error
+will be populated. Note that this is a blocking call.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (id)firstOrDefault:(id)defaultValue success:(BOOL *)success error:(NSError **)error</Declaration>
+			
+			
+			<Anchor>//api/name/firstOrDefault:success:error:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/waitUntilCompleted:</TokenIdentifier>
+			<Abstract type="html">Blocks the caller and waits for the signal to complete.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)waitUntilCompleted:(NSError **)error</Declaration>
+			
+			
+			<Anchor>//api/name/waitUntilCompleted:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/defer:</TokenIdentifier>
+			<Abstract type="html">Defer creation of a signal until the signal&apos;s actually subscribed to.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)defer:(RACSignal *( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/defer:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/switchToLatest</TokenIdentifier>
+			<Abstract type="html">Every time the receiver sends a new RACSignal, subscribes and sends nexts and
+errors only for that signal.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)switchToLatest</Declaration>
+			
+			
+			<Anchor>//api/name/switchToLatest</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/switch:cases:default:</TokenIdentifier>
+			<Abstract type="html">Switches between the signals in cases as well as defaultSignal based on
+the latest value sent by signal.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)switch:(RACSignal *)signal cases:(NSDictionary *)cases default:(RACSignal *)defaultSignal</Declaration>
+			
+			
+			<Anchor>//api/name/switch:cases:default:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSignal/if:then:else:</TokenIdentifier>
+			<Abstract type="html">Switches between trueSignal and falseSignal based on the latest value
+sent by boolSignal.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)if:(RACSignal *)boolSignal then:(RACSignal *)trueSignal else:(RACSignal *)falseSignal</Declaration>
+			
+			
+			<Anchor>//api/name/if:then:else:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/toArray</TokenIdentifier>
+			<Abstract type="html">Add every next to an array. Nils are represented by NSNulls. Note that this
+is a blocking call.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (NSArray *)toArray</Declaration>
+			
+			
+			<Anchor>//api/name/toArray</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/setSequence:</TokenIdentifier>
+			<Abstract type="html">Add every next to a sequence. Nils are represented by NSNulls.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSequence *sequence</Declaration>
+			
+			
+			<Anchor>//api/name/sequence</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/sequence</TokenIdentifier>
+			<Abstract type="html">Add every next to a sequence. Nils are represented by NSNulls.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSequence *sequence</Declaration>
+			
+			
+			<Anchor>//api/name/sequence</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACSignal/sequence</TokenIdentifier>
+			<Abstract type="html">Add every next to a sequence. Nils are represented by NSNulls.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSequence *sequence</Declaration>
+			
+			
+			<Anchor>//api/name/sequence</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/publish</TokenIdentifier>
+			<Abstract type="html">Creates and returns a multicast connection. This allows you to share a single
+subscription to the underlying signal.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACMulticastConnection *)publish</Declaration>
+			
+			
+			<Anchor>//api/name/publish</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/multicast:</TokenIdentifier>
+			<Abstract type="html">Creates and returns a multicast connection that pushes values into the given
+subject. This allows you to share a single subscription to the underlying
+signal.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACMulticastConnection *)multicast:(RACSubject *)subject</Declaration>
+			
+			
+			<Anchor>//api/name/multicast:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/replay</TokenIdentifier>
+			<Abstract type="html">Multicasts the signal to a RACReplaySubject of unlimited capacity, and
+immediately connects to the resulting RACMulticastConnection.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)replay</Declaration>
+			
+			
+			<Anchor>//api/name/replay</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/replayLast</TokenIdentifier>
+			<Abstract type="html">Multicasts the signal to a RACReplaySubject of capacity 1, and immediately
+connects to the resulting RACMulticastConnection.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)replayLast</Declaration>
+			
+			
+			<Anchor>//api/name/replayLast</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/replayLazily</TokenIdentifier>
+			<Abstract type="html">Multicasts the signal to a RACReplaySubject of unlimited capacity, and
+lazily connects to the resulting RACMulticastConnection.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)replayLazily</Declaration>
+			
+			
+			<Anchor>//api/name/replayLazily</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/timeout:onScheduler:</TokenIdentifier>
+			<Abstract type="html">Sends an error after interval seconds if the source doesn&apos;t complete
+before then.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)timeout:(NSTimeInterval)interval onScheduler:(RACScheduler *)scheduler</Declaration>
+			
+			
+			<Anchor>//api/name/timeout:onScheduler:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/deliverOn:</TokenIdentifier>
+			<Abstract type="html">Creates and returns a signal that delivers its events on the given scheduler.
+Any side effects of the receiver will still be performed on the original
+thread.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)deliverOn:(RACScheduler *)scheduler</Declaration>
+			
+			
+			<Anchor>//api/name/deliverOn:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/subscribeOn:</TokenIdentifier>
+			<Abstract type="html">Creates and returns a signal that executes its side effects and delivers its
+events on the given scheduler.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)subscribeOn:(RACScheduler *)scheduler</Declaration>
+			
+			
+			<Anchor>//api/name/subscribeOn:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/groupBy:transform:</TokenIdentifier>
+			<Abstract type="html">Groups each received object into a group, as determined by calling keyBlock
+with that object. The object sent is transformed by calling transformBlock
+with the object. If transformBlock is nil, it sends the original object.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)groupBy:(id&lt;NSCopying&gt; ( ^ ) ( id object ))keyBlock transform:(id ( ^ ) ( id object ))transformBlock</Declaration>
+			
+			
+			<Anchor>//api/name/groupBy:transform:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/groupBy:</TokenIdentifier>
+			<Abstract type="html">Calls -[RACSignal groupBy:keyBlock transform:nil].</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)groupBy:(id&lt;NSCopying&gt; ( ^ ) ( id object ))keyBlock</Declaration>
+			
+			
+			<Anchor>//api/name/groupBy:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/any</TokenIdentifier>
+			<Abstract type="html">Sends an [NSNumber numberWithBool:YES] if the receiving signal sends any
+objects.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)any</Declaration>
+			
+			
+			<Anchor>//api/name/any</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/any:</TokenIdentifier>
+			<Abstract type="html">Sends an [NSNumber numberWithBool:YES] if the receiving signal sends any
+objects that pass predicateBlock.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)any:(BOOL ( ^ ) ( id object ))predicateBlock</Declaration>
+			
+			
+			<Anchor>//api/name/any:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/all:</TokenIdentifier>
+			<Abstract type="html">Sends an [NSNumber numberWithBool:YES] if all the objects the receiving
+signal sends pass predicateBlock.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)all:(BOOL ( ^ ) ( id object ))predicateBlock</Declaration>
+			
+			
+			<Anchor>//api/name/all:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/retry:</TokenIdentifier>
+			<Abstract type="html">Resubscribes to the receiving signal if an error occurs, up until it has
+retried the given number of times.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)retry:(NSInteger)retryCount</Declaration>
+			
+			
+			<Anchor>//api/name/retry:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/retry</TokenIdentifier>
+			<Abstract type="html">Resubscribes to the receiving signal if an error occurs.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)retry</Declaration>
+			
+			
+			<Anchor>//api/name/retry</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/sample:</TokenIdentifier>
+			<Abstract type="html">Sends the latest value from the receiver only when sampler sends a value.
+The returned signal could repeat values if sampler fires more often than
+the receiver. Values from sampler are ignored before the receiver sends
+its first value.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)sample:(RACSignal *)sampler</Declaration>
+			
+			
+			<Anchor>//api/name/sample:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/ignoreValues</TokenIdentifier>
+			<Abstract type="html">Ignores all nexts from the receiver.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)ignoreValues</Declaration>
+			
+			
+			<Anchor>//api/name/ignoreValues</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/materialize</TokenIdentifier>
+			<Abstract type="html">Converts each of the receiver&apos;s events into a RACEvent object.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)materialize</Declaration>
+			
+			
+			<Anchor>//api/name/materialize</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/dematerialize</TokenIdentifier>
+			<Abstract type="html">Converts each RACEvent in the receiver back into &quot;real&quot; RACSignal events.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)dematerialize</Declaration>
+			
+			
+			<Anchor>//api/name/dematerialize</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/not</TokenIdentifier>
+			<Abstract type="html">Inverts each NSNumber-wrapped BOOL sent by the receiver. It will assert if
+the receiver sends anything other than NSNumbers.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)not</Declaration>
+			
+			
+			<Anchor>//api/name/not</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/and</TokenIdentifier>
+			<Abstract type="html">Performs a boolean AND on all of the RACTuple of NSNumbers in sent by the receiver.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)and</Declaration>
+			
+			
+			<Anchor>//api/name/and</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/or</TokenIdentifier>
+			<Abstract type="html">Performs a boolean OR on all of the RACTuple of NSNumbers in sent by the receiver.</Abstract>
+			<DeclaredIn>RACSignal+Operations.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)or</Declaration>
+			
+			
+			<Anchor>//api/name/or</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/subscribe:</TokenIdentifier>
+			<Abstract type="html">Subscribes subscriber to changes on the receiver. The receiver defines which
+events it actually sends and in what situations the events are sent.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)subscribe:(id&lt;RACSubscriber&gt;)subscriber</Declaration>
+			
+			
+			<Anchor>//api/name/subscribe:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/subscribeNext:</TokenIdentifier>
+			<Abstract type="html">Convenience method to subscribe to the next event.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)subscribeNext:(void ( ^ ) ( id x ))nextBlock</Declaration>
+			
+			
+			<Anchor>//api/name/subscribeNext:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/subscribeNext:completed:</TokenIdentifier>
+			<Abstract type="html">Convenience method to subscribe to the next and completed events.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)subscribeNext:(void ( ^ ) ( id x ))nextBlock completed:(void ( ^ ) ( void ))completedBlock</Declaration>
+			
+			
+			<Anchor>//api/name/subscribeNext:completed:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/subscribeNext:error:completed:</TokenIdentifier>
+			<Abstract type="html">Convenience method to subscribe to the next, completed, and error events.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)subscribeNext:(void ( ^ ) ( id x ))nextBlock error:(void ( ^ ) ( NSError *error ))errorBlock completed:(void ( ^ ) ( void ))completedBlock</Declaration>
+			
+			
+			<Anchor>//api/name/subscribeNext:error:completed:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/subscribeError:</TokenIdentifier>
+			<Abstract type="html">Convenience method to subscribe to error events.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)subscribeError:(void ( ^ ) ( NSError *error ))errorBlock</Declaration>
+			
+			
+			<Anchor>//api/name/subscribeError:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/subscribeCompleted:</TokenIdentifier>
+			<Abstract type="html">Convenience method to subscribe to completed events.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)subscribeCompleted:(void ( ^ ) ( void ))completedBlock</Declaration>
+			
+			
+			<Anchor>//api/name/subscribeCompleted:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/subscribeNext:error:</TokenIdentifier>
+			<Abstract type="html">Convenience method to subscribe to next and error events.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)subscribeNext:(void ( ^ ) ( id x ))nextBlock error:(void ( ^ ) ( NSError *error ))errorBlock</Declaration>
+			
+			
+			<Anchor>//api/name/subscribeNext:error:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSignal/subscribeError:completed:</TokenIdentifier>
+			<Abstract type="html">Convenience method to subscribe to error and completed events.</Abstract>
+			<DeclaredIn>RACSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)subscribeError:(void ( ^ ) ( NSError *error ))errorBlock completed:(void ( ^ ) ( void ))completedBlock</Declaration>
+			
+			
+			<Anchor>//api/name/subscribeError:completed:</Anchor>
+            <NodeRef refid="122"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

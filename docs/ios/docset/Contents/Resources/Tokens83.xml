@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMSplitViewManager.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMSplitViewManager</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MMSplitViewManager.h</DeclaredIn>
+            
+			
+			<NodeRef refid="83"/>
+		</Token>
+		
+		
+        
+	</File>
+</Tokens>

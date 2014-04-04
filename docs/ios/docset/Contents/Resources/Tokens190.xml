@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIStoryboard+UIStoryboard_MyMenu.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIStoryboard(UIStoryboard_MyMenu)</TokenIdentifier>
+			<Abstract type="html">*  A category for UIStoryboard that provides</Abstract>
+			<DeclaredIn>UIStoryboard+UIStoryboard_MyMenu.h</DeclaredIn>
+            
+			
+			<NodeRef refid="190"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIStoryboard/mainStoryBoard</TokenIdentifier>
+			<Abstract type="html">*  Retrieves a reference to the main storyboard</Abstract>
+			<DeclaredIn>UIStoryboard+UIStoryboard_MyMenu.h</DeclaredIn>
+			
+			<Declaration>+ (UIStoryboard *)mainStoryBoard</Declaration>
+			
+			
+			<Anchor>//api/name/mainStoryBoard</Anchor>
+            <NodeRef refid="190"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIStoryboard/specialsStoryboard</TokenIdentifier>
+			<Abstract type="html">*  Retrieves a reference to the specials storyboard</Abstract>
+			<DeclaredIn>UIStoryboard+UIStoryboard_MyMenu.h</DeclaredIn>
+			
+			<Declaration>+ (UIStoryboard *)specialsStoryboard</Declaration>
+			
+			
+			<Anchor>//api/name/specialsStoryboard</Anchor>
+            <NodeRef refid="190"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIStoryboard/menuStoryboard</TokenIdentifier>
+			<Abstract type="html">*  Retrieves a reference to the menu storyboard</Abstract>
+			<DeclaredIn>UIStoryboard+UIStoryboard_MyMenu.h</DeclaredIn>
+			
+			<Declaration>+ (UIStoryboard *)menuStoryboard</Declaration>
+			
+			
+			<Anchor>//api/name/menuStoryboard</Anchor>
+            <NodeRef refid="190"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIStoryboard/profileStoryboard</TokenIdentifier>
+			<Abstract type="html">*  Retrieves a reference to the profile storyboard</Abstract>
+			<DeclaredIn>UIStoryboard+UIStoryboard_MyMenu.h</DeclaredIn>
+			
+			<Declaration>+ (UIStoryboard *)profileStoryboard</Declaration>
+			
+			
+			<Anchor>//api/name/profileStoryboard</Anchor>
+            <NodeRef refid="190"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

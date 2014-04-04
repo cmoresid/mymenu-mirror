@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMSocialMediaService.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMSocialMediaService</TokenIdentifier>
+			<Abstract type="html">*  A helper class that is a wrapper</Abstract>
+			<DeclaredIn>MMSocialMediaService.h</DeclaredIn>
+            
+			
+			<NodeRef refid="76"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/MMSocialMediaService/shareMenuItem:</TokenIdentifier>
+			<Abstract type="html">*  A helper method that configures an</Abstract>
+			<DeclaredIn>MMSocialMediaService.h</DeclaredIn>
+			
+			<Declaration>+ (UIViewController *)shareMenuItem:(MMMenuItem *)menuItem</Declaration>
+			
+			
+			<Anchor>//api/name/shareMenuItem:</Anchor>
+            <NodeRef refid="76"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

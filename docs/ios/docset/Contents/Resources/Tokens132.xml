@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACTuple.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACTuple</TokenIdentifier>
+			<Abstract type="html">A tuple is an ordered collection of objects. It may contain nils, represented
+by RACTupleNil.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+            
+			
+			<NodeRef refid="132"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACTuple/setFirst:</TokenIdentifier>
+			<Abstract type="html">These properties all return the object at that index or nil if the number of
+objects is less than the index.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) id first</Declaration>
+			
+			
+			<Anchor>//api/name/first</Anchor>
+            <NodeRef refid="132"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACTuple/first</TokenIdentifier>
+			<Abstract type="html">These properties all return the object at that index or nil if the number of
+objects is less than the index.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) id first</Declaration>
+			
+			
+			<Anchor>//api/name/first</Anchor>
+            <NodeRef refid="132"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACTuple/first</TokenIdentifier>
+			<Abstract type="html">These properties all return the object at that index or nil if the number of
+objects is less than the index.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) id first</Declaration>
+			
+			
+			<Anchor>//api/name/first</Anchor>
+            <NodeRef refid="132"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACTuple/tupleWithObjectsFromArray:</TokenIdentifier>
+			<Abstract type="html">Creates a new tuple out of the array. Does not convert nulls to nils.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)tupleWithObjectsFromArray:(NSArray *)array</Declaration>
+			
+			
+			<Anchor>//api/name/tupleWithObjectsFromArray:</Anchor>
+            <NodeRef refid="132"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACTuple/tupleWithObjectsFromArray:convertNullsToNils:</TokenIdentifier>
+			<Abstract type="html">Creates a new tuple out of the array. If convert is YES, it also converts
+every NSNull to RACTupleNil.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)tupleWithObjectsFromArray:(NSArray *)array convertNullsToNils:(BOOL)convert</Declaration>
+			
+			
+			<Anchor>//api/name/tupleWithObjectsFromArray:convertNullsToNils:</Anchor>
+            <NodeRef refid="132"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACTuple/tupleWithObjects:</TokenIdentifier>
+			<Abstract type="html">Creates a new tuple with the given objects. Use RACTupleNil to represent
+nils.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)tupleWithObjects:(id)object, ...</Declaration>
+			
+			
+			<Anchor>//api/name/tupleWithObjects:</Anchor>
+            <NodeRef refid="132"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACTuple/objectAtIndex:</TokenIdentifier>
+			<Abstract type="html">Returns the object at index or nil if the object is a RACTupleNil. Unlike
+NSArray and friends, it&apos;s perfectly fine to ask for the object at an index
+past the tuple&apos;s count - 1. It will simply return nil.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+			
+			<Declaration>- (id)objectAtIndex:(NSUInteger)index</Declaration>
+			
+			
+			<Anchor>//api/name/objectAtIndex:</Anchor>
+            <NodeRef refid="132"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACTuple/allObjects</TokenIdentifier>
+			<Abstract type="html">Returns an array of all the objects. RACTupleNils are converted to NSNulls.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+			
+			<Declaration>- (NSArray *)allObjects</Declaration>
+			
+			
+			<Anchor>//api/name/allObjects</Anchor>
+            <NodeRef refid="132"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACTuple/tupleByAddingObject:</TokenIdentifier>
+			<Abstract type="html">Appends obj to the receiver.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)tupleByAddingObject:(id)obj</Declaration>
+			
+			
+			<Anchor>//api/name/tupleByAddingObject:</Anchor>
+            <NodeRef refid="132"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACTuple/setRac_sequence:</TokenIdentifier>
+			<Abstract type="html">Returns a sequence of all the objects. RACTupleNils are converted to NSNulls.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) RACSequence *rac_sequence</Declaration>
+			
+			
+			<Anchor>//api/name/rac_sequence</Anchor>
+            <NodeRef refid="132"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACTuple/rac_sequence</TokenIdentifier>
+			<Abstract type="html">Returns a sequence of all the objects. RACTupleNils are converted to NSNulls.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) RACSequence *rac_sequence</Declaration>
+			
+			
+			<Anchor>//api/name/rac_sequence</Anchor>
+            <NodeRef refid="132"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACTuple/rac_sequence</TokenIdentifier>
+			<Abstract type="html">Returns a sequence of all the objects. RACTupleNils are converted to NSNulls.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) RACSequence *rac_sequence</Declaration>
+			
+			
+			<Anchor>//api/name/rac_sequence</Anchor>
+            <NodeRef refid="132"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACTuple/objectAtIndexedSubscript:</TokenIdentifier>
+			<Abstract type="html">Returns the object at that index or nil if the number of objects is less
+than the index.</Abstract>
+			<DeclaredIn>RACTuple.h</DeclaredIn>
+			
+			<Declaration>- (id)objectAtIndexedSubscript:(NSUInteger)idx</Declaration>
+			
+			
+			<Anchor>//api/name/objectAtIndexedSubscript:</Anchor>
+            <NodeRef refid="132"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMTextFieldValidator.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMTextFieldValidator</TokenIdentifier>
+			<Abstract type="html">* An abstract validator that allows validation to be performed on</Abstract>
+			<DeclaredIn>MMTextFieldValidator.h</DeclaredIn>
+            
+			
+			<NodeRef refid="85"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMTextFieldValidator/setTextField:</TokenIdentifier>
+			<Abstract type="html">* The text field to be validated.</Abstract>
+			<DeclaredIn>MMTextFieldValidator.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) UITextField *textField</Declaration>
+			
+			
+			<Anchor>//api/name/textField</Anchor>
+            <NodeRef refid="85"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMTextFieldValidator/textField</TokenIdentifier>
+			<Abstract type="html">* The text field to be validated.</Abstract>
+			<DeclaredIn>MMTextFieldValidator.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) UITextField *textField</Declaration>
+			
+			
+			<Anchor>//api/name/textField</Anchor>
+            <NodeRef refid="85"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMTextFieldValidator/textField</TokenIdentifier>
+			<Abstract type="html">* The text field to be validated.</Abstract>
+			<DeclaredIn>MMTextFieldValidator.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) UITextField *textField</Declaration>
+			
+			
+			<Anchor>//api/name/textField</Anchor>
+            <NodeRef refid="85"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMTextFieldValidator/setErrorMessage:</TokenIdentifier>
+			<Abstract type="html">* The validation message to be shown if validation fails.</Abstract>
+			<DeclaredIn>MMTextFieldValidator.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *errorMessage</Declaration>
+			
+			
+			<Anchor>//api/name/errorMessage</Anchor>
+            <NodeRef refid="85"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMTextFieldValidator/errorMessage</TokenIdentifier>
+			<Abstract type="html">* The validation message to be shown if validation fails.</Abstract>
+			<DeclaredIn>MMTextFieldValidator.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *errorMessage</Declaration>
+			
+			
+			<Anchor>//api/name/errorMessage</Anchor>
+            <NodeRef refid="85"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMTextFieldValidator/errorMessage</TokenIdentifier>
+			<Abstract type="html">* The validation message to be shown if validation fails.</Abstract>
+			<DeclaredIn>MMTextFieldValidator.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *errorMessage</Declaration>
+			
+			
+			<Anchor>//api/name/errorMessage</Anchor>
+            <NodeRef refid="85"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMTextFieldValidator/initWithTextField:withValidationMessage:</TokenIdentifier>
+			<Abstract type="html">* A constructor that initializes a validator object with a text field and a validation</Abstract>
+			<DeclaredIn>MMTextFieldValidator.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithTextField:(UITextField *)textField withValidationMessage:(NSString *)errorMessage</Declaration>
+			
+			
+			<Anchor>//api/name/initWithTextField:withValidationMessage:</Anchor>
+            <NodeRef refid="85"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMTextFieldValidator/isValid</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MMTextFieldValidator.m</DeclaredIn>
+			
+			<Declaration>- (BOOL)isValid</Declaration>
+			
+			
+			<Anchor>//api/name/isValid</Anchor>
+            <NodeRef refid="85"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMTextFieldValidator/getErrorMessage</TokenIdentifier>
+			<Abstract type="html">* Retrieves any error message that is contained within the</Abstract>
+			<DeclaredIn>MMTextFieldValidator.m</DeclaredIn>
+			
+			<Declaration>- (NSString *)getErrorMessage</Declaration>
+			
+			
+			<Anchor>//api/name/getErrorMessage</Anchor>
+            <NodeRef refid="85"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

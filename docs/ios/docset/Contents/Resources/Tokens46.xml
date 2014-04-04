@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMMatchingTextFieldValidator.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMatchingTextFieldValidator</TokenIdentifier>
+			<Abstract type="html">* A concrete validator that compares two text fields and</Abstract>
+			<DeclaredIn>MMMatchingTextFieldValidator.h</DeclaredIn>
+            
+			
+			<NodeRef refid="46"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMatchingTextFieldValidator/initWithFirstTextField:withSecondTextField:withValidationMessage:</TokenIdentifier>
+			<Abstract type="html">* Initializes a comparator validator with the text fields that are to</Abstract>
+			<DeclaredIn>MMMatchingTextFieldValidator.m</DeclaredIn>
+			
+			<Declaration>- (id)initWithFirstTextField:(UITextField *)textField1 withSecondTextField:(UITextField *)textField2 withValidationMessage:(NSString *)errorMessage</Declaration>
+			
+			
+			<Anchor>//api/name/initWithFirstTextField:withSecondTextField:withValidationMessage:</Anchor>
+            <NodeRef refid="46"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

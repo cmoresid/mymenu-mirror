@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACStream.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACStream</TokenIdentifier>
+			<Abstract type="html">An abstract class representing any stream of values.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+            
+			
+			<NodeRef refid="124"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACStream/empty</TokenIdentifier>
+			<Abstract type="html">Returns an empty stream.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)empty</Declaration>
+			
+			
+			<Anchor>//api/name/empty</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACStream/return:</TokenIdentifier>
+			<Abstract type="html">Lifts value into the stream monad.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)return:(id)value</Declaration>
+			
+			
+			<Anchor>//api/name/return:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/bind:</TokenIdentifier>
+			<Abstract type="html">Lazily binds a block to the values in the receiver.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)bind:(RACStreamBindBlock ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/bind:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/concat:</TokenIdentifier>
+			<Abstract type="html">Appends the values of stream to the values in the receiver.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)concat:(RACStream *)stream</Declaration>
+			
+			
+			<Anchor>//api/name/concat:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/zipWith:</TokenIdentifier>
+			<Abstract type="html">Zips the values in the receiver with those of the given stream to create
+RACTuples.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)zipWith:(RACStream *)stream</Declaration>
+			
+			
+			<Anchor>//api/name/zipWith:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/setNameWithFormat:</TokenIdentifier>
+			<Abstract type="html">Sets the name of the receiver to the given format string.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)setNameWithFormat:(NSString *)format, ...</Declaration>
+			
+			
+			<Anchor>//api/name/setNameWithFormat:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/flattenMap:</TokenIdentifier>
+			<Abstract type="html">Maps block across the values in the receiver and flattens the result.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)flattenMap:(RACStream *( ^ ) ( id value ))block</Declaration>
+			
+			
+			<Anchor>//api/name/flattenMap:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/flatten</TokenIdentifier>
+			<Abstract type="html">Flattens a stream of streams.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)flatten</Declaration>
+			
+			
+			<Anchor>//api/name/flatten</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/map:</TokenIdentifier>
+			<Abstract type="html">Maps block across the values in the receiver.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)map:(id ( ^ ) ( id value ))block</Declaration>
+			
+			
+			<Anchor>//api/name/map:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/mapReplace:</TokenIdentifier>
+			<Abstract type="html">Replace each value in the receiver with the given object.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)mapReplace:(id)object</Declaration>
+			
+			
+			<Anchor>//api/name/mapReplace:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/filter:</TokenIdentifier>
+			<Abstract type="html">Filters out values in the receiver that don&apos;t pass the given test.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)filter:(BOOL ( ^ ) ( id value ))block</Declaration>
+			
+			
+			<Anchor>//api/name/filter:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/ignore:</TokenIdentifier>
+			<Abstract type="html">Filters out values in the receiver that equal (via -isEqual:) the provided value.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)ignore:(id)value</Declaration>
+			
+			
+			<Anchor>//api/name/ignore:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/reduceEach:</TokenIdentifier>
+			<Abstract type="html">Unpacks each RACTuple in the receiver and maps the values to a new value.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)reduceEach:(id ( ^ ) ( ))reduceBlock</Declaration>
+			
+			
+			<Anchor>//api/name/reduceEach:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/startWith:</TokenIdentifier>
+			<Abstract type="html">Returns a stream consisting of value, followed by the values in the
+receiver.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)startWith:(id)value</Declaration>
+			
+			
+			<Anchor>//api/name/startWith:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/skip:</TokenIdentifier>
+			<Abstract type="html">Skips the first skipCount values in the receiver.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)skip:(NSUInteger)skipCount</Declaration>
+			
+			
+			<Anchor>//api/name/skip:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/take:</TokenIdentifier>
+			<Abstract type="html">Returns a stream of the first count values in the receiver. If count is
+greater than or equal to the number of values in the stream, a stream
+equivalent to the receiver is returned.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)take:(NSUInteger)count</Declaration>
+			
+			
+			<Anchor>//api/name/take:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACStream/zip:</TokenIdentifier>
+			<Abstract type="html">Zips the values in the given streams to create RACTuples.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)zip:(id&lt;NSFastEnumeration&gt;)streams</Declaration>
+			
+			
+			<Anchor>//api/name/zip:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACStream/zip:reduce:</TokenIdentifier>
+			<Abstract type="html">Zips streams using zip:, then reduces the resulting tuples into a single
+value using reduceEach:</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)zip:(id&lt;NSFastEnumeration&gt;)streams reduce:(id ( ^ ) ( ))reduceBlock</Declaration>
+			
+			
+			<Anchor>//api/name/zip:reduce:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACStream/concat:</TokenIdentifier>
+			<Abstract type="html">Returns a stream obtained by concatenating streams in order.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)concat:(id&lt;NSFastEnumeration&gt;)streams</Declaration>
+			
+			
+			<Anchor>//api/name/concat:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/scanWithStart:reduce:</TokenIdentifier>
+			<Abstract type="html">Combines values in the receiver from left to right using the given block.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)scanWithStart:(id)startingValue reduce:(id ( ^ ) ( id running , id next ))block</Declaration>
+			
+			
+			<Anchor>//api/name/scanWithStart:reduce:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/combinePreviousWithStart:reduce:</TokenIdentifier>
+			<Abstract type="html">Combines each previous and current value into one object.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)combinePreviousWithStart:(id)start reduce:(id ( ^ ) ( id previous , id current ))reduceBlock</Declaration>
+			
+			
+			<Anchor>//api/name/combinePreviousWithStart:reduce:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/takeUntilBlock:</TokenIdentifier>
+			<Abstract type="html">Takes values until the given block returns YES.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)takeUntilBlock:(BOOL ( ^ ) ( id x ))predicate</Declaration>
+			
+			
+			<Anchor>//api/name/takeUntilBlock:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/takeWhileBlock:</TokenIdentifier>
+			<Abstract type="html">Takes values until the given block returns NO.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)takeWhileBlock:(BOOL ( ^ ) ( id x ))predicate</Declaration>
+			
+			
+			<Anchor>//api/name/takeWhileBlock:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/skipUntilBlock:</TokenIdentifier>
+			<Abstract type="html">Skips values until the given block returns YES.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)skipUntilBlock:(BOOL ( ^ ) ( id x ))predicate</Declaration>
+			
+			
+			<Anchor>//api/name/skipUntilBlock:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/skipWhileBlock:</TokenIdentifier>
+			<Abstract type="html">Skips values until the given block returns NO.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)skipWhileBlock:(BOOL ( ^ ) ( id x ))predicate</Declaration>
+			
+			
+			<Anchor>//api/name/skipWhileBlock:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/distinctUntilChanged</TokenIdentifier>
+			<Abstract type="html">Returns a stream of values for which -isEqual: returns NO when compared to the
+previous value.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)distinctUntilChanged</Declaration>
+			
+			
+			<Anchor>//api/name/distinctUntilChanged</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACStream/join:block:</TokenIdentifier>
+			<Abstract type="html">Combines a list of streams using the logic of the given block.</Abstract>
+			<DeclaredIn>RACStream+Private.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)join:(id&lt;NSFastEnumeration&gt;)streams block:(RACStream *( ^ ) ( id , id ))block</Declaration>
+			
+			
+			<Anchor>//api/name/join:block:</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/setName:</TokenIdentifier>
+			<Abstract type="html">The name of the stream. This is for debugging/human purposes only.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>@property (copy) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACStream/name</TokenIdentifier>
+			<Abstract type="html">The name of the stream. This is for debugging/human purposes only.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>@property (copy) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACStream/name</TokenIdentifier>
+			<Abstract type="html">The name of the stream. This is for debugging/human purposes only.</Abstract>
+			<DeclaredIn>RACStream.h</DeclaredIn>
+			
+			<Declaration>@property (copy) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="124"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

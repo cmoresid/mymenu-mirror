@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACEmptySignal.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACEmptySignal</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>RACEmptySignal.h</DeclaredIn>
+            
+			
+			<NodeRef refid="104"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACEmptySignal/empty</TokenIdentifier>
+			<Abstract type="html">Returns a signal that immediately completes.</Abstract>
+			<DeclaredIn>RACEmptySignal.h</DeclaredIn>
+			
+			<Declaration>+ (RACSignal *)empty</Declaration>
+			
+			
+			<Anchor>//api/name/empty</Anchor>
+            <NodeRef refid="104"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACEmptySignal/setName:</TokenIdentifier>
+			<Abstract type="html">The name of the stream. This is for debugging/human purposes only.</Abstract>
+			<DeclaredIn>RACEmptySignal.m</DeclaredIn>
+			
+			<Declaration>- (void)setName:(NSString *)name</Declaration>
+			
+			
+			<Anchor>//api/name/setName:</Anchor>
+            <NodeRef refid="104"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACEmptySignal/name</TokenIdentifier>
+			<Abstract type="html">The name of the stream. This is for debugging/human purposes only.</Abstract>
+			<DeclaredIn>RACEmptySignal.m</DeclaredIn>
+			
+			<Declaration>- (NSString *)name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="104"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACEmptySignal/subscribe:</TokenIdentifier>
+			<Abstract type="html">Subscribes subscriber to changes on the receiver. The receiver defines which
+events it actually sends and in what situations the events are sent.</Abstract>
+			<DeclaredIn>RACEmptySignal.m</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)subscribe:(id&lt;RACSubscriber&gt;)subscriber</Declaration>
+			
+			
+			<Anchor>//api/name/subscribe:</Anchor>
+            <NodeRef refid="104"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

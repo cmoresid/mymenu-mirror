@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UITableViewHeaderFooterView+RACSignalSupport.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UITableViewHeaderFooterView(RACSignalSupport)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UITableViewHeaderFooterView+RACSignalSupport.h</DeclaredIn>
+            
+			
+			<NodeRef refid="193"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewHeaderFooterView/setRac_prepareForReuseSignal:</TokenIdentifier>
+			<Abstract type="html">A signal which will send a RACUnit whenever -prepareForReuse is invoked upon
+the receiver.</Abstract>
+			<DeclaredIn>UITableViewHeaderFooterView+RACSignalSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *rac_prepareForReuseSignal</Declaration>
+			
+			
+			<Anchor>//api/name/rac_prepareForReuseSignal</Anchor>
+            <NodeRef refid="193"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UITableViewHeaderFooterView/rac_prepareForReuseSignal</TokenIdentifier>
+			<Abstract type="html">A signal which will send a RACUnit whenever -prepareForReuse is invoked upon
+the receiver.</Abstract>
+			<DeclaredIn>UITableViewHeaderFooterView+RACSignalSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *rac_prepareForReuseSignal</Declaration>
+			
+			
+			<Anchor>//api/name/rac_prepareForReuseSignal</Anchor>
+            <NodeRef refid="193"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UITableViewHeaderFooterView/rac_prepareForReuseSignal</TokenIdentifier>
+			<Abstract type="html">A signal which will send a RACUnit whenever -prepareForReuse is invoked upon
+the receiver.</Abstract>
+			<DeclaredIn>UITableViewHeaderFooterView+RACSignalSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *rac_prepareForReuseSignal</Declaration>
+			
+			
+			<Anchor>//api/name/rac_prepareForReuseSignal</Anchor>
+            <NodeRef refid="193"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

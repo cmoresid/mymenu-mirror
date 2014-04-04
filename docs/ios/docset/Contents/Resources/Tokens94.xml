@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACChannel.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACChannel</TokenIdentifier>
+			<Abstract type="html">A two-way channel.</Abstract>
+			<DeclaredIn>RACChannel.h</DeclaredIn>
+            
+			
+			<NodeRef refid="94"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACChannel/setLeadingTerminal:</TokenIdentifier>
+			<Abstract type="html">The terminal which &quot;leads&quot; the channel, by sending its latest value
+immediately to new subscribers of the followingTerminal.</Abstract>
+			<DeclaredIn>RACChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACChannelTerminal *leadingTerminal</Declaration>
+			
+			
+			<Anchor>//api/name/leadingTerminal</Anchor>
+            <NodeRef refid="94"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACChannel/leadingTerminal</TokenIdentifier>
+			<Abstract type="html">The terminal which &quot;leads&quot; the channel, by sending its latest value
+immediately to new subscribers of the followingTerminal.</Abstract>
+			<DeclaredIn>RACChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACChannelTerminal *leadingTerminal</Declaration>
+			
+			
+			<Anchor>//api/name/leadingTerminal</Anchor>
+            <NodeRef refid="94"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACChannel/leadingTerminal</TokenIdentifier>
+			<Abstract type="html">The terminal which &quot;leads&quot; the channel, by sending its latest value
+immediately to new subscribers of the followingTerminal.</Abstract>
+			<DeclaredIn>RACChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACChannelTerminal *leadingTerminal</Declaration>
+			
+			
+			<Anchor>//api/name/leadingTerminal</Anchor>
+            <NodeRef refid="94"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACChannel/setFollowingTerminal:</TokenIdentifier>
+			<Abstract type="html">The terminal which &quot;follows&quot; the lead of the other terminal, only sending
+future values to the subscribers of the leadingTerminal.</Abstract>
+			<DeclaredIn>RACChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACChannelTerminal *followingTerminal</Declaration>
+			
+			
+			<Anchor>//api/name/followingTerminal</Anchor>
+            <NodeRef refid="94"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACChannel/followingTerminal</TokenIdentifier>
+			<Abstract type="html">The terminal which &quot;follows&quot; the lead of the other terminal, only sending
+future values to the subscribers of the leadingTerminal.</Abstract>
+			<DeclaredIn>RACChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACChannelTerminal *followingTerminal</Declaration>
+			
+			
+			<Anchor>//api/name/followingTerminal</Anchor>
+            <NodeRef refid="94"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACChannel/followingTerminal</TokenIdentifier>
+			<Abstract type="html">The terminal which &quot;follows&quot; the lead of the other terminal, only sending
+future values to the subscribers of the leadingTerminal.</Abstract>
+			<DeclaredIn>RACChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACChannelTerminal *followingTerminal</Declaration>
+			
+			
+			<Anchor>//api/name/followingTerminal</Anchor>
+            <NodeRef refid="94"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

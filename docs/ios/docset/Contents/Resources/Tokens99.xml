@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACDisposable.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACDisposable</TokenIdentifier>
+			<Abstract type="html">A disposable encapsulates the work necessary to tear down and cleanup a
+subscription.</Abstract>
+			<DeclaredIn>RACDisposable.h</DeclaredIn>
+            
+			
+			<NodeRef refid="99"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACDisposable/setDisposed:</TokenIdentifier>
+			<Abstract type="html">Whether the receiver has been disposed.</Abstract>
+			<DeclaredIn>RACDisposable.h</DeclaredIn>
+			
+			<Declaration>@property (atomic, assign, getter=isDisposed, readonly) BOOL disposed</Declaration>
+			
+			
+			<Anchor>//api/name/disposed</Anchor>
+            <NodeRef refid="99"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACDisposable/isDisposed</TokenIdentifier>
+			<Abstract type="html">Whether the receiver has been disposed.</Abstract>
+			<DeclaredIn>RACDisposable.h</DeclaredIn>
+			
+			<Declaration>@property (atomic, assign, getter=isDisposed, readonly) BOOL disposed</Declaration>
+			
+			
+			<Anchor>//api/name/disposed</Anchor>
+            <NodeRef refid="99"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACDisposable/disposed</TokenIdentifier>
+			<Abstract type="html">Whether the receiver has been disposed.</Abstract>
+			<DeclaredIn>RACDisposable.h</DeclaredIn>
+			
+			<Declaration>@property (atomic, assign, getter=isDisposed, readonly) BOOL disposed</Declaration>
+			
+			
+			<Anchor>//api/name/disposed</Anchor>
+            <NodeRef refid="99"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACDisposable/dispose</TokenIdentifier>
+			<Abstract type="html">Performs the disposal work. Can be called multiple times, though sebsequent
+calls won&apos;t do anything.</Abstract>
+			<DeclaredIn>RACDisposable.h</DeclaredIn>
+			
+			<Declaration>- (void)dispose</Declaration>
+			
+			
+			<Anchor>//api/name/dispose</Anchor>
+            <NodeRef refid="99"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACDisposable/asScopedDisposable</TokenIdentifier>
+			<Abstract type="html">Returns a new disposable which will dispose of this disposable when it gets
+dealloc&apos;d.</Abstract>
+			<DeclaredIn>RACDisposable.h</DeclaredIn>
+			
+			<Declaration>- (RACScopedDisposable *)asScopedDisposable</Declaration>
+			
+			
+			<Anchor>//api/name/asScopedDisposable</Anchor>
+            <NodeRef refid="99"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIWebView+AFNetworking.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIWebView(AFNetworking)</TokenIdentifier>
+			<Abstract type="html">This category adds methods to the UIKit framework&apos;s UIWebView class. The methods in this category provide increased control over the request cycle, including progress monitoring and success / failure handling.</Abstract>
+			<DeclaredIn>UIWebView+AFNetworking.h</DeclaredIn>
+            
+			
+			<NodeRef refid="197"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIWebView/setRequestSerializer:</TokenIdentifier>
+			<Abstract type="html">The request serializer used to serialize requests made with the -loadRequest:... category methods. By default, this is an instance of AFHTTPRequestSerializer.</Abstract>
+			<DeclaredIn>UIWebView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) AFHTTPRequestSerializer&lt;AFURLRequestSerialization&gt; *requestSerializer</Declaration>
+			
+			
+			<Anchor>//api/name/requestSerializer</Anchor>
+            <NodeRef refid="197"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIWebView/requestSerializer</TokenIdentifier>
+			<Abstract type="html">The request serializer used to serialize requests made with the -loadRequest:... category methods. By default, this is an instance of AFHTTPRequestSerializer.</Abstract>
+			<DeclaredIn>UIWebView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) AFHTTPRequestSerializer&lt;AFURLRequestSerialization&gt; *requestSerializer</Declaration>
+			
+			
+			<Anchor>//api/name/requestSerializer</Anchor>
+            <NodeRef refid="197"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UIWebView/requestSerializer</TokenIdentifier>
+			<Abstract type="html">The request serializer used to serialize requests made with the -loadRequest:... category methods. By default, this is an instance of AFHTTPRequestSerializer.</Abstract>
+			<DeclaredIn>UIWebView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) AFHTTPRequestSerializer&lt;AFURLRequestSerialization&gt; *requestSerializer</Declaration>
+			
+			
+			<Anchor>//api/name/requestSerializer</Anchor>
+            <NodeRef refid="197"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIWebView/setResponseSerializer:</TokenIdentifier>
+			<Abstract type="html">The response serializer used to serialize responses made with the -loadRequest:... category methods. By default, this is an instance of AFHTTPResponseSerializer.</Abstract>
+			<DeclaredIn>UIWebView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) AFHTTPResponseSerializer&lt;AFURLResponseSerialization&gt; *responseSerializer</Declaration>
+			
+			
+			<Anchor>//api/name/responseSerializer</Anchor>
+            <NodeRef refid="197"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIWebView/responseSerializer</TokenIdentifier>
+			<Abstract type="html">The response serializer used to serialize responses made with the -loadRequest:... category methods. By default, this is an instance of AFHTTPResponseSerializer.</Abstract>
+			<DeclaredIn>UIWebView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) AFHTTPResponseSerializer&lt;AFURLResponseSerialization&gt; *responseSerializer</Declaration>
+			
+			
+			<Anchor>//api/name/responseSerializer</Anchor>
+            <NodeRef refid="197"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UIWebView/responseSerializer</TokenIdentifier>
+			<Abstract type="html">The response serializer used to serialize responses made with the -loadRequest:... category methods. By default, this is an instance of AFHTTPResponseSerializer.</Abstract>
+			<DeclaredIn>UIWebView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) AFHTTPResponseSerializer&lt;AFURLResponseSerialization&gt; *responseSerializer</Declaration>
+			
+			
+			<Anchor>//api/name/responseSerializer</Anchor>
+            <NodeRef refid="197"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIWebView/loadRequest:progress:success:failure:</TokenIdentifier>
+			<Abstract type="html">Asynchronously loads the specified request.</Abstract>
+			<DeclaredIn>UIWebView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>- (void)loadRequest:(NSURLRequest *)request progress:(void ( ^ ) ( NSUInteger bytesWritten , NSInteger totalBytesWritten , NSInteger totalBytesExpectedToWrite ))progress success:(NSString *( ^ ) ( NSHTTPURLResponse *response , NSString *HTML ))success failure:(void ( ^ ) ( NSError *error ))failure</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>request</Name>
+					<Abstract type="html">A URL request identifying the location of the content to load. This must not be nil.</Abstract>
+				</Parameter><Parameter>
+					<Name>progress</Name>
+					<Abstract type="html">A block object to be called when an undetermined number of bytes have been downloaded from the server. This block has no return value and takes three arguments: the number of bytes read since the last time the download progress block was called, the total bytes read, and the total bytes expected to be read during the request, as initially determined by the expected content size of the NSHTTPURLResponse object. This block may be called multiple times, and will execute on the main thread.</Abstract>
+				</Parameter><Parameter>
+					<Name>success</Name>
+					<Abstract type="html">A block object to be executed when the request finishes loading successfully. This block returns the HTML string to be loaded by the web view, and takes two arguments: the response, and the response string.</Abstract>
+				</Parameter><Parameter>
+					<Name>failure</Name>
+					<Abstract type="html">A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a single argument: the error that occurred.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/loadRequest:progress:success:failure:</Anchor>
+            <NodeRef refid="197"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIWebView/loadRequest:MIMEType:textEncodingName:progress:success:failure:</TokenIdentifier>
+			<Abstract type="html">Asynchronously loads the data associated with a particular request with a specified MIME type and text encoding.</Abstract>
+			<DeclaredIn>UIWebView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>- (void)loadRequest:(NSURLRequest *)request MIMEType:(NSString *)MIMEType textEncodingName:(NSString *)textEncodingName progress:(void ( ^ ) ( NSUInteger bytesWritten , NSInteger totalBytesWritten , NSInteger totalBytesExpectedToWrite ))progress success:(NSData *( ^ ) ( NSHTTPURLResponse *response , NSData *data ))success failure:(void ( ^ ) ( NSError *error ))failure</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>request</Name>
+					<Abstract type="html">A URL request identifying the location of the content to load. This must not be nil.</Abstract>
+				</Parameter><Parameter>
+					<Name>MIMEType</Name>
+					<Abstract type="html">The MIME type of the content. Defaults to the content type of the response if not specified.</Abstract>
+				</Parameter><Parameter>
+					<Name>textEncodingName</Name>
+					<Abstract type="html">The IANA encoding name, as in utf-8 or utf-16. Defaults to the response text encoding if not specified.</Abstract>
+				</Parameter><Parameter>
+					<Name>progress</Name>
+					<Abstract type="html">A block object to be called when an undetermined number of bytes have been downloaded from the server. This block has no return value and takes three arguments: the number of bytes read since the last time the download progress block was called, the total bytes read, and the total bytes expected to be read during the request, as initially determined by the expected content size of the NSHTTPURLResponse object. This block may be called multiple times, and will execute on the main thread.</Abstract>
+				</Parameter><Parameter>
+					<Name>success</Name>
+					<Abstract type="html">A block object to be executed when the request finishes loading successfully. This block returns the data to be loaded by the web view and takes two arguments: the response, and the downloaded data.</Abstract>
+				</Parameter><Parameter>
+					<Name>failure</Name>
+					<Abstract type="html">A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a single argument: the error that occurred.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/loadRequest:MIMEType:textEncodingName:progress:success:failure:</Anchor>
+            <NodeRef refid="197"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/MBProgressHUDDelegate.html">
+	<File path="Classes/MMLoginManager.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/MBProgressHUDDelegate</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>MBProgressHUD.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMLoginManager</TokenIdentifier>
+			<Abstract type="html">A singleton class that is used to manage the user&apos;s
+login state. This class provides methods to log a
+user in, log a user out, login as guest, and retrieve
+the current logged in user.</Abstract>
+			<DeclaredIn>MMLoginManager.h</DeclaredIn>
             
 			
 			<NodeRef refid="39"/>
@@ -13,14 +16,155 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/MBProgressHUDDelegate/hudWasHidden:</TokenIdentifier>
-			<Abstract type="html">Called after the HUD was fully hidden from the screen.</Abstract>
-			<DeclaredIn>MBProgressHUD.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/clm/MMLoginManager/sharedLoginManager</TokenIdentifier>
+			<Abstract type="html">Retrieve the singleton for the MMLoginManager.</Abstract>
+			<DeclaredIn>MMLoginManager.h</DeclaredIn>
 			
-			<Declaration>- (void)hudWasHidden:(MBProgressHUD *)hud</Declaration>
+			<Declaration>+ (id)sharedLoginManager</Declaration>
+			
+			<ReturnValue><Abstract type="html">Retrieve the singleton.</Abstract></ReturnValue>
+			<Anchor>//api/name/sharedLoginManager</Anchor>
+            <NodeRef refid="39"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMLoginManager/beginLoginWithUserName:withPassword:</TokenIdentifier>
+			<Abstract type="html">Begin an asynchronous call to log a user in. First,
+it checks to see if the user name exists on the server,
+then it verifies the user&apos;s password.</Abstract>
+			<DeclaredIn>MMLoginManager.h</DeclaredIn>
+			
+			<Declaration>- (void)beginLoginWithUserName:(NSString *)userName withPassword:(NSString *)password</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>userName</Name>
+					<Abstract type="html">The user name to login.</Abstract>
+				</Parameter><Parameter>
+					<Name>password</Name>
+					<Abstract type="html">The user&apos;s password.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/beginLoginWithUserName:withPassword:</Anchor>
+            <NodeRef refid="39"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMLoginManager/saveUserProfileToDevice:</TokenIdentifier>
+			<Abstract type="html">Serializes the specifid user&apos;s profile to
+the device.</Abstract>
+			<DeclaredIn>MMLoginManager.h</DeclaredIn>
+			
+			<Declaration>- (void)saveUserProfileToDevice:(MMUser *)user</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>user</Name>
+					<Abstract type="html">The MMUser profile to save to
+the device.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/saveUserProfileToDevice:</Anchor>
+            <NodeRef refid="39"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMLoginManager/logoutUser</TokenIdentifier>
+			<Abstract type="html">Removes the current user profile from the
+device, which has the effect of logging the
+user out.</Abstract>
+			<DeclaredIn>MMLoginManager.h</DeclaredIn>
+			
+			<Declaration>- (void)logoutUser</Declaration>
 			
 			
-			<Anchor>//api/name/hudWasHidden:</Anchor>
+			<Anchor>//api/name/logoutUser</Anchor>
+            <NodeRef refid="39"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMLoginManager/isUserLoggedIn</TokenIdentifier>
+			<Abstract type="html">Checks to see if the user is logged in.</Abstract>
+			<DeclaredIn>MMLoginManager.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)isUserLoggedIn</Declaration>
+			
+			<ReturnValue><Abstract type="html">Returns whether or not a user is
+logged in.</Abstract></ReturnValue>
+			<Anchor>//api/name/isUserLoggedIn</Anchor>
+            <NodeRef refid="39"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMLoginManager/loginAsGuest</TokenIdentifier>
+			<Abstract type="html">Logs a user in as a guest. All this does is
+create a MMUser object with it&apos;s email property
+set to &quot;kGuest&quot;.</Abstract>
+			<DeclaredIn>MMLoginManager.h</DeclaredIn>
+			
+			<Declaration>- (void)loginAsGuest</Declaration>
+			
+			
+			<Anchor>//api/name/loginAsGuest</Anchor>
+            <NodeRef refid="39"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMLoginManager/isUserLoggedInAsGuest</TokenIdentifier>
+			<Abstract type="html">Checks to see if a user is logged in as
+guest.</Abstract>
+			<DeclaredIn>MMLoginManager.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)isUserLoggedInAsGuest</Declaration>
+			
+			<ReturnValue><Abstract type="html">Returns whether or not a user is
+logged in as a guest.</Abstract></ReturnValue>
+			<Anchor>//api/name/isUserLoggedInAsGuest</Anchor>
+            <NodeRef refid="39"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMLoginManager/getLoggedInUser</TokenIdentifier>
+			<Abstract type="html">Returns the user profile of the user that
+is currently logged in.</Abstract>
+			<DeclaredIn>MMLoginManager.h</DeclaredIn>
+			
+			<Declaration>- (MMUser *)getLoggedInUser</Declaration>
+			
+			<ReturnValue><Abstract type="html">An MMUser object that represents
+the user that is currently logged
+in.</Abstract></ReturnValue>
+			<Anchor>//api/name/getLoggedInUser</Anchor>
+            <NodeRef refid="39"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMLoginManager/beginUpdateUser:</TokenIdentifier>
+			<Abstract type="html">Starts an asynchronous to update a user&apos;s
+profile.</Abstract>
+			<DeclaredIn>MMLoginManager.h</DeclaredIn>
+			
+			<Declaration>- (void)beginUpdateUser:(MMUser *)userToUpdate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>userToUpdate</Name>
+					<Abstract type="html">The user profile to update.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/beginUpdateUser:</Anchor>
+            <NodeRef refid="39"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMLoginManager/changePasswordForUser:</TokenIdentifier>
+			<Abstract type="html">Change password for user.</Abstract>
+			<DeclaredIn>MMLoginManager.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)changePasswordForUser:(MMUser *)user</Declaration>
+			
+			
+			<Anchor>//api/name/changePasswordForUser:</Anchor>
             <NodeRef refid="39"/>
 		</Token>
 		

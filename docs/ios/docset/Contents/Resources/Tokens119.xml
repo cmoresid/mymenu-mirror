@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACScopedDisposable.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACScopedDisposable</TokenIdentifier>
+			<Abstract type="html">A disposable that calls its own -dispose when it is dealloc&apos;d.</Abstract>
+			<DeclaredIn>RACScopedDisposable.h</DeclaredIn>
+            
+			
+			<NodeRef refid="119"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACScopedDisposable/scopedDisposableWithDisposable:</TokenIdentifier>
+			<Abstract type="html">Creates a new scoped disposable that will also dispose of the given
+disposable when it is dealloc&apos;d.</Abstract>
+			<DeclaredIn>RACScopedDisposable.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)scopedDisposableWithDisposable:(RACDisposable *)disposable</Declaration>
+			
+			
+			<Anchor>//api/name/scopedDisposableWithDisposable:</Anchor>
+            <NodeRef refid="119"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACScopedDisposable/asScopedDisposable</TokenIdentifier>
+			<Abstract type="html">Returns a new disposable which will dispose of this disposable when it gets
+dealloc&apos;d.</Abstract>
+			<DeclaredIn>RACScopedDisposable.m</DeclaredIn>
+			
+			<Declaration>- (RACScopedDisposable *)asScopedDisposable</Declaration>
+			
+			
+			<Anchor>//api/name/asScopedDisposable</Anchor>
+            <NodeRef refid="119"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

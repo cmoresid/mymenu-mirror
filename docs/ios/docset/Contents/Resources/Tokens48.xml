@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMMenuItemCell.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMenuItemCell</TokenIdentifier>
+			<Abstract type="html">*  A custom collection view cell that represents</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+            
+			
+			<NodeRef refid="48"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/setTitleView:</TokenIdentifier>
+			<Abstract type="html">*  The label that displays the name of</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *titleView</Declaration>
+			
+			
+			<Anchor>//api/name/titleView</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/titleView</TokenIdentifier>
+			<Abstract type="html">*  The label that displays the name of</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *titleView</Declaration>
+			
+			
+			<Anchor>//api/name/titleView</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemCell/titleView</TokenIdentifier>
+			<Abstract type="html">*  The label that displays the name of</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *titleView</Declaration>
+			
+			
+			<Anchor>//api/name/titleView</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/setPriceLabel:</TokenIdentifier>
+			<Abstract type="html">*  The label that displays the price of</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *priceLabel</Declaration>
+			
+			
+			<Anchor>//api/name/priceLabel</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/priceLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that displays the price of</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *priceLabel</Declaration>
+			
+			
+			<Anchor>//api/name/priceLabel</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemCell/priceLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that displays the price of</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *priceLabel</Declaration>
+			
+			
+			<Anchor>//api/name/priceLabel</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/setDescriptionView:</TokenIdentifier>
+			<Abstract type="html">*  The label that displays a brief description of</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *descriptionView</Declaration>
+			
+			
+			<Anchor>//api/name/descriptionView</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/descriptionView</TokenIdentifier>
+			<Abstract type="html">*  The label that displays a brief description of</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *descriptionView</Declaration>
+			
+			
+			<Anchor>//api/name/descriptionView</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemCell/descriptionView</TokenIdentifier>
+			<Abstract type="html">*  The label that displays a brief description of</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *descriptionView</Declaration>
+			
+			
+			<Anchor>//api/name/descriptionView</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/setRatinglabel:</TokenIdentifier>
+			<Abstract type="html">*  The label that displays the current rating for a</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *ratinglabel</Declaration>
+			
+			
+			<Anchor>//api/name/ratinglabel</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/ratinglabel</TokenIdentifier>
+			<Abstract type="html">*  The label that displays the current rating for a</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *ratinglabel</Declaration>
+			
+			
+			<Anchor>//api/name/ratinglabel</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemCell/ratinglabel</TokenIdentifier>
+			<Abstract type="html">*  The label that displays the current rating for a</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *ratinglabel</Declaration>
+			
+			
+			<Anchor>//api/name/ratinglabel</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/setRestrictedImage:</TokenIdentifier>
+			<Abstract type="html">*  The label that displays whether or not a user can</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *restrictedImage</Declaration>
+			
+			
+			<Anchor>//api/name/restrictedImage</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/restrictedImage</TokenIdentifier>
+			<Abstract type="html">*  The label that displays whether or not a user can</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *restrictedImage</Declaration>
+			
+			
+			<Anchor>//api/name/restrictedImage</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemCell/restrictedImage</TokenIdentifier>
+			<Abstract type="html">*  The label that displays whether or not a user can</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *restrictedImage</Declaration>
+			
+			
+			<Anchor>//api/name/restrictedImage</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/setRatingBg:</TokenIdentifier>
+			<Abstract type="html">*  The view that the rating label resides in. The background</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *ratingBg</Declaration>
+			
+			
+			<Anchor>//api/name/ratingBg</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/ratingBg</TokenIdentifier>
+			<Abstract type="html">*  The view that the rating label resides in. The background</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *ratingBg</Declaration>
+			
+			
+			<Anchor>//api/name/ratingBg</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemCell/ratingBg</TokenIdentifier>
+			<Abstract type="html">*  The view that the rating label resides in. The background</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *ratingBg</Declaration>
+			
+			
+			<Anchor>//api/name/ratingBg</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/setMenuImageView:</TokenIdentifier>
+			<Abstract type="html">*  The image view where the picture of the menu item is</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *menuImageView</Declaration>
+			
+			
+			<Anchor>//api/name/menuImageView</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemCell/menuImageView</TokenIdentifier>
+			<Abstract type="html">*  The image view where the picture of the menu item is</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *menuImageView</Declaration>
+			
+			
+			<Anchor>//api/name/menuImageView</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemCell/menuImageView</TokenIdentifier>
+			<Abstract type="html">*  The image view where the picture of the menu item is</Abstract>
+			<DeclaredIn>MMMenuItemCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *menuImageView</Declaration>
+			
+			
+			<Anchor>//api/name/menuImageView</Anchor>
+            <NodeRef refid="48"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

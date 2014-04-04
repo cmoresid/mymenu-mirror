@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIRefreshControl+AFNetworking.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIRefreshControl(AFNetworking)</TokenIdentifier>
+			<Abstract type="html">This category adds methods to the UIKit framework&apos;s UIRefreshControl class. The methods in this category provide support for automatically begining and ending refreshing depending on the loading state of a request operation or session task.</Abstract>
+			<DeclaredIn>UIRefreshControl+AFNetworking.h</DeclaredIn>
+            
+			
+			<NodeRef refid="184"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIRefreshControl/setRefreshingWithStateOfTask:</TokenIdentifier>
+			<Abstract type="html">Binds the refreshing state to the state of the specified task.</Abstract>
+			<DeclaredIn>UIRefreshControl+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>- (void)setRefreshingWithStateOfTask:(NSURLSessionTask *)task</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>task</Name>
+					<Abstract type="html">The task. If nil, automatic updating from any previously specified operation will be diabled.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setRefreshingWithStateOfTask:</Anchor>
+            <NodeRef refid="184"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIRefreshControl/setRefreshingWithStateOfOperation:</TokenIdentifier>
+			<Abstract type="html">Binds the refreshing state to the execution state of the specified operation.</Abstract>
+			<DeclaredIn>UIRefreshControl+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>- (void)setRefreshingWithStateOfOperation:(AFURLConnectionOperation *)operation</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>operation</Name>
+					<Abstract type="html">The operation. If nil, automatic updating from any previously specified operation will be disabled.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setRefreshingWithStateOfOperation:</Anchor>
+            <NodeRef refid="184"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

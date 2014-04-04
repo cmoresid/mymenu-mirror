@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSObject+RACSelectorSignal.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSObject(RACSelectorSignal)</TokenIdentifier>
+			<Abstract type="html">rac_signalForSelector: was going to add a new method implementation for
+selector, but another thread added an implementation before it was able to.</Abstract>
+			<DeclaredIn>NSObject+RACSelectorSignal.h</DeclaredIn>
+            
+			
+			<NodeRef refid="160"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSObject/rac_signalForSelector:</TokenIdentifier>
+			<Abstract type="html">Creates a signal associated with the receiver, which will send a tuple of the
+method&apos;s arguments each time the given selector is invoked.</Abstract>
+			<DeclaredIn>NSObject+RACSelectorSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)rac_signalForSelector:(SEL)selector</Declaration>
+			
+			
+			<Anchor>//api/name/rac_signalForSelector:</Anchor>
+            <NodeRef refid="160"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSObject/rac_signalForSelector:fromProtocol:</TokenIdentifier>
+			<Abstract type="html">Behaves like rac_signalForSelector:, but if the selector is not yet
+implemented on the receiver, its method signature is looked up within
+protocol, and may accept non-object arguments.</Abstract>
+			<DeclaredIn>NSObject+RACSelectorSignal.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)rac_signalForSelector:(SEL)selector fromProtocol:(Protocol *)protocol</Declaration>
+			
+			
+			<Anchor>//api/name/rac_signalForSelector:fromProtocol:</Anchor>
+            <NodeRef refid="160"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

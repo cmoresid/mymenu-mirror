@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMRegexTextFieldValidator.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMRegexTextFieldValidator</TokenIdentifier>
+			<Abstract type="html">* A concrete validator that checks to see if the contents</Abstract>
+			<DeclaredIn>MMRegexTextFieldValidator.h</DeclaredIn>
+            
+			
+			<NodeRef refid="63"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegexTextFieldValidator/setRegex:</TokenIdentifier>
+			<Abstract type="html">* A string represention of a regular expression that</Abstract>
+			<DeclaredIn>MMRegexTextFieldValidator.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *regex</Declaration>
+			
+			
+			<Anchor>//api/name/regex</Anchor>
+            <NodeRef refid="63"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegexTextFieldValidator/regex</TokenIdentifier>
+			<Abstract type="html">* A string represention of a regular expression that</Abstract>
+			<DeclaredIn>MMRegexTextFieldValidator.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *regex</Declaration>
+			
+			
+			<Anchor>//api/name/regex</Anchor>
+            <NodeRef refid="63"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegexTextFieldValidator/regex</TokenIdentifier>
+			<Abstract type="html">* A string represention of a regular expression that</Abstract>
+			<DeclaredIn>MMRegexTextFieldValidator.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *regex</Declaration>
+			
+			
+			<Anchor>//api/name/regex</Anchor>
+            <NodeRef refid="63"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegexTextFieldValidator/initWithTextField:withRegexString:withValidationMessage:</TokenIdentifier>
+			<Abstract type="html">* A constructor that accepts a text field to validate, a regular expression string,</Abstract>
+			<DeclaredIn>MMRegexTextFieldValidator.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithTextField:(UITextField *)textField withRegexString:(NSString *)regex withValidationMessage:(NSString *)errorMessage</Declaration>
+			
+			
+			<Anchor>//api/name/initWithTextField:withRegexString:withValidationMessage:</Anchor>
+            <NodeRef refid="63"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegexTextFieldValidator/isValid</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MMRegexTextFieldValidator.m</DeclaredIn>
+			
+			<Declaration>- (BOOL)isValid</Declaration>
+			
+			
+			<Anchor>//api/name/isValid</Anchor>
+            <NodeRef refid="63"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

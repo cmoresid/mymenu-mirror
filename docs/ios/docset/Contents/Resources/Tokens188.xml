@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UISlider+RACSignalSupport.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UISlider(RACSignalSupport)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UISlider+RACSignalSupport.h</DeclaredIn>
+            
+			
+			<NodeRef refid="188"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UISlider/rac_newValueChannelWithNilValue:</TokenIdentifier>
+			<Abstract type="html">Creates a new RACChannel-based binding to the receiver.</Abstract>
+			<DeclaredIn>UISlider+RACSignalSupport.h</DeclaredIn>
+			
+			<Declaration>- (RACChannelTerminal *)rac_newValueChannelWithNilValue:(NSNumber *)nilValue</Declaration>
+			
+			
+			<Anchor>//api/name/rac_newValueChannelWithNilValue:</Anchor>
+            <NodeRef refid="188"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

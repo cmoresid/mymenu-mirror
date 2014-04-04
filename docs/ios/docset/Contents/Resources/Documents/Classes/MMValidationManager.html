@@ -120,12 +120,15 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>A class that manages a list of objects that conforms to
-<a href="../Protocols/MMValidatorProtocol.html"><code>MMValidatorProtocol</code></a>. When you call the <code>performValidation:</code>
-selector, the validation manager will iterate through its list
-of validator objects and checks to see whether or not the validator
-object is valid. Every validator object that is not in a valid state,
-the validation message is returned.</p>
+						<ul>
+<li><p>A class that manages a list of objects that conforms to</p></li>
+<li><p><a href="../Protocols/MMValidatorProtocol.html"><code>MMValidatorProtocol</code></a>. When you call the <code>performValidation:</code></p></li>
+<li><p>selector, the validation manager will iterate through its list</p></li>
+<li><p>of validator objects and checks to see whether or not the validator</p></li>
+<li><p>object is valid. Every validator object that is not in a valid state,</p></li>
+<li><p>the validation message is returned.</p></li>
+</ul>
+
 					</div>
 					
 					
@@ -183,7 +186,10 @@ the validation message is returned.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Adds a validator object to the current validation manager.</p>
+		<ul>
+<li>Adds a validator object to the current validation manager.</li>
+</ul>
+
 	</div>		
 	
     
@@ -192,21 +198,21 @@ the validation message is returned.</p>
 
     
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>validator</em></dt>
-			<dd><p>A validator object to be added to the validation manager.</p></dd>
-		</dl>
-		
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>*</p>
+
+<ul>
+<li>@param validator A validator object to be added to the validation manager.</li>
+</ul>
+
 	</div>
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -229,10 +235,10 @@ the validation message is returned.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Iterates through each of the validation objects and calls its
-<code>isValid:</code> selector. For every object that fails validation, its
-error message is added to an <code>NSArray</code> which holds all the validation
-error messages.</p>
+		<ul>
+<li>Iterates through each of the validation objects and calls its</li>
+</ul>
+
 	</div>		
 	
     
@@ -243,15 +249,28 @@ error messages.</p>
 	
 	
 	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>A list of <code>NSString</code> objects that represent the
-validation error messages.</p>
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<ul>
+<li><p><code>isValid:</code> selector. For every object that fails validation, its</p></li>
+<li><p>error message is added to an <code>NSArray</code> which holds all the validation</p></li>
+<li><p>error messages.</p></li>
+</ul>
+
+
+<p>*</p>
+
+<ul>
+<li><p>@return A list of <code>NSString</code> objects that represent the</p></li>
+<li><pre><code>  validation error messages.
+</code></pre></li>
+</ul>
+
 	</div>
-	
-	
-	
-	
 	
 	
 	
@@ -274,10 +293,10 @@ validation error messages.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Iterates through each of the validation objects and calls its
-<code>isValid:</code> selector. For every object that fails validation, its
-error message is added to an <code>NSArray</code> which holds all the validation
-error messages; which is then converted into a string.</p>
+		<ul>
+<li>Iterates through each of the validation objects and calls its</li>
+</ul>
+
 	</div>		
 	
     
@@ -288,14 +307,26 @@ error messages; which is then converted into a string.</p>
 	
 	
 	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>A string representing the error messages.</p>
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<ul>
+<li><p><code>isValid:</code> selector. For every object that fails validation, its</p></li>
+<li><p>error message is added to an <code>NSArray</code> which holds all the validation</p></li>
+<li><p>error messages; which is then converted into a string.</p></li>
+</ul>
+
+
+<p>*</p>
+
+<ul>
+<li>@return A string representing the error messages.</li>
+</ul>
+
 	</div>
-	
-	
-	
-	
 	
 	
 	
@@ -326,7 +357,7 @@ error messages; which is then converted into a string.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 MyMenu. All rights reserved. (Last updated: 2014-03-07)</span><br />
+						<p><span class="copyright">&copy; 2014 MyMenu. All rights reserved. (Last updated: 2014-04-03)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

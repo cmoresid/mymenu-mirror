@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMMockNetworkClient.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMockNetworkClient</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MMMockNetworkClient.h</DeclaredIn>
+            
+			
+			<NodeRef refid="56"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMockNetworkClient/performNetworkRequest:completionHandler:</TokenIdentifier>
+			<Abstract type="html">*  Represents the intent to retrieve data from</Abstract>
+			<DeclaredIn>MMMockNetworkClient.m</DeclaredIn>
+			
+			<Declaration>- (void)performNetworkRequest:(NSMutableURLRequest *)request completionHandler:(NetworkResponseBlock)completionBlock</Declaration>
+			
+			
+			<Anchor>//api/name/performNetworkRequest:completionHandler:</Anchor>
+            <NodeRef refid="56"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

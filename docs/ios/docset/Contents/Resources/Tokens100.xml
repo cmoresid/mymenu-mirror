@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACDynamicSequence.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACDynamicSequence</TokenIdentifier>
+			<Abstract type="html">Private class that implements a sequence dynamically using blocks.</Abstract>
+			<DeclaredIn>RACDynamicSequence.h</DeclaredIn>
+            
+			
+			<NodeRef refid="100"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACDynamicSequence/sequenceWithLazyDependency:headBlock:tailBlock:</TokenIdentifier>
+			<Abstract type="html">Returns a sequence which evaluates dependencyBlock only once, the first
+time either headBlock or tailBlock is evaluated. The result of
+dependencyBlock will be passed into headBlock and tailBlock when
+invoked.</Abstract>
+			<DeclaredIn>RACDynamicSequence.h</DeclaredIn>
+			
+			<Declaration>+ (RACSequence *)sequenceWithLazyDependency:(id ( ^ ) ( void ))dependencyBlock headBlock:(id ( ^ ) ( id dependency ))headBlock tailBlock:(RACSequence *( ^ ) ( id dependency ))tailBlock</Declaration>
+			
+			
+			<Anchor>//api/name/sequenceWithLazyDependency:headBlock:tailBlock:</Anchor>
+            <NodeRef refid="100"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACDynamicSequence/sequenceWithHeadBlock:tailBlock:</TokenIdentifier>
+			<Abstract type="html">Creates a sequence that dynamically generates its values.</Abstract>
+			<DeclaredIn>RACDynamicSequence.m</DeclaredIn>
+			
+			<Declaration>+ (RACSequence *)sequenceWithHeadBlock:(id ( ^ ) ( void ))headBlock tailBlock:(RACSequence *( ^ ) ( void ))tailBlock</Declaration>
+			
+			
+			<Anchor>//api/name/sequenceWithHeadBlock:tailBlock:</Anchor>
+            <NodeRef refid="100"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACDynamicSequence/head</TokenIdentifier>
+			<Abstract type="html">The first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACDynamicSequence.m</DeclaredIn>
+			
+			<Declaration>- (id)head</Declaration>
+			
+			
+			<Anchor>//api/name/head</Anchor>
+            <NodeRef refid="100"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACDynamicSequence/tail</TokenIdentifier>
+			<Abstract type="html">All but the first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACDynamicSequence.m</DeclaredIn>
+			
+			<Declaration>- (RACSequence *)tail</Declaration>
+			
+			
+			<Anchor>//api/name/tail</Anchor>
+            <NodeRef refid="100"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIImage+MMTransform.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIImage(MMTransform)</TokenIdentifier>
+			<Abstract type="html">*  Adds custom image transformations that are needed</Abstract>
+			<DeclaredIn>UIImage+MMTransform.h</DeclaredIn>
+            
+			
+			<NodeRef refid="180"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIImage/addRestrictionMask:</TokenIdentifier>
+			<Abstract type="html">*  Applies a greyscale filter to the specified</Abstract>
+			<DeclaredIn>UIImage+MMTransform.h</DeclaredIn>
+			
+			<Declaration>+ (UIImage *)addRestrictionMask:(UIImage *)image</Declaration>
+			
+			
+			<Anchor>//api/name/addRestrictionMask:</Anchor>
+            <NodeRef refid="180"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIImage/imageWithImage:scaledToSize:</TokenIdentifier>
+			<Abstract type="html">*  Resizes an image to the specified dimensions.</Abstract>
+			<DeclaredIn>UIImage+MMTransform.h</DeclaredIn>
+			
+			<Declaration>+ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize</Declaration>
+			
+			
+			<Anchor>//api/name/imageWithImage:scaledToSize:</Anchor>
+            <NodeRef refid="180"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

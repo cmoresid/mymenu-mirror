@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/MMNetworkClientProtocol.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/MMNetworkClientProtocol</TokenIdentifier>
+			<Abstract type="html">*  Provides an intermediate layer (service layer) to</Abstract>
+			<DeclaredIn>MMNetworkClientProtocol.h</DeclaredIn>
+            
+			
+			<NodeRef refid="207"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMNetworkClientProtocol/performNetworkRequest:completionHandler:</TokenIdentifier>
+			<Abstract type="html">*  Represents the intent to retrieve data from</Abstract>
+			<DeclaredIn>MMNetworkClientProtocol.h</DeclaredIn>
+			
+			<Declaration>- (void)performNetworkRequest:(NSMutableURLRequest *)request completionHandler:(NetworkResponseBlock)completionBlock</Declaration>
+			
+			
+			<Anchor>//api/name/performNetworkRequest:completionHandler:</Anchor>
+            <NodeRef refid="207"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

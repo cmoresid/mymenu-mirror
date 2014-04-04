@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMStaticDataHelper.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMStaticDataHelper</TokenIdentifier>
+			<Abstract type="html">A helper singleton that retrieves key-value
+pairs from Resources/Data/StaticData.plist. Place
+any sort of static data, such as URLs that are
+non-region related.</Abstract>
+			<DeclaredIn>MMStaticDataHelper.h</DeclaredIn>
+            
+			
+			<NodeRef refid="84"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/MMStaticDataHelper/sharedDataHelper</TokenIdentifier>
+			<Abstract type="html">Retrieves the singleton instance for
+this class.</Abstract>
+			<DeclaredIn>MMStaticDataHelper.h</DeclaredIn>
+			
+			<Declaration>+ (MMStaticDataHelper *)sharedDataHelper</Declaration>
+			
+			<ReturnValue><Abstract type="html">The singleton instance.</Abstract></ReturnValue>
+			<Anchor>//api/name/sharedDataHelper</Anchor>
+            <NodeRef refid="84"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMStaticDataHelper/getAboutURL</TokenIdentifier>
+			<Abstract type="html">Retrieves the URL for the About page on
+mymenuapp.ca.</Abstract>
+			<DeclaredIn>MMStaticDataHelper.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)getAboutURL</Declaration>
+			
+			<ReturnValue><Abstract type="html">The URL of the About page.</Abstract></ReturnValue>
+			<Anchor>//api/name/getAboutURL</Anchor>
+            <NodeRef refid="84"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMStaticDataHelper/getSelectedTabBarImageNames</TokenIdentifier>
+			<Abstract type="html">Retrieves an array of image names that
+correspond to the selected images for
+the tab bar.</Abstract>
+			<DeclaredIn>MMStaticDataHelper.h</DeclaredIn>
+			
+			<Declaration>- (NSArray *)getSelectedTabBarImageNames</Declaration>
+			
+			<ReturnValue><Abstract type="html">An array of image file names.</Abstract></ReturnValue>
+			<Anchor>//api/name/getSelectedTabBarImageNames</Anchor>
+            <NodeRef refid="84"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

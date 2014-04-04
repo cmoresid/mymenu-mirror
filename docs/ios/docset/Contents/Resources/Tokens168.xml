@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIAlertView+AFNetworking.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIAlertView(AFNetworking)</TokenIdentifier>
+			<Abstract type="html">This category adds methods to the UIKit framework&apos;s UIAlertView class. The methods in this category provide support for automatically showing an alert if a session task or request operation finishes with an error. Alert title and message are filled from the corresponding localizedDescription &amp;amp; localizedRecoverySuggestion or localizedFailureReason of the error.</Abstract>
+			<DeclaredIn>UIAlertView+AFNetworking.h</DeclaredIn>
+            
+			
+			<NodeRef refid="168"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIAlertView/showAlertViewForTaskWithErrorOnCompletion:delegate:</TokenIdentifier>
+			<Abstract type="html">Shows an alert view with the error of the specified session task, if any.</Abstract>
+			<DeclaredIn>UIAlertView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>+ (void)showAlertViewForTaskWithErrorOnCompletion:(NSURLSessionTask *)task delegate:(id)delegate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>task</Name>
+					<Abstract type="html">The session task.</Abstract>
+				</Parameter><Parameter>
+					<Name>delegate</Name>
+					<Abstract type="html">The alert view delegate.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showAlertViewForTaskWithErrorOnCompletion:delegate:</Anchor>
+            <NodeRef refid="168"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIAlertView/showAlertViewForTaskWithErrorOnCompletion:delegate:cancelButtonTitle:otherButtonTitles:</TokenIdentifier>
+			<Abstract type="html">Shows an alert view with the error of the specified session task, if any, with a custom cancel button title and other button titles.</Abstract>
+			<DeclaredIn>UIAlertView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>+ (void)showAlertViewForTaskWithErrorOnCompletion:(NSURLSessionTask *)task delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>task</Name>
+					<Abstract type="html">The session task.</Abstract>
+				</Parameter><Parameter>
+					<Name>delegate</Name>
+					<Abstract type="html">The alert view delegate.</Abstract>
+				</Parameter><Parameter>
+					<Name>cancelButtonTitle</Name>
+					<Abstract type="html">The title of the cancel button or nil if there is no cancel button. Using this argument is equivalent to setting the cancel button index to the value returned by invoking addButtonWithTitle: specifying this title.</Abstract>
+				</Parameter><Parameter>
+					<Name>otherButtonTitles</Name>
+					<Abstract type="html">The title of another button. Using this argument is equivalent to invoking addButtonWithTitle: with this title to add more buttons. Too many buttons can cause the alert view to scroll. For guidelines on the best ways to use an alert in an app, see &quot;Temporary Views&quot;. Titles of additional buttons to add to the receiver, terminated with nil.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showAlertViewForTaskWithErrorOnCompletion:delegate:cancelButtonTitle:otherButtonTitles:</Anchor>
+            <NodeRef refid="168"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIAlertView/showAlertViewForRequestOperationWithErrorOnCompletion:delegate:</TokenIdentifier>
+			<Abstract type="html">Shows an alert view with the error of the specified request operation, if any.</Abstract>
+			<DeclaredIn>UIAlertView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>+ (void)showAlertViewForRequestOperationWithErrorOnCompletion:(AFURLConnectionOperation *)operation delegate:(id)delegate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>operation</Name>
+					<Abstract type="html">The request operation.</Abstract>
+				</Parameter><Parameter>
+					<Name>delegate</Name>
+					<Abstract type="html">The alert view delegate.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showAlertViewForRequestOperationWithErrorOnCompletion:delegate:</Anchor>
+            <NodeRef refid="168"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIAlertView/showAlertViewForRequestOperationWithErrorOnCompletion:delegate:cancelButtonTitle:otherButtonTitles:</TokenIdentifier>
+			<Abstract type="html">Shows an alert view with the error of the specified request operation, if any, with a custom cancel button title and other button titles.</Abstract>
+			<DeclaredIn>UIAlertView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>+ (void)showAlertViewForRequestOperationWithErrorOnCompletion:(AFURLConnectionOperation *)operation delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>operation</Name>
+					<Abstract type="html">The request operation.</Abstract>
+				</Parameter><Parameter>
+					<Name>delegate</Name>
+					<Abstract type="html">The alert view delegate.</Abstract>
+				</Parameter><Parameter>
+					<Name>cancelButtonTitle</Name>
+					<Abstract type="html">The title of the cancel button or nil if there is no cancel button. Using this argument is equivalent to setting the cancel button index to the value returned by invoking addButtonWithTitle: specifying this title.</Abstract>
+				</Parameter><Parameter>
+					<Name>otherButtonTitles</Name>
+					<Abstract type="html">The title of another button. Using this argument is equivalent to invoking addButtonWithTitle: with this title to add more buttons. Too many buttons can cause the alert view to scroll. For guidelines on the best ways to use an alert in an app, see &quot;Temporary Views&quot;. Titles of additional buttons to add to the receiver, terminated with nil.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/showAlertViewForRequestOperationWithErrorOnCompletion:delegate:cancelButtonTitle:otherButtonTitles:</Anchor>
+            <NodeRef refid="168"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

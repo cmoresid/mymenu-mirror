@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMSpecialsTypeController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMSpecialsTypeController</TokenIdentifier>
+			<Abstract type="html">*  Controller for showing the types of specials in a popover on the specials page</Abstract>
+			<DeclaredIn>MMSpecialsTypeController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="81"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsTypeController/setSpecialItems:</TokenIdentifier>
+			<Abstract type="html">*  The types of specials</Abstract>
+			<DeclaredIn>MMSpecialsTypeController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readwrite) NSArray *specialItems</Declaration>
+			
+			
+			<Anchor>//api/name/specialItems</Anchor>
+            <NodeRef refid="81"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsTypeController/specialItems</TokenIdentifier>
+			<Abstract type="html">*  The types of specials</Abstract>
+			<DeclaredIn>MMSpecialsTypeController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readwrite) NSArray *specialItems</Declaration>
+			
+			
+			<Anchor>//api/name/specialItems</Anchor>
+            <NodeRef refid="81"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsTypeController/specialItems</TokenIdentifier>
+			<Abstract type="html">*  The types of specials</Abstract>
+			<DeclaredIn>MMSpecialsTypeController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readwrite) NSArray *specialItems</Declaration>
+			
+			
+			<Anchor>//api/name/specialItems</Anchor>
+            <NodeRef refid="81"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsTypeController/setSpecialsCollectionController:</TokenIdentifier>
+			<Abstract type="html">*  The controller we are in (Always MMSpecialsCollectionViewController</Abstract>
+			<DeclaredIn>MMSpecialsTypeController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readwrite) MMSpecialsCollectionViewController *specialsCollectionController</Declaration>
+			
+			
+			<Anchor>//api/name/specialsCollectionController</Anchor>
+            <NodeRef refid="81"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsTypeController/specialsCollectionController</TokenIdentifier>
+			<Abstract type="html">*  The controller we are in (Always MMSpecialsCollectionViewController</Abstract>
+			<DeclaredIn>MMSpecialsTypeController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readwrite) MMSpecialsCollectionViewController *specialsCollectionController</Declaration>
+			
+			
+			<Anchor>//api/name/specialsCollectionController</Anchor>
+            <NodeRef refid="81"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsTypeController/specialsCollectionController</TokenIdentifier>
+			<Abstract type="html">*  The controller we are in (Always MMSpecialsCollectionViewController</Abstract>
+			<DeclaredIn>MMSpecialsTypeController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readwrite) MMSpecialsCollectionViewController *specialsCollectionController</Declaration>
+			
+			
+			<Anchor>//api/name/specialsCollectionController</Anchor>
+            <NodeRef refid="81"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

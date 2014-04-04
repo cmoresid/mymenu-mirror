@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACBehaviorSubject.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACBehaviorSubject</TokenIdentifier>
+			<Abstract type="html">A behavior subject sends the last value it received when it is subscribed to.</Abstract>
+			<DeclaredIn>RACBehaviorSubject.h</DeclaredIn>
+            
+			
+			<NodeRef refid="92"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACBehaviorSubject/behaviorSubjectWithDefaultValue:</TokenIdentifier>
+			<Abstract type="html">Creates a new behavior subject with a default value. If it hasn&apos;t received
+any values when it gets subscribed to, it sends the default value.</Abstract>
+			<DeclaredIn>RACBehaviorSubject.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)behaviorSubjectWithDefaultValue:(id)value</Declaration>
+			
+			
+			<Anchor>//api/name/behaviorSubjectWithDefaultValue:</Anchor>
+            <NodeRef refid="92"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACBehaviorSubject/subscribe:</TokenIdentifier>
+			<Abstract type="html">Subscribes subscriber to changes on the receiver. The receiver defines which
+events it actually sends and in what situations the events are sent.</Abstract>
+			<DeclaredIn>RACBehaviorSubject.m</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)subscribe:(id&lt;RACSubscriber&gt;)subscriber</Declaration>
+			
+			
+			<Anchor>//api/name/subscribe:</Anchor>
+            <NodeRef refid="92"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACBehaviorSubject/sendNext:</TokenIdentifier>
+			<Abstract type="html">Send the next value to subscribers.</Abstract>
+			<DeclaredIn>RACBehaviorSubject.m</DeclaredIn>
+			
+			<Declaration>- (void)sendNext:(id)value</Declaration>
+			
+			
+			<Anchor>//api/name/sendNext:</Anchor>
+            <NodeRef refid="92"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

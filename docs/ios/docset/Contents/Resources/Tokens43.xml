@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/SDWebImageManagerDelegate.html">
+	<File path="Classes/MMMapPopOverViewController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/SDWebImageManagerDelegate</TokenIdentifier>
-			<Abstract type="html">Enable to allow untrusted SSL ceriticates.
-Useful for testing purposes. Use with caution in production.
-     </Abstract>
-			<DeclaredIn>SDWebImageManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMapPopOverViewController</TokenIdentifier>
+			<Abstract type="html">Allows us to have a reference to detect a click on the map
+popovers.</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.h</DeclaredIn>
             
 			
 			<NodeRef refid="43"/>
@@ -15,46 +14,158 @@ Useful for testing purposes. Use with caution in production.
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/SDWebImageManagerDelegate/imageManager:shouldDownloadImageForURL:</TokenIdentifier>
-			<Abstract type="html">Controls which image should be downloaded when the image is not found in the cache.</Abstract>
-			<DeclaredIn>SDWebImageManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMapPopOverViewController/setMerchant:</TokenIdentifier>
+			<Abstract type="html">merchant that the pop over is describing</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.h</DeclaredIn>
 			
-			<Declaration>- (BOOL)imageManager:(SDWebImageManager *)imageManager shouldDownloadImageForURL:(NSURL *)imageURL</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>imageManager</Name>
-					<Abstract type="html">The current SDWebImageManager</Abstract>
-				</Parameter><Parameter>
-					<Name>imageURL</Name>
-					<Abstract type="html">The url of the image to be downloaded</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">Return NO to prevent the downloading of the image on cache misses. If not implemented, YES is implied.</Abstract></ReturnValue>
-			<Anchor>//api/name/imageManager:shouldDownloadImageForURL:</Anchor>
+			<Declaration>@property (nonatomic, strong) MMMerchant *merchant</Declaration>
+			
+			
+			<Anchor>//api/name/merchant</Anchor>
             <NodeRef refid="43"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/SDWebImageManagerDelegate/imageManager:transformDownloadedImage:withURL:</TokenIdentifier>
-			<Abstract type="html">Allows to transform the image immediately after it has been downloaded and just before to cache it on disk and memory.
-NOTE: This method is called from a global queue in order to not to block the main thread.</Abstract>
-			<DeclaredIn>SDWebImageManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMapPopOverViewController/merchant</TokenIdentifier>
+			<Abstract type="html">merchant that the pop over is describing</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.h</DeclaredIn>
 			
-			<Declaration>- (UIImage *)imageManager:(SDWebImageManager *)imageManager transformDownloadedImage:(UIImage *)image withURL:(NSURL *)imageURL</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>imageManager</Name>
-					<Abstract type="html">The current SDWebImageManager</Abstract>
-				</Parameter><Parameter>
-					<Name>image</Name>
-					<Abstract type="html">The image to transform</Abstract>
-				</Parameter><Parameter>
-					<Name>imageURL</Name>
-					<Abstract type="html">The url of the image to transform</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">The transformed image object.</Abstract></ReturnValue>
-			<Anchor>//api/name/imageManager:transformDownloadedImage:withURL:</Anchor>
+			<Declaration>@property (nonatomic, strong) MMMerchant *merchant</Declaration>
+			
+			
+			<Anchor>//api/name/merchant</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMapPopOverViewController/merchant</TokenIdentifier>
+			<Abstract type="html">merchant that the pop over is describing</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMerchant *merchant</Declaration>
+			
+			
+			<Anchor>//api/name/merchant</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMapPopOverViewController/setContentView:</TokenIdentifier>
+			<Abstract type="html">Content View passed in to resize the view being displayed.</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIView *contentView</Declaration>
+			
+			
+			<Anchor>//api/name/contentView</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMapPopOverViewController/contentView</TokenIdentifier>
+			<Abstract type="html">Content View passed in to resize the view being displayed.</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIView *contentView</Declaration>
+			
+			
+			<Anchor>//api/name/contentView</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMapPopOverViewController/contentView</TokenIdentifier>
+			<Abstract type="html">Content View passed in to resize the view being displayed.</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIView *contentView</Declaration>
+			
+			
+			<Anchor>//api/name/contentView</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMapPopOverViewController/setParentSplitViewController:</TokenIdentifier>
+			<Abstract type="html">reference to the navigation controller from the split view</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UISplitViewController *parentSplitViewController</Declaration>
+			
+			
+			<Anchor>//api/name/parentSplitViewController</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMapPopOverViewController/parentSplitViewController</TokenIdentifier>
+			<Abstract type="html">reference to the navigation controller from the split view</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UISplitViewController *parentSplitViewController</Declaration>
+			
+			
+			<Anchor>//api/name/parentSplitViewController</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMapPopOverViewController/parentSplitViewController</TokenIdentifier>
+			<Abstract type="html">reference to the navigation controller from the split view</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UISplitViewController *parentSplitViewController</Declaration>
+			
+			
+			<Anchor>//api/name/parentSplitViewController</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMapPopOverViewController/setPopOverController:</TokenIdentifier>
+			<Abstract type="html">Reference to the popover instantiated in the MapDelegate</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *popOverController</Declaration>
+			
+			
+			<Anchor>//api/name/popOverController</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMapPopOverViewController/popOverController</TokenIdentifier>
+			<Abstract type="html">Reference to the popover instantiated in the MapDelegate</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *popOverController</Declaration>
+			
+			
+			<Anchor>//api/name/popOverController</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMapPopOverViewController/popOverController</TokenIdentifier>
+			<Abstract type="html">Reference to the popover instantiated in the MapDelegate</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *popOverController</Declaration>
+			
+			
+			<Anchor>//api/name/popOverController</Anchor>
+            <NodeRef refid="43"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMapPopOverViewController/touchesEnded:withEvent:</TokenIdentifier>
+			<Abstract type="html">Called when user touches in the popover to go to the restaurant page.</Abstract>
+			<DeclaredIn>MMMapPopOverViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event</Declaration>
+			
+			
+			<Anchor>//api/name/touchesEnded:withEvent:</Anchor>
             <NodeRef refid="43"/>
 		</Token>
 		

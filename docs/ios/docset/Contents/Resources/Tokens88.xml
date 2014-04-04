@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMValidationManager.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMValidationManager</TokenIdentifier>
+			<Abstract type="html">* A class that manages a list of objects that conforms to</Abstract>
+			<DeclaredIn>MMValidationManager.h</DeclaredIn>
+            
+			
+			<NodeRef refid="88"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMValidationManager/getValidationMessagesAsArray</TokenIdentifier>
+			<Abstract type="html">* Iterates through each of the validation objects and calls its</Abstract>
+			<DeclaredIn>MMValidationManager.h</DeclaredIn>
+			
+			<Declaration>- (NSArray *)getValidationMessagesAsArray</Declaration>
+			
+			
+			<Anchor>//api/name/getValidationMessagesAsArray</Anchor>
+            <NodeRef refid="88"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMValidationManager/getValidationMessagesAsString</TokenIdentifier>
+			<Abstract type="html">* Iterates through each of the validation objects and calls its</Abstract>
+			<DeclaredIn>MMValidationManager.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)getValidationMessagesAsString</Declaration>
+			
+			
+			<Anchor>//api/name/getValidationMessagesAsString</Anchor>
+            <NodeRef refid="88"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMValidationManager/addValidator:</TokenIdentifier>
+			<Abstract type="html">* Adds a validator object to the current validation manager.</Abstract>
+			<DeclaredIn>MMValidationManager.h</DeclaredIn>
+			
+			<Declaration>- (void)addValidator:(id&lt;MMValidatorProtocol&gt;)validator</Declaration>
+			
+			
+			<Anchor>//api/name/addValidator:</Anchor>
+            <NodeRef refid="88"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

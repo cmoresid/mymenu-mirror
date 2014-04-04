@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMPopoverDataPair.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMPopoverDataPair</TokenIdentifier>
+			<Abstract type="html">* Represents a value that is returned from a MMResgistrationPopoverViewController</Abstract>
+			<DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
+            
+			
+			<NodeRef refid="58"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMPopoverDataPair/setDataType:</TokenIdentifier>
+			<Abstract type="html">* The type of data returned from the popover view controller.</Abstract>
+			<DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
+			
+			<Declaration>@property (readwrite) MMPopoverDataType dataType</Declaration>
+			
+			
+			<Anchor>//api/name/dataType</Anchor>
+            <NodeRef refid="58"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMPopoverDataPair/dataType</TokenIdentifier>
+			<Abstract type="html">* The type of data returned from the popover view controller.</Abstract>
+			<DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
+			
+			<Declaration>@property (readwrite) MMPopoverDataType dataType</Declaration>
+			
+			
+			<Anchor>//api/name/dataType</Anchor>
+            <NodeRef refid="58"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMPopoverDataPair/dataType</TokenIdentifier>
+			<Abstract type="html">* The type of data returned from the popover view controller.</Abstract>
+			<DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
+			
+			<Declaration>@property (readwrite) MMPopoverDataType dataType</Declaration>
+			
+			
+			<Anchor>//api/name/dataType</Anchor>
+            <NodeRef refid="58"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMPopoverDataPair/setSelectedValue:</TokenIdentifier>
+			<Abstract type="html">* The value that was selected in the popover view controller.</Abstract>
+			<DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
+			
+			<Declaration>@property (readwrite) id selectedValue</Declaration>
+			
+			
+			<Anchor>//api/name/selectedValue</Anchor>
+            <NodeRef refid="58"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMPopoverDataPair/selectedValue</TokenIdentifier>
+			<Abstract type="html">* The value that was selected in the popover view controller.</Abstract>
+			<DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
+			
+			<Declaration>@property (readwrite) id selectedValue</Declaration>
+			
+			
+			<Anchor>//api/name/selectedValue</Anchor>
+            <NodeRef refid="58"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMPopoverDataPair/selectedValue</TokenIdentifier>
+			<Abstract type="html">* The value that was selected in the popover view controller.</Abstract>
+			<DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
+			
+			<Declaration>@property (readwrite) id selectedValue</Declaration>
+			
+			
+			<Anchor>//api/name/selectedValue</Anchor>
+            <NodeRef refid="58"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMPopoverDataPair/initWithDataType:withSelectedValue:</TokenIdentifier>
+			<Abstract type="html">* Constructor that creates a data pair that describes the</Abstract>
+			<DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithDataType:(MMPopoverDataType)dataType withSelectedValue:(id)selectedValue</Declaration>
+			
+			
+			<Anchor>//api/name/initWithDataType:withSelectedValue:</Anchor>
+            <NodeRef refid="58"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/MMRegistrationPopoverDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/MMRegistrationPopoverDelegate</TokenIdentifier>
+			<Abstract type="html">* A delegate protocol used by the MMRegistrationPopoverViewController</Abstract>
+			<DeclaredIn>MMRegistrationPopoverDelegate.h</DeclaredIn>
+            
+			
+			<NodeRef refid="208"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMRegistrationPopoverDelegate/didSelectCity:</TokenIdentifier>
+			<Abstract type="html">* Send the selected value of the city from</Abstract>
+			<DeclaredIn>MMRegistrationPopoverDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)didSelectCity:(NSString *)city</Declaration>
+			
+			
+			<Anchor>//api/name/didSelectCity:</Anchor>
+            <NodeRef refid="208"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMRegistrationPopoverDelegate/didSelectProvince:</TokenIdentifier>
+			<Abstract type="html">* Send the selected value of the province from</Abstract>
+			<DeclaredIn>MMRegistrationPopoverDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)didSelectProvince:(NSString *)province</Declaration>
+			
+			
+			<Anchor>//api/name/didSelectProvince:</Anchor>
+            <NodeRef refid="208"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMRegistrationPopoverDelegate/didSelectGender:</TokenIdentifier>
+			<Abstract type="html">* Send the selected gender from</Abstract>
+			<DeclaredIn>MMRegistrationPopoverDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)didSelectGender:(NSString *)gender</Declaration>
+			
+			
+			<Anchor>//api/name/didSelectGender:</Anchor>
+            <NodeRef refid="208"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMRegistrationPopoverDelegate/didSelectBirthday:</TokenIdentifier>
+			<Abstract type="html">* Send the selected value of the birthday from</Abstract>
+			<DeclaredIn>MMRegistrationPopoverDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)didSelectBirthday:(NSDate *)birthday</Declaration>
+			
+			
+			<Anchor>//api/name/didSelectBirthday:</Anchor>
+            <NodeRef refid="208"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

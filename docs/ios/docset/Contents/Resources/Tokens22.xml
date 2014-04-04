@@ -1,16 +1,420 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMRestriction.html">
+	<File path="Classes/CCHMapClusterController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMRestriction</TokenIdentifier>
-			<Abstract type="html">This class represents a dietary restriction, for the table http://mymenuapp.ca/rest/restrictions</Abstract>
-			<DeclaredIn>MMRestriction.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/CCHMapClusterController</TokenIdentifier>
+			<Abstract type="html">Controller to cluster annotations. Automatically updates clustering when user zooms or pans the map.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
             
 			
 			<NodeRef refid="22"/>
 		</Token>
 		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/setAnnotations:</TokenIdentifier>
+			<Abstract type="html">Clustered annotations.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSSet *annotations</Declaration>
+			
+			
+			<Anchor>//api/name/annotations</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/annotations</TokenIdentifier>
+			<Abstract type="html">Clustered annotations.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSSet *annotations</Declaration>
+			
+			
+			<Anchor>//api/name/annotations</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterController/annotations</TokenIdentifier>
+			<Abstract type="html">Clustered annotations.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSSet *annotations</Declaration>
+			
+			
+			<Anchor>//api/name/annotations</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/setMapView:</TokenIdentifier>
+			<Abstract type="html">Map view to display clustered annotations.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) MKMapView *mapView</Declaration>
+			
+			
+			<Anchor>//api/name/mapView</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/mapView</TokenIdentifier>
+			<Abstract type="html">Map view to display clustered annotations.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) MKMapView *mapView</Declaration>
+			
+			
+			<Anchor>//api/name/mapView</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterController/mapView</TokenIdentifier>
+			<Abstract type="html">Map view to display clustered annotations.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) MKMapView *mapView</Declaration>
+			
+			
+			<Anchor>//api/name/mapView</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/setMarginFactor:</TokenIdentifier>
+			<Abstract type="html">Multiplier to extend visible area that&apos;s included for clustering (default: 0.5).</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) double marginFactor</Declaration>
+			
+			
+			<Anchor>//api/name/marginFactor</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/marginFactor</TokenIdentifier>
+			<Abstract type="html">Multiplier to extend visible area that&apos;s included for clustering (default: 0.5).</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) double marginFactor</Declaration>
+			
+			
+			<Anchor>//api/name/marginFactor</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterController/marginFactor</TokenIdentifier>
+			<Abstract type="html">Multiplier to extend visible area that&apos;s included for clustering (default: 0.5).</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) double marginFactor</Declaration>
+			
+			
+			<Anchor>//api/name/marginFactor</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/setCellSize:</TokenIdentifier>
+			<Abstract type="html">Cell size in [points] (default: 60).</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) double cellSize</Declaration>
+			
+			
+			<Anchor>//api/name/cellSize</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/cellSize</TokenIdentifier>
+			<Abstract type="html">Cell size in [points] (default: 60).</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) double cellSize</Declaration>
+			
+			
+			<Anchor>//api/name/cellSize</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterController/cellSize</TokenIdentifier>
+			<Abstract type="html">Cell size in [points] (default: 60).</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) double cellSize</Declaration>
+			
+			
+			<Anchor>//api/name/cellSize</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/setDebuggingEnabled:</TokenIdentifier>
+			<Abstract type="html">Displays the grid used for clustering.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, getter=isDebuggingEnabled) BOOL debuggingEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/debuggingEnabled</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/isDebuggingEnabled</TokenIdentifier>
+			<Abstract type="html">Displays the grid used for clustering.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, getter=isDebuggingEnabled) BOOL debuggingEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/debuggingEnabled</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterController/debuggingEnabled</TokenIdentifier>
+			<Abstract type="html">Displays the grid used for clustering.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, getter=isDebuggingEnabled) BOOL debuggingEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/debuggingEnabled</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/setDelegate:</TokenIdentifier>
+			<Abstract type="html">Delegate to configure cluster annotations.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;CCHMapClusterControllerDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/delegate</TokenIdentifier>
+			<Abstract type="html">Delegate to configure cluster annotations.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;CCHMapClusterControllerDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterController/delegate</TokenIdentifier>
+			<Abstract type="html">Delegate to configure cluster annotations.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;CCHMapClusterControllerDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/setClusterer:</TokenIdentifier>
+			<Abstract type="html">Delegate to define strategy for positioning cluster annotations (default: CCHCenterOfMassMapClusterer.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;CCHMapClusterer&gt; clusterer</Declaration>
+			
+			
+			<Anchor>//api/name/clusterer</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/clusterer</TokenIdentifier>
+			<Abstract type="html">Delegate to define strategy for positioning cluster annotations (default: CCHCenterOfMassMapClusterer.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;CCHMapClusterer&gt; clusterer</Declaration>
+			
+			
+			<Anchor>//api/name/clusterer</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterController/clusterer</TokenIdentifier>
+			<Abstract type="html">Delegate to define strategy for positioning cluster annotations (default: CCHCenterOfMassMapClusterer.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;CCHMapClusterer&gt; clusterer</Declaration>
+			
+			
+			<Anchor>//api/name/clusterer</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/setReuseExistingClusterAnnotations:</TokenIdentifier>
+			<Abstract type="html">Reuse existing cluster annotations for a cell (default: YES).</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL reuseExistingClusterAnnotations</Declaration>
+			
+			
+			<Anchor>//api/name/reuseExistingClusterAnnotations</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/reuseExistingClusterAnnotations</TokenIdentifier>
+			<Abstract type="html">Reuse existing cluster annotations for a cell (default: YES).</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL reuseExistingClusterAnnotations</Declaration>
+			
+			
+			<Anchor>//api/name/reuseExistingClusterAnnotations</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterController/reuseExistingClusterAnnotations</TokenIdentifier>
+			<Abstract type="html">Reuse existing cluster annotations for a cell (default: YES).</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL reuseExistingClusterAnnotations</Declaration>
+			
+			
+			<Anchor>//api/name/reuseExistingClusterAnnotations</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/setAnimator:</TokenIdentifier>
+			<Abstract type="html">Delegate to define strategy for animating cluster annotations in and out (default: CCHFadeInOutMapAnimator.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;CCHMapAnimator&gt; animator</Declaration>
+			
+			
+			<Anchor>//api/name/animator</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/animator</TokenIdentifier>
+			<Abstract type="html">Delegate to define strategy for animating cluster annotations in and out (default: CCHFadeInOutMapAnimator.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;CCHMapAnimator&gt; animator</Declaration>
+			
+			
+			<Anchor>//api/name/animator</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterController/animator</TokenIdentifier>
+			<Abstract type="html">Delegate to define strategy for animating cluster annotations in and out (default: CCHFadeInOutMapAnimator.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;CCHMapAnimator&gt; animator</Declaration>
+			
+			
+			<Anchor>//api/name/animator</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/initWithMapView:</TokenIdentifier>
+			<Abstract type="html">Initializes the cluster controller.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithMapView:(MKMapView *)mapView</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>mapView</Name>
+					<Abstract type="html">MKMapView to use to display clusters.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initWithMapView:</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/addAnnotations:withCompletionHandler:</TokenIdentifier>
+			<Abstract type="html">Adds annotations and immediately updates clustering.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>- (void)addAnnotations:(NSArray *)annotations withCompletionHandler:(void ( ^ ) ( ))completionHandler</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>annotations</Name>
+					<Abstract type="html">Annotations to add.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionHandler</Name>
+					<Abstract type="html">Called when the clustering finished updating.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addAnnotations:withCompletionHandler:</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/removeAnnotations:withCompletionHandler:</TokenIdentifier>
+			<Abstract type="html">Removes annotations and immediately updates clustering.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>- (void)removeAnnotations:(NSArray *)annotations withCompletionHandler:(void ( ^ ) ( ))completionHandler</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>annotations</Name>
+					<Abstract type="html">Annotations to add.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionHandler</Name>
+					<Abstract type="html">Called when the clustering finished updating.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/removeAnnotations:withCompletionHandler:</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterController/selectAnnotation:andZoomToRegionWithLatitudinalMeters:longitudinalMeters:</TokenIdentifier>
+			<Abstract type="html">Zooms to the position of the cluster that contains the given annotation and selects the cluster&apos;s annotation view.</Abstract>
+			<DeclaredIn>CCHMapClusterController.h</DeclaredIn>
+			
+			<Declaration>- (void)selectAnnotation:(id&lt;MKAnnotation&gt;)annotation andZoomToRegionWithLatitudinalMeters:(CLLocationDistance)latitudinalMeters longitudinalMeters:(CLLocationDistance)longitudinalMeters</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>annotation</Name>
+					<Abstract type="html">The annotation to look for. Uses isEqual: to check for a matching annotation previously added with addAnnotations:withCompletionHandler:.</Abstract>
+				</Parameter><Parameter>
+					<Name>latitudinalMeters</Name>
+					<Abstract type="html">North-to-south distance used for zooming.</Abstract>
+				</Parameter><Parameter>
+					<Name>longitudinalMeters</Name>
+					<Abstract type="html">East-to-west distance used for zooming.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/selectAnnotation:andZoomToRegionWithLatitudinalMeters:longitudinalMeters:</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
 		
         
 	</File>

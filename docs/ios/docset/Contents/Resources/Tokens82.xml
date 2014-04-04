@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMSplitViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMSplitViewController</TokenIdentifier>
+			<Abstract type="html">*  The split view for displaying the map and restaurants.</Abstract>
+			<DeclaredIn>MMSplitViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="82"/>
+		</Token>
+		
+		
+        
+	</File>
+</Tokens>

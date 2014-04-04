@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACArraySequence.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACArraySequence</TokenIdentifier>
+			<Abstract type="html">Private class that adapts an array to the RACSequence interface.</Abstract>
+			<DeclaredIn>RACArraySequence.h</DeclaredIn>
+            
+			
+			<NodeRef refid="90"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACArraySequence/sequenceWithArray:offset:</TokenIdentifier>
+			<Abstract type="html">Returns a sequence for enumerating over the given array, starting from the
+given offset. The array will be copied to prevent mutation.</Abstract>
+			<DeclaredIn>RACArraySequence.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)sequenceWithArray:(NSArray *)array offset:(NSUInteger)offset</Declaration>
+			
+			
+			<Anchor>//api/name/sequenceWithArray:offset:</Anchor>
+            <NodeRef refid="90"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACArraySequence/head</TokenIdentifier>
+			<Abstract type="html">The first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACArraySequence.m</DeclaredIn>
+			
+			<Declaration>- (id)head</Declaration>
+			
+			
+			<Anchor>//api/name/head</Anchor>
+            <NodeRef refid="90"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACArraySequence/tail</TokenIdentifier>
+			<Abstract type="html">All but the first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACArraySequence.m</DeclaredIn>
+			
+			<Declaration>- (RACSequence *)tail</Declaration>
+			
+			
+			<Anchor>//api/name/tail</Anchor>
+            <NodeRef refid="90"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACArraySequence/array</TokenIdentifier>
+			<Abstract type="html">Evaluates the full sequence to produce an equivalently-sized array.</Abstract>
+			<DeclaredIn>RACArraySequence.m</DeclaredIn>
+			
+			<Declaration>- (NSArray *)array</Declaration>
+			
+			
+			<Anchor>//api/name/array</Anchor>
+            <NodeRef refid="90"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACArraySequence/setArray:</TokenIdentifier>
+			<Abstract type="html">Evaluates the full sequence to produce an equivalently-sized array.</Abstract>
+			<DeclaredIn>RACArraySequence.m</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSArray *array</Declaration>
+			
+			
+			<Anchor>//api/name/array</Anchor>
+            <NodeRef refid="90"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACArraySequence/array</TokenIdentifier>
+			<Abstract type="html">Evaluates the full sequence to produce an equivalently-sized array.</Abstract>
+			<DeclaredIn>RACArraySequence.m</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSArray *array</Declaration>
+			
+			
+			<Anchor>//api/name/array</Anchor>
+            <NodeRef refid="90"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACArraySequence/array</TokenIdentifier>
+			<Abstract type="html">Evaluates the full sequence to produce an equivalently-sized array.</Abstract>
+			<DeclaredIn>RACArraySequence.m</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSArray *array</Declaration>
+			
+			
+			<Anchor>//api/name/array</Anchor>
+            <NodeRef refid="90"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

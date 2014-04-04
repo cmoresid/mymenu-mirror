@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/SDWebImageManager.html">
+	<File path="Classes/MMDBFetcher.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/SDWebImageManager</TokenIdentifier>
-			<Abstract type="html">* The SDWebImageManager is the class behind the UIImageView+WebCache category and likes.
-* It ties the asynchronous downloader (SDWebImageDownloader with the image cache store (SDImageCache.
-* You can use this class directly to benefit from web image downloading with caching in another context than
-* a UIView.
-*
-* Here is a simple example of how to use SDWebImageManager:
-*
-* @code</Abstract>
-			<DeclaredIn>SDWebImageManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMDBFetcher</TokenIdentifier>
+			<Abstract type="html">A model for qeurying data from the api.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
             
 			
 			<NodeRef refid="33"/>
@@ -20,142 +13,399 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/SDWebImageManager/setCacheKeyFilter:</TokenIdentifier>
-			<Abstract type="html">* The cache filter is a block used each time SDWebImageManager need to convert an URL into a cache key. This can
-* be used to remove dynamic part of an image URL.
-*
-* The following example sets a filter in the application delegate that will remove any query-string from the
-* URL before to use it as a cache key:
-*
-* @code</Abstract>
-			<DeclaredIn>SDWebImageManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/clm/MMDBFetcher/get</TokenIdentifier>
+			<Abstract type="html">Get a singleton instance of this class.
+Clients should use this, and not initialize a new instance for every request.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
 			
-			<Declaration>@property (strong) NSString *^ ) ( NSURL *url ) cacheKeyFilter</Declaration>
+			<Declaration>+ (MMDBFetcher *)get</Declaration>
 			
 			
-			<Anchor>//api/name/cacheKeyFilter</Anchor>
+			<Anchor>//api/name/get</Anchor>
             <NodeRef refid="33"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/SDWebImageManager/cacheKeyFilter</TokenIdentifier>
-			<Abstract type="html">* The cache filter is a block used each time SDWebImageManager need to convert an URL into a cache key. This can
-* be used to remove dynamic part of an image URL.
-*
-* The following example sets a filter in the application delegate that will remove any query-string from the
-* URL before to use it as a cache key:
-*
-* @code</Abstract>
-			<DeclaredIn>SDWebImageManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/addUser:</TokenIdentifier>
+			<Abstract type="html">Add a user to the service.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
 			
-			<Declaration>@property (strong) NSString *^ ) ( NSURL *url ) cacheKeyFilter</Declaration>
+			<Declaration>- (void)addUser:(MMUser *)user</Declaration>
 			
 			
-			<Anchor>//api/name/cacheKeyFilter</Anchor>
+			<Anchor>//api/name/addUser:</Anchor>
             <NodeRef refid="33"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/SDWebImageManager/cacheKeyFilter</TokenIdentifier>
-			<Abstract type="html">* The cache filter is a block used each time SDWebImageManager need to convert an URL into a cache key. This can
-* be used to remove dynamic part of an image URL.
-*
-* The following example sets a filter in the application delegate that will remove any query-string from the
-* URL before to use it as a cache key:
-*
-* @code</Abstract>
-			<DeclaredIn>SDWebImageManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/userExists:</TokenIdentifier>
+			<Abstract type="html">Check if the user with this email address exists already.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
 			
-			<Declaration>@property (strong) NSString *^ ) ( NSURL *url ) cacheKeyFilter</Declaration>
+			<Declaration>- (void)userExists:(NSString *)email</Declaration>
 			
 			
-			<Anchor>//api/name/cacheKeyFilter</Anchor>
+			<Anchor>//api/name/userExists:</Anchor>
             <NodeRef refid="33"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/clm/SDWebImageManager/sharedManager</TokenIdentifier>
-			<Abstract type="html">Returns global SDWebImageManager instance.</Abstract>
-			<DeclaredIn>SDWebImageManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/userVerified:</TokenIdentifier>
+			<Abstract type="html">Checks if the password for the user is entered correctly (for login).</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
 			
-			<Declaration>+ (SDWebImageManager *)sharedManager</Declaration>
+			<Declaration>- (void)userVerified:(MMUser *)user</Declaration>
 			
-			<ReturnValue><Abstract type="html">SDWebImageManager shared instance</Abstract></ReturnValue>
-			<Anchor>//api/name/sharedManager</Anchor>
+			
+			<Anchor>//api/name/userVerified:</Anchor>
             <NodeRef refid="33"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/SDWebImageManager/downloadWithURL:options:progress:completed:</TokenIdentifier>
-			<Abstract type="html">Downloads the image at the given URL if not present in cache or return the cached version otherwise.</Abstract>
-			<DeclaredIn>SDWebImageManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getDrinkSpecialsForDate:</TokenIdentifier>
+			<Abstract type="html">Get drink specials for the given day of the given type.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
 			
-			<Declaration>- (id&lt;SDWebImageOperation&gt;)downloadWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedWithFinishedBlock)completedBlock</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>url</Name>
-					<Abstract type="html">The URL to the image</Abstract>
-				</Parameter><Parameter>
-					<Name>options</Name>
-					<Abstract type="html">A mask to specify options to use for this request</Abstract>
-				</Parameter><Parameter>
-					<Name>progressBlock</Name>
-					<Abstract type="html">A block called while image is downloading</Abstract>
-				</Parameter><Parameter>
-					<Name>completedBlock</Name>
-					<Abstract type="html">A block called when operation has been completed.
-
-This parameter is required.
-
-This block has no return value and takes the requested UIImage as first parameter.
-In case of error the image parameter is nil and the second parameter may contain an NSError.
-
-The third parameter is an SDImageCacheType enum indicating if the image was retrived from the local cache
-or from the memory cache or from the network.
-
-The last parameter is set to NO when the SDWebImageProgressiveDownload option is used and the image is
-downloading. This block is thus called repetidly with a partial image. When image is fully downloaded, the
-block is called a last time with the full image and the last parameter set to YES.</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">Returns a cancellable NSOperation</Abstract></ReturnValue>
-			<Anchor>//api/name/downloadWithURL:options:progress:completed:</Anchor>
+			<Declaration>- (void)getDrinkSpecialsForDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/getDrinkSpecialsForDate:</Anchor>
             <NodeRef refid="33"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/SDWebImageManager/cancelAll</TokenIdentifier>
-			<Abstract type="html">Cancel all current opreations</Abstract>
-			<DeclaredIn>SDWebImageManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getDessertSpecialsForDate:</TokenIdentifier>
+			<Abstract type="html">Get dessert specials for the given day of the given type.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
 			
-			<Declaration>- (void)cancelAll</Declaration>
+			<Declaration>- (void)getDessertSpecialsForDate:(NSDate *)date</Declaration>
 			
 			
-			<Anchor>//api/name/cancelAll</Anchor>
+			<Anchor>//api/name/getDessertSpecialsForDate:</Anchor>
             <NodeRef refid="33"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/SDWebImageManager/isRunning</TokenIdentifier>
-			<Abstract type="html">Check one or more operations running</Abstract>
-			<DeclaredIn>SDWebImageManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getFoodSpecialsForDate:</TokenIdentifier>
+			<Abstract type="html">Get food specials for the given day of the given type.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
 			
-			<Declaration>- (BOOL)isRunning</Declaration>
+			<Declaration>- (void)getFoodSpecialsForDate:(NSDate *)date</Declaration>
 			
 			
-			<Anchor>//api/name/isRunning</Anchor>
+			<Anchor>//api/name/getFoodSpecialsForDate:</Anchor>
             <NodeRef refid="33"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/SDWebImageManager/diskImageExistsForURL:</TokenIdentifier>
-			<Abstract type="html">Check if image has already been cached</Abstract>
-			<DeclaredIn>SDWebImageManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/addUserRestrictions:withRestrictionIDs:</TokenIdentifier>
+			<Abstract type="html">Add all given restrictions for the given user.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
 			
-			<Declaration>- (BOOL)diskImageExistsForURL:(NSURL *)url</Declaration>
+			<Declaration>- (void)addUserRestrictions:(NSString *)email withRestrictionIDs:(NSArray *)restrictions</Declaration>
 			
 			
-			<Anchor>//api/name/diskImageExistsForURL:</Anchor>
+			<Anchor>//api/name/addUserRestrictions:withRestrictionIDs:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/addMenuRating:</TokenIdentifier>
+			<Abstract type="html">Add a rating/review for a menu item.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)addMenuRating:(MMMenuItemRating *)rating</Declaration>
+			
+			
+			<Anchor>//api/name/addMenuRating:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getCompressedMerchants:</TokenIdentifier>
+			<Abstract type="html">Get all merchants. Only return a subset of the fields to minify data.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getCompressedMerchants:(CLLocation *)usrloc</Declaration>
+			
+			
+			<Anchor>//api/name/getCompressedMerchants:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getCompressedMerchantsByName:withName:</TokenIdentifier>
+			<Abstract type="html">Get all merchants with name = merchname. Only return a subset of the fields to minify data.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getCompressedMerchantsByName:(CLLocation *)usrloc withName:(NSString *)merchname</Declaration>
+			
+			
+			<Anchor>//api/name/getCompressedMerchantsByName:withName:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getCompressedMerchantsByCuisine:withCuisine:</TokenIdentifier>
+			<Abstract type="html">Get all merchants with category cuisine. Only return a subset of the fields to minify data.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getCompressedMerchantsByCuisine:(CLLocation *)usrloc withCuisine:(NSString *)cuisine</Declaration>
+			
+			
+			<Anchor>//api/name/getCompressedMerchantsByCuisine:withCuisine:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getMenuWithMerchantId:withUserEmail:</TokenIdentifier>
+			<Abstract type="html">Get the menu for the restaurant.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getMenuWithMerchantId:(NSNumber *)merchid withUserEmail:(NSString *)email</Declaration>
+			
+			
+			<Anchor>//api/name/getMenuWithMerchantId:withUserEmail:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getAllRestrictions</TokenIdentifier>
+			<Abstract type="html">Get all restrictions that we support.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getAllRestrictions</Declaration>
+			
+			
+			<Anchor>//api/name/getAllRestrictions</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getUserRestrictions:</TokenIdentifier>
+			<Abstract type="html">Get all restrictions for the given user.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getUserRestrictions:(NSString *)email</Declaration>
+			
+			
+			<Anchor>//api/name/getUserRestrictions:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getMerchant:</TokenIdentifier>
+			<Abstract type="html">Get all information about the merchant (restaurant) with the given id.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getMerchant:(NSNumber *)merchid</Declaration>
+			
+			
+			<Anchor>//api/name/getMerchant:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/editUser:</TokenIdentifier>
+			<Abstract type="html">Edit the given user&apos;s information on the server.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)editUser:(MMUser *)user</Declaration>
+			
+			
+			<Anchor>//api/name/editUser:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/changePasswordForUser:</TokenIdentifier>
+			<Abstract type="html">Changes the user&apos;s password.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)changePasswordForUser:(MMUser *)user</Declaration>
+			
+			
+			<Anchor>//api/name/changePasswordForUser:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getUser:</TokenIdentifier>
+			<Abstract type="html">Get all information for the user with the given email.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getUser:(NSString *)email</Declaration>
+			
+			
+			<Anchor>//api/name/getUser:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getModifications:withUser:</TokenIdentifier>
+			<Abstract type="html">Get all modifications for a specific menu item with the given email.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getModifications:(NSNumber *)menuid withUser:(NSString *)email</Declaration>
+			
+			
+			<Anchor>//api/name/getModifications:withUser:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getItemRatings:</TokenIdentifier>
+			<Abstract type="html">Get all ratings for a specific meny item with the given menuid</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getItemRatings:(NSNumber *)menuid</Declaration>
+			
+			
+			<Anchor>//api/name/getItemRatings:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getItemRatingsMerchantRecent:</TokenIdentifier>
+			<Abstract type="html">Get all menu item ratings for a specific merchant.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getItemRatingsMerchantRecent:(NSNumber *)merchid</Declaration>
+			
+			
+			<Anchor>//api/name/getItemRatingsMerchantRecent:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getItemRatingsMerchantTop:</TokenIdentifier>
+			<Abstract type="html">Get the top rated (most liked) reviews for a merchant.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getItemRatingsMerchantTop:(NSNumber *)merchid</Declaration>
+			
+			
+			<Anchor>//api/name/getItemRatingsMerchantTop:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getCategories</TokenIdentifier>
+			<Abstract type="html">Get all merchant categories.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getCategories</Declaration>
+			
+			
+			<Anchor>//api/name/getCategories</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getItemRatingsTop:</TokenIdentifier>
+			<Abstract type="html">Get all ratings for a specific item ordered by rating.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)getItemRatingsTop:(NSNumber *)itemid</Declaration>
+			
+			
+			<Anchor>//api/name/getItemRatingsTop:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/getDay:</TokenIdentifier>
+			<Abstract type="html">Get today as a string, e.g. &apos;tuesday&apos;</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)getDay:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/getDay:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/reportReview:withMenuItem:withMerch:withReview:</TokenIdentifier>
+			<Abstract type="html">When a user reports a review they find offensive.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)reportReview:(NSString *)email withMenuItem:(NSNumber *)menuid withMerch:(NSNumber *)merchid withReview:(NSNumber *)rid</Declaration>
+			
+			
+			<Anchor>//api/name/reportReview:withMenuItem:withMerch:withReview:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/likeReview:withMenuItem:withMerch:withReview:</TokenIdentifier>
+			<Abstract type="html">When a user likes a menu item review.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)likeReview:(NSString *)email withMenuItem:(NSNumber *)menuid withMerch:(NSNumber *)merchid withReview:(NSNumber *)rid</Declaration>
+			
+			
+			<Anchor>//api/name/likeReview:withMenuItem:withMerch:withReview:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/userEaten:withItem:</TokenIdentifier>
+			<Abstract type="html">When a user clicks &apos;I&apos;ve Eaten This&apos;.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)userEaten:(NSString *)email withItem:(NSNumber *)mid</Declaration>
+			
+			
+			<Anchor>//api/name/userEaten:withItem:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/userLiked:withReview:</TokenIdentifier>
+			<Abstract type="html">Checks if the user has already liked a review.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)userLiked:(NSString *)email withReview:(NSNumber *)rid</Declaration>
+			
+			
+			<Anchor>//api/name/userLiked:withReview:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/userReported:withReview:</TokenIdentifier>
+			<Abstract type="html">Checks if the user has already reported a review.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)userReported:(NSString *)email withReview:(NSNumber *)rid</Declaration>
+			
+			
+			<Anchor>//api/name/userReported:withReview:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/eatenThis:withMenuItem:withMerch:</TokenIdentifier>
+			<Abstract type="html">Checks if the user has already clicked &apos;I&apos;ve Eaten this&apos;</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)eatenThis:(NSString *)email withMenuItem:(NSNumber *)menuid withMerch:(NSNumber *)merchid</Declaration>
+			
+			
+			<Anchor>//api/name/eatenThis:withMenuItem:withMerch:</Anchor>
+            <NodeRef refid="33"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMDBFetcher/editReview:</TokenIdentifier>
+			<Abstract type="html">Updates a review.</Abstract>
+			<DeclaredIn>MMDBFetcher.h</DeclaredIn>
+			
+			<Declaration>- (void)editReview:(MMMenuItemRating *)review</Declaration>
+			
+			
+			<Anchor>//api/name/editReview:</Anchor>
             <NodeRef refid="33"/>
 		</Token>
 		

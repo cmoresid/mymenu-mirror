@@ -1,43 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/MMValidatorProtocol.html">
+	<File path="Classes/MMMainTabViewSegue.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/MMValidatorProtocol</TokenIdentifier>
-			<Abstract type="html">An interface that describes a validator object. If you wish to
-validate the state of an object, create a new class that conforms
-to this protocol.</Abstract>
-			<DeclaredIn>MMValidatorProtocol.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMainTabViewSegue</TokenIdentifier>
+			<Abstract type="html">*  A custom segue that does not use any</Abstract>
+			<DeclaredIn>MMMainTabViewSegue.h</DeclaredIn>
             
 			
 			<NodeRef refid="42"/>
 		</Token>
 		
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/MMValidatorProtocol/isValid</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>MMValidatorProtocol.h</DeclaredIn>
-			
-			<Declaration>- (BOOL)isValid</Declaration>
-			
-			
-			<Anchor>//api/name/isValid</Anchor>
-            <NodeRef refid="42"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/MMValidatorProtocol/getErrorMessage</TokenIdentifier>
-			<Abstract type="html">Retrieves any error message that is contained within the
-validator object.</Abstract>
-			<DeclaredIn>MMValidatorProtocol.h</DeclaredIn>
-			
-			<Declaration>- (NSString *)getErrorMessage</Declaration>
-			
-			
-			<Anchor>//api/name/getErrorMessage</Anchor>
-            <NodeRef refid="42"/>
-		</Token>
 		
         
 	</File>

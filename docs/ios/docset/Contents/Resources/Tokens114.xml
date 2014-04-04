@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACPassthroughSubscriber.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACPassthroughSubscriber</TokenIdentifier>
+			<Abstract type="html">Passes through all events to another subscriber while not disposed.</Abstract>
+			<DeclaredIn>RACPassthroughSubscriber.h</DeclaredIn>
+            
+			
+			<NodeRef refid="114"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACPassthroughSubscriber/initWithSubscriber:signal:disposable:</TokenIdentifier>
+			<Abstract type="html">Initializes the receiver to pass through events until disposed.</Abstract>
+			<DeclaredIn>RACPassthroughSubscriber.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithSubscriber:(id&lt;RACSubscriber&gt;)subscriber signal:(RACSignal *)signal disposable:(RACCompoundDisposable *)disposable</Declaration>
+			
+			
+			<Anchor>//api/name/initWithSubscriber:signal:disposable:</Anchor>
+            <NodeRef refid="114"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACPassthroughSubscriber/sendNext:</TokenIdentifier>
+			<Abstract type="html">Send the next value to subscribers.</Abstract>
+			<DeclaredIn>RACPassthroughSubscriber.m</DeclaredIn>
+			
+			<Declaration>- (void)sendNext:(id)value</Declaration>
+			
+			
+			<Anchor>//api/name/sendNext:</Anchor>
+            <NodeRef refid="114"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACPassthroughSubscriber/sendError:</TokenIdentifier>
+			<Abstract type="html">Send the error to subscribers.</Abstract>
+			<DeclaredIn>RACPassthroughSubscriber.m</DeclaredIn>
+			
+			<Declaration>- (void)sendError:(NSError *)error</Declaration>
+			
+			
+			<Anchor>//api/name/sendError:</Anchor>
+            <NodeRef refid="114"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACPassthroughSubscriber/sendCompleted</TokenIdentifier>
+			<Abstract type="html">Send completed to subscribers.</Abstract>
+			<DeclaredIn>RACPassthroughSubscriber.m</DeclaredIn>
+			
+			<Declaration>- (void)sendCompleted</Declaration>
+			
+			
+			<Anchor>//api/name/sendCompleted</Anchor>
+            <NodeRef refid="114"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACPassthroughSubscriber/didSubscribeWithDisposable:</TokenIdentifier>
+			<Abstract type="html">Sends the subscriber a disposable that represents one of its subscriptions.</Abstract>
+			<DeclaredIn>RACPassthroughSubscriber.m</DeclaredIn>
+			
+			<Declaration>- (void)didSubscribeWithDisposable:(RACDisposable *)disposable</Declaration>
+			
+			
+			<Anchor>//api/name/didSubscribeWithDisposable:</Anchor>
+            <NodeRef refid="114"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACSerialDisposable.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACSerialDisposable</TokenIdentifier>
+			<Abstract type="html">A disposable that contains exactly one other disposable and allows it to be
+swapped out atomically.</Abstract>
+			<DeclaredIn>RACSerialDisposable.h</DeclaredIn>
+            
+			
+			<NodeRef refid="121"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSerialDisposable/setDisposable:</TokenIdentifier>
+			<Abstract type="html">The inner disposable managed by the serial disposable.</Abstract>
+			<DeclaredIn>RACSerialDisposable.h</DeclaredIn>
+			
+			<Declaration>@property (atomic, strong) RACDisposable *disposable</Declaration>
+			
+			
+			<Anchor>//api/name/disposable</Anchor>
+            <NodeRef refid="121"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSerialDisposable/disposable</TokenIdentifier>
+			<Abstract type="html">The inner disposable managed by the serial disposable.</Abstract>
+			<DeclaredIn>RACSerialDisposable.h</DeclaredIn>
+			
+			<Declaration>@property (atomic, strong) RACDisposable *disposable</Declaration>
+			
+			
+			<Anchor>//api/name/disposable</Anchor>
+            <NodeRef refid="121"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACSerialDisposable/disposable</TokenIdentifier>
+			<Abstract type="html">The inner disposable managed by the serial disposable.</Abstract>
+			<DeclaredIn>RACSerialDisposable.h</DeclaredIn>
+			
+			<Declaration>@property (atomic, strong) RACDisposable *disposable</Declaration>
+			
+			
+			<Anchor>//api/name/disposable</Anchor>
+            <NodeRef refid="121"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSerialDisposable/serialDisposableWithDisposable:</TokenIdentifier>
+			<Abstract type="html">Creates a serial disposable which will wrap the given disposable.</Abstract>
+			<DeclaredIn>RACSerialDisposable.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)serialDisposableWithDisposable:(RACDisposable *)disposable</Declaration>
+			
+			
+			<Anchor>//api/name/serialDisposableWithDisposable:</Anchor>
+            <NodeRef refid="121"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSerialDisposable/swapInDisposable:</TokenIdentifier>
+			<Abstract type="html">Atomically swaps the receiver&apos;s disposable for newDisposable.</Abstract>
+			<DeclaredIn>RACSerialDisposable.h</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)swapInDisposable:(RACDisposable *)newDisposable</Declaration>
+			
+			
+			<Anchor>//api/name/swapInDisposable:</Anchor>
+            <NodeRef refid="121"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSerialDisposable/isDisposed</TokenIdentifier>
+			<Abstract type="html">Whether the receiver has been disposed.</Abstract>
+			<DeclaredIn>RACSerialDisposable.m</DeclaredIn>
+			
+			<Declaration>- (BOOL)isDisposed</Declaration>
+			
+			
+			<Anchor>//api/name/isDisposed</Anchor>
+            <NodeRef refid="121"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSerialDisposable/dispose</TokenIdentifier>
+			<Abstract type="html">Performs the disposal work. Can be called multiple times, though sebsequent
+calls won&apos;t do anything.</Abstract>
+			<DeclaredIn>RACSerialDisposable.m</DeclaredIn>
+			
+			<Declaration>- (void)dispose</Declaration>
+			
+			
+			<Anchor>//api/name/dispose</Anchor>
+            <NodeRef refid="121"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

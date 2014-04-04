@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSString+RACKeyPathUtilities.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSString(RACKeyPathUtilities)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSString+RACKeyPathUtilities.h</DeclaredIn>
+            
+			
+			<NodeRef refid="163"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSString/rac_keyPathComponents</TokenIdentifier>
+			<Abstract type="html">Returns an array of the components of the receiver.</Abstract>
+			<DeclaredIn>NSString+RACKeyPathUtilities.h</DeclaredIn>
+			
+			<Declaration>- (NSArray *)rac_keyPathComponents</Declaration>
+			
+			
+			<Anchor>//api/name/rac_keyPathComponents</Anchor>
+            <NodeRef refid="163"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSString/rac_keyPathByDeletingLastKeyPathComponent</TokenIdentifier>
+			<Abstract type="html">Returns a key path with all the components of the receiver except for the
+last one.</Abstract>
+			<DeclaredIn>NSString+RACKeyPathUtilities.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)rac_keyPathByDeletingLastKeyPathComponent</Declaration>
+			
+			
+			<Anchor>//api/name/rac_keyPathByDeletingLastKeyPathComponent</Anchor>
+            <NodeRef refid="163"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSString/rac_keyPathByDeletingFirstKeyPathComponent</TokenIdentifier>
+			<Abstract type="html">Returns a key path with all the components of the receiver expect for the
+first one.</Abstract>
+			<DeclaredIn>NSString+RACKeyPathUtilities.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)rac_keyPathByDeletingFirstKeyPathComponent</Declaration>
+			
+			
+			<Anchor>//api/name/rac_keyPathByDeletingFirstKeyPathComponent</Anchor>
+            <NodeRef refid="163"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

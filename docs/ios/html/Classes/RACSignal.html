@@ -1,0 +1,4990 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>RACSignal Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">MyMenu </a></h1>
+				<a id="developerHome" href="../index.html">MyMenu</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">RACSignal Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/sequence">&nbsp;&nbsp;&nbsp;&nbsp;sequence</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/combineLatest:">&nbsp;&nbsp;&nbsp;&nbsp;+ combineLatest:</option>
+	
+	<option value="//api/name/combineLatest:reduce:">&nbsp;&nbsp;&nbsp;&nbsp;+ combineLatest:reduce:</option>
+	
+	<option value="//api/name/createSignal:">&nbsp;&nbsp;&nbsp;&nbsp;+ createSignal:</option>
+	
+	<option value="//api/name/defer:">&nbsp;&nbsp;&nbsp;&nbsp;+ defer:</option>
+	
+	<option value="//api/name/empty">&nbsp;&nbsp;&nbsp;&nbsp;+ empty</option>
+	
+	<option value="//api/name/error:">&nbsp;&nbsp;&nbsp;&nbsp;+ error:</option>
+	
+	<option value="//api/name/if:then:else:">&nbsp;&nbsp;&nbsp;&nbsp;+ if:then:else:</option>
+	
+	<option value="//api/name/interval:onScheduler:">&nbsp;&nbsp;&nbsp;&nbsp;+ interval:onScheduler:</option>
+	
+	<option value="//api/name/interval:onScheduler:withLeeway:">&nbsp;&nbsp;&nbsp;&nbsp;+ interval:onScheduler:withLeeway:</option>
+	
+	<option value="//api/name/merge:">&nbsp;&nbsp;&nbsp;&nbsp;+ merge:</option>
+	
+	<option value="//api/name/never">&nbsp;&nbsp;&nbsp;&nbsp;+ never</option>
+	
+	<option value="//api/name/return:">&nbsp;&nbsp;&nbsp;&nbsp;+ return:</option>
+	
+	<option value="//api/name/startEagerlyWithScheduler:block:">&nbsp;&nbsp;&nbsp;&nbsp;+ startEagerlyWithScheduler:block:</option>
+	
+	<option value="//api/name/startLazilyWithScheduler:block:">&nbsp;&nbsp;&nbsp;&nbsp;+ startLazilyWithScheduler:block:</option>
+	
+	<option value="//api/name/switch:cases:default:">&nbsp;&nbsp;&nbsp;&nbsp;+ switch:cases:default:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/aggregateWithStart:reduce:">&nbsp;&nbsp;&nbsp;&nbsp;- aggregateWithStart:reduce:</option>
+	
+	<option value="//api/name/aggregateWithStartFactory:reduce:">&nbsp;&nbsp;&nbsp;&nbsp;- aggregateWithStartFactory:reduce:</option>
+	
+	<option value="//api/name/all:">&nbsp;&nbsp;&nbsp;&nbsp;- all:</option>
+	
+	<option value="//api/name/and">&nbsp;&nbsp;&nbsp;&nbsp;- and</option>
+	
+	<option value="//api/name/any">&nbsp;&nbsp;&nbsp;&nbsp;- any</option>
+	
+	<option value="//api/name/any:">&nbsp;&nbsp;&nbsp;&nbsp;- any:</option>
+	
+	<option value="//api/name/asynchronousFirstOrDefault:success:error:">&nbsp;&nbsp;&nbsp;&nbsp;- asynchronousFirstOrDefault:success:error:</option>
+	
+	<option value="//api/name/asynchronouslyWaitUntilCompleted:">&nbsp;&nbsp;&nbsp;&nbsp;- asynchronouslyWaitUntilCompleted:</option>
+	
+	<option value="//api/name/bind:">&nbsp;&nbsp;&nbsp;&nbsp;- bind:</option>
+	
+	<option value="//api/name/bufferWithTime:onScheduler:">&nbsp;&nbsp;&nbsp;&nbsp;- bufferWithTime:onScheduler:</option>
+	
+	<option value="//api/name/catch:">&nbsp;&nbsp;&nbsp;&nbsp;- catch:</option>
+	
+	<option value="//api/name/catchTo:">&nbsp;&nbsp;&nbsp;&nbsp;- catchTo:</option>
+	
+	<option value="//api/name/collect">&nbsp;&nbsp;&nbsp;&nbsp;- collect</option>
+	
+	<option value="//api/name/combineLatestWith:">&nbsp;&nbsp;&nbsp;&nbsp;- combineLatestWith:</option>
+	
+	<option value="//api/name/concat">&nbsp;&nbsp;&nbsp;&nbsp;- concat</option>
+	
+	<option value="//api/name/concat:">&nbsp;&nbsp;&nbsp;&nbsp;- concat:</option>
+	
+	<option value="//api/name/delay:">&nbsp;&nbsp;&nbsp;&nbsp;- delay:</option>
+	
+	<option value="//api/name/deliverOn:">&nbsp;&nbsp;&nbsp;&nbsp;- deliverOn:</option>
+	
+	<option value="//api/name/dematerialize">&nbsp;&nbsp;&nbsp;&nbsp;- dematerialize</option>
+	
+	<option value="//api/name/doCompleted:">&nbsp;&nbsp;&nbsp;&nbsp;- doCompleted:</option>
+	
+	<option value="//api/name/doError:">&nbsp;&nbsp;&nbsp;&nbsp;- doError:</option>
+	
+	<option value="//api/name/doNext:">&nbsp;&nbsp;&nbsp;&nbsp;- doNext:</option>
+	
+	<option value="//api/name/finally:">&nbsp;&nbsp;&nbsp;&nbsp;- finally:</option>
+	
+	<option value="//api/name/first">&nbsp;&nbsp;&nbsp;&nbsp;- first</option>
+	
+	<option value="//api/name/firstOrDefault:">&nbsp;&nbsp;&nbsp;&nbsp;- firstOrDefault:</option>
+	
+	<option value="//api/name/firstOrDefault:success:error:">&nbsp;&nbsp;&nbsp;&nbsp;- firstOrDefault:success:error:</option>
+	
+	<option value="//api/name/flatten:">&nbsp;&nbsp;&nbsp;&nbsp;- flatten:</option>
+	
+	<option value="//api/name/groupBy:">&nbsp;&nbsp;&nbsp;&nbsp;- groupBy:</option>
+	
+	<option value="//api/name/groupBy:transform:">&nbsp;&nbsp;&nbsp;&nbsp;- groupBy:transform:</option>
+	
+	<option value="//api/name/ignoreValues">&nbsp;&nbsp;&nbsp;&nbsp;- ignoreValues</option>
+	
+	<option value="//api/name/initially:">&nbsp;&nbsp;&nbsp;&nbsp;- initially:</option>
+	
+	<option value="//api/name/logAll">&nbsp;&nbsp;&nbsp;&nbsp;- logAll</option>
+	
+	<option value="//api/name/logCompleted">&nbsp;&nbsp;&nbsp;&nbsp;- logCompleted</option>
+	
+	<option value="//api/name/logError">&nbsp;&nbsp;&nbsp;&nbsp;- logError</option>
+	
+	<option value="//api/name/logNext">&nbsp;&nbsp;&nbsp;&nbsp;- logNext</option>
+	
+	<option value="//api/name/materialize">&nbsp;&nbsp;&nbsp;&nbsp;- materialize</option>
+	
+	<option value="//api/name/multicast:">&nbsp;&nbsp;&nbsp;&nbsp;- multicast:</option>
+	
+	<option value="//api/name/not">&nbsp;&nbsp;&nbsp;&nbsp;- not</option>
+	
+	<option value="//api/name/or">&nbsp;&nbsp;&nbsp;&nbsp;- or</option>
+	
+	<option value="//api/name/publish">&nbsp;&nbsp;&nbsp;&nbsp;- publish</option>
+	
+	<option value="//api/name/repeat">&nbsp;&nbsp;&nbsp;&nbsp;- repeat</option>
+	
+	<option value="//api/name/replay">&nbsp;&nbsp;&nbsp;&nbsp;- replay</option>
+	
+	<option value="//api/name/replayLast">&nbsp;&nbsp;&nbsp;&nbsp;- replayLast</option>
+	
+	<option value="//api/name/replayLazily">&nbsp;&nbsp;&nbsp;&nbsp;- replayLazily</option>
+	
+	<option value="//api/name/retry">&nbsp;&nbsp;&nbsp;&nbsp;- retry</option>
+	
+	<option value="//api/name/retry:">&nbsp;&nbsp;&nbsp;&nbsp;- retry:</option>
+	
+	<option value="//api/name/sample:">&nbsp;&nbsp;&nbsp;&nbsp;- sample:</option>
+	
+	<option value="//api/name/setKeyPath:onObject:">&nbsp;&nbsp;&nbsp;&nbsp;- setKeyPath:onObject:</option>
+	
+	<option value="//api/name/setKeyPath:onObject:nilValue:">&nbsp;&nbsp;&nbsp;&nbsp;- setKeyPath:onObject:nilValue:</option>
+	
+	<option value="//api/name/subscribe:">&nbsp;&nbsp;&nbsp;&nbsp;- subscribe:</option>
+	
+	<option value="//api/name/subscribeCompleted:">&nbsp;&nbsp;&nbsp;&nbsp;- subscribeCompleted:</option>
+	
+	<option value="//api/name/subscribeError:">&nbsp;&nbsp;&nbsp;&nbsp;- subscribeError:</option>
+	
+	<option value="//api/name/subscribeError:completed:">&nbsp;&nbsp;&nbsp;&nbsp;- subscribeError:completed:</option>
+	
+	<option value="//api/name/subscribeNext:">&nbsp;&nbsp;&nbsp;&nbsp;- subscribeNext:</option>
+	
+	<option value="//api/name/subscribeNext:completed:">&nbsp;&nbsp;&nbsp;&nbsp;- subscribeNext:completed:</option>
+	
+	<option value="//api/name/subscribeNext:error:">&nbsp;&nbsp;&nbsp;&nbsp;- subscribeNext:error:</option>
+	
+	<option value="//api/name/subscribeNext:error:completed:">&nbsp;&nbsp;&nbsp;&nbsp;- subscribeNext:error:completed:</option>
+	
+	<option value="//api/name/subscribeOn:">&nbsp;&nbsp;&nbsp;&nbsp;- subscribeOn:</option>
+	
+	<option value="//api/name/switchToLatest">&nbsp;&nbsp;&nbsp;&nbsp;- switchToLatest</option>
+	
+	<option value="//api/name/takeLast:">&nbsp;&nbsp;&nbsp;&nbsp;- takeLast:</option>
+	
+	<option value="//api/name/takeUntil:">&nbsp;&nbsp;&nbsp;&nbsp;- takeUntil:</option>
+	
+	<option value="//api/name/takeUntilReplacement:">&nbsp;&nbsp;&nbsp;&nbsp;- takeUntilReplacement:</option>
+	
+	<option value="//api/name/then:">&nbsp;&nbsp;&nbsp;&nbsp;- then:</option>
+	
+	<option value="//api/name/throttle:">&nbsp;&nbsp;&nbsp;&nbsp;- throttle:</option>
+	
+	<option value="//api/name/throttle:valuesPassingTest:">&nbsp;&nbsp;&nbsp;&nbsp;- throttle:valuesPassingTest:</option>
+	
+	<option value="//api/name/timeout:onScheduler:">&nbsp;&nbsp;&nbsp;&nbsp;- timeout:onScheduler:</option>
+	
+	<option value="//api/name/toArray">&nbsp;&nbsp;&nbsp;&nbsp;- toArray</option>
+	
+	<option value="//api/name/try:">&nbsp;&nbsp;&nbsp;&nbsp;- try:</option>
+	
+	<option value="//api/name/tryMap:">&nbsp;&nbsp;&nbsp;&nbsp;- tryMap:</option>
+	
+	<option value="//api/name/waitUntilCompleted:">&nbsp;&nbsp;&nbsp;&nbsp;- waitUntilCompleted:</option>
+	
+	<option value="//api/name/zipWith:">&nbsp;&nbsp;&nbsp;&nbsp;- zipWith:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_RACStream Methods">RACStream Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Debugging Methods">Debugging Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Testing Methods">Testing Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Operations Methods">Operations Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Subscription Methods">Subscription Methods</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sequence">sequence</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/combineLatest:">combineLatest:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/combineLatest:reduce:">combineLatest:reduce:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createSignal:">createSignal:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/defer:">defer:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/empty">empty</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/error:">error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/if:then:else:">if:then:else:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/interval:onScheduler:">interval:onScheduler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/interval:onScheduler:withLeeway:">interval:onScheduler:withLeeway:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/merge:">merge:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/never">never</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/return:">return:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startEagerlyWithScheduler:block:">startEagerlyWithScheduler:block:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startLazilyWithScheduler:block:">startLazilyWithScheduler:block:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/switch:cases:default:">switch:cases:default:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/aggregateWithStart:reduce:">aggregateWithStart:reduce:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/aggregateWithStartFactory:reduce:">aggregateWithStartFactory:reduce:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/all:">all:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/and">and</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/any">any</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/any:">any:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/asynchronousFirstOrDefault:success:error:">asynchronousFirstOrDefault:success:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/asynchronouslyWaitUntilCompleted:">asynchronouslyWaitUntilCompleted:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bind:">bind:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bufferWithTime:onScheduler:">bufferWithTime:onScheduler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/catch:">catch:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/catchTo:">catchTo:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/collect">collect</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/combineLatestWith:">combineLatestWith:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/concat">concat</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/concat:">concat:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delay:">delay:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deliverOn:">deliverOn:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dematerialize">dematerialize</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doCompleted:">doCompleted:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doError:">doError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doNext:">doNext:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/finally:">finally:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/first">first</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/firstOrDefault:">firstOrDefault:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/firstOrDefault:success:error:">firstOrDefault:success:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/flatten:">flatten:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/groupBy:">groupBy:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/groupBy:transform:">groupBy:transform:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ignoreValues">ignoreValues</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initially:">initially:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/logAll">logAll</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/logCompleted">logCompleted</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/logError">logError</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/logNext">logNext</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/materialize">materialize</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/multicast:">multicast:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/not">not</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/or">or</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/publish">publish</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/repeat">repeat</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/replay">replay</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/replayLast">replayLast</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/replayLazily">replayLazily</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/retry">retry</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/retry:">retry:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sample:">sample:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setKeyPath:onObject:">setKeyPath:onObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setKeyPath:onObject:nilValue:">setKeyPath:onObject:nilValue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/subscribe:">subscribe:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/subscribeCompleted:">subscribeCompleted:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/subscribeError:">subscribeError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/subscribeError:completed:">subscribeError:completed:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/subscribeNext:">subscribeNext:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/subscribeNext:completed:">subscribeNext:completed:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/subscribeNext:error:">subscribeNext:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/subscribeNext:error:completed:">subscribeNext:error:completed:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/subscribeOn:">subscribeOn:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/switchToLatest">switchToLatest</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/takeLast:">takeLast:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/takeUntil:">takeUntil:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/takeUntilReplacement:">takeUntilReplacement:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/then:">then:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/throttle:">throttle:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/throttle:valuesPassingTest:">throttle:valuesPassingTest:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/timeout:onScheduler:">timeout:onScheduler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/toArray">toArray</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/try:">try:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tryMap:">tryMap:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/waitUntilCompleted:">waitUntilCompleted:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/zipWith:">zipWith:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="RACSignal Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">RACSignal Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value"><a href="../Classes/RACStream.html">RACStream</a> : NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">RACSignal.h<br />RACSignal.m</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Additional methods to assist with debugging.
+Additional methods to assist with unit testing.</p>
+
+<p><strong>These methods should <a href="#//api/name/never">never</a> ship in production code.</strong>
+The err<a href="#//api/name/or">or</a> code used when a value passed into <a href="#//api/name/switch:cases:default:">switch:cases:default:</a> does <a href="#//api/name/not">not</a>
+match <a href="#//api/name/any">any</a> of the cases, <a href="#//api/name/and">and</a> no default was given.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/createSignal:">+&nbsp;createSignal:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/error:">+&nbsp;error:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/never">+&nbsp;never</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startEagerlyWithScheduler:block:">+&nbsp;startEagerlyWithScheduler:block:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startLazilyWithScheduler:block:">+&nbsp;startLazilyWithScheduler:block:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="RACStream Methods" name="task_RACStream Methods"></a>
+						<h3 class="subsubtitle task-title">RACStream Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/return:">+&nbsp;return:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/empty">+&nbsp;empty</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/concat:">&ndash;&nbsp;concat:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/zipWith:">&ndash;&nbsp;zipWith:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bind:">&ndash;&nbsp;bind:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Debugging Methods" name="task_Debugging Methods"></a>
+						<h3 class="subsubtitle task-title">Debugging Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/logAll">&ndash;&nbsp;logAll</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/logNext">&ndash;&nbsp;logNext</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/logError">&ndash;&nbsp;logError</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/logCompleted">&ndash;&nbsp;logCompleted</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Testing Methods" name="task_Testing Methods"></a>
+						<h3 class="subsubtitle task-title">Testing Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/asynchronousFirstOrDefault:success:error:">&ndash;&nbsp;asynchronousFirstOrDefault:success:error:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/asynchronouslyWaitUntilCompleted:">&ndash;&nbsp;asynchronouslyWaitUntilCompleted:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Operations Methods" name="task_Operations Methods"></a>
+						<h3 class="subsubtitle task-title">Operations Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/doNext:">&ndash;&nbsp;doNext:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/doError:">&ndash;&nbsp;doError:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/doCompleted:">&ndash;&nbsp;doCompleted:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/throttle:">&ndash;&nbsp;throttle:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/throttle:valuesPassingTest:">&ndash;&nbsp;throttle:valuesPassingTest:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delay:">&ndash;&nbsp;delay:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/repeat">&ndash;&nbsp;repeat</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initially:">&ndash;&nbsp;initially:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/finally:">&ndash;&nbsp;finally:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bufferWithTime:onScheduler:">&ndash;&nbsp;bufferWithTime:onScheduler:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/collect">&ndash;&nbsp;collect</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/takeLast:">&ndash;&nbsp;takeLast:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/combineLatestWith:">&ndash;&nbsp;combineLatestWith:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/combineLatest:">+&nbsp;combineLatest:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/combineLatest:reduce:">+&nbsp;combineLatest:reduce:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/merge:">+&nbsp;merge:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/flatten:">&ndash;&nbsp;flatten:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/then:">&ndash;&nbsp;then:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/concat">&ndash;&nbsp;concat</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/aggregateWithStart:reduce:">&ndash;&nbsp;aggregateWithStart:reduce:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/aggregateWithStartFactory:reduce:">&ndash;&nbsp;aggregateWithStartFactory:reduce:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setKeyPath:onObject:">&ndash;&nbsp;setKeyPath:onObject:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setKeyPath:onObject:nilValue:">&ndash;&nbsp;setKeyPath:onObject:nilValue:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/interval:onScheduler:">+&nbsp;interval:onScheduler:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/interval:onScheduler:withLeeway:">+&nbsp;interval:onScheduler:withLeeway:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/takeUntil:">&ndash;&nbsp;takeUntil:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/takeUntilReplacement:">&ndash;&nbsp;takeUntilReplacement:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/catch:">&ndash;&nbsp;catch:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/catchTo:">&ndash;&nbsp;catchTo:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/try:">&ndash;&nbsp;try:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tryMap:">&ndash;&nbsp;tryMap:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/first">&ndash;&nbsp;first</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/firstOrDefault:">&ndash;&nbsp;firstOrDefault:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/firstOrDefault:success:error:">&ndash;&nbsp;firstOrDefault:success:error:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/waitUntilCompleted:">&ndash;&nbsp;waitUntilCompleted:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/defer:">+&nbsp;defer:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/switchToLatest">&ndash;&nbsp;switchToLatest</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/switch:cases:default:">+&nbsp;switch:cases:default:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/if:then:else:">+&nbsp;if:then:else:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/toArray">&ndash;&nbsp;toArray</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sequence">&nbsp;&nbsp;sequence</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/publish">&ndash;&nbsp;publish</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/multicast:">&ndash;&nbsp;multicast:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/replay">&ndash;&nbsp;replay</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/replayLast">&ndash;&nbsp;replayLast</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/replayLazily">&ndash;&nbsp;replayLazily</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/timeout:onScheduler:">&ndash;&nbsp;timeout:onScheduler:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/deliverOn:">&ndash;&nbsp;deliverOn:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/subscribeOn:">&ndash;&nbsp;subscribeOn:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/groupBy:transform:">&ndash;&nbsp;groupBy:transform:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/groupBy:">&ndash;&nbsp;groupBy:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/any">&ndash;&nbsp;any</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/any:">&ndash;&nbsp;any:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/all:">&ndash;&nbsp;all:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/retry:">&ndash;&nbsp;retry:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/retry">&ndash;&nbsp;retry</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sample:">&ndash;&nbsp;sample:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ignoreValues">&ndash;&nbsp;ignoreValues</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/materialize">&ndash;&nbsp;materialize</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dematerialize">&ndash;&nbsp;dematerialize</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/not">&ndash;&nbsp;not</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/and">&ndash;&nbsp;and</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/or">&ndash;&nbsp;or</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Subscription Methods" name="task_Subscription Methods"></a>
+						<h3 class="subsubtitle task-title">Subscription Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/subscribe:">&ndash;&nbsp;subscribe:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/subscribeNext:">&ndash;&nbsp;subscribeNext:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/subscribeNext:completed:">&ndash;&nbsp;subscribeNext:completed:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/subscribeNext:error:completed:">&ndash;&nbsp;subscribeNext:error:completed:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/subscribeError:">&ndash;&nbsp;subscribeError:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/subscribeCompleted:">&ndash;&nbsp;subscribeCompleted:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/subscribeNext:error:">&ndash;&nbsp;subscribeNext:error:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/subscribeError:completed:">&ndash;&nbsp;subscribeError:completed:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/sequence" title="sequence"></a>
+	<h3 class="subsubtitle method-title">sequence</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add every <code>next</code> to a sequence. Nils are represented by NSNulls.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) RACSequence *sequence</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This corresponds to the <code>ToEnumerable</code> method in Rx.</p>
+
+<p>Returns a sequence which provides values from the signal as they&rsquo;re sent.
+Trying to retrieve a value from the sequence which has <a href="#//api/name/not">not</a> yet been sent will
+block.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/combineLatest:" title="combineLatest:"></a>
+	<h3 class="subsubtitle method-title">combineLatest:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Combines the latest values from the given signals into RACTuples, once all
+the signals have sent at least one <code>next</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)combineLatest:(id&lt;NSFastEnumeration&gt;)<em>signals</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Any additional <code>next</code>s will result in a new <a href="../Classes/RACTuple.html">RACTuple</a> with the latest values
+from all signals.</p>
+
+<p>signals - The signals to combine. If this collection is <a href="#//api/name/empty">empty</a>, the returned
+           signal will immediately complete upon subscription.</p>
+
+<p>Returns a signal which sends RACTuples of the combined values, forwards <a href="#//api/name/any">any</a>
+<code>err</code>or<code></code> events, <a href="#//api/name/and">and</a> completes when all input signals complete.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/combineLatest:reduce:" title="combineLatest:reduce:"></a>
+	<h3 class="subsubtitle method-title">combineLatest:reduce:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Combines signals using <a href="#//api/name/combineLatest:">combineLatest:</a>, then reduces the resulting tuples
+into a single value using -reduceEach:.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)combineLatest:(id&lt;NSFastEnumeration&gt;)<em>signals</em> reduce:(id ( ^ ) ( ))<em>reduceBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>signals     - The signals to combine. If this collection is <a href="#//api/name/empty">empty</a>, the
+               returned signal will immediately complete upon subscription.
+reduceBlock - The block which reduces the latest values from all the
+               signals into one value. It must take as m<a href="#//api/name/any">any</a> arguments as the
+               number of signals given. Each argument will be an object
+               argument. The return value must be an object. This argument
+               must <a href="#//api/name/not">not</a> be nil.</p>
+
+<p>Example:</p>
+
+<p>   [RACSignal combineLatest:@[ stringSignal, intSignal ] reduce:^(NSString <em>string, NSNumber </em>number) {
+       return [NSString stringWithFormat:@&ldquo;%@: %@&rdquo;, string, number];
+   }];</p>
+
+<p>Returns a signal which sends the results from each invocation of
+<code>reduceBlock</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/createSignal:" title="createSignal:"></a>
+	<h3 class="subsubtitle method-title">createSignal:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a new signal. This is the preferred way to create a new signal
+operation <a href="../Classes/RACSignal.html#//api/name/or">or</a> behavi<a href="../Classes/RACSignal.html#//api/name/or">or</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)createSignal:(RACDisposable *( ^ ) ( id&lt;RACSubscriber&gt; subscriber ))<em>didSubscribe</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Events can be sent to new subscribers immediately in the <code>didSubscribe</code>
+block, but the subscriber will <a href="../Classes/RACSignal.html#//api/name/not">not</a> be able to dispose of the signal until
+a <a href="../Classes/RACDisposable.html">RACDisposable</a> is returned from <code>didSubscribe</code>. In the case of infinite
+signals, this won&rsquo;t <em>ever</em> happen if events are sent immediately.</p>
+
+<p>To ensure that the signal is disposable, events can be scheduled on the
+<a href="../Classes/RACScheduler.html#//api/name/currentScheduler">[RACScheduler currentScheduler]</a> (so that they&rsquo;re deferred, <a href="../Classes/RACSignal.html#//api/name/not">not</a> sent
+immediately), <a href="../Classes/RACSignal.html#//api/name/or">or</a> they can be sent in the background. The <a href="../Classes/RACDisposable.html">RACDisposable</a>
+returned by the <code>didSubscribe</code> block should cancel <a href="../Classes/RACSignal.html#//api/name/any">any</a> such scheduling <a href="../Classes/RACSignal.html#//api/name/or">or</a>
+asynchronous work.</p>
+
+<p>didSubscribe - Called when the signal is subscribed to. The new subscriber is
+                passed in. You can then manually control the <a href="../Classes/RACSubscriber.html">RACSubscriber</a> by
+                sending it -sendNext:, -sendError:, <a href="../Classes/RACSignal.html#//api/name/and">and</a> -sendCompleted,
+                as defined by the operation you&rsquo;re implementing. This block
+                should return a <a href="../Classes/RACDisposable.html">RACDisposable</a> which cancels <a href="../Classes/RACSignal.html#//api/name/any">any</a> ongoing work
+                triggered by the subscription, <a href="../Classes/RACSignal.html#//api/name/and">and</a> cleans up <a href="../Classes/RACSignal.html#//api/name/any">any</a> resources <a href="../Classes/RACSignal.html#//api/name/or">or</a>
+                disposables created as part of it. When the disposable is
+                disposed of, the signal must <a href="../Classes/RACSignal.html#//api/name/not">not</a> send <a href="../Classes/RACSignal.html#//api/name/any">any</a> more events to the
+                <code>subscriber</code>. If no cleanup is necessary, return nil.</p>
+
+<p><strong>Note:</strong> The <code>didSubscribe</code> block is called every time a new subscriber
+subscribes. Any side effects within the block will thus execute once f<a href="../Classes/RACSignal.html#//api/name/or">or</a> each
+subscription, <a href="../Classes/RACSignal.html#//api/name/not">not</a> necessarily on one thread, <a href="../Classes/RACSignal.html#//api/name/and">and</a> possibly even
+simultaneously!</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/defer:" title="defer:"></a>
+	<h3 class="subsubtitle method-title">defer:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Defer creation of a signal until the signal&rsquo;s actually subscribed to.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)defer:(RACSignal *( ^ ) ( void ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This can be used to effectively turn a hot signal into a cold signal.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/empty" title="empty"></a>
+	<h3 class="subsubtitle method-title">empty</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a signal that immediately completes.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)empty</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/error:" title="error:"></a>
+	<h3 class="subsubtitle method-title">error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a signal that immediately sends the given err<a href="../Classes/RACSignal.html#//api/name/or">or</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)error:(NSError *)<em>error</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/if:then:else:" title="if:then:else:"></a>
+	<h3 class="subsubtitle method-title">if:then:else:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Switches between <code>trueSignal</code> <a href="#//api/name/and">and</a> <code>falseSignal</code> based on the latest value
+sent by <code>boolSignal</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)if:(RACSignal *)<em>boolSignal</em> then:(RACSignal *)<em>trueSignal</em> else:(RACSignal *)<em>falseSignal</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>boolSignal  - A signal of BOOLs determining whether <code>trueSignal</code> <a href="#//api/name/or">or</a>
+               <code>falseSignal</code> should be active. This argument must <a href="#//api/name/not">not</a> be nil.
+trueSignal  - The signal to pass through after <code>boolSignal</code> has sent YES.
+               This argument must <a href="#//api/name/not">not</a> be nil.
+falseSignal - The signal to pass through after <code>boolSignal</code> has sent NO. This
+               argument must <a href="#//api/name/not">not</a> be nil.</p>
+
+<p>Returns a signal which passes through <code>next</code>s <a href="#//api/name/and">and</a> <code>err</code>or<code></code>s from <code>trueSignal</code>
+and/<a href="#//api/name/or">or</a> <code>falseSignal</code>, <a href="#//api/name/and">and</a> sends <code>completed</code> when both <code>boolSignal</code> <a href="#//api/name/and">and</a> the
+last switched signal complete.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/interval:onScheduler:" title="interval:onScheduler:"></a>
+	<h3 class="subsubtitle method-title">interval:onScheduler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sends NSDate.date every <code>interval</code> seconds.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)interval:(NSTimeInterval)<em>interval</em> onScheduler:(RACScheduler *)<em>scheduler</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>interval  - The time interval in seconds at which the current time is sent.
+scheduler - The scheduler upon which the current NSDate should be sent. This
+             must not be nil or <a href="../Classes/RACScheduler.html#//api/name/immediateScheduler">[RACScheduler immediateScheduler]</a>.</p>
+
+<p>Returns a signal that sends the current date/time every <code>interval</code> on
+<code>scheduler</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/interval:onScheduler:withLeeway:" title="interval:onScheduler:withLeeway:"></a>
+	<h3 class="subsubtitle method-title">interval:onScheduler:withLeeway:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sends NSDate.date at intervals of at least <code>interval</code> seconds, up to
+approximately <code>interval</code> + <code>leeway</code> seconds.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)interval:(NSTimeInterval)<em>interval</em> onScheduler:(RACScheduler *)<em>scheduler</em> withLeeway:(NSTimeInterval)<em>leeway</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The created signal will defer sending each <code>next</code> f<a href="#//api/name/or">or</a> at least <code>interval</code>
+seconds, <a href="#//api/name/and">and</a> f<a href="#//api/name/or">or</a> an additional amount of time up to <code>leeway</code> seconds in the
+interest of performance <a href="#//api/name/or">or</a> power consumption. Note that some additional
+latency is to be expected, even when specifying a <code>leeway</code> of 0.</p>
+
+<p>interval  - The base interval between <code>next</code>s.
+scheduler - The scheduler upon which the current NSDate should be sent. This
+             must not be nil or <a href="../Classes/RACScheduler.html#//api/name/immediateScheduler">[RACScheduler immediateScheduler]</a>.
+leeway    - The maximum amount of additional time the <code>next</code> can be deferred.</p>
+
+<p>Returns a signal that sends the current date/time at intervals of at least
+<code>interval seconds</code> up to approximately <code>interval</code> + <code>leeway</code> seconds on
+<code>scheduler</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/merge:" title="merge:"></a>
+	<h3 class="subsubtitle method-title">merge:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sends the latest <code>next</code> from <a href="#//api/name/any">any</a> of the signals.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)merge:(id&lt;NSFastEnumeration&gt;)<em>signals</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a signal that passes through values from each of the given signals,
+<a href="#//api/name/and">and</a> sends <code>completed</code> when all of them complete. If <a href="#//api/name/any">any</a> signal sends an err<a href="#//api/name/or">or</a>,
+the returned signal sends <code>err</code>or<code></code> immediately.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/never" title="never"></a>
+	<h3 class="subsubtitle method-title">never</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a signal that never completes.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)never</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/return:" title="return:"></a>
+	<h3 class="subsubtitle method-title">return:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a signal that immediately sends the given value <a href="../Classes/RACSignal.html#//api/name/and">and</a> then completes.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)return:(id)<em>value</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startEagerlyWithScheduler:block:" title="startEagerlyWithScheduler:block:"></a>
+	<h3 class="subsubtitle method-title">startEagerlyWithScheduler:block:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Immediately schedules the given block on the given scheduler. The block is
+given a subscriber to which it can send events.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)startEagerlyWithScheduler:(RACScheduler *)<em>scheduler</em> block:(void ( ^ ) ( id&lt;RACSubscriber&gt; subscriber ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>scheduler - The scheduler on which <code>block</code> will be scheduled <a href="#//api/name/and">and</a> results
+             delivered. Can<a href="#//api/name/not">not</a> be nil.
+block     - The block to invoke. Can<a href="#//api/name/not">not</a> be NULL.</p>
+
+<p>Returns a signal which will send all events sent on the subscriber given to
+<code>block</code>. All events will be sent on <code>scheduler</code> <a href="#//api/name/and">and</a> it will <a href="#//api/name/replay">replay</a> <a href="#//api/name/any">any</a> missed
+events to new subscribers.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startLazilyWithScheduler:block:" title="startLazilyWithScheduler:block:"></a>
+	<h3 class="subsubtitle method-title">startLazilyWithScheduler:block:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Invokes the given block only on the <a href="#//api/name/first">first</a> subscription. The block is given a
+subscriber to which it can send events.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)startLazilyWithScheduler:(RACScheduler *)<em>scheduler</em> block:(void ( ^ ) ( id&lt;RACSubscriber&gt; subscriber ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Note that disposing of the subscription to the returned signal will <em><a href="#//api/name/not">not</a></em>
+dispose of the underlying subscription. If you need that behavior, see
+<a href="../Classes/RACMulticastConnection.html#//api/name/autoconnect">[RACMulticastConnection autoconnect]</a>. The underlying subscription will <a href="#//api/name/never">never</a>
+be disposed of. Because of this, <code>block</code> should never return an infinite
+signal since there would be no way of ending it.</p>
+
+<p>scheduler - The scheduler on which the block should be scheduled. Note that
+             if given <a href="../Classes/RACScheduler.html#//api/name/immediateScheduler">[RACScheduler immediateScheduler]</a>, the block will be
+             invoked synchronously on the <a href="#//api/name/first">first</a> subscription. Can<a href="#//api/name/not">not</a> be nil.
+block     - The block to invoke on the <a href="#//api/name/first">first</a> subscription. Can<a href="#//api/name/not">not</a> be NULL.</p>
+
+<p>Returns a signal which will pass through the events sent to the subscriber
+given to <code>block</code> <a href="#//api/name/and">and</a> <a href="#//api/name/replay">replay</a> <a href="#//api/name/any">any</a> missed events to new subscribers.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/switch:cases:default:" title="switch:cases:default:"></a>
+	<h3 class="subsubtitle method-title">switch:cases:default:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Switches between the signals in <code>cases</code> as well as <code>defaultSignal</code> based on
+the latest value sent by <code>signal</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (RACSignal *)switch:(RACSignal *)<em>signal</em> cases:(NSDictionary *)<em>cases</em> default:(RACSignal *)<em>defaultSignal</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>signal        - A signal of objects used as keys in the <code>cases</code> dictionary.
+                 This argument must <a href="#//api/name/not">not</a> be nil.
+cases         - A dictionary that has signals as values. This argument must
+                 <a href="#//api/name/not">not</a> be nil. A <a href="../Classes/RACTupleNil.html">RACTupleNil</a> key in this dictionary will match
+                 nil <code>next</code> events that are received on <code>signal</code>.
+defaultSignal - The signal to pass through after <code>signal</code> sends a value f<a href="#//api/name/or">or</a>
+                 which <code>cases</code> does <a href="#//api/name/not">not</a> contain a signal. If nil, <a href="#//api/name/any">any</a>
+                 unmatched values will result in
+                 a RACSignalErrorNoMatchingCase err<a href="#//api/name/or">or</a>.</p>
+
+<p>Returns a signal which passes through <code>next</code>s <a href="#//api/name/and">and</a> <code>err</code>or<code></code>s from one of the
+the signals in <code>cases</code> <a href="#//api/name/or">or</a> <code>defaultSignal</code>, <a href="#//api/name/and">and</a> sends <code>completed</code> when both
+<code>signal</code> <a href="#//api/name/and">and</a> the last used signal complete. If no <code>defaultSignal</code> is given,
+an unmatched <code>next</code> will result in an err<a href="#//api/name/or">or</a> on the returned signal.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/aggregateWithStart:reduce:" title="aggregateWithStart:reduce:"></a>
+	<h3 class="subsubtitle method-title">aggregateWithStart:reduce:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Aggregate <code>next</code>s with the given start <a href="#//api/name/and">and</a> combination.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)aggregateWithStart:(id)<em>start</em> reduce:(id ( ^ ) ( id running , id next ))<em>reduceBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/aggregateWithStartFactory:reduce:" title="aggregateWithStartFactory:reduce:"></a>
+	<h3 class="subsubtitle method-title">aggregateWithStartFactory:reduce:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Aggregate <code>next</code>s with the given start <a href="#//api/name/and">and</a> combination. The start factory
+block is called to get a new start object f<a href="#//api/name/or">or</a> each subscription.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)aggregateWithStartFactory:(id ( ^ ) ( void ))<em>startFactory</em> reduce:(id ( ^ ) ( id running , id next ))<em>reduceBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/all:" title="all:"></a>
+	<h3 class="subsubtitle method-title">all:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sends an [NSNumber numberWithBool:YES] if all the objects the receiving
+signal sends pass <code>predicateBlock</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)all:(BOOL ( ^ ) ( id object ))<em>predicateBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>predicateBlock - can<a href="#//api/name/not">not</a> be nil.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/and" title="and"></a>
+	<h3 class="subsubtitle method-title">and</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Performs a boolean AND on all of the <a href="../Classes/RACTuple.html">RACTuple</a> of NSNumbers in sent by the receiver.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)and</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Asserts if the receiver sends anything other than a <a href="../Classes/RACTuple.html">RACTuple</a> of one <a href="#//api/name/or">or</a> more NSNumbers.</p>
+
+<p>Returns a signal that applies AND to each NSNumber in the tuple.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/any" title="any"></a>
+	<h3 class="subsubtitle method-title">any</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sends an [NSNumber numberWithBool:YES] if the receiving signal sends any
+objects.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)any</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/any:" title="any:"></a>
+	<h3 class="subsubtitle method-title">any:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sends an [NSNumber numberWithBool:YES] if the receiving signal sends <a href="#//api/name/any">any</a>
+objects that pass <code>predicateBlock</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)any:(BOOL ( ^ ) ( id object ))<em>predicateBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>predicateBlock - can<a href="#//api/name/not">not</a> be nil.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/asynchronousFirstOrDefault:success:error:" title="asynchronousFirstOrDefault:success:error:"></a>
+	<h3 class="subsubtitle method-title">asynchronousFirstOrDefault:success:error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Spins the main run loop f<a href="#//api/name/or">or</a> a short while, waiting f<a href="#//api/name/or">or</a> the receiver to send a <code>next</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)asynchronousFirstOrDefault:(id)<em>defaultValue</em> success:(BOOL *)<em>success</em> error:(NSError **)<em>error</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p><strong>Because this method executes the run loop recursively, it should only be used
+on the main thread, <a href="#//api/name/and">and</a> only from a unit test.</strong></p>
+
+<p>defaultValue - Returned if the receiver completes <a href="#//api/name/or">or</a> errors before sending
+                a <code>next</code>, <a href="#//api/name/or">or</a> if the method times out. This argument may be
+                nil.
+success      - If <a href="#//api/name/not">not</a> NULL, set to whether the receiver completed
+                successfully.
+err<a href="#//api/name/or">or</a>        - If <a href="#//api/name/not">not</a> NULL, set to <a href="#//api/name/any">any</a> err<a href="#//api/name/or">or</a> that occurred.</p>
+
+<p>Returns the <a href="#//api/name/first">first</a> value received, <a href="#//api/name/or">or</a> <code>defaultValue</code> if no value is received
+before the signal finishes <a href="#//api/name/or">or</a> the method times out.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/asynchronouslyWaitUntilCompleted:" title="asynchronouslyWaitUntilCompleted:"></a>
+	<h3 class="subsubtitle method-title">asynchronouslyWaitUntilCompleted:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Spins the main run loop f<a href="#//api/name/or">or</a> a short while, waiting f<a href="#//api/name/or">or</a> the receiver to complete.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)asynchronouslyWaitUntilCompleted:(NSError **)<em>error</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p><strong>Because this method executes the run loop recursively, it should only be used
+on the main thread, <a href="#//api/name/and">and</a> only from a unit test.</strong></p>
+
+<p>err<a href="#//api/name/or">or</a> - If <a href="#//api/name/not">not</a> NULL, set to <a href="#//api/name/any">any</a> err<a href="#//api/name/or">or</a> that occurs.</p>
+
+<p>Returns whether the signal completed successfully before timing out. If NO,
+<code>err</code>or<code></code> will be set to <a href="#//api/name/any">any</a> err<a href="#//api/name/or">or</a> that occurred.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bind:" title="bind:"></a>
+	<h3 class="subsubtitle method-title">bind:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Lazily binds a block to the values in the receiver.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)bind:(RACStreamBindBlock ( ^ ) ( void ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This should only be used if you need to terminate the bind early, or close
+over some state. <a href="#//api/name/flattenMap:">flattenMap:</a> is more appropriate for all other cases.</p>
+
+<p>block - A block returning a RACStreamBindBlock. This block will be invoked
+         each time the bound stream is re-evaluated. This block must not be
+         nil or return nil.</p>
+
+<p>Returns a new stream which represents the combined result of all lazy
+applications of <code>block</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bufferWithTime:onScheduler:" title="bufferWithTime:onScheduler:"></a>
+	<h3 class="subsubtitle method-title">bufferWithTime:onScheduler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Divides the receiver&rsquo;s <code>next</code>s into buffers which deliver every <code>interval</code>
+seconds.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)bufferWithTime:(NSTimeInterval)<em>interval</em> onScheduler:(RACScheduler *)<em>scheduler</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>interval  - The interval in which values are grouped into one buffer.
+scheduler - The scheduler upon which the returned signal will deliver its
+             values. This must not be nil or <a href="../Classes/RACScheduler.html#//api/name/immediateScheduler">[RACScheduler immediateScheduler]</a>.</p>
+
+<p>Returns a signal which sends RACTuples of the buffered values at each
+interval on <code>scheduler</code>. When the receiver completes, <a href="#//api/name/any">any</a> currently-buffered
+values will be sent immediately.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/catch:" title="catch:"></a>
+	<h3 class="subsubtitle method-title">catch:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Subscribe to the returned signal when an err<a href="#//api/name/or">or</a> occurs.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)catch:(RACSignal *( ^ ) ( NSError *error ))<em>catchBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/catchTo:" title="catchTo:"></a>
+	<h3 class="subsubtitle method-title">catchTo:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Subscribe to the given signal when an err<a href="#//api/name/or">or</a> occurs.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)catchTo:(RACSignal *)<em>signal</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/collect" title="collect"></a>
+	<h3 class="subsubtitle method-title">collect</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Collect all receiver&rsquo;s <code>next</code>s into a NSArray. nil values will be converted
+to NSNull.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)collect</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This corresponds to the <code>ToArray</code> method in Rx.</p>
+
+<p>Returns a signal which sends a single NSArray when the receiver completes
+successfully.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/combineLatestWith:" title="combineLatestWith:"></a>
+	<h3 class="subsubtitle method-title">combineLatestWith:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Combines the latest values from the receiver <a href="#//api/name/and">and</a> the given signal into
+RACTuples, once both have sent at least one <code>next</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)combineLatestWith:(RACSignal *)<em>signal</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Any additional <code>next</code>s will result in a new <a href="../Classes/RACTuple.html">RACTuple</a> with the latest values
+from both signals.</p>
+
+<p>signal - The signal to combine with. This argument must <a href="#//api/name/not">not</a> be nil.</p>
+
+<p>Returns a signal which sends RACTuples of the combined values, forwards <a href="#//api/name/any">any</a>
+<code>err</code>or<code></code> events, <a href="#//api/name/and">and</a> completes when both input signals complete.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/concat" title="concat"></a>
+	<h3 class="subsubtitle method-title">concat</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Concats the inner signals of a signal of signals.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)concat</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/concat:" title="concat:"></a>
+	<h3 class="subsubtitle method-title">concat:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Subscribes to <code>signal</code> when the source signal completes.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)concat:(RACSignal *)<em>signal</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/delay:" title="delay:"></a>
+	<h3 class="subsubtitle method-title">delay:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Forwards <code>next</code> <a href="#//api/name/and">and</a> <code>completed</code> events after delaying f<a href="#//api/name/or">or</a> <code>interval</code> seconds
+on the current scheduler (on which the events were delivered).</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)delay:(NSTimeInterval)<em>interval</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If <a href="../Classes/RACScheduler.html#//api/name/currentScheduler">[RACScheduler currentScheduler]</a> is nil when <code>next</code> <a href="#//api/name/or">or</a> <code>completed</code> is
+received, a private background scheduler is used.</p>
+
+<p>Returns a signal which sends delayed <code>next</code> <a href="#//api/name/and">and</a> <code>completed</code> events. Errors
+are always forwarded immediately.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/deliverOn:" title="deliverOn:"></a>
+	<h3 class="subsubtitle method-title">deliverOn:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates <a href="#//api/name/and">and</a> returns a signal that delivers its events on the given scheduler.
+Any side effects of the receiver will still be performed on the original
+thread.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)deliverOn:(RACScheduler *)<em>scheduler</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This is ideal when the signal already performs its work on the desired
+thread, but you want to handle its events elsewhere.</p>
+
+<p>This corresponds to the <code>ObserveOn</code> method in Rx.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dematerialize" title="dematerialize"></a>
+	<h3 class="subsubtitle method-title">dematerialize</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Converts each <a href="../Classes/RACEvent.html">RACEvent</a> in the receiver back into &ldquo;real&rdquo; RACSignal events.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)dematerialize</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a signal which sends <code>next</code> f<a href="#//api/name/or">or</a> each value <a href="../Classes/RACEvent.html">RACEvent</a>, <code>err</code>or<code></code> f<a href="#//api/name/or">or</a> each
+err<a href="#//api/name/or">or</a> <a href="../Classes/RACEvent.html">RACEvent</a>, <a href="#//api/name/and">and</a> <code>completed</code> f<a href="#//api/name/or">or</a> each completed <a href="../Classes/RACEvent.html">RACEvent</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/doCompleted:" title="doCompleted:"></a>
+	<h3 class="subsubtitle method-title">doCompleted:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Do the given block on <code>completed</code>. This should be used to inject side effects
+into the signal.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)doCompleted:(void ( ^ ) ( void ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/doError:" title="doError:"></a>
+	<h3 class="subsubtitle method-title">doError:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Do the given block on <code>err</code>or<code></code>. This should be used to inject side effects
+into the signal.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)doError:(void ( ^ ) ( NSError *error ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/doNext:" title="doNext:"></a>
+	<h3 class="subsubtitle method-title">doNext:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Do the given block on <code>next</code>. This should be used to inject side effects into
+the signal.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)doNext:(void ( ^ ) ( id x ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/finally:" title="finally:"></a>
+	<h3 class="subsubtitle method-title">finally:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Execute the given block when the signal completes <a href="#//api/name/or">or</a> errors.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)finally:(void ( ^ ) ( void ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/first" title="first"></a>
+	<h3 class="subsubtitle method-title">first</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the first <code>next</code>. Note that this is a blocking call.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)first</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/firstOrDefault:" title="firstOrDefault:"></a>
+	<h3 class="subsubtitle method-title">firstOrDefault:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the <a href="#//api/name/first">first</a> <code>next</code> <a href="#//api/name/or">or</a> <code>defaultValue</code> if the signal completes <a href="#//api/name/or">or</a> errors
+without sending a <code>next</code>. Note that this is a blocking call.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)firstOrDefault:(id)<em>defaultValue</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/firstOrDefault:success:error:" title="firstOrDefault:success:error:"></a>
+	<h3 class="subsubtitle method-title">firstOrDefault:success:error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the <a href="#//api/name/first">first</a> <code>next</code> <a href="#//api/name/or">or</a> <code>defaultValue</code> if the signal completes <a href="#//api/name/or">or</a> errors
+without sending a <code>next</code>. If an err<a href="#//api/name/or">or</a> occurs success will be NO <a href="#//api/name/and">and</a> err<a href="#//api/name/or">or</a>
+will be populated. Note that this is a blocking call.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)firstOrDefault:(id)<em>defaultValue</em> success:(BOOL *)<em>success</em> error:(NSError **)<em>error</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Both success <a href="#//api/name/and">and</a> err<a href="#//api/name/or">or</a> may be NULL.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/flatten:" title="flatten:"></a>
+	<h3 class="subsubtitle method-title">flatten:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Merges the signals sent by the receiver into a flattened signal, but only
+subscribes to <code>maxConcurrent</code> number of signals at a time. New signals are
+queued <a href="#//api/name/and">and</a> subscribed to as other signals complete.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)flatten:(NSUInteger)<em>maxConcurrent</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If an err<a href="#//api/name/or">or</a> occurs on <a href="#//api/name/any">any</a> of the signals, it is sent on the returned signal.
+It completes only after the receiver <a href="#//api/name/and">and</a> all sent signals have completed.</p>
+
+<p>This corresponds to <code>Merge&lt;TSource&gt;(IObservable&lt;IObservable&lt;TSource&gt;&gt;, Int32)</code>
+in Rx.</p>
+
+<p>maxConcurrent - the maximum number of signals to subscribe to at a
+                 time. If 0, it subscribes to an unlimited number of
+                 signals.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/groupBy:" title="groupBy:"></a>
+	<h3 class="subsubtitle method-title">groupBy:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Calls -[RACSignal groupBy:keyBlock transform:nil].</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)groupBy:(id&lt;NSCopying&gt; ( ^ ) ( id object ))<em>keyBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/groupBy:transform:" title="groupBy:transform:"></a>
+	<h3 class="subsubtitle method-title">groupBy:transform:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Groups each received object into a group, as determined by calling <code>keyBlock</code>
+with that object. The object sent is transformed by calling <code>transformBlock</code>
+with the object. If <code>transformBlock</code> is nil, it sends the original object.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)groupBy:(id&lt;NSCopying&gt; ( ^ ) ( id object ))<em>keyBlock</em> transform:(id ( ^ ) ( id object ))<em>transformBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The returned signal is a signal of <a href="../Classes/RACGroupedSignal.html">RACGroupedSignal</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ignoreValues" title="ignoreValues"></a>
+	<h3 class="subsubtitle method-title">ignoreValues</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Ignores all <code>next</code>s from the receiver.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)ignoreValues</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a signal which only passes through <code>err</code>or<code></code> <a href="#//api/name/or">or</a> <code>completed</code> events from
+the receiver.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initially:" title="initially:"></a>
+	<h3 class="subsubtitle method-title">initially:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Execute the given block each time a subscription is created.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)initially:(void ( ^ ) ( void ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>block - A block which defines the subscription side effects. Can<a href="#//api/name/not">not</a> be <code>nil</code>.</p>
+
+<p>Example:</p>
+
+<p>   // Write new file, with backup.
+   [[[[fileManager
+       rac_createFileAtPath:path contents:data]
+       initially:^{
+           // 2. Second, backup current file
+           [fileManager moveItemAtPath:path toPath:backupPath error:nil];
+       }]
+       initially:^{
+           // 1. First, acquire write lock.
+           [writeLock lock];
+       }]
+       finally:^{
+           [writeLock unlock];
+       }];</p>
+
+<p>Returns a signal that passes through all events of the receiver, plus
+introduces side effects which occur pri<a href="#//api/name/or">or</a> to <a href="#//api/name/any">any</a> subscription side effects
+of the receiver.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/logAll" title="logAll"></a>
+	<h3 class="subsubtitle method-title">logAll</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Logs all events that the receiver sends.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)logAll</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/logCompleted" title="logCompleted"></a>
+	<h3 class="subsubtitle method-title">logCompleted</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Logs <a href="#//api/name/any">any</a> <code>completed</code> event that the receiver sends.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)logCompleted</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/logError" title="logError"></a>
+	<h3 class="subsubtitle method-title">logError</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Logs <a href="#//api/name/any">any</a> err<a href="#//api/name/or">or</a> that the receiver sends.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)logError</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/logNext" title="logNext"></a>
+	<h3 class="subsubtitle method-title">logNext</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Logs each <code>next</code> that the receiver sends.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)logNext</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/materialize" title="materialize"></a>
+	<h3 class="subsubtitle method-title">materialize</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Converts each of the receiver&rsquo;s events into a <a href="../Classes/RACEvent.html">RACEvent</a> object.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)materialize</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a signal which sends the receiver&rsquo;s events as RACEvents, <a href="#//api/name/and">and</a>
+completes after the receiver sends <code>completed</code> <a href="#//api/name/or">or</a> <code>err</code>or<code></code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/multicast:" title="multicast:"></a>
+	<h3 class="subsubtitle method-title">multicast:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates <a href="#//api/name/and">and</a> returns a multicast connection that pushes values into the given
+subject. This allows you to share a single subscription to the underlying
+signal.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACMulticastConnection *)multicast:(RACSubject *)<em>subject</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/not" title="not"></a>
+	<h3 class="subsubtitle method-title">not</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Inverts each NSNumber-wrapped BOOL sent by the receiver. It will assert if
+the receiver sends anything other than NSNumbers.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)not</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a signal of inverted NSNumber-wrapped BOOLs.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/or" title="or"></a>
+	<h3 class="subsubtitle method-title">or</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Performs a boolean OR on all of the <a href="../Classes/RACTuple.html">RACTuple</a> of NSNumbers in sent by the receiver.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)or</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Asserts if the receiver sends anything other than a <a href="../Classes/RACTuple.html">RACTuple</a> of one or more NSNumbers.</p>
+
+<p>Returns a signal that applies OR to each NSNumber in the tuple.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/publish" title="publish"></a>
+	<h3 class="subsubtitle method-title">publish</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates <a href="#//api/name/and">and</a> returns a multicast connection. This allows you to share a single
+subscription to the underlying signal.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACMulticastConnection *)publish</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/repeat" title="repeat"></a>
+	<h3 class="subsubtitle method-title">repeat</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Resubscribes when the signal completes.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)repeat</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/replay" title="replay"></a>
+	<h3 class="subsubtitle method-title">replay</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Multicasts the signal to a <a href="../Classes/RACReplaySubject.html">RACReplaySubject</a> of unlimited capacity, <a href="#//api/name/and">and</a>
+immediately connects to the resulting <a href="../Classes/RACMulticastConnection.html">RACMulticastConnection</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)replay</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns the connected, multicasted signal.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/replayLast" title="replayLast"></a>
+	<h3 class="subsubtitle method-title">replayLast</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Multicasts the signal to a <a href="../Classes/RACReplaySubject.html">RACReplaySubject</a> of capacity 1, <a href="#//api/name/and">and</a> immediately
+connects to the resulting <a href="../Classes/RACMulticastConnection.html">RACMulticastConnection</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)replayLast</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns the connected, multicasted signal.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/replayLazily" title="replayLazily"></a>
+	<h3 class="subsubtitle method-title">replayLazily</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Multicasts the signal to a <a href="../Classes/RACReplaySubject.html">RACReplaySubject</a> of unlimited capacity, <a href="#//api/name/and">and</a>
+lazily connects to the resulting <a href="../Classes/RACMulticastConnection.html">RACMulticastConnection</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)replayLazily</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This means the returned signal will subscribe to the multicasted signal only
+when the former receives its <a href="#//api/name/first">first</a> subscription.</p>
+
+<p>Returns the lazily connected, multicasted signal.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/retry" title="retry"></a>
+	<h3 class="subsubtitle method-title">retry</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Resubscribes to the receiving signal if an err<a href="#//api/name/or">or</a> occurs.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)retry</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/retry:" title="retry:"></a>
+	<h3 class="subsubtitle method-title">retry:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Resubscribes to the receiving signal if an err<a href="#//api/name/or">or</a> occurs, up until it has
+retried the given number of times.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)retry:(NSInteger)<em>retryCount</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>retryCount - if 0, it keeps retrying until it completes.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sample:" title="sample:"></a>
+	<h3 class="subsubtitle method-title">sample:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sends the latest value from the receiver only when <code>sampler</code> sends a value.
+The returned signal could <a href="#//api/name/repeat">repeat</a> values if <code>sampler</code> fires more often than
+the receiver. Values from <code>sampler</code> are ignored before the receiver sends
+its <a href="#//api/name/first">first</a> value.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)sample:(RACSignal *)<em>sampler</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>sampler - The signal that controls when the latest value from the receiver
+           is sent. Can<a href="#//api/name/not">not</a> be nil.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setKeyPath:onObject:" title="setKeyPath:onObject:"></a>
+	<h3 class="subsubtitle method-title">setKeyPath:onObject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Invokes <a href="#//api/name/setKeyPath:onObject:nilValue:">setKeyPath:onObject:nilValue:</a> with <code>nil</code> f<a href="#//api/name/or">or</a> the nil value.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACDisposable *)setKeyPath:(NSString *)<em>keyPath</em> onObject:(NSObject *)<em>object</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setKeyPath:onObject:nilValue:" title="setKeyPath:onObject:nilValue:"></a>
+	<h3 class="subsubtitle method-title">setKeyPath:onObject:nilValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Binds the receiver to an object, automatically setting the given key path on
+every <code>next</code>. When the signal completes, the binding is automatically
+disposed of.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACDisposable *)setKeyPath:(NSString *)<em>keyPath</em> onObject:(NSObject *)<em>object</em> nilValue:(id)<em>nilValue</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sending an err<a href="#//api/name/or">or</a> on the signal is considered undefined behavi<a href="#//api/name/or">or</a>, <a href="#//api/name/and">and</a> will
+generate an assertion failure in Debug builds.</p>
+
+<p>A given key on an object should only have one active signal bound to it at <a href="#//api/name/any">any</a>
+given time. Binding more than one signal to the same property is considered
+undefined behavi<a href="#//api/name/or">or</a>.</p>
+
+<p>keyPath  - The key path to update with <code>next</code>s from the receiver.
+object   - The object that <code>keyPath</code> is relative to.
+nilValue - The value to set at the key path whe<a href="#//api/name/never">never</a> <code>nil</code> is sent by the
+            receiver. This may be nil when binding to object properties, but
+            an NSValue should be used f<a href="#//api/name/or">or</a> primitive properties, to avoid an
+            exception if <code>nil</code> is sent (which might occur if an intermediate
+            object is set to <code>nil</code>).</p>
+
+<p>Returns a disposable which can be used to terminate the binding.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/subscribe:" title="subscribe:"></a>
+	<h3 class="subsubtitle method-title">subscribe:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Subscribes <code>subscriber</code> to changes on the receiver. The receiver defines which
+events it actually sends <a href="../Classes/RACSignal.html#//api/name/and">and</a> in what situations the events are sent.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACDisposable *)subscribe:(id&lt;RACSubscriber&gt;)<em>subscriber</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Subscription will always happen on a valid RACScheduler. If the
+<a href="../Classes/RACScheduler.html#//api/name/currentScheduler">[RACScheduler currentScheduler]</a> cannot be determined at the time of
+subscription (e.g., because the calling code is running on a GCD queue or
+NSOperationQueue), subscription will occur on a private background scheduler.
+On the main thread, subscriptions will always occur immediately, with a
+<a href="../Classes/RACScheduler.html#//api/name/currentScheduler">[RACScheduler currentScheduler]</a> of <a href="../Classes/RACScheduler.html#//api/name/mainThreadScheduler">[RACScheduler mainThreadScheduler]</a>.</p>
+
+<p>This method must be overridden by any subclasses.</p>
+
+<p>Returns nil or a disposable. You can call <a href="../Classes/RACDisposable.html#//api/name/dispose">[RACDisposable dispose]</a> if you
+need to end your subscription before it would &ldquo;naturally&rdquo; end, either by
+completing <a href="../Classes/RACSignal.html#//api/name/or">or</a> erroring. Once the disposable has been disposed, the subscriber
+won&rsquo;t receive <a href="../Classes/RACSignal.html#//api/name/any">any</a> more events from the subscription.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/subscribeCompleted:" title="subscribeCompleted:"></a>
+	<h3 class="subsubtitle method-title">subscribeCompleted:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience method to subscribe to <code>completed</code> events.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACDisposable *)subscribeCompleted:(void ( ^ ) ( void ))<em>completedBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This corresponds to the <code>IObserver&lt;T&gt;.OnCompleted</code> in Rx.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/subscribeError:" title="subscribeError:"></a>
+	<h3 class="subsubtitle method-title">subscribeError:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience method to subscribe to <code>err</code>or<code></code> events.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACDisposable *)subscribeError:(void ( ^ ) ( NSError *error ))<em>errorBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This corresponds to the <code>IObserver&lt;T&gt;.OnErr</code>or<code></code> in Rx.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/subscribeError:completed:" title="subscribeError:completed:"></a>
+	<h3 class="subsubtitle method-title">subscribeError:completed:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience method to subscribe to <code>err</code>or<code></code> <a href="#//api/name/and">and</a> <code>completed</code> events.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACDisposable *)subscribeError:(void ( ^ ) ( NSError *error ))<em>errorBlock</em> completed:(void ( ^ ) ( void ))<em>completedBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/subscribeNext:" title="subscribeNext:"></a>
+	<h3 class="subsubtitle method-title">subscribeNext:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience method to subscribe to the <code>next</code> event.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACDisposable *)subscribeNext:(void ( ^ ) ( id x ))<em>nextBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This corresponds to <code>IObserver&lt;T&gt;.OnNext</code> in Rx.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/subscribeNext:completed:" title="subscribeNext:completed:"></a>
+	<h3 class="subsubtitle method-title">subscribeNext:completed:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience method to subscribe to the <code>next</code> <a href="#//api/name/and">and</a> <code>completed</code> events.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACDisposable *)subscribeNext:(void ( ^ ) ( id x ))<em>nextBlock</em> completed:(void ( ^ ) ( void ))<em>completedBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/subscribeNext:error:" title="subscribeNext:error:"></a>
+	<h3 class="subsubtitle method-title">subscribeNext:error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience method to subscribe to <code>next</code> <a href="#//api/name/and">and</a> <code>err</code>or<code></code> events.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACDisposable *)subscribeNext:(void ( ^ ) ( id x ))<em>nextBlock</em> error:(void ( ^ ) ( NSError *error ))<em>errorBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/subscribeNext:error:completed:" title="subscribeNext:error:completed:"></a>
+	<h3 class="subsubtitle method-title">subscribeNext:error:completed:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience method to subscribe to the <code>next</code>, <code>completed</code>, <a href="#//api/name/and">and</a> <code>err</code>or<code></code> events.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACDisposable *)subscribeNext:(void ( ^ ) ( id x ))<em>nextBlock</em> error:(void ( ^ ) ( NSError *error ))<em>errorBlock</em> completed:(void ( ^ ) ( void ))<em>completedBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/subscribeOn:" title="subscribeOn:"></a>
+	<h3 class="subsubtitle method-title">subscribeOn:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates <a href="#//api/name/and">and</a> returns a signal that executes its side effects <a href="#//api/name/and">and</a> delivers its
+events on the given scheduler.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)subscribeOn:(RACScheduler *)<em>scheduler</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use of this operat<a href="#//api/name/or">or</a> should be avoided whe<a href="#//api/name/never">never</a> possible, because the
+receiver&rsquo;s side effects may <a href="#//api/name/not">not</a> be safe to run on another thread. If you just
+want to receive the signal&rsquo;s events on <code>scheduler</code>, use <a href="#//api/name/deliverOn:">deliverOn:</a> instead.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/switchToLatest" title="switchToLatest"></a>
+	<h3 class="subsubtitle method-title">switchToLatest</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Every time the receiver sends a new RACSignal, subscribes <a href="#//api/name/and">and</a> sends <code>next</code>s <a href="#//api/name/and">and</a>
+<code>err</code>or<code></code>s only f<a href="#//api/name/or">or</a> that signal.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)switchToLatest</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The receiver must be a signal of signals.</p>
+
+<p>Returns a signal which passes through <code>next</code>s <a href="#//api/name/and">and</a> <code>err</code>or<code></code>s from the latest
+signal sent by the receiver, <a href="#//api/name/and">and</a> sends <code>completed</code> when both the receiver <a href="#//api/name/and">and</a>
+the last sent signal complete.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/takeLast:" title="takeLast:"></a>
+	<h3 class="subsubtitle method-title">takeLast:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Takes the last <code>count</code> <code>next</code>s after the receiving signal completes.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)takeLast:(NSUInteger)<em>count</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/takeUntil:" title="takeUntil:"></a>
+	<h3 class="subsubtitle method-title">takeUntil:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Take <code>next</code>s until the <code>signalTrigger</code> sends <code>next</code> <a href="#//api/name/or">or</a> <code>completed</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)takeUntil:(RACSignal *)<em>signalTrigger</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a signal which passes through all events from the receiver until
+<code>signalTrigger</code> sends <code>next</code> <a href="#//api/name/or">or</a> <code>completed</code>, at which point the returned signal
+will send <code>completed</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/takeUntilReplacement:" title="takeUntilReplacement:"></a>
+	<h3 class="subsubtitle method-title">takeUntilReplacement:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Take <code>next</code>s until the <code>replacement</code> sends an event.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)takeUntilReplacement:(RACSignal *)<em>replacement</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>replacement - The signal which replaces the receiver as soon as it sends an
+               event.</p>
+
+<p>Returns a signal which passes through <code>next</code>s <a href="#//api/name/and">and</a> <code>err</code>or<code></code> from the receiver
+until <code>replacement</code> sends an event, at which point the returned signal will
+send that event <a href="#//api/name/and">and</a> switch to passing through events from <code>replacement</code>
+instead, regardless of whether the receiver has sent events already.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/then:" title="then:"></a>
+	<h3 class="subsubtitle method-title">then:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Ignores all <code>next</code>s from the receiver, waits f<a href="#//api/name/or">or</a> the receiver to complete,
+then subscribes to a new signal.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)then:(RACSignal *( ^ ) ( void ))<em>block</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>block - A block which will create <a href="#//api/name/or">or</a> obtain a new signal to subscribe to,
+         executed only after the receiver completes. This block must <a href="#//api/name/not">not</a> be
+         nil, <a href="#//api/name/and">and</a> it must <a href="#//api/name/not">not</a> return a nil signal.</p>
+
+<p>Returns a signal which will pass through the events of the signal created in
+<code>block</code>. If the receiver errors out, the returned signal will err<a href="#//api/name/or">or</a> as well.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/throttle:" title="throttle:"></a>
+	<h3 class="subsubtitle method-title">throttle:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Send <code>next</code>s only if we don&rsquo;t receive another <code>next</code> in <code>interval</code> seconds.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)throttle:(NSTimeInterval)<em>interval</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If a <code>next</code> is received, <a href="#//api/name/and">and</a> then another <code>next</code> is received before
+<code>interval</code> seconds have passed, the <a href="#//api/name/first">first</a> value is discarded.</p>
+
+<p>After <code>interval</code> seconds have passed since the most recent <code>next</code> was sent,
+the most recent <code>next</code> is forwarded on the scheduler that the value was
+originally received on. If <a href="../Classes/RACScheduler.html#//api/name/currentScheduler">[RACScheduler currentScheduler]</a> was nil at the
+time, a private background scheduler is used.</p>
+
+<p>Returns a signal which sends throttled <a href="#//api/name/and">and</a> delayed <code>next</code> events. Completion
+<a href="#//api/name/and">and</a> errors are always forwarded immediately.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/throttle:valuesPassingTest:" title="throttle:valuesPassingTest:"></a>
+	<h3 class="subsubtitle method-title">throttle:valuesPassingTest:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Throttles <code>next</code>s f<a href="#//api/name/or">or</a> which <code>predicate</code> returns YES.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)throttle:(NSTimeInterval)<em>interval</em> valuesPassingTest:(BOOL ( ^ ) ( id next ))<em>predicate</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>When <code>predicate</code> returns YES f<a href="#//api/name/or">or</a> a <code>next</code>:</p>
+
+<ol>
+<li> If another <code>next</code> is received before <code>interval</code> seconds have passed, the
+ pri<a href="#//api/name/or">or</a> value is discarded. This happens regardless of whether the new
+ value will be throttled.</li>
+<li> After <code>interval</code> seconds have passed since the value was originally
+ received, it will be forwarded on the scheduler that it was received
+ upon. If <a href="../Classes/RACScheduler.html#//api/name/currentScheduler">[RACScheduler currentScheduler]</a> was nil at the time, a private
+ background scheduler is used.</li>
+</ol>
+
+
+<p>When <code>predicate</code> returns NO f<a href="#//api/name/or">or</a> a <code>next</code>, it is forwarded immediately,
+without <a href="#//api/name/any">any</a> throttling.</p>
+
+<p>interval  - The number of seconds f<a href="#//api/name/or">or</a> which to buffer the latest value that
+             passes <code>predicate</code>.
+predicate - Passed each <code>next</code> from the receiver, this block returns
+             whether the given value should be throttled. This argument must
+             <a href="#//api/name/not">not</a> be nil.</p>
+
+<p>Returns a signal which sends <code>next</code> events, throttled when <code>predicate</code>
+returns YES. Completion <a href="#//api/name/and">and</a> errors are always forwarded immediately.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/timeout:onScheduler:" title="timeout:onScheduler:"></a>
+	<h3 class="subsubtitle method-title">timeout:onScheduler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sends an err<a href="#//api/name/or">or</a> after <code>interval</code> seconds if the source doesn&rsquo;t complete
+before then.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)timeout:(NSTimeInterval)<em>interval</em> onScheduler:(RACScheduler *)<em>scheduler</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The error will be in the RACSignalErrorDomain and have a code of
+RACSignalErrorTimedOut.</p>
+
+<p>interval  - The number of seconds after which the signal should error out.
+scheduler - The scheduler upon which any timeout error should be sent. This
+             must not be nil or <a href="../Classes/RACScheduler.html#//api/name/immediateScheduler">[RACScheduler immediateScheduler]</a>.</p>
+
+<p>Returns a signal that passes through the receiver&rsquo;s events, until the stream
+finishes <a href="#//api/name/or">or</a> times out, at which point an err<a href="#//api/name/or">or</a> will be sent on <code>scheduler</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/toArray" title="toArray"></a>
+	<h3 class="subsubtitle method-title">toArray</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add every <code>next</code> to an array. Nils are represented by NSNulls. Note that this
+is a blocking call.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSArray *)toArray</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p><strong>This is <a href="#//api/name/not">not</a> the same as the <code>ToArray</code> method in Rx.</strong> See <a href="#//api/name/collect">collect</a> f<a href="#//api/name/or">or</a>
+that behavi<a href="#//api/name/or">or</a> instead.</p>
+
+<p>Returns the array of <code>next</code> values, <a href="#//api/name/or">or</a> nil if an err<a href="#//api/name/or">or</a> occurs.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/try:" title="try:"></a>
+	<h3 class="subsubtitle method-title">try:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Runs <code>tryBlock</code> against each of the receiver&rsquo;s values, passing values
+until <code>tryBlock</code> returns NO, <a href="#//api/name/or">or</a> the receiver completes.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)try:(BOOL ( ^ ) ( id value , NSError **errorPtr ))<em>tryBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>tryBlock - An action to run against each of the receiver&rsquo;s values.
+            The block should return YES to indicate that the action was
+            successful. This block must <a href="#//api/name/not">not</a> be nil.</p>
+
+<p>Example:</p>
+
+<p>   // The returned signal will send an err<a href="#//api/name/or">or</a> if data values can<a href="#//api/name/not">not</a> be
+   // written to <code>someFileURL</code>.
+   [signal try:^(NSData *data, NSErr<a href="#//api/name/or">or</a> **errorPtr) {
+       return [data writeToURL:someFileURL options:NSDataWritingAtomic error:errorPtr];
+   }];</p>
+
+<p>Returns a signal which passes through all the values of the receiver. If
+<code>tryBlock</code> fails f<a href="#//api/name/or">or</a> <a href="#//api/name/any">any</a> value, the returned signal will err<a href="#//api/name/or">or</a> using the
+<code>NSErr</code>or<code></code> passed out from the block.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tryMap:" title="tryMap:"></a>
+	<h3 class="subsubtitle method-title">tryMap:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Runs <code>mapBlock</code> against each of the receiver&rsquo;s values, mapping values until
+<code>mapBlock</code> returns nil, <a href="#//api/name/or">or</a> the receiver completes.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)tryMap:(id ( ^ ) ( id value , NSError **errorPtr ))<em>mapBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>mapBlock - An action to map each of the receiver&rsquo;s values. The block should
+            return a non-nil value to indicate that the action was successful.
+            This block must <a href="#//api/name/not">not</a> be nil.</p>
+
+<p>Example:</p>
+
+<p>   // The returned signal will send an err<a href="#//api/name/or">or</a> if data can<a href="#//api/name/not">not</a> be read from
+   // <code>fileURL</code>.
+   [signal tryMap:^(NSURL *fileURL, NSErr<a href="#//api/name/or">or</a> **errorPtr) {
+       return [NSData dataWithContentsOfURL:fileURL options:0 error:errorPtr];
+   }];</p>
+
+<p>Returns a signal which transforms all the values of the receiver. If
+<code>mapBlock</code> returns nil f<a href="#//api/name/or">or</a> <a href="#//api/name/any">any</a> value, the returned signal will err<a href="#//api/name/or">or</a> using
+the <code>NSErr</code>or<code></code> passed out from the block.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/waitUntilCompleted:" title="waitUntilCompleted:"></a>
+	<h3 class="subsubtitle method-title">waitUntilCompleted:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Blocks the caller <a href="#//api/name/and">and</a> waits f<a href="#//api/name/or">or</a> the signal to complete.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)waitUntilCompleted:(NSError **)<em>error</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>err<a href="#//api/name/or">or</a> - If <a href="#//api/name/not">not</a> NULL, set to <a href="#//api/name/any">any</a> err<a href="#//api/name/or">or</a> that occurs.</p>
+
+<p>Returns whether the signal completed successfully. If NO, <code>err</code>or<code></code> will be set
+to the err<a href="#//api/name/or">or</a> that occurred.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal+Operations.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/zipWith:" title="zipWith:"></a>
+	<h3 class="subsubtitle method-title">zipWith:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Zips the values in the receiver with those of the given signal to create
+RACTuples.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (RACSignal *)zipWith:(RACSignal *)<em>signal</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The <a href="#//api/name/first">first</a> <code>next</code> of each stream will be combined, then the second <code>next</code>, <a href="#//api/name/and">and</a>
+so forth, until either signal completes <a href="#//api/name/or">or</a> errors.</p>
+
+<p>signal - The signal to zip with. This must <a href="#//api/name/not">not</a> be <code>nil</code>.</p>
+
+<p>Returns a new signal of RACTuples, representing the combined values of the
+two signals. Any err<a href="#//api/name/or">or</a> from one of the original signals will be forwarded on
+the returned signal.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">RACSignal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+                    
+                    
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 MyMenu. All rights reserved. (Last updated: 2014-04-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

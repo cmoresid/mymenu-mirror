@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMProfileSplitViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMProfileSplitViewController</TokenIdentifier>
+			<Abstract type="html">*  Controller for the Profile tab, splits it into the left and right views</Abstract>
+			<DeclaredIn>MMProfileSplitViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="60"/>
+		</Token>
+		
+		
+        
+	</File>
+</Tokens>

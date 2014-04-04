@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMPresentationFormatter.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMPresentationFormatter</TokenIdentifier>
+			<Abstract type="html">*  A helper class that can format</Abstract>
+			<DeclaredIn>MMPresentationFormatter.h</DeclaredIn>
+            
+			
+			<NodeRef refid="59"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/MMPresentationFormatter/formatRatingForRawRating:</TokenIdentifier>
+			<Abstract type="html">*  Takes a rating from an MMMerchant or</Abstract>
+			<DeclaredIn>MMPresentationFormatter.h</DeclaredIn>
+			
+			<Declaration>+ (NSString *)formatRatingForRawRating:(NSNumber *)rating</Declaration>
+			
+			
+			<Anchor>//api/name/formatRatingForRawRating:</Anchor>
+            <NodeRef refid="59"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/MMPresentationFormatter/formatBusinessHoursForOpenTime:withCloseTime:</TokenIdentifier>
+			<Abstract type="html">*  Formats a merchant&apos;s business hours in</Abstract>
+			<DeclaredIn>MMPresentationFormatter.h</DeclaredIn>
+			
+			<Declaration>+ (NSString *)formatBusinessHoursForOpenTime:(NSString *)openTime withCloseTime:(NSString *)closeTime</Declaration>
+			
+			
+			<Anchor>//api/name/formatBusinessHoursForOpenTime:withCloseTime:</Anchor>
+            <NodeRef refid="59"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/MMPresentationFormatter/formatNumberAsPrice:</TokenIdentifier>
+			<Abstract type="html">*  Provides a UI appropriate formatting</Abstract>
+			<DeclaredIn>MMPresentationFormatter.h</DeclaredIn>
+			
+			<Declaration>+ (NSString *)formatNumberAsPrice:(NSNumber *)price</Declaration>
+			
+			
+			<Anchor>//api/name/formatNumberAsPrice:</Anchor>
+            <NodeRef refid="59"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/MMPresentationFormatter/formatDistance:</TokenIdentifier>
+			<Abstract type="html">*  Returns a string which represens a distance</Abstract>
+			<DeclaredIn>MMPresentationFormatter.h</DeclaredIn>
+			
+			<Declaration>+ (NSString *)formatDistance:(NSNumber *)distance</Declaration>
+			
+			
+			<Anchor>//api/name/formatDistance:</Anchor>
+            <NodeRef refid="59"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

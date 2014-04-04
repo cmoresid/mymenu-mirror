@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACSubscriptingAssignmentTrampoline.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACSubscriptingAssignmentTrampoline</TokenIdentifier>
+			<Abstract type="html">Do not use this directly. Use the RAC macro above.</Abstract>
+			<DeclaredIn>RACSubscriptingAssignmentTrampoline.h</DeclaredIn>
+            
+			
+			<NodeRef refid="128"/>
+		</Token>
+		
+		
+        
+	</File>
+</Tokens>

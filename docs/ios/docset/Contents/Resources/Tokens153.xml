@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSIndexSet+RACSequenceAdditions.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSIndexSet(RACSequenceAdditions)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSIndexSet+RACSequenceAdditions.h</DeclaredIn>
+            
+			
+			<NodeRef refid="153"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSIndexSet/setRac_sequence:</TokenIdentifier>
+			<Abstract type="html">Creates and returns a sequence of indexes (as NSNumbers) corresponding to
+the receiver.</Abstract>
+			<DeclaredIn>NSIndexSet+RACSequenceAdditions.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) RACSequence *rac_sequence</Declaration>
+			
+			
+			<Anchor>//api/name/rac_sequence</Anchor>
+            <NodeRef refid="153"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSIndexSet/rac_sequence</TokenIdentifier>
+			<Abstract type="html">Creates and returns a sequence of indexes (as NSNumbers) corresponding to
+the receiver.</Abstract>
+			<DeclaredIn>NSIndexSet+RACSequenceAdditions.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) RACSequence *rac_sequence</Declaration>
+			
+			
+			<Anchor>//api/name/rac_sequence</Anchor>
+            <NodeRef refid="153"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/NSIndexSet/rac_sequence</TokenIdentifier>
+			<Abstract type="html">Creates and returns a sequence of indexes (as NSNumbers) corresponding to
+the receiver.</Abstract>
+			<DeclaredIn>NSIndexSet+RACSequenceAdditions.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) RACSequence *rac_sequence</Declaration>
+			
+			
+			<Anchor>//api/name/rac_sequence</Anchor>
+            <NodeRef refid="153"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

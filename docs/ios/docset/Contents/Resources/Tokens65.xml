@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMRegistrationViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMRegistrationViewController</TokenIdentifier>
+			<Abstract type="html">This view allows a user to provide additional information for their profile.</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="65"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setEmailField:</TokenIdentifier>
+			<Abstract type="html">*  Users chosen email textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *emailField</Declaration>
+			
+			
+			<Anchor>//api/name/emailField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/emailField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen email textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *emailField</Declaration>
+			
+			
+			<Anchor>//api/name/emailField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/emailField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen email textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *emailField</Declaration>
+			
+			
+			<Anchor>//api/name/emailField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setPasswordField:</TokenIdentifier>
+			<Abstract type="html">*  Users chosen password textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *passwordField</Declaration>
+			
+			
+			<Anchor>//api/name/passwordField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/passwordField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen password textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *passwordField</Declaration>
+			
+			
+			<Anchor>//api/name/passwordField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/passwordField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen password textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *passwordField</Declaration>
+			
+			
+			<Anchor>//api/name/passwordField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setConfirmPasswordField:</TokenIdentifier>
+			<Abstract type="html">*  Users chosen password confirm textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *confirmPasswordField</Declaration>
+			
+			
+			<Anchor>//api/name/confirmPasswordField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/confirmPasswordField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen password confirm textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *confirmPasswordField</Declaration>
+			
+			
+			<Anchor>//api/name/confirmPasswordField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/confirmPasswordField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen password confirm textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *confirmPasswordField</Declaration>
+			
+			
+			<Anchor>//api/name/confirmPasswordField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setFirstNameField:</TokenIdentifier>
+			<Abstract type="html">*  Users chosen first name textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *firstNameField</Declaration>
+			
+			
+			<Anchor>//api/name/firstNameField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/firstNameField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen first name textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *firstNameField</Declaration>
+			
+			
+			<Anchor>//api/name/firstNameField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/firstNameField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen first name textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *firstNameField</Declaration>
+			
+			
+			<Anchor>//api/name/firstNameField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setLastNameField:</TokenIdentifier>
+			<Abstract type="html">*  Users chosen last name textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *lastNameField</Declaration>
+			
+			
+			<Anchor>//api/name/lastNameField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/lastNameField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen last name textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *lastNameField</Declaration>
+			
+			
+			<Anchor>//api/name/lastNameField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/lastNameField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen last name textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *lastNameField</Declaration>
+			
+			
+			<Anchor>//api/name/lastNameField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setCityField:</TokenIdentifier>
+			<Abstract type="html">*  Users chosen city textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *cityField</Declaration>
+			
+			
+			<Anchor>//api/name/cityField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/cityField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen city textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *cityField</Declaration>
+			
+			
+			<Anchor>//api/name/cityField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/cityField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen city textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *cityField</Declaration>
+			
+			
+			<Anchor>//api/name/cityField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setProvinceField:</TokenIdentifier>
+			<Abstract type="html">*  Users chosen province textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *provinceField</Declaration>
+			
+			
+			<Anchor>//api/name/provinceField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/provinceField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen province textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *provinceField</Declaration>
+			
+			
+			<Anchor>//api/name/provinceField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/provinceField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen province textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *provinceField</Declaration>
+			
+			
+			<Anchor>//api/name/provinceField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setGenderField:</TokenIdentifier>
+			<Abstract type="html">*  Users chosen gender textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *genderField</Declaration>
+			
+			
+			<Anchor>//api/name/genderField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/genderField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen gender textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *genderField</Declaration>
+			
+			
+			<Anchor>//api/name/genderField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/genderField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen gender textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *genderField</Declaration>
+			
+			
+			<Anchor>//api/name/genderField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setBirthdayField:</TokenIdentifier>
+			<Abstract type="html">*  Users chosen birthday textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *birthdayField</Declaration>
+			
+			
+			<Anchor>//api/name/birthdayField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/birthdayField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen birthday textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *birthdayField</Declaration>
+			
+			
+			<Anchor>//api/name/birthdayField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/birthdayField</TokenIdentifier>
+			<Abstract type="html">*  Users chosen birthday textfield</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *birthdayField</Declaration>
+			
+			
+			<Anchor>//api/name/birthdayField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setScrollView:</TokenIdentifier>
+			<Abstract type="html">*  The scroll view to move the view up for the keyboard</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIScrollView *scrollView</Declaration>
+			
+			
+			<Anchor>//api/name/scrollView</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/scrollView</TokenIdentifier>
+			<Abstract type="html">*  The scroll view to move the view up for the keyboard</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIScrollView *scrollView</Declaration>
+			
+			
+			<Anchor>//api/name/scrollView</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/scrollView</TokenIdentifier>
+			<Abstract type="html">*  The scroll view to move the view up for the keyboard</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIScrollView *scrollView</Declaration>
+			
+			
+			<Anchor>//api/name/scrollView</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setActiveField:</TokenIdentifier>
+			<Abstract type="html">*  Current selected UITextField</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *activeField</Declaration>
+			
+			
+			<Anchor>//api/name/activeField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/activeField</TokenIdentifier>
+			<Abstract type="html">*  Current selected UITextField</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *activeField</Declaration>
+			
+			
+			<Anchor>//api/name/activeField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/activeField</TokenIdentifier>
+			<Abstract type="html">*  Current selected UITextField</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *activeField</Declaration>
+			
+			
+			<Anchor>//api/name/activeField</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setLocationPopoverController:</TokenIdentifier>
+			<Abstract type="html">*  The UIPopover controller</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *locationPopoverController</Declaration>
+			
+			
+			<Anchor>//api/name/locationPopoverController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/locationPopoverController</TokenIdentifier>
+			<Abstract type="html">*  The UIPopover controller</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *locationPopoverController</Declaration>
+			
+			
+			<Anchor>//api/name/locationPopoverController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/locationPopoverController</TokenIdentifier>
+			<Abstract type="html">*  The UIPopover controller</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *locationPopoverController</Declaration>
+			
+			
+			<Anchor>//api/name/locationPopoverController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setCityPopoverViewController:</TokenIdentifier>
+			<Abstract type="html">*  City Popover</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRegistrationPopoverViewController *cityPopoverViewController</Declaration>
+			
+			
+			<Anchor>//api/name/cityPopoverViewController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/cityPopoverViewController</TokenIdentifier>
+			<Abstract type="html">*  City Popover</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRegistrationPopoverViewController *cityPopoverViewController</Declaration>
+			
+			
+			<Anchor>//api/name/cityPopoverViewController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/cityPopoverViewController</TokenIdentifier>
+			<Abstract type="html">*  City Popover</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRegistrationPopoverViewController *cityPopoverViewController</Declaration>
+			
+			
+			<Anchor>//api/name/cityPopoverViewController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setProvincePopoverViewController:</TokenIdentifier>
+			<Abstract type="html">*  Province Popover</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRegistrationPopoverViewController *provincePopoverViewController</Declaration>
+			
+			
+			<Anchor>//api/name/provincePopoverViewController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/provincePopoverViewController</TokenIdentifier>
+			<Abstract type="html">*  Province Popover</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRegistrationPopoverViewController *provincePopoverViewController</Declaration>
+			
+			
+			<Anchor>//api/name/provincePopoverViewController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/provincePopoverViewController</TokenIdentifier>
+			<Abstract type="html">*  Province Popover</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRegistrationPopoverViewController *provincePopoverViewController</Declaration>
+			
+			
+			<Anchor>//api/name/provincePopoverViewController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setGenderPopoverViewController:</TokenIdentifier>
+			<Abstract type="html">*  Gener Popover</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRegistrationPopoverViewController *genderPopoverViewController</Declaration>
+			
+			
+			<Anchor>//api/name/genderPopoverViewController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/genderPopoverViewController</TokenIdentifier>
+			<Abstract type="html">*  Gener Popover</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRegistrationPopoverViewController *genderPopoverViewController</Declaration>
+			
+			
+			<Anchor>//api/name/genderPopoverViewController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/genderPopoverViewController</TokenIdentifier>
+			<Abstract type="html">*  Gener Popover</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRegistrationPopoverViewController *genderPopoverViewController</Declaration>
+			
+			
+			<Anchor>//api/name/genderPopoverViewController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setBirthdayPopoverViewController:</TokenIdentifier>
+			<Abstract type="html">*  Birthday Popover</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRegistrationPopoverViewController *birthdayPopoverViewController</Declaration>
+			
+			
+			<Anchor>//api/name/birthdayPopoverViewController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/birthdayPopoverViewController</TokenIdentifier>
+			<Abstract type="html">*  Birthday Popover</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRegistrationPopoverViewController *birthdayPopoverViewController</Declaration>
+			
+			
+			<Anchor>//api/name/birthdayPopoverViewController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/birthdayPopoverViewController</TokenIdentifier>
+			<Abstract type="html">*  Birthday Popover</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRegistrationPopoverViewController *birthdayPopoverViewController</Declaration>
+			
+			
+			<Anchor>//api/name/birthdayPopoverViewController</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setUserProfile:</TokenIdentifier>
+			<Abstract type="html">*  The current user that we are &quot;creating&quot;</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (readwrite) MMUser *userProfile</Declaration>
+			
+			
+			<Anchor>//api/name/userProfile</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/userProfile</TokenIdentifier>
+			<Abstract type="html">*  The current user that we are &quot;creating&quot;</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (readwrite) MMUser *userProfile</Declaration>
+			
+			
+			<Anchor>//api/name/userProfile</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/userProfile</TokenIdentifier>
+			<Abstract type="html">*  The current user that we are &quot;creating&quot;</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (readwrite) MMUser *userProfile</Declaration>
+			
+			
+			<Anchor>//api/name/userProfile</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setValidationManager:</TokenIdentifier>
+			<Abstract type="html">*  Validates the form (MMUser</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMValidationManager *validationManager</Declaration>
+			
+			
+			<Anchor>//api/name/validationManager</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/validationManager</TokenIdentifier>
+			<Abstract type="html">*  Validates the form (MMUser</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMValidationManager *validationManager</Declaration>
+			
+			
+			<Anchor>//api/name/validationManager</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/validationManager</TokenIdentifier>
+			<Abstract type="html">*  Validates the form (MMUser</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMValidationManager *validationManager</Declaration>
+			
+			
+			<Anchor>//api/name/validationManager</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/setUserNameValidator:</TokenIdentifier>
+			<Abstract type="html">*  used to check if the username is valid, and avaliable.</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMUserNameValidator *userNameValidator</Declaration>
+			
+			
+			<Anchor>//api/name/userNameValidator</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/userNameValidator</TokenIdentifier>
+			<Abstract type="html">*  used to check if the username is valid, and avaliable.</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMUserNameValidator *userNameValidator</Declaration>
+			
+			
+			<Anchor>//api/name/userNameValidator</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationViewController/userNameValidator</TokenIdentifier>
+			<Abstract type="html">*  used to check if the username is valid, and avaliable.</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMUserNameValidator *userNameValidator</Declaration>
+			
+			
+			<Anchor>//api/name/userNameValidator</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/unwindToLoginScreen:</TokenIdentifier>
+			<Abstract type="html">*  Back button</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)unwindToLoginScreen:(UIStoryboardSegue *)segue</Declaration>
+			
+			
+			<Anchor>//api/name/unwindToLoginScreen:</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/next:</TokenIdentifier>
+			<Abstract type="html">*  Next Button</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)next:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/next:</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/getPopoverViewControllerForTextField:</TokenIdentifier>
+			<Abstract type="html">*  Returns the popover for the selected textfield, if needed</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>- (id)getPopoverViewControllerForTextField:(UITextField *)textField</Declaration>
+			
+			
+			<Anchor>//api/name/getPopoverViewControllerForTextField:</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/getPopoverViewSizeForTextField:</TokenIdentifier>
+			<Abstract type="html">*  Returns the size needed for the popover</Abstract>
+			<DeclaredIn>MMRegistrationViewController.h</DeclaredIn>
+			
+			<Declaration>- (CGSize)getPopoverViewSizeForTextField:(UITextField *)textField</Declaration>
+			
+			
+			<Anchor>//api/name/getPopoverViewSizeForTextField:</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/didSelectCity:</TokenIdentifier>
+			<Abstract type="html">* Send the selected value of the city from</Abstract>
+			<DeclaredIn>MMRegistrationViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)didSelectCity:(NSString *)city</Declaration>
+			
+			
+			<Anchor>//api/name/didSelectCity:</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/didSelectGender:</TokenIdentifier>
+			<Abstract type="html">* Send the selected gender from</Abstract>
+			<DeclaredIn>MMRegistrationViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)didSelectGender:(NSString *)gender</Declaration>
+			
+			
+			<Anchor>//api/name/didSelectGender:</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/didSelectProvince:</TokenIdentifier>
+			<Abstract type="html">* Send the selected value of the province from</Abstract>
+			<DeclaredIn>MMRegistrationViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)didSelectProvince:(NSString *)province</Declaration>
+			
+			
+			<Anchor>//api/name/didSelectProvince:</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationViewController/didSelectBirthday:</TokenIdentifier>
+			<Abstract type="html">* Send the selected value of the birthday from</Abstract>
+			<DeclaredIn>MMRegistrationViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)didSelectBirthday:(NSDate *)birthday</Declaration>
+			
+			
+			<Anchor>//api/name/didSelectBirthday:</Anchor>
+            <NodeRef refid="65"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

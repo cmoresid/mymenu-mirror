@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIColor+MyMenuColors.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIColor(MyMenuColors)</TokenIdentifier>
+			<Abstract type="html">Colors for our color scheme as provided by the designer.</Abstract>
+			<DeclaredIn>UIColor+MyMenuColors.h</DeclaredIn>
+            
+			
+			<NodeRef refid="175"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIColor/tealColor</TokenIdentifier>
+			<Abstract type="html">The main teal color used in the application.</Abstract>
+			<DeclaredIn>UIColor+MyMenuColors.h</DeclaredIn>
+			
+			<Declaration>+ (UIColor *)tealColor</Declaration>
+			
+			<ReturnValue><Abstract type="html">rgb(67.0, 199.0, 174.0)</Abstract></ReturnValue>
+			<Anchor>//api/name/tealColor</Anchor>
+            <NodeRef refid="175"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIColor/ratingWheelBackgroundTealColor</TokenIdentifier>
+			<Abstract type="html">The teal color used in the background of the rating
+wheel.</Abstract>
+			<DeclaredIn>UIColor+MyMenuColors.h</DeclaredIn>
+			
+			<Declaration>+ (UIColor *)ratingWheelBackgroundTealColor</Declaration>
+			
+			<ReturnValue><Abstract type="html">rgb(48, 199, 175)</Abstract></ReturnValue>
+			<Anchor>//api/name/ratingWheelBackgroundTealColor</Anchor>
+            <NodeRef refid="175"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIColor/darkTealColor</TokenIdentifier>
+			<Abstract type="html">The dark teal color used in the navigation bar.</Abstract>
+			<DeclaredIn>UIColor+MyMenuColors.h</DeclaredIn>
+			
+			<Declaration>+ (UIColor *)darkTealColor</Declaration>
+			
+			<ReturnValue><Abstract type="html">rgb(41.0, 169.0, 149.0)</Abstract></ReturnValue>
+			<Anchor>//api/name/darkTealColor</Anchor>
+            <NodeRef refid="175"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIColor/lightTealColor</TokenIdentifier>
+			<Abstract type="html">The light teal color used as an accent.</Abstract>
+			<DeclaredIn>UIColor+MyMenuColors.h</DeclaredIn>
+			
+			<Declaration>+ (UIColor *)lightTealColor</Declaration>
+			
+			<ReturnValue><Abstract type="html">rgb(136.0, 221.0, 207.0)</Abstract></ReturnValue>
+			<Anchor>//api/name/lightTealColor</Anchor>
+            <NodeRef refid="175"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIColor/accentOrangeColor</TokenIdentifier>
+			<Abstract type="html">The orange used as an accent.</Abstract>
+			<DeclaredIn>UIColor+MyMenuColors.h</DeclaredIn>
+			
+			<Declaration>+ (UIColor *)accentOrangeColor</Declaration>
+			
+			<ReturnValue><Abstract type="html">rgb(233.0, 182.0, 83.0)</Abstract></ReturnValue>
+			<Anchor>//api/name/accentOrangeColor</Anchor>
+            <NodeRef refid="175"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIColor/accentRedColor</TokenIdentifier>
+			<Abstract type="html">The red accent color provided by the UI designer.</Abstract>
+			<DeclaredIn>UIColor+MyMenuColors.h</DeclaredIn>
+			
+			<Declaration>+ (UIColor *)accentRedColor</Declaration>
+			
+			<ReturnValue><Abstract type="html">rgb(204.0, 69.0, 85.0)</Abstract></ReturnValue>
+			<Anchor>//api/name/accentRedColor</Anchor>
+            <NodeRef refid="175"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIColor/sidebarBackgroundGray</TokenIdentifier>
+			<Abstract type="html">The sidebar grey color.</Abstract>
+			<DeclaredIn>UIColor+MyMenuColors.h</DeclaredIn>
+			
+			<Declaration>+ (UIColor *)sidebarBackgroundGray</Declaration>
+			
+			<ReturnValue><Abstract type="html">rgb(91.0, 91.0, 91.0)</Abstract></ReturnValue>
+			<Anchor>//api/name/sidebarBackgroundGray</Anchor>
+            <NodeRef refid="175"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIColor/lightBackgroundGray</TokenIdentifier>
+			<Abstract type="html">A subtle grey color that can be used
+in the background.</Abstract>
+			<DeclaredIn>UIColor+MyMenuColors.h</DeclaredIn>
+			
+			<Declaration>+ (UIColor *)lightBackgroundGray</Declaration>
+			
+			<ReturnValue><Abstract type="html">rgb(179.0, 179.0, 179.0)</Abstract></ReturnValue>
+			<Anchor>//api/name/lightBackgroundGray</Anchor>
+            <NodeRef refid="175"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIColor/lightBlueHighlight</TokenIdentifier>
+			<Abstract type="html">A light blue color that is used for
+highlighting.</Abstract>
+			<DeclaredIn>UIColor+MyMenuColors.h</DeclaredIn>
+			
+			<Declaration>+ (UIColor *)lightBlueHighlight</Declaration>
+			
+			<ReturnValue><Abstract type="html">rgb(236.0, 249.0, 247.0)</Abstract></ReturnValue>
+			<Anchor>//api/name/lightBlueHighlight</Anchor>
+            <NodeRef refid="175"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIColor/secondaryBlueBar</TokenIdentifier>
+			<Abstract type="html">A secondary blue color in color palette.</Abstract>
+			<DeclaredIn>UIColor+MyMenuColors.h</DeclaredIn>
+			
+			<Declaration>+ (UIColor *)secondaryBlueBar</Declaration>
+			
+			<ReturnValue><Abstract type="html">rgb(142.0, 221.0, 206.0)</Abstract></ReturnValue>
+			<Anchor>//api/name/secondaryBlueBar</Anchor>
+            <NodeRef refid="175"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

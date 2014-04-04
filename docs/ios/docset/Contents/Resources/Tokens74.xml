@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMReviewPopOverViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMReviewPopOverViewController</TokenIdentifier>
+			<Abstract type="html">View Controller for the popover that is created
+when a user selects a review collection view
+cell.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="74"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setCurrentRating:</TokenIdentifier>
+			<Abstract type="html">Number that is kept as the current rating for a review</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CGFloat currentRating</Declaration>
+			
+			
+			<Anchor>//api/name/currentRating</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/currentRating</TokenIdentifier>
+			<Abstract type="html">Number that is kept as the current rating for a review</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CGFloat currentRating</Declaration>
+			
+			
+			<Anchor>//api/name/currentRating</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/currentRating</TokenIdentifier>
+			<Abstract type="html">Number that is kept as the current rating for a review</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CGFloat currentRating</Declaration>
+			
+			
+			<Anchor>//api/name/currentRating</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setRestaurantName:</TokenIdentifier>
+			<Abstract type="html">Reference to a UILabel containing the Merchant Name</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *restaurantName</Declaration>
+			
+			
+			<Anchor>//api/name/restaurantName</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/restaurantName</TokenIdentifier>
+			<Abstract type="html">Reference to a UILabel containing the Merchant Name</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *restaurantName</Declaration>
+			
+			
+			<Anchor>//api/name/restaurantName</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/restaurantName</TokenIdentifier>
+			<Abstract type="html">Reference to a UILabel containing the Merchant Name</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *restaurantName</Declaration>
+			
+			
+			<Anchor>//api/name/restaurantName</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setMenuItemName:</TokenIdentifier>
+			<Abstract type="html">Reference to a UILabel containgin the Menu Item Name</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *menuItemName</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemName</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/menuItemName</TokenIdentifier>
+			<Abstract type="html">Reference to a UILabel containgin the Menu Item Name</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *menuItemName</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemName</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/menuItemName</TokenIdentifier>
+			<Abstract type="html">Reference to a UILabel containgin the Menu Item Name</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *menuItemName</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemName</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setMenuItemImage:</TokenIdentifier>
+			<Abstract type="html">Reference to the menu Item picture</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *menuItemImage</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemImage</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/menuItemImage</TokenIdentifier>
+			<Abstract type="html">Reference to the menu Item picture</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *menuItemImage</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemImage</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/menuItemImage</TokenIdentifier>
+			<Abstract type="html">Reference to the menu Item picture</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *menuItemImage</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemImage</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setDesc:</TokenIdentifier>
+			<Abstract type="html">Reverence to the text view that contains the menu item
+description</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *desc</Declaration>
+			
+			
+			<Anchor>//api/name/desc</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/desc</TokenIdentifier>
+			<Abstract type="html">Reverence to the text view that contains the menu item
+description</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *desc</Declaration>
+			
+			
+			<Anchor>//api/name/desc</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/desc</TokenIdentifier>
+			<Abstract type="html">Reverence to the text view that contains the menu item
+description</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *desc</Declaration>
+			
+			
+			<Anchor>//api/name/desc</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setLike:</TokenIdentifier>
+			<Abstract type="html">Reference to the Like button</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *like</Declaration>
+			
+			
+			<Anchor>//api/name/like</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/like</TokenIdentifier>
+			<Abstract type="html">Reference to the Like button</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *like</Declaration>
+			
+			
+			<Anchor>//api/name/like</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/like</TokenIdentifier>
+			<Abstract type="html">Reference to the Like button</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *like</Declaration>
+			
+			
+			<Anchor>//api/name/like</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setReport:</TokenIdentifier>
+			<Abstract type="html">Reference to the Report button</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *report</Declaration>
+			
+			
+			<Anchor>//api/name/report</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/report</TokenIdentifier>
+			<Abstract type="html">Reference to the Report button</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *report</Declaration>
+			
+			
+			<Anchor>//api/name/report</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/report</TokenIdentifier>
+			<Abstract type="html">Reference to the Report button</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *report</Declaration>
+			
+			
+			<Anchor>//api/name/report</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setEdit:</TokenIdentifier>
+			<Abstract type="html">Reference to the Edit button</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *edit</Declaration>
+			
+			
+			<Anchor>//api/name/edit</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/edit</TokenIdentifier>
+			<Abstract type="html">Reference to the Edit button</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *edit</Declaration>
+			
+			
+			<Anchor>//api/name/edit</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/edit</TokenIdentifier>
+			<Abstract type="html">Reference to the Edit button</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *edit</Declaration>
+			
+			
+			<Anchor>//api/name/edit</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setLikecount:</TokenIdentifier>
+			<Abstract type="html">Reference to the UILabel that contains the amount
+of times something has been liked</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *likecount</Declaration>
+			
+			
+			<Anchor>//api/name/likecount</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/likecount</TokenIdentifier>
+			<Abstract type="html">Reference to the UILabel that contains the amount
+of times something has been liked</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *likecount</Declaration>
+			
+			
+			<Anchor>//api/name/likecount</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/likecount</TokenIdentifier>
+			<Abstract type="html">Reference to the UILabel that contains the amount
+of times something has been liked</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *likecount</Declaration>
+			
+			
+			<Anchor>//api/name/likecount</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setLabelBack:</TokenIdentifier>
+			<Abstract type="html">Reference to the background for the rating display</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *labelBack</Declaration>
+			
+			
+			<Anchor>//api/name/labelBack</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/labelBack</TokenIdentifier>
+			<Abstract type="html">Reference to the background for the rating display</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *labelBack</Declaration>
+			
+			
+			<Anchor>//api/name/labelBack</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/labelBack</TokenIdentifier>
+			<Abstract type="html">Reference to the background for the rating display</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *labelBack</Declaration>
+			
+			
+			<Anchor>//api/name/labelBack</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setRatingLabel:</TokenIdentifier>
+			<Abstract type="html">Reference to the UILabel that displays the
+rating of the item</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *ratingLabel</Declaration>
+			
+			
+			<Anchor>//api/name/ratingLabel</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/ratingLabel</TokenIdentifier>
+			<Abstract type="html">Reference to the UILabel that displays the
+rating of the item</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *ratingLabel</Declaration>
+			
+			
+			<Anchor>//api/name/ratingLabel</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/ratingLabel</TokenIdentifier>
+			<Abstract type="html">Reference to the UILabel that displays the
+rating of the item</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *ratingLabel</Declaration>
+			
+			
+			<Anchor>//api/name/ratingLabel</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setPopOverNavigation:</TokenIdentifier>
+			<Abstract type="html">Reference to the Navigation Controller that is used throughout
+the app.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMBaseNavigationController *popOverNavigation</Declaration>
+			
+			
+			<Anchor>//api/name/popOverNavigation</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/popOverNavigation</TokenIdentifier>
+			<Abstract type="html">Reference to the Navigation Controller that is used throughout
+the app.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMBaseNavigationController *popOverNavigation</Declaration>
+			
+			
+			<Anchor>//api/name/popOverNavigation</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/popOverNavigation</TokenIdentifier>
+			<Abstract type="html">Reference to the Navigation Controller that is used throughout
+the app.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMBaseNavigationController *popOverNavigation</Declaration>
+			
+			
+			<Anchor>//api/name/popOverNavigation</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setMenuItem:</TokenIdentifier>
+			<Abstract type="html">The menu item that the rating is about</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMenuItem *menuItem</Declaration>
+			
+			
+			<Anchor>//api/name/menuItem</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/menuItem</TokenIdentifier>
+			<Abstract type="html">The menu item that the rating is about</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMenuItem *menuItem</Declaration>
+			
+			
+			<Anchor>//api/name/menuItem</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/menuItem</TokenIdentifier>
+			<Abstract type="html">The menu item that the rating is about</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMenuItem *menuItem</Declaration>
+			
+			
+			<Anchor>//api/name/menuItem</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setMenuItemReview:</TokenIdentifier>
+			<Abstract type="html">The review information for the menu item</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMenuItemRating *menuItemReview</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemReview</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/menuItemReview</TokenIdentifier>
+			<Abstract type="html">The review information for the menu item</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMenuItemRating *menuItemReview</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemReview</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/menuItemReview</TokenIdentifier>
+			<Abstract type="html">The review information for the menu item</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMenuItemRating *menuItemReview</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemReview</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setSelectedRestaurant:</TokenIdentifier>
+			<Abstract type="html">Restaurant that the menu item belongs too.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMerchant *selectedRestaurant</Declaration>
+			
+			
+			<Anchor>//api/name/selectedRestaurant</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/selectedRestaurant</TokenIdentifier>
+			<Abstract type="html">Restaurant that the menu item belongs too.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMerchant *selectedRestaurant</Declaration>
+			
+			
+			<Anchor>//api/name/selectedRestaurant</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/selectedRestaurant</TokenIdentifier>
+			<Abstract type="html">Restaurant that the menu item belongs too.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMerchant *selectedRestaurant</Declaration>
+			
+			
+			<Anchor>//api/name/selectedRestaurant</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setReviewPopOver:</TokenIdentifier>
+			<Abstract type="html">Reference to the Rating Wheel popover controller for editing.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRatingPopoverViewController *reviewPopOver</Declaration>
+			
+			
+			<Anchor>//api/name/reviewPopOver</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/reviewPopOver</TokenIdentifier>
+			<Abstract type="html">Reference to the Rating Wheel popover controller for editing.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRatingPopoverViewController *reviewPopOver</Declaration>
+			
+			
+			<Anchor>//api/name/reviewPopOver</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/reviewPopOver</TokenIdentifier>
+			<Abstract type="html">Reference to the Rating Wheel popover controller for editing.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRatingPopoverViewController *reviewPopOver</Declaration>
+			
+			
+			<Anchor>//api/name/reviewPopOver</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setCallback:</TokenIdentifier>
+			<Abstract type="html">Call back variable</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) FinishCallback callback</Declaration>
+			
+			
+			<Anchor>//api/name/callback</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/callback</TokenIdentifier>
+			<Abstract type="html">Call back variable</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) FinishCallback callback</Declaration>
+			
+			
+			<Anchor>//api/name/callback</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/callback</TokenIdentifier>
+			<Abstract type="html">Call back variable</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) FinishCallback callback</Declaration>
+			
+			
+			<Anchor>//api/name/callback</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setPopOverController:</TokenIdentifier>
+			<Abstract type="html">Reference kept for the current popover.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *popOverController</Declaration>
+			
+			
+			<Anchor>//api/name/popOverController</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/popOverController</TokenIdentifier>
+			<Abstract type="html">Reference kept for the current popover.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *popOverController</Declaration>
+			
+			
+			<Anchor>//api/name/popOverController</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/popOverController</TokenIdentifier>
+			<Abstract type="html">Reference kept for the current popover.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *popOverController</Declaration>
+			
+			
+			<Anchor>//api/name/popOverController</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setOldPopOverController:</TokenIdentifier>
+			<Abstract type="html">Reference kept for the last popover.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *oldPopOverController</Declaration>
+			
+			
+			<Anchor>//api/name/oldPopOverController</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/oldPopOverController</TokenIdentifier>
+			<Abstract type="html">Reference kept for the last popover.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *oldPopOverController</Declaration>
+			
+			
+			<Anchor>//api/name/oldPopOverController</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMReviewPopOverViewController/oldPopOverController</TokenIdentifier>
+			<Abstract type="html">Reference kept for the last popover.</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *oldPopOverController</Declaration>
+			
+			
+			<Anchor>//api/name/oldPopOverController</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/submitReview:</TokenIdentifier>
+			<Abstract type="html">Called when the SUbmit button is clicked
+@param sender</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)submitReview:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/submitReview:</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/cancelReview:</TokenIdentifier>
+			<Abstract type="html">Called if the cancel button is clicked
+@param sender</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)cancelReview:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/cancelReview:</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/likeReview:</TokenIdentifier>
+			<Abstract type="html">Called if the like button is clicked
+@param sender</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)likeReview:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/likeReview:</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/reportReview:</TokenIdentifier>
+			<Abstract type="html">Called if the report button is clicked
+@param sender</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)reportReview:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/reportReview:</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/editReview:</TokenIdentifier>
+			<Abstract type="html">Called if the edit button is clicked.
+@param sender</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)editReview:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/editReview:</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/setupHeader</TokenIdentifier>
+			<Abstract type="html">Sets up the information about the review and populates fields</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)setupHeader</Declaration>
+			
+			
+			<Anchor>//api/name/setupHeader</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMReviewPopOverViewController/isUserLoggedInAsAGuest</TokenIdentifier>
+			<Abstract type="html">Sets up popover based on whether or not a user has an account or not</Abstract>
+			<DeclaredIn>MMReviewPopOverViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)isUserLoggedInAsAGuest</Declaration>
+			
+			
+			<Anchor>//api/name/isUserLoggedInAsAGuest</Anchor>
+            <NodeRef refid="74"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMRestaurantViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMRestaurantViewController</TokenIdentifier>
+			<Abstract type="html">The restaurant view controller.
+This displays a single restaurant in detail.
+Information such as restaurant name, rating, description, etc.
+This is where the restaurant&apos;s menu is displayed.
+This view will also allow the user to filter through the menu,
+either by rating, category or name.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="70"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setCurrentMerchantId:</TokenIdentifier>
+			<Abstract type="html">The current selected merchant.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSNumber *currentMerchantId</Declaration>
+			
+			
+			<Anchor>//api/name/currentMerchantId</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/currentMerchantId</TokenIdentifier>
+			<Abstract type="html">The current selected merchant.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSNumber *currentMerchantId</Declaration>
+			
+			
+			<Anchor>//api/name/currentMerchantId</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/currentMerchantId</TokenIdentifier>
+			<Abstract type="html">The current selected merchant.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSNumber *currentMerchantId</Declaration>
+			
+			
+			<Anchor>//api/name/currentMerchantId</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setViewModel:</TokenIdentifier>
+			<Abstract type="html">The view model for the controller.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRestaurantViewModel *viewModel</Declaration>
+			
+			
+			<Anchor>//api/name/viewModel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/viewModel</TokenIdentifier>
+			<Abstract type="html">The view model for the controller.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRestaurantViewModel *viewModel</Declaration>
+			
+			
+			<Anchor>//api/name/viewModel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/viewModel</TokenIdentifier>
+			<Abstract type="html">The view model for the controller.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMRestaurantViewModel *viewModel</Declaration>
+			
+			
+			<Anchor>//api/name/viewModel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setMerchantNameLabel:</TokenIdentifier>
+			<Abstract type="html">The UILabel for the mechant name</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantNameLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantNameLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/merchantNameLabel</TokenIdentifier>
+			<Abstract type="html">The UILabel for the mechant name</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantNameLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantNameLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/merchantNameLabel</TokenIdentifier>
+			<Abstract type="html">The UILabel for the mechant name</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantNameLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantNameLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setMerchantPhoneNumberLabel:</TokenIdentifier>
+			<Abstract type="html">The UILabel for the merchant phone number</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantPhoneNumberLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantPhoneNumberLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/merchantPhoneNumberLabel</TokenIdentifier>
+			<Abstract type="html">The UILabel for the merchant phone number</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantPhoneNumberLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantPhoneNumberLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/merchantPhoneNumberLabel</TokenIdentifier>
+			<Abstract type="html">The UILabel for the merchant phone number</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantPhoneNumberLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantPhoneNumberLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setMerchantRatingLabel:</TokenIdentifier>
+			<Abstract type="html">The UILabel for the merchant rating</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantRatingLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantRatingLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/merchantRatingLabel</TokenIdentifier>
+			<Abstract type="html">The UILabel for the merchant rating</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantRatingLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantRatingLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/merchantRatingLabel</TokenIdentifier>
+			<Abstract type="html">The UILabel for the merchant rating</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantRatingLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantRatingLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setMerchantDescriptionTextView:</TokenIdentifier>
+			<Abstract type="html">The UITextView for the merchant description</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *merchantDescriptionTextView</Declaration>
+			
+			
+			<Anchor>//api/name/merchantDescriptionTextView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/merchantDescriptionTextView</TokenIdentifier>
+			<Abstract type="html">The UITextView for the merchant description</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *merchantDescriptionTextView</Declaration>
+			
+			
+			<Anchor>//api/name/merchantDescriptionTextView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/merchantDescriptionTextView</TokenIdentifier>
+			<Abstract type="html">The UITextView for the merchant description</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *merchantDescriptionTextView</Declaration>
+			
+			
+			<Anchor>//api/name/merchantDescriptionTextView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setMerchantImageView:</TokenIdentifier>
+			<Abstract type="html">The UIImageView for the merchant image</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *merchantImageView</Declaration>
+			
+			
+			<Anchor>//api/name/merchantImageView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/merchantImageView</TokenIdentifier>
+			<Abstract type="html">The UIImageView for the merchant image</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *merchantImageView</Declaration>
+			
+			
+			<Anchor>//api/name/merchantImageView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/merchantImageView</TokenIdentifier>
+			<Abstract type="html">The UIImageView for the merchant image</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *merchantImageView</Declaration>
+			
+			
+			<Anchor>//api/name/merchantImageView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setMerchantInformationContainer:</TokenIdentifier>
+			<Abstract type="html">The view that contains the merchant information
+on the top left of the screen. It also is responsible
+for drawing the grey border as well.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *merchantInformationContainer</Declaration>
+			
+			
+			<Anchor>//api/name/merchantInformationContainer</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/merchantInformationContainer</TokenIdentifier>
+			<Abstract type="html">The view that contains the merchant information
+on the top left of the screen. It also is responsible
+for drawing the grey border as well.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *merchantInformationContainer</Declaration>
+			
+			
+			<Anchor>//api/name/merchantInformationContainer</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/merchantInformationContainer</TokenIdentifier>
+			<Abstract type="html">The view that contains the merchant information
+on the top left of the screen. It also is responsible
+for drawing the grey border as well.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *merchantInformationContainer</Declaration>
+			
+			
+			<Anchor>//api/name/merchantInformationContainer</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setRatingView:</TokenIdentifier>
+			<Abstract type="html">The rounded background for restaurant rating</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *ratingView</Declaration>
+			
+			
+			<Anchor>//api/name/ratingView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/ratingView</TokenIdentifier>
+			<Abstract type="html">The rounded background for restaurant rating</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *ratingView</Declaration>
+			
+			
+			<Anchor>//api/name/ratingView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/ratingView</TokenIdentifier>
+			<Abstract type="html">The rounded background for restaurant rating</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *ratingView</Declaration>
+			
+			
+			<Anchor>//api/name/ratingView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setMenuItemsCollectionView:</TokenIdentifier>
+			<Abstract type="html">UICollectionView that displays the menu items</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UICollectionView *menuItemsCollectionView</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemsCollectionView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/menuItemsCollectionView</TokenIdentifier>
+			<Abstract type="html">UICollectionView that displays the menu items</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UICollectionView *menuItemsCollectionView</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemsCollectionView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/menuItemsCollectionView</TokenIdentifier>
+			<Abstract type="html">UICollectionView that displays the menu items</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UICollectionView *menuItemsCollectionView</Declaration>
+			
+			
+			<Anchor>//api/name/menuItemsCollectionView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setMerchantHoursLabel:</TokenIdentifier>
+			<Abstract type="html">Merchant Hours Label</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantHoursLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantHoursLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/merchantHoursLabel</TokenIdentifier>
+			<Abstract type="html">Merchant Hours Label</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantHoursLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantHoursLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/merchantHoursLabel</TokenIdentifier>
+			<Abstract type="html">Merchant Hours Label</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantHoursLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantHoursLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setMerchantAddressLabel:</TokenIdentifier>
+			<Abstract type="html">Merchant Address Label</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantAddressLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantAddressLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/merchantAddressLabel</TokenIdentifier>
+			<Abstract type="html">Merchant Address Label</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantAddressLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantAddressLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/merchantAddressLabel</TokenIdentifier>
+			<Abstract type="html">Merchant Address Label</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *merchantAddressLabel</Declaration>
+			
+			
+			<Anchor>//api/name/merchantAddressLabel</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setPopOverController:</TokenIdentifier>
+			<Abstract type="html">Popover View Controller</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *popOverController</Declaration>
+			
+			
+			<Anchor>//api/name/popOverController</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/popOverController</TokenIdentifier>
+			<Abstract type="html">Popover View Controller</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *popOverController</Declaration>
+			
+			
+			<Anchor>//api/name/popOverController</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/popOverController</TokenIdentifier>
+			<Abstract type="html">Popover View Controller</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *popOverController</Declaration>
+			
+			
+			<Anchor>//api/name/popOverController</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setSearchBar:</TokenIdentifier>
+			<Abstract type="html">The search bar that is inside the collection
+view. Allows one to filter through the menu
+items on the page.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UISearchBar *searchBar</Declaration>
+			
+			
+			<Anchor>//api/name/searchBar</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/searchBar</TokenIdentifier>
+			<Abstract type="html">The search bar that is inside the collection
+view. Allows one to filter through the menu
+items on the page.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UISearchBar *searchBar</Declaration>
+			
+			
+			<Anchor>//api/name/searchBar</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/searchBar</TokenIdentifier>
+			<Abstract type="html">The search bar that is inside the collection
+view. Allows one to filter through the menu
+items on the page.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UISearchBar *searchBar</Declaration>
+			
+			
+			<Anchor>//api/name/searchBar</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setReviewOrderBySegmentControl:</TokenIdentifier>
+			<Abstract type="html">The segment control that allows one to order
+the reviews in the collection view.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UISegmentedControl *reviewOrderBySegmentControl</Declaration>
+			
+			
+			<Anchor>//api/name/reviewOrderBySegmentControl</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/reviewOrderBySegmentControl</TokenIdentifier>
+			<Abstract type="html">The segment control that allows one to order
+the reviews in the collection view.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UISegmentedControl *reviewOrderBySegmentControl</Declaration>
+			
+			
+			<Anchor>//api/name/reviewOrderBySegmentControl</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/reviewOrderBySegmentControl</TokenIdentifier>
+			<Abstract type="html">The segment control that allows one to order
+the reviews in the collection view.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UISegmentedControl *reviewOrderBySegmentControl</Declaration>
+			
+			
+			<Anchor>//api/name/reviewOrderBySegmentControl</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setParentScrollView:</TokenIdentifier>
+			<Abstract type="html">The scroll view that encapsulates the views on
+the page.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIScrollView *parentScrollView</Declaration>
+			
+			
+			<Anchor>//api/name/parentScrollView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/parentScrollView</TokenIdentifier>
+			<Abstract type="html">The scroll view that encapsulates the views on
+the page.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIScrollView *parentScrollView</Declaration>
+			
+			
+			<Anchor>//api/name/parentScrollView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/parentScrollView</TokenIdentifier>
+			<Abstract type="html">The scroll view that encapsulates the views on
+the page.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIScrollView *parentScrollView</Declaration>
+			
+			
+			<Anchor>//api/name/parentScrollView</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/setRevPopOver:</TokenIdentifier>
+			<Abstract type="html">View Controller that gets displayed inside of a popover.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMReviewPopOverViewController *revPopOver</Declaration>
+			
+			
+			<Anchor>//api/name/revPopOver</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/revPopOver</TokenIdentifier>
+			<Abstract type="html">View Controller that gets displayed inside of a popover.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMReviewPopOverViewController *revPopOver</Declaration>
+			
+			
+			<Anchor>//api/name/revPopOver</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestaurantViewController/revPopOver</TokenIdentifier>
+			<Abstract type="html">View Controller that gets displayed inside of a popover.</Abstract>
+			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMReviewPopOverViewController *revPopOver</Declaration>
+			
+			
+			<Anchor>//api/name/revPopOver</Anchor>
+            <NodeRef refid="70"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

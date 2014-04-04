@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/MMValidatorProtocol.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/MMValidatorProtocol</TokenIdentifier>
+			<Abstract type="html">* An interface that describes a validator object. If you wish to</Abstract>
+			<DeclaredIn>MMValidatorProtocol.h</DeclaredIn>
+            
+			
+			<NodeRef refid="209"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMValidatorProtocol/isValid</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MMValidatorProtocol.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)isValid</Declaration>
+			
+			
+			<Anchor>//api/name/isValid</Anchor>
+            <NodeRef refid="209"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMValidatorProtocol/getErrorMessage</TokenIdentifier>
+			<Abstract type="html">* Retrieves any error message that is contained within the</Abstract>
+			<DeclaredIn>MMValidatorProtocol.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)getErrorMessage</Declaration>
+			
+			
+			<Anchor>//api/name/getErrorMessage</Anchor>
+            <NodeRef refid="209"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

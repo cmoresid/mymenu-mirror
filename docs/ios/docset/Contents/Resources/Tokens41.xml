@@ -1,37 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/MMRestaurantPopOverDelegate.html">
+	<File path="Classes/MMMainTabBarViewController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/MMRestaurantPopOverDelegate</TokenIdentifier>
-			<Abstract type="html">A delegate that is used by MMRestaurantViewController and
-the MMRestaurantPopOverViewController so the popover view
-controller can send values back to the MMRestaurantViewController.</Abstract>
-			<DeclaredIn>MMRestaurantPopOverDelegate.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMainTabBarViewController</TokenIdentifier>
+			<Abstract type="html">*  Custom UITabBarController</Abstract>
+			<DeclaredIn>MMMainTabBarViewController.h</DeclaredIn>
             
 			
 			<NodeRef refid="41"/>
 		</Token>
 		
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/MMRestaurantPopOverDelegate/didSelectCategory:</TokenIdentifier>
-			<Abstract type="html">Sends the selected category from the popover
-controller back to the parent view controller.</Abstract>
-			<DeclaredIn>MMRestaurantPopOverDelegate.h</DeclaredIn>
-			
-			<Declaration>- (void)didSelectCategory:(NSString *)category</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>category</Name>
-					<Abstract type="html">The string value of the category
-selected.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/didSelectCategory:</Anchor>
-            <NodeRef refid="41"/>
-		</Token>
 		
         
 	</File>

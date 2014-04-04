@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/TSQCalendarCell.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/TSQCalendarCell</TokenIdentifier>
+			<Abstract type="html">The TSQCalendarCell class is an abstract superclass to the two cell types used for display in a TSQCalendarView.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+            
+			
+			<NodeRef refid="144"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/setFirstOfMonth:</TokenIdentifier>
+			<Abstract type="html">The first day of the month this cell is currently representing.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSDate *firstOfMonth</Declaration>
+			
+			
+			<Anchor>//api/name/firstOfMonth</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/firstOfMonth</TokenIdentifier>
+			<Abstract type="html">The first day of the month this cell is currently representing.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSDate *firstOfMonth</Declaration>
+			
+			
+			<Anchor>//api/name/firstOfMonth</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarCell/firstOfMonth</TokenIdentifier>
+			<Abstract type="html">The first day of the month this cell is currently representing.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSDate *firstOfMonth</Declaration>
+			
+			
+			<Anchor>//api/name/firstOfMonth</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/setDaysInWeek:</TokenIdentifier>
+			<Abstract type="html">How many days there are in a week.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSUInteger daysInWeek</Declaration>
+			
+			
+			<Anchor>//api/name/daysInWeek</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/daysInWeek</TokenIdentifier>
+			<Abstract type="html">How many days there are in a week.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSUInteger daysInWeek</Declaration>
+			
+			
+			<Anchor>//api/name/daysInWeek</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarCell/daysInWeek</TokenIdentifier>
+			<Abstract type="html">How many days there are in a week.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSUInteger daysInWeek</Declaration>
+			
+			
+			<Anchor>//api/name/daysInWeek</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/setCalendar:</TokenIdentifier>
+			<Abstract type="html">The calendar type we&apos;re displaying.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSCalendar *calendar</Declaration>
+			
+			
+			<Anchor>//api/name/calendar</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/calendar</TokenIdentifier>
+			<Abstract type="html">The calendar type we&apos;re displaying.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSCalendar *calendar</Declaration>
+			
+			
+			<Anchor>//api/name/calendar</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarCell/calendar</TokenIdentifier>
+			<Abstract type="html">The calendar type we&apos;re displaying.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSCalendar *calendar</Declaration>
+			
+			
+			<Anchor>//api/name/calendar</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/setCalendarView:</TokenIdentifier>
+			<Abstract type="html">The owning calendar view.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) TSQCalendarView *calendarView</Declaration>
+			
+			
+			<Anchor>//api/name/calendarView</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/calendarView</TokenIdentifier>
+			<Abstract type="html">The owning calendar view.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) TSQCalendarView *calendarView</Declaration>
+			
+			
+			<Anchor>//api/name/calendarView</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarCell/calendarView</TokenIdentifier>
+			<Abstract type="html">The owning calendar view.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) TSQCalendarView *calendarView</Declaration>
+			
+			
+			<Anchor>//api/name/calendarView</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/TSQCalendarCell/cellHeight</TokenIdentifier>
+			<Abstract type="html">The preferred height for instances of this cell.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>+ (CGFloat)cellHeight</Declaration>
+			
+			
+			<Anchor>//api/name/cellHeight</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/setTextColor:</TokenIdentifier>
+			<Abstract type="html">The text color.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIColor *textColor</Declaration>
+			
+			
+			<Anchor>//api/name/textColor</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/textColor</TokenIdentifier>
+			<Abstract type="html">The text color.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIColor *textColor</Declaration>
+			
+			
+			<Anchor>//api/name/textColor</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarCell/textColor</TokenIdentifier>
+			<Abstract type="html">The text color.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIColor *textColor</Declaration>
+			
+			
+			<Anchor>//api/name/textColor</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/setShadowOffset:</TokenIdentifier>
+			<Abstract type="html">The text shadow offset.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CGSize shadowOffset</Declaration>
+			
+			
+			<Anchor>//api/name/shadowOffset</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/shadowOffset</TokenIdentifier>
+			<Abstract type="html">The text shadow offset.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CGSize shadowOffset</Declaration>
+			
+			
+			<Anchor>//api/name/shadowOffset</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarCell/shadowOffset</TokenIdentifier>
+			<Abstract type="html">The text shadow offset.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CGSize shadowOffset</Declaration>
+			
+			
+			<Anchor>//api/name/shadowOffset</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/setColumnSpacing:</TokenIdentifier>
+			<Abstract type="html">The spacing between columns.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CGFloat columnSpacing</Declaration>
+			
+			
+			<Anchor>//api/name/columnSpacing</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/columnSpacing</TokenIdentifier>
+			<Abstract type="html">The spacing between columns.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CGFloat columnSpacing</Declaration>
+			
+			
+			<Anchor>//api/name/columnSpacing</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarCell/columnSpacing</TokenIdentifier>
+			<Abstract type="html">The spacing between columns.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CGFloat columnSpacing</Declaration>
+			
+			
+			<Anchor>//api/name/columnSpacing</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/initWithCalendar:reuseIdentifier:</TokenIdentifier>
+			<Abstract type="html">Initializes the cell.</Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithCalendar:(NSCalendar *)calendar reuseIdentifier:(NSString *)reuseIdentifier</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>calendar</Name>
+					<Abstract type="html">The NSCalendar the cell is representing</Abstract>
+				</Parameter><Parameter>
+					<Name>reuseIdentifier</Name>
+					<Abstract type="html">A string reuse identifier, as used by UITableViewCell</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initWithCalendar:reuseIdentifier:</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarCell/layoutViewsForColumnAtIndex:inRect:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>TSQCalendarCell.h</DeclaredIn>
+			
+			<Declaration>- (void)layoutViewsForColumnAtIndex:(NSUInteger)index inRect:(CGRect)rect</Declaration>
+			
+			
+			<Anchor>//api/name/layoutViewsForColumnAtIndex:inRect:</Anchor>
+            <NodeRef refid="144"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

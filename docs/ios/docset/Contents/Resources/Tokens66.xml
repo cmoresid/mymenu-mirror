@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMRequiredTextFieldValidator.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMRequiredTextFieldValidator</TokenIdentifier>
+			<Abstract type="html">* A concrete validator that checks to see whether or not a text field</Abstract>
+			<DeclaredIn>MMRequiredTextFieldValidator.h</DeclaredIn>
+            
+			
+			<NodeRef refid="66"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRequiredTextFieldValidator/initWithTextField:withValidationMessage:</TokenIdentifier>
+			<Abstract type="html">* A constructor that initializes a validator object with a text field and a validation</Abstract>
+			<DeclaredIn>MMRequiredTextFieldValidator.m</DeclaredIn>
+			
+			<Declaration>- (id)initWithTextField:(UITextField *)textField withValidationMessage:(NSString *)errorMessage</Declaration>
+			
+			
+			<Anchor>//api/name/initWithTextField:withValidationMessage:</Anchor>
+            <NodeRef refid="66"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

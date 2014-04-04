@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIControl+RACSignalSupportPrivate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIControl(RACSignalSupportPrivate)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UIControl+RACSignalSupportPrivate.h</DeclaredIn>
+            
+			
+			<NodeRef refid="177"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIControl/rac_channelForControlEvents:key:nilValue:</TokenIdentifier>
+			<Abstract type="html">Adds a RACChannel-based interface to the receiver for the given
+UIControlEvents and exposes it.</Abstract>
+			<DeclaredIn>UIControl+RACSignalSupportPrivate.h</DeclaredIn>
+			
+			<Declaration>- (RACChannelTerminal *)rac_channelForControlEvents:(UIControlEvents)controlEvents key:(NSString *)key nilValue:(id)nilValue</Declaration>
+			
+			
+			<Anchor>//api/name/rac_channelForControlEvents:key:nilValue:</Anchor>
+            <NodeRef refid="177"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

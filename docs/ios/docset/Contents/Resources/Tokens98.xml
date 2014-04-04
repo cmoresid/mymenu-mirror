@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACDelegateProxy.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACDelegateProxy</TokenIdentifier>
+			<Abstract type="html">A delegate object suitable for using -rac_signalForSelector:fromProtocol:
+upon.</Abstract>
+			<DeclaredIn>RACDelegateProxy.h</DeclaredIn>
+            
+			
+			<NodeRef refid="98"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACDelegateProxy/setRac_proxiedDelegate:</TokenIdentifier>
+			<Abstract type="html">The delegate to which messages should be forwarded if not handled by
+any signalForSelector: applications.</Abstract>
+			<DeclaredIn>RACDelegateProxy.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, unsafe_unretained) id rac_proxiedDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/rac_proxiedDelegate</Anchor>
+            <NodeRef refid="98"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACDelegateProxy/rac_proxiedDelegate</TokenIdentifier>
+			<Abstract type="html">The delegate to which messages should be forwarded if not handled by
+any signalForSelector: applications.</Abstract>
+			<DeclaredIn>RACDelegateProxy.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, unsafe_unretained) id rac_proxiedDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/rac_proxiedDelegate</Anchor>
+            <NodeRef refid="98"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACDelegateProxy/rac_proxiedDelegate</TokenIdentifier>
+			<Abstract type="html">The delegate to which messages should be forwarded if not handled by
+any signalForSelector: applications.</Abstract>
+			<DeclaredIn>RACDelegateProxy.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, unsafe_unretained) id rac_proxiedDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/rac_proxiedDelegate</Anchor>
+            <NodeRef refid="98"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACDelegateProxy/initWithProtocol:</TokenIdentifier>
+			<Abstract type="html">Creates a delegate proxy capable of responding to selectors from protocol.</Abstract>
+			<DeclaredIn>RACDelegateProxy.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithProtocol:(Protocol *)protocol</Declaration>
+			
+			
+			<Anchor>//api/name/initWithProtocol:</Anchor>
+            <NodeRef refid="98"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACDelegateProxy/signalForSelector:</TokenIdentifier>
+			<Abstract type="html">Calls -rac_signalForSelector:fromProtocol: using the protocol specified
+during initialization.</Abstract>
+			<DeclaredIn>RACDelegateProxy.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)signalForSelector:(SEL)selector</Declaration>
+			
+			
+			<Anchor>//api/name/signalForSelector:</Anchor>
+            <NodeRef refid="98"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

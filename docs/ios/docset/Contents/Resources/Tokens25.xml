@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMSpecialsCollectionViewController.html">
+	<File path="Classes/MBRoundProgressView.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMSpecialsCollectionViewController</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MBRoundProgressView</TokenIdentifier>
+			<Abstract type="html">A progress view for showing definite progress by filling up a circle (pie chart).</Abstract>
+			<DeclaredIn>MBProgressHUD.h</DeclaredIn>
             
 			
 			<NodeRef refid="25"/>
@@ -13,158 +13,116 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/addShowType:</TokenIdentifier>
-			<Abstract type="html">Adds a Special type to show, and reloads the view as Needed.</Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MBRoundProgressView/setProgress:</TokenIdentifier>
+			<Abstract type="html">Progress (0.0 to 1.0)</Abstract>
+			<DeclaredIn>MBProgressHUD.h</DeclaredIn>
 			
-			<Declaration>- (void)addShowType:(NSString *)type</Declaration>
+			<Declaration>@property (nonatomic, assign) float progress</Declaration>
 			
 			
-			<Anchor>//api/name/addShowType:</Anchor>
+			<Anchor>//api/name/progress</Anchor>
             <NodeRef refid="25"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/removeShowType:</TokenIdentifier>
-			<Abstract type="html">Removes a Special type to show, and reloads the view as Needed.</Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MBRoundProgressView/progress</TokenIdentifier>
+			<Abstract type="html">Progress (0.0 to 1.0)</Abstract>
+			<DeclaredIn>MBProgressHUD.h</DeclaredIn>
 			
-			<Declaration>- (void)removeShowType:(NSString *)type</Declaration>
+			<Declaration>@property (nonatomic, assign) float progress</Declaration>
 			
 			
-			<Anchor>//api/name/removeShowType:</Anchor>
+			<Anchor>//api/name/progress</Anchor>
             <NodeRef refid="25"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/containsShowType:</TokenIdentifier>
-			<Abstract type="html">Checks if a Type is &quot;Currently&quot; being displayed.</Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/MBRoundProgressView/progress</TokenIdentifier>
+			<Abstract type="html">Progress (0.0 to 1.0)</Abstract>
+			<DeclaredIn>MBProgressHUD.h</DeclaredIn>
 			
-			<Declaration>- (bool)containsShowType:(NSString *)type</Declaration>
+			<Declaration>@property (nonatomic, assign) float progress</Declaration>
 			
 			
-			<Anchor>//api/name/containsShowType:</Anchor>
+			<Anchor>//api/name/progress</Anchor>
             <NodeRef refid="25"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/loadWeek:</TokenIdentifier>
-			<Abstract type="html">Loads 7 days from the date specified</Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MBRoundProgressView/setProgressTintColor:</TokenIdentifier>
+			<Abstract type="html">Indicator progress color.
+Defaults to white [UIColor whiteColor]</Abstract>
+			<DeclaredIn>MBProgressHUD.h</DeclaredIn>
 			
-			<Declaration>- (void)loadWeek:(NSDate *)date</Declaration>
+			<Declaration>@property (nonatomic, MB_STRONG) UIColor *progressTintColor</Declaration>
 			
 			
-			<Anchor>//api/name/loadWeek:</Anchor>
+			<Anchor>//api/name/progressTintColor</Anchor>
             <NodeRef refid="25"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/setupToolbar</TokenIdentifier>
-			<Abstract type="html">Sets up the custom toolbar with all buttons, search bar and adds it to the view.</Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MBRoundProgressView/progressTintColor</TokenIdentifier>
+			<Abstract type="html">Indicator progress color.
+Defaults to white [UIColor whiteColor]</Abstract>
+			<DeclaredIn>MBProgressHUD.h</DeclaredIn>
 			
-			<Declaration>- (void)setupToolbar</Declaration>
+			<Declaration>@property (nonatomic, MB_STRONG) UIColor *progressTintColor</Declaration>
 			
 			
-			<Anchor>//api/name/setupToolbar</Anchor>
+			<Anchor>//api/name/progressTintColor</Anchor>
             <NodeRef refid="25"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/filter:</TokenIdentifier>
-			<Abstract type="html">Loads the popover for the user when they click filter</Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/MBRoundProgressView/progressTintColor</TokenIdentifier>
+			<Abstract type="html">Indicator progress color.
+Defaults to white [UIColor whiteColor]</Abstract>
+			<DeclaredIn>MBProgressHUD.h</DeclaredIn>
 			
-			<Declaration>- (void)filter:(UIBarButtonItem *)sender</Declaration>
+			<Declaration>@property (nonatomic, MB_STRONG) UIColor *progressTintColor</Declaration>
 			
 			
-			<Anchor>//api/name/filter:</Anchor>
+			<Anchor>//api/name/progressTintColor</Anchor>
             <NodeRef refid="25"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/week:</TokenIdentifier>
-			<Abstract type="html">Loads the popover when the user clicks the week button</Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MBRoundProgressView/setBackgroundTintColor:</TokenIdentifier>
+			<Abstract type="html">Indicator background (nonprogress color.
+Defaults to translucent white (alpha 0.1)</Abstract>
+			<DeclaredIn>MBProgressHUD.h</DeclaredIn>
 			
-			<Declaration>- (void)week:(UIBarButtonItem *)sender</Declaration>
+			<Declaration>@property (nonatomic, MB_STRONG) UIColor *backgroundTintColor</Declaration>
 			
 			
-			<Anchor>//api/name/week:</Anchor>
+			<Anchor>//api/name/backgroundTintColor</Anchor>
             <NodeRef refid="25"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/loadDate:</TokenIdentifier>
-			<Abstract type="html">Request specials for a given day. Uses the specialsType defined in the showTypes Array.</Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/MBRoundProgressView/backgroundTintColor</TokenIdentifier>
+			<Abstract type="html">Indicator background (nonprogress color.
+Defaults to translucent white (alpha 0.1)</Abstract>
+			<DeclaredIn>MBProgressHUD.h</DeclaredIn>
 			
-			<Declaration>- (void)loadDate:(NSDate *)date</Declaration>
+			<Declaration>@property (nonatomic, MB_STRONG) UIColor *backgroundTintColor</Declaration>
 			
 			
-			<Anchor>//api/name/loadDate:</Anchor>
+			<Anchor>//api/name/backgroundTintColor</Anchor>
             <NodeRef refid="25"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/loadDate:forType:</TokenIdentifier>
-			<Abstract type="html">Request specials for a given day, with a Given Type</Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/MBRoundProgressView/backgroundTintColor</TokenIdentifier>
+			<Abstract type="html">Indicator background (nonprogress color.
+Defaults to translucent white (alpha 0.1)</Abstract>
+			<DeclaredIn>MBProgressHUD.h</DeclaredIn>
 			
-			<Declaration>- (void)loadDate:(NSDate *)date forType:(NSString *)type</Declaration>
-			
-			
-			<Anchor>//api/name/loadDate:forType:</Anchor>
-            <NodeRef refid="25"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/getCurrentDatePlusDays:</TokenIdentifier>
-			<Abstract type="html">Returns a New Date from the current date + the number of days specified.</Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
-			
-			<Declaration>- (NSDate *)getCurrentDatePlusDays:(NSUInteger)days</Declaration>
+			<Declaration>@property (nonatomic, MB_STRONG) UIColor *backgroundTintColor</Declaration>
 			
 			
-			<Anchor>//api/name/getCurrentDatePlusDays:</Anchor>
-            <NodeRef refid="25"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/getDate:PlusDays:</TokenIdentifier>
-			<Abstract type="html">Returns a New Date from the date specified + the number of days specified.</Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
-			
-			<Declaration>- (NSDate *)getDate:(NSDate *)date PlusDays:(NSUInteger)days</Declaration>
-			
-			
-			<Anchor>//api/name/getDate:PlusDays:</Anchor>
-            <NodeRef refid="25"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/didRetrieveSpecials:forDate:withResponse:</TokenIdentifier>
-			<Abstract type="html">The DBFetcher Sends our info here. We need the date to place it accordingly.</Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
-			
-			<Declaration>- (void)didRetrieveSpecials:(NSArray *)webSpecials forDate:(NSDate *)date withResponse:(MMDBFetcherResponse *)response</Declaration>
-			
-			
-			<Anchor>//api/name/didRetrieveSpecials:forDate:withResponse:</Anchor>
-            <NodeRef refid="25"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCollectionViewController/prepareForSegue:sender:</TokenIdentifier>
-			<Abstract type="html">Prepares for the popup window, sets up the proper types needed.</Abstract>
-			<DeclaredIn>MMSpecialsCollectionViewController.m</DeclaredIn>
-			
-			<Declaration>- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender</Declaration>
-			
-			
-			<Anchor>//api/name/prepareForSegue:sender:</Anchor>
+			<Anchor>//api/name/backgroundTintColor</Anchor>
             <NodeRef refid="25"/>
 		</Token>
 		

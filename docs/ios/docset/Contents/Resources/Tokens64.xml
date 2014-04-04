@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMRegistrationPopoverViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMRegistrationPopoverViewController</TokenIdentifier>
+			<Abstract type="html">Registration Popover View Controller class.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="64"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/setCities:</TokenIdentifier>
+			<Abstract type="html">*  The Cities the user can choose from</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *cities</Declaration>
+			
+			
+			<Anchor>//api/name/cities</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/cities</TokenIdentifier>
+			<Abstract type="html">*  The Cities the user can choose from</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *cities</Declaration>
+			
+			
+			<Anchor>//api/name/cities</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationPopoverViewController/cities</TokenIdentifier>
+			<Abstract type="html">*  The Cities the user can choose from</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *cities</Declaration>
+			
+			
+			<Anchor>//api/name/cities</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/setProvinces:</TokenIdentifier>
+			<Abstract type="html">*   Provinces the users can choose from</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *provinces</Declaration>
+			
+			
+			<Anchor>//api/name/provinces</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/provinces</TokenIdentifier>
+			<Abstract type="html">*   Provinces the users can choose from</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *provinces</Declaration>
+			
+			
+			<Anchor>//api/name/provinces</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationPopoverViewController/provinces</TokenIdentifier>
+			<Abstract type="html">*   Provinces the users can choose from</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *provinces</Declaration>
+			
+			
+			<Anchor>//api/name/provinces</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/setGender:</TokenIdentifier>
+			<Abstract type="html">*  Genders the user can choose from</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *gender</Declaration>
+			
+			
+			<Anchor>//api/name/gender</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/gender</TokenIdentifier>
+			<Abstract type="html">*  Genders the user can choose from</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *gender</Declaration>
+			
+			
+			<Anchor>//api/name/gender</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationPopoverViewController/gender</TokenIdentifier>
+			<Abstract type="html">*  Genders the user can choose from</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *gender</Declaration>
+			
+			
+			<Anchor>//api/name/gender</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/setCityPicker:</TokenIdentifier>
+			<Abstract type="html">*  The UIPickerView for city selection.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIPickerView *cityPicker</Declaration>
+			
+			
+			<Anchor>//api/name/cityPicker</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/cityPicker</TokenIdentifier>
+			<Abstract type="html">*  The UIPickerView for city selection.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIPickerView *cityPicker</Declaration>
+			
+			
+			<Anchor>//api/name/cityPicker</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationPopoverViewController/cityPicker</TokenIdentifier>
+			<Abstract type="html">*  The UIPickerView for city selection.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIPickerView *cityPicker</Declaration>
+			
+			
+			<Anchor>//api/name/cityPicker</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/setProvPicker:</TokenIdentifier>
+			<Abstract type="html">*  The UIPickerView for Province Selection</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIPickerView *provPicker</Declaration>
+			
+			
+			<Anchor>//api/name/provPicker</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/provPicker</TokenIdentifier>
+			<Abstract type="html">*  The UIPickerView for Province Selection</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIPickerView *provPicker</Declaration>
+			
+			
+			<Anchor>//api/name/provPicker</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationPopoverViewController/provPicker</TokenIdentifier>
+			<Abstract type="html">*  The UIPickerView for Province Selection</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIPickerView *provPicker</Declaration>
+			
+			
+			<Anchor>//api/name/provPicker</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/setGenderPicker:</TokenIdentifier>
+			<Abstract type="html">*  The UIPickerView for gender selection.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIPickerView *genderPicker</Declaration>
+			
+			
+			<Anchor>//api/name/genderPicker</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/genderPicker</TokenIdentifier>
+			<Abstract type="html">*  The UIPickerView for gender selection.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIPickerView *genderPicker</Declaration>
+			
+			
+			<Anchor>//api/name/genderPicker</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationPopoverViewController/genderPicker</TokenIdentifier>
+			<Abstract type="html">*  The UIPickerView for gender selection.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIPickerView *genderPicker</Declaration>
+			
+			
+			<Anchor>//api/name/genderPicker</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/setBirthdayPicker:</TokenIdentifier>
+			<Abstract type="html">*  UIDatePicker for birthday.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIDatePicker *birthdayPicker</Declaration>
+			
+			
+			<Anchor>//api/name/birthdayPicker</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/birthdayPicker</TokenIdentifier>
+			<Abstract type="html">*  UIDatePicker for birthday.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIDatePicker *birthdayPicker</Declaration>
+			
+			
+			<Anchor>//api/name/birthdayPicker</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationPopoverViewController/birthdayPicker</TokenIdentifier>
+			<Abstract type="html">*  UIDatePicker for birthday.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIDatePicker *birthdayPicker</Declaration>
+			
+			
+			<Anchor>//api/name/birthdayPicker</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/setPopoverValue:</TokenIdentifier>
+			<Abstract type="html">*  Selected value which the user chose, depending on the view</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (readwrite) MMPopoverDataPair *popoverValue</Declaration>
+			
+			
+			<Anchor>//api/name/popoverValue</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/popoverValue</TokenIdentifier>
+			<Abstract type="html">*  Selected value which the user chose, depending on the view</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (readwrite) MMPopoverDataPair *popoverValue</Declaration>
+			
+			
+			<Anchor>//api/name/popoverValue</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationPopoverViewController/popoverValue</TokenIdentifier>
+			<Abstract type="html">*  Selected value which the user chose, depending on the view</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (readwrite) MMPopoverDataPair *popoverValue</Declaration>
+			
+			
+			<Anchor>//api/name/popoverValue</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/setDelegate:</TokenIdentifier>
+			<Abstract type="html">*  Sets the Delegate for the popover controller</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) id&lt;MMRegistrationPopoverDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/delegate</TokenIdentifier>
+			<Abstract type="html">*  Sets the Delegate for the popover controller</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) id&lt;MMRegistrationPopoverDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRegistrationPopoverViewController/delegate</TokenIdentifier>
+			<Abstract type="html">*  Sets the Delegate for the popover controller</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) id&lt;MMRegistrationPopoverDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/updateSelectedBirthday</TokenIdentifier>
+			<Abstract type="html">*  Updates the selected birthday</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>- (void)updateSelectedBirthday</Declaration>
+			
+			
+			<Anchor>//api/name/updateSelectedBirthday</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRegistrationPopoverViewController/selectChoice:</TokenIdentifier>
+			<Abstract type="html">*  Selected choice is registered.</Abstract>
+			<DeclaredIn>MMRegistrationPopoverViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)selectChoice:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/selectChoice:</Anchor>
+            <NodeRef refid="64"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UISearchBar+RAC.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UISearchBar(RAC)</TokenIdentifier>
+			<Abstract type="html">Adds ReactiveCocoa support to search bars</Abstract>
+			<DeclaredIn>UISearchBar+RAC.h</DeclaredIn>
+            
+			
+			<NodeRef refid="186"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UISearchBar/rac_textSignal</TokenIdentifier>
+			<Abstract type="html">A signal that is emitted when the text in
+a search bar is updated by a user. Is not
+emitted if text property of search bar is
+edited programatically.</Abstract>
+			<DeclaredIn>UISearchBar+RAC.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)rac_textSignal</Declaration>
+			
+			
+			<Anchor>//api/name/rac_textSignal</Anchor>
+            <NodeRef refid="186"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

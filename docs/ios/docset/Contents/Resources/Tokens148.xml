@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/TSQTACalendarRowCell.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/TSQTACalendarRowCell</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>TSQTACalendarRowCell.h</DeclaredIn>
+            
+			
+			<NodeRef refid="148"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQTACalendarRowCell/layoutViewsForColumnAtIndex:inRect:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>TSQTACalendarRowCell.m</DeclaredIn>
+			
+			<Declaration>- (void)layoutViewsForColumnAtIndex:(NSUInteger)index inRect:(CGRect)rect</Declaration>
+			
+			
+			<Anchor>//api/name/layoutViewsForColumnAtIndex:inRect:</Anchor>
+            <NodeRef refid="148"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

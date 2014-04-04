@@ -1,16 +1,472 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMUser.html">
+	<File path="Classes/MMAccountViewController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMUser</TokenIdentifier>
-			<Abstract type="html">This class represents a user, for the table http://mymenuapp.ca/rest/users</Abstract>
-			<DeclaredIn>MMUser.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMAccountViewController</TokenIdentifier>
+			<Abstract type="html">Controller for the settings view</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
             
 			
 			<NodeRef refid="27"/>
 		</Token>
 		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/setEmailAddressField:</TokenIdentifier>
+			<Abstract type="html">Email Adress field</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *emailAddressField</Declaration>
+			
+			
+			<Anchor>//api/name/emailAddressField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/emailAddressField</TokenIdentifier>
+			<Abstract type="html">Email Adress field</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *emailAddressField</Declaration>
+			
+			
+			<Anchor>//api/name/emailAddressField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMAccountViewController/emailAddressField</TokenIdentifier>
+			<Abstract type="html">Email Adress field</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *emailAddressField</Declaration>
+			
+			
+			<Anchor>//api/name/emailAddressField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/setGivenNameField:</TokenIdentifier>
+			<Abstract type="html">First Name View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *givenNameField</Declaration>
+			
+			
+			<Anchor>//api/name/givenNameField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/givenNameField</TokenIdentifier>
+			<Abstract type="html">First Name View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *givenNameField</Declaration>
+			
+			
+			<Anchor>//api/name/givenNameField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMAccountViewController/givenNameField</TokenIdentifier>
+			<Abstract type="html">First Name View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *givenNameField</Declaration>
+			
+			
+			<Anchor>//api/name/givenNameField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/setSurnameField:</TokenIdentifier>
+			<Abstract type="html">Last Name View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *surnameField</Declaration>
+			
+			
+			<Anchor>//api/name/surnameField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/surnameField</TokenIdentifier>
+			<Abstract type="html">Last Name View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *surnameField</Declaration>
+			
+			
+			<Anchor>//api/name/surnameField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMAccountViewController/surnameField</TokenIdentifier>
+			<Abstract type="html">Last Name View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *surnameField</Declaration>
+			
+			
+			<Anchor>//api/name/surnameField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/setUpdatedPasswordField:</TokenIdentifier>
+			<Abstract type="html">New Password View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *updatedPasswordField</Declaration>
+			
+			
+			<Anchor>//api/name/updatedPasswordField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/updatedPasswordField</TokenIdentifier>
+			<Abstract type="html">New Password View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *updatedPasswordField</Declaration>
+			
+			
+			<Anchor>//api/name/updatedPasswordField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMAccountViewController/updatedPasswordField</TokenIdentifier>
+			<Abstract type="html">New Password View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *updatedPasswordField</Declaration>
+			
+			
+			<Anchor>//api/name/updatedPasswordField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/setConfirmPasswordField:</TokenIdentifier>
+			<Abstract type="html">Confirm New Password View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *confirmPasswordField</Declaration>
+			
+			
+			<Anchor>//api/name/confirmPasswordField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/confirmPasswordField</TokenIdentifier>
+			<Abstract type="html">Confirm New Password View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *confirmPasswordField</Declaration>
+			
+			
+			<Anchor>//api/name/confirmPasswordField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMAccountViewController/confirmPasswordField</TokenIdentifier>
+			<Abstract type="html">Confirm New Password View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *confirmPasswordField</Declaration>
+			
+			
+			<Anchor>//api/name/confirmPasswordField</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/setDefaultCity:</TokenIdentifier>
+			<Abstract type="html">Default Location View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *defaultCity</Declaration>
+			
+			
+			<Anchor>//api/name/defaultCity</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/defaultCity</TokenIdentifier>
+			<Abstract type="html">Default Location View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *defaultCity</Declaration>
+			
+			
+			<Anchor>//api/name/defaultCity</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMAccountViewController/defaultCity</TokenIdentifier>
+			<Abstract type="html">Default Location View</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *defaultCity</Declaration>
+			
+			
+			<Anchor>//api/name/defaultCity</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/setDefaultLocality:</TokenIdentifier>
+			<Abstract type="html">Province Field</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *defaultLocality</Declaration>
+			
+			
+			<Anchor>//api/name/defaultLocality</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/defaultLocality</TokenIdentifier>
+			<Abstract type="html">Province Field</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *defaultLocality</Declaration>
+			
+			
+			<Anchor>//api/name/defaultLocality</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMAccountViewController/defaultLocality</TokenIdentifier>
+			<Abstract type="html">Province Field</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextField *defaultLocality</Declaration>
+			
+			
+			<Anchor>//api/name/defaultLocality</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/setChangePasswordButton:</TokenIdentifier>
+			<Abstract type="html">Button to update your password</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *changePasswordButton</Declaration>
+			
+			
+			<Anchor>//api/name/changePasswordButton</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/changePasswordButton</TokenIdentifier>
+			<Abstract type="html">Button to update your password</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *changePasswordButton</Declaration>
+			
+			
+			<Anchor>//api/name/changePasswordButton</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMAccountViewController/changePasswordButton</TokenIdentifier>
+			<Abstract type="html">Button to update your password</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *changePasswordButton</Declaration>
+			
+			
+			<Anchor>//api/name/changePasswordButton</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/setUpdateLocationButton:</TokenIdentifier>
+			<Abstract type="html">BUtton to change your location</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *updateLocationButton</Declaration>
+			
+			
+			<Anchor>//api/name/updateLocationButton</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/updateLocationButton</TokenIdentifier>
+			<Abstract type="html">BUtton to change your location</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *updateLocationButton</Declaration>
+			
+			
+			<Anchor>//api/name/updateLocationButton</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMAccountViewController/updateLocationButton</TokenIdentifier>
+			<Abstract type="html">BUtton to change your location</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *updateLocationButton</Declaration>
+			
+			
+			<Anchor>//api/name/updateLocationButton</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/setNavigationPaneBarButtonItem:</TokenIdentifier>
+			<Abstract type="html">Button to pull out list on left side when in portrait mode</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem</Declaration>
+			
+			
+			<Anchor>//api/name/navigationPaneBarButtonItem</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/navigationPaneBarButtonItem</TokenIdentifier>
+			<Abstract type="html">Button to pull out list on left side when in portrait mode</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem</Declaration>
+			
+			
+			<Anchor>//api/name/navigationPaneBarButtonItem</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMAccountViewController/navigationPaneBarButtonItem</TokenIdentifier>
+			<Abstract type="html">Button to pull out list on left side when in portrait mode</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIBarButtonItem *navigationPaneBarButtonItem</Declaration>
+			
+			
+			<Anchor>//api/name/navigationPaneBarButtonItem</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/setLocationPopoverController:</TokenIdentifier>
+			<Abstract type="html">Reference to the location popover controller.</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *locationPopoverController</Declaration>
+			
+			
+			<Anchor>//api/name/locationPopoverController</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/locationPopoverController</TokenIdentifier>
+			<Abstract type="html">Reference to the location popover controller.</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *locationPopoverController</Declaration>
+			
+			
+			<Anchor>//api/name/locationPopoverController</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMAccountViewController/locationPopoverController</TokenIdentifier>
+			<Abstract type="html">Reference to the location popover controller.</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *locationPopoverController</Declaration>
+			
+			
+			<Anchor>//api/name/locationPopoverController</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/updatePassword:</TokenIdentifier>
+			<Abstract type="html">Saves the users new password</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)updatePassword:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/updatePassword:</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/updateDefaultLocation:</TokenIdentifier>
+			<Abstract type="html">Saves the users new locations</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)updateDefaultLocation:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/updateDefaultLocation:</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/logout:</TokenIdentifier>
+			<Abstract type="html">Logs the current user out.</Abstract>
+			<DeclaredIn>MMAccountViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)logout:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/logout:</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/didSelectCity:</TokenIdentifier>
+			<Abstract type="html">* Send the selected value of the city from</Abstract>
+			<DeclaredIn>MMAccountViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)didSelectCity:(NSString *)city</Declaration>
+			
+			
+			<Anchor>//api/name/didSelectCity:</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMAccountViewController/didSelectProvince:</TokenIdentifier>
+			<Abstract type="html">* Send the selected value of the province from</Abstract>
+			<DeclaredIn>MMAccountViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)didSelectProvince:(NSString *)province</Declaration>
+			
+			
+			<Anchor>//api/name/didSelectProvince:</Anchor>
+            <NodeRef refid="27"/>
+		</Token>
 		
         
 	</File>

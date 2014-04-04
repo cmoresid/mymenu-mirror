@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACQueueScheduler.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACQueueScheduler</TokenIdentifier>
+			<Abstract type="html">An abstract scheduler which asynchronously enqueues all its work to a Grand
+Central Dispatch queue.</Abstract>
+			<DeclaredIn>RACQueueScheduler.h</DeclaredIn>
+            
+			
+			<NodeRef refid="115"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACQueueScheduler/initWithName:queue:</TokenIdentifier>
+			<Abstract type="html">Initializes the receiver with the name of the scheduler and the queue which
+the scheduler should use.</Abstract>
+			<DeclaredIn>RACQueueScheduler+Subclass.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithName:(NSString *)name queue:(dispatch_queue_t)queue</Declaration>
+			
+			
+			<Anchor>//api/name/initWithName:queue:</Anchor>
+            <NodeRef refid="115"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACQueueScheduler/wallTimeWithDate:</TokenIdentifier>
+			<Abstract type="html">Converts a date into a GCD time using dispatch_walltime().</Abstract>
+			<DeclaredIn>RACQueueScheduler+Subclass.h</DeclaredIn>
+			
+			<Declaration>+ (dispatch_time_t)wallTimeWithDate:(NSDate *)date</Declaration>
+			
+			
+			<Anchor>//api/name/wallTimeWithDate:</Anchor>
+            <NodeRef refid="115"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACQueueScheduler/schedule:</TokenIdentifier>
+			<Abstract type="html">Schedule the given block for execution on the scheduler.</Abstract>
+			<DeclaredIn>RACQueueScheduler.m</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)schedule:(void ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/schedule:</Anchor>
+            <NodeRef refid="115"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACQueueScheduler/after:schedule:</TokenIdentifier>
+			<Abstract type="html">Schedule the given block for execution on the scheduler at or after
+a specific time.</Abstract>
+			<DeclaredIn>RACQueueScheduler.m</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)after:(NSDate *)date schedule:(void ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/after:schedule:</Anchor>
+            <NodeRef refid="115"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACQueueScheduler/after:repeatingEvery:withLeeway:schedule:</TokenIdentifier>
+			<Abstract type="html">Reschedule the given block at a particular interval, starting at a specific
+time, and with a given leeway for deferral.</Abstract>
+			<DeclaredIn>RACQueueScheduler.m</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)after:(NSDate *)date repeatingEvery:(NSTimeInterval)interval withLeeway:(NSTimeInterval)leeway schedule:(void ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/after:repeatingEvery:withLeeway:schedule:</Anchor>
+            <NodeRef refid="115"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACQueueScheduler/performAsCurrentScheduler:</TokenIdentifier>
+			<Abstract type="html">Performs the given block with the receiver as the current scheduler for
+queue. This should only be called by subclasses to perform scheduled blocks
+on their queue.</Abstract>
+			<DeclaredIn>RACQueueScheduler+Subclass.h</DeclaredIn>
+			
+			<Declaration>- (void)performAsCurrentScheduler:(void ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/performAsCurrentScheduler:</Anchor>
+            <NodeRef refid="115"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACQueueScheduler/setQueue:</TokenIdentifier>
+			<Abstract type="html">The queue on which blocks are enqueued.</Abstract>
+			<DeclaredIn>RACQueueScheduler+Subclass.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) dispatch_queue_t queue</Declaration>
+			
+			
+			<Anchor>//api/name/queue</Anchor>
+            <NodeRef refid="115"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACQueueScheduler/queue</TokenIdentifier>
+			<Abstract type="html">The queue on which blocks are enqueued.</Abstract>
+			<DeclaredIn>RACQueueScheduler+Subclass.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) dispatch_queue_t queue</Declaration>
+			
+			
+			<Anchor>//api/name/queue</Anchor>
+            <NodeRef refid="115"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACQueueScheduler/queue</TokenIdentifier>
+			<Abstract type="html">The queue on which blocks are enqueued.</Abstract>
+			<DeclaredIn>RACQueueScheduler+Subclass.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) dispatch_queue_t queue</Declaration>
+			
+			
+			<Anchor>//api/name/queue</Anchor>
+            <NodeRef refid="115"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

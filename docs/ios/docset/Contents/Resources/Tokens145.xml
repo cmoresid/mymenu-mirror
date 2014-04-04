@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/TSQCalendarMonthHeaderCell.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/TSQCalendarMonthHeaderCell</TokenIdentifier>
+			<Abstract type="html">The TSQCalendarMonthHeaderCell class displays the month name and day names at the top of a month&apos;s worth of weeks.</Abstract>
+			<DeclaredIn>TSQCalendarMonthHeaderCell.h</DeclaredIn>
+            
+			
+			<NodeRef refid="145"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarMonthHeaderCell/setHeaderLabels:</TokenIdentifier>
+			<Abstract type="html">The day header labels.</Abstract>
+			<DeclaredIn>TSQCalendarMonthHeaderCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *headerLabels</Declaration>
+			
+			
+			<Anchor>//api/name/headerLabels</Anchor>
+            <NodeRef refid="145"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarMonthHeaderCell/headerLabels</TokenIdentifier>
+			<Abstract type="html">The day header labels.</Abstract>
+			<DeclaredIn>TSQCalendarMonthHeaderCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *headerLabels</Declaration>
+			
+			
+			<Anchor>//api/name/headerLabels</Anchor>
+            <NodeRef refid="145"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/TSQCalendarMonthHeaderCell/headerLabels</TokenIdentifier>
+			<Abstract type="html">The day header labels.</Abstract>
+			<DeclaredIn>TSQCalendarMonthHeaderCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *headerLabels</Declaration>
+			
+			
+			<Anchor>//api/name/headerLabels</Anchor>
+            <NodeRef refid="145"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarMonthHeaderCell/createHeaderLabels</TokenIdentifier>
+			<Abstract type="html">Creates the header labels.</Abstract>
+			<DeclaredIn>TSQCalendarMonthHeaderCell.h</DeclaredIn>
+			
+			<Declaration>- (void)createHeaderLabels</Declaration>
+			
+			
+			<Anchor>//api/name/createHeaderLabels</Anchor>
+            <NodeRef refid="145"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarMonthHeaderCell/initWithCalendar:reuseIdentifier:</TokenIdentifier>
+			<Abstract type="html">Initializes the cell.</Abstract>
+			<DeclaredIn>TSQCalendarMonthHeaderCell.m</DeclaredIn>
+			
+			<Declaration>- (id)initWithCalendar:(NSCalendar *)calendar reuseIdentifier:(NSString *)reuseIdentifier</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>calendar</Name>
+					<Abstract type="html">The NSCalendar the cell is representing</Abstract>
+				</Parameter><Parameter>
+					<Name>reuseIdentifier</Name>
+					<Abstract type="html">A string reuse identifier, as used by UITableViewCell</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initWithCalendar:reuseIdentifier:</Anchor>
+            <NodeRef refid="145"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/TSQCalendarMonthHeaderCell/cellHeight</TokenIdentifier>
+			<Abstract type="html">The preferred height for instances of this cell.</Abstract>
+			<DeclaredIn>TSQCalendarMonthHeaderCell.m</DeclaredIn>
+			
+			<Declaration>+ (CGFloat)cellHeight</Declaration>
+			
+			
+			<Anchor>//api/name/cellHeight</Anchor>
+            <NodeRef refid="145"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarMonthHeaderCell/layoutViewsForColumnAtIndex:inRect:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>TSQCalendarMonthHeaderCell.m</DeclaredIn>
+			
+			<Declaration>- (void)layoutViewsForColumnAtIndex:(NSUInteger)index inRect:(CGRect)rect</Declaration>
+			
+			
+			<Anchor>//api/name/layoutViewsForColumnAtIndex:inRect:</Anchor>
+            <NodeRef refid="145"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TSQCalendarMonthHeaderCell/setFirstOfMonth:</TokenIdentifier>
+			<Abstract type="html">The first day of the month this cell is currently representing.</Abstract>
+			<DeclaredIn>TSQCalendarMonthHeaderCell.m</DeclaredIn>
+			
+			<Declaration>- (void)setFirstOfMonth:(NSDate *)firstOfMonth</Declaration>
+			
+			
+			<Anchor>//api/name/setFirstOfMonth:</Anchor>
+            <NodeRef refid="145"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

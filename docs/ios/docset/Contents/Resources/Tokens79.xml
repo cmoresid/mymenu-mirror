@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMSpecialsCalendarViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMSpecialsCalendarViewController</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MMSpecialsCalendarViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="79"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCalendarViewController/setSelectedDate:</TokenIdentifier>
+			<Abstract type="html">*   The selected week</Abstract>
+			<DeclaredIn>MMSpecialsCalendarViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSDate *selectedDate</Declaration>
+			
+			
+			<Anchor>//api/name/selectedDate</Anchor>
+            <NodeRef refid="79"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCalendarViewController/selectedDate</TokenIdentifier>
+			<Abstract type="html">*   The selected week</Abstract>
+			<DeclaredIn>MMSpecialsCalendarViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSDate *selectedDate</Declaration>
+			
+			
+			<Anchor>//api/name/selectedDate</Anchor>
+            <NodeRef refid="79"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCalendarViewController/selectedDate</TokenIdentifier>
+			<Abstract type="html">*   The selected week</Abstract>
+			<DeclaredIn>MMSpecialsCalendarViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSDate *selectedDate</Declaration>
+			
+			
+			<Anchor>//api/name/selectedDate</Anchor>
+            <NodeRef refid="79"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCalendarViewController/setSpecialsCollectionController:</TokenIdentifier>
+			<Abstract type="html">*  The controller we are in (Always MMSpecialsCollectionViewController</Abstract>
+			<DeclaredIn>MMSpecialsCalendarViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readwrite) MMSpecialsCollectionViewController *specialsCollectionController</Declaration>
+			
+			
+			<Anchor>//api/name/specialsCollectionController</Anchor>
+            <NodeRef refid="79"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCalendarViewController/specialsCollectionController</TokenIdentifier>
+			<Abstract type="html">*  The controller we are in (Always MMSpecialsCollectionViewController</Abstract>
+			<DeclaredIn>MMSpecialsCalendarViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readwrite) MMSpecialsCollectionViewController *specialsCollectionController</Declaration>
+			
+			
+			<Anchor>//api/name/specialsCollectionController</Anchor>
+            <NodeRef refid="79"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCalendarViewController/specialsCollectionController</TokenIdentifier>
+			<Abstract type="html">*  The controller we are in (Always MMSpecialsCollectionViewController</Abstract>
+			<DeclaredIn>MMSpecialsCalendarViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readwrite) MMSpecialsCollectionViewController *specialsCollectionController</Declaration>
+			
+			
+			<Anchor>//api/name/specialsCollectionController</Anchor>
+            <NodeRef refid="79"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCalendarViewController/setCalendar:</TokenIdentifier>
+			<Abstract type="html">*  Used for Displaying the Calendar</Abstract>
+			<DeclaredIn>MMSpecialsCalendarViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSCalendar *calendar</Declaration>
+			
+			
+			<Anchor>//api/name/calendar</Anchor>
+            <NodeRef refid="79"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCalendarViewController/calendar</TokenIdentifier>
+			<Abstract type="html">*  Used for Displaying the Calendar</Abstract>
+			<DeclaredIn>MMSpecialsCalendarViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSCalendar *calendar</Declaration>
+			
+			
+			<Anchor>//api/name/calendar</Anchor>
+            <NodeRef refid="79"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMSpecialsCalendarViewController/calendar</TokenIdentifier>
+			<Abstract type="html">*  Used for Displaying the Calendar</Abstract>
+			<DeclaredIn>MMSpecialsCalendarViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSCalendar *calendar</Declaration>
+			
+			
+			<Anchor>//api/name/calendar</Anchor>
+            <NodeRef refid="79"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCalendarViewController/contentSizeForViewInPopover</TokenIdentifier>
+			<Abstract type="html">*  Required height for the tableview</Abstract>
+			<DeclaredIn>MMSpecialsCalendarViewController.h</DeclaredIn>
+			
+			<Declaration>- (CGSize)contentSizeForViewInPopover</Declaration>
+			
+			
+			<Anchor>//api/name/contentSizeForViewInPopover</Anchor>
+            <NodeRef refid="79"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMSpecialsCalendarViewController/calendarView:didSelectDate:</TokenIdentifier>
+			<Abstract type="html">Tells the delegate that a particular date was selected.</Abstract>
+			<DeclaredIn>MMSpecialsCalendarViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)calendarView:(TSQCalendarView *)calendarView didSelectDate:(NSDate *)date</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>calendarView</Name>
+					<Abstract type="html">The calendar view that is selecting a date.</Abstract>
+				</Parameter><Parameter>
+					<Name>date</Name>
+					<Abstract type="html">Midnight on the date being selected.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/calendarView:didSelectDate:</Anchor>
+            <NodeRef refid="79"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

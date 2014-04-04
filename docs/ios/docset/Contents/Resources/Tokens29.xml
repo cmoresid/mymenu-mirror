@@ -1,69 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMValidationManager.html">
+	<File path="Classes/MMBaseNavigationController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMValidationManager</TokenIdentifier>
-			<Abstract type="html">A class that manages a list of objects that conforms to
-MMValidatorProtocol. When you call the performValidation:
-selector, the validation manager will iterate through its list
-of validator objects and checks to see whether or not the validator
-object is valid. Every validator object that is not in a valid state,
-the validation message is returned.</Abstract>
-			<DeclaredIn>MMValidationManager.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMBaseNavigationController</TokenIdentifier>
+			<Abstract type="html">*  A subclass of UINavigationController which defines</Abstract>
+			<DeclaredIn>MMBaseNavigationController.h</DeclaredIn>
             
 			
 			<NodeRef refid="29"/>
 		</Token>
 		
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMValidationManager/getValidationMessagesAsArray</TokenIdentifier>
-			<Abstract type="html">Iterates through each of the validation objects and calls its
-isValid: selector. For every object that fails validation, its
-error message is added to an NSArray which holds all the validation
-error messages.</Abstract>
-			<DeclaredIn>MMValidationManager.h</DeclaredIn>
-			
-			<Declaration>- (NSArray *)getValidationMessagesAsArray</Declaration>
-			
-			<ReturnValue><Abstract type="html">A list of NSString objects that represent the
-validation error messages.</Abstract></ReturnValue>
-			<Anchor>//api/name/getValidationMessagesAsArray</Anchor>
-            <NodeRef refid="29"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMValidationManager/getValidationMessagesAsString</TokenIdentifier>
-			<Abstract type="html">Iterates through each of the validation objects and calls its
-isValid: selector. For every object that fails validation, its
-error message is added to an NSArray which holds all the validation
-error messages; which is then converted into a string.</Abstract>
-			<DeclaredIn>MMValidationManager.h</DeclaredIn>
-			
-			<Declaration>- (NSString *)getValidationMessagesAsString</Declaration>
-			
-			<ReturnValue><Abstract type="html">A string representing the error messages.</Abstract></ReturnValue>
-			<Anchor>//api/name/getValidationMessagesAsString</Anchor>
-            <NodeRef refid="29"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMValidationManager/addValidator:</TokenIdentifier>
-			<Abstract type="html">Adds a validator object to the current validation manager.</Abstract>
-			<DeclaredIn>MMValidationManager.h</DeclaredIn>
-			
-			<Declaration>- (void)addValidator:(id&lt;MMValidatorProtocol&gt;)validator</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>validator</Name>
-					<Abstract type="html">A validator object to be added to the validation manager.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/addValidator:</Anchor>
-            <NodeRef refid="29"/>
-		</Token>
 		
         
 	</File>

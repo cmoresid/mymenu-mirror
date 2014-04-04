@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIRefreshControl+RACCommandSupport.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIRefreshControl(RACCommandSupport)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UIRefreshControl+RACCommandSupport.h</DeclaredIn>
+            
+			
+			<NodeRef refid="185"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIRefreshControl/setRac_command:</TokenIdentifier>
+			<Abstract type="html">Manipulate the RACCommand property associated with this refresh control.</Abstract>
+			<DeclaredIn>UIRefreshControl+RACCommandSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) RACCommand *rac_command</Declaration>
+			
+			
+			<Anchor>//api/name/rac_command</Anchor>
+            <NodeRef refid="185"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIRefreshControl/rac_command</TokenIdentifier>
+			<Abstract type="html">Manipulate the RACCommand property associated with this refresh control.</Abstract>
+			<DeclaredIn>UIRefreshControl+RACCommandSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) RACCommand *rac_command</Declaration>
+			
+			
+			<Anchor>//api/name/rac_command</Anchor>
+            <NodeRef refid="185"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UIRefreshControl/rac_command</TokenIdentifier>
+			<Abstract type="html">Manipulate the RACCommand property associated with this refresh control.</Abstract>
+			<DeclaredIn>UIRefreshControl+RACCommandSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) RACCommand *rac_command</Declaration>
+			
+			
+			<Anchor>//api/name/rac_command</Anchor>
+            <NodeRef refid="185"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

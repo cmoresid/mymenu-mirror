@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACCommand.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACCommand</TokenIdentifier>
+			<Abstract type="html">A command is a signal triggered in response to some action, typically
+UI-related.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+            
+			
+			<NodeRef refid="96"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCommand/setExecutionSignals:</TokenIdentifier>
+			<Abstract type="html">A signal of the signals returned by successful invocations of execute:
+(i.e., while the receiver is enabled.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *executionSignals</Declaration>
+			
+			
+			<Anchor>//api/name/executionSignals</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCommand/executionSignals</TokenIdentifier>
+			<Abstract type="html">A signal of the signals returned by successful invocations of execute:
+(i.e., while the receiver is enabled.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *executionSignals</Declaration>
+			
+			
+			<Anchor>//api/name/executionSignals</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACCommand/executionSignals</TokenIdentifier>
+			<Abstract type="html">A signal of the signals returned by successful invocations of execute:
+(i.e., while the receiver is enabled.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *executionSignals</Declaration>
+			
+			
+			<Anchor>//api/name/executionSignals</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCommand/setExecuting:</TokenIdentifier>
+			<Abstract type="html">A signal of whether this command is currently executing.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *executing</Declaration>
+			
+			
+			<Anchor>//api/name/executing</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCommand/executing</TokenIdentifier>
+			<Abstract type="html">A signal of whether this command is currently executing.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *executing</Declaration>
+			
+			
+			<Anchor>//api/name/executing</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACCommand/executing</TokenIdentifier>
+			<Abstract type="html">A signal of whether this command is currently executing.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *executing</Declaration>
+			
+			
+			<Anchor>//api/name/executing</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCommand/setEnabled:</TokenIdentifier>
+			<Abstract type="html">A signal of whether this command is able to execute.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *enabled</Declaration>
+			
+			
+			<Anchor>//api/name/enabled</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCommand/enabled</TokenIdentifier>
+			<Abstract type="html">A signal of whether this command is able to execute.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *enabled</Declaration>
+			
+			
+			<Anchor>//api/name/enabled</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACCommand/enabled</TokenIdentifier>
+			<Abstract type="html">A signal of whether this command is able to execute.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *enabled</Declaration>
+			
+			
+			<Anchor>//api/name/enabled</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCommand/setErrors:</TokenIdentifier>
+			<Abstract type="html">Forwards any errors that occur within signals returned by execute:.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *errors</Declaration>
+			
+			
+			<Anchor>//api/name/errors</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCommand/errors</TokenIdentifier>
+			<Abstract type="html">Forwards any errors that occur within signals returned by execute:.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *errors</Declaration>
+			
+			
+			<Anchor>//api/name/errors</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACCommand/errors</TokenIdentifier>
+			<Abstract type="html">Forwards any errors that occur within signals returned by execute:.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *errors</Declaration>
+			
+			
+			<Anchor>//api/name/errors</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCommand/setAllowsConcurrentExecution:</TokenIdentifier>
+			<Abstract type="html">Whether the command allows multiple executions to proceed concurrently.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (atomic, assign) BOOL allowsConcurrentExecution</Declaration>
+			
+			
+			<Anchor>//api/name/allowsConcurrentExecution</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCommand/allowsConcurrentExecution</TokenIdentifier>
+			<Abstract type="html">Whether the command allows multiple executions to proceed concurrently.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (atomic, assign) BOOL allowsConcurrentExecution</Declaration>
+			
+			
+			<Anchor>//api/name/allowsConcurrentExecution</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACCommand/allowsConcurrentExecution</TokenIdentifier>
+			<Abstract type="html">Whether the command allows multiple executions to proceed concurrently.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>@property (atomic, assign) BOOL allowsConcurrentExecution</Declaration>
+			
+			
+			<Anchor>//api/name/allowsConcurrentExecution</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCommand/initWithSignalBlock:</TokenIdentifier>
+			<Abstract type="html">Invokes -initWithSignalBlock:enabled: with a nil enabledSignal.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithSignalBlock:(RACSignal *( ^ ) ( id input ))signalBlock</Declaration>
+			
+			
+			<Anchor>//api/name/initWithSignalBlock:</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCommand/initWithEnabled:signalBlock:</TokenIdentifier>
+			<Abstract type="html">Initializes a command that is conditionally enabled.</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithEnabled:(RACSignal *)enabledSignal signalBlock:(RACSignal *( ^ ) ( id input ))signalBlock</Declaration>
+			
+			
+			<Anchor>//api/name/initWithEnabled:signalBlock:</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACCommand/execute:</TokenIdentifier>
+			<Abstract type="html">If the receiver is enabled, this method will:</Abstract>
+			<DeclaredIn>RACCommand.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)execute:(id)input</Declaration>
+			
+			
+			<Anchor>//api/name/execute:</Anchor>
+            <NodeRef refid="96"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

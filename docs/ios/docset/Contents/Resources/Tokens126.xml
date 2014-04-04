@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACSubject.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACSubject</TokenIdentifier>
+			<Abstract type="html">A subject can be thought of as a signal that you can manually control by
+sending next, completed, and error.</Abstract>
+			<DeclaredIn>RACSubject.h</DeclaredIn>
+            
+			
+			<NodeRef refid="126"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSubject/subject</TokenIdentifier>
+			<Abstract type="html">Returns a new subject.</Abstract>
+			<DeclaredIn>RACSubject.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)subject</Declaration>
+			
+			
+			<Anchor>//api/name/subject</Anchor>
+            <NodeRef refid="126"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSubject/subscribe:</TokenIdentifier>
+			<Abstract type="html">Subscribes subscriber to changes on the receiver. The receiver defines which
+events it actually sends and in what situations the events are sent.</Abstract>
+			<DeclaredIn>RACSubject.m</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)subscribe:(id&lt;RACSubscriber&gt;)subscriber</Declaration>
+			
+			
+			<Anchor>//api/name/subscribe:</Anchor>
+            <NodeRef refid="126"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSubject/sendNext:</TokenIdentifier>
+			<Abstract type="html">Send the next value to subscribers.</Abstract>
+			<DeclaredIn>RACSubject.m</DeclaredIn>
+			
+			<Declaration>- (void)sendNext:(id)value</Declaration>
+			
+			
+			<Anchor>//api/name/sendNext:</Anchor>
+            <NodeRef refid="126"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSubject/sendError:</TokenIdentifier>
+			<Abstract type="html">Send the error to subscribers.</Abstract>
+			<DeclaredIn>RACSubject.m</DeclaredIn>
+			
+			<Declaration>- (void)sendError:(NSError *)error</Declaration>
+			
+			
+			<Anchor>//api/name/sendError:</Anchor>
+            <NodeRef refid="126"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSubject/sendCompleted</TokenIdentifier>
+			<Abstract type="html">Send completed to subscribers.</Abstract>
+			<DeclaredIn>RACSubject.m</DeclaredIn>
+			
+			<Declaration>- (void)sendCompleted</Declaration>
+			
+			
+			<Anchor>//api/name/sendCompleted</Anchor>
+            <NodeRef refid="126"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSubject/didSubscribeWithDisposable:</TokenIdentifier>
+			<Abstract type="html">Sends the subscriber a disposable that represents one of its subscriptions.</Abstract>
+			<DeclaredIn>RACSubject.m</DeclaredIn>
+			
+			<Declaration>- (void)didSubscribeWithDisposable:(RACDisposable *)d</Declaration>
+			
+			
+			<Anchor>//api/name/didSubscribeWithDisposable:</Anchor>
+            <NodeRef refid="126"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

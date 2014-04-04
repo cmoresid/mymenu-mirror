@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RestaurantCell.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RestaurantCell</TokenIdentifier>
+			<Abstract type="html">*  A custom table view cell that represents</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+            
+			
+			<NodeRef refid="139"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/setRestaurantNameLabel:</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the name of the restaurant.</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *restaurantNameLabel</Declaration>
+			
+			
+			<Anchor>//api/name/restaurantNameLabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/restaurantNameLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the name of the restaurant.</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *restaurantNameLabel</Declaration>
+			
+			
+			<Anchor>//api/name/restaurantNameLabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RestaurantCell/restaurantNameLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the name of the restaurant.</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *restaurantNameLabel</Declaration>
+			
+			
+			<Anchor>//api/name/restaurantNameLabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/setCategoryLabel:</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the category of the restaurant.</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *categoryLabel</Declaration>
+			
+			
+			<Anchor>//api/name/categoryLabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/categoryLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the category of the restaurant.</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *categoryLabel</Declaration>
+			
+			
+			<Anchor>//api/name/categoryLabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RestaurantCell/categoryLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the category of the restaurant.</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *categoryLabel</Declaration>
+			
+			
+			<Anchor>//api/name/categoryLabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/setRatinglabel:</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the rating of the restaurant.</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *ratinglabel</Declaration>
+			
+			
+			<Anchor>//api/name/ratinglabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/ratinglabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the rating of the restaurant.</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *ratinglabel</Declaration>
+			
+			
+			<Anchor>//api/name/ratinglabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RestaurantCell/ratinglabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the rating of the restaurant.</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *ratinglabel</Declaration>
+			
+			
+			<Anchor>//api/name/ratinglabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/setDistanceLabel:</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the distance from the</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *distanceLabel</Declaration>
+			
+			
+			<Anchor>//api/name/distanceLabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/distanceLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the distance from the</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *distanceLabel</Declaration>
+			
+			
+			<Anchor>//api/name/distanceLabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RestaurantCell/distanceLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the distance from the</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *distanceLabel</Declaration>
+			
+			
+			<Anchor>//api/name/distanceLabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/setAddressLabel:</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the address of the restaurant.</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *addressLabel</Declaration>
+			
+			
+			<Anchor>//api/name/addressLabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/addressLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the address of the restaurant.</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *addressLabel</Declaration>
+			
+			
+			<Anchor>//api/name/addressLabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RestaurantCell/addressLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the address of the restaurant.</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *addressLabel</Declaration>
+			
+			
+			<Anchor>//api/name/addressLabel</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/setRatingBg:</TokenIdentifier>
+			<Abstract type="html">*  The view that the rating label resides in. The background</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *ratingBg</Declaration>
+			
+			
+			<Anchor>//api/name/ratingBg</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/ratingBg</TokenIdentifier>
+			<Abstract type="html">*  The view that the rating label resides in. The background</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *ratingBg</Declaration>
+			
+			
+			<Anchor>//api/name/ratingBg</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RestaurantCell/ratingBg</TokenIdentifier>
+			<Abstract type="html">*  The view that the rating label resides in. The background</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *ratingBg</Declaration>
+			
+			
+			<Anchor>//api/name/ratingBg</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/setThumbnailImageView:</TokenIdentifier>
+			<Abstract type="html">*  The image view that contains a small thumbnail image</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *thumbnailImageView</Declaration>
+			
+			
+			<Anchor>//api/name/thumbnailImageView</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RestaurantCell/thumbnailImageView</TokenIdentifier>
+			<Abstract type="html">*  The image view that contains a small thumbnail image</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *thumbnailImageView</Declaration>
+			
+			
+			<Anchor>//api/name/thumbnailImageView</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RestaurantCell/thumbnailImageView</TokenIdentifier>
+			<Abstract type="html">*  The image view that contains a small thumbnail image</Abstract>
+			<DeclaredIn>RestaurantCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *thumbnailImageView</Declaration>
+			
+			
+			<Anchor>//api/name/thumbnailImageView</Anchor>
+            <NodeRef refid="139"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

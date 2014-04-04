@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACSequence.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACSequence</TokenIdentifier>
+			<Abstract type="html">Represents an immutable sequence of values. Unless otherwise specified, the
+sequences&apos; values are evaluated lazily on demand. Like Cocoa collections,
+sequences cannot contain nil.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+            
+			
+			<NodeRef refid="120"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/setHead:</TokenIdentifier>
+			<Abstract type="html">The first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) id head</Declaration>
+			
+			
+			<Anchor>//api/name/head</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/head</TokenIdentifier>
+			<Abstract type="html">The first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) id head</Declaration>
+			
+			
+			<Anchor>//api/name/head</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACSequence/head</TokenIdentifier>
+			<Abstract type="html">The first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) id head</Declaration>
+			
+			
+			<Anchor>//api/name/head</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/setTail:</TokenIdentifier>
+			<Abstract type="html">All but the first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSequence *tail</Declaration>
+			
+			
+			<Anchor>//api/name/tail</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/tail</TokenIdentifier>
+			<Abstract type="html">All but the first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSequence *tail</Declaration>
+			
+			
+			<Anchor>//api/name/tail</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACSequence/tail</TokenIdentifier>
+			<Abstract type="html">All but the first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSequence *tail</Declaration>
+			
+			
+			<Anchor>//api/name/tail</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/setArray:</TokenIdentifier>
+			<Abstract type="html">Evaluates the full sequence to produce an equivalently-sized array.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSArray *array</Declaration>
+			
+			
+			<Anchor>//api/name/array</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/array</TokenIdentifier>
+			<Abstract type="html">Evaluates the full sequence to produce an equivalently-sized array.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSArray *array</Declaration>
+			
+			
+			<Anchor>//api/name/array</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACSequence/array</TokenIdentifier>
+			<Abstract type="html">Evaluates the full sequence to produce an equivalently-sized array.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSArray *array</Declaration>
+			
+			
+			<Anchor>//api/name/array</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/setObjectEnumerator:</TokenIdentifier>
+			<Abstract type="html">Returns an enumerator of all objects in the sequence.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSEnumerator *objectEnumerator</Declaration>
+			
+			
+			<Anchor>//api/name/objectEnumerator</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/objectEnumerator</TokenIdentifier>
+			<Abstract type="html">Returns an enumerator of all objects in the sequence.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSEnumerator *objectEnumerator</Declaration>
+			
+			
+			<Anchor>//api/name/objectEnumerator</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACSequence/objectEnumerator</TokenIdentifier>
+			<Abstract type="html">Returns an enumerator of all objects in the sequence.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSEnumerator *objectEnumerator</Declaration>
+			
+			
+			<Anchor>//api/name/objectEnumerator</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/setEagerSequence:</TokenIdentifier>
+			<Abstract type="html">Converts a sequence into an eager sequence.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) RACSequence *eagerSequence</Declaration>
+			
+			
+			<Anchor>//api/name/eagerSequence</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/eagerSequence</TokenIdentifier>
+			<Abstract type="html">Converts a sequence into an eager sequence.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) RACSequence *eagerSequence</Declaration>
+			
+			
+			<Anchor>//api/name/eagerSequence</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACSequence/eagerSequence</TokenIdentifier>
+			<Abstract type="html">Converts a sequence into an eager sequence.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) RACSequence *eagerSequence</Declaration>
+			
+			
+			<Anchor>//api/name/eagerSequence</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/setLazySequence:</TokenIdentifier>
+			<Abstract type="html">Converts a sequence into a lazy sequence.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) RACSequence *lazySequence</Declaration>
+			
+			
+			<Anchor>//api/name/lazySequence</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/lazySequence</TokenIdentifier>
+			<Abstract type="html">Converts a sequence into a lazy sequence.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) RACSequence *lazySequence</Declaration>
+			
+			
+			<Anchor>//api/name/lazySequence</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACSequence/lazySequence</TokenIdentifier>
+			<Abstract type="html">Converts a sequence into a lazy sequence.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) RACSequence *lazySequence</Declaration>
+			
+			
+			<Anchor>//api/name/lazySequence</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/signal</TokenIdentifier>
+			<Abstract type="html">Invokes signalWithScheduler: with a new RACScheduler.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)signal</Declaration>
+			
+			
+			<Anchor>//api/name/signal</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/signalWithScheduler:</TokenIdentifier>
+			<Abstract type="html">Evaluates the full sequence on the given scheduler.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)signalWithScheduler:(RACScheduler *)scheduler</Declaration>
+			
+			
+			<Anchor>//api/name/signalWithScheduler:</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/foldLeftWithStart:reduce:</TokenIdentifier>
+			<Abstract type="html">Applies a left fold to the sequence.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>- (id)foldLeftWithStart:(id)start reduce:(id ( ^ ) ( id accumulator , id value ))reduce</Declaration>
+			
+			
+			<Anchor>//api/name/foldLeftWithStart:reduce:</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/foldRightWithStart:reduce:</TokenIdentifier>
+			<Abstract type="html">Applies a right fold to the sequence.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>- (id)foldRightWithStart:(id)start reduce:(id ( ^ ) ( id first , RACSequence *rest ))reduce</Declaration>
+			
+			
+			<Anchor>//api/name/foldRightWithStart:reduce:</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/any:</TokenIdentifier>
+			<Abstract type="html">Check if any value in sequence passes the block.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)any:(BOOL ( ^ ) ( id value ))block</Declaration>
+			
+			
+			<Anchor>//api/name/any:</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/all:</TokenIdentifier>
+			<Abstract type="html">Check if all values in the sequence pass the block.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)all:(BOOL ( ^ ) ( id value ))block</Declaration>
+			
+			
+			<Anchor>//api/name/all:</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/objectPassingTest:</TokenIdentifier>
+			<Abstract type="html">Returns the first object that passes the block.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>- (id)objectPassingTest:(BOOL ( ^ ) ( id value ))block</Declaration>
+			
+			
+			<Anchor>//api/name/objectPassingTest:</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSequence/sequenceWithHeadBlock:tailBlock:</TokenIdentifier>
+			<Abstract type="html">Creates a sequence that dynamically generates its values.</Abstract>
+			<DeclaredIn>RACSequence.h</DeclaredIn>
+			
+			<Declaration>+ (RACSequence *)sequenceWithHeadBlock:(id ( ^ ) ( void ))headBlock tailBlock:(RACSequence *( ^ ) ( void ))tailBlock</Declaration>
+			
+			
+			<Anchor>//api/name/sequenceWithHeadBlock:tailBlock:</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSequence/empty</TokenIdentifier>
+			<Abstract type="html">Returns an empty stream.</Abstract>
+			<DeclaredIn>RACSequence.m</DeclaredIn>
+			
+			<Declaration>+ (instancetype)empty</Declaration>
+			
+			
+			<Anchor>//api/name/empty</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACSequence/return:</TokenIdentifier>
+			<Abstract type="html">Lifts value into the stream monad.</Abstract>
+			<DeclaredIn>RACSequence.m</DeclaredIn>
+			
+			<Declaration>+ (instancetype)return:(id)value</Declaration>
+			
+			
+			<Anchor>//api/name/return:</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/bind:</TokenIdentifier>
+			<Abstract type="html">Lazily binds a block to the values in the receiver.</Abstract>
+			<DeclaredIn>RACSequence.m</DeclaredIn>
+			
+			<Declaration>- (instancetype)bind:(RACStreamBindBlock ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/bind:</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/concat:</TokenIdentifier>
+			<Abstract type="html">Appends the values of stream to the values in the receiver.</Abstract>
+			<DeclaredIn>RACSequence.m</DeclaredIn>
+			
+			<Declaration>- (instancetype)concat:(RACStream *)stream</Declaration>
+			
+			
+			<Anchor>//api/name/concat:</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSequence/zipWith:</TokenIdentifier>
+			<Abstract type="html">Zips the values in the receiver with those of the given stream to create
+RACTuples.</Abstract>
+			<DeclaredIn>RACSequence.m</DeclaredIn>
+			
+			<Declaration>- (instancetype)zipWith:(RACSequence *)sequence</Declaration>
+			
+			
+			<Anchor>//api/name/zipWith:</Anchor>
+            <NodeRef refid="120"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

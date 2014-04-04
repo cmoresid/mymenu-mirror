@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMRestaurantViewController.html">
+	<File path="Classes/CCHMapClusterAnnotation.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMRestaurantViewController</TokenIdentifier>
-			<Abstract type="html">The restaurant view controller.
-This displays a single restaurant in detail.
-Information such as restaurant name, rating, description, etc.
-This is where the restaurant&apos;s menu is displayed.
-This view will also allow the user to filter through the menu,
-either by rating, category or name.</Abstract>
-			<DeclaredIn>MMRestaurantViewController.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/CCHMapClusterAnnotation</TokenIdentifier>
+			<Abstract type="html">Container for clustered annotations.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
             
 			
 			<NodeRef refid="21"/>
@@ -18,21 +13,218 @@ either by rating, category or name.</Abstract>
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMRestaurantViewController/didSelectCategory:</TokenIdentifier>
-			<Abstract type="html">Sends the selected category from the popover
-controller back to the parent view controller.</Abstract>
-			<DeclaredIn>MMRestaurantViewController.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterAnnotation/setTitle:</TokenIdentifier>
+			<Abstract type="html">The string containing the annotation&apos;s title.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
 			
-			<Declaration>- (void)didSelectCategory:(NSString *)category</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>category</Name>
-					<Abstract type="html">The string value of the category
-selected.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>@property (nonatomic, copy) NSString *title</Declaration>
 			
-			<Anchor>//api/name/didSelectCategory:</Anchor>
+			
+			<Anchor>//api/name/title</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterAnnotation/title</TokenIdentifier>
+			<Abstract type="html">The string containing the annotation&apos;s title.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *title</Declaration>
+			
+			
+			<Anchor>//api/name/title</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterAnnotation/title</TokenIdentifier>
+			<Abstract type="html">The string containing the annotation&apos;s title.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *title</Declaration>
+			
+			
+			<Anchor>//api/name/title</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterAnnotation/setSubtitle:</TokenIdentifier>
+			<Abstract type="html">The string containing the annotation&apos;s subtitle.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *subtitle</Declaration>
+			
+			
+			<Anchor>//api/name/subtitle</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterAnnotation/subtitle</TokenIdentifier>
+			<Abstract type="html">The string containing the annotation&apos;s subtitle.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *subtitle</Declaration>
+			
+			
+			<Anchor>//api/name/subtitle</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterAnnotation/subtitle</TokenIdentifier>
+			<Abstract type="html">The string containing the annotation&apos;s subtitle.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *subtitle</Declaration>
+			
+			
+			<Anchor>//api/name/subtitle</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterAnnotation/setCoordinate:</TokenIdentifier>
+			<Abstract type="html">The center point of the annotation.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CLLocationCoordinate2D coordinate</Declaration>
+			
+			
+			<Anchor>//api/name/coordinate</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterAnnotation/coordinate</TokenIdentifier>
+			<Abstract type="html">The center point of the annotation.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CLLocationCoordinate2D coordinate</Declaration>
+			
+			
+			<Anchor>//api/name/coordinate</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterAnnotation/coordinate</TokenIdentifier>
+			<Abstract type="html">The center point of the annotation.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) CLLocationCoordinate2D coordinate</Declaration>
+			
+			
+			<Anchor>//api/name/coordinate</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterAnnotation/setDelegate:</TokenIdentifier>
+			<Abstract type="html">Custom titles and subtitles are retrieved via this delegate.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;CCHMapClusterControllerDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterAnnotation/delegate</TokenIdentifier>
+			<Abstract type="html">Custom titles and subtitles are retrieved via this delegate.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;CCHMapClusterControllerDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterAnnotation/delegate</TokenIdentifier>
+			<Abstract type="html">Custom titles and subtitles are retrieved via this delegate.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) id&lt;CCHMapClusterControllerDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterAnnotation/setAnnotations:</TokenIdentifier>
+			<Abstract type="html">Annotations contained in this cluster.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSSet *annotations</Declaration>
+			
+			
+			<Anchor>//api/name/annotations</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterAnnotation/annotations</TokenIdentifier>
+			<Abstract type="html">Annotations contained in this cluster.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSSet *annotations</Declaration>
+			
+			
+			<Anchor>//api/name/annotations</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CCHMapClusterAnnotation/annotations</TokenIdentifier>
+			<Abstract type="html">Annotations contained in this cluster.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSSet *annotations</Declaration>
+			
+			
+			<Anchor>//api/name/annotations</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterAnnotation/isCluster</TokenIdentifier>
+			<Abstract type="html">Returns YES if this cluster contains more than one annotation.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)isCluster</Declaration>
+			
+			
+			<Anchor>//api/name/isCluster</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterAnnotation/isOneLocation</TokenIdentifier>
+			<Abstract type="html">Returns YES if all annotations in this cluster are at the same location.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)isOneLocation</Declaration>
+			
+			
+			<Anchor>//api/name/isOneLocation</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CCHMapClusterAnnotation/mapRect</TokenIdentifier>
+			<Abstract type="html">The area that includes all annotations.</Abstract>
+			<DeclaredIn>CCHMapClusterAnnotation.h</DeclaredIn>
+			
+			<Declaration>- (MKMapRect)mapRect</Declaration>
+			
+			
+			<Anchor>//api/name/mapRect</Anchor>
             <NodeRef refid="21"/>
 		</Token>
 		

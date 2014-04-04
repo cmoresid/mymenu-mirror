@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMRestrictionSwitch.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMRestrictionSwitch</TokenIdentifier>
+			<Abstract type="html">*  A custom switch that is used in the</Abstract>
+			<DeclaredIn>MMRestrictionSwitch.h</DeclaredIn>
+            
+			
+			<NodeRef refid="73"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestrictionSwitch/setRestId:</TokenIdentifier>
+			<Abstract type="html">*  The ID number of the restriction that</Abstract>
+			<DeclaredIn>MMRestrictionSwitch.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSNumber *restId</Declaration>
+			
+			
+			<Anchor>//api/name/restId</Anchor>
+            <NodeRef refid="73"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMRestrictionSwitch/restId</TokenIdentifier>
+			<Abstract type="html">*  The ID number of the restriction that</Abstract>
+			<DeclaredIn>MMRestrictionSwitch.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSNumber *restId</Declaration>
+			
+			
+			<Anchor>//api/name/restId</Anchor>
+            <NodeRef refid="73"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMRestrictionSwitch/restId</TokenIdentifier>
+			<Abstract type="html">*  The ID number of the restriction that</Abstract>
+			<DeclaredIn>MMRestrictionSwitch.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSNumber *restId</Declaration>
+			
+			
+			<Anchor>//api/name/restId</Anchor>
+            <NodeRef refid="73"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

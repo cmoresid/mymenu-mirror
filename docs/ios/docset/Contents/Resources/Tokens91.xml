@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACBacktrace.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACBacktrace</TokenIdentifier>
+			<Abstract type="html">Preserves backtraces across asynchronous calls.</Abstract>
+			<DeclaredIn>RACBacktrace.h</DeclaredIn>
+            
+			
+			<NodeRef refid="91"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACBacktrace/setPreviousThreadBacktrace:</TokenIdentifier>
+			<Abstract type="html">The backtrace from any previous thread.</Abstract>
+			<DeclaredIn>RACBacktrace.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACBacktrace *previousThreadBacktrace</Declaration>
+			
+			
+			<Anchor>//api/name/previousThreadBacktrace</Anchor>
+            <NodeRef refid="91"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACBacktrace/previousThreadBacktrace</TokenIdentifier>
+			<Abstract type="html">The backtrace from any previous thread.</Abstract>
+			<DeclaredIn>RACBacktrace.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACBacktrace *previousThreadBacktrace</Declaration>
+			
+			
+			<Anchor>//api/name/previousThreadBacktrace</Anchor>
+            <NodeRef refid="91"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACBacktrace/previousThreadBacktrace</TokenIdentifier>
+			<Abstract type="html">The backtrace from any previous thread.</Abstract>
+			<DeclaredIn>RACBacktrace.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACBacktrace *previousThreadBacktrace</Declaration>
+			
+			
+			<Anchor>//api/name/previousThreadBacktrace</Anchor>
+            <NodeRef refid="91"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACBacktrace/setCallStackSymbols:</TokenIdentifier>
+			<Abstract type="html">The call stack of this backtrace&apos;s thread.</Abstract>
+			<DeclaredIn>RACBacktrace.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSArray *callStackSymbols</Declaration>
+			
+			
+			<Anchor>//api/name/callStackSymbols</Anchor>
+            <NodeRef refid="91"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACBacktrace/callStackSymbols</TokenIdentifier>
+			<Abstract type="html">The call stack of this backtrace&apos;s thread.</Abstract>
+			<DeclaredIn>RACBacktrace.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSArray *callStackSymbols</Declaration>
+			
+			
+			<Anchor>//api/name/callStackSymbols</Anchor>
+            <NodeRef refid="91"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACBacktrace/callStackSymbols</TokenIdentifier>
+			<Abstract type="html">The call stack of this backtrace&apos;s thread.</Abstract>
+			<DeclaredIn>RACBacktrace.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy, readonly) NSArray *callStackSymbols</Declaration>
+			
+			
+			<Anchor>//api/name/callStackSymbols</Anchor>
+            <NodeRef refid="91"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACBacktrace/backtrace</TokenIdentifier>
+			<Abstract type="html">Captures the current thread&apos;s backtrace, appending it to any backtrace from
+a previous thread.</Abstract>
+			<DeclaredIn>RACBacktrace.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)backtrace</Declaration>
+			
+			
+			<Anchor>//api/name/backtrace</Anchor>
+            <NodeRef refid="91"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACBacktrace/backtraceIgnoringFrames:</TokenIdentifier>
+			<Abstract type="html">Same as backtrace, but omits the specified number of frames at the
+top of the stack (in addition to this method itself).</Abstract>
+			<DeclaredIn>RACBacktrace.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)backtraceIgnoringFrames:(NSUInteger)ignoreCount</Declaration>
+			
+			
+			<Anchor>//api/name/backtraceIgnoringFrames:</Anchor>
+            <NodeRef refid="91"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

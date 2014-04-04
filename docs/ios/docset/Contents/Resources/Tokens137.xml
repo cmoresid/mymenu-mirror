@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACUnit.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACUnit</TokenIdentifier>
+			<Abstract type="html">A unit represents an empty value.</Abstract>
+			<DeclaredIn>RACUnit.h</DeclaredIn>
+            
+			
+			<NodeRef refid="137"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACUnit/defaultUnit</TokenIdentifier>
+			<Abstract type="html">A singleton instance.</Abstract>
+			<DeclaredIn>RACUnit.h</DeclaredIn>
+			
+			<Declaration>+ (RACUnit *)defaultUnit</Declaration>
+			
+			
+			<Anchor>//api/name/defaultUnit</Anchor>
+            <NodeRef refid="137"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

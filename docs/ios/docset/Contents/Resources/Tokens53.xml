@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMMenuService.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMenuService</TokenIdentifier>
+			<Abstract type="html">*  Provides an additional layer over top</Abstract>
+			<DeclaredIn>MMMenuService.h</DeclaredIn>
+            
+			
+			<NodeRef refid="53"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuService/retrieveMenuFromMerchant:forUser:</TokenIdentifier>
+			<Abstract type="html">*  Retrieves a customized menu from the specified merchant</Abstract>
+			<DeclaredIn>MMMenuService.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)retrieveMenuFromMerchant:(NSNumber *)merchId forUser:(NSString *)userEmail</Declaration>
+			
+			
+			<Anchor>//api/name/retrieveMenuFromMerchant:forUser:</Anchor>
+            <NodeRef refid="53"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuService/retrieveRecentMenuItemReviewsForMerchant:</TokenIdentifier>
+			<Abstract type="html">*  Retrieves a list of menu item reviews for a</Abstract>
+			<DeclaredIn>MMMenuService.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)retrieveRecentMenuItemReviewsForMerchant:(NSNumber *)merchId</Declaration>
+			
+			
+			<Anchor>//api/name/retrieveRecentMenuItemReviewsForMerchant:</Anchor>
+            <NodeRef refid="53"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

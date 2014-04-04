@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMRoundedView.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMRoundedView</TokenIdentifier>
+			<Abstract type="html">*  This custom view provides rounded</Abstract>
+			<DeclaredIn>MMRoundedView.h</DeclaredIn>
+            
+			
+			<NodeRef refid="75"/>
+		</Token>
+		
+		
+        
+	</File>
+</Tokens>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACMulticastConnection.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACMulticastConnection</TokenIdentifier>
+			<Abstract type="html">A multicast connection encapsulates the idea of sharing one subscription to a
+signal to many subscribers. This is most often needed if the subscription to
+the underlying signal involves side-effects or shouldn&apos;t be called more than
+once.</Abstract>
+			<DeclaredIn>RACMulticastConnection.h</DeclaredIn>
+            
+			
+			<NodeRef refid="112"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACMulticastConnection/setSignal:</TokenIdentifier>
+			<Abstract type="html">The multicasted signal.</Abstract>
+			<DeclaredIn>RACMulticastConnection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *signal</Declaration>
+			
+			
+			<Anchor>//api/name/signal</Anchor>
+            <NodeRef refid="112"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACMulticastConnection/signal</TokenIdentifier>
+			<Abstract type="html">The multicasted signal.</Abstract>
+			<DeclaredIn>RACMulticastConnection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *signal</Declaration>
+			
+			
+			<Anchor>//api/name/signal</Anchor>
+            <NodeRef refid="112"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACMulticastConnection/signal</TokenIdentifier>
+			<Abstract type="html">The multicasted signal.</Abstract>
+			<DeclaredIn>RACMulticastConnection.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *signal</Declaration>
+			
+			
+			<Anchor>//api/name/signal</Anchor>
+            <NodeRef refid="112"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACMulticastConnection/connect</TokenIdentifier>
+			<Abstract type="html">Connect to the underlying signal by subscribing to it. Calling this multiple
+times does nothing but return the existing connection&apos;s disposable.</Abstract>
+			<DeclaredIn>RACMulticastConnection.h</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)connect</Declaration>
+			
+			
+			<Anchor>//api/name/connect</Anchor>
+            <NodeRef refid="112"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACMulticastConnection/autoconnect</TokenIdentifier>
+			<Abstract type="html">Connects to the underlying signal when the returned signal is first
+subscribed to, and disposes of the subscription to the multicasted signal
+when the returned signal has no subscribers.</Abstract>
+			<DeclaredIn>RACMulticastConnection.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)autoconnect</Declaration>
+			
+			
+			<Anchor>//api/name/autoconnect</Anchor>
+            <NodeRef refid="112"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

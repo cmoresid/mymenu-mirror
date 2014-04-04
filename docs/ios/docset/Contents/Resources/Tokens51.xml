@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMMenuItemReviewCell.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMenuItemReviewCell</TokenIdentifier>
+			<Abstract type="html">*  A custom collection view cell that represents</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+            
+			
+			<NodeRef refid="51"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/setRating:</TokenIdentifier>
+			<Abstract type="html">*  The menu item rating model object that this</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property MMMenuItemRating *rating</Declaration>
+			
+			
+			<Anchor>//api/name/rating</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/rating</TokenIdentifier>
+			<Abstract type="html">*  The menu item rating model object that this</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property MMMenuItemRating *rating</Declaration>
+			
+			
+			<Anchor>//api/name/rating</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemReviewCell/rating</TokenIdentifier>
+			<Abstract type="html">*  The menu item rating model object that this</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property MMMenuItemRating *rating</Declaration>
+			
+			
+			<Anchor>//api/name/rating</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/setNameLabel:</TokenIdentifier>
+			<Abstract type="html">*  The label that represents the name of the</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *nameLabel</Declaration>
+			
+			
+			<Anchor>//api/name/nameLabel</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/nameLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that represents the name of the</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *nameLabel</Declaration>
+			
+			
+			<Anchor>//api/name/nameLabel</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemReviewCell/nameLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that represents the name of the</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *nameLabel</Declaration>
+			
+			
+			<Anchor>//api/name/nameLabel</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/setReviewView:</TokenIdentifier>
+			<Abstract type="html">*  The label that contains a portion of the review</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *reviewView</Declaration>
+			
+			
+			<Anchor>//api/name/reviewView</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/reviewView</TokenIdentifier>
+			<Abstract type="html">*  The label that contains a portion of the review</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *reviewView</Declaration>
+			
+			
+			<Anchor>//api/name/reviewView</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemReviewCell/reviewView</TokenIdentifier>
+			<Abstract type="html">*  The label that contains a portion of the review</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *reviewView</Declaration>
+			
+			
+			<Anchor>//api/name/reviewView</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/setRatinglabel:</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the rating that a reviewer</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *ratinglabel</Declaration>
+			
+			
+			<Anchor>//api/name/ratinglabel</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/ratinglabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the rating that a reviewer</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *ratinglabel</Declaration>
+			
+			
+			<Anchor>//api/name/ratinglabel</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemReviewCell/ratinglabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the rating that a reviewer</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *ratinglabel</Declaration>
+			
+			
+			<Anchor>//api/name/ratinglabel</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/setRatingBg:</TokenIdentifier>
+			<Abstract type="html">*  The view that the rating label resides in. The background</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *ratingBg</Declaration>
+			
+			
+			<Anchor>//api/name/ratingBg</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/ratingBg</TokenIdentifier>
+			<Abstract type="html">*  The view that the rating label resides in. The background</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *ratingBg</Declaration>
+			
+			
+			<Anchor>//api/name/ratingBg</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemReviewCell/ratingBg</TokenIdentifier>
+			<Abstract type="html">*  The view that the rating label resides in. The background</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *ratingBg</Declaration>
+			
+			
+			<Anchor>//api/name/ratingBg</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/setLikeImageView:</TokenIdentifier>
+			<Abstract type="html">*  An image view that contains the image for the &apos;up vote&apos;</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *likeImageView</Declaration>
+			
+			
+			<Anchor>//api/name/likeImageView</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/likeImageView</TokenIdentifier>
+			<Abstract type="html">*  An image view that contains the image for the &apos;up vote&apos;</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *likeImageView</Declaration>
+			
+			
+			<Anchor>//api/name/likeImageView</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemReviewCell/likeImageView</TokenIdentifier>
+			<Abstract type="html">*  An image view that contains the image for the &apos;up vote&apos;</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *likeImageView</Declaration>
+			
+			
+			<Anchor>//api/name/likeImageView</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/setUpVoteCountLabel:</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the number of &apos;up votes&apos; that</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *upVoteCountLabel</Declaration>
+			
+			
+			<Anchor>//api/name/upVoteCountLabel</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemReviewCell/upVoteCountLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the number of &apos;up votes&apos; that</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *upVoteCountLabel</Declaration>
+			
+			
+			<Anchor>//api/name/upVoteCountLabel</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemReviewCell/upVoteCountLabel</TokenIdentifier>
+			<Abstract type="html">*  The label that contains the number of &apos;up votes&apos; that</Abstract>
+			<DeclaredIn>MMMenuItemReviewCell.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *upVoteCountLabel</Declaration>
+			
+			
+			<Anchor>//api/name/upVoteCountLabel</Anchor>
+            <NodeRef refid="51"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

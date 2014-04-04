@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIProgressView+AFNetworking.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIProgressView(AFNetworking)</TokenIdentifier>
+			<Abstract type="html">This category adds methods to the UIKit framework&apos;s UIProgressView class. The methods in this category provide support for binding the progress to the upload and download progress of a session task or request operation.</Abstract>
+			<DeclaredIn>UIProgressView+AFNetworking.h</DeclaredIn>
+            
+			
+			<NodeRef refid="183"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIProgressView/setProgressWithUploadProgressOfTask:animated:</TokenIdentifier>
+			<Abstract type="html">Binds the progress to the upload progress of the specified session task.</Abstract>
+			<DeclaredIn>UIProgressView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>- (void)setProgressWithUploadProgressOfTask:(NSURLSessionUploadTask *)task animated:(BOOL)animated</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>task</Name>
+					<Abstract type="html">The session task.</Abstract>
+				</Parameter><Parameter>
+					<Name>animated</Name>
+					<Abstract type="html">YES if the change should be animated, NO if the change should happen immediately.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setProgressWithUploadProgressOfTask:animated:</Anchor>
+            <NodeRef refid="183"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIProgressView/setProgressWithDownloadProgressOfTask:animated:</TokenIdentifier>
+			<Abstract type="html">Binds the progress to the download progress of the specified session task.</Abstract>
+			<DeclaredIn>UIProgressView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>- (void)setProgressWithDownloadProgressOfTask:(NSURLSessionDownloadTask *)task animated:(BOOL)animated</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>task</Name>
+					<Abstract type="html">The session task.</Abstract>
+				</Parameter><Parameter>
+					<Name>animated</Name>
+					<Abstract type="html">YES if the change should be animated, NO if the change should happen immediately.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setProgressWithDownloadProgressOfTask:animated:</Anchor>
+            <NodeRef refid="183"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIProgressView/setProgressWithUploadProgressOfOperation:animated:</TokenIdentifier>
+			<Abstract type="html">Binds the progress to the upload progress of the specified request operation.</Abstract>
+			<DeclaredIn>UIProgressView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>- (void)setProgressWithUploadProgressOfOperation:(AFURLConnectionOperation *)operation animated:(BOOL)animated</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>operation</Name>
+					<Abstract type="html">The request operation.</Abstract>
+				</Parameter><Parameter>
+					<Name>animated</Name>
+					<Abstract type="html">YES if the change should be animated, NO if the change should happen immediately.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setProgressWithUploadProgressOfOperation:animated:</Anchor>
+            <NodeRef refid="183"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIProgressView/setProgressWithDownloadProgressOfOperation:animated:</TokenIdentifier>
+			<Abstract type="html">Binds the progress to the download progress of the specified request operation.</Abstract>
+			<DeclaredIn>UIProgressView+AFNetworking.h</DeclaredIn>
+			
+			<Declaration>- (void)setProgressWithDownloadProgressOfOperation:(AFURLConnectionOperation *)operation animated:(BOOL)animated</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>operation</Name>
+					<Abstract type="html">The request operation.</Abstract>
+				</Parameter><Parameter>
+					<Name>animated</Name>
+					<Abstract type="html">YES if the change should be animated, NO if the change should happen immediately.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setProgressWithDownloadProgressOfOperation:animated:</Anchor>
+            <NodeRef refid="183"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

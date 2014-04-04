@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACSubscriptionScheduler.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACSubscriptionScheduler</TokenIdentifier>
+			<Abstract type="html">A private scheduler used only for subscriptions. See the private
+[RACScheduler subscriptionScheduler] method for more information.</Abstract>
+			<DeclaredIn>RACSubscriptionScheduler.h</DeclaredIn>
+            
+			
+			<NodeRef refid="129"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSubscriptionScheduler/schedule:</TokenIdentifier>
+			<Abstract type="html">Schedule the given block for execution on the scheduler.</Abstract>
+			<DeclaredIn>RACSubscriptionScheduler.m</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)schedule:(void ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/schedule:</Anchor>
+            <NodeRef refid="129"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSubscriptionScheduler/after:schedule:</TokenIdentifier>
+			<Abstract type="html">Schedule the given block for execution on the scheduler at or after
+a specific time.</Abstract>
+			<DeclaredIn>RACSubscriptionScheduler.m</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)after:(NSDate *)date schedule:(void ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/after:schedule:</Anchor>
+            <NodeRef refid="129"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACSubscriptionScheduler/after:repeatingEvery:withLeeway:schedule:</TokenIdentifier>
+			<Abstract type="html">Reschedule the given block at a particular interval, starting at a specific
+time, and with a given leeway for deferral.</Abstract>
+			<DeclaredIn>RACSubscriptionScheduler.m</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)after:(NSDate *)date repeatingEvery:(NSTimeInterval)interval withLeeway:(NSTimeInterval)leeway schedule:(void ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/after:repeatingEvery:withLeeway:schedule:</Anchor>
+            <NodeRef refid="129"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

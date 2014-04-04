@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/MMMerchantDataSourceDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/MMMerchantDataSourceDelegate</TokenIdentifier>
+			<Abstract type="html">*  A delegate interface that is utilized by</Abstract>
+			<DeclaredIn>MMMerchantDataSourceDelegate.h</DeclaredIn>
+            
+			
+			<NodeRef refid="206"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMMerchantDataSourceDelegate/didReceiveMerchants:</TokenIdentifier>
+			<Abstract type="html">*  Delegate method that is called when the</Abstract>
+			<DeclaredIn>MMMerchantDataSourceDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)didReceiveMerchants:(NSMutableArray *)merchants</Declaration>
+			
+			
+			<Anchor>//api/name/didReceiveMerchants:</Anchor>
+            <NodeRef refid="206"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

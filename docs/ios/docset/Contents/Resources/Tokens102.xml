@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACEagerSequence.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACEagerSequence</TokenIdentifier>
+			<Abstract type="html">Private class that implements an eager sequence.</Abstract>
+			<DeclaredIn>RACEagerSequence.h</DeclaredIn>
+            
+			
+			<NodeRef refid="102"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACEagerSequence/return:</TokenIdentifier>
+			<Abstract type="html">Lifts value into the stream monad.</Abstract>
+			<DeclaredIn>RACEagerSequence.m</DeclaredIn>
+			
+			<Declaration>+ (instancetype)return:(id)value</Declaration>
+			
+			
+			<Anchor>//api/name/return:</Anchor>
+            <NodeRef refid="102"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACEagerSequence/bind:</TokenIdentifier>
+			<Abstract type="html">Lazily binds a block to the values in the receiver.</Abstract>
+			<DeclaredIn>RACEagerSequence.m</DeclaredIn>
+			
+			<Declaration>- (instancetype)bind:(RACStreamBindBlock ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/bind:</Anchor>
+            <NodeRef refid="102"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACEagerSequence/concat:</TokenIdentifier>
+			<Abstract type="html">Appends the values of stream to the values in the receiver.</Abstract>
+			<DeclaredIn>RACEagerSequence.m</DeclaredIn>
+			
+			<Declaration>- (instancetype)concat:(RACSequence *)sequence</Declaration>
+			
+			
+			<Anchor>//api/name/concat:</Anchor>
+            <NodeRef refid="102"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACEagerSequence/eagerSequence</TokenIdentifier>
+			<Abstract type="html">Converts a sequence into an eager sequence.</Abstract>
+			<DeclaredIn>RACEagerSequence.m</DeclaredIn>
+			
+			<Declaration>- (RACSequence *)eagerSequence</Declaration>
+			
+			
+			<Anchor>//api/name/eagerSequence</Anchor>
+            <NodeRef refid="102"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACEagerSequence/lazySequence</TokenIdentifier>
+			<Abstract type="html">Converts a sequence into a lazy sequence.</Abstract>
+			<DeclaredIn>RACEagerSequence.m</DeclaredIn>
+			
+			<Declaration>- (RACSequence *)lazySequence</Declaration>
+			
+			
+			<Anchor>//api/name/lazySequence</Anchor>
+            <NodeRef refid="102"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACEagerSequence/foldRightWithStart:reduce:</TokenIdentifier>
+			<Abstract type="html">Applies a right fold to the sequence.</Abstract>
+			<DeclaredIn>RACEagerSequence.m</DeclaredIn>
+			
+			<Declaration>- (id)foldRightWithStart:(id)start reduce:(id ( ^ ) ( id , RACSequence *rest ))reduce</Declaration>
+			
+			
+			<Anchor>//api/name/foldRightWithStart:reduce:</Anchor>
+            <NodeRef refid="102"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

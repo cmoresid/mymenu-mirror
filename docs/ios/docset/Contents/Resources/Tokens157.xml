@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSObject+RACKVOWrapper.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSObject(RACKVOWrapper)</TokenIdentifier>
+			<Abstract type="html">RAC-specific KVO change dictionary key: Will be @YES if the change only
+affected the value of the last key path component leaving the values of the
+intermediate key path components unaltered, @NO otherwise.</Abstract>
+			<DeclaredIn>NSObject+RACKVOWrapper.h</DeclaredIn>
+            
+			
+			<NodeRef refid="157"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSObject/rac_observeKeyPath:options:observer:block:</TokenIdentifier>
+			<Abstract type="html">Adds the given block as the callbacks for when the key path changes.</Abstract>
+			<DeclaredIn>NSObject+RACKVOWrapper.h</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)rac_observeKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options observer:(NSObject *)observer block:(void ( ^ ) ( id value , NSDictionary *change ))block</Declaration>
+			
+			
+			<Anchor>//api/name/rac_observeKeyPath:options:observer:block:</Anchor>
+            <NodeRef refid="157"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

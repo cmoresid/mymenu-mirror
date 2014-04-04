@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMMenuItemViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMenuItemViewController</TokenIdentifier>
+			<Abstract type="html">The controller that shows the selected menu item a user selects.</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="52"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setCurrentMenuItem:</TokenIdentifier>
+			<Abstract type="html">The item that the user touched before</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property MMMenuItem *currentMenuItem</Declaration>
+			
+			
+			<Anchor>//api/name/currentMenuItem</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/currentMenuItem</TokenIdentifier>
+			<Abstract type="html">The item that the user touched before</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property MMMenuItem *currentMenuItem</Declaration>
+			
+			
+			<Anchor>//api/name/currentMenuItem</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/currentMenuItem</TokenIdentifier>
+			<Abstract type="html">The item that the user touched before</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property MMMenuItem *currentMenuItem</Declaration>
+			
+			
+			<Anchor>//api/name/currentMenuItem</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setCurrentMerchant:</TokenIdentifier>
+			<Abstract type="html">The current mechant of the menu item</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property MMMerchant *currentMerchant</Declaration>
+			
+			
+			<Anchor>//api/name/currentMerchant</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/currentMerchant</TokenIdentifier>
+			<Abstract type="html">The current mechant of the menu item</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property MMMerchant *currentMerchant</Declaration>
+			
+			
+			<Anchor>//api/name/currentMerchant</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/currentMerchant</TokenIdentifier>
+			<Abstract type="html">The current mechant of the menu item</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property MMMerchant *currentMerchant</Declaration>
+			
+			
+			<Anchor>//api/name/currentMerchant</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setReviewViewFlag:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property BOOL reviewViewFlag</Declaration>
+			
+			
+			<Anchor>//api/name/reviewViewFlag</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/reviewViewFlag</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property BOOL reviewViewFlag</Declaration>
+			
+			
+			<Anchor>//api/name/reviewViewFlag</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/reviewViewFlag</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property BOOL reviewViewFlag</Declaration>
+			
+			
+			<Anchor>//api/name/reviewViewFlag</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setPopOverController:</TokenIdentifier>
+			<Abstract type="html">Popover view controller</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *popOverController</Declaration>
+			
+			
+			<Anchor>//api/name/popOverController</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/popOverController</TokenIdentifier>
+			<Abstract type="html">Popover view controller</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *popOverController</Declaration>
+			
+			
+			<Anchor>//api/name/popOverController</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/popOverController</TokenIdentifier>
+			<Abstract type="html">Popover view controller</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UIPopoverController *popOverController</Declaration>
+			
+			
+			<Anchor>//api/name/popOverController</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setItemName:</TokenIdentifier>
+			<Abstract type="html">The label for the item name</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *itemName</Declaration>
+			
+			
+			<Anchor>//api/name/itemName</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/itemName</TokenIdentifier>
+			<Abstract type="html">The label for the item name</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *itemName</Declaration>
+			
+			
+			<Anchor>//api/name/itemName</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/itemName</TokenIdentifier>
+			<Abstract type="html">The label for the item name</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *itemName</Declaration>
+			
+			
+			<Anchor>//api/name/itemName</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setUserReviewField:</TokenIdentifier>
+			<Abstract type="html">The input review textview for a user submitted review.</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *userReviewField</Declaration>
+			
+			
+			<Anchor>//api/name/userReviewField</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/userReviewField</TokenIdentifier>
+			<Abstract type="html">The input review textview for a user submitted review.</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *userReviewField</Declaration>
+			
+			
+			<Anchor>//api/name/userReviewField</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/userReviewField</TokenIdentifier>
+			<Abstract type="html">The input review textview for a user submitted review.</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *userReviewField</Declaration>
+			
+			
+			<Anchor>//api/name/userReviewField</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setActiveField:</TokenIdentifier>
+			<Abstract type="html">Current Selected Text View</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *activeField</Declaration>
+			
+			
+			<Anchor>//api/name/activeField</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/activeField</TokenIdentifier>
+			<Abstract type="html">Current Selected Text View</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *activeField</Declaration>
+			
+			
+			<Anchor>//api/name/activeField</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/activeField</TokenIdentifier>
+			<Abstract type="html">Current Selected Text View</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *activeField</Declaration>
+			
+			
+			<Anchor>//api/name/activeField</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setItemRating:</TokenIdentifier>
+			<Abstract type="html">The Items Rating Label</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *itemRating</Declaration>
+			
+			
+			<Anchor>//api/name/itemRating</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/itemRating</TokenIdentifier>
+			<Abstract type="html">The Items Rating Label</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *itemRating</Declaration>
+			
+			
+			<Anchor>//api/name/itemRating</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/itemRating</TokenIdentifier>
+			<Abstract type="html">The Items Rating Label</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *itemRating</Declaration>
+			
+			
+			<Anchor>//api/name/itemRating</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setReviewView:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *reviewView</Declaration>
+			
+			
+			<Anchor>//api/name/reviewView</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/reviewView</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *reviewView</Declaration>
+			
+			
+			<Anchor>//api/name/reviewView</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/reviewView</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *reviewView</Declaration>
+			
+			
+			<Anchor>//api/name/reviewView</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setItemDescription:</TokenIdentifier>
+			<Abstract type="html">The menu items description</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *itemDescription</Declaration>
+			
+			
+			<Anchor>//api/name/itemDescription</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/itemDescription</TokenIdentifier>
+			<Abstract type="html">The menu items description</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *itemDescription</Declaration>
+			
+			
+			<Anchor>//api/name/itemDescription</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/itemDescription</TokenIdentifier>
+			<Abstract type="html">The menu items description</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *itemDescription</Declaration>
+			
+			
+			<Anchor>//api/name/itemDescription</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setItemImage:</TokenIdentifier>
+			<Abstract type="html">The menu items description</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *itemImage</Declaration>
+			
+			
+			<Anchor>//api/name/itemImage</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/itemImage</TokenIdentifier>
+			<Abstract type="html">The menu items description</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *itemImage</Declaration>
+			
+			
+			<Anchor>//api/name/itemImage</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/itemImage</TokenIdentifier>
+			<Abstract type="html">The menu items description</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIImageView *itemImage</Declaration>
+			
+			
+			<Anchor>//api/name/itemImage</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setItemRatingView:</TokenIdentifier>
+			<Abstract type="html">The menu items rating</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *itemRatingView</Declaration>
+			
+			
+			<Anchor>//api/name/itemRatingView</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/itemRatingView</TokenIdentifier>
+			<Abstract type="html">The menu items rating</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *itemRatingView</Declaration>
+			
+			
+			<Anchor>//api/name/itemRatingView</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/itemRatingView</TokenIdentifier>
+			<Abstract type="html">The menu items rating</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIView *itemRatingView</Declaration>
+			
+			
+			<Anchor>//api/name/itemRatingView</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setMenuModificationsView:</TokenIdentifier>
+			<Abstract type="html">The tablview that holds the avaliable Restrictions for the menu item</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *menuModificationsView</Declaration>
+			
+			
+			<Anchor>//api/name/menuModificationsView</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/menuModificationsView</TokenIdentifier>
+			<Abstract type="html">The tablview that holds the avaliable Restrictions for the menu item</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *menuModificationsView</Declaration>
+			
+			
+			<Anchor>//api/name/menuModificationsView</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/menuModificationsView</TokenIdentifier>
+			<Abstract type="html">The tablview that holds the avaliable Restrictions for the menu item</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UITextView *menuModificationsView</Declaration>
+			
+			
+			<Anchor>//api/name/menuModificationsView</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setRatingButton:</TokenIdentifier>
+			<Abstract type="html">Rate button</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *ratingButton</Declaration>
+			
+			
+			<Anchor>//api/name/ratingButton</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/ratingButton</TokenIdentifier>
+			<Abstract type="html">Rate button</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *ratingButton</Declaration>
+			
+			
+			<Anchor>//api/name/ratingButton</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/ratingButton</TokenIdentifier>
+			<Abstract type="html">Rate button</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *ratingButton</Declaration>
+			
+			
+			<Anchor>//api/name/ratingButton</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setEatenThisButton:</TokenIdentifier>
+			<Abstract type="html">I&apos;ve eaten this button</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *eatenThisButton</Declaration>
+			
+			
+			<Anchor>//api/name/eatenThisButton</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/eatenThisButton</TokenIdentifier>
+			<Abstract type="html">I&apos;ve eaten this button</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *eatenThisButton</Declaration>
+			
+			
+			<Anchor>//api/name/eatenThisButton</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/eatenThisButton</TokenIdentifier>
+			<Abstract type="html">I&apos;ve eaten this button</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UIButton *eatenThisButton</Declaration>
+			
+			
+			<Anchor>//api/name/eatenThisButton</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setRating:</TokenIdentifier>
+			<Abstract type="html">Current Rating of menu Item</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSNumber *rating</Declaration>
+			
+			
+			<Anchor>//api/name/rating</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/rating</TokenIdentifier>
+			<Abstract type="html">Current Rating of menu Item</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSNumber *rating</Declaration>
+			
+			
+			<Anchor>//api/name/rating</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/rating</TokenIdentifier>
+			<Abstract type="html">Current Rating of menu Item</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSNumber *rating</Declaration>
+			
+			
+			<Anchor>//api/name/rating</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setRatingsCollectionView:</TokenIdentifier>
+			<Abstract type="html">Menu Item View for showing reviews.</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UICollectionView *ratingsCollectionView</Declaration>
+			
+			
+			<Anchor>//api/name/ratingsCollectionView</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/ratingsCollectionView</TokenIdentifier>
+			<Abstract type="html">Menu Item View for showing reviews.</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UICollectionView *ratingsCollectionView</Declaration>
+			
+			
+			<Anchor>//api/name/ratingsCollectionView</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/ratingsCollectionView</TokenIdentifier>
+			<Abstract type="html">Menu Item View for showing reviews.</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) IBOutlet UICollectionView *ratingsCollectionView</Declaration>
+			
+			
+			<Anchor>//api/name/ratingsCollectionView</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setReviewSegment:</TokenIdentifier>
+			<Abstract type="html">Switch the ratings view to show top rated first or most recent</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UISegmentedControl *reviewSegment</Declaration>
+			
+			
+			<Anchor>//api/name/reviewSegment</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/reviewSegment</TokenIdentifier>
+			<Abstract type="html">Switch the ratings view to show top rated first or most recent</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UISegmentedControl *reviewSegment</Declaration>
+			
+			
+			<Anchor>//api/name/reviewSegment</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/reviewSegment</TokenIdentifier>
+			<Abstract type="html">Switch the ratings view to show top rated first or most recent</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UISegmentedControl *reviewSegment</Declaration>
+			
+			
+			<Anchor>//api/name/reviewSegment</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/setCurrentOrientation:</TokenIdentifier>
+			<Abstract type="html">Current Orientation of the device.</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIDeviceOrientation currentOrientation</Declaration>
+			
+			
+			<Anchor>//api/name/currentOrientation</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/currentOrientation</TokenIdentifier>
+			<Abstract type="html">Current Orientation of the device.</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIDeviceOrientation currentOrientation</Declaration>
+			
+			
+			<Anchor>//api/name/currentOrientation</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMenuItemViewController/currentOrientation</TokenIdentifier>
+			<Abstract type="html">Current Orientation of the device.</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) UIDeviceOrientation currentOrientation</Declaration>
+			
+			
+			<Anchor>//api/name/currentOrientation</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/shareMenuItem:</TokenIdentifier>
+			<Abstract type="html">Share the menu item via Social Media</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)shareMenuItem:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">UIButton</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/shareMenuItem:</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/rateItem:</TokenIdentifier>
+			<Abstract type="html">Rate the menu item button selected</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)rateItem:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">UIButton</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/rateItem:</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/saveButton:</TokenIdentifier>
+			<Abstract type="html">Save the Rating the user inputed</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)saveButton:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">UIButton</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/saveButton:</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/clearButton:</TokenIdentifier>
+			<Abstract type="html">Clear the rating field, and current set rating (From the circle view)</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)clearButton:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">UIButton</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/clearButton:</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMenuItemViewController/iveEatenThis:</TokenIdentifier>
+			<Abstract type="html">Current user has eaten the menu item.</Abstract>
+			<DeclaredIn>MMMenuItemViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)iveEatenThis:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sender</Name>
+					<Abstract type="html">UIButton</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/iveEatenThis:</Anchor>
+            <NodeRef refid="52"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

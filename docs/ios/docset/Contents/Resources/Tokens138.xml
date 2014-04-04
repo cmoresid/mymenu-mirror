@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RBStoryboardLink.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RBStoryboardLink</TokenIdentifier>
+			<Abstract type="html">Basically, what this class does is create a linked scene, put it in a
+containter view controller, and copy all the linked scene&apos;s properties into
+the container view controller.</Abstract>
+			<DeclaredIn>RBStoryboardLink.h</DeclaredIn>
+            
+			
+			<NodeRef refid="138"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RBStoryboardLink/setScene:</TokenIdentifier>
+			<Abstract type="html">The contained UIViewController from the destination view controller.</Abstract>
+			<DeclaredIn>RBStoryboardLink.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) UIViewController *scene</Declaration>
+			
+			
+			<Anchor>//api/name/scene</Anchor>
+            <NodeRef refid="138"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RBStoryboardLink/scene</TokenIdentifier>
+			<Abstract type="html">The contained UIViewController from the destination view controller.</Abstract>
+			<DeclaredIn>RBStoryboardLink.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) UIViewController *scene</Declaration>
+			
+			
+			<Anchor>//api/name/scene</Anchor>
+            <NodeRef refid="138"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RBStoryboardLink/scene</TokenIdentifier>
+			<Abstract type="html">The contained UIViewController from the destination view controller.</Abstract>
+			<DeclaredIn>RBStoryboardLink.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) UIViewController *scene</Declaration>
+			
+			
+			<Anchor>//api/name/scene</Anchor>
+            <NodeRef refid="138"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RBStoryboardLink/setStoryboardName:</TokenIdentifier>
+			<Abstract type="html">The name of the storyboard that should be linked.
+This should be set in the Interface Builder identity inspector.</Abstract>
+			<DeclaredIn>RBStoryboardLink.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *storyboardName</Declaration>
+			
+			
+			<Anchor>//api/name/storyboardName</Anchor>
+            <NodeRef refid="138"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RBStoryboardLink/storyboardName</TokenIdentifier>
+			<Abstract type="html">The name of the storyboard that should be linked.
+This should be set in the Interface Builder identity inspector.</Abstract>
+			<DeclaredIn>RBStoryboardLink.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *storyboardName</Declaration>
+			
+			
+			<Anchor>//api/name/storyboardName</Anchor>
+            <NodeRef refid="138"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RBStoryboardLink/storyboardName</TokenIdentifier>
+			<Abstract type="html">The name of the storyboard that should be linked.
+This should be set in the Interface Builder identity inspector.</Abstract>
+			<DeclaredIn>RBStoryboardLink.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *storyboardName</Declaration>
+			
+			
+			<Anchor>//api/name/storyboardName</Anchor>
+            <NodeRef refid="138"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RBStoryboardLink/setSceneIdentifier:</TokenIdentifier>
+			<Abstract type="html">(Optional) The identifier of the scene to show.
+This should be set in the Interface Builder identity inspector.</Abstract>
+			<DeclaredIn>RBStoryboardLink.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *sceneIdentifier</Declaration>
+			
+			
+			<Anchor>//api/name/sceneIdentifier</Anchor>
+            <NodeRef refid="138"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RBStoryboardLink/sceneIdentifier</TokenIdentifier>
+			<Abstract type="html">(Optional) The identifier of the scene to show.
+This should be set in the Interface Builder identity inspector.</Abstract>
+			<DeclaredIn>RBStoryboardLink.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *sceneIdentifier</Declaration>
+			
+			
+			<Anchor>//api/name/sceneIdentifier</Anchor>
+            <NodeRef refid="138"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RBStoryboardLink/sceneIdentifier</TokenIdentifier>
+			<Abstract type="html">(Optional) The identifier of the scene to show.
+This should be set in the Interface Builder identity inspector.</Abstract>
+			<DeclaredIn>RBStoryboardLink.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *sceneIdentifier</Declaration>
+			
+			
+			<Anchor>//api/name/sceneIdentifier</Anchor>
+            <NodeRef refid="138"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

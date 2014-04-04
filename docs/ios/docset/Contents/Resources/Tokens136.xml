@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACUnarySequence.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACUnarySequence</TokenIdentifier>
+			<Abstract type="html">Private class representing a sequence of exactly one value.</Abstract>
+			<DeclaredIn>RACUnarySequence.h</DeclaredIn>
+            
+			
+			<NodeRef refid="136"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACUnarySequence/return:</TokenIdentifier>
+			<Abstract type="html">Lifts value into the stream monad.</Abstract>
+			<DeclaredIn>RACUnarySequence.m</DeclaredIn>
+			
+			<Declaration>+ (instancetype)return:(id)value</Declaration>
+			
+			
+			<Anchor>//api/name/return:</Anchor>
+            <NodeRef refid="136"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACUnarySequence/tail</TokenIdentifier>
+			<Abstract type="html">All but the first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACUnarySequence.m</DeclaredIn>
+			
+			<Declaration>- (RACSequence *)tail</Declaration>
+			
+			
+			<Anchor>//api/name/tail</Anchor>
+            <NodeRef refid="136"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACUnarySequence/bind:</TokenIdentifier>
+			<Abstract type="html">Lazily binds a block to the values in the receiver.</Abstract>
+			<DeclaredIn>RACUnarySequence.m</DeclaredIn>
+			
+			<Declaration>- (instancetype)bind:(RACStreamBindBlock ( ^ ) ( void ))block</Declaration>
+			
+			
+			<Anchor>//api/name/bind:</Anchor>
+            <NodeRef refid="136"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACUnarySequence/setHead:</TokenIdentifier>
+			<Abstract type="html">The first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACUnarySequence.m</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readwrite) id head</Declaration>
+			
+			
+			<Anchor>//api/name/head</Anchor>
+            <NodeRef refid="136"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACUnarySequence/head</TokenIdentifier>
+			<Abstract type="html">The first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACUnarySequence.m</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readwrite) id head</Declaration>
+			
+			
+			<Anchor>//api/name/head</Anchor>
+            <NodeRef refid="136"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/RACUnarySequence/head</TokenIdentifier>
+			<Abstract type="html">The first object in the sequence, or nil if the sequence is empty.</Abstract>
+			<DeclaredIn>RACUnarySequence.m</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readwrite) id head</Declaration>
+			
+			
+			<Anchor>//api/name/head</Anchor>
+            <NodeRef refid="136"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

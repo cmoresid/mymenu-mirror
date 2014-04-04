@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACTargetQueueScheduler.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACTargetQueueScheduler</TokenIdentifier>
+			<Abstract type="html">A scheduler that enqueues blocks on a private serial queue, targeting an
+arbitrary GCD queue.</Abstract>
+			<DeclaredIn>RACTargetQueueScheduler.h</DeclaredIn>
+            
+			
+			<NodeRef refid="130"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACTargetQueueScheduler/initWithName:targetQueue:</TokenIdentifier>
+			<Abstract type="html">Initializes the receiver with a serial queue that will target the given
+targetQueue.</Abstract>
+			<DeclaredIn>RACTargetQueueScheduler.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithName:(NSString *)name targetQueue:(dispatch_queue_t)targetQueue</Declaration>
+			
+			
+			<Anchor>//api/name/initWithName:targetQueue:</Anchor>
+            <NodeRef refid="130"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

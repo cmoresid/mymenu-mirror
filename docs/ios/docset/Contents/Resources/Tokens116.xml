@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACReplaySubject.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACReplaySubject</TokenIdentifier>
+			<Abstract type="html">A replay subject saves the values it is sent (up to its defined capacity)
+and resends those to new subscribers. It will also replay an error or
+completion.</Abstract>
+			<DeclaredIn>RACReplaySubject.h</DeclaredIn>
+            
+			
+			<NodeRef refid="116"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RACReplaySubject/replaySubjectWithCapacity:</TokenIdentifier>
+			<Abstract type="html">Creates a new replay subject with the given capacity. A capacity of
+RACReplaySubjectUnlimitedCapacity means values are never trimmed.</Abstract>
+			<DeclaredIn>RACReplaySubject.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)replaySubjectWithCapacity:(NSUInteger)capacity</Declaration>
+			
+			
+			<Anchor>//api/name/replaySubjectWithCapacity:</Anchor>
+            <NodeRef refid="116"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACReplaySubject/subscribe:</TokenIdentifier>
+			<Abstract type="html">Subscribes subscriber to changes on the receiver. The receiver defines which
+events it actually sends and in what situations the events are sent.</Abstract>
+			<DeclaredIn>RACReplaySubject.m</DeclaredIn>
+			
+			<Declaration>- (RACDisposable *)subscribe:(id&lt;RACSubscriber&gt;)subscriber</Declaration>
+			
+			
+			<Anchor>//api/name/subscribe:</Anchor>
+            <NodeRef refid="116"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACReplaySubject/sendNext:</TokenIdentifier>
+			<Abstract type="html">Send the next value to subscribers.</Abstract>
+			<DeclaredIn>RACReplaySubject.m</DeclaredIn>
+			
+			<Declaration>- (void)sendNext:(id)value</Declaration>
+			
+			
+			<Anchor>//api/name/sendNext:</Anchor>
+            <NodeRef refid="116"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACReplaySubject/sendCompleted</TokenIdentifier>
+			<Abstract type="html">Send completed to subscribers.</Abstract>
+			<DeclaredIn>RACReplaySubject.m</DeclaredIn>
+			
+			<Declaration>- (void)sendCompleted</Declaration>
+			
+			
+			<Anchor>//api/name/sendCompleted</Anchor>
+            <NodeRef refid="116"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACReplaySubject/sendError:</TokenIdentifier>
+			<Abstract type="html">Send the error to subscribers.</Abstract>
+			<DeclaredIn>RACReplaySubject.m</DeclaredIn>
+			
+			<Declaration>- (void)sendError:(NSError *)e</Declaration>
+			
+			
+			<Anchor>//api/name/sendError:</Anchor>
+            <NodeRef refid="116"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

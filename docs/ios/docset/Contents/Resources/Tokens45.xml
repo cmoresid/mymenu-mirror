@@ -1,68 +1,305 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Constants/MMPopoverDataType.html">
+	<File path="Classes/MMMasterRestaurantTableViewController.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/c/tdef/MMPopoverDataType</TokenIdentifier>
-			<Abstract type="html">Represents the type of data returned
-from as a result of the MMRegistrationPopoverViewController.</Abstract>
-			<DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/MMMasterRestaurantTableViewController</TokenIdentifier>
+			<Abstract type="html">The Restaurant table shown on the Restaurants tab. (Next to the map)</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
             
 			
 			<NodeRef refid="45"/>
 		</Token>
 		
 		
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/CityValue</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>CityValue</Declaration>
-            
-            <DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
-            
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/setRestaurants:</TokenIdentifier>
+			<Abstract type="html">Array of Restaurants</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *restaurants</Declaration>
+			
+			
+			<Anchor>//api/name/restaurants</Anchor>
             <NodeRef refid="45"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ProvinceValue</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>ProvinceValue</Declaration>
-            
-            <DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
-            
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/restaurants</TokenIdentifier>
+			<Abstract type="html">Array of Restaurants</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *restaurants</Declaration>
+			
+			
+			<Anchor>//api/name/restaurants</Anchor>
             <NodeRef refid="45"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/GenderValue</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>GenderValue</Declaration>
-            
-            <DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
-            
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMasterRestaurantTableViewController/restaurants</TokenIdentifier>
+			<Abstract type="html">Array of Restaurants</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *restaurants</Declaration>
+			
+			
+			<Anchor>//api/name/restaurants</Anchor>
             <NodeRef refid="45"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/BirthdayValue</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>BirthdayValue</Declaration>
-            
-            <DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
-            
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/setFilteredrestaurants:</TokenIdentifier>
+			<Abstract type="html">Array of filtered Restaurants. IE. Searched items, By type ect...</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *filteredrestaurants</Declaration>
+			
+			
+			<Anchor>//api/name/filteredrestaurants</Anchor>
             <NodeRef refid="45"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/CategoryValue</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>CategoryValue</Declaration>
-            
-            <DeclaredIn>MMPopoverDataPair.h</DeclaredIn>
-            
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/filteredrestaurants</TokenIdentifier>
+			<Abstract type="html">Array of filtered Restaurants. IE. Searched items, By type ect...</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *filteredrestaurants</Declaration>
+			
+			
+			<Anchor>//api/name/filteredrestaurants</Anchor>
             <NodeRef refid="45"/>
-        </Token>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMasterRestaurantTableViewController/filteredrestaurants</TokenIdentifier>
+			<Abstract type="html">Array of filtered Restaurants. IE. Searched items, By type ect...</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSArray *filteredrestaurants</Declaration>
+			
+			
+			<Anchor>//api/name/filteredrestaurants</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/setSelectedRestaurant:</TokenIdentifier>
+			<Abstract type="html">User selected restaurant IE pressed</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMerchant *selectedRestaurant</Declaration>
+			
+			
+			<Anchor>//api/name/selectedRestaurant</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/selectedRestaurant</TokenIdentifier>
+			<Abstract type="html">User selected restaurant IE pressed</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMerchant *selectedRestaurant</Declaration>
+			
+			
+			<Anchor>//api/name/selectedRestaurant</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMasterRestaurantTableViewController/selectedRestaurant</TokenIdentifier>
+			<Abstract type="html">User selected restaurant IE pressed</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MMMerchant *selectedRestaurant</Declaration>
+			
+			
+			<Anchor>//api/name/selectedRestaurant</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/setLocation:</TokenIdentifier>
+			<Abstract type="html">The current users location, if GPS is on</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CLLocation *location</Declaration>
+			
+			
+			<Anchor>//api/name/location</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/location</TokenIdentifier>
+			<Abstract type="html">The current users location, if GPS is on</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CLLocation *location</Declaration>
+			
+			
+			<Anchor>//api/name/location</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMasterRestaurantTableViewController/location</TokenIdentifier>
+			<Abstract type="html">The current users location, if GPS is on</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) CLLocation *location</Declaration>
+			
+			
+			<Anchor>//api/name/location</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/setSearchflag:</TokenIdentifier>
+			<Abstract type="html">Is the user searching?</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL searchflag</Declaration>
+			
+			
+			<Anchor>//api/name/searchflag</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/searchflag</TokenIdentifier>
+			<Abstract type="html">Is the user searching?</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL searchflag</Declaration>
+			
+			
+			<Anchor>//api/name/searchflag</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMasterRestaurantTableViewController/searchflag</TokenIdentifier>
+			<Abstract type="html">Is the user searching?</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) BOOL searchflag</Declaration>
+			
+			
+			<Anchor>//api/name/searchflag</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/setMerchantSearchBar:</TokenIdentifier>
+			<Abstract type="html">The search bar that is displayed at the top of the tableview</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property IBOutlet UISearchBar *merchantSearchBar</Declaration>
+			
+			
+			<Anchor>//api/name/merchantSearchBar</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/merchantSearchBar</TokenIdentifier>
+			<Abstract type="html">The search bar that is displayed at the top of the tableview</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property IBOutlet UISearchBar *merchantSearchBar</Declaration>
+			
+			
+			<Anchor>//api/name/merchantSearchBar</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMasterRestaurantTableViewController/merchantSearchBar</TokenIdentifier>
+			<Abstract type="html">The search bar that is displayed at the top of the tableview</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property IBOutlet UISearchBar *merchantSearchBar</Declaration>
+			
+			
+			<Anchor>//api/name/merchantSearchBar</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/setOrderbySegmentControl:</TokenIdentifier>
+			<Abstract type="html">Tab bar for filtering restaurants by, Cuisine, Location, and Rating</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property IBOutlet UISegmentedControl *orderbySegmentControl</Declaration>
+			
+			
+			<Anchor>//api/name/orderbySegmentControl</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/orderbySegmentControl</TokenIdentifier>
+			<Abstract type="html">Tab bar for filtering restaurants by, Cuisine, Location, and Rating</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property IBOutlet UISegmentedControl *orderbySegmentControl</Declaration>
+			
+			
+			<Anchor>//api/name/orderbySegmentControl</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMasterRestaurantTableViewController/orderbySegmentControl</TokenIdentifier>
+			<Abstract type="html">Tab bar for filtering restaurants by, Cuisine, Location, and Rating</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property IBOutlet UISegmentedControl *orderbySegmentControl</Declaration>
+			
+			
+			<Anchor>//api/name/orderbySegmentControl</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/setTableView:</TokenIdentifier>
+			<Abstract type="html">The Tableview to put the data into.</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property IBOutlet UITableView *tableView</Declaration>
+			
+			
+			<Anchor>//api/name/tableView</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMMasterRestaurantTableViewController/tableView</TokenIdentifier>
+			<Abstract type="html">The Tableview to put the data into.</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property IBOutlet UITableView *tableView</Declaration>
+			
+			
+			<Anchor>//api/name/tableView</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMMasterRestaurantTableViewController/tableView</TokenIdentifier>
+			<Abstract type="html">The Tableview to put the data into.</Abstract>
+			<DeclaredIn>MMMasterRestaurantTableViewController.h</DeclaredIn>
+			
+			<Declaration>@property IBOutlet UITableView *tableView</Declaration>
+			
+			
+			<Anchor>//api/name/tableView</Anchor>
+            <NodeRef refid="45"/>
+		</Token>
+		
         
 	</File>
 </Tokens>

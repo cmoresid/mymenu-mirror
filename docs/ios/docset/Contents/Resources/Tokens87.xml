@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMUserNameValidator.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMUserNameValidator</TokenIdentifier>
+			<Abstract type="html">* A concrete validator that checks the server to see if</Abstract>
+			<DeclaredIn>MMUserNameValidator.h</DeclaredIn>
+            
+			
+			<NodeRef refid="87"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMUserNameValidator/setUserNameTextField:</TokenIdentifier>
+			<Abstract type="html">* A text field that contains the user name to be validated.</Abstract>
+			<DeclaredIn>MMUserNameValidator.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) UITextField *userNameTextField</Declaration>
+			
+			
+			<Anchor>//api/name/userNameTextField</Anchor>
+            <NodeRef refid="87"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMUserNameValidator/userNameTextField</TokenIdentifier>
+			<Abstract type="html">* A text field that contains the user name to be validated.</Abstract>
+			<DeclaredIn>MMUserNameValidator.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) UITextField *userNameTextField</Declaration>
+			
+			
+			<Anchor>//api/name/userNameTextField</Anchor>
+            <NodeRef refid="87"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MMUserNameValidator/userNameTextField</TokenIdentifier>
+			<Abstract type="html">* A text field that contains the user name to be validated.</Abstract>
+			<DeclaredIn>MMUserNameValidator.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, weak) UITextField *userNameTextField</Declaration>
+			
+			
+			<Anchor>//api/name/userNameTextField</Anchor>
+            <NodeRef refid="87"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMUserNameValidator/initWithUserNameTextField:</TokenIdentifier>
+			<Abstract type="html">* A constructor that accepts a text field which contains</Abstract>
+			<DeclaredIn>MMUserNameValidator.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithUserNameTextField:(UITextField *)textField</Declaration>
+			
+			
+			<Anchor>//api/name/initWithUserNameTextField:</Anchor>
+            <NodeRef refid="87"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MMUserNameValidator/beginValidation</TokenIdentifier>
+			<Abstract type="html">* Begins an asynchronous request to validate the user name</Abstract>
+			<DeclaredIn>MMUserNameValidator.h</DeclaredIn>
+			
+			<Declaration>- (void)beginValidation</Declaration>
+			
+			
+			<Anchor>//api/name/beginValidation</Anchor>
+            <NodeRef refid="87"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

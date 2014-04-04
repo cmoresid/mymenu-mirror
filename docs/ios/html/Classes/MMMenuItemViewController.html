@@ -1,0 +1,1421 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>MMMenuItemViewController Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">MyMenu </a></h1>
+				<a id="developerHome" href="../index.html">MyMenu</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MMMenuItemViewController Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/activeField">&nbsp;&nbsp;&nbsp;&nbsp;activeField</option>
+	
+	<option value="//api/name/currentMenuItem">&nbsp;&nbsp;&nbsp;&nbsp;currentMenuItem</option>
+	
+	<option value="//api/name/currentMerchant">&nbsp;&nbsp;&nbsp;&nbsp;currentMerchant</option>
+	
+	<option value="//api/name/currentOrientation">&nbsp;&nbsp;&nbsp;&nbsp;currentOrientation</option>
+	
+	<option value="//api/name/eatenThisButton">&nbsp;&nbsp;&nbsp;&nbsp;eatenThisButton</option>
+	
+	<option value="//api/name/itemDescription">&nbsp;&nbsp;&nbsp;&nbsp;itemDescription</option>
+	
+	<option value="//api/name/itemImage">&nbsp;&nbsp;&nbsp;&nbsp;itemImage</option>
+	
+	<option value="//api/name/itemName">&nbsp;&nbsp;&nbsp;&nbsp;itemName</option>
+	
+	<option value="//api/name/itemRating">&nbsp;&nbsp;&nbsp;&nbsp;itemRating</option>
+	
+	<option value="//api/name/itemRatingView">&nbsp;&nbsp;&nbsp;&nbsp;itemRatingView</option>
+	
+	<option value="//api/name/menuModificationsView">&nbsp;&nbsp;&nbsp;&nbsp;menuModificationsView</option>
+	
+	<option value="//api/name/popOverController">&nbsp;&nbsp;&nbsp;&nbsp;popOverController</option>
+	
+	<option value="//api/name/rating">&nbsp;&nbsp;&nbsp;&nbsp;rating</option>
+	
+	<option value="//api/name/ratingButton">&nbsp;&nbsp;&nbsp;&nbsp;ratingButton</option>
+	
+	<option value="//api/name/ratingsCollectionView">&nbsp;&nbsp;&nbsp;&nbsp;ratingsCollectionView</option>
+	
+	<option value="//api/name/reviewSegment">&nbsp;&nbsp;&nbsp;&nbsp;reviewSegment</option>
+	
+	<option value="//api/name/reviewView">&nbsp;&nbsp;&nbsp;&nbsp;reviewView</option>
+	
+	<option value="//api/name/reviewViewFlag">&nbsp;&nbsp;&nbsp;&nbsp;reviewViewFlag</option>
+	
+	<option value="//api/name/userReviewField">&nbsp;&nbsp;&nbsp;&nbsp;userReviewField</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/clearButton:">&nbsp;&nbsp;&nbsp;&nbsp;- clearButton:</option>
+	
+	<option value="//api/name/iveEatenThis:">&nbsp;&nbsp;&nbsp;&nbsp;- iveEatenThis:</option>
+	
+	<option value="//api/name/rateItem:">&nbsp;&nbsp;&nbsp;&nbsp;- rateItem:</option>
+	
+	<option value="//api/name/saveButton:">&nbsp;&nbsp;&nbsp;&nbsp;- saveButton:</option>
+	
+	<option value="//api/name/shareMenuItem:">&nbsp;&nbsp;&nbsp;&nbsp;- shareMenuItem:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/activeField">activeField</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentMenuItem">currentMenuItem</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentMerchant">currentMerchant</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentOrientation">currentOrientation</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/eatenThisButton">eatenThisButton</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/itemDescription">itemDescription</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/itemImage">itemImage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/itemName">itemName</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/itemRating">itemRating</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/itemRatingView">itemRatingView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/menuModificationsView">menuModificationsView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/popOverController">popOverController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rating">rating</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ratingButton">ratingButton</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ratingsCollectionView">ratingsCollectionView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/reviewSegment">reviewSegment</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/reviewView">reviewView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/reviewViewFlag">reviewViewFlag</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userReviewField">userReviewField</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearButton:">clearButton:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/iveEatenThis:">iveEatenThis:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rateItem:">rateItem:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveButton:">saveButton:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shareMenuItem:">shareMenuItem:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="MMMenuItemViewController Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MMMenuItemViewController Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">UITableViewController</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">MMDBFetcherDelegate<br />UICollectionViewDataSource<br />UICollectionViewDelegate<br />UIPopoverControllerDelegate<br />UITableViewDataSource<br />UITextViewDelegate</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">MMMenuItemViewController.h<br />MMMenuItemViewController.m</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>The controller that shows the selected menu item a user selects.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentMenuItem">&nbsp;&nbsp;currentMenuItem</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentMerchant">&nbsp;&nbsp;currentMerchant</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/reviewViewFlag">&nbsp;&nbsp;reviewViewFlag</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/popOverController">&nbsp;&nbsp;popOverController</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/itemName">&nbsp;&nbsp;itemName</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userReviewField">&nbsp;&nbsp;userReviewField</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/activeField">&nbsp;&nbsp;activeField</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/itemRating">&nbsp;&nbsp;itemRating</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/reviewView">&nbsp;&nbsp;reviewView</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/itemDescription">&nbsp;&nbsp;itemDescription</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/itemImage">&nbsp;&nbsp;itemImage</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/itemRatingView">&nbsp;&nbsp;itemRatingView</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/menuModificationsView">&nbsp;&nbsp;menuModificationsView</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ratingButton">&nbsp;&nbsp;ratingButton</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/eatenThisButton">&nbsp;&nbsp;eatenThisButton</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rating">&nbsp;&nbsp;rating</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ratingsCollectionView">&nbsp;&nbsp;ratingsCollectionView</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/reviewSegment">&nbsp;&nbsp;reviewSegment</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentOrientation">&nbsp;&nbsp;currentOrientation</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shareMenuItem:">&ndash;&nbsp;shareMenuItem:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rateItem:">&ndash;&nbsp;rateItem:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/saveButton:">&ndash;&nbsp;saveButton:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clearButton:">&ndash;&nbsp;clearButton:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/iveEatenThis:">&ndash;&nbsp;iveEatenThis:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/activeField" title="activeField"></a>
+	<h3 class="subsubtitle method-title">activeField</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current Selected Text View</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet UITextView *activeField</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentMenuItem" title="currentMenuItem"></a>
+	<h3 class="subsubtitle method-title">currentMenuItem</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The item that the user touched before</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property MMMenuItem *currentMenuItem</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentMerchant" title="currentMerchant"></a>
+	<h3 class="subsubtitle method-title">currentMerchant</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The current mechant of the menu item</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property MMMerchant *currentMerchant</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentOrientation" title="currentOrientation"></a>
+	<h3 class="subsubtitle method-title">currentOrientation</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current Orientation of the device.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) UIDeviceOrientation currentOrientation</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/eatenThisButton" title="eatenThisButton"></a>
+	<h3 class="subsubtitle method-title">eatenThisButton</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>I&rsquo;ve eaten this button</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet UIButton *eatenThisButton</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/itemDescription" title="itemDescription"></a>
+	<h3 class="subsubtitle method-title">itemDescription</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The menu items description</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet UITextView *itemDescription</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/itemImage" title="itemImage"></a>
+	<h3 class="subsubtitle method-title">itemImage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The menu items description</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet UIImageView *itemImage</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/itemName" title="itemName"></a>
+	<h3 class="subsubtitle method-title">itemName</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The label for the item name</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet UILabel *itemName</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/itemRating" title="itemRating"></a>
+	<h3 class="subsubtitle method-title">itemRating</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The Items Rating Label</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet UILabel *itemRating</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/itemRatingView" title="itemRatingView"></a>
+	<h3 class="subsubtitle method-title">itemRatingView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The menu items <a href="#//api/name/rating">rating</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet UIView *itemRatingView</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/menuModificationsView" title="menuModificationsView"></a>
+	<h3 class="subsubtitle method-title">menuModificationsView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The tablview that holds the avaliable Restrictions for the menu item</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet UITextView *menuModificationsView</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/popOverController" title="popOverController"></a>
+	<h3 class="subsubtitle method-title">popOverController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Popover view controller</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIPopoverController *popOverController</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rating" title="rating"></a>
+	<h3 class="subsubtitle method-title">rating</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current Rating of menu Item</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSNumber *rating</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ratingButton" title="ratingButton"></a>
+	<h3 class="subsubtitle method-title">ratingButton</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Rate button</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet UIButton *ratingButton</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ratingsCollectionView" title="ratingsCollectionView"></a>
+	<h3 class="subsubtitle method-title">ratingsCollectionView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Menu Item View for showing reviews.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet UICollectionView *ratingsCollectionView</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/reviewSegment" title="reviewSegment"></a>
+	<h3 class="subsubtitle method-title">reviewSegment</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Switch the ratings view to show top rated first or most recent</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UISegmentedControl *reviewSegment</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/reviewView" title="reviewView"></a>
+	<h3 class="subsubtitle method-title">reviewView</h3>
+	
+	
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet UIView *reviewView</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/reviewViewFlag" title="reviewViewFlag"></a>
+	<h3 class="subsubtitle method-title">reviewViewFlag</h3>
+	
+	
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property BOOL reviewViewFlag</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userReviewField" title="userReviewField"></a>
+	<h3 class="subsubtitle method-title">userReviewField</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The input review textview for a user submitted review.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet UITextView *userReviewField</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/clearButton:" title="clearButton:"></a>
+	<h3 class="subsubtitle method-title">clearButton:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Clear the <a href="#//api/name/rating">rating</a> field, and current set <a href="#//api/name/rating">rating</a> (From the circle view)</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)clearButton:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>UIButton</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/iveEatenThis:" title="iveEatenThis:"></a>
+	<h3 class="subsubtitle method-title">iveEatenThis:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current user has eaten the menu item.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)iveEatenThis:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>UIButton</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rateItem:" title="rateItem:"></a>
+	<h3 class="subsubtitle method-title">rateItem:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Rate the menu item button selected</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)rateItem:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>UIButton</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/saveButton:" title="saveButton:"></a>
+	<h3 class="subsubtitle method-title">saveButton:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Save the Rating the user inputed</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)saveButton:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>UIButton</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shareMenuItem:" title="shareMenuItem:"></a>
+	<h3 class="subsubtitle method-title">shareMenuItem:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Share the menu item via Social Media</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)shareMenuItem:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sender</em></dt>
+			<dd><p>UIButton</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMMenuItemViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+                    
+                    
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 MyMenu. All rights reserved. (Last updated: 2014-04-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/MMLocationManagerDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/MMLocationManagerDelegate</TokenIdentifier>
+			<Abstract type="html">*  Delegate interface that defines a class that</Abstract>
+			<DeclaredIn>MMLocationManagerDelegate.h</DeclaredIn>
+            
+			
+			<NodeRef refid="205"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMLocationManagerDelegate/initWithLocationManager:</TokenIdentifier>
+			<Abstract type="html">*  Initializes a new location manager with a given</Abstract>
+			<DeclaredIn>MMLocationManagerDelegate.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithLocationManager:(CLLocationManager *)locationManager</Declaration>
+			
+			
+			<Anchor>//api/name/initWithLocationManager:</Anchor>
+            <NodeRef refid="205"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/MMLocationManagerDelegate/getLatestLocation</TokenIdentifier>
+			<Abstract type="html">*  Returns that user&apos;s last known location.</Abstract>
+			<DeclaredIn>MMLocationManagerDelegate.h</DeclaredIn>
+			
+			<Declaration>- (RACSignal *)getLatestLocation</Declaration>
+			
+			
+			<Anchor>//api/name/getLatestLocation</Anchor>
+            <NodeRef refid="205"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

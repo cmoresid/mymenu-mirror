@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MMRestaurantSegue.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MMRestaurantSegue</TokenIdentifier>
+			<Abstract type="html">Custom segue that is triggered when a user selects
+a restaurant in the master restaurant list. Segue
+responsible for maintaining the navigation child
+controller stack for the detail portion of the split
+view.</Abstract>
+			<DeclaredIn>MMRestaurantSegue.h</DeclaredIn>
+            
+			
+			<NodeRef refid="69"/>
+		</Token>
+		
+		
+        
+	</File>
+</Tokens>

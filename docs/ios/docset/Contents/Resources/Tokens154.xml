@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/NSInvocation+RACTypeParsing.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/NSInvocation(RACTypeParsing)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>NSInvocation+RACTypeParsing.h</DeclaredIn>
+            
+			
+			<NodeRef refid="154"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSInvocation/rac_setArgument:atIndex:</TokenIdentifier>
+			<Abstract type="html">Sets the argument for the invocation at the given index by unboxing the given
+object based on the type signature of the argument.</Abstract>
+			<DeclaredIn>NSInvocation+RACTypeParsing.h</DeclaredIn>
+			
+			<Declaration>- (void)rac_setArgument:(id)object atIndex:(NSUInteger)index</Declaration>
+			
+			
+			<Anchor>//api/name/rac_setArgument:atIndex:</Anchor>
+            <NodeRef refid="154"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSInvocation/rac_argumentAtIndex:</TokenIdentifier>
+			<Abstract type="html">Gets the argument for the invocation at the given index based on the
+invocation&apos;s method signature. The value is then wrapped in the appropriate
+object type.</Abstract>
+			<DeclaredIn>NSInvocation+RACTypeParsing.h</DeclaredIn>
+			
+			<Declaration>- (id)rac_argumentAtIndex:(NSUInteger)index</Declaration>
+			
+			
+			<Anchor>//api/name/rac_argumentAtIndex:</Anchor>
+            <NodeRef refid="154"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSInvocation/setRac_argumentsTuple:</TokenIdentifier>
+			<Abstract type="html">Arguments tuple for the invocation.</Abstract>
+			<DeclaredIn>NSInvocation+RACTypeParsing.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) RACTuple *rac_argumentsTuple</Declaration>
+			
+			
+			<Anchor>//api/name/rac_argumentsTuple</Anchor>
+            <NodeRef refid="154"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSInvocation/rac_argumentsTuple</TokenIdentifier>
+			<Abstract type="html">Arguments tuple for the invocation.</Abstract>
+			<DeclaredIn>NSInvocation+RACTypeParsing.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) RACTuple *rac_argumentsTuple</Declaration>
+			
+			
+			<Anchor>//api/name/rac_argumentsTuple</Anchor>
+            <NodeRef refid="154"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/NSInvocation/rac_argumentsTuple</TokenIdentifier>
+			<Abstract type="html">Arguments tuple for the invocation.</Abstract>
+			<DeclaredIn>NSInvocation+RACTypeParsing.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) RACTuple *rac_argumentsTuple</Declaration>
+			
+			
+			<Anchor>//api/name/rac_argumentsTuple</Anchor>
+            <NodeRef refid="154"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/NSInvocation/rac_returnValue</TokenIdentifier>
+			<Abstract type="html">Gets the return value from the invocation based on the invocation&apos;s method
+signature. The value is then wrapped in the appropriate object type.</Abstract>
+			<DeclaredIn>NSInvocation+RACTypeParsing.h</DeclaredIn>
+			
+			<Declaration>- (id)rac_returnValue</Declaration>
+			
+			
+			<Anchor>//api/name/rac_returnValue</Anchor>
+            <NodeRef refid="154"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

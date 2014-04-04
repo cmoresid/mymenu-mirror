@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/RACSubscriber.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/RACSubscriber</TokenIdentifier>
+			<Abstract type="html">Represents any object which can directly receive values from a RACSignal.</Abstract>
+			<DeclaredIn>RACSubscriber.h</DeclaredIn>
+            
+			
+			<NodeRef refid="210"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/RACSubscriber/sendNext:</TokenIdentifier>
+			<Abstract type="html">Send the next value to subscribers.</Abstract>
+			<DeclaredIn>RACSubscriber.h</DeclaredIn>
+			
+			<Declaration>- (void)sendNext:(id)value</Declaration>
+			
+			
+			<Anchor>//api/name/sendNext:</Anchor>
+            <NodeRef refid="210"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/RACSubscriber/sendError:</TokenIdentifier>
+			<Abstract type="html">Send the error to subscribers.</Abstract>
+			<DeclaredIn>RACSubscriber.h</DeclaredIn>
+			
+			<Declaration>- (void)sendError:(NSError *)error</Declaration>
+			
+			
+			<Anchor>//api/name/sendError:</Anchor>
+            <NodeRef refid="210"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/RACSubscriber/sendCompleted</TokenIdentifier>
+			<Abstract type="html">Send completed to subscribers.</Abstract>
+			<DeclaredIn>RACSubscriber.h</DeclaredIn>
+			
+			<Declaration>- (void)sendCompleted</Declaration>
+			
+			
+			<Anchor>//api/name/sendCompleted</Anchor>
+            <NodeRef refid="210"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/RACSubscriber/didSubscribeWithDisposable:</TokenIdentifier>
+			<Abstract type="html">Sends the subscriber a disposable that represents one of its subscriptions.</Abstract>
+			<DeclaredIn>RACSubscriber.h</DeclaredIn>
+			
+			<Declaration>- (void)didSubscribeWithDisposable:(RACDisposable *)disposable</Declaration>
+			
+			
+			<Anchor>//api/name/didSubscribeWithDisposable:</Anchor>
+            <NodeRef refid="210"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

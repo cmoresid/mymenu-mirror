@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UICollectionReusableView+RACSignalSupport.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UICollectionReusableView(RACSignalSupport)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UICollectionReusableView+RACSignalSupport.h</DeclaredIn>
+            
+			
+			<NodeRef refid="174"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UICollectionReusableView/setRac_prepareForReuseSignal:</TokenIdentifier>
+			<Abstract type="html">A signal which will send a RACUnit whenever -prepareForReuse is invoked upon
+the receiver.</Abstract>
+			<DeclaredIn>UICollectionReusableView+RACSignalSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *rac_prepareForReuseSignal</Declaration>
+			
+			
+			<Anchor>//api/name/rac_prepareForReuseSignal</Anchor>
+            <NodeRef refid="174"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UICollectionReusableView/rac_prepareForReuseSignal</TokenIdentifier>
+			<Abstract type="html">A signal which will send a RACUnit whenever -prepareForReuse is invoked upon
+the receiver.</Abstract>
+			<DeclaredIn>UICollectionReusableView+RACSignalSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *rac_prepareForReuseSignal</Declaration>
+			
+			
+			<Anchor>//api/name/rac_prepareForReuseSignal</Anchor>
+            <NodeRef refid="174"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UICollectionReusableView/rac_prepareForReuseSignal</TokenIdentifier>
+			<Abstract type="html">A signal which will send a RACUnit whenever -prepareForReuse is invoked upon
+the receiver.</Abstract>
+			<DeclaredIn>UICollectionReusableView+RACSignalSupport.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) RACSignal *rac_prepareForReuseSignal</Declaration>
+			
+			
+			<Anchor>//api/name/rac_prepareForReuseSignal</Anchor>
+            <NodeRef refid="174"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

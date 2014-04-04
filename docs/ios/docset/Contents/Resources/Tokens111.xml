@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RACKVOTrampoline.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RACKVOTrampoline</TokenIdentifier>
+			<Abstract type="html">The KVO trampoline object. Represents a KVO observation.</Abstract>
+			<DeclaredIn>RACKVOTrampoline.h</DeclaredIn>
+            
+			
+			<NodeRef refid="111"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACKVOTrampoline/initWithTarget:observer:keyPath:options:block:</TokenIdentifier>
+			<Abstract type="html">Initializes the receiver with the given parameters.</Abstract>
+			<DeclaredIn>RACKVOTrampoline.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithTarget:(NSObject *)target observer:(NSObject *)observer keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options block:(RACKVOBlock)block</Declaration>
+			
+			
+			<Anchor>//api/name/initWithTarget:observer:keyPath:options:block:</Anchor>
+            <NodeRef refid="111"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RACKVOTrampoline/dispose</TokenIdentifier>
+			<Abstract type="html">Performs the disposal work. Can be called multiple times, though sebsequent
+calls won&apos;t do anything.</Abstract>
+			<DeclaredIn>RACKVOTrampoline.m</DeclaredIn>
+			
+			<Declaration>- (void)dispose</Declaration>
+			
+			
+			<Anchor>//api/name/dispose</Anchor>
+            <NodeRef refid="111"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

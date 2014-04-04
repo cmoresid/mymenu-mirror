@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/UIStepper+RACSignalSupport.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/UIStepper(RACSignalSupport)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UIStepper+RACSignalSupport.h</DeclaredIn>
+            
+			
+			<NodeRef refid="189"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UIStepper/rac_newValueChannelWithNilValue:</TokenIdentifier>
+			<Abstract type="html">Creates a new RACChannel-based binding to the receiver.</Abstract>
+			<DeclaredIn>UIStepper+RACSignalSupport.h</DeclaredIn>
+			
+			<Declaration>- (RACChannelTerminal *)rac_newValueChannelWithNilValue:(NSNumber *)nilValue</Declaration>
+			
+			
+			<Anchor>//api/name/rac_newValueChannelWithNilValue:</Anchor>
+            <NodeRef refid="189"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

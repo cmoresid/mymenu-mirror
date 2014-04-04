@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/MMDietaryRestrictionCell.html">
+	<File path="Classes/AFImageCache.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/MMDietaryRestrictionCell</TokenIdentifier>
-			<Abstract type="html">A custom cell that dietary restriction. There is a
-a corresponding dynamic prototype in the storyboard
-where the actual UI is defined.</Abstract>
-			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/AFImageCache</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UIImageView+AFNetworking.m</DeclaredIn>
             
 			
 			<NodeRef refid="7"/>
@@ -15,77 +13,39 @@ where the actual UI is defined.</Abstract>
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMDietaryRestrictionCell/setOnSwitch:</TokenIdentifier>
-			<Abstract type="html">A UISwitch that represents whether or not the
-dietary restriction is selected.</Abstract>
-			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/AFImageCache/cachedImageForRequest:</TokenIdentifier>
+			<Abstract type="html">Returns a cached image for the specififed request, if available.</Abstract>
+			<DeclaredIn>UIImageView+AFNetworking.m</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, weak) IBOutlet UISwitch *onSwitch</Declaration>
-			
-			
-			<Anchor>//api/name/onSwitch</Anchor>
+			<Declaration>- (UIImage *)cachedImageForRequest:(NSURLRequest *)request</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>request</Name>
+					<Abstract type="html">The image request.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The cached image.</Abstract></ReturnValue>
+			<Anchor>//api/name/cachedImageForRequest:</Anchor>
             <NodeRef refid="7"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMDietaryRestrictionCell/onSwitch</TokenIdentifier>
-			<Abstract type="html">A UISwitch that represents whether or not the
-dietary restriction is selected.</Abstract>
-			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/AFImageCache/cacheImage:forRequest:</TokenIdentifier>
+			<Abstract type="html">Caches a particular image for the specified request.</Abstract>
+			<DeclaredIn>UIImageView+AFNetworking.m</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, weak) IBOutlet UISwitch *onSwitch</Declaration>
+			<Declaration>- (void)cacheImage:(UIImage *)image forRequest:(NSURLRequest *)request</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>image</Name>
+					<Abstract type="html">The image to cache.</Abstract>
+				</Parameter><Parameter>
+					<Name>request</Name>
+					<Abstract type="html">The request to be used as a cache key.</Abstract>
+				</Parameter>
+			</Parameters>
 			
-			
-			<Anchor>//api/name/onSwitch</Anchor>
-            <NodeRef refid="7"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MMDietaryRestrictionCell/onSwitch</TokenIdentifier>
-			<Abstract type="html">A UISwitch that represents whether or not the
-dietary restriction is selected.</Abstract>
-			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic, weak) IBOutlet UISwitch *onSwitch</Declaration>
-			
-			
-			<Anchor>//api/name/onSwitch</Anchor>
-            <NodeRef refid="7"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMDietaryRestrictionCell/setRestName:</TokenIdentifier>
-			<Abstract type="html">The label that describes the restriction.</Abstract>
-			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *restName</Declaration>
-			
-			
-			<Anchor>//api/name/restName</Anchor>
-            <NodeRef refid="7"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/MMDietaryRestrictionCell/restName</TokenIdentifier>
-			<Abstract type="html">The label that describes the restriction.</Abstract>
-			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *restName</Declaration>
-			
-			
-			<Anchor>//api/name/restName</Anchor>
-            <NodeRef refid="7"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/MMDietaryRestrictionCell/restName</TokenIdentifier>
-			<Abstract type="html">The label that describes the restriction.</Abstract>
-			<DeclaredIn>MMDietaryRestrictionCell.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic, weak) IBOutlet UILabel *restName</Declaration>
-			
-			
-			<Anchor>//api/name/restName</Anchor>
+			<Anchor>//api/name/cacheImage:forRequest:</Anchor>
             <NodeRef refid="7"/>
 		</Token>
 		
