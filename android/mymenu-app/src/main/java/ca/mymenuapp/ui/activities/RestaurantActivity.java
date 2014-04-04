@@ -124,7 +124,7 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
         new EndlessObserver<RestaurantMenu>() {
           @Override public void onNext(RestaurantMenu restaurantMenu) {
             menu = restaurantMenu;
-            setShareIntent();
+            setShareIntent(menu);
             spannableString = new SpannableString(menu.getRestaurant().businessName);
             picasso.load(menu.getRestaurant().businessPicture)
                 .fit()
@@ -320,7 +320,7 @@ public class RestaurantActivity extends BaseActivity implements AbsListView.OnSc
     return true;
   }
 
-  private void setShareIntent() {
+  private void setShareIntent(RestaurantMenu menu) {
     Intent shareIntent = new Intent();
     shareIntent.setAction(Intent.ACTION_SEND);
     // todo check if this item has a picture
