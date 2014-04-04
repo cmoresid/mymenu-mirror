@@ -166,16 +166,18 @@ public class MenuItemsGridFragment extends BaseFragment implements AdapterView.O
     ourIntent.putExtra(MenuItemActivity.ARGS_RESTAURANT, restaurant);
 
     /* Retrieves reviews for the selected menu item */
-    myMenuDatabase.getReviews(menuItem, new EndlessObserver<MenuItemReviewResponse>() {
-      @Override public void onNext(MenuItemReviewResponse args) {
-        ArrayList<MenuItemReview> mIr = new ArrayList<>();
-        if (!CollectionUtils.isNullOrEmpty(args.reviews)) {
-          mIr = (ArrayList) args.reviews;
+    if (menuItem!=null) {
+      myMenuDatabase.getReviews(menuItem, new EndlessObserver<MenuItemReviewResponse>() {
+        @Override public void onNext(MenuItemReviewResponse args) {
+          ArrayList<MenuItemReview> mIr = new ArrayList<>();
+          if (!CollectionUtils.isNullOrEmpty(args.reviews)) {
+            mIr = (ArrayList) args.reviews;
+          }
+          ourIntent.putExtra(MenuItemActivity.ARGS_REVIEWS, mIr);
+          startActivity(ourIntent);
         }
-        ourIntent.putExtra(MenuItemActivity.ARGS_REVIEWS, mIr);
-        startActivity(ourIntent);
-      }
-    });
+      });
+    }
   }
 
   static class MenuItemAdapter extends BindableListAdapter<MenuItem> {
