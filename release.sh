@@ -24,6 +24,3 @@ git tag $1
 # push upstream
 git push -u origin master
 git push --tags
-
-# deploy the website
-./deploy_website.sh
