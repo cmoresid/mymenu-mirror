@@ -23,4 +23,3 @@ The iOS project is set up as follows:
   12. ViewModel - contains a class setting up a view model.
 2. Resources contains all of our views and custom .xib files
 
-The Android project is set up as follows:
